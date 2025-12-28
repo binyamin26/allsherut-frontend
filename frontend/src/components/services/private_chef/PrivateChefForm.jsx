@@ -108,7 +108,7 @@ const PrivateChefForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
-            {t('serviceForm.chef.cuisineType')}
+            {t('serviceForm.chef.cuisineTypes')}
             </label>
             
             {serviceDetails.work_types?.includes('סוג המטבח') && (

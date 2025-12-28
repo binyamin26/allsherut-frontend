@@ -9,6 +9,8 @@
   left: 0;
   right: 0;
   bottom: 0;
+  width: 100vw;
+  height: 100vh;
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(8px);
   z-index: 10000;
@@ -17,6 +19,7 @@
   justify-content: center;
   padding: var(--space-4);
   animation: fadeIn 0.3s ease-out;
+  overflow-y: auto;
 }
 
 @keyframes fadeIn {
@@ -34,6 +37,8 @@
   overflow-y: auto;
   animation: slideUp 0.3s ease-out;
   border: 1px solid var(--neutral-100);
+  position: relative;
+  margin: auto;
 }
 
 @keyframes slideUp {
@@ -217,9 +222,17 @@
 
 /* Responsive modals */
 @media (max-width: 640px) {
+  .modal-overlay {
+    padding: var(--space-2);
+    align-items: flex-start;
+    padding-top: var(--space-4);
+  }
+  
   .modal-content {
-    margin: var(--space-2);
+    margin: 0 auto;
     max-width: calc(100vw - var(--space-4));
+    max-height: calc(100vh - var(--space-8));
+    border-radius: var(--radius-xl);
   }
   
   .success-modal {

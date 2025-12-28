@@ -6,14 +6,16 @@ class ServiceSubcategory {
    * @param {number} serviceId - ID du service (5 pour tutoring)
    * @returns {Array} Liste des sous-catégories
    */
-  static async getByServiceId(serviceId) {
+static async getByServiceId(serviceId) {
     try {
       return await query(`
-        SELECT 
-          id, 
-          name_he, 
-          name_en, 
-          icon, 
+        SELECT
+          id,
+          name_he,
+          name_en,
+          name_fr,
+          name_ru,
+          icon,
           display_order
         FROM service_subcategories
         WHERE service_id = ? AND is_active = true

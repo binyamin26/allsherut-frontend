@@ -4,7 +4,7 @@ import { useAuth } from '../../../context/AuthContext';
 import { FILTER_CONFIG } from '../../config/filterConfig';
 
 const TutoringForm = ({ serviceDetails, errors, handleServiceDetailsChange }) => {
-    const { t } = useLanguage();
+const { t, currentLanguage } = useLanguage();
     const { apiCall } = useAuth();
     
     const [subcategories, setSubcategories] = useState([]);
@@ -116,7 +116,7 @@ const TutoringForm = ({ serviceDetails, errors, handleServiceDetailsChange }) =>
                                                     />
                                                     <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                                                         <span>{subcat.icon}</span>
-                                                        <span>{subcat.name_he}</span>
+                                                      <span>{subcat[`name_${currentLanguage}`] || subcat.name_he}</span>
                                                     </span>
                                                 </label>
                                             ))}

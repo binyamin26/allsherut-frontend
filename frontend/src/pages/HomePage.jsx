@@ -135,7 +135,7 @@ useEffect(() => {
     {
       id: 'eldercare',
       name: t('services.eldercare'),
-     image: 'public/images/babysite.png',
+     image: 'public/images/eldercare.png',
       description: t('services.eldercare.desc'),
       color: 'from-purple-500 to-violet-600',
       href: '/services/eldercare'

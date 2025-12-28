@@ -54,6 +54,33 @@ const serviceIcons = {
   eldercare: User
 };
 
+// Définition des images de services
+const serviceImages = {
+  babysitting: '/images/babysite.png',
+  cleaning: '/images/nikayon.jpg',
+  gardening: '/images/jardinage.jpg',
+  petcare: '/images/chien.jpg',
+  tutoring: '/images/tutoring.png',
+  eldercare: '/images/eldercare.png',
+  laundry: '/images/kvissa.jpg',
+  property_management: '/images/nihoul dirot.jpg',
+  electrician: '/images/electrician.jpg',
+  plumbing: '/images/plombier.jpg',
+  air_conditioning: '/images/clim.png',
+  gas_technician: '/images/gaz.jpg',
+  drywall: '/images/guevess.png',
+  carpentry: '/images/menuisier.png',
+  home_organization: '/images/rangement.jpg',
+  event_entertainment: '/images/fetes1.jpg',
+  private_chef: '/images/pizza.png',
+  painting: '/images/peinture.jpg',
+  waterproofing: '/images/itoum.jpg',
+  contractor: '/images/kablan.png',
+  aluminum: '/images/aluminium.png',
+  glass_works: '/images/verre.png',
+  locksmith: '/images/serrure.png'
+};
+
 const DashboardPage = () => {
 const {user, isAuthenticated, isSubscriptionExpired, getMyReviews, apiCall, updateProfile, uploadProfileImage, deleteProfileImage, switchService, deleteService, changePassword} = useAuth();
   const { t } = useLanguage();
@@ -820,7 +847,10 @@ const getServiceName = (serviceType) => {
   if (loading) {
 return <LoadingSpinner size="large" overlay text={t('dashboard.loading')} />;
   }
-
+console.log('🔍 Dashboard userData:', {
+  profileImage: userData?.providerProfile?.profile_image,
+  fullProviderProfile: userData?.providerProfile
+});
   return (
     <div className="dashboard-page">
       <div className="container">
@@ -942,11 +972,19 @@ return <LoadingSpinner size="large" overlay text={t('dashboard.loading')} />;
     <div className="provider-header" style={{ justifyContent: 'space-between', alignItems: 'flex-start' }}>
       <div style={{ display: 'flex', gap: '2rem' }}>
         
-        <div className="provider-avatar">
+     <div className="provider-avatar" style={{ width: '100px', height: '100px' }}>
   {imagePreview ? (
-    <img src={imagePreview} alt="Preview" />
+ <img 
+  src={imagePreview} 
+  alt="Preview"
+  style={{ width: '100px', height: '100px', objectFit: 'cover', borderRadius: '50%', border: 'none', boxShadow: 'none' }}
+/>
   ) : userData?.providerProfile?.profile_image ? (
-    <img src={`http://localhost:5000${userData.providerProfile.profile_image}`} alt={userData.firstName} />
+ <img 
+  src={`http://localhost:5000/${userData.providerProfile.profile_image.replace(/^\/+/, '')}`} 
+  alt={userData.firstName}
+  style={{ width: '100px', height: '100px', objectFit: 'cover', borderRadius: '50%', border: 'none', boxShadow: 'none' }}
+/>
   ) : (
     <User size={60} />
   )}
@@ -1017,9 +1055,25 @@ return <LoadingSpinner size="large" overlay text={t('dashboard.loading')} />;
         <div className="provider-main-info">
           <h2 className="provider-name">{userData?.firstName} {userData?.lastName}</h2>
           <div className="service-badge">
-          <span className="service-icon">
-  {React.createElement(serviceIcons[activeService] || serviceIcons[userData?.serviceType] || serviceIcons[user?.service_type] || User, { size: 20 })}
-</span>
+     <div style={{ 
+  width: '120px',
+  height: '120px',
+  borderRadius: '50%',
+  overflow: 'hidden',
+  background: '#f0f0f0',
+  flexShrink: 0
+}}>
+  <img 
+    src={serviceImages[activeService] || serviceImages[userData?.serviceType] || serviceImages[user?.service_type]} 
+    alt=""
+    style={{ 
+      width: '100%', 
+      height: '100%',
+      objectFit: 'cover',
+      transform: 'scale(1.3)'
+    }}
+  />
+</div>
            <span className="service-name">{getServiceName(activeService || userData?.serviceType)}</span>
           </div>
         {userData?.verified && (

@@ -6,6 +6,7 @@ import AuthModal from '../components/auth/AuthModal';
 import ReviewModal from '../components/modals/ReviewModal';
 import apiService from '../services/api';
 import { useLanguage } from '../context/LanguageContext';
+import { translateValue, translateAndJoin, translateArrayFromMultipleCategories } from '../utils/translationMapper';
 import { 
   Star, MapPin, Clock, Phone, Mail, CheckCircle, Award, 
   Calendar, MessageCircle, ThumbsUp, User, Shield, Heart,
@@ -292,7 +293,7 @@ const handleContact = () => {
             {details.frequency && (
               <div className="detail-item">
                 <strong>{t('provider.details.frequency')}:</strong>
-                <span>{details.frequency}</span>
+               <span>{translateValue(details.frequency, 'cleaningFrequency', t)}</span>
               </div>
             )}
           </>
@@ -328,7 +329,7 @@ const handleContact = () => {
             {details.teachingMode && (
               <div className="detail-item">
                 <strong>{t('provider.details.teachingMode')}:</strong>
-                <span>{details.teachingMode}</span>
+               <span>{translateValue(details.teachingMode, 'tutoringMode', t)}</span>
               </div>
             )}
           </>
@@ -368,7 +369,7 @@ const handleContact = () => {
         {(details.availableDays || details.availability_days) && (details.availableDays?.length > 0 || details.availability_days?.length > 0) && (
           <div className="detail-item">
            <strong>{t('provider.details.availableDays')}:</strong>
-            <span>{(details.availableDays || details.availability_days).join(', ')}</span>
+        <span>{translateAndJoin(details.availableDays || details.availability_days, 'days', t)}</span>
           </div>
         )}
 
@@ -376,7 +377,7 @@ const handleContact = () => {
         {(details.availableHours || details.availability_hours) && (details.availableHours?.length > 0 || details.availability_hours?.length > 0) && (
           <div className="detail-item">
            <strong>{t('provider.details.availableHours')}:</strong>
-            <span>{(details.availableHours || details.availability_hours).join(', ')}</span>
+         <span>{translateAndJoin(details.availableHours || details.availability_hours, 'hours', t)}</span>
           </div>
         )}
 
@@ -394,7 +395,7 @@ const handleContact = () => {
         {provider.serviceType === 'babysitting' && details.babysitting_types && details.babysitting_types.length > 0 && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
            <strong>{t('provider.details.babysittingTypes')}:</strong>
-            <span>{details.babysitting_types.join(', ')}</span>
+          <span>{translateAndJoin(details.babysitting_types, 'babysittingTypes', t)}</span>
           </div>
         )}
 
@@ -402,7 +403,7 @@ const handleContact = () => {
         {provider.serviceType === 'babysitting' && details.ageGroups && details.ageGroups.length > 0 && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
             <strong>{t('provider.details.ageGroups')}:</strong>
-            <span>{details.ageGroups.join(', ')}</span>
+         <span>{translateAndJoin(details.ageGroups, 'babysittingAgeGroups', t)}</span>
           </div>
         )}
 
@@ -410,7 +411,7 @@ const handleContact = () => {
         {provider.serviceType === 'cleaning' && details.cleaningTypes && details.cleaningTypes.length > 0 && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
           <strong>{t('provider.details.cleaningTypes')}:</strong>
-            <span>{details.cleaningTypes.join(', ')}</span>
+         <span>{translateArrayFromMultipleCategories(details.cleaningTypes, ['cleaningHome', 'cleaningOffice', 'cleaningSpecial'], t).join(', ')}</span>
           </div>
         )}
 
@@ -418,7 +419,7 @@ const handleContact = () => {
         {provider.serviceType === 'gardening' && details.services && details.services.length > 0 && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
            <strong>{t('provider.details.gardeningServices')}:</strong>
-            <span>{details.services.join(', ')}</span>
+       <span>{translateAndJoin(details.services, 'gardeningServices', t)}</span>
           </div>
         )}
 
@@ -426,7 +427,7 @@ const handleContact = () => {
         {provider.serviceType === 'gardening' && details.equipment && details.equipment.length > 0 && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
           <strong>{t('provider.details.equipment')}:</strong>
-            <span>{details.equipment.join(', ')}</span>
+         <span>{translateAndJoin(details.equipment, 'gardeningEquipment', t)}</span>
           </div>
         )}
 
@@ -434,7 +435,7 @@ const handleContact = () => {
         {provider.serviceType === 'petcare' && details.animalTypes && details.animalTypes.length > 0 && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
            <strong>{t('provider.details.pets')}:</strong>
-            <span>{details.animalTypes.join(', ')}</span>
+       <span>{translateAndJoin(details.animalTypes, 'petcareAnimals', t)}</span>
           </div>
         )}
 
@@ -442,15 +443,14 @@ const handleContact = () => {
         {provider.serviceType === 'petcare' && details.facilities && details.facilities.length > 0 && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
           <strong>{t('provider.details.facilities')}:</strong>
-            <span>{details.facilities.join(', ')}</span>
+         <span>{translateAndJoin(details.facilities, 'petcareFacilities', t)}</span>
           </div>
         )}
 
         {/* TUTORING - Subjects */}
         {provider.serviceType === 'tutoring' && details.subjects && details.subjects.length > 0 && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-           <strong>{t('provider.details.subjects')}:</strong>
-            <span>{details.subjects.join(', ')}</span>
+        <span>{details.subjects.join(', ')}</span>
           </div>
         )}
 
@@ -458,7 +458,7 @@ const handleContact = () => {
         {provider.serviceType === 'tutoring' && details.levels && details.levels.length > 0 && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
            <strong>{t('provider.details.levels')}:</strong>
-            <span>{details.levels.join(', ')}</span>
+          <span>{translateAndJoin(details.levels, 'tutoringLevels', t)}</span>
           </div>
         )}
 
@@ -466,7 +466,7 @@ const handleContact = () => {
         {provider.serviceType === 'eldercare' && details.careTypes && details.careTypes.length > 0 && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
             <strong>{t('provider.details.careTypes')}:</strong>
-            <span>{details.careTypes.join(', ')}</span>
+          <span>{translateAndJoin(details.careTypes, 'eldercareTypes', t)}</span>
           </div>
         )}
 
@@ -474,7 +474,7 @@ const handleContact = () => {
         {provider.serviceType === 'eldercare' && details.specificConditions && details.specificConditions.length > 0 && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
           <strong>{t('provider.details.specificConditions')}:</strong>
-            <span>{details.specificConditions.join(', ')}</span>
+           <span>{translateAndJoin(details.specificConditions, 'eldercareConditions', t)}</span>
           </div>
         )}
 

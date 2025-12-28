@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { AlertCircle, X, Trash2 } from 'lucide-react';
 import LoadingSpinner from '../common/LoadingSpinner';
+import { useLanguage } from '../../context/LanguageContext';
 
 const DeleteServiceModal = ({ isOpen, onClose, onConfirm, serviceName, hasOtherServices }) => {
+  const { t } = useLanguage();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -16,39 +18,39 @@ const DeleteServiceModal = ({ isOpen, onClose, onConfirm, serviceName, hasOtherS
       await onConfirm();
       onClose();
     } catch (err) {
-      setError(err.message || 'שגיאה במחיקת השירות');
+      setError(err.message || t('modals.deleteService.error'));
     } finally {
       setLoading(false);
     }
   };
 
   const getServiceDisplayName = (service) => {
-    const names = {
-      babysitting: 'שמרטפות',
-      cleaning: 'ניקיון',
-      gardening: 'גינון',
-      petcare: 'טיפול בחיות',
-      tutoring: 'שיעורים פרטיים',
-      eldercare: 'סיעוד',
-      electrician: 'חשמלאי',
-      plumbing: 'אינסטלציה',
-      air_conditioning: 'מיזוג אוויר',
-      gas_technician: 'טכנאי גז',
-      drywall: 'גבס',
-      carpentry: 'נגרות',
-      home_organization: 'סידור בית',
-      event_entertainment: 'הפעלות לאירועים',
-      private_chef: 'שף פרטי',
-      painting: 'עבודות צבע',
-      waterproofing: 'איטום',
-      contractor: 'קבלן',
-      aluminum: 'אלומיניום',
-      glass_works: 'עבודות זכוכית',
-      locksmith: 'מסגרות',
-      property_management: 'ניהול נכסים',
-      laundry: 'כביסה וגיהוץ'
+    const serviceKeys = {
+      babysitting: 'services.babysitting',
+      cleaning: 'services.cleaning',
+      gardening: 'services.gardening',
+      petcare: 'services.petcare',
+      tutoring: 'services.tutoring',
+      eldercare: 'services.eldercare',
+      electrician: 'services.electrician',
+      plumbing: 'services.plumbing',
+      air_conditioning: 'services.air_conditioning',
+      gas_technician: 'services.gas_technician',
+      drywall: 'services.drywall',
+      carpentry: 'services.carpentry',
+      home_organization: 'services.home_organization',
+      event_entertainment: 'services.event_entertainment',
+      private_chef: 'services.private_chef',
+      painting: 'services.painting',
+      waterproofing: 'services.waterproofing',
+      contractor: 'services.contractor',
+      aluminum: 'services.aluminum',
+      glass_works: 'services.glass_works',
+      locksmith: 'services.locksmith',
+      property_management: 'services.property_management',
+      laundry: 'services.laundry'
     };
-    return names[service] || service;
+    return t(serviceKeys[service], service);
   };
 
   return (
@@ -59,7 +61,7 @@ const DeleteServiceModal = ({ isOpen, onClose, onConfirm, serviceName, hasOtherS
           <div className="modal-icon warning">
             <AlertCircle size={32} />
           </div>
-          <h2>מחיקת שירות {getServiceDisplayName(serviceName)}</h2>
+          <h2>{t('modals.deleteService.title')} {getServiceDisplayName(serviceName)}</h2>
           <button 
             className="modal-close" 
             onClick={onClose}
@@ -73,23 +75,23 @@ const DeleteServiceModal = ({ isOpen, onClose, onConfirm, serviceName, hasOtherS
           <div className="warning-box">
             <AlertCircle size={20} />
             <div>
-              <h3>האם אתה בטוח?</h3>
+              <h3>{t('modals.deleteService.areYouSure')}</h3>
               <p>
-                פעולה זו תמחק את שירות <strong>{getServiceDisplayName(serviceName)}</strong> מהחשבון שלך.
+                {t('modals.deleteService.willDelete')} <strong>{getServiceDisplayName(serviceName)}</strong> {t('modals.deleteService.fromAccount')}
               </p>
               {hasOtherServices ? (
                 <ul className="warning-list">
-                  <li>השירותים האחרים שלך יישארו פעילים</li>
-                  <li>הפרופיל שלך ימשיך להיות גלוי בשירותים האחרים</li>
-                  <li>כל המידע הספציפי לשירות זה יימחק לצמיתות</li>
-                  <li>הביקורות של שירות זה יימחקו</li>
+                  <li>{t('modals.deleteService.otherServicesActive')}</li>
+                  <li>{t('modals.deleteService.profileVisibleOthers')}</li>
+                  <li>{t('modals.deleteService.serviceDataDeleted')}</li>
+                  <li>{t('modals.deleteService.reviewsDeleted')}</li>
                 </ul>
               ) : (
                 <ul className="warning-list" style={{ color: '#dc2626' }}>
-                  <li><strong>זה השירות האחרון שלך!</strong></li>
-                  <li>מחיקת שירות זה תמחק את כל החשבון שלך</li>
-                  <li>כל המידע שלך יימחק לצמיתות</li>
-                  <li>לא תוכל להתחבר שוב</li>
+                  <li><strong>{t('modals.deleteService.lastService')}</strong></li>
+                  <li>{t('modals.deleteService.accountWillBeDeleted')}</li>
+                  <li>{t('modals.deleteService.allDataDeleted')}</li>
+                  <li>{t('modals.deleteService.cantLogin')}</li>
                 </ul>
               )}
             </div>
@@ -112,12 +114,12 @@ const DeleteServiceModal = ({ isOpen, onClose, onConfirm, serviceName, hasOtherS
             {loading ? (
               <>
                 <LoadingSpinner size="small" />
-                מוחק...
+                {t('modals.deleteService.deleting')}
               </>
             ) : (
               <>
                 <Trash2 size={18} />
-                {hasOtherServices ? 'מחק שירות זה בלבד' : 'מחק חשבון לצמיתות'}
+                {hasOtherServices ? t('modals.deleteService.deleteThisOnly') : t('modals.deleteService.deleteAccountPermanently')}
               </>
             )}
           </button>
@@ -127,7 +129,7 @@ const DeleteServiceModal = ({ isOpen, onClose, onConfirm, serviceName, hasOtherS
             className="btn btn-secondary"
             disabled={loading}
           >
-            ביטול
+            {t('common.cancel')}
           </button>
         </div>
       </div>

@@ -24,6 +24,14 @@ const translations = {
     'auth.logout': 'התנתק',
     'auth.profile': 'פרופיל',
     'nav.dashboard': 'דשבורד',
+
+    //plumbing
+    // Service Forms - Plumbing
+'serviceForm.plumbing.title': 'פרטי שירות אינסטלציה',
+'serviceForm.plumbing.blockages': 'סתימות',
+'serviceForm.plumbing.pipeRepair': 'תיקון צנרת',
+'serviceForm.plumbing.largeWork': 'עבודות גדולות',
+'serviceForm.plumbing.fixtureInstallation': 'תיקון והתקנת אביזרי אינסטלציה',
     
     // Services
     'services.babysitting': 'בייביסיטר',
@@ -577,6 +585,8 @@ const translations = {
 'filters.petcare.veterinaryServices': 'שירותים וטרינריים',
 'filters.petcare.vetVisit': 'ביקור וטרינר',
 'filters.petcare.basicCare': 'טיפול בסיסי',
+'filters.common.noMatter': 'לא משנה',
+'filters.common.both': 'שניהם',
 
     // ═══════════════════════════════════════════════════════════════
     // ELDERCARE
@@ -712,7 +722,7 @@ const translations = {
     'filters.plumbing.buildingSewerReplacement': 'החלפת קו ביוב בבניין',
     'filters.plumbing.newSewerLine': 'הקמת קו ביוב חדש',
     'filters.plumbing.gardenPipeReplacement': 'החלפת צנרת בגינה',
-    'filters.plumbing.dockInstallation': 'התקנת מזח',
+'filters.plumbing.pierInstallation': 'התקנת מזח',
     'filters.plumbing.waterBar': 'התקנת בר מים',
     'filters.plumbing.concealedCistern': 'ניאגרה סמויה',
     'filters.plumbing.faucets': 'ברזים',
@@ -833,6 +843,44 @@ const translations = {
     'filters.carpentry.pergolas': 'פרגולות',
     'filters.carpentry.decks': 'דקים',
     'filters.carpentry.fences': 'גדרות ומחיצות עץ',
+    // Repair types - תיקון רהיטים
+'filters.carpentry.repairWallClosets': 'תיקון ארונות קיר',
+'filters.carpentry.repairTable': 'תיקון שולחן',
+'filters.carpentry.repairChairs': 'תיקון כסאות',
+'filters.carpentry.repairSlidingClosets': 'תיקון ארונות הזזה',
+'filters.carpentry.repairBathroomCabinets': 'תיקון ארונות אמבטיה',
+'filters.carpentry.repairBedroomFurniture': 'תיקון חדר שינה',
+'filters.carpentry.repairTvUnit': 'תיקון מזנון',
+'filters.carpentry.repairLibrary': 'תיקון ספרייה',
+'filters.carpentry.repairOther': 'תיקון רהיטים אחרים',
+
+// Other carpentry - עבודות נגרות אחרות
+'filters.carpentry.wallCladding': 'חיפוי עץ לקיר',
+'filters.carpentry.disassembly': 'פירוק והרכבת רהיטים',
+'filters.carpentry.doorRepair': 'תיקון ובניית דלתות',
+'filters.carpentry.doorRenovation': 'חידוש דלתות כניסה מעץ',
+'filters.carpentry.loft': 'בניית קומת גלריה',
+'filters.carpentry.stairs': 'מדרגות עץ לבית',
+'filters.carpentry.lattice': 'משרביות מעץ',
+'filters.carpentry.butcher': 'בוצ\'ר עץ',
+
+// Pergolas - פרגולות
+'filters.carpentry.pergolaTypes': 'סוגי פרגולות',
+'filters.carpentry.woodPergolas': 'פרגולות עץ',
+'filters.carpentry.shadePergolas': 'פרגולות הצללה',
+'filters.carpentry.balconyEnclosure': 'סגירת מרפסת',
+
+// Decks - דקים
+'filters.carpentry.deckTypes': 'סוגי דקים',
+'filters.carpentry.naturalWoodDecks': 'דקים מעץ טבעי',
+'filters.carpentry.compositeDecks': 'דק סינטטי (קומפוזיט)',
+'filters.carpentry.deckRenovation': 'שיקום / חידוש דקים',
+
+// Fences - גדרות
+'filters.carpentry.fenceTypes': 'סוגי גדרות',
+'filters.carpentry.woodFences': 'גדרות עץ',
+'filters.carpentry.gardenPartitions': 'מחיצות עץ לגינה',
+'filters.carpentry.woodGates': 'שערי עץ',
 
     // ═══════════════════════════════════════════════════════════════
     // PROPERTY MANAGEMENT
@@ -895,7 +943,7 @@ const translations = {
     'serviceForm.chef.title': 'פרטי שירות שף פרטי',
     'filters.chef.workTypes': 'סוגי עבודה',
     'serviceForm.chef.kosher': 'סוגי כשרות',
-    'serviceForm.chef.cuisineType': 'סוג המטבח',
+    'serviceForm.chef.cuisineTypes': 'סוג המטבח',
     'filters.chef.kashrut': 'כשרות',
     'filters.chef.pizza': 'פיצות',
     'filters.chef.sushi': 'סושי',
@@ -918,6 +966,8 @@ const translations = {
     'filters.chef.badatzTzfat': 'בד"ץ רבני צפת',
     'filters.chef.rabbiLanda': 'כשרות הרב לנדא',
     'filters.chef.rabbiRubin': 'כשרות הרב רובין',
+    'filters.chef.cuisineType': 'סוגי מטבח',
+'filters.chef.kosherTypes': 'סוגי כשרות',
 
     // ═══════════════════════════════════════════════════════════════
     // EVENT ENTERTAINMENT
@@ -954,47 +1004,199 @@ const translations = {
     'filters.events.facePainting': 'איפור פנים מקצועי',
     'filters.events.balloonArch': 'בלוני קשת',
     'filters.events.photoMagnets': 'צילום מגנטים',
+// ═══════════════════════════════════════════════════════════════
+// ALUMINUM
+// ═══════════════════════════════════════════════════════════════
+'filters.aluminum.workTypes': 'סוגי עבודה',
+'filters.aluminum.windowsDoors': 'חלונות ודלתות',
+'filters.aluminum.pergolas': 'פרגולות ואלומיניום חוץ',
+'filters.aluminum.repairs': 'תיקונים ושירות',
+'filters.aluminum.cladding': 'חיפויי אלומיניום',
+'filters.aluminum.windowsDoorsTypes': 'סוגי חלונות ודלתות',
+'filters.aluminum.pergolasOutdoorTypes': 'סוגי פרגולות ואלומיניום חוץ',
+'filters.aluminum.repairsServiceTypes': 'סוגי תיקונים ושירות',
+'filters.aluminum.claddingTypes': 'סוגי חיפויים',
+'filters.aluminum.installWindows': 'התקנת חלונות אלומיניום',
+'filters.aluminum.aluminumDoors': 'דלתות אלומיניום',
+'filters.aluminum.slidingDoors': 'דלתות הזזה (ויטרינות)',
+'filters.aluminum.entryDoors': 'דלתות כניסה מאלומיניום',
+'filters.aluminum.mosquitoNets': 'רשתות נגד יתושים',
+'filters.aluminum.manualShutters': 'תריסים ידניים',
+'filters.aluminum.electricShutters': 'תריסים חשמליים',
+'filters.aluminum.aluminumPergolas': 'פרגולות אלומיניום',
+'filters.aluminum.balconyEnclosure': 'סגירת מרפסות',
+'filters.aluminum.exteriorCladding': 'חיפויי אלומיניום חיצוניים',
+'filters.aluminum.railings': 'מעקות אלומיניום לגינה / מרפסות',
+'filters.aluminum.repairShutterMotor': 'תיקון מנועי תריס חשמלי',
+'filters.aluminum.repairTracks': 'תיקון מסילות',
+'filters.aluminum.repairWheels': 'תיקון גלגלים בחלונות',
+'filters.aluminum.replaceHandles': 'החלפת ידיות / צירים',
+'filters.aluminum.sealingRenewal': 'איטום וחידוש מסביב לחלונות',
+'filters.aluminum.repairManualShutters': 'תיקון תריסים ידניים',
+'filters.aluminum.pipeCovering': 'חיפוי צנרת / כיסוי צינורות',
+'filters.aluminum.meterCovering': 'חיפוי מונים (חשמל / מים / גז)',
+'filters.aluminum.decorativeBoxes': 'ארגזים דקורטיביים מאלומיניום',
+'filters.aluminum.acLineCovering': 'חיפוי קווי מזגן',
+'filters.aluminum.acMotorProtection': 'הגנה למנוע מזגן חיצוני',
+'filters.aluminum.wallCladding': 'חיפוי קירות חוץ מאלומיניום',
+'filters.aluminum.decorativeCladding': 'חיפויים דקורטיביים',
+'filters.aluminum.shutterBoxCladding': 'חיפוי וארגזי תריס',
 
-    // ═══════════════════════════════════════════════════════════════
-    // WATERPROOFING
-    // ═══════════════════════════════════════════════════════════════
-    'filters.waterproofing.workTypes': 'סוגי עבודה',
-    'filters.waterproofing.roofs': 'איטום גגות',
-    'filters.waterproofing.externalWalls': 'איטום קירות חיצוניים',
-    'filters.waterproofing.balconies': 'איטום מרפסות',
-    'filters.waterproofing.wetRooms': 'איטום חדרים רטובים',
-    'filters.waterproofing.underground': 'איטום תת-קרקעי',
-    'filters.waterproofing.inspection': 'בדיקות, אבחון וציוד',
+// ═══════════════════════════════════════════════════════════════
+// CONTRACTOR
+// ═══════════════════════════════════════════════════════════════
+'filters.contractor.workTypes': 'סוגי עבודה',
+'filters.contractor.structureWork': 'עבודות שלד',
+'filters.contractor.generalRenovation': 'שיפוצים כלליים',
+'filters.contractor.electricPlumbing': 'חשמל ואינסטלציה',
+'filters.contractor.exteriorWork': 'עבודות חוץ',
+'filters.contractor.facadeRepair': 'שיקום ותיקון חוץ',
+'filters.contractor.structureWorkTypes': 'סוגי עבודות שלד',
+'filters.contractor.generalRenovationTypes': 'סוגי שיפוצים כלליים',
+'filters.contractor.electricPlumbingTypes': 'סוגי חשמל ואינסטלציה',
+'filters.contractor.exteriorWorkTypes': 'סוגי עבודות חוץ',
+'filters.contractor.facadeRepairTypes': 'סוגי שיקום ותיקון חוץ',
+'filters.contractor.buildingFrame': 'בניית שלד',
+'filters.contractor.concretePours': 'יציקות בטון',
+'filters.contractor.formwork': 'טפסנות',
+'filters.contractor.structuralReinforcement': 'חיזוק מבנים',
+'filters.contractor.blockWalls': 'בניית קירות בלוקים',
+'filters.contractor.demolitionRebuild': 'הריסה ובנייה מחדש',
+'filters.contractor.fullApartmentReno': 'שיפוץ דירה מלא',
+'filters.contractor.roomRenovation': 'שיפוץ חדרים',
+'filters.contractor.bathroomReno': 'שיפוץ חדרי רחצה',
+'filters.contractor.kitchenReno': 'שיפוץ מטבח',
+'filters.contractor.flooringReplacement': 'החלפת ריצוף',
+'filters.contractor.drywallWork': 'עבודות גבס',
+'filters.contractor.plasterWork': 'טיח ושפכטל',
+'filters.contractor.balconyEnclosure': 'סגירת מרפסת',
+'filters.contractor.professionalPainting': 'צביעה מקצועית',
+'filters.contractor.doorFrameReplacement': 'החלפת דלתות ומשקופים',
+'filters.contractor.electricalWork': 'עבודות חשמל',
+'filters.contractor.panelReplacement': 'החלפת לוח חשמל',
+'filters.contractor.generalPlumbing': 'אינסטלציה כללית',
+'filters.contractor.pipeReplacement': 'החלפת צנרת',
+'filters.contractor.leakDetection': 'איתור ותיקון נזילות',
+'filters.contractor.exteriorFlooring': 'ריצוף חוץ',
+'filters.contractor.pergolaConstruction': 'בניית פרגולה',
+'filters.contractor.stoneCladding': 'חיפויי אבן / חיפויי קירות חוץ',
+'filters.contractor.fencing': 'גידור',
+'filters.contractor.gardenPathways': 'בניית שבילים בגינה',
+'filters.contractor.exteriorPlasterRepair': 'תיקון טיח חוץ',
+'filters.contractor.exteriorWallRestoration': 'שיקום קירות חיצוניים',
+'filters.contractor.wallCrackSealing': 'איטום סדקים בקירות',
+'filters.contractor.fallingPlasterTreatment': 'טיפול בנפילת טיח',
 
-    // ═══════════════════════════════════════════════════════════════
-    // CONTRACTOR
-    // ═══════════════════════════════════════════════════════════════
-    'filters.contractor.workTypes': 'סוגי עבודה',
-    'filters.contractor.structureWork': 'עבודות שלד',
-    'filters.contractor.generalRenovation': 'שיפוצים כלליים',
-    'filters.contractor.electricPlumbing': 'חשמל ואינסטלציה',
-    'filters.contractor.exteriorWork': 'עבודות חוץ',
-    'filters.contractor.facadeRepair': 'שיקום ותיקון חוץ',
+// ═══════════════════════════════════════════════════════════════
+// GLASS WORKS
+// ═══════════════════════════════════════════════════════════════
+'filters.glass.workTypes': 'סוגי עבודה',
+'filters.glass.showers': 'זכוכית למקלחונים',
+'filters.glass.homeGlass': 'זכוכית לחלונות ודלתות',
+'filters.glass.furniture': 'זכוכית למטבח ובית',
+'filters.glass.partitions': 'זכוכית מיוחדת ובטיחות',
+'filters.glass.repairs': 'שירותי תיקון והתאמה אישית',
+'filters.glass.railings': 'מעקות זכוכית',
+'filters.glass.showerGlassTypes': 'סוגי זכוכית למקלחונים',
+'filters.glass.windowsDoorGlassTypes': 'סוגי זכוכית לחלונות ודלתות',
+'filters.glass.kitchenHomeGlassTypes': 'סוגי זכוכית למטבח ובית',
+'filters.glass.specialSafetyGlassTypes': 'סוגי זכוכית מיוחדת ובטיחות',
+'filters.glass.repairCustomTypes': 'סוגי תיקון והתאמה אישית',
+'filters.glass.showerInstall': 'התקנת מקלחון זכוכית',
+'filters.glass.showerRepair': 'תיקון מקלחון',
+'filters.glass.showerGlassReplacement': 'החלפת זכוכית במקלחון',
+'filters.glass.showerDoors': 'דלתות מקלחת',
+'filters.glass.windowReplacement': 'החלפת זכוכית בחלון',
+'filters.glass.doubleGlazing': 'זכוכית מבודדת (Double)',
+'filters.glass.reglazing': 'זיגוג מחדש',
+'filters.glass.interiorGlassDoors': 'דלתות זכוכית פנימיות',
+'filters.glass.glassPartitions': 'מחיצות זכוכית',
+'filters.glass.kitchenBacksplash': 'זכוכית למטבח (Backsplash)',
+'filters.glass.glassShelves': 'מדפי זכוכית',
+'filters.glass.glassTables': 'שולחנות זכוכית',
+'filters.glass.bathroomMirrors': 'מראות לחדר אמבטיה',
+'filters.glass.decorativeMirrors': 'מראות דקורטיביות',
+'filters.glass.temperedGlass': 'זכוכית מחוסמת (בטיחותית)',
+'filters.glass.smartGlass': 'זכוכית חכמה',
+'filters.glass.securityGlass': 'זכוכית עמידה לפריצה',
+'filters.glass.acousticGlass': 'זכוכית אקוסטית (בידוד רעש)',
+'filters.glass.decorativeGlass': 'זכוכית צבעונית / מעוצבת',
+'filters.glass.scratchRepair': 'תיקון שריטות וסדקים',
+'filters.glass.glassPolishing': 'ליטוש זכוכית',
+'filters.glass.customCutting': 'חיתוך זכוכית לפי מידה',
 
-    // ═══════════════════════════════════════════════════════════════
-    // ALUMINUM
-    // ═══════════════════════════════════════════════════════════════
-    'filters.aluminum.workTypes': 'סוגי עבודה',
-    'filters.aluminum.windowsDoors': 'חלונות ודלתות',
-    'filters.aluminum.pergolas': 'פרגולות ואלומיניום חוץ',
-    'filters.aluminum.repairs': 'תיקונים ושירות',
-    'filters.aluminum.cladding': 'חיפויי אלומיניום',
+// ═══════════════════════════════════════════════════════════════
+// LOCKSMITH
+// ═══════════════════════════════════════════════════════════════
+'filters.locksmith.workTypes': 'סוגי עבודה',
+'filters.locksmith.lockReplacement': 'החלפת מנעולים',
+'filters.locksmith.emergencyOpening': 'פתיחת דלתות',
+'filters.locksmith.advancedSystems': 'התקנת מערכות נעילה',
+'filters.locksmith.doorRepair': 'תיקון מנעולים ודלתות',
+'filters.locksmith.lockReplacementTypes': 'סוגי החלפת מנעולים',
+'filters.locksmith.doorOpeningTypes': 'סוגי פתיחת דלתות',
+'filters.locksmith.lockSystemInstallationTypes': 'סוגי התקנת מערכות נעילה',
+'filters.locksmith.lockDoorRepairTypes': 'סוגי תיקון מנעולים ודלתות',
+'filters.locksmith.securityServicesTypes': 'סוגי שירותי ביטחון',
+'filters.locksmith.cylinderLock': 'מנעול צילינדר',
+'filters.locksmith.securityLock': 'מנעול ביטחון',
+'filters.locksmith.entranceLock': 'מנעול דלת כניסה',
+'filters.locksmith.officeLock': 'מנעול למשרד / חנות',
+'filters.locksmith.noDamageOpening': 'פתיחת דלת ללא נזק',
+'filters.locksmith.emergency247': 'פתיחה חירום 24/7',
+'filters.locksmith.safeOpening': 'פתיחת כספת',
+'filters.locksmith.keyDuplication': 'שכפול מפתחות במקום',
+'filters.locksmith.smartLocks': 'מנעולים חכמים',
+'filters.locksmith.intercom': 'מערכת אינטרקום',
+'filters.locksmith.accessCode': 'קוד כניסה למשרדים',
+'filters.locksmith.electronicLock': 'מנעול אלקטרוני',
+'filters.locksmith.stuckLockRepair': 'תיקון מנעול תקוע',
+'filters.locksmith.hingeRepair': 'תיקון ציר דלת',
+'filters.locksmith.doorSanding': 'שיוף דלת שלא נסגרת',
+'filters.locksmith.handleReplacement': 'החלפת ידית דלת',
+'filters.locksmith.securityUpgrade': 'שדרוג מערכת ביטחון',
+'filters.locksmith.securityDoorInstall': 'התקנת דלת ביטחון',
+'filters.locksmith.vulnerabilityCheck': 'בדיקת פגיעות דלת',
+'filters.locksmith.commercialLocksmith': 'שירות מסגרות מסחרי',
 
-    // ═══════════════════════════════════════════════════════════════
-    // GLASS WORKS
-    // ═══════════════════════════════════════════════════════════════
-    'filters.glass.workTypes': 'סוגי עבודה',
-    'filters.glass.homeGlass': 'זכוכיות לבית',
-    'filters.glass.showers': 'מקלחונים',
-    'filters.glass.partitions': 'מחיצות וקירות זכוכית',
-    'filters.glass.railings': 'מעקות זכוכית',
-    'filters.glass.furniture': 'ריהוט וזכוכית מעוצבת',
-    'filters.glass.repairs': 'תיקונים ושירות',
+// ═══════════════════════════════════════════════════════════════
+// WATERPROOFING
+// ═══════════════════════════════════════════════════════════════
+'filters.waterproofing.workTypes': 'סוגי עבודה',
+'filters.waterproofing.roofs': 'איטום גגות',
+'filters.waterproofing.externalWalls': 'איטום קירות חיצוניים',
+'filters.waterproofing.balconies': 'איטום מרפסות',
+'filters.waterproofing.wetRooms': 'איטום חדרים רטובים',
+'filters.waterproofing.underground': 'איטום תת-קרקעי',
+'filters.waterproofing.inspection': 'בדיקות, אבחון וציוד',
+'filters.waterproofing.roofTypes': 'סוגי איטום גגות',
+'filters.waterproofing.wallTypes': 'סוגי איטום קירות',
+'filters.waterproofing.balconyTypes': 'סוגי איטום מרפסות',
+'filters.waterproofing.wetRoomTypes': 'סוגי איטום חדרים רטובים',
+'filters.waterproofing.undergroundTypes': 'סוגי איטום תת-קרקעי',
+'filters.waterproofing.inspectionTypes': 'סוגי בדיקות ואבחון',
+'filters.waterproofing.bituminousSheets': 'יריעות ביטומניות',
+'filters.waterproofing.hotAsphalt': 'זפת חמה',
+'filters.waterproofing.polyurethane': 'פוליאוריטן',
+'filters.waterproofing.tileRoof': 'גג רעפים',
+'filters.waterproofing.maintenance': 'תחזוקה שוטפת',
+'filters.waterproofing.waterPenetration': 'חדירת מים',
+'filters.waterproofing.exteriorRestoration': 'שיקום חיצוני',
+'filters.waterproofing.crackSealing': 'איטום סדקים',
+'filters.waterproofing.dampnessTreatment': 'טיפול ברטיבות',
+'filters.waterproofing.beforeTiling': 'לפני ריצוף',
+'filters.waterproofing.leakRepair': 'תיקון נזילות',
+'filters.waterproofing.tilingAndSealing': 'ריצוף ואיטום',
+'filters.waterproofing.bathroom': 'חדר אמבטיה',
+'filters.waterproofing.shower': 'מקלחת',
+'filters.waterproofing.toilet': 'שירותים',
+'filters.waterproofing.beforeRenovation': 'לפני שיפוץ',
+'filters.waterproofing.basements': 'מרתפים',
+'filters.waterproofing.foundations': 'יסודות',
+'filters.waterproofing.undergroundWalls': 'קירות תת-קרקעיים',
+'filters.waterproofing.leakDetection': 'איתור נזילות',
+'filters.waterproofing.moistureTests': 'בדיקות רטיבות',
+'filters.waterproofing.thermalImaging': 'הדמיה תרמית',
 
     // Service Forms - Glass Works
 'serviceForm.glass.title': 'פרטי שירות זכוכית',
@@ -1003,38 +1205,6 @@ const translations = {
 'serviceForm.glass.kitchenHome': 'זכוכית למטבח ובית',
 'serviceForm.glass.specialSafety': 'זכוכית מיוחדת ובטיחות',
 'serviceForm.glass.repairCustom': 'שירותי תיקון והתאמה אישית',
-
-// Glass Works - Shower Glass
-'filters.glass.showerInstall': 'התקנת מקלחון זכוכית',
-'filters.glass.showerRepair': 'תיקון מקלחון',
-'filters.glass.showerGlassReplacement': 'החלפת זכוכית במקלחון',
-'filters.glass.showerDoors': 'דלתות מקלחת',
-
-// Glass Works - Windows & Doors
-'filters.glass.windowReplacement': 'החלפת זכוכית בחלון',
-'filters.glass.doubleGlazing': 'זכוכית מבודדת (Double)',
-'filters.glass.reglazing': 'זיגוג מחדש',
-'filters.glass.interiorGlassDoors': 'דלתות זכוכית פנימיות',
-'filters.glass.glassPartitions': 'מחיצות זכוכית',
-
-// Glass Works - Kitchen & Home
-'filters.glass.kitchenBacksplash': 'זכוכית למטבח (Backsplash)',
-'filters.glass.glassShelves': 'מדפי זכוכית',
-'filters.glass.glassTables': 'שולחנות זכוכית',
-'filters.glass.bathroomMirrors': 'מראות לחדר אמבטיה',
-'filters.glass.decorativeMirrors': 'מראות דקורטיביות',
-
-// Glass Works - Special & Safety
-'filters.glass.temperedGlass': 'זכוכית מחוסמת (בטיחותית)',
-'filters.glass.smartGlass': 'זכוכית חכמה',
-'filters.glass.securityGlass': 'זכוכית עמידה לפריצה',
-'filters.glass.acousticGlass': 'זכוכית אקוסטית (בידוד רעש)',
-'filters.glass.decorativeGlass': 'זכוכית צבעונית / מעוצבת',
-
-// Glass Works - Repair & Custom
-'filters.glass.scratchRepair': 'תיקון שריטות וסדקים',
-'filters.glass.glassPolishing': 'ליטוש זכוכית',
-'filters.glass.customCutting': 'חיתוך זכוכית לפי מידה',
 
     // ═══════════════════════════════════════════════════════════════
     // LOCKSMITH
@@ -2258,6 +2428,76 @@ const translations = {
 'services.property_management.subtitle': 'מנהלי נכסים מנוסים לניהול דירות להשכרה - מיועד לבעלי דירות שאינם גרים בקרבת הנכס',
 
 
+// Filters - Home Organization
+'filters.homeOrg.fullHome': 'סידור בית מלא',
+'filters.homeOrg.rooms': 'סידור חדרים',
+'filters.homeOrg.kitchen': 'סידור מטבח',
+'filters.homeOrg.kidsRoom': 'סידור חדר ילדים',
+'filters.homeOrg.closets': 'סידור חדר ארונות / ארונות בגדים',
+'filters.homeOrg.bathroom': 'סידור חדר אמבטיה',
+'filters.homeOrg.itemSorting': 'מיון חפצים',
+'filters.homeOrg.clothesSorting': 'מיון בגדים',
+'filters.homeOrg.toySorting': 'מיון צעצועים',
+'filters.homeOrg.donationPrep': 'הכנת חפצים למסירה / תרומה',
+'filters.homeOrg.storageSolutions': 'יצירת פתרונות אחסון',
+'filters.homeOrg.smallSpaceOptimization': 'אופטימיזציה של חללים קטנים',
+'filters.homeOrg.shelfDesign': 'עיצוב וסידור מדפים',
+
+// Filters - Event Entertainment
+'filters.event.magician': 'קוסם ילדים',
+'filters.event.clown': 'ליצן ילדים',
+'filters.event.balloonArtist': 'בלוני צורות',
+'filters.event.balloonRelease': 'הפרחת בלונים / ניפוח בלונים במקום',
+'filters.event.characters': 'דמויות ותחפושות',
+'filters.event.groupGames': 'שעשועונים ומשחקי קבוצה',
+'filters.event.bubbleShow': 'מופע בועות סבון',
+'filters.event.musicalActivity': 'הפעלה מוזיקלית / ריקודים',
+'filters.event.facePainting': 'איפור פנים מקצועי',
+'filters.event.balloonArch': 'בלוני קשת',
+'filters.event.magnetPhoto': 'צילום מגנטים',
+
+// Modals - Delete Service
+'modals.deleteService.title': 'מחיקת שירות',
+'modals.deleteService.areYouSure': 'האם אתה בטוח?',
+'modals.deleteService.willDelete': 'פעולה זו תמחק את שירות',
+'modals.deleteService.fromAccount': 'מהחשבון שלך.',
+'modals.deleteService.otherServicesActive': 'השירותים האחרים שלך יישארו פעילים',
+'modals.deleteService.profileVisibleOthers': 'הפרופיל שלך ימשיך להיות גלוי בשירותים האחרים',
+'modals.deleteService.serviceDataDeleted': 'כל המידע הספציפי לשירות זה יימחק לצמיתות',
+'modals.deleteService.reviewsDeleted': 'הביקורות של שירות זה יימחקו',
+'modals.deleteService.lastService': 'זה השירות האחרון שלך!',
+'modals.deleteService.accountWillBeDeleted': 'מחיקת שירות זה תמחק את כל החשבון שלך',
+'modals.deleteService.allDataDeleted': 'כל המידע שלך יימחק לצמיתות',
+'modals.deleteService.cantLogin': 'לא תוכל להתחבר שוב',
+'modals.deleteService.deleting': 'מוחק...',
+'modals.deleteService.deleteThisOnly': 'מחק שירות זה בלבד',
+'modals.deleteService.deleteAccountPermanently': 'מחק חשבון לצמיתות',
+'modals.deleteService.error': 'שגיאה במחיקת השירות',
+
+// Modals - Delete Account
+'modals.deleteAccount.title': 'מחיקת חשבון',
+'modals.deleteAccount.warning': 'אזהרה! פעולה זו בלתי הפיכה',
+'modals.deleteAccount.willCause': 'מחיקת החשבון תגרום ל:',
+'modals.deleteAccount.profileDeleted': 'מחיקה מוחלטת של הפרופיל שלך',
+'modals.deleteAccount.removedFromSearch': 'הסרה מכל תוצאות החיפוש',
+'modals.deleteAccount.personalDataDeleted': 'מחיקת כל הנתונים האישיים',
+'modals.deleteAccount.subscriptionCancelled': 'ביטול מנוי (אם קיים)',
+'modals.deleteAccount.deleting': 'מוחק חשבון...',
+'modals.deleteAccount.deleteAccountPermanently': 'מחק חשבון לצמיתות',
+'modals.deleteAccount.error': 'שגיאה במחיקת החשבון',
+
+// Modals - Cancel Subscription
+'modals.cancelSubscription.title': 'ביטול מנוי ומחיקת חשבון',
+'modals.cancelSubscription.willCancelAtEnd': 'המנוי יבוטל בסוף התקופה',
+'modals.cancelSubscription.accountContinues': 'החשבון שלך ימשיך לפעול באופן רגיל עד סוף החודש ששילמת. בסוף התקופה, החשבון יימחק לצמיתות.',
+'modals.cancelSubscription.profileVisible': 'הפרופיל יישאר גלוי ופעיל עד סוף התקופה',
+'modals.cancelSubscription.continueReceiving': 'תמשיך לקבל פניות מלקוחות עד סוף החודש',
+'modals.cancelSubscription.atEndDeleted': 'בסוף התקופה: כל המידע יימחק לצמיתות',
+'modals.cancelSubscription.canCancelRequest': 'תוכל לבטל בקשה זו ולהמשיך את המנוי לפני סוף התקופה',
+'modals.cancelSubscription.cancelling': 'מבטל מנוי...',
+'modals.cancelSubscription.confirmCancel': 'אישור ביטול מנוי',
+'modals.cancelSubscription.error': 'שגיאה בביטול המנוי',
+
   },
   
   en: {
@@ -2950,7 +3190,7 @@ const translations = {
     'filters.plumbing.buildingSewerReplacement': 'Building sewer replacement',
     'filters.plumbing.newSewerLine': 'New sewer line',
     'filters.plumbing.gardenPipeReplacement': 'Garden pipe replacement',
-    'filters.plumbing.dockInstallation': 'Dock installation',
+'filters.plumbing.pierInstallation': 'Dock installation',
     'filters.plumbing.waterBar': 'Water bar installation',
     'filters.plumbing.concealedCistern': 'Concealed cistern',
     'filters.plumbing.faucets': 'Faucets',
@@ -3071,6 +3311,70 @@ const translations = {
     'filters.carpentry.pergolas': 'Pergolas',
     'filters.carpentry.decks': 'Decks',
     'filters.carpentry.fences': 'Wooden fences & partitions',
+    // CARPENTRY
+'filters.carpentry.workTypes': 'Work types',
+'filters.carpentry.furnitureBuildingTypes': 'Furniture building types',
+'filters.carpentry.furnitureRepairTypes': 'Furniture repair types',
+'filters.carpentry.otherCarpentryTypes': 'Other carpentry work',
+'filters.carpentry.outdoorCarpentryTypes': 'Outdoor carpentry',
+'filters.carpentry.furnitureBuilding': 'Furniture building',
+'filters.carpentry.furnitureRepair': 'Furniture repair',
+'filters.carpentry.otherWork': 'Other carpentry work',
+'filters.carpentry.outdoorCarpentry': 'Outdoor carpentry',
+'filters.carpentry.wallClosets': 'Wall closets',
+'filters.carpentry.slidingClosets': 'Sliding closets',
+'filters.carpentry.bathroomCabinets': 'Bathroom cabinets',
+'filters.carpentry.bedroomFurniture': 'Bedroom furniture',
+'filters.carpentry.tableBuilding': 'Table building',
+'filters.carpentry.chairBuilding': 'Chair building',
+'filters.carpentry.tvUnitBuilding': 'TV unit building',
+'filters.carpentry.libraryBuilding': 'Bookshelf building',
+'filters.carpentry.customFurniture': 'Custom furniture',
+'filters.carpentry.shelfBuilding': 'Shelf building',
+'filters.carpentry.walkInCloset': 'Walk-in closet',
+'filters.carpentry.woodenBed': 'Wooden bed',
+'filters.carpentry.pergolas': 'Pergolas',
+'filters.carpentry.decks': 'Decks',
+'filters.carpentry.fences': 'Fences and wood partitions',
+
+// Repair types
+'filters.carpentry.repairWallClosets': 'Wall closet repair',
+'filters.carpentry.repairTable': 'Table repair',
+'filters.carpentry.repairChairs': 'Chair repair',
+'filters.carpentry.repairSlidingClosets': 'Sliding closet repair',
+'filters.carpentry.repairBathroomCabinets': 'Bathroom cabinet repair',
+'filters.carpentry.repairBedroomFurniture': 'Bedroom furniture repair',
+'filters.carpentry.repairTvUnit': 'TV unit repair',
+'filters.carpentry.repairLibrary': 'Bookshelf repair',
+'filters.carpentry.repairOther': 'Other furniture repair',
+
+// Other carpentry
+'filters.carpentry.wallCladding': 'Wood wall cladding',
+'filters.carpentry.disassembly': 'Furniture disassembly and assembly',
+'filters.carpentry.doorRepair': 'Door repair and building',
+'filters.carpentry.doorRenovation': 'Wooden entrance door renovation',
+'filters.carpentry.loft': 'Loft construction',
+'filters.carpentry.stairs': 'Wooden stairs',
+'filters.carpentry.lattice': 'Wooden lattice screens',
+'filters.carpentry.butcher': 'Butcher block',
+
+// Pergolas
+'filters.carpentry.pergolaTypes': 'Pergola types',
+'filters.carpentry.woodPergolas': 'Wood pergolas',
+'filters.carpentry.shadePergolas': 'Shade pergolas',
+'filters.carpentry.balconyEnclosure': 'Balcony enclosure',
+
+// Decks
+'filters.carpentry.deckTypes': 'Deck types',
+'filters.carpentry.naturalWoodDecks': 'Natural wood decks',
+'filters.carpentry.compositeDecks': 'Composite deck',
+'filters.carpentry.deckRenovation': 'Deck renovation',
+
+// Fences
+'filters.carpentry.fenceTypes': 'Fence types',
+'filters.carpentry.woodFences': 'Wood fences',
+'filters.carpentry.gardenPartitions': 'Garden wood partitions',
+'filters.carpentry.woodGates': 'Wood gates',
 
     // ═══════════════════════════════════════════════════════════════
     // PROPERTY MANAGEMENT
@@ -3132,9 +3436,8 @@ const translations = {
     // ═══════════════════════════════════════════════════════════════
    'serviceForm.chef.title': 'Private Chef Service Details',
     'filters.chef.workTypes': 'Work types',
-    'serviceForm.chef.cuisineType': 'Cuisine types',
+    'serviceForm.chef.cuisineTypes': 'Cuisine types',
     'serviceForm.chef.kosher': 'Kosher certifications',
-    'filters.chef.cuisineType': 'Cuisine type',
     'filters.chef.kashrut': 'Kashrut',
     'filters.chef.pizza': 'Pizza',
     'filters.chef.sushi': 'Sushi',
@@ -3157,6 +3460,8 @@ const translations = {
     'filters.chef.badatzTzfat': 'Badatz Rabbis of Tzfat',
     'filters.chef.rabbiLanda': 'Rabbi Landa Kashrut',
     'filters.chef.rabbiRubin': 'Rabbi Rubin Kashrut',
+    'filters.chef.cuisineType': 'Cuisine types',
+'filters.chef.kosherTypes': 'Kosher types',
 
     // ═══════════════════════════════════════════════════════════════
     // EVENT ENTERTAINMENT
@@ -3194,46 +3499,209 @@ const translations = {
     'filters.events.balloonArch': 'Balloon arch',
     'filters.events.photoMagnets': 'Photo magnets',
 
-    // ═══════════════════════════════════════════════════════════════
-    // WATERPROOFING
-    // ═══════════════════════════════════════════════════════════════
-    'filters.waterproofing.workTypes': 'Work types',
-    'filters.waterproofing.roofs': 'Roof waterproofing',
-    'filters.waterproofing.externalWalls': 'External wall waterproofing',
-    'filters.waterproofing.balconies': 'Balcony waterproofing',
-    'filters.waterproofing.wetRooms': 'Wet room waterproofing',
-    'filters.waterproofing.underground': 'Underground waterproofing',
-    'filters.waterproofing.inspection': 'Inspection, diagnosis & equipment',
+   // ═══════════════════════════════════════════════════════════════
+// ALUMINUM
+// ═══════════════════════════════════════════════════════════════
+'filters.aluminum.workTypes': 'Work types',
+'filters.aluminum.windowsDoors': 'Windows and doors',
+'filters.aluminum.pergolas': 'Pergolas and outdoor aluminum',
+'filters.aluminum.repairs': 'Repairs and service',
+'filters.aluminum.cladding': 'Aluminum cladding',
+'filters.aluminum.windowsDoorsTypes': 'Windows and doors types',
+'filters.aluminum.pergolasOutdoorTypes': 'Pergolas and outdoor types',
+'filters.aluminum.repairsServiceTypes': 'Repairs and service types',
+'filters.aluminum.claddingTypes': 'Cladding types',
+'filters.aluminum.installWindows': 'Aluminum window installation',
+'filters.aluminum.aluminumDoors': 'Aluminum doors',
+'filters.aluminum.slidingDoors': 'Sliding doors (display windows)',
+'filters.aluminum.entryDoors': 'Aluminum entry doors',
+'filters.aluminum.mosquitoNets': 'Mosquito nets',
+'filters.aluminum.manualShutters': 'Manual shutters',
+'filters.aluminum.electricShutters': 'Electric shutters',
+'filters.aluminum.aluminumPergolas': 'Aluminum pergolas',
+'filters.aluminum.balconyEnclosure': 'Balcony enclosure',
+'filters.aluminum.exteriorCladding': 'Exterior aluminum cladding',
+'filters.aluminum.railings': 'Aluminum railings for garden / balconies',
+'filters.aluminum.repairShutterMotor': 'Electric shutter motor repair',
+'filters.aluminum.repairTracks': 'Track repair',
+'filters.aluminum.repairWheels': 'Window wheel repair',
+'filters.aluminum.replaceHandles': 'Handle / hinge replacement',
+'filters.aluminum.sealingRenewal': 'Sealing and renewal around windows',
+'filters.aluminum.repairManualShutters': 'Manual shutter repair',
+'filters.aluminum.pipeCovering': 'Pipe covering',
+'filters.aluminum.meterCovering': 'Meter covering (electricity / water / gas)',
+'filters.aluminum.decorativeBoxes': 'Decorative aluminum boxes',
+'filters.aluminum.acLineCovering': 'AC line covering',
+'filters.aluminum.acMotorProtection': 'Outdoor AC motor protection',
+'filters.aluminum.wallCladding': 'Exterior wall aluminum cladding',
+'filters.aluminum.decorativeCladding': 'Decorative cladding',
+'filters.aluminum.shutterBoxCladding': 'Shutter box cladding',
 
-    // ═══════════════════════════════════════════════════════════════
-    // CONTRACTOR
-    // ═══════════════════════════════════════════════════════════════
-    'filters.contractor.workTypes': 'Work types',
-    'filters.contractor.structureWork': 'Structure work',
-    'filters.contractor.generalRenovation': 'General renovation',
-    'filters.contractor.electricPlumbing': 'Electrical & plumbing',
-    'filters.contractor.exteriorWork': 'Exterior work',
-    'filters.contractor.facadeRepair': 'Facade repair',
+// ═══════════════════════════════════════════════════════════════
+// CONTRACTOR
+// ═══════════════════════════════════════════════════════════════
+'filters.contractor.workTypes': 'Work types',
+'filters.contractor.structureWork': 'Structural work',
+'filters.contractor.generalRenovation': 'General renovations',
+'filters.contractor.electricPlumbing': 'Electrical and plumbing',
+'filters.contractor.exteriorWork': 'Exterior work',
+'filters.contractor.facadeRepair': 'Facade restoration and repair',
+'filters.contractor.structureWorkTypes': 'Structural work types',
+'filters.contractor.generalRenovationTypes': 'General renovation types',
+'filters.contractor.electricPlumbingTypes': 'Electrical and plumbing types',
+'filters.contractor.exteriorWorkTypes': 'Exterior work types',
+'filters.contractor.facadeRepairTypes': 'Facade repair types',
+'filters.contractor.buildingFrame': 'Frame construction',
+'filters.contractor.concretePours': 'Concrete pouring',
+'filters.contractor.formwork': 'Formwork',
+'filters.contractor.structuralReinforcement': 'Structural reinforcement',
+'filters.contractor.blockWalls': 'Block wall construction',
+'filters.contractor.demolitionRebuild': 'Demolition and rebuild',
+'filters.contractor.fullApartmentReno': 'Full apartment renovation',
+'filters.contractor.roomRenovation': 'Room renovation',
+'filters.contractor.bathroomReno': 'Bathroom renovation',
+'filters.contractor.kitchenReno': 'Kitchen renovation',
+'filters.contractor.flooringReplacement': 'Flooring replacement',
+'filters.contractor.drywallWork': 'Drywall work',
+'filters.contractor.plasterWork': 'Plaster and spackle',
+'filters.contractor.balconyEnclosure': 'Balcony enclosure',
+'filters.contractor.professionalPainting': 'Professional painting',
+'filters.contractor.doorFrameReplacement': 'Door and frame replacement',
+'filters.contractor.electricalWork': 'Electrical work',
+'filters.contractor.panelReplacement': 'Electrical panel replacement',
+'filters.contractor.generalPlumbing': 'General plumbing',
+'filters.contractor.pipeReplacement': 'Pipe replacement',
+'filters.contractor.leakDetection': 'Leak detection and repair',
+'filters.contractor.exteriorFlooring': 'Exterior flooring',
+'filters.contractor.pergolaConstruction': 'Pergola construction',
+'filters.contractor.stoneCladding': 'Stone cladding / exterior walls',
+'filters.contractor.fencing': 'Fencing',
+'filters.contractor.gardenPathways': 'Garden pathway construction',
+'filters.contractor.exteriorPlasterRepair': 'Exterior plaster repair',
+'filters.contractor.exteriorWallRestoration': 'Exterior wall restoration',
+'filters.contractor.wallCrackSealing': 'Wall crack sealing',
+'filters.contractor.fallingPlasterTreatment': 'Falling plaster treatment',
 
-    // ═══════════════════════════════════════════════════════════════
-    // ALUMINUM
-    // ═══════════════════════════════════════════════════════════════
-    'filters.aluminum.workTypes': 'Work types',
-    'filters.aluminum.windowsDoors': 'Windows & doors',
-    'filters.aluminum.pergolas': 'Pergolas & outdoor aluminum',
-    'filters.aluminum.repairs': 'Repairs & service',
-    'filters.aluminum.cladding': 'Aluminum cladding',
+// ═══════════════════════════════════════════════════════════════
+// GLASS WORKS
+// ═══════════════════════════════════════════════════════════════
+'filters.glass.workTypes': 'Work types',
+'filters.glass.showers': 'Shower glass',
+'filters.glass.homeGlass': 'Window and door glass',
+'filters.glass.furniture': 'Kitchen and home glass',
+'filters.glass.partitions': 'Special and safety glass',
+'filters.glass.repairs': 'Repair and custom services',
+'filters.glass.railings': 'Glass railings',
+'filters.glass.showerGlassTypes': 'Shower glass types',
+'filters.glass.windowsDoorGlassTypes': 'Window and door glass types',
+'filters.glass.kitchenHomeGlassTypes': 'Kitchen and home glass types',
+'filters.glass.specialSafetyGlassTypes': 'Special and safety glass types',
+'filters.glass.repairCustomTypes': 'Repair and custom types',
+'filters.glass.showerInstall': 'Shower enclosure installation',
+'filters.glass.showerRepair': 'Shower enclosure repair',
+'filters.glass.showerGlassReplacement': 'Shower glass replacement',
+'filters.glass.showerDoors': 'Shower doors',
+'filters.glass.windowReplacement': 'Window glass replacement',
+'filters.glass.doubleGlazing': 'Double glazing',
+'filters.glass.reglazing': 'Reglazing',
+'filters.glass.interiorGlassDoors': 'Interior glass doors',
+'filters.glass.glassPartitions': 'Glass partitions',
+'filters.glass.kitchenBacksplash': 'Kitchen glass backsplash',
+'filters.glass.glassShelves': 'Glass shelves',
+'filters.glass.glassTables': 'Glass tables',
+'filters.glass.bathroomMirrors': 'Bathroom mirrors',
+'filters.glass.decorativeMirrors': 'Decorative mirrors',
+'filters.glass.temperedGlass': 'Tempered glass (safety)',
+'filters.glass.smartGlass': 'Smart glass',
+'filters.glass.securityGlass': 'Security glass',
+'filters.glass.acousticGlass': 'Acoustic glass (sound insulation)',
+'filters.glass.decorativeGlass': 'Colored / designed glass',
+'filters.glass.scratchRepair': 'Scratch and crack repair',
+'filters.glass.glassPolishing': 'Glass polishing',
+'filters.glass.customCutting': 'Custom glass cutting',
 
-    // ═══════════════════════════════════════════════════════════════
-    // GLASS WORKS
-    // ═══════════════════════════════════════════════════════════════
-    'filters.glass.workTypes': 'Work types',
-    'filters.glass.homeGlass': 'Home glass',
-    'filters.glass.showers': 'Shower enclosures',
-    'filters.glass.partitions': 'Glass partitions & walls',
-    'filters.glass.railings': 'Glass railings',
-    'filters.glass.furniture': 'Furniture & decorative glass',
-    'filters.glass.repairs': 'Repairs & service',
+// ═══════════════════════════════════════════════════════════════
+// LOCKSMITH
+// ═══════════════════════════════════════════════════════════════
+'filters.locksmith.workTypes': 'Work types',
+'filters.locksmith.lockReplacement': 'Lock replacement',
+'filters.locksmith.emergencyOpening': 'Door opening',
+'filters.locksmith.advancedSystems': 'Lock system installation',
+'filters.locksmith.doorRepair': 'Lock and door repair',
+'filters.locksmith.lockReplacementTypes': 'Lock replacement types',
+'filters.locksmith.doorOpeningTypes': 'Door opening types',
+'filters.locksmith.lockSystemInstallationTypes': 'Lock system installation types',
+'filters.locksmith.lockDoorRepairTypes': 'Lock and door repair types',
+'filters.locksmith.securityServicesTypes': 'Security service types',
+'filters.locksmith.cylinderLock': 'Cylinder lock',
+'filters.locksmith.securityLock': 'Security lock',
+'filters.locksmith.entranceLock': 'Entry door lock',
+'filters.locksmith.officeLock': 'Office / store lock',
+'filters.locksmith.noDamageOpening': 'No-damage door opening',
+'filters.locksmith.emergency247': '24/7 emergency opening',
+'filters.locksmith.safeOpening': 'Safe opening',
+'filters.locksmith.keyDuplication': 'On-site key duplication',
+'filters.locksmith.smartLocks': 'Smart locks',
+'filters.locksmith.intercom': 'Intercom system',
+'filters.locksmith.accessCode': 'Office access code',
+'filters.locksmith.electronicLock': 'Electronic lock',
+'filters.locksmith.stuckLockRepair': 'Stuck lock repair',
+'filters.locksmith.hingeRepair': 'Door hinge repair',
+'filters.locksmith.doorSanding': 'Door sanding (won\'t close)',
+'filters.locksmith.handleReplacement': 'Door handle replacement',
+'filters.locksmith.securityUpgrade': 'Security system upgrade',
+'filters.locksmith.securityDoorInstall': 'Security door installation',
+'filters.locksmith.vulnerabilityCheck': 'Door vulnerability check',
+'filters.locksmith.commercialLocksmith': 'Commercial locksmith service',
+
+// ═══════════════════════════════════════════════════════════════
+// WATERPROOFING
+// ═══════════════════════════════════════════════════════════════
+'filters.waterproofing.workTypes': 'Work types',
+'filters.waterproofing.roofs': 'Roof waterproofing',
+'filters.waterproofing.externalWalls': 'External wall waterproofing',
+'filters.waterproofing.balconies': 'Balcony waterproofing',
+'filters.waterproofing.wetRooms': 'Wet room waterproofing',
+'filters.waterproofing.underground': 'Underground waterproofing',
+'filters.waterproofing.inspection': 'Diagnostics and equipment',
+'filters.waterproofing.roofTypes': 'Roof waterproofing types',
+'filters.waterproofing.wallTypes': 'Wall waterproofing types',
+'filters.waterproofing.balconyTypes': 'Balcony waterproofing types',
+'filters.waterproofing.wetRoomTypes': 'Wet room waterproofing types',
+'filters.waterproofing.undergroundTypes': 'Underground waterproofing types',
+'filters.waterproofing.inspectionTypes': 'Diagnostic types',
+'filters.waterproofing.bituminousSheets': 'Bituminous sheets',
+'filters.waterproofing.hotAsphalt': 'Hot asphalt',
+'filters.waterproofing.polyurethane': 'Polyurethane',
+'filters.waterproofing.tileRoof': 'Tile roof',
+'filters.waterproofing.maintenance': 'Regular maintenance',
+'filters.waterproofing.waterPenetration': 'Water penetration',
+'filters.waterproofing.exteriorRestoration': 'Exterior restoration',
+'filters.waterproofing.crackSealing': 'Crack sealing',
+'filters.waterproofing.dampnessTreatment': 'Dampness treatment',
+'filters.waterproofing.beforeTiling': 'Before tiling',
+'filters.waterproofing.leakRepair': 'Leak repair',
+'filters.waterproofing.tilingAndSealing': 'Tiling and sealing',
+'filters.waterproofing.bathroom': 'Bathroom',
+'filters.waterproofing.shower': 'Shower',
+'filters.waterproofing.toilet': 'Toilet',
+'filters.waterproofing.beforeRenovation': 'Before renovation',
+'filters.waterproofing.basements': 'Basements',
+'filters.waterproofing.foundations': 'Foundations',
+'filters.waterproofing.undergroundWalls': 'Underground walls',
+'filters.waterproofing.leakDetection': 'Leak detection',
+'filters.waterproofing.moistureTests': 'Moisture tests',
+'filters.waterproofing.thermalImaging': 'Thermal imaging',
+   
+
+    
+  // Service Forms - Plumbing
+'serviceForm.plumbing.title': 'Plumbing Service Details',
+'serviceForm.plumbing.blockages': 'Blockages',
+'serviceForm.plumbing.pipeRepair': 'Pipe Repair',
+'serviceForm.plumbing.largeWork': 'Large Work',
+'serviceForm.plumbing.fixtureInstallation': 'Fixture Installation & Repair',
+
 
     // Service Forms - Glass Works
 'serviceForm.glass.title': 'Glass Works Service Details',
@@ -3243,46 +3711,37 @@ const translations = {
 'serviceForm.glass.specialSafety': 'Special & Safety Glass',
 'serviceForm.glass.repairCustom': 'Repair & Custom Services',
 
-// Glass Works - Shower Glass
-'filters.glass.showerInstall': 'Shower enclosure installation',
-'filters.glass.showerRepair': 'Shower enclosure repair',
-'filters.glass.showerGlassReplacement': 'Shower glass replacement',
-'filters.glass.showerDoors': 'Shower doors',
 
-// Glass Works - Windows & Doors
-'filters.glass.windowReplacement': 'Window glass replacement',
-'filters.glass.doubleGlazing': 'Double glazing',
-'filters.glass.reglazing': 'Reglazing',
-'filters.glass.interiorGlassDoors': 'Interior glass doors',
-'filters.glass.glassPartitions': 'Glass partitions',
 
-// Glass Works - Kitchen & Home
-'filters.glass.kitchenBacksplash': 'Kitchen backsplash glass',
-'filters.glass.glassShelves': 'Glass shelves',
-'filters.glass.glassTables': 'Glass tables',
-'filters.glass.bathroomMirrors': 'Bathroom mirrors',
-'filters.glass.decorativeMirrors': 'Decorative mirrors',
 
-// Glass Works - Special & Safety
-'filters.glass.temperedGlass': 'Tempered glass (safety)',
-'filters.glass.smartGlass': 'Smart glass',
-'filters.glass.securityGlass': 'Security glass (burglary-resistant)',
-'filters.glass.acousticGlass': 'Acoustic glass (noise insulation)',
-'filters.glass.decorativeGlass': 'Colored / decorative glass',
+// Filters - Home Organization
+'filters.homeOrg.fullHome': 'Full Home Organization',
+'filters.homeOrg.rooms': 'Room Organization',
+'filters.homeOrg.kitchen': 'Kitchen Organization',
+'filters.homeOrg.kidsRoom': 'Kids Room Organization',
+'filters.homeOrg.closets': 'Closet Organization',
+'filters.homeOrg.bathroom': 'Bathroom Organization',
+'filters.homeOrg.itemSorting': 'Item Sorting',
+'filters.homeOrg.clothesSorting': 'Clothes Sorting',
+'filters.homeOrg.toySorting': 'Toy Sorting',
+'filters.homeOrg.donationPrep': 'Donation Preparation',
+'filters.homeOrg.storageSolutions': 'Storage Solutions',
+'filters.homeOrg.smallSpaceOptimization': 'Small Space Optimization',
+'filters.homeOrg.shelfDesign': 'Shelf Design & Organization',
 
-// Glass Works - Repair & Custom
-'filters.glass.scratchRepair': 'Scratch and crack repair',
-'filters.glass.glassPolishing': 'Glass polishing',
-'filters.glass.customCutting': 'Custom cutting to size',
+// Filters - Event Entertainment
+'filters.event.magician': 'Kids Magician',
+'filters.event.clown': 'Kids Clown',
+'filters.event.balloonArtist': 'Balloon Artist',
+'filters.event.balloonRelease': 'Balloon Release / On-site Inflation',
+'filters.event.characters': 'Characters & Costumes',
+'filters.event.groupGames': 'Group Games & Activities',
+'filters.event.bubbleShow': 'Bubble Show',
+'filters.event.musicalActivity': 'Musical Activity / Dancing',
+'filters.event.facePainting': 'Face Painting',
+'filters.event.balloonArch': 'Balloon Arch',
+'filters.event.magnetPhoto': 'Magnet Photo Booth',
 
-    // ═══════════════════════════════════════════════════════════════
-    // LOCKSMITH
-    // ═══════════════════════════════════════════════════════════════
-    'filters.locksmith.workTypes': 'Work types',
-    'filters.locksmith.emergencyOpening': '🔐 Emergency lockout',
-    'filters.locksmith.lockReplacement': '🔑 Lock replacement',
-    'filters.locksmith.doorRepair': '🚪 Door repair & safety',
-    'filters.locksmith.advancedSystems': '📡 Advanced systems',
 
     // Service Forms - Locksmith
 'serviceForm.locksmith.title': 'Locksmith Service Details',
@@ -3291,36 +3750,6 @@ const translations = {
 'serviceForm.locksmith.lockSystemInstallation': 'Lock System Installation',
 'serviceForm.locksmith.lockDoorRepair': 'Lock & Door Repair',
 'serviceForm.locksmith.securityServices': 'Security Services',
-
-// Locksmith - Lock Replacement
-'filters.locksmith.cylinderLock': 'Cylinder lock',
-'filters.locksmith.securityLock': 'Security lock',
-'filters.locksmith.entranceLock': 'Entrance door lock',
-'filters.locksmith.officeLock': 'Office / shop lock',
-
-// Locksmith - Door Opening
-'filters.locksmith.noDamageOpening': 'No-damage door opening',
-'filters.locksmith.emergency247': 'Emergency opening 24/7',
-'filters.locksmith.safeOpening': 'Safe opening',
-'filters.locksmith.keyDuplication': 'On-site key duplication',
-
-// Locksmith - Lock System Installation
-'filters.locksmith.smartLocks': 'Smart locks',
-'filters.locksmith.intercom': 'Intercom system',
-'filters.locksmith.accessCode': 'Office access code',
-'filters.locksmith.electronicLock': 'Electronic lock',
-
-// Locksmith - Lock & Door Repair
-'filters.locksmith.stuckLockRepair': 'Stuck lock repair',
-'filters.locksmith.hingeRepair': 'Door hinge repair',
-'filters.locksmith.doorSanding': 'Door sanding (won\'t close)',
-'filters.locksmith.handleReplacement': 'Door handle replacement',
-
-// Locksmith - Security Services
-'filters.locksmith.securityUpgrade': 'Security system upgrade',
-'filters.locksmith.securityDoorInstall': 'Security door installation',
-'filters.locksmith.vulnerabilityCheck': 'Door vulnerability check',
-'filters.locksmith.commercialLocksmith': 'Commercial locksmith service',
 
     // ═══════════════════════════════════════════════════════════════
     // PROVIDER DETAIL PAGE
@@ -3790,6 +4219,7 @@ const translations = {
 
 'common.back': 'Back',
 'common.close': 'Close',
+
 // Service Forms - Common Fields
 'serviceForm.common.requiredFields': 'Required Fields',
 'serviceForm.common.age': 'Age',
@@ -4117,6 +4547,7 @@ const translations = {
 'serviceForm.tutoring.modes.inPerson': 'In-person only',
 'serviceForm.tutoring.modes.online': 'Online only',
 'serviceForm.tutoring.modes.both': 'Both',
+
 // Service Forms - Eldercare
 'serviceForm.eldercare.title': 'Eldercare Service Details',
 'serviceForm.eldercare.careTypesLabel': 'Types of Care',
@@ -4510,6 +4941,48 @@ const translations = {
 'notFound.backHome': 'Back to Home',
 'notFound.browseServices': 'Browse Services',
 'notFound.popularPages': 'Popular Pages',
+
+// Modals - Delete Service
+'modals.deleteService.title': 'Delete Service',
+'modals.deleteService.areYouSure': 'Are you sure?',
+'modals.deleteService.willDelete': 'This action will delete the service',
+'modals.deleteService.fromAccount': 'from your account.',
+'modals.deleteService.otherServicesActive': 'Your other services will remain active',
+'modals.deleteService.profileVisibleOthers': 'Your profile will remain visible for other services',
+'modals.deleteService.serviceDataDeleted': 'All data specific to this service will be permanently deleted',
+'modals.deleteService.reviewsDeleted': 'Reviews for this service will be deleted',
+'modals.deleteService.lastService': 'This is your last service!',
+'modals.deleteService.accountWillBeDeleted': 'Deleting this service will delete your entire account',
+'modals.deleteService.allDataDeleted': 'All your data will be permanently deleted',
+'modals.deleteService.cantLogin': 'You will not be able to log in again',
+'modals.deleteService.deleting': 'Deleting...',
+'modals.deleteService.deleteThisOnly': 'Delete this service only',
+'modals.deleteService.deleteAccountPermanently': 'Delete account permanently',
+'modals.deleteService.error': 'Error deleting service',
+
+// Modals - Delete Account
+'modals.deleteAccount.title': 'Delete Account',
+'modals.deleteAccount.warning': 'Warning! This action is irreversible',
+'modals.deleteAccount.willCause': 'Deleting your account will:',
+'modals.deleteAccount.profileDeleted': 'Completely delete your profile',
+'modals.deleteAccount.removedFromSearch': 'Remove you from all search results',
+'modals.deleteAccount.personalDataDeleted': 'Delete all personal data',
+'modals.deleteAccount.subscriptionCancelled': 'Cancel subscription (if any)',
+'modals.deleteAccount.deleting': 'Deleting account...',
+'modals.deleteAccount.deleteAccountPermanently': 'Delete account permanently',
+'modals.deleteAccount.error': 'Error deleting account',
+
+// Modals - Cancel Subscription
+'modals.cancelSubscription.title': 'Cancel Subscription & Delete Account',
+'modals.cancelSubscription.willCancelAtEnd': 'Subscription will be cancelled at end of period',
+'modals.cancelSubscription.accountContinues': 'Your account will continue to work normally until the end of your paid period. At the end of the period, the account will be permanently deleted.',
+'modals.cancelSubscription.profileVisible': 'Profile will remain visible and active until end of period',
+'modals.cancelSubscription.continueReceiving': 'You will continue to receive client inquiries until end of month',
+'modals.cancelSubscription.atEndDeleted': 'At end of period: all data will be permanently deleted',
+'modals.cancelSubscription.canCancelRequest': 'You can cancel this request and continue your subscription before the end of the period',
+'modals.cancelSubscription.cancelling': 'Cancelling subscription...',
+'modals.cancelSubscription.confirmCancel': 'Confirm Cancellation',
+'modals.cancelSubscription.error': 'Error cancelling subscription',
  },
   
   ru: {
@@ -4525,6 +4998,13 @@ const translations = {
     'auth.profile': 'Профиль',
     'nav.dashboard': 'Панель управления',
     
+  // Service Forms - Plumbing
+  'serviceForm.plumbing.title': 'Детали сантехнических услуг',
+'serviceForm.plumbing.blockages': 'Засоры',
+'serviceForm.plumbing.pipeRepair': 'Ремонт труб',
+'serviceForm.plumbing.largeWork': 'Крупные работы',
+'serviceForm.plumbing.fixtureInstallation': 'Установка и ремонт сантехники',
+
     // Services
     'services.babysitting': 'Няня',
     'services.babysitting.desc': 'Опытные и надежные няни для ваших детей',
@@ -5194,7 +5674,7 @@ const translations = {
     'filters.plumbing.buildingSewerReplacement': 'Замена канализации здания',
     'filters.plumbing.newSewerLine': 'Новая линия канализации',
     'filters.plumbing.gardenPipeReplacement': 'Замена садовых труб',
-    'filters.plumbing.dockInstallation': 'Установка дока',
+'filters.plumbing.pierInstallation': 'Установка дока',
     'filters.plumbing.waterBar': 'Установка кулера',
     'filters.plumbing.concealedCistern': 'Скрытый бачок',
     'filters.plumbing.faucets': 'Смесители',
@@ -5315,7 +5795,70 @@ const translations = {
     'filters.carpentry.pergolas': 'Перголы',
     'filters.carpentry.decks': 'Деревянные террасы',
     'filters.carpentry.fences': 'Деревянные заборы и перегородки',
+// CARPENTRY
+'filters.carpentry.workTypes': 'Виды работ',
+'filters.carpentry.furnitureBuildingTypes': 'Типы изготовления мебели',
+'filters.carpentry.furnitureRepairTypes': 'Типы ремонта мебели',
+'filters.carpentry.otherCarpentryTypes': 'Другие столярные работы',
+'filters.carpentry.outdoorCarpentryTypes': 'Наружные столярные работы',
+'filters.carpentry.furnitureBuilding': 'Изготовление мебели',
+'filters.carpentry.furnitureRepair': 'Ремонт мебели',
+'filters.carpentry.otherWork': 'Другие столярные работы',
+'filters.carpentry.outdoorCarpentry': 'Наружные столярные работы',
+'filters.carpentry.wallClosets': 'Встроенные шкафы',
+'filters.carpentry.slidingClosets': 'Шкафы-купе',
+'filters.carpentry.bathroomCabinets': 'Мебель для ванной',
+'filters.carpentry.bedroomFurniture': 'Мебель для спальни',
+'filters.carpentry.tableBuilding': 'Изготовление столов',
+'filters.carpentry.chairBuilding': 'Изготовление стульев',
+'filters.carpentry.tvUnitBuilding': 'Изготовление тумб под ТВ',
+'filters.carpentry.libraryBuilding': 'Изготовление книжных шкафов',
+'filters.carpentry.customFurniture': 'Мебель на заказ',
+'filters.carpentry.shelfBuilding': 'Изготовление полок',
+'filters.carpentry.walkInCloset': 'Гардеробная',
+'filters.carpentry.woodenBed': 'Деревянная кровать',
+'filters.carpentry.pergolas': 'Перголы',
+'filters.carpentry.decks': 'Террасы',
+'filters.carpentry.fences': 'Заборы и деревянные перегородки',
 
+// Repair types
+'filters.carpentry.repairWallClosets': 'Ремонт встроенных шкафов',
+'filters.carpentry.repairTable': 'Ремонт столов',
+'filters.carpentry.repairChairs': 'Ремонт стульев',
+'filters.carpentry.repairSlidingClosets': 'Ремонт шкафов-купе',
+'filters.carpentry.repairBathroomCabinets': 'Ремонт мебели для ванной',
+'filters.carpentry.repairBedroomFurniture': 'Ремонт мебели для спальни',
+'filters.carpentry.repairTvUnit': 'Ремонт тумб под ТВ',
+'filters.carpentry.repairLibrary': 'Ремонт книжных шкафов',
+'filters.carpentry.repairOther': 'Ремонт другой мебели',
+
+// Other carpentry
+'filters.carpentry.wallCladding': 'Деревянная обшивка стен',
+'filters.carpentry.disassembly': 'Разборка и сборка мебели',
+'filters.carpentry.doorRepair': 'Ремонт и изготовление дверей',
+'filters.carpentry.doorRenovation': 'Реставрация деревянных входных дверей',
+'filters.carpentry.loft': 'Строительство антресоли',
+'filters.carpentry.stairs': 'Деревянные лестницы',
+'filters.carpentry.lattice': 'Деревянные решётки',
+'filters.carpentry.butcher': 'Разделочная доска',
+
+// Pergolas
+'filters.carpentry.pergolaTypes': 'Типы пергол',
+'filters.carpentry.woodPergolas': 'Деревянные перголы',
+'filters.carpentry.shadePergolas': 'Теневые перголы',
+'filters.carpentry.balconyEnclosure': 'Остекление балкона',
+
+// Decks
+'filters.carpentry.deckTypes': 'Типы террас',
+'filters.carpentry.naturalWoodDecks': 'Террасы из натурального дерева',
+'filters.carpentry.compositeDecks': 'Композитная терраса',
+'filters.carpentry.deckRenovation': 'Реставрация террасы',
+
+// Fences
+'filters.carpentry.fenceTypes': 'Типы заборов',
+'filters.carpentry.woodFences': 'Деревянные заборы',
+'filters.carpentry.gardenPartitions': 'Садовые деревянные перегородки',
+'filters.carpentry.woodGates': 'Деревянные ворота',
     // ═══════════════════════════════════════════════════════════════
     // PROPERTY MANAGEMENT
     // ═══════════════════════════════════════════════════════════════
@@ -5377,7 +5920,7 @@ const translations = {
    'serviceForm.chef.title': 'Детали услуги частного повара',
     'filters.chef.workTypes': 'Виды работ',
     'serviceForm.chef.kosher': 'Сертификаты кошерности',
-    'serviceForm.chef.cuisineType': 'Тип кухни',
+    'serviceForm.chef.cuisineTypes': 'Тип кухни',
     'filters.chef.kashrut': 'Кашрут',
     'filters.chef.pizza': 'Пицца',
     'filters.chef.sushi': 'Суши',
@@ -5400,6 +5943,36 @@ const translations = {
     'filters.chef.badatzTzfat': 'Бадац раввинов Цфата',
     'filters.chef.rabbiLanda': 'Кашрут рава Ланда',
     'filters.chef.rabbiRubin': 'Кашрут рава Рубин',
+    'filters.chef.cuisineType': 'Типы кухни',
+'filters.chef.kosherTypes': 'Типы кашрута',
+
+    // Filters - Home Organization
+'filters.homeOrg.fullHome': 'Организация всего дома',
+'filters.homeOrg.rooms': 'Организация комнат',
+'filters.homeOrg.kitchen': 'Организация кухни',
+'filters.homeOrg.kidsRoom': 'Организация детской',
+'filters.homeOrg.closets': 'Организация шкафов',
+'filters.homeOrg.bathroom': 'Организация ванной',
+'filters.homeOrg.itemSorting': 'Сортировка вещей',
+'filters.homeOrg.clothesSorting': 'Сортировка одежды',
+'filters.homeOrg.toySorting': 'Сортировка игрушек',
+'filters.homeOrg.donationPrep': 'Подготовка к пожертвованию',
+'filters.homeOrg.storageSolutions': 'Решения для хранения',
+'filters.homeOrg.smallSpaceOptimization': 'Оптимизация малых пространств',
+'filters.homeOrg.shelfDesign': 'Дизайн и организация полок',
+
+// Filters - Event Entertainment
+'filters.event.magician': 'Детский фокусник',
+'filters.event.clown': 'Детский клоун',
+'filters.event.balloonArtist': 'Мастер шаров',
+'filters.event.balloonRelease': 'Запуск шаров / надувание на месте',
+'filters.event.characters': 'Персонажи и костюмы',
+'filters.event.groupGames': 'Групповые игры',
+'filters.event.bubbleShow': 'Шоу мыльных пузырей',
+'filters.event.musicalActivity': 'Музыкальная активность / танцы',
+'filters.event.facePainting': 'Аквагрим',
+'filters.event.balloonArch': 'Арка из шаров',
+'filters.event.magnetPhoto': 'Фото на магнитах',
 
     // ═══════════════════════════════════════════════════════════════
     // EVENT ENTERTAINMENT
@@ -5437,47 +6010,205 @@ const translations = {
     'filters.events.balloonArch': 'Арка из шаров',
     'filters.events.photoMagnets': 'Фото-магниты',
 
-    // ═══════════════════════════════════════════════════════════════
-    // WATERPROOFING
-    // ═══════════════════════════════════════════════════════════════
-    'filters.waterproofing.workTypes': 'Виды работ',
-    'filters.waterproofing.roofs': 'Гидроизоляция крыш',
-    'filters.waterproofing.externalWalls': 'Гидроизоляция наружных стен',
-    'filters.waterproofing.balconies': 'Гидроизоляция балконов',
-    'filters.waterproofing.wetRooms': 'Гидроизоляция мокрых помещений',
-    'filters.waterproofing.underground': 'Подземная гидроизоляция',
-    'filters.waterproofing.inspection': 'Диагностика и проверка',
+// ═══════════════════════════════════════════════════════════════
+// ALUMINUM
+// ═══════════════════════════════════════════════════════════════
+'filters.aluminum.workTypes': 'Виды работ',
+'filters.aluminum.windowsDoors': 'Окна и двери',
+'filters.aluminum.pergolas': 'Перголы и наружный алюминий',
+'filters.aluminum.repairs': 'Ремонт и сервис',
+'filters.aluminum.cladding': 'Алюминиевая облицовка',
+'filters.aluminum.windowsDoorsTypes': 'Типы окон и дверей',
+'filters.aluminum.pergolasOutdoorTypes': 'Типы пергол и наружных работ',
+'filters.aluminum.repairsServiceTypes': 'Типы ремонта и сервиса',
+'filters.aluminum.claddingTypes': 'Типы облицовки',
+'filters.aluminum.installWindows': 'Установка алюминиевых окон',
+'filters.aluminum.aluminumDoors': 'Алюминиевые двери',
+'filters.aluminum.slidingDoors': 'Раздвижные двери (витрины)',
+'filters.aluminum.entryDoors': 'Алюминиевые входные двери',
+'filters.aluminum.mosquitoNets': 'Москитные сетки',
+'filters.aluminum.manualShutters': 'Ручные жалюзи',
+'filters.aluminum.electricShutters': 'Электрические жалюзи',
+'filters.aluminum.aluminumPergolas': 'Алюминиевые перголы',
+'filters.aluminum.balconyEnclosure': 'Остекление балконов',
+'filters.aluminum.exteriorCladding': 'Наружная алюминиевая облицовка',
+'filters.aluminum.railings': 'Алюминиевые перила для сада / балконов',
+'filters.aluminum.repairShutterMotor': 'Ремонт мотора электрических жалюзи',
+'filters.aluminum.repairTracks': 'Ремонт направляющих',
+'filters.aluminum.repairWheels': 'Ремонт роликов окон',
+'filters.aluminum.replaceHandles': 'Замена ручек / петель',
+'filters.aluminum.sealingRenewal': 'Герметизация и обновление вокруг окон',
+'filters.aluminum.repairManualShutters': 'Ремонт ручных жалюзи',
+'filters.aluminum.pipeCovering': 'Облицовка труб',
+'filters.aluminum.meterCovering': 'Облицовка счётчиков (электричество / вода / газ)',
+'filters.aluminum.decorativeBoxes': 'Декоративные алюминиевые короба',
+'filters.aluminum.acLineCovering': 'Облицовка линий кондиционера',
+'filters.aluminum.acMotorProtection': 'Защита наружного мотора кондиционера',
+'filters.aluminum.wallCladding': 'Алюминиевая облицовка наружных стен',
+'filters.aluminum.decorativeCladding': 'Декоративная облицовка',
+'filters.aluminum.shutterBoxCladding': 'Облицовка коробов жалюзи',
 
-    // ═══════════════════════════════════════════════════════════════
-    // CONTRACTOR
-    // ═══════════════════════════════════════════════════════════════
-    'filters.contractor.workTypes': 'Виды работ',
-    'filters.contractor.structureWork': 'Каркасные работы',
-    'filters.contractor.generalRenovation': 'Общий ремонт',
-    'filters.contractor.electricPlumbing': 'Электрика и сантехника',
-    'filters.contractor.exteriorWork': 'Наружные работы',
-    'filters.contractor.facadeRepair': 'Ремонт фасада',
+// ═══════════════════════════════════════════════════════════════
+// CONTRACTOR
+// ═══════════════════════════════════════════════════════════════
+'filters.contractor.workTypes': 'Виды работ',
+'filters.contractor.structureWork': 'Каркасные работы',
+'filters.contractor.generalRenovation': 'Общий ремонт',
+'filters.contractor.electricPlumbing': 'Электрика и сантехника',
+'filters.contractor.exteriorWork': 'Наружные работы',
+'filters.contractor.facadeRepair': 'Восстановление и ремонт фасада',
+'filters.contractor.structureWorkTypes': 'Типы каркасных работ',
+'filters.contractor.generalRenovationTypes': 'Типы общего ремонта',
+'filters.contractor.electricPlumbingTypes': 'Типы электрики и сантехники',
+'filters.contractor.exteriorWorkTypes': 'Типы наружных работ',
+'filters.contractor.facadeRepairTypes': 'Типы ремонта фасада',
+'filters.contractor.buildingFrame': 'Строительство каркаса',
+'filters.contractor.concretePours': 'Заливка бетона',
+'filters.contractor.formwork': 'Опалубка',
+'filters.contractor.structuralReinforcement': 'Усиление конструкций',
+'filters.contractor.blockWalls': 'Строительство стен из блоков',
+'filters.contractor.demolitionRebuild': 'Снос и перестройка',
+'filters.contractor.fullApartmentReno': 'Полный ремонт квартиры',
+'filters.contractor.roomRenovation': 'Ремонт комнат',
+'filters.contractor.bathroomReno': 'Ремонт ванных комнат',
+'filters.contractor.kitchenReno': 'Ремонт кухни',
+'filters.contractor.flooringReplacement': 'Замена напольного покрытия',
+'filters.contractor.drywallWork': 'Работы с гипсокартоном',
+'filters.contractor.plasterWork': 'Штукатурка и шпаклёвка',
+'filters.contractor.balconyEnclosure': 'Остекление балкона',
+'filters.contractor.professionalPainting': 'Профессиональная покраска',
+'filters.contractor.doorFrameReplacement': 'Замена дверей и рам',
+'filters.contractor.electricalWork': 'Электромонтажные работы',
+'filters.contractor.panelReplacement': 'Замена электрощита',
+'filters.contractor.generalPlumbing': 'Общая сантехника',
+'filters.contractor.pipeReplacement': 'Замена труб',
+'filters.contractor.leakDetection': 'Обнаружение и ремонт утечек',
+'filters.contractor.exteriorFlooring': 'Наружное покрытие пола',
+'filters.contractor.pergolaConstruction': 'Строительство перголы',
+'filters.contractor.stoneCladding': 'Каменная облицовка / наружные стены',
+'filters.contractor.fencing': 'Ограждения',
+'filters.contractor.gardenPathways': 'Строительство садовых дорожек',
+'filters.contractor.exteriorPlasterRepair': 'Ремонт наружной штукатурки',
+'filters.contractor.exteriorWallRestoration': 'Восстановление наружных стен',
+'filters.contractor.wallCrackSealing': 'Заделка трещин в стенах',
+'filters.contractor.fallingPlasterTreatment': 'Обработка осыпающейся штукатурки',
 
-    // ═══════════════════════════════════════════════════════════════
-    // ALUMINUM
-    // ═══════════════════════════════════════════════════════════════
-    'filters.aluminum.workTypes': 'Виды работ',
-    'filters.aluminum.windowsDoors': 'Окна и двери',
-    'filters.aluminum.pergolas': 'Перголы и наружный алюминий',
-    'filters.aluminum.repairs': 'Ремонт и обслуживание',
-    'filters.aluminum.cladding': 'Алюминиевая облицовка',
+// ═══════════════════════════════════════════════════════════════
+// GLASS WORKS
+// ═══════════════════════════════════════════════════════════════
+'filters.glass.workTypes': 'Виды работ',
+'filters.glass.showers': 'Стекло для душевых',
+'filters.glass.homeGlass': 'Стекло для окон и дверей',
+'filters.glass.furniture': 'Стекло для кухни и дома',
+'filters.glass.partitions': 'Специальное и безопасное стекло',
+'filters.glass.repairs': 'Ремонт и индивидуальные услуги',
+'filters.glass.railings': 'Стеклянные перила',
+'filters.glass.showerGlassTypes': 'Типы стекла для душевых',
+'filters.glass.windowsDoorGlassTypes': 'Типы стекла для окон и дверей',
+'filters.glass.kitchenHomeGlassTypes': 'Типы стекла для кухни и дома',
+'filters.glass.specialSafetyGlassTypes': 'Типы специального и безопасного стекла',
+'filters.glass.repairCustomTypes': 'Типы ремонта и индивидуальных услуг',
+'filters.glass.showerInstall': 'Установка душевой кабины',
+'filters.glass.showerRepair': 'Ремонт душевой кабины',
+'filters.glass.showerGlassReplacement': 'Замена стекла душевой',
+'filters.glass.showerDoors': 'Душевые двери',
+'filters.glass.windowReplacement': 'Замена оконного стекла',
+'filters.glass.doubleGlazing': 'Двойное остекление',
+'filters.glass.reglazing': 'Переостекление',
+'filters.glass.interiorGlassDoors': 'Внутренние стеклянные двери',
+'filters.glass.glassPartitions': 'Стеклянные перегородки',
+'filters.glass.kitchenBacksplash': 'Кухонный фартук из стекла',
+'filters.glass.glassShelves': 'Стеклянные полки',
+'filters.glass.glassTables': 'Стеклянные столы',
+'filters.glass.bathroomMirrors': 'Зеркала для ванной',
+'filters.glass.decorativeMirrors': 'Декоративные зеркала',
+'filters.glass.temperedGlass': 'Закалённое стекло (безопасное)',
+'filters.glass.smartGlass': 'Умное стекло',
+'filters.glass.securityGlass': 'Противовзломное стекло',
+'filters.glass.acousticGlass': 'Акустическое стекло (звукоизоляция)',
+'filters.glass.decorativeGlass': 'Цветное / дизайнерское стекло',
+'filters.glass.scratchRepair': 'Ремонт царапин и трещин',
+'filters.glass.glassPolishing': 'Полировка стекла',
+'filters.glass.customCutting': 'Резка стекла по размеру',
 
+// ═══════════════════════════════════════════════════════════════
+// LOCKSMITH
+// ═══════════════════════════════════════════════════════════════
+'filters.locksmith.workTypes': 'Виды работ',
+'filters.locksmith.lockReplacement': 'Замена замков',
+'filters.locksmith.emergencyOpening': 'Вскрытие дверей',
+'filters.locksmith.advancedSystems': 'Установка систем запирания',
+'filters.locksmith.doorRepair': 'Ремонт замков и дверей',
+'filters.locksmith.lockReplacementTypes': 'Типы замены замков',
+'filters.locksmith.doorOpeningTypes': 'Типы вскрытия дверей',
+'filters.locksmith.lockSystemInstallationTypes': 'Типы установки систем запирания',
+'filters.locksmith.lockDoorRepairTypes': 'Типы ремонта замков и дверей',
+'filters.locksmith.securityServicesTypes': 'Типы охранных услуг',
+'filters.locksmith.cylinderLock': 'Цилиндровый замок',
+'filters.locksmith.securityLock': 'Замок безопасности',
+'filters.locksmith.entranceLock': 'Замок входной двери',
+'filters.locksmith.officeLock': 'Замок для офиса / магазина',
+'filters.locksmith.noDamageOpening': 'Вскрытие двери без повреждений',
+'filters.locksmith.emergency247': 'Экстренное вскрытие 24/7',
+'filters.locksmith.safeOpening': 'Вскрытие сейфа',
+'filters.locksmith.keyDuplication': 'Дубликат ключей на месте',
+'filters.locksmith.smartLocks': 'Умные замки',
+'filters.locksmith.intercom': 'Домофонная система',
+'filters.locksmith.accessCode': 'Код доступа для офисов',
+'filters.locksmith.electronicLock': 'Электронный замок',
+'filters.locksmith.stuckLockRepair': 'Ремонт заклинившего замка',
+'filters.locksmith.hingeRepair': 'Ремонт дверных петель',
+'filters.locksmith.doorSanding': 'Подгонка двери, которая не закрывается',
+'filters.locksmith.handleReplacement': 'Замена дверной ручки',
+'filters.locksmith.securityUpgrade': 'Модернизация системы безопасности',
+'filters.locksmith.securityDoorInstall': 'Установка бронированной двери',
+'filters.locksmith.vulnerabilityCheck': 'Проверка уязвимости двери',
+'filters.locksmith.commercialLocksmith': 'Коммерческие слесарные услуги',
+
+// ═══════════════════════════════════════════════════════════════
+// WATERPROOFING
+// ═══════════════════════════════════════════════════════════════
+'filters.waterproofing.workTypes': 'Виды работ',
+'filters.waterproofing.roofs': 'Гидроизоляция крыш',
+'filters.waterproofing.externalWalls': 'Гидроизоляция наружных стен',
+'filters.waterproofing.balconies': 'Гидроизоляция балконов',
+'filters.waterproofing.wetRooms': 'Гидроизоляция влажных помещений',
+'filters.waterproofing.underground': 'Подземная гидроизоляция',
+'filters.waterproofing.inspection': 'Диагностика и оборудование',
+'filters.waterproofing.roofTypes': 'Типы гидроизоляции крыш',
+'filters.waterproofing.wallTypes': 'Типы гидроизоляции стен',
+'filters.waterproofing.balconyTypes': 'Типы гидроизоляции балконов',
+'filters.waterproofing.wetRoomTypes': 'Типы гидроизоляции влажных помещений',
+'filters.waterproofing.undergroundTypes': 'Типы подземной гидроизоляции',
+'filters.waterproofing.inspectionTypes': 'Типы диагностики',
+'filters.waterproofing.bituminousSheets': 'Битумные мембраны',
+'filters.waterproofing.hotAsphalt': 'Горячий асфальт',
+'filters.waterproofing.polyurethane': 'Полиуретан',
+'filters.waterproofing.tileRoof': 'Черепичная крыша',
+'filters.waterproofing.maintenance': 'Регулярное обслуживание',
+'filters.waterproofing.waterPenetration': 'Проникновение воды',
+'filters.waterproofing.exteriorRestoration': 'Наружная реставрация',
+'filters.waterproofing.crackSealing': 'Заделка трещин',
+'filters.waterproofing.dampnessTreatment': 'Обработка от влажности',
+'filters.waterproofing.beforeTiling': 'Перед укладкой плитки',
+'filters.waterproofing.leakRepair': 'Ремонт протечек',
+'filters.waterproofing.tilingAndSealing': 'Укладка плитки и герметизация',
+'filters.waterproofing.bathroom': 'Ванная комната',
+'filters.waterproofing.shower': 'Душевая',
+'filters.waterproofing.toilet': 'Туалет',
+'filters.waterproofing.beforeRenovation': 'Перед ремонтом',
+'filters.waterproofing.basements': 'Подвалы',
+'filters.waterproofing.foundations': 'Фундаменты',
+'filters.waterproofing.undergroundWalls': 'Подземные стены',
+'filters.waterproofing.leakDetection': 'Обнаружение протечек',
+'filters.waterproofing.moistureTests': 'Тесты на влажность',
+'filters.waterproofing.thermalImaging': 'Тепловизионная съёмка',
+ 
+  
     // ═══════════════════════════════════════════════════════════════
     // GLASS WORKS
     // ═══════════════════════════════════════════════════════════════
-    'filters.glass.workTypes': 'Виды работ',
-    'filters.glass.homeGlass': 'Домашнее стекло',
-    'filters.glass.showers': 'Душевые кабины',
-    'filters.glass.partitions': 'Стеклянные перегородки и стены',
-    'filters.glass.railings': 'Стеклянные перила',
-    'filters.glass.furniture': 'Мебель и декоративное стекло',
-    'filters.glass.repairs': 'Ремонт и обслуживание',
-
+  
     // Service Forms - Glass Works
 'serviceForm.glass.title': 'Детали услуги стекольных работ',
 'serviceForm.glass.showerGlass': 'Стекло для душевых',
@@ -5486,84 +6217,6 @@ const translations = {
 'serviceForm.glass.specialSafety': 'Специальное и защитное стекло',
 'serviceForm.glass.repairCustom': 'Услуги по ремонту и индивидуальному заказу',
 
-// Glass Works - Shower Glass
-'filters.glass.showerInstall': 'Установка душевой кабины',
-'filters.glass.showerRepair': 'Ремонт душевой кабины',
-'filters.glass.showerGlassReplacement': 'Замена стекла в душевой',
-'filters.glass.showerDoors': 'Душевые двери',
-
-// Glass Works - Windows & Doors
-'filters.glass.windowReplacement': 'Замена оконного стекла',
-'filters.glass.doubleGlazing': 'Двойное остекление',
-'filters.glass.reglazing': 'Повторное остекление',
-'filters.glass.interiorGlassDoors': 'Внутренние стеклянные двери',
-'filters.glass.glassPartitions': 'Стеклянные перегородки',
-
-// Glass Works - Kitchen & Home
-'filters.glass.kitchenBacksplash': 'Стеклянный фартук для кухни',
-'filters.glass.glassShelves': 'Стеклянные полки',
-'filters.glass.glassTables': 'Стеклянные столы',
-'filters.glass.bathroomMirrors': 'Зеркала для ванной',
-'filters.glass.decorativeMirrors': 'Декоративные зеркала',
-
-// Glass Works - Special & Safety
-'filters.glass.temperedGlass': 'Закаленное стекло (безопасное)',
-'filters.glass.smartGlass': 'Умное стекло',
-'filters.glass.securityGlass': 'Противовзломное стекло',
-'filters.glass.acousticGlass': 'Акустическое стекло (шумоизоляция)',
-'filters.glass.decorativeGlass': 'Цветное / декоративное стекло',
-
-// Glass Works - Repair & Custom
-'filters.glass.scratchRepair': 'Ремонт царапин и трещин',
-'filters.glass.glassPolishing': 'Полировка стекла',
-'filters.glass.customCutting': 'Резка стекла по размеру',
-
-    // ═══════════════════════════════════════════════════════════════
-    // LOCKSMITH
-    // ═══════════════════════════════════════════════════════════════
-    'filters.locksmith.workTypes': 'Виды работ',
-    'filters.locksmith.emergencyOpening': '🔐 Экстренное вскрытие',
-    'filters.locksmith.lockReplacement': '🔑 Замена замков',
-    'filters.locksmith.doorRepair': '🚪 Ремонт дверей и безопасность',
-    'filters.locksmith.advancedSystems': '📡 Продвинутые системы',
-
-    // Service Forms - Locksmith
-'serviceForm.locksmith.title': 'Детали услуги слесаря',
-'serviceForm.locksmith.lockReplacement': 'Замена замков',
-'serviceForm.locksmith.doorOpening': 'Вскрытие дверей',
-'serviceForm.locksmith.lockSystemInstallation': 'Установка систем запирания',
-'serviceForm.locksmith.lockDoorRepair': 'Ремонт замков и дверей',
-'serviceForm.locksmith.securityServices': 'Услуги безопасности',
-
-// Locksmith - Lock Replacement
-'filters.locksmith.cylinderLock': 'Цилиндровый замок',
-'filters.locksmith.securityLock': 'Замок безопасности',
-'filters.locksmith.entranceLock': 'Замок входной двери',
-'filters.locksmith.officeLock': 'Замок для офиса / магазина',
-
-// Locksmith - Door Opening
-'filters.locksmith.noDamageOpening': 'Вскрытие без повреждений',
-'filters.locksmith.emergency247': 'Экстренное вскрытие 24/7',
-'filters.locksmith.safeOpening': 'Вскрытие сейфа',
-'filters.locksmith.keyDuplication': 'Дублирование ключей на месте',
-
-// Locksmith - Lock System Installation
-'filters.locksmith.smartLocks': 'Умные замки',
-'filters.locksmith.intercom': 'Система домофона',
-'filters.locksmith.accessCode': 'Код доступа для офисов',
-'filters.locksmith.electronicLock': 'Электронный замок',
-
-// Locksmith - Lock & Door Repair
-'filters.locksmith.stuckLockRepair': 'Ремонт заклинившего замка',
-'filters.locksmith.hingeRepair': 'Ремонт петли двери',
-'filters.locksmith.doorSanding': 'Шлифовка двери (не закрывается)',
-'filters.locksmith.handleReplacement': 'Замена дверной ручки',
-
-// Locksmith - Security Services
-'filters.locksmith.securityUpgrade': 'Модернизация системы безопасности',
-'filters.locksmith.securityDoorInstall': 'Установка бронированной двери',
-'filters.locksmith.vulnerabilityCheck': 'Проверка уязвимости двери',
-'filters.locksmith.commercialLocksmith': 'Коммерческая слесарная служба',
 
     // ═══════════════════════════════════════════════════════════════
     // PROVIDER DETAIL PAGE
@@ -6751,6 +7404,48 @@ const translations = {
 'notFound.backHome': 'Вернуться на главную',
 'notFound.browseServices': 'Просмотр услуг',
 'notFound.popularPages': 'Популярные страницы',
+
+// Modals - Delete Service
+'modals.deleteService.title': 'Удалить услугу',
+'modals.deleteService.areYouSure': 'Вы уверены?',
+'modals.deleteService.willDelete': 'Это действие удалит услугу',
+'modals.deleteService.fromAccount': 'из вашего аккаунта.',
+'modals.deleteService.otherServicesActive': 'Другие ваши услуги останутся активными',
+'modals.deleteService.profileVisibleOthers': 'Ваш профиль останется видимым для других услуг',
+'modals.deleteService.serviceDataDeleted': 'Все данные этой услуги будут удалены навсегда',
+'modals.deleteService.reviewsDeleted': 'Отзывы об этой услуге будут удалены',
+'modals.deleteService.lastService': 'Это ваша последняя услуга!',
+'modals.deleteService.accountWillBeDeleted': 'Удаление этой услуги удалит весь ваш аккаунт',
+'modals.deleteService.allDataDeleted': 'Все ваши данные будут удалены навсегда',
+'modals.deleteService.cantLogin': 'Вы больше не сможете войти',
+'modals.deleteService.deleting': 'Удаление...',
+'modals.deleteService.deleteThisOnly': 'Удалить только эту услугу',
+'modals.deleteService.deleteAccountPermanently': 'Удалить аккаунт навсегда',
+'modals.deleteService.error': 'Ошибка при удалении услуги',
+
+// Modals - Delete Account
+'modals.deleteAccount.title': 'Удаление аккаунта',
+'modals.deleteAccount.warning': 'Внимание! Это действие необратимо',
+'modals.deleteAccount.willCause': 'Удаление аккаунта приведет к:',
+'modals.deleteAccount.profileDeleted': 'Полному удалению вашего профиля',
+'modals.deleteAccount.removedFromSearch': 'Удалению из всех результатов поиска',
+'modals.deleteAccount.personalDataDeleted': 'Удалению всех личных данных',
+'modals.deleteAccount.subscriptionCancelled': 'Отмене подписки (если есть)',
+'modals.deleteAccount.deleting': 'Удаление аккаунта...',
+'modals.deleteAccount.deleteAccountPermanently': 'Удалить аккаунт навсегда',
+'modals.deleteAccount.error': 'Ошибка при удалении аккаунта',
+
+// Modals - Cancel Subscription
+'modals.cancelSubscription.title': 'Отмена подписки и удаление аккаунта',
+'modals.cancelSubscription.willCancelAtEnd': 'Подписка будет отменена в конце периода',
+'modals.cancelSubscription.accountContinues': 'Ваш аккаунт продолжит работать до конца оплаченного периода. В конце периода аккаунт будет удален навсегда.',
+'modals.cancelSubscription.profileVisible': 'Профиль останется видимым и активным до конца периода',
+'modals.cancelSubscription.continueReceiving': 'Вы продолжите получать запросы от клиентов до конца месяца',
+'modals.cancelSubscription.atEndDeleted': 'В конце периода: все данные будут удалены навсегда',
+'modals.cancelSubscription.canCancelRequest': 'Вы можете отменить этот запрос и продолжить подписку до конца периода',
+'modals.cancelSubscription.cancelling': 'Отмена подписки...',
+'modals.cancelSubscription.confirmCancel': 'Подтвердить отмену',
+'modals.cancelSubscription.error': 'Ошибка при отмене подписки',
 },
   
   fr: {
@@ -6765,6 +7460,13 @@ const translations = {
     'auth.logout': 'Déconnexion',
     'auth.profile': 'Profil',
     'nav.dashboard': 'Tableau de bord',
+
+    // Service Forms - Plumbing
+'serviceForm.plumbing.title': 'Détails du service plomberie',
+'serviceForm.plumbing.blockages': 'Débouchages',
+'serviceForm.plumbing.pipeRepair': 'Réparation de tuyauterie',
+'serviceForm.plumbing.largeWork': 'Gros travaux',
+'serviceForm.plumbing.fixtureInstallation': 'Installation et réparation d\'équipements',
     
     // Services
     'services.babysitting': 'Baby-sitting',
@@ -7309,6 +8011,7 @@ const translations = {
 'filters.petcare.veterinaryServices': 'Services vétérinaires',
 'filters.petcare.vetVisit': 'Visite vétérinaire',
 'filters.petcare.basicCare': 'Soins de base',
+
     // ═══════════════════════════════════════════════════════════════
     // ELDERCARE
     // ═══════════════════════════════════════════════════════════════
@@ -7414,6 +8117,35 @@ const translations = {
     'filters.electrician.threePhase': 'Passage triphasé',
     'filters.electrician.inspection': 'Préparation inspection',
 
+    // Filters - Home Organization
+'filters.homeOrg.fullHome': 'Organisation maison complète',
+'filters.homeOrg.rooms': 'Organisation des pièces',
+'filters.homeOrg.kitchen': 'Organisation cuisine',
+'filters.homeOrg.kidsRoom': 'Organisation chambre d\'enfants',
+'filters.homeOrg.closets': 'Organisation placards',
+'filters.homeOrg.bathroom': 'Organisation salle de bain',
+'filters.homeOrg.itemSorting': 'Tri d\'objets',
+'filters.homeOrg.clothesSorting': 'Tri de vêtements',
+'filters.homeOrg.toySorting': 'Tri de jouets',
+'filters.homeOrg.donationPrep': 'Préparation aux dons',
+'filters.homeOrg.storageSolutions': 'Solutions de rangement',
+'filters.homeOrg.smallSpaceOptimization': 'Optimisation petits espaces',
+'filters.homeOrg.shelfDesign': 'Design et organisation d\'étagères',
+
+// Filters - Event Entertainment
+'filters.event.magician': 'Magicien pour enfants',
+'filters.event.clown': 'Clown pour enfants',
+'filters.event.balloonArtist': 'Sculpteur de ballons',
+'filters.event.balloonRelease': 'Lâcher de ballons / gonflage sur place',
+'filters.event.characters': 'Personnages et costumes',
+'filters.event.groupGames': 'Jeux de groupe',
+'filters.event.bubbleShow': 'Spectacle de bulles',
+'filters.event.musicalActivity': 'Animation musicale / danse',
+'filters.event.facePainting': 'Maquillage artistique',
+'filters.event.balloonArch': 'Arche de ballons',
+'filters.event.magnetPhoto': 'Photos magnets',
+
+
     // ═══════════════════════════════════════════════════════════════
     // PLUMBING
     // ═══════════════════════════════════════════════════════════════
@@ -7443,7 +8175,7 @@ const translations = {
     'filters.plumbing.buildingSewerReplacement': 'Remplacement égout immeuble',
     'filters.plumbing.newSewerLine': 'Nouvelle ligne d\'égout',
     'filters.plumbing.gardenPipeReplacement': 'Remplacement tuyaux jardin',
-    'filters.plumbing.dockInstallation': 'Installation dock',
+'filters.plumbing.pierInstallation': 'Installation dock',
     'filters.plumbing.waterBar': 'Installation fontaine à eau',
     'filters.plumbing.concealedCistern': 'Chasse d\'eau encastrée',
     'filters.plumbing.faucets': 'Robinetterie',
@@ -7564,6 +8296,70 @@ const translations = {
     'filters.carpentry.pergolas': 'Pergolas',
     'filters.carpentry.decks': 'Terrasses bois',
     'filters.carpentry.fences': 'Clôtures & séparations bois',
+    // CARPENTRY
+'filters.carpentry.workTypes': 'Types de travaux',
+'filters.carpentry.furnitureBuildingTypes': 'Types de fabrication de meubles',
+'filters.carpentry.furnitureRepairTypes': 'Types de réparation de meubles',
+'filters.carpentry.otherCarpentryTypes': 'Autres travaux de menuiserie',
+'filters.carpentry.outdoorCarpentryTypes': 'Menuiserie extérieure',
+'filters.carpentry.furnitureBuilding': 'Fabrication de meubles',
+'filters.carpentry.furnitureRepair': 'Réparation de meubles',
+'filters.carpentry.otherWork': 'Autres travaux de menuiserie',
+'filters.carpentry.outdoorCarpentry': 'Menuiserie extérieure',
+'filters.carpentry.wallClosets': 'Placards muraux',
+'filters.carpentry.slidingClosets': 'Placards coulissants',
+'filters.carpentry.bathroomCabinets': 'Meubles de salle de bain',
+'filters.carpentry.bedroomFurniture': 'Mobilier de chambre',
+'filters.carpentry.tableBuilding': 'Fabrication de tables',
+'filters.carpentry.chairBuilding': 'Fabrication de chaises',
+'filters.carpentry.tvUnitBuilding': 'Fabrication de meubles TV',
+'filters.carpentry.libraryBuilding': 'Fabrication de bibliothèques',
+'filters.carpentry.customFurniture': 'Meubles sur mesure',
+'filters.carpentry.shelfBuilding': 'Fabrication d\'étagères',
+'filters.carpentry.walkInCloset': 'Dressing',
+'filters.carpentry.woodenBed': 'Lit en bois',
+'filters.carpentry.pergolas': 'Pergolas',
+'filters.carpentry.decks': 'Terrasses',
+'filters.carpentry.fences': 'Clôtures et séparations en bois',
+
+// Repair types
+'filters.carpentry.repairWallClosets': 'Réparation de placards muraux',
+'filters.carpentry.repairTable': 'Réparation de tables',
+'filters.carpentry.repairChairs': 'Réparation de chaises',
+'filters.carpentry.repairSlidingClosets': 'Réparation de placards coulissants',
+'filters.carpentry.repairBathroomCabinets': 'Réparation de meubles de salle de bain',
+'filters.carpentry.repairBedroomFurniture': 'Réparation de mobilier de chambre',
+'filters.carpentry.repairTvUnit': 'Réparation de meubles TV',
+'filters.carpentry.repairLibrary': 'Réparation de bibliothèques',
+'filters.carpentry.repairOther': 'Réparation d\'autres meubles',
+
+// Other carpentry
+'filters.carpentry.wallCladding': 'Habillage mural en bois',
+'filters.carpentry.disassembly': 'Démontage et montage de meubles',
+'filters.carpentry.doorRepair': 'Réparation et fabrication de portes',
+'filters.carpentry.doorRenovation': 'Rénovation de portes d\'entrée en bois',
+'filters.carpentry.loft': 'Construction de mezzanine',
+'filters.carpentry.stairs': 'Escaliers en bois',
+'filters.carpentry.lattice': 'Moucharabiehs en bois',
+'filters.carpentry.butcher': 'Billot de boucher',
+
+// Pergolas
+'filters.carpentry.pergolaTypes': 'Types de pergolas',
+'filters.carpentry.woodPergolas': 'Pergolas en bois',
+'filters.carpentry.shadePergolas': 'Pergolas d\'ombrage',
+'filters.carpentry.balconyEnclosure': 'Fermeture de balcon',
+
+// Decks
+'filters.carpentry.deckTypes': 'Types de terrasses',
+'filters.carpentry.naturalWoodDecks': 'Terrasses en bois naturel',
+'filters.carpentry.compositeDecks': 'Terrasse composite',
+'filters.carpentry.deckRenovation': 'Rénovation de terrasse',
+
+// Fences
+'filters.carpentry.fenceTypes': 'Types de clôtures',
+'filters.carpentry.woodFences': 'Clôtures en bois',
+'filters.carpentry.gardenPartitions': 'Séparations de jardin en bois',
+'filters.carpentry.woodGates': 'Portails en bois',
 
     // ═══════════════════════════════════════════════════════════════
     // PROPERTY MANAGEMENT
@@ -7649,6 +8445,8 @@ const translations = {
     'filters.chef.badatzTzfat': 'Badatz Rabbanim de Tsfat',
     'filters.chef.rabbiLanda': 'Cacheroute Rav Landa',
     'filters.chef.rabbiRubin': 'Cacheroute Rav Rubin',
+    'filters.chef.cuisineType': 'Types de cuisine',
+'filters.chef.kosherTypes': 'Types de casheroute',
 
     // ═══════════════════════════════════════════════════════════════
     // EVENT ENTERTAINMENT
@@ -7686,46 +8484,200 @@ const translations = {
     'filters.events.balloonArch': 'Arche de ballons',
     'filters.events.photoMagnets': 'Photos magnets',
 
+    
     // ═══════════════════════════════════════════════════════════════
-    // WATERPROOFING
-    // ═══════════════════════════════════════════════════════════════
-    'filters.waterproofing.workTypes': 'Types de travaux',
-    'filters.waterproofing.roofs': 'Étanchéité toitures',
-    'filters.waterproofing.externalWalls': 'Étanchéité murs extérieurs',
-    'filters.waterproofing.balconies': 'Étanchéité balcons',
-    'filters.waterproofing.wetRooms': 'Étanchéité pièces humides',
-    'filters.waterproofing.underground': 'Étanchéité souterraine',
-    'filters.waterproofing.inspection': 'Diagnostic & inspection',
+// ALUMINUM
+// ═══════════════════════════════════════════════════════════════
+'filters.aluminum.workTypes': 'Types de travaux',
+'filters.aluminum.windowsDoors': 'Fenêtres et portes',
+'filters.aluminum.pergolas': 'Pergolas et aluminium extérieur',
+'filters.aluminum.repairs': 'Réparations et service',
+'filters.aluminum.cladding': 'Habillages aluminium',
+'filters.aluminum.windowsDoorsTypes': 'Types de fenêtres et portes',
+'filters.aluminum.pergolasOutdoorTypes': 'Types de pergolas et extérieur',
+'filters.aluminum.repairsServiceTypes': 'Types de réparations et service',
+'filters.aluminum.claddingTypes': 'Types d\'habillages',
+'filters.aluminum.installWindows': 'Installation de fenêtres aluminium',
+'filters.aluminum.aluminumDoors': 'Portes aluminium',
+'filters.aluminum.slidingDoors': 'Portes coulissantes (vitrines)',
+'filters.aluminum.entryDoors': 'Portes d\'entrée aluminium',
+'filters.aluminum.mosquitoNets': 'Moustiquaires',
+'filters.aluminum.manualShutters': 'Volets manuels',
+'filters.aluminum.electricShutters': 'Volets électriques',
+'filters.aluminum.aluminumPergolas': 'Pergolas aluminium',
+'filters.aluminum.balconyEnclosure': 'Fermeture de balcons',
+'filters.aluminum.exteriorCladding': 'Habillages aluminium extérieurs',
+'filters.aluminum.railings': 'Garde-corps aluminium jardin / balcons',
+'filters.aluminum.repairShutterMotor': 'Réparation moteur de volet électrique',
+'filters.aluminum.repairTracks': 'Réparation de rails',
+'filters.aluminum.repairWheels': 'Réparation de roulettes de fenêtres',
+'filters.aluminum.replaceHandles': 'Remplacement de poignées / charnières',
+'filters.aluminum.sealingRenewal': 'Étanchéité et rénovation autour des fenêtres',
+'filters.aluminum.repairManualShutters': 'Réparation de volets manuels',
+'filters.aluminum.pipeCovering': 'Habillage de tuyauterie',
+'filters.aluminum.meterCovering': 'Habillage de compteurs (électricité / eau / gaz)',
+'filters.aluminum.decorativeBoxes': 'Caissons décoratifs en aluminium',
+'filters.aluminum.acLineCovering': 'Habillage de lignes de climatisation',
+'filters.aluminum.acMotorProtection': 'Protection moteur climatisation extérieur',
+'filters.aluminum.wallCladding': 'Habillage de murs extérieurs en aluminium',
+'filters.aluminum.decorativeCladding': 'Habillages décoratifs',
+'filters.aluminum.shutterBoxCladding': 'Habillage et caissons de volets',
 
-    // ═══════════════════════════════════════════════════════════════
-    // CONTRACTOR
-    // ═══════════════════════════════════════════════════════════════
-    'filters.contractor.workTypes': 'Types de travaux',
-    'filters.contractor.structureWork': 'Travaux de structure',
-    'filters.contractor.generalRenovation': 'Rénovation générale',
-    'filters.contractor.electricPlumbing': 'Électricité & plomberie',
-    'filters.contractor.exteriorWork': 'Travaux extérieurs',
-    'filters.contractor.facadeRepair': 'Réparation façade',
+// ═══════════════════════════════════════════════════════════════
+// CONTRACTOR
+// ═══════════════════════════════════════════════════════════════
+'filters.contractor.workTypes': 'Types de travaux',
+'filters.contractor.structureWork': 'Travaux de structure',
+'filters.contractor.generalRenovation': 'Rénovations générales',
+'filters.contractor.electricPlumbing': 'Électricité et plomberie',
+'filters.contractor.exteriorWork': 'Travaux extérieurs',
+'filters.contractor.facadeRepair': 'Réhabilitation et réparation extérieure',
+'filters.contractor.structureWorkTypes': 'Types de travaux de structure',
+'filters.contractor.generalRenovationTypes': 'Types de rénovations générales',
+'filters.contractor.electricPlumbingTypes': 'Types d\'électricité et plomberie',
+'filters.contractor.exteriorWorkTypes': 'Types de travaux extérieurs',
+'filters.contractor.facadeRepairTypes': 'Types de réhabilitation extérieure',
+'filters.contractor.buildingFrame': 'Construction de structure',
+'filters.contractor.concretePours': 'Coulage de béton',
+'filters.contractor.formwork': 'Coffrage',
+'filters.contractor.structuralReinforcement': 'Renforcement de structures',
+'filters.contractor.blockWalls': 'Construction de murs en parpaings',
+'filters.contractor.demolitionRebuild': 'Démolition et reconstruction',
+'filters.contractor.fullApartmentReno': 'Rénovation complète d\'appartement',
+'filters.contractor.roomRenovation': 'Rénovation de pièces',
+'filters.contractor.bathroomReno': 'Rénovation de salles de bain',
+'filters.contractor.kitchenReno': 'Rénovation de cuisine',
+'filters.contractor.flooringReplacement': 'Remplacement de carrelage',
+'filters.contractor.drywallWork': 'Travaux de placo',
+'filters.contractor.plasterWork': 'Enduit et plâtre',
+'filters.contractor.balconyEnclosure': 'Fermeture de balcon',
+'filters.contractor.professionalPainting': 'Peinture professionnelle',
+'filters.contractor.doorFrameReplacement': 'Remplacement de portes et cadres',
+'filters.contractor.electricalWork': 'Travaux électriques',
+'filters.contractor.panelReplacement': 'Remplacement de tableau électrique',
+'filters.contractor.generalPlumbing': 'Plomberie générale',
+'filters.contractor.pipeReplacement': 'Remplacement de tuyauterie',
+'filters.contractor.leakDetection': 'Détection et réparation de fuites',
+'filters.contractor.exteriorFlooring': 'Carrelage extérieur',
+'filters.contractor.pergolaConstruction': 'Construction de pergola',
+'filters.contractor.stoneCladding': 'Habillage en pierre / murs extérieurs',
+'filters.contractor.fencing': 'Clôtures',
+'filters.contractor.gardenPathways': 'Construction d\'allées de jardin',
+'filters.contractor.exteriorPlasterRepair': 'Réparation d\'enduit extérieur',
+'filters.contractor.exteriorWallRestoration': 'Réhabilitation de murs extérieurs',
+'filters.contractor.wallCrackSealing': 'Colmatage de fissures murales',
+'filters.contractor.fallingPlasterTreatment': 'Traitement d\'enduit qui tombe',
 
-    // ═══════════════════════════════════════════════════════════════
-    // ALUMINUM
-    // ═══════════════════════════════════════════════════════════════
-    'filters.aluminum.workTypes': 'Types de travaux',
-    'filters.aluminum.windowsDoors': 'Fenêtres & portes',
-    'filters.aluminum.pergolas': 'Pergolas & aluminium extérieur',
-    'filters.aluminum.repairs': 'Réparations & service',
-    'filters.aluminum.cladding': 'Habillage aluminium',
+// ═══════════════════════════════════════════════════════════════
+// GLASS WORKS
+// ═══════════════════════════════════════════════════════════════
+'filters.glass.workTypes': 'Types de travaux',
+'filters.glass.showers': 'Verre pour douches',
+'filters.glass.homeGlass': 'Verre pour fenêtres et portes',
+'filters.glass.furniture': 'Verre pour cuisine et maison',
+'filters.glass.partitions': 'Verre spécial et sécurité',
+'filters.glass.repairs': 'Services de réparation et sur mesure',
+'filters.glass.railings': 'Garde-corps en verre',
+'filters.glass.showerGlassTypes': 'Types de verre pour douches',
+'filters.glass.windowsDoorGlassTypes': 'Types de verre pour fenêtres et portes',
+'filters.glass.kitchenHomeGlassTypes': 'Types de verre pour cuisine et maison',
+'filters.glass.specialSafetyGlassTypes': 'Types de verre spécial et sécurité',
+'filters.glass.repairCustomTypes': 'Types de réparation et sur mesure',
+'filters.glass.showerInstall': 'Installation de paroi de douche',
+'filters.glass.showerRepair': 'Réparation de paroi de douche',
+'filters.glass.showerGlassReplacement': 'Remplacement de verre de douche',
+'filters.glass.showerDoors': 'Portes de douche',
+'filters.glass.windowReplacement': 'Remplacement de vitrage',
+'filters.glass.doubleGlazing': 'Double vitrage',
+'filters.glass.reglazing': 'Remise en état du vitrage',
+'filters.glass.interiorGlassDoors': 'Portes vitrées intérieures',
+'filters.glass.glassPartitions': 'Cloisons en verre',
+'filters.glass.kitchenBacksplash': 'Crédence de cuisine en verre',
+'filters.glass.glassShelves': 'Étagères en verre',
+'filters.glass.glassTables': 'Tables en verre',
+'filters.glass.bathroomMirrors': 'Miroirs de salle de bain',
+'filters.glass.decorativeMirrors': 'Miroirs décoratifs',
+'filters.glass.temperedGlass': 'Verre trempé (sécurité)',
+'filters.glass.smartGlass': 'Verre intelligent',
+'filters.glass.securityGlass': 'Verre anti-effraction',
+'filters.glass.acousticGlass': 'Verre acoustique (isolation sonore)',
+'filters.glass.decorativeGlass': 'Verre coloré / design',
+'filters.glass.scratchRepair': 'Réparation de rayures et fissures',
+'filters.glass.glassPolishing': 'Polissage de verre',
+'filters.glass.customCutting': 'Découpe de verre sur mesure',
 
-    // ═══════════════════════════════════════════════════════════════
-    // GLASS WORKS
-    // ═══════════════════════════════════════════════════════════════
-    'filters.glass.workTypes': 'Types de travaux',
-    'filters.glass.homeGlass': 'Vitrerie maison',
-    'filters.glass.showers': 'Parois de douche',
-    'filters.glass.partitions': 'Cloisons & murs en verre',
-    'filters.glass.railings': 'Garde-corps en verre',
-    'filters.glass.furniture': 'Mobilier & verre décoratif',
-    'filters.glass.repairs': 'Réparations & service',
+// ═══════════════════════════════════════════════════════════════
+// LOCKSMITH
+// ═══════════════════════════════════════════════════════════════
+'filters.locksmith.workTypes': 'Types de travaux',
+'filters.locksmith.lockReplacement': 'Remplacement de serrures',
+'filters.locksmith.emergencyOpening': 'Ouverture de portes',
+'filters.locksmith.advancedSystems': 'Installation de systèmes de verrouillage',
+'filters.locksmith.doorRepair': 'Réparation de serrures et portes',
+'filters.locksmith.lockReplacementTypes': 'Types de remplacement de serrures',
+'filters.locksmith.doorOpeningTypes': 'Types d\'ouverture de portes',
+'filters.locksmith.lockSystemInstallationTypes': 'Types d\'installation de systèmes',
+'filters.locksmith.lockDoorRepairTypes': 'Types de réparation de serrures et portes',
+'filters.locksmith.securityServicesTypes': 'Types de services de sécurité',
+'filters.locksmith.cylinderLock': 'Serrure à cylindre',
+'filters.locksmith.securityLock': 'Serrure de sécurité',
+'filters.locksmith.entranceLock': 'Serrure de porte d\'entrée',
+'filters.locksmith.officeLock': 'Serrure pour bureau / commerce',
+'filters.locksmith.noDamageOpening': 'Ouverture de porte sans dégât',
+'filters.locksmith.emergency247': 'Ouverture d\'urgence 24/7',
+'filters.locksmith.safeOpening': 'Ouverture de coffre-fort',
+'filters.locksmith.keyDuplication': 'Duplication de clés sur place',
+'filters.locksmith.smartLocks': 'Serrures connectées',
+'filters.locksmith.intercom': 'Système d\'interphone',
+'filters.locksmith.accessCode': 'Code d\'accès pour bureaux',
+'filters.locksmith.electronicLock': 'Serrure électronique',
+'filters.locksmith.stuckLockRepair': 'Réparation de serrure bloquée',
+'filters.locksmith.hingeRepair': 'Réparation de charnière de porte',
+'filters.locksmith.doorSanding': 'Ponçage de porte qui ne ferme pas',
+'filters.locksmith.handleReplacement': 'Remplacement de poignée de porte',
+'filters.locksmith.securityUpgrade': 'Mise à niveau du système de sécurité',
+'filters.locksmith.securityDoorInstall': 'Installation de porte de sécurité',
+'filters.locksmith.vulnerabilityCheck': 'Vérification de vulnérabilité de porte',
+'filters.locksmith.commercialLocksmith': 'Service de serrurerie commerciale',
+
+// ═══════════════════════════════════════════════════════════════
+// WATERPROOFING
+// ═══════════════════════════════════════════════════════════════
+'filters.waterproofing.workTypes': 'Types de travaux',
+'filters.waterproofing.roofs': 'Étanchéité de toitures',
+'filters.waterproofing.externalWalls': 'Étanchéité de murs extérieurs',
+'filters.waterproofing.balconies': 'Étanchéité de balcons',
+'filters.waterproofing.wetRooms': 'Étanchéité de pièces humides',
+'filters.waterproofing.underground': 'Étanchéité souterraine',
+'filters.waterproofing.inspection': 'Diagnostics et équipement',
+'filters.waterproofing.roofTypes': 'Types d\'étanchéité de toitures',
+'filters.waterproofing.wallTypes': 'Types d\'étanchéité de murs',
+'filters.waterproofing.balconyTypes': 'Types d\'étanchéité de balcons',
+'filters.waterproofing.wetRoomTypes': 'Types d\'étanchéité de pièces humides',
+'filters.waterproofing.undergroundTypes': 'Types d\'étanchéité souterraine',
+'filters.waterproofing.inspectionTypes': 'Types de diagnostics',
+'filters.waterproofing.bituminousSheets': 'Membranes bitumineuses',
+'filters.waterproofing.hotAsphalt': 'Asphalte chaud',
+'filters.waterproofing.polyurethane': 'Polyuréthane',
+'filters.waterproofing.tileRoof': 'Toiture en tuiles',
+'filters.waterproofing.maintenance': 'Entretien régulier',
+'filters.waterproofing.waterPenetration': 'Infiltration d\'eau',
+'filters.waterproofing.exteriorRestoration': 'Réhabilitation extérieure',
+'filters.waterproofing.crackSealing': 'Colmatage de fissures',
+'filters.waterproofing.dampnessTreatment': 'Traitement de l\'humidité',
+'filters.waterproofing.beforeTiling': 'Avant carrelage',
+'filters.waterproofing.leakRepair': 'Réparation de fuites',
+'filters.waterproofing.tilingAndSealing': 'Carrelage et étanchéité',
+'filters.waterproofing.bathroom': 'Salle de bain',
+'filters.waterproofing.shower': 'Douche',
+'filters.waterproofing.toilet': 'Toilettes',
+'filters.waterproofing.beforeRenovation': 'Avant rénovation',
+'filters.waterproofing.basements': 'Sous-sols',
+'filters.waterproofing.foundations': 'Fondations',
+'filters.waterproofing.undergroundWalls': 'Murs souterrains',
+'filters.waterproofing.leakDetection': 'Détection de fuites',
+'filters.waterproofing.moistureTests': 'Tests d\'humidité',
+'filters.waterproofing.thermalImaging': 'Imagerie thermique',
 
     // Service Forms - Glass Works
 'serviceForm.glass.title': 'Détails du service de vitrerie',
@@ -7735,46 +8687,12 @@ const translations = {
 'serviceForm.glass.specialSafety': 'Verre spécial et sécurité',
 'serviceForm.glass.repairCustom': 'Services de réparation et personnalisation',
 
-// Glass Works - Shower Glass
-'filters.glass.showerInstall': 'Installation de paroi de douche',
-'filters.glass.showerRepair': 'Réparation de paroi de douche',
-'filters.glass.showerGlassReplacement': 'Remplacement du verre de douche',
-'filters.glass.showerDoors': 'Portes de douche',
 
-// Glass Works - Windows & Doors
-'filters.glass.windowReplacement': 'Remplacement de vitre de fenêtre',
-'filters.glass.doubleGlazing': 'Double vitrage',
-'filters.glass.reglazing': 'Renouvellement du vitrage',
-'filters.glass.interiorGlassDoors': 'Portes vitrées intérieures',
-'filters.glass.glassPartitions': 'Cloisons en verre',
-
-// Glass Works - Kitchen & Home
-'filters.glass.kitchenBacksplash': 'Crédence de cuisine en verre',
-'filters.glass.glassShelves': 'Étagères en verre',
-'filters.glass.glassTables': 'Tables en verre',
-'filters.glass.bathroomMirrors': 'Miroirs de salle de bain',
-'filters.glass.decorativeMirrors': 'Miroirs décoratifs',
-
-// Glass Works - Special & Safety
-'filters.glass.temperedGlass': 'Verre trempé (sécurité)',
-'filters.glass.smartGlass': 'Verre intelligent',
-'filters.glass.securityGlass': 'Verre anti-effraction',
-'filters.glass.acousticGlass': 'Verre acoustique (isolation phonique)',
-'filters.glass.decorativeGlass': 'Verre coloré / décoratif',
-
-// Glass Works - Repair & Custom
-'filters.glass.scratchRepair': 'Réparation de rayures et fissures',
-'filters.glass.glassPolishing': 'Polissage de verre',
-'filters.glass.customCutting': 'Découpe sur mesure',
 
     // ═══════════════════════════════════════════════════════════════
     // LOCKSMITH
     // ═══════════════════════════════════════════════════════════════
-    'filters.locksmith.workTypes': 'Types de travaux',
-    'filters.locksmith.emergencyOpening': '🔐 Ouverture d\'urgence',
-    'filters.locksmith.lockReplacement': '🔑 Remplacement serrures',
-    'filters.locksmith.doorRepair': '🚪 Réparation portes & sécurité',
-    'filters.locksmith.advancedSystems': '📡 Systèmes avancés',
+
     // Service Forms - Locksmith
 'serviceForm.locksmith.title': 'Détails du service de serrurerie',
 'serviceForm.locksmith.lockReplacement': 'Remplacement de serrures',
@@ -7783,35 +8701,6 @@ const translations = {
 'serviceForm.locksmith.lockDoorRepair': 'Réparation de serrures et portes',
 'serviceForm.locksmith.securityServices': 'Services de sécurité',
 
-// Locksmith - Lock Replacement
-'filters.locksmith.cylinderLock': 'Serrure à cylindre',
-'filters.locksmith.securityLock': 'Serrure de sécurité',
-'filters.locksmith.entranceLock': 'Serrure de porte d\'entrée',
-'filters.locksmith.officeLock': 'Serrure pour bureau / magasin',
-
-// Locksmith - Door Opening
-'filters.locksmith.noDamageOpening': 'Ouverture sans dommage',
-'filters.locksmith.emergency247': 'Ouverture d\'urgence 24/7',
-'filters.locksmith.safeOpening': 'Ouverture de coffre-fort',
-'filters.locksmith.keyDuplication': 'Duplication de clés sur place',
-
-// Locksmith - Lock System Installation
-'filters.locksmith.smartLocks': 'Serrures intelligentes',
-'filters.locksmith.intercom': 'Système d\'interphone',
-'filters.locksmith.accessCode': 'Code d\'accès pour bureaux',
-'filters.locksmith.electronicLock': 'Serrure électronique',
-
-// Locksmith - Lock & Door Repair
-'filters.locksmith.stuckLockRepair': 'Réparation de serrure bloquée',
-'filters.locksmith.hingeRepair': 'Réparation de charnière de porte',
-'filters.locksmith.doorSanding': 'Ponçage de porte qui ne ferme pas',
-'filters.locksmith.handleReplacement': 'Remplacement de poignée de porte',
-
-// Locksmith - Security Services
-'filters.locksmith.securityUpgrade': 'Amélioration du système de sécurité',
-'filters.locksmith.securityDoorInstall': 'Installation de porte de sécurité',
-'filters.locksmith.vulnerabilityCheck': 'Vérification de vulnérabilité de porte',
-'filters.locksmith.commercialLocksmith': 'Service de serrurerie commerciale',
 
     // ═══════════════════════════════════════════════════════════════
     // PROVIDER DETAIL PAGE
@@ -8993,6 +9882,48 @@ const translations = {
 'notFound.backHome': 'Retour à l\'accueil',
 'notFound.browseServices': 'Parcourir les services',
 'notFound.popularPages': 'Pages populaires',
+
+// Modals - Delete Service
+'modals.deleteService.title': 'Supprimer le service',
+'modals.deleteService.areYouSure': 'Êtes-vous sûr ?',
+'modals.deleteService.willDelete': 'Cette action supprimera le service',
+'modals.deleteService.fromAccount': 'de votre compte.',
+'modals.deleteService.otherServicesActive': 'Vos autres services resteront actifs',
+'modals.deleteService.profileVisibleOthers': 'Votre profil restera visible pour les autres services',
+'modals.deleteService.serviceDataDeleted': 'Toutes les données de ce service seront supprimées définitivement',
+'modals.deleteService.reviewsDeleted': 'Les avis de ce service seront supprimés',
+'modals.deleteService.lastService': 'C\'est votre dernier service !',
+'modals.deleteService.accountWillBeDeleted': 'Supprimer ce service supprimera tout votre compte',
+'modals.deleteService.allDataDeleted': 'Toutes vos données seront supprimées définitivement',
+'modals.deleteService.cantLogin': 'Vous ne pourrez plus vous connecter',
+'modals.deleteService.deleting': 'Suppression...',
+'modals.deleteService.deleteThisOnly': 'Supprimer ce service uniquement',
+'modals.deleteService.deleteAccountPermanently': 'Supprimer le compte définitivement',
+'modals.deleteService.error': 'Erreur lors de la suppression du service',
+
+// Modals - Delete Account
+'modals.deleteAccount.title': 'Supprimer le compte',
+'modals.deleteAccount.warning': 'Attention ! Cette action est irréversible',
+'modals.deleteAccount.willCause': 'La suppression du compte entraînera :',
+'modals.deleteAccount.profileDeleted': 'Suppression complète de votre profil',
+'modals.deleteAccount.removedFromSearch': 'Retrait de tous les résultats de recherche',
+'modals.deleteAccount.personalDataDeleted': 'Suppression de toutes les données personnelles',
+'modals.deleteAccount.subscriptionCancelled': 'Annulation de l\'abonnement (si existant)',
+'modals.deleteAccount.deleting': 'Suppression du compte...',
+'modals.deleteAccount.deleteAccountPermanently': 'Supprimer le compte définitivement',
+'modals.deleteAccount.error': 'Erreur lors de la suppression du compte',
+
+// Modals - Cancel Subscription
+'modals.cancelSubscription.title': 'Annuler l\'abonnement et supprimer le compte',
+'modals.cancelSubscription.willCancelAtEnd': 'L\'abonnement sera annulé à la fin de la période',
+'modals.cancelSubscription.accountContinues': 'Votre compte continuera de fonctionner normalement jusqu\'à la fin de votre période payée. À la fin de la période, le compte sera supprimé définitivement.',
+'modals.cancelSubscription.profileVisible': 'Le profil restera visible et actif jusqu\'à la fin de la période',
+'modals.cancelSubscription.continueReceiving': 'Vous continuerez à recevoir des demandes de clients jusqu\'à la fin du mois',
+'modals.cancelSubscription.atEndDeleted': 'À la fin de la période : toutes les données seront supprimées définitivement',
+'modals.cancelSubscription.canCancelRequest': 'Vous pouvez annuler cette demande et poursuivre votre abonnement avant la fin de la période',
+'modals.cancelSubscription.cancelling': 'Annulation en cours...',
+'modals.cancelSubscription.confirmCancel': 'Confirmer l\'annulation',
+'modals.cancelSubscription.error': 'Erreur lors de l\'annulation de l\'abonnement',
   }
 };
 

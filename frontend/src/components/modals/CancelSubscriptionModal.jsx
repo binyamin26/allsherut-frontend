@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { AlertCircle, X, Clock } from 'lucide-react';
 import LoadingSpinner from '../common/LoadingSpinner';
+import { useLanguage } from '../../context/LanguageContext';
 
 const CancelSubscriptionModal = ({ isOpen, onClose, onConfirm }) => {
+  const { t } = useLanguage();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -12,9 +14,8 @@ const CancelSubscriptionModal = ({ isOpen, onClose, onConfirm }) => {
     
     try {
       await onConfirm();
-      // onConfirm gère la redirection/message, donc pas besoin de faire plus ici
     } catch (err) {
-      setError(err.message || 'שגיאה בביטול המנוי');
+      setError(err.message || t('modals.cancelSubscription.error'));
       setLoading(false);
     }
   };
@@ -34,7 +35,7 @@ const CancelSubscriptionModal = ({ isOpen, onClose, onConfirm }) => {
         <div className="modal-header">
           <div className="modal-header-content">
             <AlertCircle size={24} className="warning-icon" style={{ color: '#f59e0b' }} />
-            <h2>ביטול מנוי ומחיקת חשבון</h2>
+            <h2>{t('modals.cancelSubscription.title')}</h2>
           </div>
           <button 
             className="modal-close" 
@@ -52,16 +53,15 @@ const CancelSubscriptionModal = ({ isOpen, onClose, onConfirm }) => {
           }}>
             <Clock size={20} style={{ color: '#d97706' }} />
             <div>
-              <h3 style={{ color: '#92400e' }}>המנוי יבוטל בסוף התקופה</h3>
+              <h3 style={{ color: '#92400e' }}>{t('modals.cancelSubscription.willCancelAtEnd')}</h3>
               <p style={{ color: '#78350f' }}>
-                החשבון שלך ימשיך לפעול באופן רגיל עד סוף החודש ששילמת. 
-                בסוף התקופה, החשבון יימחק לצמיתות.
+                {t('modals.cancelSubscription.accountContinues')}
               </p>
               <ul>
-                <li>הפרופיל יישאר גלוי ופעיל עד סוף התקופה</li>
-                <li>תמשיך לקבל פניות מלקוחות עד סוף החודש</li>
-                <li><strong>בסוף התקופה: כל המידע יימחק לצמיתות</strong></li>
-                <li>תוכל לבטל בקשה זו ולהמשיך את המנוי לפני סוף התקופה</li>
+                <li>{t('modals.cancelSubscription.profileVisible')}</li>
+                <li>{t('modals.cancelSubscription.continueReceiving')}</li>
+                <li><strong>{t('modals.cancelSubscription.atEndDeleted')}</strong></li>
+                <li>{t('modals.cancelSubscription.canCancelRequest')}</li>
               </ul>
             </div>
           </div>
@@ -83,12 +83,12 @@ const CancelSubscriptionModal = ({ isOpen, onClose, onConfirm }) => {
               {loading ? (
                 <>
                   <LoadingSpinner size="small" />
-                  מבטל מנוי...
+                  {t('modals.cancelSubscription.cancelling')}
                 </>
               ) : (
                 <>
                   <Clock size={18} />
-                  אישור ביטול מנוי
+                  {t('modals.cancelSubscription.confirmCancel')}
                 </>
               )}
             </button>
@@ -99,7 +99,7 @@ const CancelSubscriptionModal = ({ isOpen, onClose, onConfirm }) => {
               onClick={handleClose}
               disabled={loading}
             >
-              ביטול
+              {t('common.cancel')}
             </button>
           </div>
         </div>

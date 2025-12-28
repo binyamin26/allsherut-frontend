@@ -82,3 +82,9 @@ ul, ol {
   max-width: 42rem;
   margin: 0 auto;
 }
+
+/* Fix overflow horizontal mobile */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}

@@ -194,7 +194,7 @@ export const FILTER_CONFIG = {
     sectionTitles: {
       animalTypes: 'filters.petcare.animalTypes',
       dogSizes: 'filters.petcare.dogSizes',
-      careLocation: 'filters.petcare.careLocation',
+      careLocation: 'filters.petcare.location',  // ← corrigé
       additionalServices: 'filters.petcare.additionalServices',
       facilities: 'filters.petcare.facilities',
       veterinaryServices: 'filters.petcare.veterinaryServices'
@@ -214,20 +214,20 @@ export const FILTER_CONFIG = {
       { value: 'ענק / מעל 40 ק״ג', key: 'filters.petcare.giantDog' }
     ],
     locationOptions: [
-      { value: '', key: 'filters.petcare.allOptions' },
-      { value: 'בבית הלקוח', key: 'filters.petcare.atClientHome' },
-      { value: 'בביתי', key: 'filters.petcare.atMyHome' },
-      { value: 'שניהם', key: 'filters.petcare.both' }
+      { value: '', key: 'filters.common.noMatter' },  // ← corrigé
+      { value: 'בבית הלקוח', key: 'filters.petcare.clientHome' },
+      { value: 'בביתי', key: 'filters.petcare.caregiverHome' },
+      { value: 'שניהם', key: 'filters.common.both' }  // ← corrigé
     ],
     additionalServices: [
       { value: 'הליכת כלבים', key: 'filters.petcare.dogWalking' },
-      { value: 'רחצה וטיפוח', key: 'filters.petcare.grooming' },
+      { value: 'רחצה וטיפוח', key: 'filters.petcare.bathingGrooming' },  // ← corrigé
       { value: 'אילוף בסיסי', key: 'filters.petcare.basicTraining' },
-      { value: 'מתן תרופות', key: 'filters.petcare.medication' },
+      { value: 'מתן תרופות', key: 'filters.petcare.medicationAdmin' },  // ← corrigé
       { value: 'האכלה בזמן השמירה', key: 'filters.petcare.feeding' },
       { value: 'ניקוי ארגז חול / כלוב / אקווריום', key: 'filters.petcare.cleaning' },
       { value: 'עדכון תמונות לבעלים', key: 'filters.petcare.photoUpdates' },
-      { value: 'שהייה ביום בלבד', key: 'filters.petcare.dayOnly' },
+      { value: 'שהייה ביום בלבד', key: 'filters.petcare.daytimeOnly' },  // ← corrigé
       { value: 'לינה ללילה', key: 'filters.petcare.overnight' }
     ],
     facilities: [
@@ -311,7 +311,7 @@ export const FILTER_CONFIG = {
   // ═══════════════════════════════════════════════════════════════
   // LAUNDRY
   // ═══════════════════════════════════════════════════════════════
-  laundry: {
+laundry: {
     sectionTitles: {
       laundryTypes: 'filters.laundry.serviceTypes',
       availableDays: 'filters.laundry.availableDays',
@@ -322,7 +322,7 @@ export const FILTER_CONFIG = {
       { value: 'גיהוץ בבית הלקוח', key: 'filters.laundry.ironingAtHome' },
       { value: 'איסוף והחזרת כביסה (שירות משלוחים)', key: 'filters.laundry.pickupDelivery' },
       { value: 'ניקוי יבש / שירות מכבסה', key: 'filters.laundry.dryCleaning' },
-      { value: 'כביסת מצעים, מגבות, וילונות', key: 'filters.laundry.beddingTowels' },
+      { value: 'כביסת מצעים, מגבות, וילונות', key: 'filters.laundry.linens' },  // ← corrigé (était beddingTowels)
       { value: 'כביסה תעשייתית (מלונות, מסעדות)', key: 'filters.laundry.industrial' }
     ]
   },
@@ -552,13 +552,16 @@ export const FILTER_CONFIG = {
   // ═══════════════════════════════════════════════════════════════
   // CARPENTRY
   // ═══════════════════════════════════════════════════════════════
-  carpentry: {
+ carpentry: {
     sectionTitles: {
       workTypes: 'filters.carpentry.workTypes',
       furnitureBuildingTypes: 'filters.carpentry.furnitureBuildingTypes',
       furnitureRepairTypes: 'filters.carpentry.furnitureRepairTypes',
       otherCarpentryTypes: 'filters.carpentry.otherCarpentryTypes',
-      outdoorCarpentryTypes: 'filters.carpentry.outdoorCarpentryTypes'
+      outdoorCarpentryTypes: 'filters.carpentry.outdoorCarpentryTypes',
+      pergolaTypes: 'filters.carpentry.pergolaTypes',
+      deckTypes: 'filters.carpentry.deckTypes',
+      fenceTypes: 'filters.carpentry.fenceTypes'
     },
     workTypes: [
       { value: 'בניית רהיטים', key: 'filters.carpentry.furnitureBuilding' },
@@ -580,10 +583,46 @@ export const FILTER_CONFIG = {
       { value: 'בניית חדר ארונות', key: 'filters.carpentry.walkInCloset' },
       { value: 'בניית מיטה מעץ', key: 'filters.carpentry.woodenBed' }
     ],
+    furnitureRepairTypes: [
+      { value: 'תיקון ארונות קיר', key: 'filters.carpentry.repairWallClosets' },
+      { value: 'תיקון שולחן', key: 'filters.carpentry.repairTable' },
+      { value: 'תיקון כסאות', key: 'filters.carpentry.repairChairs' },
+      { value: 'תיקון ארונות הזזה', key: 'filters.carpentry.repairSlidingClosets' },
+      { value: 'תיקון ארונות אמבטיה', key: 'filters.carpentry.repairBathroomCabinets' },
+      { value: 'תיקון חדר שינה', key: 'filters.carpentry.repairBedroomFurniture' },
+      { value: 'תיקון מזנון', key: 'filters.carpentry.repairTvUnit' },
+      { value: 'תיקון ספרייה', key: 'filters.carpentry.repairLibrary' },
+      { value: 'תיקון רהיטים אחרים', key: 'filters.carpentry.repairOther' }
+    ],
+    otherCarpentryTypes: [
+      { value: 'חיפוי עץ לקיר', key: 'filters.carpentry.wallCladding' },
+      { value: 'פירוק והרכבת רהיטים', key: 'filters.carpentry.disassembly' },
+      { value: 'תיקון ובניית דלתות', key: 'filters.carpentry.doorRepair' },
+      { value: 'חידוש דלתות כניסה מעץ', key: 'filters.carpentry.doorRenovation' },
+      { value: 'בניית קומת גלריה', key: 'filters.carpentry.loft' },
+      { value: 'מדרגות עץ לבית', key: 'filters.carpentry.stairs' },
+      { value: 'משרביות מעץ', key: 'filters.carpentry.lattice' },
+      { value: 'בוצ\'ר עץ', key: 'filters.carpentry.butcher' }
+    ],
     outdoorCarpentryTypes: [
       { value: 'פרגולות', key: 'filters.carpentry.pergolas' },
       { value: 'דקים', key: 'filters.carpentry.decks' },
       { value: 'גדרות ומחיצות עץ', key: 'filters.carpentry.fences' }
+    ],
+    pergolaTypes: [
+      { value: 'פרגולות עץ', key: 'filters.carpentry.woodPergolas' },
+      { value: 'פרגולות הצללה', key: 'filters.carpentry.shadePergolas' },
+      { value: 'סגירת מרפסת', key: 'filters.carpentry.balconyEnclosure' }
+    ],
+    deckTypes: [
+      { value: 'דקים מעץ טבעי', key: 'filters.carpentry.naturalWoodDecks' },
+      { value: 'דק סינטטי (קומפוזיט)', key: 'filters.carpentry.compositeDecks' },
+      { value: 'שיקום / חידוש דקים', key: 'filters.carpentry.deckRenovation' }
+    ],
+    fenceTypes: [
+      { value: 'גדרות עץ', key: 'filters.carpentry.woodFences' },
+      { value: 'מחיצות עץ לגינה', key: 'filters.carpentry.gardenPartitions' },
+      { value: 'שערי עץ', key: 'filters.carpentry.woodGates' }
     ]
   },
 
@@ -659,7 +698,7 @@ export const FILTER_CONFIG = {
       { value: 'צביעה כללית של דירה', key: 'filters.painting.generalPainting' },
       { value: 'תיקוני קירות – חורים, סדקים, שפכטל', key: 'filters.painting.wallRepairs' },
       { value: 'החלקת קירות (שפכטל מלא)', key: 'filters.painting.wallSmoothing' },
-      { value: 'תיקון רטיבות / עובש', key: 'filters.painting.moistureRepair' },
+     { value: 'תיקון רטיבות / עובש', key: 'filters.painting.moistureMold' },  // ← était moistureRepair
       { value: 'קילופי צבע ישן', key: 'filters.painting.paintStripping' },
       { value: 'צביעת אפקטים – בטון, משי, אומבר', key: 'filters.painting.effectPainting' },
       { value: 'צביעת קיר דקורטיבי / Accent Wall', key: 'filters.painting.accentWall' },
@@ -673,7 +712,7 @@ export const FILTER_CONFIG = {
   private_chef: {
     sectionTitles: {
       workTypes: 'filters.chef.workTypes',
-      cuisineTypes: 'filters.chef.cuisineTypes',
+      cuisineTypes: 'filters.chef.cuisineType',
       kosherTypes: 'filters.chef.kosherTypes'
     },
     workTypes: [
@@ -692,7 +731,7 @@ export const FILTER_CONFIG = {
       { value: 'קינוחים', key: 'filters.chef.desserts' }
     ],
     kosherTypes: [
-      { value: 'בד"ץ העדה החרדית', key: 'filters.chef.badatzEdaCharedit' },
+    { value: 'בד"ץ העדה החרדית', key: 'filters.chef.badatzEdaChareidis' },  // ← était badatzEdaCharedit
       { value: 'בד"ץ בית יוסף', key: 'filters.chef.badatzBeitYosef' },
       { value: 'בד"ץ יורה דעה (ר׳ שלמה מחפוד)', key: 'filters.chef.badatzYoreDea' },
       { value: 'בד"ץ מחזיקי הדת – בעלז', key: 'filters.chef.badatzBelz' },
@@ -740,6 +779,16 @@ export const FILTER_CONFIG = {
       { value: 'מחבת קרפים', key: 'filters.events.crepe' },
       { value: 'מזרקת שוקולד', key: 'filters.events.chocolateFountain' }
     ],
+    inflatableGameTypes: [
+      { value: 'מתנפחים', key: 'filters.events.bouncyHouses' },
+      { value: 'ג\'ימבורי', key: 'filters.events.gymboree' },
+      { value: 'עמדות משחק', key: 'filters.events.gameStations' }
+    ],
+    effectMachineTypes: [
+      { value: 'מכונת עשן', key: 'filters.events.smokeMachine' },
+      { value: 'מכונת שלג', key: 'filters.events.snowMachine' },
+      { value: 'מכונת בועות', key: 'filters.events.bubbleMachine' }
+    ],
     entertainmentTypes: [
       { value: 'קוסם ילדים', key: 'filters.events.magician' },
       { value: 'ליצן ילדים', key: 'filters.events.clown' },
@@ -762,24 +811,69 @@ export const FILTER_CONFIG = {
   // ═══════════════════════════════════════════════════════════════
   waterproofing: {
     sectionTitles: {
-      workTypes: 'filters.waterproofing.workTypes'
+      workTypes: 'filters.waterproofing.workTypes',
+      roofWaterproofingTypes: 'filters.waterproofing.roofTypes',
+      wallWaterproofingTypes: 'filters.waterproofing.wallTypes',
+      balconyWaterproofingTypes: 'filters.waterproofing.balconyTypes',
+      wetRoomWaterproofingTypes: 'filters.waterproofing.wetRoomTypes',
+      undergroundWaterproofingTypes: 'filters.waterproofing.undergroundTypes',
+      inspectionEquipmentTypes: 'filters.waterproofing.inspectionTypes'
     },
     workTypes: [
-      { value: 'איטום גגות', key: 'filters.waterproofing.roofs' },
-      { value: 'איטום קירות חיצוניים', key: 'filters.waterproofing.externalWalls' },
-      { value: 'איטום מרפסות', key: 'filters.waterproofing.balconies' },
-      { value: 'איטום חדרים רטובים', key: 'filters.waterproofing.wetRooms' },
-      { value: 'איטום תת-קרקעי', key: 'filters.waterproofing.underground' },
-      { value: 'בדיקות, אבחון וציוד', key: 'filters.waterproofing.inspection' }
+      { value: 'roofWaterproofing', key: 'filters.waterproofing.roofs' },
+      { value: 'wallWaterproofing', key: 'filters.waterproofing.externalWalls' },
+      { value: 'balconyWaterproofing', key: 'filters.waterproofing.balconies' },
+      { value: 'wetRoomWaterproofing', key: 'filters.waterproofing.wetRooms' },
+      { value: 'undergroundWaterproofing', key: 'filters.waterproofing.underground' },
+      { value: 'inspectionEquipment', key: 'filters.waterproofing.inspection' }
+    ],
+    roofWaterproofingTypes: [
+      { value: 'bituminousSheets', key: 'filters.waterproofing.bituminousSheets' },
+      { value: 'hotAsphalt', key: 'filters.waterproofing.hotAsphalt' },
+      { value: 'polyurethane', key: 'filters.waterproofing.polyurethane' },
+      { value: 'tileRoof', key: 'filters.waterproofing.tileRoof' },
+      { value: 'maintenance', key: 'filters.waterproofing.maintenance' }
+    ],
+    wallWaterproofingTypes: [
+      { value: 'waterPenetration', key: 'filters.waterproofing.waterPenetration' },
+      { value: 'exteriorRestoration', key: 'filters.waterproofing.exteriorRestoration' },
+      { value: 'crackSealing', key: 'filters.waterproofing.crackSealing' },
+      { value: 'dampnessTreatment', key: 'filters.waterproofing.dampnessTreatment' }
+    ],
+    balconyWaterproofingTypes: [
+      { value: 'beforeTiling', key: 'filters.waterproofing.beforeTiling' },
+      { value: 'leakRepair', key: 'filters.waterproofing.leakRepair' },
+      { value: 'tilingAndSealing', key: 'filters.waterproofing.tilingAndSealing' }
+    ],
+    wetRoomWaterproofingTypes: [
+      { value: 'bathroom', key: 'filters.waterproofing.bathroom' },
+      { value: 'shower', key: 'filters.waterproofing.shower' },
+      { value: 'toilet', key: 'filters.waterproofing.toilet' },
+      { value: 'beforeRenovation', key: 'filters.waterproofing.beforeRenovation' }
+    ],
+    undergroundWaterproofingTypes: [
+      { value: 'basements', key: 'filters.waterproofing.basements' },
+      { value: 'foundations', key: 'filters.waterproofing.foundations' },
+      { value: 'undergroundWalls', key: 'filters.waterproofing.undergroundWalls' }
+    ],
+    inspectionEquipmentTypes: [
+      { value: 'leakDetection', key: 'filters.waterproofing.leakDetection' },
+      { value: 'moistureTests', key: 'filters.waterproofing.moistureTests' },
+      { value: 'thermalImaging', key: 'filters.waterproofing.thermalImaging' }
     ]
   },
 
   // ═══════════════════════════════════════════════════════════════
   // CONTRACTOR
   // ═══════════════════════════════════════════════════════════════
-  contractor: {
+contractor: {
     sectionTitles: {
-      workTypes: 'filters.contractor.workTypes'
+      workTypes: 'filters.contractor.workTypes',
+      structureWorkTypes: 'filters.contractor.structureWorkTypes',
+      generalRenovationTypes: 'filters.contractor.generalRenovationTypes',
+      electricPlumbingTypes: 'filters.contractor.electricPlumbingTypes',
+      exteriorWorkTypes: 'filters.contractor.exteriorWorkTypes',
+      facadeRepairTypes: 'filters.contractor.facadeRepairTypes'
     },
     workTypes: [
       { value: 'עבודות שלד', key: 'filters.contractor.structureWork' },
@@ -787,55 +881,204 @@ export const FILTER_CONFIG = {
       { value: 'חשמל ואינסטלציה', key: 'filters.contractor.electricPlumbing' },
       { value: 'עבודות חוץ', key: 'filters.contractor.exteriorWork' },
       { value: 'שיקום ותיקון חוץ', key: 'filters.contractor.facadeRepair' }
+    ],
+    structureWorkTypes: [
+      { value: 'בניית שלד', key: 'filters.contractor.buildingFrame' },
+      { value: 'יציקות בטון', key: 'filters.contractor.concretePours' },
+      { value: 'טפסנות', key: 'filters.contractor.formwork' },
+      { value: 'חיזוק מבנים', key: 'filters.contractor.structuralReinforcement' },
+      { value: 'בניית קירות בלוקים', key: 'filters.contractor.blockWalls' },
+      { value: 'הריסה ובנייה מחדש', key: 'filters.contractor.demolitionRebuild' }
+    ],
+    generalRenovationTypes: [
+      { value: 'שיפוץ דירה מלא', key: 'filters.contractor.fullApartmentReno' },
+      { value: 'שיפוץ חדרים', key: 'filters.contractor.roomRenovation' },
+      { value: 'שיפוץ חדרי רחצה', key: 'filters.contractor.bathroomReno' },
+      { value: 'שיפוץ מטבח', key: 'filters.contractor.kitchenReno' },
+      { value: 'החלפת ריצוף', key: 'filters.contractor.flooringReplacement' },
+      { value: 'עבודות גבס', key: 'filters.contractor.drywallWork' },
+      { value: 'טיח ושפכטל', key: 'filters.contractor.plasterWork' },
+      { value: 'סגירת מרפסת', key: 'filters.contractor.balconyEnclosure' },
+      { value: 'צביעה מקצועית', key: 'filters.contractor.professionalPainting' },
+      { value: 'החלפת דלתות ומשקופים', key: 'filters.contractor.doorFrameReplacement' }
+    ],
+    electricPlumbingTypes: [
+      { value: 'עבודות חשמל', key: 'filters.contractor.electricalWork' },
+      { value: 'החלפת לוח חשמל', key: 'filters.contractor.panelReplacement' },
+      { value: 'אינסטלציה כללית', key: 'filters.contractor.generalPlumbing' },
+      { value: 'החלפת צנרת', key: 'filters.contractor.pipeReplacement' },
+      { value: 'איתור ותיקון נזילות', key: 'filters.contractor.leakDetection' }
+    ],
+    exteriorWorkTypes: [
+      { value: 'ריצוף חוץ', key: 'filters.contractor.exteriorFlooring' },
+      { value: 'בניית פרגולה', key: 'filters.contractor.pergolaConstruction' },
+      { value: 'חיפויי אבן / חיפויי קירות חוץ', key: 'filters.contractor.stoneCladding' },
+      { value: 'גידור', key: 'filters.contractor.fencing' },
+      { value: 'בניית שבילים בגינה', key: 'filters.contractor.gardenPathways' }
+    ],
+    facadeRepairTypes: [
+      { value: 'תיקון טיח חוץ', key: 'filters.contractor.exteriorPlasterRepair' },
+      { value: 'שיקום קירות חיצוניים', key: 'filters.contractor.exteriorWallRestoration' },
+      { value: 'איטום סדקים בקירות', key: 'filters.contractor.wallCrackSealing' },
+      { value: 'טיפול בנפילת טיח', key: 'filters.contractor.fallingPlasterTreatment' }
     ]
   },
 
   // ═══════════════════════════════════════════════════════════════
   // ALUMINUM
   // ═══════════════════════════════════════════════════════════════
-  aluminum: {
+aluminum: {
     sectionTitles: {
-      workTypes: 'filters.aluminum.workTypes'
+      workTypes: 'filters.aluminum.workTypes',
+      windowsDoorsTypes: 'filters.aluminum.windowsDoorsTypes',
+      pergolasOutdoorTypes: 'filters.aluminum.pergolasOutdoorTypes',
+      repairsServiceTypes: 'filters.aluminum.repairsServiceTypes',
+      claddingTypes: 'filters.aluminum.claddingTypes'
     },
     workTypes: [
       { value: 'חלונות ודלתות', key: 'filters.aluminum.windowsDoors' },
       { value: 'פרגולות ואלומיניום חוץ', key: 'filters.aluminum.pergolas' },
       { value: 'תיקונים ושירות', key: 'filters.aluminum.repairs' },
       { value: 'חיפויי אלומיניום', key: 'filters.aluminum.cladding' }
+    ],
+    windowsDoorsTypes: [
+      { value: 'התקנת חלונות אלומיניום', key: 'filters.aluminum.installWindows' },
+      { value: 'דלתות אלומיניום', key: 'filters.aluminum.aluminumDoors' },
+      { value: 'דלתות הזזה (ויטרינות)', key: 'filters.aluminum.slidingDoors' },
+      { value: 'דלתות כניסה מאלומיניום', key: 'filters.aluminum.entryDoors' },
+      { value: 'רשתות נגד יתושים', key: 'filters.aluminum.mosquitoNets' },
+      { value: 'תריסים ידניים', key: 'filters.aluminum.manualShutters' },
+      { value: 'תריסים חשמליים', key: 'filters.aluminum.electricShutters' }
+    ],
+    pergolasOutdoorTypes: [
+      { value: 'פרגולות אלומיניום', key: 'filters.aluminum.aluminumPergolas' },
+      { value: 'סגירת מרפסות', key: 'filters.aluminum.balconyEnclosure' },
+      { value: 'חיפויי אלומיניום חיצוניים', key: 'filters.aluminum.exteriorCladding' },
+      { value: 'מעקות אלומיניום לגינה / מרפסות', key: 'filters.aluminum.railings' }
+    ],
+    repairsServiceTypes: [
+      { value: 'תיקון מנועי תריס חשמלי', key: 'filters.aluminum.repairShutterMotor' },
+      { value: 'תיקון מסילות', key: 'filters.aluminum.repairTracks' },
+      { value: 'תיקון גלגלים בחלונות', key: 'filters.aluminum.repairWheels' },
+      { value: 'החלפת ידיות / צירים', key: 'filters.aluminum.replaceHandles' },
+      { value: 'איטום וחידוש מסביב לחלונות', key: 'filters.aluminum.sealingRenewal' },
+      { value: 'תיקון תריסים ידניים', key: 'filters.aluminum.repairManualShutters' }
+    ],
+    claddingTypes: [
+      { value: 'חיפוי צנרת / כיסוי צינורות', key: 'filters.aluminum.pipeCovering' },
+      { value: 'חיפוי מונים (חשמל / מים / גז)', key: 'filters.aluminum.meterCovering' },
+      { value: 'ארגזים דקורטיביים מאלומיניום', key: 'filters.aluminum.decorativeBoxes' },
+      { value: 'חיפוי קווי מזגן', key: 'filters.aluminum.acLineCovering' },
+      { value: 'הגנה למנוע מזגן חיצוני', key: 'filters.aluminum.acMotorProtection' },
+      { value: 'חיפוי קירות חוץ מאלומיניום', key: 'filters.aluminum.wallCladding' },
+      { value: 'חיפויים דקורטיביים', key: 'filters.aluminum.decorativeCladding' },
+      { value: 'חיפוי וארגזי תריס', key: 'filters.aluminum.shutterBoxCladding' }
     ]
   },
 
   // ═══════════════════════════════════════════════════════════════
   // GLASS WORKS
   // ═══════════════════════════════════════════════════════════════
-  glass_works: {
+glass_works: {
     sectionTitles: {
-      workTypes: 'filters.glass.workTypes'
+      workTypes: 'filters.glass.workTypes',
+      showerGlassTypes: 'filters.glass.showerGlassTypes',
+      windowsDoorGlassTypes: 'filters.glass.windowsDoorGlassTypes',
+      kitchenHomeGlassTypes: 'filters.glass.kitchenHomeGlassTypes',
+      specialSafetyGlassTypes: 'filters.glass.specialSafetyGlassTypes',
+      repairCustomTypes: 'filters.glass.repairCustomTypes'
     },
     workTypes: [
-      { value: 'זכוכיות לבית', key: 'filters.glass.homeGlass' },
-      { value: 'מקלחונים', key: 'filters.glass.showers' },
-      { value: 'מחיצות וקירות זכוכית', key: 'filters.glass.partitions' },
-      { value: 'מעקות זכוכית', key: 'filters.glass.railings' },
-      { value: 'ריהוט וזכוכית מעוצבת', key: 'filters.glass.furniture' },
-      { value: 'תיקונים ושירות', key: 'filters.glass.repairs' }
+      { value: 'זכוכית למקלחונים', key: 'filters.glass.showers' },
+      { value: 'זכוכית לחלונות ודלתות', key: 'filters.glass.homeGlass' },
+      { value: 'זכוכית למטבח ובית', key: 'filters.glass.furniture' },
+      { value: 'זכוכית מיוחדת ובטיחות', key: 'filters.glass.partitions' },
+      { value: 'שירותי תיקון והתאמה אישית', key: 'filters.glass.repairs' }
+    ],
+    showerGlassTypes: [
+      { value: 'התקנת מקלחון זכוכית', key: 'filters.glass.showerInstall' },
+      { value: 'תיקון מקלחון', key: 'filters.glass.showerRepair' },
+      { value: 'החלפת זכוכית במקלחון', key: 'filters.glass.showerGlassReplacement' },
+      { value: 'דלתות מקלחת', key: 'filters.glass.showerDoors' }
+    ],
+    windowsDoorGlassTypes: [
+      { value: 'החלפת זכוכית בחלון', key: 'filters.glass.windowReplacement' },
+      { value: 'זכוכית מבודדת (Double)', key: 'filters.glass.doubleGlazing' },
+      { value: 'זיגוג מחדש', key: 'filters.glass.reglazing' },
+      { value: 'דלתות זכוכית פנימיות', key: 'filters.glass.interiorGlassDoors' },
+      { value: 'מחיצות זכוכית', key: 'filters.glass.glassPartitions' }
+    ],
+    kitchenHomeGlassTypes: [
+      { value: 'זכוכית למטבח (Backsplash)', key: 'filters.glass.kitchenBacksplash' },
+      { value: 'מדפי זכוכית', key: 'filters.glass.glassShelves' },
+      { value: 'שולחנות זכוכית', key: 'filters.glass.glassTables' },
+      { value: 'מראות לחדר אמבטיה', key: 'filters.glass.bathroomMirrors' },
+      { value: 'מראות דקורטיביות', key: 'filters.glass.decorativeMirrors' }
+    ],
+    specialSafetyGlassTypes: [
+      { value: 'זכוכית מחוסמת (בטיחותית)', key: 'filters.glass.temperedGlass' },
+      { value: 'זכוכית חכמה', key: 'filters.glass.smartGlass' },
+      { value: 'זכוכית עמידה לפריצה', key: 'filters.glass.securityGlass' },
+      { value: 'זכוכית אקוסטית (בידוד רעש)', key: 'filters.glass.acousticGlass' },
+      { value: 'זכוכית צבעונית / מעוצבת', key: 'filters.glass.decorativeGlass' }
+    ],
+    repairCustomTypes: [
+      { value: 'תיקון שריטות וסדקים', key: 'filters.glass.scratchRepair' },
+      { value: 'ליטוש זכוכית', key: 'filters.glass.glassPolishing' },
+      { value: 'חיתוך זכוכית לפי מידה', key: 'filters.glass.customCutting' }
     ]
   },
 
   // ═══════════════════════════════════════════════════════════════
   // LOCKSMITH
   // ═══════════════════════════════════════════════════════════════
-  locksmith: {
+locksmith: {
     sectionTitles: {
-      workTypes: 'filters.locksmith.workTypes'
+      workTypes: 'filters.locksmith.workTypes',
+      lockReplacementTypes: 'filters.locksmith.lockReplacementTypes',
+      doorOpeningTypes: 'filters.locksmith.doorOpeningTypes',
+      lockSystemInstallationTypes: 'filters.locksmith.lockSystemInstallationTypes',
+      lockDoorRepairTypes: 'filters.locksmith.lockDoorRepairTypes',
+      securityServicesTypes: 'filters.locksmith.securityServicesTypes'
     },
     workTypes: [
-      { value: '🔐 פריצות חירום', key: 'filters.locksmith.emergencyOpening' },
-      { value: '🔑 החלפת מנעולים', key: 'filters.locksmith.lockReplacement' },
-      { value: '🚪 תיקון דלתות ובטיחות', key: 'filters.locksmith.doorRepair' },
-      { value: '📡 מערכות מתקדמות', key: 'filters.locksmith.advancedSystems' }
+      { value: 'החלפת מנעולים', key: 'filters.locksmith.lockReplacement' },
+      { value: 'פתיחת דלתות', key: 'filters.locksmith.emergencyOpening' },
+      { value: 'התקנת מערכות נעילה', key: 'filters.locksmith.advancedSystems' },
+      { value: 'תיקון מנעולים ודלתות', key: 'filters.locksmith.doorRepair' },
+      { value: 'שירותי ביטחון', key: 'serviceForm.locksmith.securityServices' }
+    ],
+    lockReplacementTypes: [
+      { value: 'מנעול צילינדר', key: 'filters.locksmith.cylinderLock' },
+      { value: 'מנעול ביטחון', key: 'filters.locksmith.securityLock' },
+      { value: 'מנעול דלת כניסה', key: 'filters.locksmith.entranceLock' },
+      { value: 'מנעול למשרד / חנות', key: 'filters.locksmith.officeLock' }
+    ],
+    doorOpeningTypes: [
+      { value: 'פתיחת דלת ללא נזק', key: 'filters.locksmith.noDamageOpening' },
+      { value: 'פתיחה חירום 24/7', key: 'filters.locksmith.emergency247' },
+      { value: 'פתיחת כספת', key: 'filters.locksmith.safeOpening' },
+      { value: 'שכפול מפתחות במקום', key: 'filters.locksmith.keyDuplication' }
+    ],
+    lockSystemInstallationTypes: [
+      { value: 'מנעולים חכמים', key: 'filters.locksmith.smartLocks' },
+      { value: 'מערכת אינטרקום', key: 'filters.locksmith.intercom' },
+      { value: 'קוד כניסה למשרדים', key: 'filters.locksmith.accessCode' },
+      { value: 'מנעול אלקטרוני', key: 'filters.locksmith.electronicLock' }
+    ],
+    lockDoorRepairTypes: [
+      { value: 'תיקון מנעול תקוע', key: 'filters.locksmith.stuckLockRepair' },
+      { value: 'תיקון ציר דלת', key: 'filters.locksmith.hingeRepair' },
+      { value: 'שיוף דלת שלא נסגרת', key: 'filters.locksmith.doorSanding' },
+      { value: 'החלפת ידית דלת', key: 'filters.locksmith.handleReplacement' }
+    ],
+    securityServicesTypes: [
+      { value: 'שדרוג מערכת ביטחון', key: 'filters.locksmith.securityUpgrade' },
+      { value: 'התקנת דלת ביטחון', key: 'filters.locksmith.securityDoorInstall' },
+      { value: 'בדיקת פגיעות דלת', key: 'filters.locksmith.vulnerabilityCheck' },
+      { value: 'שירות מסגרות מסחרי', key: 'filters.locksmith.commercialLocksmith' }
     ]
-  }
+  },
 };
 
 // Fonction helper pour récupérer les traductions

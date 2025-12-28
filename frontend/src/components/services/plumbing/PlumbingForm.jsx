@@ -160,13 +160,13 @@ const PlumbingForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="pipe_repair_types">
                  {[
-  { value: 'תיקון צנרת גברית', label: t('filters.plumbing.roughPlumbing') },
+  { value: 'תיקון צנרת גברית', label: t( 'filters.plumbing.malePipeRepair') },
   { value: 'תיקון נזקי צנרת בבית', label: t('filters.plumbing.homePipeDamage') },
   { value: 'תיקון נזקי צנרת בבניין', label: t('filters.plumbing.buildingPipeDamage') },
-  { value: 'הגברת לחץ מים', label: t('filters.plumbing.waterPressure') },
+  { value: 'הגברת לחץ מים', label: t('filters.plumbing.pressureBoost') },
   { value: 'תיקון צנרת בגינה', label: t('filters.plumbing.gardenPipes') },
   { value: 'תיקוני צנרת אחרים', label: t('filters.plumbing.otherPipeRepairs') },
-  { value: 'תיקון צנרת ביוב ללא הרס', label: t('filters.plumbing.noDigSewer') }
+  { value: 'תיקון צנרת ביוב ללא הרס', label: t('filters.plumbing.sewerNonDestructive') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
@@ -264,16 +264,16 @@ const PlumbingForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
   { value: 'ברזים', label: t('filters.plumbing.faucets') },
   { value: 'ניאגרות ואסלות', label: t('filters.plumbing.toilets') },
   { value: 'מסנני מים', label: t('filters.plumbing.waterFilters') },
-  { value: 'התקנת טוחן אשפה', label: t('filters.plumbing.garbageDisposalInstall') },
-  { value: 'תיקון טוחן אשפה', label: t('filters.plumbing.garbageDisposalRepair') },
+  { value: 'התקנת טוחן אשפה', label: t('filters.plumbing.garbageDisposal') },
+  { value: 'תיקון טוחן אשפה', label: t('filters.plumbing.disposalRepair') },
   { value: 'כיורים', label: t('filters.plumbing.sinks') },
   { value: 'הכנה למדיח כלים', label: t('filters.plumbing.dishwasherPrep') },
   { value: 'אגנית למקלחון', label: t('filters.plumbing.showerBase') },
   { value: 'אביזרים אחרים', label: t('filters.plumbing.otherFixtures') },
-  { value: 'סילוקית לאסלה', label: t('filters.plumbing.toiletHandle') },
-  { value: 'התקנת בידה', label: t('filters.plumbing.bidetInstall') },
-  { value: 'אסלה תלויה', label: t('filters.plumbing.wallHungToilet') },
-  { value: 'אל חוזר לשעון מים', label: t('filters.plumbing.backflowPreventer') },
+  { value: 'סילוקית לאסלה', label: t('filters.plumbing.toiletFlush') },
+  { value: 'התקנת בידה', label: t('filters.plumbing.bidet') },
+  { value: 'אסלה תלויה', label: t('filters.plumbing.wallMountedToilet') },
+  { value: 'אל חוזר לשעון מים', label: t('filters.plumbing.checkValve') },
   { value: 'התקנת מערכות מים תת כיוריות', label: t('filters.plumbing.underSinkSystems') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">

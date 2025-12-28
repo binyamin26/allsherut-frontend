@@ -142,6 +142,44 @@ case 'certifications':
   params.push(value);
   console.log(`[buildAdvancedFilters] Condition certifications ajoutée:`, value);
   break;
+  
+case 'subjects':
+  const subjectsArray = value.split(',').map(v => v.trim());
+  if (subjectsArray.length > 0) {
+    const placeholders = subjectsArray.map(() => '?').join(',');
+    conditions.push(`JSON_OVERLAPS(sp.service_details->'$.subjects', JSON_ARRAY(${placeholders}))`);
+    params.push(...subjectsArray);
+    console.log(`[buildAdvancedFilters] Condition subjects ajoutée:`, subjectsArray);
+  }
+  break;
+
+case 'levels':
+  const levelsArray = value.split(',').map(v => v.trim());
+  if (levelsArray.length > 0) {
+    const placeholders = levelsArray.map(() => '?').join(',');
+    conditions.push(`JSON_OVERLAPS(sp.service_details->'$.levels', JSON_ARRAY(${placeholders}))`);
+    params.push(...levelsArray);
+    console.log(`[buildAdvancedFilters] Condition levels ajoutée:`, levelsArray);
+  }
+  break;
+
+case 'specializations':
+  const specsArray = value.split(',').map(v => v.trim());
+  if (specsArray.length > 0) {
+    const placeholders = specsArray.map(() => '?').join(',');
+    conditions.push(`JSON_OVERLAPS(sp.service_details->'$.specializations', JSON_ARRAY(${placeholders}))`);
+    params.push(...specsArray);
+    console.log(`[buildAdvancedFilters] Condition specializations ajoutée:`, specsArray);
+  }
+  break;
+
+case 'teachingMode':
+  if (value && value !== '') {
+    conditions.push(`sp.service_details->>'$.teachingMode' = ?`);
+    params.push(value);
+    console.log(`[buildAdvancedFilters] Condition teachingMode ajoutée:`, value);
+  }
+  break;
 
       // Filtres spécifiques cleaning
       case 'legalStatus':

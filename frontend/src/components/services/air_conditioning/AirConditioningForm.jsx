@@ -5,13 +5,13 @@ const AirConditioningForm = ({ serviceDetails, errors, handleServiceDetailsChang
   
   return (
     <div className="service-details-form">
-    {t('serviceForm.airConditioning.title')}
+  <h3>{t('serviceForm.airConditioning.title')}</h3>
       
       <div className="form-section">
-      {t('serviceForm.common.requiredFields')}
+  <h4>{t('serviceForm.common.requiredFields')}</h4>
         
         <div className="input-group">
-         {t('serviceForm.common.age')}
+       <label>{t('serviceForm.common.age')}</label>
           <input
            type="text"
  inputMode="numeric"
@@ -29,7 +29,7 @@ const AirConditioningForm = ({ serviceDetails, errors, handleServiceDetailsChang
         </div>
 
         <div className="input-group">
-         {t('serviceForm.common.experience')}
+     <label>{t('serviceForm.common.experience')}</label>
           <input
            type="text"
  inputMode="numeric"
@@ -46,7 +46,7 @@ const AirConditioningForm = ({ serviceDetails, errors, handleServiceDetailsChang
         </div>
 
         <div className="input-group">
-       {t('serviceForm.common.availabilityDays')}
+   <label>{t('serviceForm.common.availabilityDays')}</label>
           <div className="checkbox-group" data-field="availability_days">
          {[
   { value: 'ראשון', label: t('days.sunday') },
@@ -72,7 +72,7 @@ const AirConditioningForm = ({ serviceDetails, errors, handleServiceDetailsChang
         </div>
 
         <div className="input-group">
-         {t('serviceForm.common.availabilityDays')}
+      <label>{t('serviceForm.common.availabilityHours')}</label>
           <div className="checkbox-group" data-field="availability_hours">
           {[
   { value: 'בוקר', label: t('hours.morning') },
@@ -94,7 +94,7 @@ const AirConditioningForm = ({ serviceDetails, errors, handleServiceDetailsChang
         </div>
 
         <div className="input-group">
-       {t('serviceForm.common.workTypes')}
+     <label>{t('serviceForm.common.workTypes')}</label>
           
           <div style={{marginBottom: '20px'}}>
             <label className="checkbox-item" style={{fontWeight: 'bold'}}>
@@ -168,20 +168,32 @@ const AirConditioningForm = ({ serviceDetails, errors, handleServiceDetailsChang
             {serviceDetails.work_types?.includes('תיקון מזגנים') && (
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="repair_types">
-                  {['תיקון מזגן','מילוי גז', 'תיקון מזגן מעובש', 'תיקון מיזוג מיני מרכזי', 'תיקון דליפת גז במזגן', 'תיקון מיזוג מרכזי', 'תיקון מזגן אינוורטר', 'תיקון מזגן VRF', 'ניקוי פילטרים', 'תיקון צ\'ילרים', 'טכנאי חדרי קירור'].map(type => (
-                    <label key={type} className="checkbox-item">
+                  {[
+  { value: 'תיקון מזגן', label: t('serviceForm.airConditioning.repairAC') },
+  { value: 'מילוי גז', label: t('serviceForm.airConditioning.gasRefill') },
+  { value: 'תיקון מזגן מעובש', label: t('serviceForm.airConditioning.repairMoldy') },
+  { value: 'תיקון מיזוג מיני מרכזי', label: t('serviceForm.airConditioning.repairMiniCentral') },
+  { value: 'תיקון דליפת גז במזגן', label: t('serviceForm.airConditioning.repairGasLeak') },
+  { value: 'תיקון מיזוג מרכזי', label: t('serviceForm.airConditioning.repairCentral') },
+  { value: 'תיקון מזגן אינוורטר', label: t('serviceForm.airConditioning.repairInverter') },
+  { value: 'תיקון מזגן VRF', label: t('serviceForm.airConditioning.repairVRF') },
+  { value: 'ניקוי פילטרים', label: t('serviceForm.airConditioning.filterCleaning') },
+  { value: 'תיקון צ\'ילרים', label: t('serviceForm.airConditioning.repairChillers') },
+  { value: 'טכנאי חדרי קירור', label: t('serviceForm.airConditioning.coldRoomTech') }
+].map(type => (
+                    <label key={type.value} className="checkbox-item">
                       <input
                         type="checkbox"
-                        checked={serviceDetails.repair_types?.includes(type) || false}
+                        checked={serviceDetails.repair_types?.includes(type.value) || false}
                         onChange={(e) => {
                           const current = serviceDetails.repair_types || [];
                           const newTypes = e.target.checked 
-                            ? [...current, type]
-                            : current.filter(t => t !== type);
+                            ? [...current, type.value]
+                            : current.filter(t => t !== type.value);
                           handleServiceDetailsChange('repair_types', newTypes);
                         }}
                       />
-                      {type}
+                      {type.label}
                     </label>
                   ))}
                 </div>

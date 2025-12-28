@@ -116,11 +116,11 @@ const GasTechnicianForm = ({ serviceDetails, errors, handleServiceDetailsChange,
                 <div className="checkbox-group" data-field="installation_types">
                  {[
   { value: 'הזזת\\התקנת נקודת גז', label: t('filters.gas.gasPointInstall') },
-  { value: 'התקנת כיריים גז', label: t('filters.gas.gasStoveInstall') },
-  { value: 'התקנת צינור גז', label: t('filters.gas.gasPipeInstall') },
-  { value: 'התקנת גריל גז', label: t('filters.gas.gasGrillInstall') },
-  { value: 'התקנת חימום מים בגז', label: t('filters.gas.gasWaterHeaterInstall') },
-  { value: 'התקנת חגז', label: t('filters.gas.holidayHeaterInstall') },
+  { value: 'התקנת כיריים גז', label: t('filters.gas.stovetopInstall') },
+  { value: 'התקנת צינור גז', label: t('filters.gas.pipeInstall') },
+  { value: 'התקנת גריל גז', label: t('filters.gas.grillInstall') },
+  { value: 'התקנת חימום מים בגז', label: t('filters.gas.waterHeaterInstall') },
+  { value: 'התקנת חגז', label: t('filters.gas.hagaz') },
   { value: 'בניית תשתית גז במבנה חדש', label: t('filters.gas.newBuildingInfra') },
   { value: 'שירותי גז לעסקים', label: t('filters.gas.businessServices') }
 ].map(type => (
@@ -165,8 +165,8 @@ const GasTechnicianForm = ({ serviceDetails, errors, handleServiceDetailsChange,
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="repair_types">
                  {[
-  { value: 'תיקון כיריים גז', label: t('filters.gas.gasStoveRepair') },
-  { value: 'תיקון צנרת גז', label: t('filters.gas.gasPipeRepair') }
+  { value: 'תיקון כיריים גז', label: t('filters.gas.stovetopRepair') },
+  { value: 'תיקון צנרת גז', label: t('filters.gas.pipeRepair') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input

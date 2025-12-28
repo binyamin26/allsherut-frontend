@@ -726,14 +726,14 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  background: linear-gradient(135deg, var(--primary-100) 0%, var(--accent-100) 100%);
+  background: transparent;
   color: var(--primary-700);
-  padding: var(--space-2) var(--space-4);
-  border-radius: var(--radius-full);
+  padding: 0;
+  border-radius: 0;
   font-size: var(--text-sm);
   font-weight: 600;
   margin-bottom: var(--space-2);
-  border: 1px solid var(--primary-200);
+  border: none;
 }
 
 .service-icon {
@@ -1780,20 +1780,20 @@ body .dashboard-page .info-section h3.section-title {
 /* ========================================
    AVATAR AVEC GESTION D'IMAGE
    ======================================== */
-/* Avatar container repositionné */
 .provider-avatar {
   position: relative;
-  width: 140px;
-  height: 140px;
+  width: 100px;
+  height: 100px;
   border-radius: var(--radius-full);
-  background: linear-gradient(135deg, var(--primary-100) 0%, var(--accent-100) 100%);
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--primary-600);
-  box-shadow: var(--shadow-lg);
+  box-shadow: none;
   flex-shrink: 0;
   overflow: visible;
+  margin-bottom: 60px;
 }
 
 .provider-avatar img {
@@ -1801,6 +1801,7 @@ body .dashboard-page .info-section h3.section-title {
   height: 100%;
   object-fit: cover;
   border-radius: var(--radius-full);
+  border: none;
 }
 
 /* Boutons d'action photo - apparaissent au survol */

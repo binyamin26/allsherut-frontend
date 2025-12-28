@@ -189,6 +189,20 @@
   border: 1px dashed var(--primary-300);
 }
 
+/* Espacement des input-group dans les formulaires de service */
+.service-details-form .input-group {
+  margin-bottom: var(--space-5);
+}
+
+.service-details-form .input-group > label {
+  display: block;
+  font-weight: 600;
+  color: var(--neutral-700);
+  margin-bottom: var(--space-2);
+  font-size: var(--text-base);
+  text-align: var(--text-align);
+}
+
 /* G. CHECKBOXES ET GROUPES */
 .checkbox-group {
   display: flex;

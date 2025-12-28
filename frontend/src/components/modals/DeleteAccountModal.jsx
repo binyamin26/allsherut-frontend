@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { AlertTriangle, X, Trash2 } from 'lucide-react';
 import LoadingSpinner from '../common/LoadingSpinner';
+import { useLanguage } from '../../context/LanguageContext';
 
 const DeleteAccountModal = ({ isOpen, onClose, onConfirm }) => {
+  const { t } = useLanguage();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -12,9 +14,8 @@ const DeleteAccountModal = ({ isOpen, onClose, onConfirm }) => {
     
     try {
       await onConfirm();
-      // onConfirm gère déjà la redirection, donc pas besoin de faire quoi que ce soit ici
     } catch (err) {
-      setError(err.message || 'שגיאה במחיקת החשבון');
+      setError(err.message || t('modals.deleteAccount.error'));
       setLoading(false);
     }
   };
@@ -34,7 +35,7 @@ const DeleteAccountModal = ({ isOpen, onClose, onConfirm }) => {
         <div className="modal-header">
           <div className="modal-header-content">
             <AlertTriangle size={24} className="warning-icon" />
-            <h2>מחיקת חשבון</h2>
+            <h2>{t('modals.deleteAccount.title')}</h2>
           </div>
           <button 
             className="modal-close" 
@@ -49,13 +50,13 @@ const DeleteAccountModal = ({ isOpen, onClose, onConfirm }) => {
           <div className="warning-box">
             <AlertTriangle size={20} />
             <div>
-              <h3>אזהרה! פעולה זו בלתי הפיכה</h3>
-              <p>מחיקת החשבון תגרום ל:</p>
+              <h3>{t('modals.deleteAccount.warning')}</h3>
+              <p>{t('modals.deleteAccount.willCause')}</p>
               <ul>
-                <li>מחיקה מוחלטת של הפרופיל שלך</li>
-                <li>הסרה מכל תוצאות החיפוש</li>
-                <li>מחיקת כל הנתונים האישיים</li>
-                <li>ביטול מנוי (אם קיים)</li>
+                <li>{t('modals.deleteAccount.profileDeleted')}</li>
+                <li>{t('modals.deleteAccount.removedFromSearch')}</li>
+                <li>{t('modals.deleteAccount.personalDataDeleted')}</li>
+                <li>{t('modals.deleteAccount.subscriptionCancelled')}</li>
               </ul>
             </div>
           </div>
@@ -77,12 +78,12 @@ const DeleteAccountModal = ({ isOpen, onClose, onConfirm }) => {
               {loading ? (
                 <>
                   <LoadingSpinner size="small" />
-                  מוחק חשבון...
+                  {t('modals.deleteAccount.deleting')}
                 </>
               ) : (
                 <>
                   <Trash2 size={18} />
-                  מחק חשבון לצמיתות
+                  {t('modals.deleteAccount.deleteAccountPermanently')}
                 </>
               )}
             </button>
@@ -93,7 +94,7 @@ const DeleteAccountModal = ({ isOpen, onClose, onConfirm }) => {
               onClick={handleClose}
               disabled={loading}
             >
-              ביטול
+              {t('common.cancel')}
             </button>
           </div>
         </div>

@@ -1086,7 +1086,7 @@ padding: var(--space-1) var(--space-2);
 /* Grille des services step 1 */
 .service-selection {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(160px, 100%), 1fr));
   gap: var(--space-4);
   margin-top: var(--space-6);
   direction: rtl;
@@ -1292,10 +1292,11 @@ padding: var(--space-1) var(--space-2);
 
 @media (max-width: 480px) {
   .service-selection {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
   }
   
   .service-btn {
     height: 140px;
+    max-width: 100%;
   }
 }

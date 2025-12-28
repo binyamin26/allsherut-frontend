@@ -11,7 +11,7 @@ const ServiceSearchBar = ({ style }) => {
   const [activeIndex, setActiveIndex] = useState(-1);
   const wrapperRef = useRef(null);
   const navigate = useNavigate();
-  const { t, language } = useLanguage();
+  const { t, currentLanguage } = useLanguage(); // CORRIGÉ: currentLanguage au lieu de language
 
   // Fermer dropdown quand clic dehors
   useEffect(() => {
@@ -23,6 +23,14 @@ const ServiceSearchBar = ({ style }) => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+
+  // Fonction pour obtenir le label selon la langue
+  const getLabelByLanguage = (item) => {
+    if (currentLanguage === 'en' && item.labelEn) return item.labelEn;
+    if (currentLanguage === 'fr' && item.labelFr) return item.labelFr;
+    if (currentLanguage === 'ru' && item.labelRu) return item.labelRu;
+    return item.label; // Hébreu par défaut
+  };
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -37,32 +45,33 @@ const ServiceSearchBar = ({ style }) => {
 
     const lowerValue = value.toLowerCase();
     
-    // Rechercher dans les labels hébreux
-    const hebrewMatches = searchableServices.filter((item) => {
-      const words = item.label.split(' ');
-      return words.some(word => word.startsWith(value));
+    const matches = searchableServices.filter((item) => {
+      // 1. Toujours chercher en hébreu
+      const hebrewMatch = item.label.split(' ').some(word => word.startsWith(value));
+      if (hebrewMatch) return true;
+
+      // 2. Chercher en anglais
+      if (item.labelEn) {
+        const enMatch = item.labelEn.toLowerCase().split(' ').some(word => word.startsWith(lowerValue));
+        if (enMatch) return true;
+      }
+
+      // 3. Chercher en français
+      if (item.labelFr) {
+        const frMatch = item.labelFr.toLowerCase().split(' ').some(word => word.startsWith(lowerValue));
+        if (frMatch) return true;
+      }
+
+      // 4. Chercher en russe
+      if (item.labelRu) {
+        const ruMatch = item.labelRu.toLowerCase().split(' ').some(word => word.startsWith(lowerValue));
+        if (ruMatch) return true;
+      }
+
+      return false;
     });
 
-    // Rechercher dans les traductions des services principaux
-const translatedMatches = searchableServices.filter((item) => {
-  if (item.type !== 'service') return false;
-  
-  const serviceKey = `services.${item.href.split('/').pop()}`;
-  const translatedName = t(serviceKey).toLowerCase();
-  
-  // Utiliser startsWith au lieu de includes pour correspondre au comportement hébreu
-  return translatedName.startsWith(lowerValue);
-});
-
-   // Combiner sans doublons (déduplication par href uniquement)
-const combined = [...hebrewMatches];
-translatedMatches.forEach(match => {
-  if (!combined.find(item => item.href === match.href)) {
-    combined.push(match);
-  }
-});
-
-    setResults(combined.slice(0, 10));
+    setResults(matches.slice(0, 10));
     setIsOpen(true);
   };
 
@@ -89,18 +98,13 @@ translatedMatches.forEach(match => {
     }
   };
 
-  // Fonction pour obtenir le nom traduit
+  // Afficher le label selon la langue active
   const getDisplayName = (item) => {
-    if (item.type === 'service') {
-      const serviceKey = `services.${item.href.split('/').pop()}`;
-      return t(serviceKey);
-    }
-    // Pour les sous-catégories, afficher le label hébreu
-    return item.label;
+    return getLabelByLanguage(item);
   };
 
   return (
- <div className="service-search-wrapper" ref={wrapperRef} style={style}>
+    <div className="service-search-wrapper" ref={wrapperRef} style={style}>
       <div className="service-search-input-container">
         <Search className="service-search-icon" size={20} />
         <input
