@@ -151,6 +151,26 @@ onChange={(e) => {
           </div>
 
           <div className="category-group">
+        <h5 className="category-title">{t('filters.cleaning.materialsProvided')}</h5>
+<div className="checkbox-group">
+  {[
+    { value: 'yes', label: t('filters.cleaning.providesEquipment') },
+    { value: 'no', label: t('filters.cleaning.noEquipment') },
+    { value: 'partial', label: t('filters.cleaning.partialEquipment') }
+  ].map(option => (
+    <label key={option.value} className="checkbox-item">
+      <input
+        type="checkbox"
+        checked={serviceDetails.materialsProvided === option.value}
+        onChange={() => handleServiceDetailsChange('materialsProvided', option.value)}
+      />
+      {option.label}
+    </label>
+  ))}
+</div>
+          </div>
+
+          <div className="category-group">
         <h5 className="category-title">{t('serviceForm.cleaning.additionalServices')}</h5>
 <div className="checkbox-group">
   {[

@@ -39,7 +39,8 @@ import LoadingSpinner from '../components/common/LoadingSpinner';
 import ResponseModal from '../components/modals/ResponseModal';
 import { getAllCities, getNeighborhoodsByCity } from '../data/israelLocations.js';
 import DeleteAccountModal from '../components/modals/DeleteAccountModal';
-import CancelSubscriptionModal from '../components/modals/CancelSubscriptionModal';
+// PAIEMENT DÉSACTIVÉ - RÉACTIVER QUAND SITE PAYANT
+// import CancelSubscriptionModal from '../components/modals/CancelSubscriptionModal';
 import ServiceDetailsEditor from '../components/dashboard/ServiceDetailsEditor';
 import DeleteServiceModal from '../components/modals/DeleteServiceModal';
 import { useLanguage } from '../context/LanguageContext';
@@ -133,7 +134,8 @@ const userData = useMemo(() => {
   const [errors, setErrors] = useState({});
 
   const [deleteAccountModal, setDeleteAccountModal] = useState(false);
- const [cancelSubscriptionModal, setCancelSubscriptionModal] = useState({ isOpen: false, serviceType: null });
+// PAIEMENT DÉSACTIVÉ - RÉACTIVER QUAND SITE PAYANT
+// const [cancelSubscriptionModal, setCancelSubscriptionModal] = useState({ isOpen: false, serviceType: null });
 
   const [hasDeletionScheduled, setHasDeletionScheduled] = useState(false);
   const [deletionDate, setDeletionDate] = useState(null);
@@ -762,6 +764,7 @@ const handleDeleteService = async (serviceType) => {
   }
 };
 
+/* PAIEMENT DÉSACTIVÉ - RÉACTIVER QUAND SITE PAYANT
 const handleCancelSubscription = async (serviceType) => {
   try {
     const response = await apiCall('/subscriptions/cancel', 'POST', {
@@ -791,6 +794,7 @@ const handleCancelSubscription = async (serviceType) => {
     setCancelSubscriptionModal({ isOpen: false, serviceType: null });
   }
 };
+*/
 
 const handleCancelDeletion = async () => {
   try {
@@ -851,6 +855,7 @@ console.log('🔍 Dashboard userData:', {
   profileImage: userData?.providerProfile?.profile_image,
   fullProviderProfile: userData?.providerProfile
 });
+console.log('🔍 DEBUG serviceDetails COMPLET:', JSON.stringify(userData?.serviceDetails, null, 2));
   return (
     <div className="dashboard-page">
       <div className="container">
@@ -885,6 +890,7 @@ console.log('🔍 Dashboard userData:', {
           </div>
         </div>
 
+    {/* PAIEMENT DÉSACTIVÉ - RÉACTIVER QUAND SITE PAYANT
         {isSubscriptionExpired && userData?.role === 'provider' && (
        <div className="expired-banner">
             <div className="expired-banner-content">
@@ -899,6 +905,7 @@ console.log('🔍 Dashboard userData:', {
             </div>
           </div>
         )}
+        */}
 
         <div className="dashboard-tabs">
   {userData?.role === 'provider' && userData?.services?.length > 1 && (
@@ -1677,6 +1684,7 @@ placeholder={t('dashboard.security.newPasswordPlaceholder')}
       </>
     )}
 
+   {/* PAIEMENT DÉSACTIVÉ - RÉACTIVER QUAND SITE PAYANT
     {!hasDeletionScheduled && (
       <>
      <h3 className="section-subtitle">{t('dashboard.account.cancelSubscriptionTitle')}</h3>
@@ -1732,6 +1740,7 @@ placeholder={t('dashboard.security.newPasswordPlaceholder')}
         )}
       </>
     )}
+    */}
 
     <div className="settings-card danger-zone" style={{marginTop: '20px'}}>
       <div className="settings-card-header">
@@ -1799,12 +1808,14 @@ placeholder={t('dashboard.security.newPasswordPlaceholder')}
           onConfirm={handleDeleteAccount}
         />
  
+{/* PAIEMENT DÉSACTIVÉ - RÉACTIVER QUAND SITE PAYANT
  <CancelSubscriptionModal
   isOpen={cancelSubscriptionModal.isOpen}
   onClose={() => setCancelSubscriptionModal({ isOpen: false, serviceType: null })}
   onConfirm={() => handleCancelSubscription(cancelSubscriptionModal.serviceType)}
   serviceName={cancelSubscriptionModal.serviceType}
 />
+*/}
 
  {/* 🆕 NOUVEAU MODAL - Suppression service spécifique */}
         <DeleteServiceModal

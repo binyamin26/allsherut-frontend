@@ -63,10 +63,10 @@ const Footer = () => {
       ]
     }
   ]
-
 const quickLinks = [
     { nameKey: 'footer.links.howItWorks', path: '/how-it-works' },
-    { nameKey: 'footer.links.pricing', path: '/pricing' },
+    // PAIEMENT DÉSACTIVÉ - RÉACTIVER QUAND SITE PAYANT
+    // { nameKey: 'footer.links.pricing', path: '/pricing' },
     { nameKey: 'footer.links.support', path: '/contact' },
     { nameKey: 'footer.links.terms', path: '/terms' },
     { nameKey: 'footer.links.privacy', path: '/privacy' }

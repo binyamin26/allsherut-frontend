@@ -65,29 +65,37 @@ const EldercareForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
           {errors['serviceDetails.certification'] && <span className="error-text">{errors['serviceDetails.certification']}</span>}
         </div>
 
-        <div className="input-group">
+<div className="input-group">
           <label>{t('serviceForm.eldercare.availability')}</label>
-          <div className="checkbox-group" data-field="availability">
+          <div className="checkbox-group" data-field="availability_hours">
             {[
-              { value: 'morning', label: t('hours.morning') },
-              { value: 'afternoon', label: t('hours.afternoon') },
-              { value: 'evening', label: t('hours.evening') },
-              { value: 'all', label: t('hours.all') }
+              { value: 'בוקר', label: t('hours.morning') },
+              { value: 'צהריים', label: t('hours.noon') },
+              { value: 'אחר הצהריים', label: t('hours.afternoon') },
+              { value: 'ערב', label: t('hours.evening') },
+              { value: 'לילה', label: t('hours.night') },
+              { value: '24/7', label: t('hours.twentyFourSeven') }
             ].map(hour => (
               <label key={hour.value} className="checkbox-item">
                 <input
                   type="checkbox"
                   checked={serviceDetails.availability_hours?.includes(hour.value) || false}
-                  onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'all', ['morning', 'afternoon', 'evening'])}
+                  onChange={(e) => {
+                    const current = serviceDetails.availability_hours || [];
+                    const newHours = e.target.checked 
+                      ? [...current, hour.value]
+                      : current.filter(h => h !== hour.value);
+                    handleServiceDetailsChange('availability_hours', newHours);
+                  }}
                 />
                 {hour.label}
               </label>
             ))}
           </div>
-          {errors['serviceDetails.availability'] && <span className="error-text">{errors['serviceDetails.availability']}</span>}
+          {errors['serviceDetails.availability_hours'] && <span className="error-text">{errors['serviceDetails.availability_hours']}</span>}
         </div>
 
-        <div className="input-group">
+     <div className="input-group">
           <label>{t('serviceForm.eldercare.experience')}</label>
           <input
            type="text"
@@ -96,12 +104,83 @@ const EldercareForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
             value={serviceDetails.experience || ''}
         onChange={(e) => {
   const numericValue = e.target.value.replace(/\D/g, '');
-  handleServiceDetailsChange('experience', numericValue);  // ← 'experience' ici !
+  handleServiceDetailsChange('experience', numericValue);
 }}
             className={`standard-input ${errors['serviceDetails.experience'] ? 'error' : ''}`}
             data-field="experience"
           />
           {errors['serviceDetails.experience'] && <span className="error-text">{errors['serviceDetails.experience']}</span>}
+        </div>
+
+        <div className="input-group">
+          <label>{t('serviceForm.eldercare.languages')}</label>
+          <div className="checkbox-group" data-field="languages">
+            {[
+              { value: 'עברית', label: t('languages.hebrew') },
+              { value: 'ערבית', label: t('languages.arabic') },
+              { value: 'רוסית', label: t('languages.russian') },
+              { value: 'אנגלית', label: t('languages.english') },
+              { value: 'ספרדית', label: t('languages.spanish') },
+              { value: 'צרפתית', label: t('languages.french') }
+            ].map(lang => (
+              <label key={lang.value} className="checkbox-item">
+                <input
+                  type="checkbox"
+                  checked={serviceDetails.languages?.includes(lang.value) || false}
+                  onChange={(e) => {
+                    const current = serviceDetails.languages || [];
+                    const newLangs = e.target.checked 
+                      ? [...current, lang.value]
+                      : current.filter(l => l !== lang.value);
+                    handleServiceDetailsChange('languages', newLangs);
+                  }}
+                />
+                {lang.label}
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <div className="input-group">
+          <label>{t('filters.eldercare.administrativeHelp')}</label>
+          <select
+            value={serviceDetails.administrativeHelp || ''}
+            onChange={(e) => handleServiceDetailsChange('administrativeHelp', e.target.value)}
+            className="standard-input"
+            data-field="administrativeHelp"
+          >
+            <option value="">{t('filters.noMatter')}</option>
+            <option value="yes">{t('common.yes')}</option>
+            <option value="no">{t('common.no')}</option>
+          </select>
+        </div>
+
+        <div className="input-group">
+          <label>{t('filters.eldercare.medicalAccompaniment')}</label>
+          <select
+            value={serviceDetails.medicalAccompaniment || ''}
+            onChange={(e) => handleServiceDetailsChange('medicalAccompaniment', e.target.value)}
+            className="standard-input"
+            data-field="medicalAccompaniment"
+          >
+            <option value="">{t('filters.noMatter')}</option>
+            <option value="yes">{t('common.yes')}</option>
+            <option value="no">{t('common.no')}</option>
+          </select>
+        </div>
+
+        <div className="input-group">
+          <label>{t('filters.eldercare.vehicleForOutings')}</label>
+          <select
+            value={serviceDetails.vehicleForOutings || ''}
+            onChange={(e) => handleServiceDetailsChange('vehicleForOutings', e.target.value)}
+            className="standard-input"
+            data-field="vehicleForOutings"
+          >
+            <option value="">{t('filters.noMatter')}</option>
+            <option value="yes">{t('common.yes')}</option>
+            <option value="no">{t('common.no')}</option>
+          </select>
         </div>
       </div>
 

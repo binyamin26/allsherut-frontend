@@ -181,6 +181,26 @@ case 'teachingMode':
   }
   break;
 
+case 'qualifications':
+  if (value === 'yes') {
+    // Provider a rempli le champ (non vide et différent de 'לא צוין')
+    conditions.push(`(
+      sp.service_details->>'$.qualifications' IS NOT NULL 
+      AND sp.service_details->>'$.qualifications' != '' 
+      AND sp.service_details->>'$.qualifications' != 'לא צוין'
+    )`);
+    console.log(`[buildAdvancedFilters] Condition qualifications=yes ajoutée`);
+  } else if (value === 'no') {
+    // Provider n'a pas rempli ou a 'לא צוין'
+    conditions.push(`(
+      sp.service_details->>'$.qualifications' IS NULL 
+      OR sp.service_details->>'$.qualifications' = '' 
+      OR sp.service_details->>'$.qualifications' = 'לא צוין'
+    )`);
+    console.log(`[buildAdvancedFilters] Condition qualifications=no ajoutée`);
+  }
+  break;
+
       // Filtres spécifiques cleaning
       case 'legalStatus':
         conditions.push(`sp.availability->>'$.legalStatus' = ?`);

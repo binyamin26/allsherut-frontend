@@ -14,7 +14,6 @@ export const FILTER_CONFIG = {
       { value: 'רביעי', key: 'days.wednesday' },
       { value: 'חמישי', key: 'days.thursday' },
       { value: 'שישי', key: 'days.friday' },
-      { value: 'שבת', key: 'days.saturday' },
       { value: 'כל השבוע', key: 'days.allWeek' }
     ],
     hours: [
@@ -88,8 +87,9 @@ export const FILTER_CONFIG = {
   // ═══════════════════════════════════════════════════════════════
   // CLEANING
   // ═══════════════════════════════════════════════════════════════
-  cleaning: {
+ cleaning: {
     sectionTitles: {
+      legalStatus: 'filters.cleaning.legalStatus',
       homeCleaning: 'filters.cleaning.homeCleaning',
       officeCleaning: 'filters.cleaning.officeCleaning',
       specialCleaning: 'filters.cleaning.specialCleaning',
@@ -99,6 +99,11 @@ export const FILTER_CONFIG = {
       availableDays: 'filters.cleaning.availableDays',
       availableHours: 'filters.cleaning.availableHours'
     },
+    legalStatus: [
+      { value: '', key: 'filters.noMatter' },
+      { value: 'חברה', key: 'filters.cleaning.company' },
+      { value: 'עצמאי', key: 'filters.cleaning.independent' }
+    ],
     homeCleaning: [
       { value: 'ניקיון שוטף', key: 'filters.cleaning.regularCleaning' },
       { value: 'ניקיון פסח', key: 'filters.cleaning.passoverCleaning' },
@@ -244,11 +249,13 @@ export const FILTER_CONFIG = {
   // ═══════════════════════════════════════════════════════════════
   // ELDERCARE
   // ═══════════════════════════════════════════════════════════════
-  eldercare: {
+eldercare: {
     sectionTitles: {
       careTypes: 'filters.eldercare.careTypes',
       availability: 'filters.eldercare.availability',
       specificConditions: 'filters.eldercare.specificConditions',
+      certification: 'filters.eldercare.certification',
+      languages: 'filters.eldercare.languages',
       administrativeHelp: 'filters.eldercare.administrativeHelp',
       medicalAccompaniment: 'filters.eldercare.medicalAccompaniment',
       vehicleForOutings: 'filters.eldercare.vehicleForOutings'
@@ -275,17 +282,41 @@ export const FILTER_CONFIG = {
       { value: 'סוכרת', key: 'filters.eldercare.diabetes' },
       { value: 'בעיות ניידות', key: 'filters.eldercare.mobilityIssues' },
       { value: 'דמנציה', key: 'filters.eldercare.dementia' }
+    ],
+    languages: [
+      { value: 'עברית', key: 'languages.hebrew' },
+      { value: 'ערבית', key: 'languages.arabic' },
+      { value: 'רוסית', key: 'languages.russian' },
+      { value: 'אנגלית', key: 'languages.english' },
+      { value: 'ספרדית', key: 'languages.spanish' },
+      { value: 'צרפתית', key: 'languages.french' }
+    ],
+    administrativeHelp: [
+      { value: '', key: 'filters.noMatter' },
+      { value: 'yes', key: 'common.yes' },
+      { value: 'no', key: 'common.no' }
+    ],
+    medicalAccompaniment: [
+      { value: '', key: 'filters.noMatter' },
+      { value: 'yes', key: 'common.yes' },
+      { value: 'no', key: 'common.no' }
+    ],
+    vehicleForOutings: [
+      { value: '', key: 'filters.noMatter' },
+      { value: 'yes', key: 'common.yes' },
+      { value: 'no', key: 'common.no' }
     ]
   },
 
   // ═══════════════════════════════════════════════════════════════
   // TUTORING
   // ═══════════════════════════════════════════════════════════════
-  tutoring: {
+tutoring: {
     sectionTitles: {
       levels: 'filters.tutoring.studyLevels',
       teachingMode: 'filters.tutoring.teachingMode',
-      specializations: 'filters.tutoring.specializations'
+      specializations: 'filters.tutoring.specializations',
+      qualifications: 'filters.tutoring.qualifications'
     },
     levels: [
       { value: 'יסודי', key: 'filters.tutoring.elementary' },
@@ -305,6 +336,11 @@ export const FILTER_CONFIG = {
     specializations: [
       { value: 'הכנה לבחינות', key: 'filters.tutoring.examPrep' },
       { value: 'הפרעות למידה', key: 'filters.tutoring.learningDisabilities' }
+    ],
+     qualifications: [
+      { value: '', key: 'filters.common.noMatter' },
+      { value: 'yes', key: 'filters.tutoring.hasQualifications' },
+      { value: 'no', key: 'filters.tutoring.noQualifications' }
     ]
   },
 
@@ -345,14 +381,18 @@ laundry: {
       { value: 'התקנות', key: 'filters.electrician.installations' },
       { value: 'עבודות חשמל גדולות', key: 'filters.electrician.largeElectricalWork' }
     ],
-    repairTypes: [
-      { value: 'תיקון קצר', key: 'filters.electrician.shortCircuitRepair' },
-      { value: 'תיקון טיימר', key: 'filters.electrician.timerRepair' },
-      { value: 'תיקון לוח חשמל', key: 'filters.electrician.panelRepair' },
-      { value: 'החלפת שקעים', key: 'filters.electrician.outletReplacement' },
-      { value: 'תיקון\\החלפת ספוטים', key: 'filters.electrician.spotlightRepair' },
-      { value: 'תיקונים אחרים', key: 'filters.electrician.otherRepairs' },
-      { value: 'החלפת אוטומט חדר מדרגות', key: 'filters.electrician.stairwaySwitch' }
+  repairTypes: [
+      { value: 'תיקון מזגן', key: 'filters.ac.acRepair' },
+      { value: 'תיקון מזגן מעובש', key: 'filters.ac.moldyAcRepair' },
+      { value: 'תיקון מיזוג מיני מרכזי', key: 'filters.ac.miniCentralRepair' },
+      { value: 'תיקון דליפת גז במזגן', key: 'filters.ac.gasLeakRepair' },
+      { value: 'תיקון מיזוג מרכזי', key: 'filters.ac.centralRepair' },
+      { value: 'תיקון מזגן אינוורטר', key: 'filters.ac.inverterRepair' },
+      { value: 'תיקון מזגן VRF', key: 'filters.ac.vrfRepair' },
+      { value: 'ניקוי פילטרים', key: 'filters.ac.filterCleaning' },
+      { value: 'תיקון צ\'ילרים', key: 'filters.ac.chillerRepair' },
+      { value: 'טכנאי חדרי קירור', key: 'filters.ac.coldRoomTech' },
+      { value: 'מילוי גז', key: 'filters.ac.gasRefill' }
     ],
     installationTypes: [
       { value: 'התקנת מאוורר תקרה', key: 'filters.electrician.ceilingFan' },
@@ -419,7 +459,7 @@ laundry: {
       { value: 'החלפת קו ביוב בבניין', key: 'filters.plumbing.buildingSewerReplacement' },
       { value: 'הקמת קו ביוב חדש', key: 'filters.plumbing.newSewerLine' },
       { value: 'החלפת צנרת בגינה', key: 'filters.plumbing.gardenPipeReplacement' },
-      { value: 'התקנת מזח', key: 'filters.plumbing.dockInstallation' }
+      { value: 'התקנת מזח', key: 'filters.plumbing.pierInstallation' }
     ],
     fixtureTypes: [
       { value: 'התקנת בר מים', key: 'filters.plumbing.waterBar' },

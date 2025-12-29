@@ -1012,6 +1012,13 @@ const CleaningFilters = ({ filters, handleFilterChange, handleCheckboxChange, ha
         onFilterChange={handleFilterChange}
       />
 
+<SelectSection 
+        title={t(config.sectionTitles.legalStatus)}
+        options={config.legalStatus.map(o => ({ value: o.value, label: t(o.key) }))}
+        filterKey="legalStatus"
+        filters={filters}
+        onFilterChange={handleFilterChange}
+      />
       <AvailabilityDaysSection 
         filters={filters} 
         onExclusiveCheckbox={handleExclusiveCheckbox}
@@ -1287,17 +1294,24 @@ const { t, currentLanguage } = useLanguage();
         onFilterChange={handleFilterChange}
       />
 
-      <CheckboxSection 
+  <CheckboxSection 
         title={t(config.sectionTitles.specializations)}
         options={config.specializations.map(o => ({ value: o.value, label: t(o.key) }))}
         filterKey="specializations"
         filters={filters}
         onCheckboxChange={handleCheckboxChange}
       />
+
+      <SelectSection 
+        title={t(config.sectionTitles.qualifications)}
+        options={config.qualifications.map(o => ({ value: o.value, label: t(o.key) }))}
+        filterKey="qualifications"
+        filters={filters}
+        onFilterChange={handleFilterChange}
+      />
     </div>
   );
 };
-
 // Placeholders pour les autres services (même pattern)
 const LaundryFilters = ({ filters, handleFilterChange, handleCheckboxChange, handleExclusiveCheckbox }) => {
   const { t } = useLanguage();

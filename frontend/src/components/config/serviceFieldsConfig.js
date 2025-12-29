@@ -234,7 +234,7 @@ const serviceFieldsConfig = {
     ]
   },
 
-  eldercare: {
+ eldercare: {
     fields: [
       { 
         name: 'careTypes', 
@@ -243,8 +243,8 @@ const serviceFieldsConfig = {
         options: ['ליווי ותמיכה', 'עזרה בניקיון הבית', 'בישול והכנת אוכל', 'קניות ומשימות', 'מתן תרופות', 'ליווי לרופאים']
       },
       { name: 'certification', label: 'serviceFields.eldercare.certification', type: 'text' },
-      { 
-        name: 'availability', 
+    { 
+        name: 'availability_hours', 
         label: 'serviceFields.eldercare.availability', 
         type: 'checkbox',
         options: ['בוקר', 'צהריים', 'אחר הצהריים', 'ערב', 'לילה', '24/7']
@@ -264,6 +264,7 @@ const serviceFieldsConfig = {
       }
     ]
   },
+
 
   laundry: {
     fields: [

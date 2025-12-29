@@ -80,7 +80,7 @@ const PetcareForm = ({ serviceDetails, errors, handleServiceDetailsChange, handl
   <option value="">{t('serviceForm.petcare.selectLocation')}</option>
   <option value="בבית הלקוח">{t('filters.petcare.clientHome')}</option>
   <option value="בבית המטפל">{t('filters.petcare.caregiverHome')}</option>
-  <option value="פנסיון לבעלי חיים">{t('filters.petcare.petBoarding')}</option>
+  <option value="שניהם">{t('filters.common.both')}</option>
 </select>
           {errors['serviceDetails.location'] && <span className="error-text">{errors['serviceDetails.location']}</span>}
         </div>

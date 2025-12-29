@@ -93,7 +93,7 @@ const AirConditioningForm = ({ serviceDetails, errors, handleServiceDetailsChang
           {errors['serviceDetails.availability_hours'] && <span className="error-text">{errors['serviceDetails.availability_hours']}</span>}
         </div>
 
-        <div className="input-group">
+   <div className="input-group">
      <label>{t('serviceForm.common.workTypes')}</label>
           
           <div style={{marginBottom: '20px'}}>
@@ -116,31 +116,26 @@ const AirConditioningForm = ({ serviceDetails, errors, handleServiceDetailsChang
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="installation_types">
                {[
-  { value: 'תיקון מזגן', label: t('serviceForm.airConditioning.repairAC') },
-  { value: 'מילוי גז', label: t('serviceForm.airConditioning.gasRefill') },
-  { value: 'תיקון מזגן מעובש', label: t('serviceForm.airConditioning.repairMoldy') },
-  { value: 'תיקון מיזוג מיני מרכזי', label: t('serviceForm.airConditioning.repairMiniCentral') },
-  { value: 'תיקון דליפת גז במזגן', label: t('serviceForm.airConditioning.repairGasLeak') },
-  { value: 'תיקון מיזוג מרכזי', label: t('serviceForm.airConditioning.repairCentral') },
-  { value: 'תיקון מזגן אינוורטר', label: t('serviceForm.airConditioning.repairInverter') },
-  { value: 'תיקון מזגן VRF', label: t('serviceForm.airConditioning.repairVRF') },
-  { value: 'ניקוי פילטרים', label: t('serviceForm.airConditioning.filterCleaning') },
-  { value: 'תיקון צ\'ילרים', label: t('serviceForm.airConditioning.repairChillers') },
-  { value: 'טכנאי חדרי קירור', label: t('serviceForm.airConditioning.coldRoomTech') }
+  { value: 'התקנת מזגן', key: 'filters.ac.acInstall' },
+  { value: 'התקנת מיזוג מיני מרכזי', key: 'filters.ac.miniCentralInstall' },
+  { value: 'התקנת מיזוג מרכזי', key: 'filters.ac.centralInstall' },
+  { value: 'התקנת מזגן אינוורטר', key: 'filters.ac.inverterInstall' },
+  { value: 'התקנת מזגן מולטי אינוורטר', key: 'filters.ac.multiInverterInstall' },
+  { value: 'התקנת מזגן VRF', key: 'filters.ac.vrfInstall' }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
       type="checkbox"
-      checked={serviceDetails.repair_types?.includes(type.value) || false}
+      checked={serviceDetails.installation_types?.includes(type.value) || false}
       onChange={(e) => {
-        const current = serviceDetails.repair_types || [];
+        const current = serviceDetails.installation_types || [];
         const newTypes = e.target.checked 
           ? [...current, type.value]
           : current.filter(t => t !== type.value);
-        handleServiceDetailsChange('repair_types', newTypes);
+        handleServiceDetailsChange('installation_types', newTypes);
       }}
     />
-    {type.label}
+    {t(type.key)}
   </label>
 ))}
                 </div>
@@ -169,17 +164,17 @@ const AirConditioningForm = ({ serviceDetails, errors, handleServiceDetailsChang
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="repair_types">
                   {[
-  { value: 'תיקון מזגן', label: t('serviceForm.airConditioning.repairAC') },
-  { value: 'מילוי גז', label: t('serviceForm.airConditioning.gasRefill') },
-  { value: 'תיקון מזגן מעובש', label: t('serviceForm.airConditioning.repairMoldy') },
-  { value: 'תיקון מיזוג מיני מרכזי', label: t('serviceForm.airConditioning.repairMiniCentral') },
-  { value: 'תיקון דליפת גז במזגן', label: t('serviceForm.airConditioning.repairGasLeak') },
-  { value: 'תיקון מיזוג מרכזי', label: t('serviceForm.airConditioning.repairCentral') },
-  { value: 'תיקון מזגן אינוורטר', label: t('serviceForm.airConditioning.repairInverter') },
-  { value: 'תיקון מזגן VRF', label: t('serviceForm.airConditioning.repairVRF') },
-  { value: 'ניקוי פילטרים', label: t('serviceForm.airConditioning.filterCleaning') },
-  { value: 'תיקון צ\'ילרים', label: t('serviceForm.airConditioning.repairChillers') },
-  { value: 'טכנאי חדרי קירור', label: t('serviceForm.airConditioning.coldRoomTech') }
+  { value: 'תיקון מזגן', key: 'filters.ac.acRepair' },
+  { value: 'תיקון מזגן מעובש', key: 'filters.ac.moldyAcRepair' },
+  { value: 'תיקון מיזוג מיני מרכזי', key: 'filters.ac.miniCentralRepair' },
+  { value: 'תיקון דליפת גז במזגן', key: 'filters.ac.gasLeakRepair' },
+  { value: 'תיקון מיזוג מרכזי', key: 'filters.ac.centralRepair' },
+  { value: 'תיקון מזגן אינוורטר', key: 'filters.ac.inverterRepair' },
+  { value: 'תיקון מזגן VRF', key: 'filters.ac.vrfRepair' },
+  { value: 'ניקוי פילטרים', key: 'filters.ac.filterCleaning' },
+  { value: 'תיקון צ\'ילרים', key: 'filters.ac.chillerRepair' },
+  { value: 'טכנאי חדרי קירור', key: 'filters.ac.coldRoomTech' },
+  { value: 'מילוי גז', key: 'filters.ac.gasRefill' }
 ].map(type => (
                     <label key={type.value} className="checkbox-item">
                       <input
@@ -193,7 +188,7 @@ const AirConditioningForm = ({ serviceDetails, errors, handleServiceDetailsChang
                           handleServiceDetailsChange('repair_types', newTypes);
                         }}
                       />
-                      {type.label}
+                      {t(type.key)}
                     </label>
                   ))}
                 </div>
@@ -222,31 +217,25 @@ const AirConditioningForm = ({ serviceDetails, errors, handleServiceDetailsChang
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="disassembly_types">
                 {[
-  { value: 'תיקון מזגן', label: t('serviceForm.airConditioning.repairAC') },
-  { value: 'מילוי גז', label: t('serviceForm.airConditioning.gasRefill') },
-  { value: 'תיקון מזגן מעובש', label: t('serviceForm.airConditioning.repairMoldy') },
-  { value: 'תיקון מיזוג מיני מרכזי', label: t('serviceForm.airConditioning.repairMiniCentral') },
-  { value: 'תיקון דליפת גז במזגן', label: t('serviceForm.airConditioning.repairGasLeak') },
-  { value: 'תיקון מיזוג מרכזי', label: t('serviceForm.airConditioning.repairCentral') },
-  { value: 'תיקון מזגן אינוורטר', label: t('serviceForm.airConditioning.repairInverter') },
-  { value: 'תיקון מזגן VRF', label: t('serviceForm.airConditioning.repairVRF') },
-  { value: 'ניקוי פילטרים', label: t('serviceForm.airConditioning.filterCleaning') },
-  { value: 'תיקון צ\'ילרים', label: t('serviceForm.airConditioning.repairChillers') },
-  { value: 'טכנאי חדרי קירור', label: t('serviceForm.airConditioning.coldRoomTech') }
+  { value: 'פירוק והרכבת מזגן', key: 'filters.ac.acDisassembly' },
+  { value: 'פירוק מיזוג מיני מרכזי', key: 'filters.ac.miniCentralDisassembly' },
+  { value: 'פירוק מיזוג מרכזי', key: 'filters.ac.centralDisassembly' },
+  { value: 'פירוק מזגן אינוורטר', key: 'filters.ac.inverterDisassembly' },
+  { value: 'פירוק מזגן VRF', key: 'filters.ac.vrfDisassembly' }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
       type="checkbox"
-      checked={serviceDetails.repair_types?.includes(type.value) || false}
+      checked={serviceDetails.disassembly_types?.includes(type.value) || false}
       onChange={(e) => {
-        const current = serviceDetails.repair_types || [];
+        const current = serviceDetails.disassembly_types || [];
         const newTypes = e.target.checked 
           ? [...current, type.value]
           : current.filter(t => t !== type.value);
-        handleServiceDetailsChange('repair_types', newTypes);
+        handleServiceDetailsChange('disassembly_types', newTypes);
       }}
     />
-    {type.label}
+    {t(type.key)}
   </label>
 ))}
                 </div>
@@ -259,6 +248,7 @@ const AirConditioningForm = ({ serviceDetails, errors, handleServiceDetailsChang
         </div>
       </div>
     </div>
+
   );
 };
 

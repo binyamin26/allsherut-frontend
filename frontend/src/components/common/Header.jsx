@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Menu, X, Home, Users, Heart, BookOpen, UserCheck, Sparkles, Baby, LogOut, Shirt, Zap, Wrench, Wind, Flame, Package, Layers, Hammer, PartyPopper, ChefHat, Paintbrush, Droplets, HardHat, Frame, Square, Key} from 'lucide-react'
+// Remplacer l'import actuel par :
+import { Menu, X, Home, Users, Heart, BookOpen, UserCheck, Sparkles, Baby, LogOut, Shirt, Zap, Wrench, Wind, Flame, Package, Layers, Hammer, PartyPopper, ChefHat, Paintbrush, Droplets, HardHat, Frame, Square, Key, Leaf, PawPrint } from 'lucide-react'
 import { useAuth } from '../../context/AuthContext'
 import AuthModal from '../auth/AuthModal'
 import { useLanguage } from '../../context/LanguageContext'
@@ -17,8 +18,8 @@ const Header = () => {
   const services = [
     { icon: <Baby className="w-5 h-5" />, nameKey: 'services.babysitting', descKey: 'services.babysitting.desc', href: '/services/babysitting' },
     { icon: <Sparkles className="w-5 h-5" />, nameKey: 'services.cleaning', descKey: 'services.cleaning.desc', href: '/services/cleaning' },
-    { icon: <Heart className="w-5 h-5" />, nameKey: 'services.gardening', descKey: 'services.gardening.desc', href: '/services/gardening' },
-    { icon: <Heart className="w-5 h-5" />, nameKey: 'services.petcare', descKey: 'services.petcare.desc', href: '/services/petcare' },
+   { icon: <Leaf className="w-5 h-5" />, nameKey: 'services.gardening', descKey: 'services.gardening.desc', href: '/services/gardening' },
+{ icon: <PawPrint className="w-5 h-5" />, nameKey: 'services.petcare', descKey: 'services.petcare.desc', href: '/services/petcare' },
     { icon: <BookOpen className="w-5 h-5" />, nameKey: 'services.tutoring', descKey: 'services.tutoring.desc', href: '/services/tutoring' },
     { icon: <UserCheck className="w-5 h-5" />, nameKey: 'services.eldercare', descKey: 'services.eldercare.desc', href: '/services/eldercare' },
     { icon: <Shirt className="w-5 h-5" />, nameKey: 'services.laundry', descKey: 'services.laundry.desc', href: '/services/laundry' },

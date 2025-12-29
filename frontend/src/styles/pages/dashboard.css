@@ -702,11 +702,12 @@
 
 .provider-header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--space-6);
   margin-bottom: var(--space-8);
   padding-bottom: var(--space-6);
   border-bottom: 1px solid var(--neutral-200);
+  flex-wrap: wrap;
 }
 
 
@@ -827,6 +828,8 @@ body .dashboard-page .info-section h3.section-title {
   font-weight: 600;
   color: var(--neutral-800);
   font-family: var(--font-primary);
+  word-break: break-all;
+  overflow-wrap: break-word;
 }
 
 .service-description {
@@ -1165,12 +1168,17 @@ body .dashboard-page .info-section h3.section-title {
   font-family: var(--font-primary);
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .provider-header {
     flex-direction: column;
     text-align: center;
     gap: var(--space-4);
+  }
+  
+  .provider-header > div:last-child {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
   }
   
   .contact-grid,

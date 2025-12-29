@@ -21,9 +21,10 @@ import BecomeProviderPage from "./pages/BecomeProviderPage";
 import ContactPage from "./pages/ContactPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import ResetPasswordPage from './pages/ResetPasswordPage';
-import BillingPage from './pages/BillingPage';
+// PAIEMENT DÉSACTIVÉ - RÉACTIVER QUAND SITE PAYANT
+// import BillingPage from './pages/BillingPage';
 import HowItWorksPage from './pages/HowItWorksPage';
-import PricingPage from './pages/PricingPage';
+// import PricingPage from './pages/PricingPage';
 import TermsOfService from './pages/TermsOfService';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 
@@ -163,11 +164,15 @@ function App() {
               
                 {/* Page de détails provider */}
                 <Route path="/provider/:id" element={<ProviderDetailPage />} />
-                
-                {/* Pages informatives */}
+            
+             {/* Pages informatives */}
+                {/* PAIEMENT DÉSACTIVÉ - RÉACTIVER QUAND SITE PAYANT
                 <Route path="/billing" element={<BillingPage />} />
+                */}
                 <Route path="/how-it-works" element={<HowItWorksPage />} />
-                <Route path="/pricing" element={<PricingPage />} />  
+                {/* PAIEMENT DÉSACTIVÉ - RÉACTIVER QUAND SITE PAYANT
+                <Route path="/pricing" element={<PricingPage />} />
+                */}  
                 <Route path="/terms" element={<TermsOfService />} />
 <Route path="/privacy" element={<PrivacyPolicy />} />               
                 

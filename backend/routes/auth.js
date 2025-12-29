@@ -1276,11 +1276,12 @@ body('hourlyRate').optional({ nullable: true, checkFalsy: true }).isFloat({ min:
       // Appeler la méthode de mise à jour
       await user.updateFullProfile(updateData);
 
-      // Récupérer les données mises à jour
+   // Récupérer les données mises à jour
       let responseData = user.toJSON();
       
       if (user.role === 'provider') {
-        responseData.providerProfile = await user.getFullProviderProfile();
+        const activeService = req.body.activeServiceType || user.service_type;
+        responseData.providerProfile = await user.getProviderProfileForService(activeService);
       }
 
       console.log('✅ Profil mis à jour avec succès');

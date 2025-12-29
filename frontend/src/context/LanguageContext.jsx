@@ -514,6 +514,9 @@ const translations = {
     'filters.cleaning.providesEquipment': 'מספק ציוד',
     'filters.cleaning.noEquipment': 'לא מספק ציוד',
     'filters.cleaning.partialEquipment': 'ציוד חלקי',
+    'filters.cleaning.legalStatus': 'סטטוס משפטי',
+'filters.cleaning.company': 'חברה',
+'filters.cleaning.independent': 'עצמאי',
 
     // ═══════════════════════════════════════════════════════════════
     // GARDENING
@@ -641,6 +644,9 @@ const translations = {
     'filters.tutoring.both': 'שניהם',
     'filters.tutoring.examPrep': 'הכנה לבחינות',
     'filters.tutoring.learningDisabilities': 'הפרעות למידה',
+    'filters.tutoring.hasQualifications': 'יש השכלה/הסמכות',
+'filters.tutoring.noQualifications': 'לא צוין',
+'filters.tutoring.qualifications': 'השכלה והסמכות',
 
     // ═══════════════════════════════════════════════════════════════
     // LAUNDRY
@@ -2984,6 +2990,9 @@ const translations = {
     'filters.cleaning.providesEquipment': 'Provides equipment',
     'filters.cleaning.noEquipment': 'No equipment',
     'filters.cleaning.partialEquipment': 'Partial equipment',
+    'filters.cleaning.legalStatus': 'Legal status',
+'filters.cleaning.company': 'Company',
+'filters.cleaning.independent': 'Independent',
 
     // ═══════════════════════════════════════════════════════════════
     // GARDENING
@@ -3055,6 +3064,8 @@ const translations = {
 'filters.petcare.veterinaryServices': 'Veterinary services',
 'filters.petcare.vetVisit': 'Vet visit',
 'filters.petcare.basicCare': 'Basic care',
+'filters.common.noMatter': 'No preference',
+'filters.common.both': 'Both',
 
     // ═══════════════════════════════════════════════════════════════
     // ELDERCARE
@@ -3109,6 +3120,9 @@ const translations = {
     'filters.tutoring.both': 'Both',
     'filters.tutoring.examPrep': 'Exam preparation',
     'filters.tutoring.learningDisabilities': 'Learning disabilities',
+    'filters.tutoring.hasQualifications': 'Has qualifications',
+'filters.tutoring.noQualifications': 'Not specified',
+'filters.tutoring.qualifications': 'Qualifications',
 
     // ═══════════════════════════════════════════════════════════════
     // LAUNDRY
@@ -5468,6 +5482,9 @@ const translations = {
     'filters.cleaning.providesEquipment': 'Предоставляет оборудование',
     'filters.cleaning.noEquipment': 'Без оборудования',
     'filters.cleaning.partialEquipment': 'Частичное оборудование',
+    'filters.cleaning.legalStatus': 'Юридический статус',
+'filters.cleaning.company': 'Компания',
+'filters.cleaning.independent': 'Самозанятый',
 
     // ═══════════════════════════════════════════════════════════════
     // GARDENING
@@ -5539,6 +5556,8 @@ const translations = {
 'filters.petcare.veterinaryServices': 'Ветеринарные услуги',
 'filters.petcare.vetVisit': 'Визит к ветеринару',
 'filters.petcare.basicCare': 'Базовый уход',
+'filters.common.noMatter': 'Не важно',
+'filters.common.both': 'Оба варианта',
 
     // ═══════════════════════════════════════════════════════════════
     // ELDERCARE
@@ -5593,6 +5612,9 @@ const translations = {
     'filters.tutoring.both': 'Оба формата',
     'filters.tutoring.examPrep': 'Подготовка к экзаменам',
     'filters.tutoring.learningDisabilities': 'Трудности в обучении',
+    'filters.tutoring.hasQualifications': 'Есть квалификация',
+'filters.tutoring.noQualifications': 'Не указано',
+'filters.tutoring.qualifications': 'Дипломы и сертификаты',
 
     // ═══════════════════════════════════════════════════════════════
     // LAUNDRY
@@ -7940,6 +7962,9 @@ const translations = {
     'filters.cleaning.providesEquipment': 'Fournit l\'équipement',
     'filters.cleaning.noEquipment': 'Sans équipement',
     'filters.cleaning.partialEquipment': 'Équipement partiel',
+    'filters.cleaning.legalStatus': 'Statut juridique',
+'filters.cleaning.company': 'Société',
+'filters.cleaning.independent': 'Indépendant',
 
     // ═══════════════════════════════════════════════════════════════
     // GARDENING
@@ -8011,6 +8036,8 @@ const translations = {
 'filters.petcare.veterinaryServices': 'Services vétérinaires',
 'filters.petcare.vetVisit': 'Visite vétérinaire',
 'filters.petcare.basicCare': 'Soins de base',
+'filters.common.noMatter': 'Peu importe',
+'filters.common.both': 'Les deux',
 
     // ═══════════════════════════════════════════════════════════════
     // ELDERCARE
@@ -8065,6 +8092,9 @@ const translations = {
     'filters.tutoring.both': 'Les deux',
     'filters.tutoring.examPrep': 'Préparation aux examens',
     'filters.tutoring.learningDisabilities': 'Troubles d\'apprentissage',
+    'filters.tutoring.hasQualifications': 'Diplômes/Certifications',
+'filters.tutoring.noQualifications': 'Non spécifié',
+'filters.tutoring.qualifications': 'Diplômes et certifications',
 
     // ═══════════════════════════════════════════════════════════════
     // LAUNDRY

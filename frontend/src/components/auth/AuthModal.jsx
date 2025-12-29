@@ -77,11 +77,11 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
     profileImagePreview: null,
     workingAreas: [],
     serviceDetails: {},
-    tranziliaToken: null,
-    acceptAutoRenewal: false,
-    cardNumber: '',
-    cardExpiry: '',
-    cardCvv: ''
+    // tranziliaToken: null,
+    // acceptAutoRenewal: false,
+    // cardNumber: '',
+    // cardExpiry: '',
+    // cardCvv: ''
   });
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -700,13 +700,13 @@ case 'gardening':
         if (!serviceDetails.teachingMode) newErrors['serviceDetails.teachingMode'] = 'אופן הוראה נדרש';
         break;
 
-      case 'eldercare':
+     case 'eldercare':
         if (!serviceDetails.careTypes || serviceDetails.careTypes.length === 0) newErrors['serviceDetails.careTypes'] = 'יש לבחור סוגי טיפול';
         if (!serviceDetails.certification) newErrors['serviceDetails.certification'] = 'הכשרה/הסמכה נדרשת';
-        if (!serviceDetails.availability || serviceDetails.availability.length === 0) newErrors['serviceDetails.availability'] = 'יש לבחור זמינות';
+        if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) newErrors['serviceDetails.availability_hours'] = 'יש לבחור זמינות';
         if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = 'ניסיון עם קשישים נדרש';
         break;
-
+        
 case 'electrician':
   if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = 'שנות ניסיון נדרשות';
   if (!serviceDetails.work_types || serviceDetails.work_types.length === 0) {
@@ -1414,12 +1414,13 @@ const handleStep2Submit = (e) => {
   console.log('✅ Validation result:', isValid);
   console.log('❌ Errors après validation:', errors);
   
-  if (!isValid) {
+if (!isValid) {
     console.log('❌ Validation échouée - arrêt');
     return;
   }
   
-  setStep(3);
+  // Soumettre directement sans passer par l'étape paiement
+  handleFinalSubmit();
 };
 
   const handleStep3Submit = async (e) => {
@@ -2044,12 +2045,14 @@ const renderWorkingAreasSection = () => {
     {t('auth.checkingEmail')}
   </>
 ) : (
-  t('auth.continueToPayment')
+  t('auth.completeRegistration')
 )}
                 </button>
               </div>
             </form>
           )}
+
+          {/* PAIEMENT DÉSACTIVÉ - RÉACTIVER QUAND SITE PAYANT
 
           {mode === 'register' && step === 3 && (
             <form onSubmit={handleStep3Submit} className="auth-form">
@@ -2129,6 +2132,7 @@ const renderWorkingAreasSection = () => {
               </div>
             </form>
           )}
+              */}
         </div>
       </div>
 
