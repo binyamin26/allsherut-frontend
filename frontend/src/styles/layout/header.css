@@ -6,8 +6,10 @@ header {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
   box-shadow: var(--shadow-sm);
   transition: all var(--transition-medium);
@@ -479,5 +481,22 @@ nav {
   .mobile-menu .cta-button {
     width: 100%;
     margin-bottom: var(--space-2);
+  }
+}
+
+/* Compenser le header fixe */
+body {
+  padding-top: 80px;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-top: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding-top: 64px;
   }
 }

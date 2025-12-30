@@ -1846,21 +1846,31 @@ const parseJsonObject = (value) => {
       }
     }
 
-    // ✅ CONSTRUCTION COMPLÈTE avec colonnes babysitting
+// Parser le JSON d'abord
+    const parsedServiceDetails = parseJsonObject(profile.service_details);
+    
+    // ✅ CONSTRUCTION COMPLÈTE avec TOUS les alias
     const serviceDetails = {
-      experience_years: profile.experience_years,
-      hourly_rate: profile.hourly_rate,
+      // Colonnes DB
+      experience_years: profile.experience_years || 0,
+      hourly_rate: profile.hourly_rate || 0,
       description: profile.description,
       availability: parseJsonSafe(profile.availability),
-      languages: parseJsonSafe(profile.languages),
-      certifications: parseJsonSafe(profile.certifications),
-      // ✅ Colonnes spécifiques babysitting
       availability_days: parseJsonSafe(profile.availability_days),
       availability_hours: parseJsonSafe(profile.availability_hours),
+      languages: parseJsonSafe(profile.languages),
+      certifications: parseJsonSafe(profile.certifications),
       babysitting_types: parseJsonSafe(profile.babysitting_types),
       can_travel_alone: profile.can_travel_alone === 1,
-      // ✅ Données JSON service_details
-      ...parseJsonObject(profile.service_details)
+      
+      // Données JSON
+      ...parsedServiceDetails,
+      
+      // ✅ ALIAS pour compatibilité Dashboard
+      experienceYears: profile.experience_years || parsedServiceDetails.experience || 0,
+      experience: profile.experience_years || parsedServiceDetails.experience || 0,
+      hourlyRate: profile.hourly_rate || parsedServiceDetails.hourlyRate || parsedServiceDetails.rate || 0,
+      rate: profile.hourly_rate || parsedServiceDetails.rate || 0
     };
 
     console.log('✅ serviceDetails construit:', Object.keys(serviceDetails));
@@ -1971,14 +1981,30 @@ async getProviderProfileForService(serviceType) {
       }
     }
 
+// Parser le JSON d'abord
+    const parsedServiceDetails = parseJsonObject(profile.service_details);
+    
     const serviceDetails = {
-      experience_years: profile.experience_years,
-      hourly_rate: profile.hourly_rate,
+      // Colonnes DB
+      experience_years: profile.experience_years || 0,
+      hourly_rate: profile.hourly_rate || 0,
       description: profile.description,
       availability: parseJsonSafe(profile.availability),
+      availability_days: parseJsonSafe(profile.availability_days),
+      availability_hours: parseJsonSafe(profile.availability_hours),
       languages: parseJsonSafe(profile.languages),
       certifications: parseJsonSafe(profile.certifications),
-      ...parseJsonObject(profile.service_details)
+      babysitting_types: parseJsonSafe(profile.babysitting_types),
+      can_travel_alone: profile.can_travel_alone === 1,
+      
+      // Données JSON
+      ...parsedServiceDetails,
+      
+      // ✅ ALIAS pour compatibilité (le Dashboard cherche ces noms)
+      experienceYears: profile.experience_years || parsedServiceDetails.experience || 0,
+      experience: profile.experience_years || parsedServiceDetails.experience || 0,
+      hourlyRate: profile.hourly_rate || parsedServiceDetails.hourlyRate || parsedServiceDetails.rate || 0,
+      rate: profile.hourly_rate || parsedServiceDetails.rate || 0
     };
 
     console.log('✅ Profil complet construit pour', serviceType);

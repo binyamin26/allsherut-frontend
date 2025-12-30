@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './ProviderRegistration.css';
+import { useAuth } from '../context/AuthContext';
 
 // Import tous les formulaires de services
 import BabysittingForm from '../components/services/babysitting/BabysittingForm';
@@ -30,6 +31,7 @@ import LocksmithForm from '../components/services/locksmith/LocksmithForm';
 
 const ProviderRegistration = () => {
   const navigate = useNavigate();
+  const { setUser } = useAuth();
   const [currentStep, setCurrentStep] = useState(1);
   const [errors, setErrors] = useState({});
 
@@ -323,11 +325,33 @@ const ProviderRegistration = () => {
           'Content-Type': 'multipart/form-data'
         }
       });
-
-      if (response.data.success) {
-        alert('ההרשמה הושלמה בהצלחה!');
-        navigate('/provider/dashboard');
+if (response.data.success) {
+  // ✅ Stocker le token
+  localStorage.setItem('homesherut_token', response.data.data.token);
+  
+  // ✅ Récupérer le profil COMPLET depuis le serveur
+  const serviceType = formData.serviceType;
+  const meResponse = await axios.get(
+    `http://localhost:5000/api/auth/me?service_type=${serviceType}`,
+    {
+      headers: {
+        'Authorization': `Bearer ${response.data.data.token}`
       }
+    }
+  );
+  
+  if (meResponse.data.success) {
+    const fullUserData = meResponse.data.data;
+    setUser({
+      ...fullUserData,
+      services: fullUserData.services || [fullUserData.serviceType],
+      token: response.data.data.token
+    });
+  }
+  
+  alert('ההרשמה הושלמה בהצלחה!');
+  navigate('/dashboard');
+}
     } catch (error) {
       console.error('Error:', error);
       

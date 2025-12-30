@@ -485,24 +485,18 @@ useEffect(() => {
             <p className="hero-description animate-fade-in-up delay-200">
               {t('homepage.cta.description')}
             </p>
-            
-            {/* Boutons visibles UNIQUEMENT si NON connecté */}
-            {!isAuthenticated && (
-              <div className="cta-buttons animate-fade-in-up delay-300">
-                <button 
-                  className="btn btn-primary btn-large"
-                  onClick={() => openAuthModal('register')}
-                >
-                  {t('homepage.cta.register')}
-                </button>
-                <button 
-                  className="btn btn-primary btn-large"
-                  onClick={() => openAuthModal('login')}
-                >
-                  {t('homepage.cta.login')}
-                </button>
-              </div>
-            )}
+     
+      {/* Bouton visible UNIQUEMENT si NON connecté */}
+{!isAuthenticated && (
+  <div className="cta-buttons animate-fade-in-up delay-300">
+    <button 
+      className="btn btn-primary btn-large"
+      onClick={() => openAuthModal('login')}
+    >
+      {t('homepage.cta.login')}
+    </button>
+  </div>
+)}
             
             <div className="cta-features animate-fade-in-up delay-400">
               <div className="cta-feature">

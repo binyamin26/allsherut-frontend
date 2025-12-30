@@ -98,6 +98,52 @@ const GardeningForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
 </div>
           {errors['serviceDetails.seasons'] && <span className="error-text">{errors['serviceDetails.seasons']}</span>}
         </div>
+<div className="input-group">
+          <label>{t('serviceForm.common.availabilityDays')}</label>
+          <div className="checkbox-group" data-field="availability_days">
+            {[
+              { value: 'ראשון', label: t('days.sunday') },
+              { value: 'שני', label: t('days.monday') },
+              { value: 'שלישי', label: t('days.tuesday') },
+              { value: 'רביעי', label: t('days.wednesday') },
+              { value: 'חמישי', label: t('days.thursday') },
+              { value: 'שישי', label: t('days.friday') },
+              { value: 'כל השבוע', label: t('days.allWeek') }
+            ].map(day => (
+              <label key={day.value} className="checkbox-item">
+                <input
+                  type="checkbox"
+                  checked={serviceDetails.availability_days?.includes(day.value) || false}
+                  onChange={() => handleExclusiveCheckbox('availability_days', day.value, 'כל השבוע', ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי'])}
+                />
+                {day.label}
+              </label>
+            ))}
+          </div>
+          {errors['serviceDetails.availability_days'] && <span className="error-text">{errors['serviceDetails.availability_days']}</span>}
+        </div>
+
+        <div className="input-group">
+                   <label>{t('serviceForm.common.availabilityHours')}</label>
+          <div className="checkbox-group" data-field="availability_hours">
+            {[
+              { value: 'בוקר', label: t('hours.morning') },
+              { value: 'אחר הצהריים', label: t('hours.afternoon') },
+              { value: 'ערב', label: t('hours.evening') },
+              { value: 'הכל', label: t('hours.all') }
+            ].map(hour => (
+              <label key={hour.value} className="checkbox-item">
+                <input
+                  type="checkbox"
+                  checked={serviceDetails.availability_hours?.includes(hour.value) || false}
+                  onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'הכל', ['בוקר', 'אחר הצהריים', 'ערב'])}
+                />
+                {hour.label}
+              </label>
+            ))}
+          </div>
+          {errors['serviceDetails.availability_hours'] && <span className="error-text">{errors['serviceDetails.availability_hours']}</span>}
+        </div>
 
         <div className="input-group">
         <label>{t('serviceForm.gardening.equipment')}</label>

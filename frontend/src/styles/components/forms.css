@@ -458,22 +458,23 @@ textarea,
   .input-wrapper input,
   .standard-input,
   .profile-input {
-    padding: var(--space-3) var(--space-10) var(--space-3) var(--space-3);
+    padding: var(--space-3) var(--space-12) var(--space-3) var(--space-12);
     font-size: var(--text-sm);
   }
   
   .input-icon {
-    left: var(--space-3);
+    right: var(--space-3);
+    left: auto;
   }
   
   .password-toggle {
-    right: var(--space-3);
+    left: var(--space-3);
+    right: auto;
   }
   
   .modern-select {
     font-size: var(--text-sm);
-    padding: var(--space-2) var(--space-3);
-    padding-right: 35px;
+    padding: var(--space-3) var(--space-10) var(--space-3) var(--space-8);
   }
 }
 
