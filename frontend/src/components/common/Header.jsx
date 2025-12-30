@@ -219,23 +219,23 @@ const Header = () => {
                     התנתק
                   </button>
                 </div>
-       ) : (
-                <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px'}}>
+     ) : (
+                <>
                   <button 
                     onClick={handleRegisterClick}
-                    className="cta-button" 
-                    style={{width: 'auto', minWidth: '160px'}}
+                    className="nav-link"
+                    style={{background: 'none', border: 'none', cursor: 'pointer', width: '100%'}}
                   >
                     {t('auth.register')}
                   </button>
                   <button 
                     onClick={handleAuthClick}
-                    className="cta-button" 
-                    style={{width: 'auto', minWidth: '160px'}}
+                    className="nav-link"
+                    style={{background: 'none', border: 'none', cursor: 'pointer', width: '100%'}}
                   >
                     {t('auth.login')}
                   </button>
-                </div>
+                </>
               )}
             </div>
           </div>
