@@ -37,7 +37,7 @@ textarea,
 .search-input {
   width: 100%;
   padding: var(--space-4);
-  padding-right: 48px;
+  padding-right: 16px;
   padding-left: 48px;
   border: 2px solid var(--neutral-200);
   border-radius: var(--radius-xl);
@@ -84,13 +84,15 @@ textarea::placeholder {
 /* Icônes dans les inputs - CORRIGÉ POUR RTL */
 .input-icon {
   position: absolute;
-  right: var(--space-4);
-  left: auto;
+  left: 16px !important;
+  right: auto !important;
   top: 50%;
   transform: translateY(-50%);
   color: var(--neutral-400);
   pointer-events: none;
   z-index: 1;
+  width: 20px;
+  height: 20px;
 }
 
 .password-toggle {

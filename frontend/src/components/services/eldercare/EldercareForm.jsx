@@ -208,18 +208,6 @@ const EldercareForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
             ))}
           </div>
         </div>
-
-        <div className="input-group">
-          <label>{t('serviceForm.eldercare.languages')}</label>
-          <input
-            type="text"
-            autoComplete="off"
-            value={serviceDetails.languages || ''}
-            onChange={(e) => handleServiceDetailsChange('languages', e.target.value)}
-            placeholder={t('serviceForm.eldercare.languagesPlaceholder')}
-            className="standard-input"
-          />
-        </div>
       </div>
     </div>
   );
