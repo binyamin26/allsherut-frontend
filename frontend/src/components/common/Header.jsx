@@ -219,12 +219,19 @@ const Header = () => {
                     התנתק
                   </button>
                 </div>
-          ) : (
-                <div className="space-y-3">
+       ) : (
+                <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px'}}>
+                  <button 
+                    onClick={handleRegisterClick}
+                    className="cta-button" 
+                    style={{width: 'auto', minWidth: '160px'}}
+                  >
+                    {t('auth.register')}
+                  </button>
                   <button 
                     onClick={handleAuthClick}
                     className="cta-button" 
-                    style={{width: '100%'}}
+                    style={{width: 'auto', minWidth: '160px'}}
                   >
                     {t('auth.login')}
                   </button>
