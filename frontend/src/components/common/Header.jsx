@@ -13,7 +13,15 @@ const Header = () => {
   const [showMobileServices, setShowMobileServices] = useState(false)
   const { user, isAuthenticated, logout } = useAuth()
   const navigate = useNavigate()
-  const { t } = useLanguage()
+  
+  const { t, changeLanguage, currentLanguage } = useLanguage()
+
+const languages = [
+  { code: 'he', flag: 'https://flagcdn.com/w40/il.png', alt: 'עברית' },
+  { code: 'en', flag: 'https://flagcdn.com/w40/gb.png', alt: 'English' },
+  { code: 'fr', flag: 'https://flagcdn.com/w40/fr.png', alt: 'Français' },
+  { code: 'ru', flag: 'https://flagcdn.com/w40/ru.png', alt: 'Русский' }
+];
 
   // Services avec traductions
   const services = [
@@ -238,6 +246,18 @@ const Header = () => {
                 </>
               )}
             </div>
+            {/* Language selector mobile */}
+<div className="mobile-language-selector">
+  {languages.map((lang) => (
+    <button
+      key={lang.code}
+      onClick={() => changeLanguage(lang.code)}
+      className={`mobile-flag-btn ${currentLanguage === lang.code ? 'active' : ''}`}
+    >
+      <img src={lang.flag} alt={lang.alt} />
+    </button>
+  ))}
+</div>
           </div>
         </div>
       </header>
