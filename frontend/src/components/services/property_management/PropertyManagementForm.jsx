@@ -4,22 +4,22 @@ import { useLanguage } from '../../../context/LanguageContext';
 const PropertyManagementForm = ({ serviceDetails, errors, handleServiceDetailsChange }) => {
     const { t } = useLanguage();
     
-    const longTermManagement = [
-      { key: 'tenantSearch', label: t('serviceForm.propertyManagement.longTerm.tenantSearch') },
-      { key: 'contracts', label: t('serviceForm.propertyManagement.longTerm.contracts') },
-      { key: 'rentCollection', label: t('serviceForm.propertyManagement.longTerm.rentCollection') },
-      { key: 'inspection', label: t('serviceForm.propertyManagement.longTerm.inspection') },
-      { key: 'utilities', label: t('serviceForm.propertyManagement.longTerm.utilities') }
-    ];
+   const longTermManagement = [
+  { value: 'חיפוש ובדיקת שוכרים מתאימים', label: t('serviceForm.propertyManagement.longTerm.tenantSearch') },
+  { value: 'חתימה על חוזה וניהול ערבויות', label: t('serviceForm.propertyManagement.longTerm.contracts') },
+  { value: 'גביית שכ"ד והעברת תשלומים לבעל הדירה', label: t('serviceForm.propertyManagement.longTerm.rentCollection') },
+  { value: 'בדיקת מצב הנכס לפני ואחרי תקופת השכירות', label: t('serviceForm.propertyManagement.longTerm.inspection') },
+  { value: 'העברת חשבונות השירותים (מים, חשמל, גז) על שם השוכר החדש', label: t('serviceForm.propertyManagement.longTerm.utilities') }
+];
 
-    const shortTermManagement = [
-      { key: 'listings', label: t('serviceForm.propertyManagement.shortTerm.listings') },
-      { key: 'bookings', label: t('serviceForm.propertyManagement.shortTerm.bookings') },
-      { key: 'checkin', label: t('serviceForm.propertyManagement.shortTerm.checkin') },
-      { key: 'cleaning', label: t('serviceForm.propertyManagement.shortTerm.cleaning') },
-      { key: 'inspection', label: t('serviceForm.propertyManagement.shortTerm.inspection') },
-      { key: 'repairs', label: t('serviceForm.propertyManagement.shortTerm.repairs') }
-    ];
+const shortTermManagement = [
+  { value: 'פרסום וניהול מודעות באתרים', label: t('serviceForm.propertyManagement.shortTerm.listings') },
+  { value: 'ניהול הזמנות ותקשורת עם אורחים', label: t('serviceForm.propertyManagement.shortTerm.bookings') },
+  { value: 'קבלת אורחים / מסירת מפתחות', label: t('serviceForm.propertyManagement.shortTerm.checkin') },
+  { value: 'ניקיון בין השהיות', label: t('serviceForm.propertyManagement.shortTerm.cleaning') },
+  { value: 'בדיקה תקופתית של הנכס', label: t('serviceForm.propertyManagement.shortTerm.inspection') },
+  { value: 'תיקונים כלליים (חשמל, אינסטלציה, מזגן וכו׳)', label: t('serviceForm.propertyManagement.shortTerm.repairs') }
+];
 
   return (
     <div className="service-details-form">
@@ -54,15 +54,15 @@ const PropertyManagementForm = ({ serviceDetails, errors, handleServiceDetailsCh
             </div>
             <div className="checkbox-group" data-field="management_type">
               {longTermManagement.map((type) => (
-                <label key={type.key} className="checkbox-item">
+               <label key={type.value} className="checkbox-item">
                   <input
                     type="checkbox"
-                    checked={serviceDetails.management_type?.includes(type.key) || false}
+                    checked={serviceDetails.management_type?.includes(type.value) || false}
                     onChange={(e) => {
                       const current = serviceDetails.management_type || [];
-                      const newTypes = e.target.checked
-                        ? [...current, type.key]
-                        : current.filter(t => t !== type.key);
+            const newTypes = e.target.checked
+  ? [...current, type.value]
+  : current.filter(t => t !== type.value);
                       handleServiceDetailsChange('management_type', newTypes);
                     }}
                   />
@@ -76,17 +76,17 @@ const PropertyManagementForm = ({ serviceDetails, errors, handleServiceDetailsCh
             <div style={{fontWeight: '600', marginBottom: '8px', color: '#374151'}}>
               🏖️ {t('serviceForm.propertyManagement.shortTermTitle')}
             </div>
-            <div className="checkbox-group">
+          <div className="checkbox-group">
               {shortTermManagement.map((type) => (
-                <label key={type.key} className="checkbox-item">
+                <label key={type.value} className="checkbox-item">
                   <input
                     type="checkbox"
-                    checked={serviceDetails.management_type?.includes(type.key) || false}
+                    checked={serviceDetails.management_type?.includes(type.value) || false}
                     onChange={(e) => {
                       const current = serviceDetails.management_type || [];
                       const newTypes = e.target.checked
-                        ? [...current, type.key]
-                        : current.filter(t => t !== type.key);
+                        ? [...current, type.value]
+                        : current.filter(t => t !== type.value);
                       handleServiceDetailsChange('management_type', newTypes);
                     }}
                   />

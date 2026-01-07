@@ -1082,26 +1082,25 @@ static async updateServiceProviderWithDetails(connection, providerId, serviceTyp
       }
       break;
 
-    case 'eldercare':
+  case 'eldercare':
       if (!serviceDetails.careTypes || serviceDetails.careTypes.length === 0) {
         errors.push({ field: 'careTypes', message: 'יש לבחור סוגי טיפול' });
       }
       if (!serviceDetails.certification) {
         errors.push({ field: 'certification', message: 'הכשרה/הסמכה נדרשת' });
       }
-      if (!serviceDetails.availability || serviceDetails.availability.length === 0) {
-        errors.push({ field: 'availability', message: 'יש לבחור זמינות' });
+      if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
+        errors.push({ field: 'availability_hours', message: 'יש לבחור זמינות' });
       }
       if (!serviceDetails.experience) {
         errors.push({ field: 'experience', message: 'ניסיון עם קשישים נדרש' });
       }
       break;
 
-    case 'laundry':
+  case 'laundry':
       if (!serviceDetails.laundryTypes || serviceDetails.laundryTypes.length === 0) {
         errors.push({ field: 'laundryTypes', message: 'יש לבחור סוגי שירותים' });
       }
-      if (!serviceDetails.rate) errors.push({ field: 'rate', message: 'תעריף נדרש' });
       break;
 
     case 'property_management':

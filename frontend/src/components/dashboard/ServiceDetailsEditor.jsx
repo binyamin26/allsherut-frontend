@@ -2,6 +2,170 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
 import { useAuth } from '../../context/AuthContext';
 import serviceFieldsConfig from './../config/serviceFieldsConfig';
+import { translateValue, translateAndJoin } from '../../utils/translationMapper';
+
+// ✅ Mapping des champs vers leurs catégories de traduction
+const fieldToCategoryMapping = {
+  // COMMON
+  availability_days: 'days',
+  availableDays: 'days',
+  availability_hours: 'hours',
+  availableHours: 'hours',
+  languages: 'languages',
+  religiosity: 'religiousLevels',
+  
+  // BABYSITTING
+  ageGroups: 'babysittingAgeGroups',
+  babysitting_types: 'babysittingTypes',
+  certifications: 'babysittingCertifications',
+  
+  // TUTORING
+  levels: 'tutoringLevels',
+  teachingMode: 'tutoringMode',
+  specializations: 'tutoringSpecializations',
+  
+  // CLEANING
+  legalStatus: 'cleaningLegalStatus',
+  cleaningTypes: 'cleaningHome',
+  specialCleaning: 'cleaningSpecial',
+  frequency: 'cleaningFrequency',
+  
+  // ELDERCARE
+  careTypes: 'eldercareTypes',
+  specificConditions: 'eldercareConditions',
+  
+  // PETCARE
+  animalTypes: 'petcareAnimals',
+  dogSizes: 'petcareDogSizes',
+  location: 'petcareLocation',
+  additionalServices: 'petcareServices',
+  facilities: 'petcareFacilities',
+  veterinaryServices: 'petcareVeterinary',
+  
+  // GARDENING
+  services: 'gardeningServices',
+  seasons: 'gardeningSeasons',
+  equipment: 'gardeningEquipment',
+  gardeningSpecializations: 'gardeningSpecializations',
+  gardeningAdditional: 'gardeningAdditional',
+  
+  // LAUNDRY
+  laundryTypes: 'laundryServices',
+  
+  // ELECTRICIAN
+  work_types: 'electricianWorkTypes',
+  repair_types: 'electricianRepairs',
+  installation_types: 'electricianInstallations',
+  large_work_types: 'electricianLargeWork',
+  
+  // PLUMBING
+  plumbing_work_types: 'plumbingWorkTypes',
+  blockage_types: 'plumbingBlockages',
+  pipe_repair_types: 'plumbingPipeRepair',
+  plumbing_large_work_types: 'plumbingLargeWork',
+  fixture_types: 'plumbingFixtures',
+  
+  // AIR CONDITIONING
+  ac_work_types: 'acWorkTypes',
+  ac_installation_types: 'acInstallation',
+  ac_repair_types: 'acRepair',
+  disassembly_types: 'acDisassembly',
+  
+  // GAS TECHNICIAN
+  gas_work_types: 'gasWorkTypes',
+  gas_installation_types: 'gasInstallation',
+  gas_repair_types: 'gasRepair',
+  
+  // DRYWALL
+  drywall_work_types: 'drywallWorkTypes',
+  design_types: 'drywallDesign',
+  construction_types: 'drywallConstruction',
+  
+  // CARPENTRY
+  carpentry_work_types: 'carpentryWorkTypes',
+  furniture_building_types: 'carpentryFurnitureBuilding',
+  furniture_repair_types: 'carpentryFurnitureRepair',
+  other_carpentry_types: 'carpentryOther',
+  outdoor_carpentry_types: 'carpentryOutdoor',
+  pergola_types: 'carpentryPergolas',
+  deck_types: 'carpentryDecks',
+  fence_types: 'carpentryFences',
+  
+  // HOME ORGANIZATION
+  org_work_types: 'homeOrgWorkTypes',
+  general_organization_types: 'homeOrgGeneral',
+  sorting_types: 'homeOrgSorting',
+  professional_organization_types: 'homeOrgProfessional',
+  
+  // PAINTING
+  painting_work_types: 'paintingWorkTypes',
+  
+  // PRIVATE CHEF
+  cuisineTypes: 'chefCuisine',
+  kosherTypes: 'chefKosher',
+  
+  // EVENT ENTERTAINMENT
+  event_work_types: 'eventWorkTypes',
+  equipment_rental_categories: 'eventEquipmentRentalCategories',
+  food_machine_types: 'eventFoodMachines',
+  inflatable_game_types: 'eventInflatableGames',
+  effect_machine_types: 'eventEffectMachines',
+  entertainment_types: 'eventEntertainment',
+  other_event_types: 'eventOther',
+  
+  // WATERPROOFING
+  waterproofing_work_types: 'waterproofingWorkTypes',
+  roof_waterproofing_types: 'waterproofingRoof',
+  wall_waterproofing_types: 'waterproofingWall',
+  balcony_waterproofing_types: 'waterproofingBalcony',
+  wet_room_waterproofing_types: 'waterproofingWetRoom',
+  underground_waterproofing_types: 'waterproofingUnderground',
+  inspection_equipment_types: 'waterproofingInspection',
+  
+  // CONTRACTOR
+  contractor_work_types: 'contractorWorkTypes',
+  structure_work_types: 'contractorStructure',
+  general_renovation_types: 'contractorRenovation',
+  electric_plumbing_types: 'contractorElectricPlumbing',
+  exterior_work_types: 'contractorExterior',
+  facade_repair_types: 'contractorFacade',
+  
+  // ALUMINUM
+  aluminum_work_types: 'aluminumWorkTypes',
+  windows_doors_types: 'aluminumWindowsDoors',
+  pergolas_outdoor_types: 'aluminumPergolas',
+  repairs_service_types: 'aluminumRepairs',
+  cladding_types: 'aluminumCladding',
+  
+  // GLASS WORKS
+  glass_work_types: 'glassWorkTypes',
+  shower_glass_types: 'glassShower',
+  windows_door_glass_types: 'glassWindowsDoors',
+  kitchen_home_glass_types: 'glassKitchenHome',
+  special_safety_glass_types: 'glassSpecialSafety',
+  repair_custom_types: 'glassRepairCustom',
+  
+  // LOCKSMITH
+  locksmith_work_types: 'locksmithWorkTypes',
+  lock_replacement_types: 'locksmithLockReplacement',
+  door_opening_types: 'locksmithDoorOpening',
+  lock_system_installation_types: 'locksmithSystems',
+  lock_door_repair_types: 'locksmithRepairs',
+  security_services_types: 'locksmithSecurity',
+  
+  // PROPERTY MANAGEMENT
+  management_type: 'propertyFullYear',  // Peut être full year ou short term
+};
+
+// ✅ Catégories multiples pour certains champs (chercher dans plusieurs mappings)
+const fieldToMultipleCategories = {
+  management_type: ['propertyFullYear', 'propertyShortTerm'],
+  cleaningTypes: ['cleaningHome', 'cleaningOffice', 'cleaningSpecial', 'cleaningAdditional'],
+  work_types: ['electricianWorkTypes', 'acWorkTypes', 'gasWorkTypes', 'drywallWorkTypes', 
+               'carpentryWorkTypes', 'homeOrgWorkTypes', 'paintingWorkTypes', 'eventWorkTypes',
+               'waterproofingWorkTypes', 'contractorWorkTypes', 'aluminumWorkTypes', 
+               'glassWorkTypes', 'locksmithWorkTypes'],
+};
 
 const ServiceDetailsEditor = ({ 
   serviceType, 
@@ -59,6 +223,58 @@ const ServiceDetailsEditor = ({
   if (!config) {
     return <p>{t('dashboard.noServiceConfig')}</p>;
   }
+
+  // ✅ NOUVELLE FONCTION : Traduire une valeur selon le champ
+  const translateFieldValue = (fieldName, value) => {
+    if (!value) return t('dashboard.notSpecified');
+    
+    // Chercher la catégorie de traduction pour ce champ
+    const category = fieldToCategoryMapping[fieldName];
+    
+    if (category) {
+      const translated = translateValue(value, category, t);
+      return translated !== value ? translated : value;
+    }
+    
+    // Si pas de mapping direct, essayer les catégories multiples
+    const multiCategories = fieldToMultipleCategories[fieldName];
+    if (multiCategories) {
+      for (const cat of multiCategories) {
+        const translated = translateValue(value, cat, t);
+        if (translated !== value) return translated;
+      }
+    }
+    
+    return value;
+  };
+
+  // ✅ NOUVELLE FONCTION : Traduire un tableau de valeurs
+  const translateFieldArray = (fieldName, values) => {
+    if (!Array.isArray(values) || values.length === 0) {
+      return t('dashboard.notSpecified');
+    }
+    
+    const category = fieldToCategoryMapping[fieldName];
+    
+    if (category) {
+      return translateAndJoin(values, category, t);
+    }
+    
+    // Si pas de mapping direct, essayer les catégories multiples
+    const multiCategories = fieldToMultipleCategories[fieldName];
+    if (multiCategories) {
+      const translatedValues = values.map(val => {
+        for (const cat of multiCategories) {
+          const translated = translateValue(val, cat, t);
+          if (translated !== val) return translated;
+        }
+        return val;
+      });
+      return translatedValues.join(', ');
+    }
+    
+    return values.join(', ');
+  };
 
   // Rendu spécial pour les matières tutoring
   const renderTutoringSubjects = (field) => {
@@ -125,7 +341,7 @@ const ServiceDetailsEditor = ({
         return (
           <div className="tags-list">
             {Array.isArray(value) && value.length > 0 
-              ? value.join(', ')
+              ? translateFieldArray(field.name, value)  // ✅ TRADUIT
               : <span>{t('dashboard.notSpecified')}</span>
             }
           </div>
@@ -141,18 +357,18 @@ const ServiceDetailsEditor = ({
       }
 
       if (field.type === 'select') {
-        const selectedOption = field.options?.find(opt => 
-          typeof opt === 'string' ? opt === value : opt.value === value
-        );
-        const displayValue = typeof selectedOption === 'string' ? selectedOption : selectedOption?.label;
-        return <span>{displayValue || value || t('dashboard.notSpecified')}</span>;
+        // ✅ TRADUIT la valeur sélectionnée
+        const translatedValue = translateFieldValue(field.name, value);
+        return <span>{translatedValue || t('dashboard.notSpecified')}</span>;
       }
 
       if (field.type === 'text') {
         return <span>{value || t('dashboard.notSpecified')}</span>;
       }
       
-      return <span>{value || t('dashboard.notSpecified')}</span>;
+      // ✅ Par défaut, essayer de traduire
+      const translatedValue = translateFieldValue(field.name, value);
+      return <span>{translatedValue || t('dashboard.notSpecified')}</span>;
     }
 
     // MODE ÉDITION
@@ -193,7 +409,7 @@ const ServiceDetailsEditor = ({
       );
     }
 
-    if (field.type === 'select') {
+ if (field.type === 'select') {
       return (
         <select
           value={value || ''}
@@ -204,7 +420,8 @@ const ServiceDetailsEditor = ({
           {field.options.map((opt, i) => {
             const optValue = typeof opt === 'string' ? opt : opt.value;
             const optLabel = typeof opt === 'string' ? opt : opt.label;
-            return <option key={i} value={optValue}>{optLabel}</option>;
+            const translatedLabel = translateFieldValue(field.name, optLabel);
+            return <option key={i} value={optValue}>{translatedLabel}</option>;
           })}
         </select>
       );
@@ -256,7 +473,7 @@ const ServiceDetailsEditor = ({
         }
       };
       
-      return (
+  return (
         <div className="checkbox-grid">
           {field.options.map(option => (
             <label key={option} className="checkbox-item">
@@ -265,7 +482,7 @@ const ServiceDetailsEditor = ({
                 checked={(value || []).includes(option)}
                 onChange={(e) => handleCheckboxChange(option, e.target.checked)}
               />
-              {option}
+              {translateFieldValue(field.name, option)}
             </label>
           ))}
         </div>

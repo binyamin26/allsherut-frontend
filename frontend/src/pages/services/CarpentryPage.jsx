@@ -186,8 +186,14 @@ const CarpentryPage = () => {
 </button>
             </div>
           ) : providers.length > 0 ? (
-            <div className="providers-grid">
-            
+         <div className="providers-grid">
+              {providers.map(provider => (
+                <ProviderCard 
+                  key={provider.id}
+                  provider={provider}
+                  onOpenReviewModal={handleOpenReviewModal}
+                />
+              ))}
             </div>
           ) : (
             <div className="no-results">

@@ -59,16 +59,19 @@ class TrialHistory {
     try {
         const emailHash = this.hashEmail(email);
         
-        const sql = `
+const sql = `
             SELECT 
-                id,
-                trial_used_at,
-                user_deleted,
-                deleted_at,
-                original_user_id,
-                service_type
-            FROM trial_history
-            WHERE email_hash = ? AND service_type = ? AND user_deleted = FALSE
+                th.id,
+                th.trial_used_at,
+                th.user_deleted,
+                th.deleted_at,
+                th.original_user_id,
+                th.service_type
+            FROM trial_history th
+            INNER JOIN users u ON th.original_user_id = u.id AND u.is_active = 1
+            WHERE th.email_hash = ? 
+              AND th.service_type = ? 
+              AND th.user_deleted = FALSE
             LIMIT 1
         `;
         
@@ -111,16 +114,19 @@ static async hasUsedTrialByPhone(phone, serviceType) {
         console.log('  Phone hash:', phoneHash.substring(0, 10) + '...');
         console.log('  Service demandé:', serviceType);
         
-        const sql = `
+      const sql = `
             SELECT 
-                id,
-                trial_used_at,
-                user_deleted,
-                deleted_at,
-                original_user_id,
-                service_type
-            FROM trial_history
-            WHERE phone_hash = ? AND service_type = ? AND user_deleted = FALSE
+                th.id,
+                th.trial_used_at,
+                th.user_deleted,
+                th.deleted_at,
+                th.original_user_id,
+                th.service_type
+            FROM trial_history th
+            INNER JOIN users u ON th.original_user_id = u.id AND u.is_active = 1
+            WHERE th.phone_hash = ? 
+              AND th.service_type = ? 
+              AND th.user_deleted = FALSE
             LIMIT 1
         `;
         

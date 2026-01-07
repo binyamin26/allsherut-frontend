@@ -135,17 +135,17 @@ const EventEntertainmentForm = ({ serviceDetails, errors, handleServiceDetailsCh
                       <div style={{marginRight: '30px', marginTop: '8px'}}>
                         <div className="checkbox-group" data-field="food_machine_types">
                         {[
-  { value: 'מכונת פופקורן', label: t('filters.event.popcornMachine') },
-  { value: 'מכונת סוכר-בורי', label: t('filters.event.cottonCandyMachine') },
-  { value: 'מכונת ברד', label: t('filters.event.slushieMachine') },
-  { value: 'מכונת וופל בלגי', label: t('filters.event.waffleMachine') },
-  { value: 'מכונת גרניטה וקפה בר', label: t('filters.event.granitaCoffeeBar') },
-  { value: 'מכונת גלידה אמריקאית', label: t('filters.event.softServeMachine') },
-  { value: 'מכונת מילקשייק', label: t('filters.event.milkshakeMachine') },
-  { value: 'מסחטת מיצים טריים', label: t('filters.event.juicer') },
-  { value: 'מכונת נקניקיות', label: t('filters.event.hotDogMachine') },
-  { value: 'מחבת קרפים', label: t('filters.event.crepeMaker') },
-  { value: 'מזרקת שוקולד', label: t('filters.event.chocolateFountain') }
+  { value: 'מכונת פופקורן', label: t('filters.events.popcorn') },
+  { value: 'מכונת סוכר-בורי', label: t('filters.events.cottonCandy') },
+  { value: 'מכונת ברד', label: t('filters.events.slushie') },
+  { value: 'מכונת וופל בלגי', label: t('filters.events.waffle') },
+  { value: 'מכונת גרניטה וקפה בר', label: t('filters.events.granita') },
+  { value: 'מכונת גלידה אמריקאית', label: t('filters.events.softServe') },
+  { value: 'מכונת מילקשייק', label: t('filters.events.milkshake') },
+  { value: 'מסחטת מיצים טריים', label: t('filters.events.juicer') },
+  { value: 'מכונת נקניקיות', label: t('filters.events.hotDog') },
+  { value: 'מחבת קרפים', label: t('filters.events.crepeMaker') },
+  { value: 'מזרקת שוקולד', label: t('filters.events.chocolateFountain') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input

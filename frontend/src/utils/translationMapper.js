@@ -1,8 +1,9 @@
 // Mapping des valeurs hébreues (stockées en BDD) vers les clés de traduction
+// SYNCHRONISÉ AVEC filterConfig.js
 
 const translationMappings = {
   // ═══════════════════════════════════════════════════════════════
-  // JOURS
+  // JOURS (common.days)
   // ═══════════════════════════════════════════════════════════════
   days: {
     'ראשון': 'days.sunday',
@@ -16,7 +17,7 @@ const translationMappings = {
   },
 
   // ═══════════════════════════════════════════════════════════════
-  // HEURES
+  // HEURES (common.hours)
   // ═══════════════════════════════════════════════════════════════
   hours: {
     'בוקר': 'hours.morning',
@@ -29,29 +30,51 @@ const translationMappings = {
   },
 
   // ═══════════════════════════════════════════════════════════════
+  // LANGUES (common)
+  // ═══════════════════════════════════════════════════════════════
+  languages: {
+    'עברית': 'languages.hebrew',
+    'ערבית': 'languages.arabic',
+    'רוסית': 'languages.russian',
+    'אנגלית': 'languages.english',
+    'ספרדית': 'languages.spanish',
+    'צרפתית': 'languages.french',
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // NIVEAUX RELIGIEUX
+  // ═══════════════════════════════════════════════════════════════
+  religiousLevels: {
+    'חילוני': 'filters.religious.secular',
+    'מסורתי': 'filters.religious.traditional',
+    'דתי': 'filters.religious.religious',
+    'חרדי': 'filters.religious.orthodox',
+  },
+
+  // ═══════════════════════════════════════════════════════════════
   // BABYSITTING
   // ═══════════════════════════════════════════════════════════════
   babysittingAgeGroups: {
-    '0-1': 'filters.babysitting.age0to1',
-    '1-3': 'filters.babysitting.age1to3',
-    '3-6': 'filters.babysitting.age3to6',
-    '6+': 'filters.babysitting.age6plus',
+    '0-1 שנה': 'filters.babysitting.age0to1',
+    '1-3 שנים': 'filters.babysitting.age1to3',
+    '3-6 שנים': 'filters.babysitting.age3to6',
+    '6+ שנים': 'filters.babysitting.age6plus',
   },
   babysittingTypes: {
     'שמרטפות מזדמנת': 'filters.babysitting.occasional',
     'שמרטפות קבועה בבית הלקוח': 'filters.babysitting.regular',
-    'איסוף מבית ספר / גן': 'filters.babysitting.pickup',
+    'הוצאה מהגן / מבית-הספר': 'filters.babysitting.pickup',
     'שמירה בלילה': 'filters.babysitting.nightCare',
-    'שמירה בחגים': 'filters.babysitting.holidayCare',
+    'שמירה בזמן חופשות': 'filters.babysitting.holidayCare',
     'עזרה בשיעורי בית': 'filters.babysitting.homework',
-    'מטפלת צמודה': 'filters.babysitting.fullTime',
+    'מטפלת במשרה מלאה': 'filters.babysitting.fullTime',
     'קייטנת קיץ': 'filters.babysitting.summerCamp',
     'קייטנת חורף': 'filters.babysitting.winterCamp',
   },
   babysittingCertifications: {
-    'הכשרה בחינוך מיוחד': 'filters.babysitting.certSpecialEd',
+    'הכשרה בתחום החינוך המיוחד': 'filters.babysitting.certSpecialEd',
     'קורס עזרה ראשונה': 'filters.babysitting.certFirstAid',
-    'ניסיון בגן ילדים': 'filters.babysitting.certKindergarten',
+    'ניסיון בגני ילדים או מעונות': 'filters.babysitting.certKindergarten',
   },
 
   // ═══════════════════════════════════════════════════════════════
@@ -71,15 +94,23 @@ const translationMappings = {
     'אונליין בלבד': 'filters.tutoring.onlineOnly',
     'שניהם': 'filters.tutoring.both',
   },
+  tutoringSpecializations: {
+    'הכנה לבחינות': 'filters.tutoring.examPrep',
+    'הפרעות למידה': 'filters.tutoring.learningDisabilities',
+  },
 
   // ═══════════════════════════════════════════════════════════════
   // CLEANING
   // ═══════════════════════════════════════════════════════════════
+  cleaningLegalStatus: {
+    'חברה': 'filters.cleaning.company',
+    'עצמאי': 'filters.cleaning.independent',
+  },
   cleaningHome: {
     'ניקיון שוטף': 'filters.cleaning.regularCleaning',
     'ניקיון פסח': 'filters.cleaning.passoverCleaning',
-    'ניקיון לאחר שיפוץ': 'filters.cleaning.postRenovation',
-    'ניקיון אירביאנבי': 'filters.cleaning.airbnb',
+    'ניקיון אחרי שיפוץ': 'filters.cleaning.postRenovation',
+    'ניקיון לדירות Airbnb': 'filters.cleaning.airbnb',
   },
   cleaningOffice: {
     'משרדים': 'filters.cleaning.offices',
@@ -89,28 +120,28 @@ const translationMappings = {
     'מפעלים': 'filters.cleaning.factories',
   },
   cleaningSpecial: {
-    'ניקוי חלונות גבוהים': 'filters.cleaning.highWindows',
+    'ניקוי חלונות בגובה ': 'filters.cleaning.highWindows',
+    'ניקוי חלונות': 'filters.cleaning.highWindows',
     'ניקוי שטיחים וספות': 'filters.cleaning.carpetsSofas',
     'ניקוי וילונות': 'filters.cleaning.curtains',
-    'שטיפת לחץ': 'filters.cleaning.pressureWashing',
-    'ניקיון לאחר נזק': 'filters.cleaning.damageCleanup',
-    'ניקוי מזגנים': 'filters.cleaning.acCleaning',
-    'הדברה': 'filters.cleaning.pestControl',
-    'ניקוי גגות': 'filters.cleaning.roofCleaning',
-    'ניקוי רכב בבית': 'filters.cleaning.carCleaning',
+    'ניקוי בלחץ מים (טרסות, חזיתות)': 'filters.cleaning.pressureWashing',
+    'חיטוי וניקיון אחרי נזק (שריפה / הצפה)': 'filters.cleaning.damageCleanup',
+    'ניקוי מזגן': 'filters.cleaning.acCleaning',
+    'ריסוס (נגד חרקים)': 'filters.cleaning.pestControl',
+    'ניקיון גגות רעפים': 'filters.cleaning.roofCleaning',
+  },
+  cleaningAdditional: {
+    'ניקוי רכב בבית הלקוח': 'filters.cleaning.carCleaning',
     'ניקוי פאנלים סולאריים': 'filters.cleaning.solarPanels',
   },
   cleaningFrequency: {
     'חד פעמי': 'filters.cleaning.oneTime',
     'שבועי': 'filters.cleaning.weekly',
-    'דו-שבועי': 'filters.cleaning.biweekly',
+    'דו שבועי': 'filters.cleaning.biweekly',
+    'דו-שבועי': 'filters.cleaning.biweekly',  // Variante avec tiret
     'חודשי': 'filters.cleaning.monthly',
-    'הכל': 'filters.cleaning.allOptions',
   },
   cleaningMaterials: {
-    'מביא ציוד': 'filters.cleaning.providesEquipment',
-    'לא מביא ציוד': 'filters.cleaning.noEquipment',
-    'ציוד חלקי': 'filters.cleaning.partialEquipment',
     'yes': 'filters.cleaning.providesEquipment',
     'no': 'filters.cleaning.noEquipment',
     'partial': 'filters.cleaning.partialEquipment',
@@ -122,16 +153,23 @@ const translationMappings = {
   eldercareTypes: {
     'ליווי ותמיכה': 'filters.eldercare.companionship',
     'עזרה בניקיון הבית': 'filters.eldercare.houseCleaning',
-    'בישול והכנת ארוחות': 'filters.eldercare.cooking',
-    'קניות וסידורים': 'filters.eldercare.errands',
+    'בישול והכנת אוכל': 'filters.eldercare.cooking',
+    'קניות ומשימות': 'filters.eldercare.errands',
     'מתן תרופות': 'filters.eldercare.medication',
-    'ליווי לרופא': 'filters.eldercare.doctorAccompaniment',
+    'ליווי לרופאים': 'filters.eldercare.doctorAccompaniment',
+    // Clés anglaises (format alternatif)
+    'companionship': 'filters.eldercare.companionship',
+    'houseCleaning': 'filters.eldercare.houseCleaning',
+    'cooking': 'filters.eldercare.cooking',
+    'errands': 'filters.eldercare.errands',
+    'medication': 'filters.eldercare.medication',
+    'doctorAccompaniment': 'filters.eldercare.doctorAccompaniment',
   },
   eldercareConditions: {
     'אלצהיימר': 'filters.eldercare.alzheimers',
     'פרקינסון': 'filters.eldercare.parkinsons',
     'סוכרת': 'filters.eldercare.diabetes',
-    'מוגבלות ניידות': 'filters.eldercare.mobilityIssues',
+    'בעיות ניידות': 'filters.eldercare.mobilityIssues',
     'דמנציה': 'filters.eldercare.dementia',
   },
 
@@ -147,31 +185,40 @@ const translationMappings = {
     'זוחלים': 'filters.petcare.reptiles',
   },
   petcareDogSizes: {
-    'כלב קטן': 'filters.petcare.smallDog',
-    'כלב בינוני': 'filters.petcare.mediumDog',
-    'כלב גדול': 'filters.petcare.largeDog',
-    'כלב ענק': 'filters.petcare.giantDog',
+    'קטן / עד 10 ק״ג': 'filters.petcare.smallDog',
+    'בינוני / 10–25 ק״ג': 'filters.petcare.mediumDog',
+    'גדול / 25–40 ק״ג': 'filters.petcare.largeDog',
+    'ענק / מעל 40 ק״ג': 'filters.petcare.giantDog',
+    // Versions courtes (legacy)
+    'קטן': 'filters.petcare.smallDog',
+    'בינוני': 'filters.petcare.mediumDog',
+    'גדול': 'filters.petcare.largeDog',
+    'ענק': 'filters.petcare.giantDog',
   },
   petcareLocation: {
     'בבית הלקוח': 'filters.petcare.clientHome',
-    'בבית המטפל': 'filters.petcare.caregiverHome',
-    'פנסיון': 'filters.petcare.petBoarding',
+    'בביתי': 'filters.petcare.caregiverHome',
+    'שניהם': 'filters.common.both',
   },
   petcareServices: {
     'הליכת כלבים': 'filters.petcare.dogWalking',
     'רחצה וטיפוח': 'filters.petcare.bathingGrooming',
     'אילוף בסיסי': 'filters.petcare.basicTraining',
     'מתן תרופות': 'filters.petcare.medicationAdmin',
-    'האכלה': 'filters.petcare.feeding',
+    'האכלה בזמן השמירה': 'filters.petcare.feeding',
     'ניקוי ארגז חול / כלוב / אקווריום': 'filters.petcare.cleaning',
-    'שליחת תמונות לבעלים': 'filters.petcare.photoUpdates',
-    'שעות יום בלבד': 'filters.petcare.daytimeOnly',
-    'לינה': 'filters.petcare.overnight',
+    'עדכון תמונות לבעלים': 'filters.petcare.photoUpdates',
+    'שהייה ביום בלבד': 'filters.petcare.daytimeOnly',
+    'לינה ללילה': 'filters.petcare.overnight',
   },
   petcareFacilities: {
     'גינה מגודרת': 'filters.petcare.fencedGarden',
     'חצר גדולה': 'filters.petcare.largeYard',
-    'מיזוג אוויר': 'filters.petcare.airConditioning',
+    'מזגן': 'filters.petcare.airConditioning',
+  },
+  petcareVeterinary: {
+    'ביקור וטרינר': 'filters.petcare.vetVisit',
+    'טיפול בסיסי': 'filters.petcare.basicCare',
   },
 
   // ═══════════════════════════════════════════════════════════════
@@ -179,7 +226,7 @@ const translationMappings = {
   // ═══════════════════════════════════════════════════════════════
   gardeningServices: {
     'גיזום עצים ושיחים': 'filters.gardening.pruning',
-    'עיצוב גינות': 'filters.gardening.design',
+    'עיצוב גינה': 'filters.gardening.design',
     'שתילת צמחים': 'filters.gardening.planting',
     'השקיה': 'filters.gardening.irrigation',
     'דישון': 'filters.gardening.fertilizing',
@@ -195,31 +242,89 @@ const translationMappings = {
   },
   gardeningEquipment: {
     'מכסחת דשא': 'filters.gardening.lawnMower',
-    'מזמרה': 'filters.gardening.pruningShears',
+    'מזמרות גיזום': 'filters.gardening.pruningShears',
     'משאבת מים': 'filters.gardening.waterPump',
-    'כלי עבודה ידניים': 'filters.gardening.handTools',
+    'כלים ידניים': 'filters.gardening.handTools',
     'מפזר דשן': 'filters.gardening.fertilizerSpreader',
     'מערכת השקיה': 'filters.gardening.irrigationSystem',
   },
   gardeningSpecializations: {
-    'גנן מוסמך סוג א': 'filters.gardening.gardenerTypeA',
-    'גנן מוסמך סוג ב': 'filters.gardening.gardenerTypeB',
-    'אגרונום': 'filters.gardening.agronomist',
-    'מומחה גיזום': 'filters.gardening.expertPruner',
+    'הכשרה גנן סוג א': 'filters.gardening.gardenerTypeA',
+    'הכשרה גנן סוג ב': 'filters.gardening.gardenerTypeB',
+    'אילני אגרונום': 'filters.gardening.agronomist',
+    'גוזם מומחה': 'filters.gardening.expertPruner',
   },
   gardeningAdditional: {
     'פינוי פסולת גינה': 'filters.gardening.wasteRemoval',
-    'ייעוץ נוף': 'filters.gardening.landscapeConsulting',
+    'ייעוץ עיצוב נוף': 'filters.gardening.landscapeConsulting',
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // LAUNDRY
+  // ═══════════════════════════════════════════════════════════════
+  laundryServices: {
+    'גיהוץ בבית הלקוח': 'filters.laundry.ironingAtHome',
+    'איסוף והחזרת כביסה (שירות משלוחים)': 'filters.laundry.pickupDelivery',
+    'ניקוי יבש / שירות מכבסה': 'filters.laundry.dryCleaning',
+    'כביסת מצעים, מגבות, וילונות': 'filters.laundry.linens',
+    'כביסה תעשייתית (מלונות, מסעדות)': 'filters.laundry.industrial',
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // ELECTRICIAN
+  // ═══════════════════════════════════════════════════════════════
+  electricianWorkTypes: {
+    'תיקונים': 'filters.electrician.repairs',
+    'התקנות': 'filters.electrician.installations',
+    'עבודות חשמל גדולות': 'filters.electrician.largeElectricalWork',
+  },
+  electricianRepairs: {
+    'תיקון מזגן': 'filters.ac.acRepair',
+    'תיקון מזגן מעובש': 'filters.ac.moldyAcRepair',
+    'תיקון מיזוג מיני מרכזי': 'filters.ac.miniCentralRepair',
+    'תיקון דליפת גז במזגן': 'filters.ac.gasLeakRepair',
+    'תיקון מיזוג מרכזי': 'filters.ac.centralRepair',
+    'תיקון מזגן אינוורטר': 'filters.ac.inverterRepair',
+    'תיקון מזגן VRF': 'filters.ac.vrfRepair',
+    'ניקוי פילטרים': 'filters.ac.filterCleaning',
+    "תיקון צ'ילרים": 'filters.ac.chillerRepair',
+    'טכנאי חדרי קירור': 'filters.ac.coldRoomTech',
+    'מילוי גז': 'filters.ac.gasRefill',
+    'תיקון קצר': 'filters.electrician.shortCircuitRepair',
+  },
+  electricianInstallations: {
+    'התקנת מאוורר תקרה': 'filters.electrician.ceilingFan',
+    'התקנת שקע חשמל': 'filters.electrician.outletInstall',
+    'התקנת נקודת חשמל חדשה': 'filters.electrician.newOutlet',
+    'התקנת אטמור': 'filters.electrician.waterHeater',
+    'התקנת מתג': 'filters.electrician.switchInstall',
+    'עמדת טעינה לרכב חשמלי': 'filters.electrician.evCharger',
+    'התקנת שעון שבת': 'filters.electrician.shabbatTimer',
+    'התקנות אחרות': 'filters.electrician.otherInstall',
+    'עמדת טעינה לרכב חשמלי של חברת EV-Meter': 'filters.electrician.evMeter',
+    'התקנות כיריים אינדוקציה': 'filters.electrician.inductionCooktop',
+    'התקנת תנור אמבטיה': 'filters.electrician.bathroomHeater',
+    'התקנת גנרטור לבית פרטי': 'filters.electrician.generator',
+    'התקנת ונטה': 'filters.electrician.ventaInstall',
+    'עמדת טעינה לרכב חשמלי EV-EDGE': 'filters.electrician.evEdge',
+  },
+  electricianLargeWork: {
+    'בניית תשתית חשמל בכל הבית': 'filters.electrician.newInfrastructure',
+    'החלפת תשתית חשמל בכל הבית': 'filters.electrician.replaceInfrastructure',
+    'החלפת לוח חשמל': 'filters.electrician.panelReplacement',
+    'הארקה': 'filters.electrician.grounding',
+    'החלפה לתלת פאזי': 'filters.electrician.threePhase',
+    'הכנה לביקורת עבור חברת חשמל': 'filters.electrician.inspection',
   },
 
   // ═══════════════════════════════════════════════════════════════
   // PLUMBING
   // ═══════════════════════════════════════════════════════════════
   plumbingWorkTypes: {
-    'סתימות': 'serviceForm.plumbing.blockages',
-    'תיקון צנרת': 'serviceForm.plumbing.pipeRepair',
-    'עבודות גדולות': 'serviceForm.plumbing.largeWork',
-    'תיקון והתקנת אביזרי אינסטלציה': 'serviceForm.plumbing.fixtureInstallation',
+    'סתימות': 'filters.plumbing.blockages',
+    'תיקון צנרת': 'filters.plumbing.pipeRepair',
+    'עבודות גדולות': 'filters.plumbing.largeWork',
+    'תיקון והתקנת אביזרי אינסטלציה': 'filters.plumbing.fixtureRepair',
   },
   plumbingBlockages: {
     'פתיחת סתימה בבית': 'filters.plumbing.homeBlockage',
@@ -227,13 +332,13 @@ const translationMappings = {
     'פתיחת סתימה בבנין': 'filters.plumbing.buildingBlockage',
   },
   plumbingPipeRepair: {
-    'תיקון צנרת גברית': 'filters.plumbing.roughPlumbing',
+    'תיקון צנרת גברית': 'filters.plumbing.malePipeRepair',
     'תיקון נזקי צנרת בבית': 'filters.plumbing.homePipeDamage',
     'תיקון נזקי צנרת בבניין': 'filters.plumbing.buildingPipeDamage',
-    'הגברת לחץ מים': 'filters.plumbing.waterPressure',
+    'הגברת לחץ מים': 'filters.plumbing.pressureBoost',
     'תיקון צנרת בגינה': 'filters.plumbing.gardenPipes',
     'תיקוני צנרת אחרים': 'filters.plumbing.otherPipeRepairs',
-    'תיקון צנרת ביוב ללא הרס': 'filters.plumbing.noDigSewer',
+    'תיקון צנרת ביוב ללא הרס': 'filters.plumbing.sewerNonDestructive',
   },
   plumbingLargeWork: {
     'החלפת צנרת בבית': 'filters.plumbing.homePipeReplacement',
@@ -251,16 +356,16 @@ const translationMappings = {
     'ברזים': 'filters.plumbing.faucets',
     'ניאגרות ואסלות': 'filters.plumbing.toilets',
     'מסנני מים': 'filters.plumbing.waterFilters',
-    'התקנת טוחן אשפה': 'filters.plumbing.garbageDisposalInstall',
-    'תיקון טוחן אשפה': 'filters.plumbing.garbageDisposalRepair',
+    'התקנת טוחן אשפה': 'filters.plumbing.garbageDisposal',
+    'תיקון טוחן אשפה': 'filters.plumbing.disposalRepair',
     'כיורים': 'filters.plumbing.sinks',
     'הכנה למדיח כלים': 'filters.plumbing.dishwasherPrep',
     'אגנית למקלחון': 'filters.plumbing.showerBase',
     'אביזרים אחרים': 'filters.plumbing.otherFixtures',
-    'סילוקית לאסלה': 'filters.plumbing.toiletHandle',
-    'התקנת בידה': 'filters.plumbing.bidetInstall',
-    'אסלה תלויה': 'filters.plumbing.wallHungToilet',
-    'אל חוזר לשעון מים': 'filters.plumbing.backflowPreventer',
+    'סילוקית לאסלה': 'filters.plumbing.toiletFlush',
+    'התקנת בידה': 'filters.plumbing.bidet',
+    'אסלה תלויה': 'filters.plumbing.wallMountedToilet',
+    'אל חוזר לשעון מים': 'filters.plumbing.checkValve',
     'התקנת מערכות מים תת כיוריות': 'filters.plumbing.underSinkSystems',
   },
 
@@ -282,7 +387,6 @@ const translationMappings = {
   },
   acRepair: {
     'תיקון מזגן': 'filters.ac.acRepair',
-    'מילוי גז': 'serviceForm.airConditioning.gasRefill',
     'תיקון מזגן מעובש': 'filters.ac.moldyAcRepair',
     'תיקון מיזוג מיני מרכזי': 'filters.ac.miniCentralRepair',
     'תיקון דליפת גז במזגן': 'filters.ac.gasLeakRepair',
@@ -292,6 +396,7 @@ const translationMappings = {
     'ניקוי פילטרים': 'filters.ac.filterCleaning',
     "תיקון צ'ילרים": 'filters.ac.chillerRepair',
     'טכנאי חדרי קירור': 'filters.ac.coldRoomTech',
+    'מילוי גז': 'filters.ac.gasRefill',
   },
   acDisassembly: {
     'פירוק והרכבת מזגן': 'filters.ac.acDisassembly',
@@ -305,17 +410,17 @@ const translationMappings = {
   // GAS TECHNICIAN
   // ═══════════════════════════════════════════════════════════════
   gasWorkTypes: {
-    'התקנת צנרת גז ביתית': 'filters.gas.pipeInstallation',
-    'תיקוני גז ביתיים': 'filters.gas.repairs',
+    'התקנת צנרת גז בבית': 'filters.gas.pipeInstallation',
+    'תיקוני גז בבית': 'filters.gas.repairs',
   },
   gasInstallation: {
-    'התקנה / העברת נקודת גז': 'filters.gas.gasPointInstall',
+    'הזזת\\התקנת נקודת גז': 'filters.gas.gasPointInstall',
     'התקנת כיריים גז': 'filters.gas.stovetopInstall',
-    'התקנת צנרת גז': 'filters.gas.pipeInstall',
+    'התקנת צינור גז': 'filters.gas.pipeInstall',
     'התקנת גריל גז': 'filters.gas.grillInstall',
-    'התקנת דוד גז': 'filters.gas.waterHeaterInstall',
-    'התקנת הגז': 'filters.gas.hagaz',
-    'תשתית גז לבניין חדש': 'filters.gas.newBuildingInfra',
+    'התקנת חימום מים בגז': 'filters.gas.waterHeaterInstall',
+    'התקנת חגז': 'filters.gas.hagaz',
+    'בניית תשתית גז במבנה חדש': 'filters.gas.newBuildingInfra',
     'שירותי גז לעסקים': 'filters.gas.businessServices',
   },
   gasRepair: {
@@ -324,72 +429,30 @@ const translationMappings = {
   },
 
   // ═══════════════════════════════════════════════════════════════
-  // ELECTRICIAN
-  // ═══════════════════════════════════════════════════════════════
-  electricianWorkTypes: {
-    'תיקונים': 'filters.electrician.repairs',
-    'התקנות': 'filters.electrician.installations',
-    'עבודות חשמל גדולות': 'filters.electrician.largeElectricalWork',
-  },
-  electricianRepairs: {
-    'תיקון קצר': 'filters.electrician.shortCircuitRepair',
-    'תיקון שעון שבת': 'filters.electrician.timerRepair',
-    'תיקון לוח חשמל': 'filters.electrician.panelRepair',
-    'החלפת שקע': 'filters.electrician.outletReplacement',
-    'תיקון / החלפת ספוטים': 'filters.electrician.spotlightRepair',
-    'תיקונים אחרים': 'filters.electrician.otherRepairs',
-  },
-  electricianInstallations: {
-    'החלפת מפסק מדרגות': 'filters.electrician.stairwaySwitch',
-    'התקנת מאוורר תקרה': 'filters.electrician.ceilingFan',
-    'התקנת שקע': 'filters.electrician.outletInstall',
-    'נקודת שקע חדשה': 'filters.electrician.newOutlet',
-    'התקנת דוד חשמלי': 'filters.electrician.waterHeater',
-    'התקנת מפסק': 'filters.electrician.switchInstall',
-    'עמדת טעינה לרכב חשמלי': 'filters.electrician.evCharger',
-    'התקנת שעון שבת': 'filters.electrician.shabbatTimer',
-    'התקנות אחרות': 'filters.electrician.otherInstall',
-    'עמדת טעינה EV-Meter': 'filters.electrician.evMeter',
-    'התקנת כיריים אינדוקציה': 'filters.electrician.inductionCooktop',
-    'התקנת מפזר חום לאמבטיה': 'filters.electrician.bathroomHeater',
-    'התקנת גנרטור ביתי': 'filters.electrician.generator',
-    'התקנת ונטה': 'filters.electrician.ventaInstall',
-    'עמדת טעינה EV-EDGE': 'filters.electrician.evEdge',
-  },
-  electricianLargeWork: {
-    'תשתית חשמל חדשה': 'filters.electrician.newInfrastructure',
-    'החלפת תשתית חשמל': 'filters.electrician.replaceInfrastructure',
-    'החלפת לוח חשמל': 'filters.electrician.panelReplacement',
-    'הארקה': 'filters.electrician.grounding',
-    'הסבה לתלת פאזי': 'filters.electrician.threePhase',
-    'הכנה לבדיקת חשמלאי': 'filters.electrician.inspection',
-  },
-
-  // ═══════════════════════════════════════════════════════════════
   // DRYWALL
   // ═══════════════════════════════════════════════════════════════
   drywallWorkTypes: {
-    'עיצובי גבס': 'filters.drywall.design',
-    'בניית גבס': 'filters.drywall.construction',
+    'עיצובים בגבס': 'filters.drywall.design',
+    'עבודות גבס': 'filters.drywall.construction',
   },
   drywallDesign: {
     'נישות גבס': 'filters.drywall.niches',
     'מזנון גבס': 'filters.drywall.tvUnit',
     'ספריות גבס': 'filters.drywall.libraries',
-    'מדפי גבס': 'filters.drywall.shelves',
-    'תאורה נסתרת': 'filters.drywall.hiddenLighting',
-    'קרניז מעוגל': 'filters.drywall.roundedCornice',
+    'כוורות גבס': 'filters.drywall.shelves',
+    'תאורה נסתרת בגבס': 'filters.drywall.hiddenLighting',
+    'קרניז גבס מעוגל': 'filters.drywall.roundedCornice',
     'קשתות גבס': 'filters.drywall.arches',
-  },
-  drywallConstruction: {
     'תקרה צפה': 'filters.drywall.floatingCeiling',
     'קיר צף': 'filters.drywall.floatingWall',
-    'קירות גבס': 'filters.drywall.walls',
-    'תקרות גבס': 'filters.drywall.ceilings',
-    'בניית מדפים מגבס': 'filters.drywall.shelfConstruction',
-    'תקרה נמוכה למזגן': 'filters.drywall.acDropCeiling',
-    'חיפוי צנרת': 'filters.drywall.pipeCovering',
-    'בניית קרניז': 'filters.drywall.cornice',
+  },
+  drywallConstruction: {
+    'בניית קירות גבס': 'filters.drywall.walls',
+    'בניית תקרות גבס': 'filters.drywall.ceilings',
+    'בניית מדפי גבס': 'filters.drywall.shelfConstruction',
+    'הנמכת תקרה למזגן': 'filters.drywall.acDropCeiling',
+    'חיפוי גבס לצנרת': 'filters.drywall.pipeCovering',
+    'בניית סינר\\קרניז גבס': 'filters.drywall.cornice',
     'בידוד אקוסטי': 'filters.drywall.acousticInsulation',
   },
 
@@ -406,20 +469,56 @@ const translationMappings = {
     'בניית ארונות קיר': 'filters.carpentry.wallClosets',
     'בניית ארונות הזזה': 'filters.carpentry.slidingClosets',
     'בניית ארונות אמבטיה': 'filters.carpentry.bathroomCabinets',
-    'בניית רהיטי חדר שינה': 'filters.carpentry.bedroomFurniture',
-    'בניית שולחנות': 'filters.carpentry.tableBuilding',
-    'בניית כיסאות': 'filters.carpentry.chairBuilding',
-    'בניית מזנונים': 'filters.carpentry.tvUnitBuilding',
-    'בניית ספריות': 'filters.carpentry.libraryBuilding',
-    'בניית רהיטים בהתאמה אישית': 'filters.carpentry.customFurniture',
+    'בניית חדר שינה': 'filters.carpentry.bedroomFurniture',
+    'בניית שולחן': 'filters.carpentry.tableBuilding',
+    'בניית כסאות': 'filters.carpentry.chairBuilding',
+    'בניית מזנון': 'filters.carpentry.tvUnitBuilding',
+    'בניית ספריה': 'filters.carpentry.libraryBuilding',
+    'בניית רהיטים ייחודים': 'filters.carpentry.customFurniture',
     'בניית מדפים': 'filters.carpentry.shelfBuilding',
     'בניית חדר ארונות': 'filters.carpentry.walkInCloset',
-    'בניית מיטת עץ': 'filters.carpentry.woodenBed',
+    'בניית מיטה מעץ': 'filters.carpentry.woodenBed',
+  },
+  carpentryFurnitureRepair: {
+    'תיקון ארונות קיר': 'filters.carpentry.repairWallClosets',
+    'תיקון שולחן': 'filters.carpentry.repairTable',
+    'תיקון כסאות': 'filters.carpentry.repairChairs',
+    'תיקון ארונות הזזה': 'filters.carpentry.repairSlidingClosets',
+    'תיקון ארונות אמבטיה': 'filters.carpentry.repairBathroomCabinets',
+    'תיקון חדר שינה': 'filters.carpentry.repairBedroomFurniture',
+    'תיקון מזנון': 'filters.carpentry.repairTvUnit',
+    'תיקון ספרייה': 'filters.carpentry.repairLibrary',
+    'תיקון רהיטים אחרים': 'filters.carpentry.repairOther',
+  },
+  carpentryOther: {
+    'חיפוי עץ לקיר': 'filters.carpentry.wallCladding',
+    'פירוק והרכבת רהיטים': 'filters.carpentry.disassembly',
+    'תיקון ובניית דלתות': 'filters.carpentry.doorRepair',
+    'חידוש דלתות כניסה מעץ': 'filters.carpentry.doorRenovation',
+    'בניית קומת גלריה': 'filters.carpentry.loft',
+    'מדרגות עץ לבית': 'filters.carpentry.stairs',
+    'משרביות מעץ': 'filters.carpentry.lattice',
+    "בוצ'ר עץ": 'filters.carpentry.butcher',
   },
   carpentryOutdoor: {
     'פרגולות': 'filters.carpentry.pergolas',
     'דקים': 'filters.carpentry.decks',
     'גדרות ומחיצות עץ': 'filters.carpentry.fences',
+  },
+  carpentryPergolas: {
+    'פרגולות עץ': 'filters.carpentry.woodPergolas',
+    'פרגולות הצללה': 'filters.carpentry.shadePergolas',
+    'סגירת מרפסת': 'filters.carpentry.balconyEnclosure',
+  },
+  carpentryDecks: {
+    'דקים מעץ טבעי': 'filters.carpentry.naturalWoodDecks',
+    'דק סינטטי (קומפוזיט)': 'filters.carpentry.compositeDecks',
+    'שיקום / חידוש דקים': 'filters.carpentry.deckRenovation',
+  },
+  carpentryFences: {
+    'גדרות עץ': 'filters.carpentry.woodFences',
+    'מחיצות עץ לגינה': 'filters.carpentry.gardenPartitions',
+    'שערי עץ': 'filters.carpentry.woodGates',
   },
 
   // ═══════════════════════════════════════════════════════════════
@@ -451,6 +550,49 @@ const translationMappings = {
   },
 
   // ═══════════════════════════════════════════════════════════════
+  // PAINTING
+  // ═══════════════════════════════════════════════════════════════
+  paintingWorkTypes: {
+    'צביעה כללית של דירה': 'filters.painting.generalPainting',
+    'תיקוני קירות – חורים, סדקים, שפכטל': 'filters.painting.wallRepairs',
+    'החלקת קירות (שפכטל מלא)': 'filters.painting.wallSmoothing',
+    'תיקון רטיבות / עובש': 'filters.painting.moistureMold',
+    'קילופי צבע ישן': 'filters.painting.paintStripping',
+    'צביעת אפקטים – בטון, משי, אומבר': 'filters.painting.effectPainting',
+    'צביעת קיר דקורטיבי / Accent Wall': 'filters.painting.accentWall',
+    'טקסטורות מיוחדות': 'filters.painting.specialTextures',
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PRIVATE CHEF
+  // ═══════════════════════════════════════════════════════════════
+  chefCuisine: {
+    'פיצות': 'filters.chef.pizza',
+    'סושי': 'filters.chef.sushi',
+    'סלטים': 'filters.chef.salads',
+    'אסייתי': 'filters.chef.asian',
+    'פסטות': 'filters.chef.pasta',
+    'בשרי': 'filters.chef.meat',
+    'טבעוני / צמחוני': 'filters.chef.vegan',
+    'לא גלוטן': 'filters.chef.glutenFree',
+    'קינוחים': 'filters.chef.desserts',
+  },
+  chefKosher: {
+    'בד"ץ העדה החרדית': 'filters.chef.badatzEdaChareidis',
+    'בד"ץ בית יוסף': 'filters.chef.badatzBeitYosef',
+    'בד"ץ יורה דעה (ר׳ שלמה מחפוד)': 'filters.chef.badatzYoreDea',
+    'בד"ץ מחזיקי הדת – בעלז': 'filters.chef.badatzBelz',
+    'בד"ץ שארית ישראל': 'filters.chef.badatzSheerit',
+    'בד"ץ נתיבות כשרות': 'filters.chef.badatzNetivot',
+    'בד"ץ חוג חתם סופר בני ברק': 'filters.chef.badatzChatamBB',
+    'בד"ץ חוג חתם סופר פ״ת': 'filters.chef.badatzChatamPT',
+    'בד"ץ מקווה ישראל': 'filters.chef.badatzMikveh',
+    'בד"ץ רבני צפת': 'filters.chef.badatzTzfat',
+    'כשרות הרב לנדא': 'filters.chef.rabbiLanda',
+    'כשרות הרב רובין': 'filters.chef.rabbiRubin',
+  },
+
+  // ═══════════════════════════════════════════════════════════════
   // EVENT ENTERTAINMENT
   // ═══════════════════════════════════════════════════════════════
   eventWorkTypes: {
@@ -458,7 +600,7 @@ const translationMappings = {
     'סוגי ההפעלה': 'filters.events.entertainmentServices',
     'אחר': 'filters.events.other',
   },
-  eventEquipmentRental: {
+  eventEquipmentRentalCategories: {
     '🍿 מכונות מזון': 'filters.events.foodMachines',
     '🎪 השכרת מתנפחים ומשחקים': 'filters.events.inflatables',
     '💨 מכונות אפקטים להשכרה': 'filters.events.effectMachines',
@@ -476,15 +618,15 @@ const translationMappings = {
     'מחבת קרפים': 'filters.events.crepe',
     'מזרקת שוקולד': 'filters.events.chocolateFountain',
   },
-  eventInflatables: {
-    'מתנפחים': 'filters.events.inflatables',
-    "ג'ימבורי": 'filters.events.inflatables',
-    'עמדות משחק': 'filters.events.inflatables',
+  eventInflatableGames: {
+    'מתנפחים': 'filters.events.bouncyHouses',
+    "ג'ימבורי": 'filters.events.gymboree',
+    'עמדות משחק': 'filters.events.gameStations',
   },
-  eventEffects: {
-    'מכונת עשן': 'filters.events.effectMachines',
-    'מכונת שלג': 'filters.events.effectMachines',
-    'מכונת בועות': 'filters.events.effectMachines',
+  eventEffectMachines: {
+    'מכונת עשן': 'filters.events.smokeMachine',
+    'מכונת שלג': 'filters.events.snowMachine',
+    'מכונת בועות': 'filters.events.bubbleMachine',
   },
   eventEntertainment: {
     'קוסם ילדים': 'filters.events.magician',
@@ -503,58 +645,49 @@ const translationMappings = {
   },
 
   // ═══════════════════════════════════════════════════════════════
-  // PRIVATE CHEF
-  // ═══════════════════════════════════════════════════════════════
-  chefCuisine: {
-    'פיצה': 'filters.chef.pizza',
-    'סושי': 'filters.chef.sushi',
-    'סלטים': 'filters.chef.salads',
-    'אסייתי': 'filters.chef.asian',
-    'פסטה': 'filters.chef.pasta',
-    'בשרים': 'filters.chef.meat',
-    'טבעוני / צמחוני': 'filters.chef.vegan',
-    'ללא גלוטן': 'filters.chef.glutenFree',
-    'קינוחים': 'filters.chef.desserts',
-  },
-  chefKosher: {
-    'בד"ץ העדה החרדית': 'filters.chef.badatzEdaChareidis',
-    'בד"ץ בית יוסף': 'filters.chef.badatzBeitYosef',
-    'בד"ץ יורה דעה': 'filters.chef.badatzYoreDea',
-    'בד"ץ בעלז': 'filters.chef.badatzBelz',
-    'בד"ץ שארית ישראל': 'filters.chef.badatzSheerit',
-    'בד"ץ נתיבות הכשרות': 'filters.chef.badatzNetivot',
-    'בד"ץ חתם סופר בני ברק': 'filters.chef.badatzChatamBB',
-    'בד"ץ חתם סופר פתח תקווה': 'filters.chef.badatzChatamPT',
-    'בד"ץ מקווה ישראל': 'filters.chef.badatzMikveh',
-    'בד"ץ רבני צפת': 'filters.chef.badatzTzfat',
-    'כשרות הרב לנדא': 'filters.chef.rabbiLanda',
-    'כשרות הרב רובין': 'filters.chef.rabbiRubin',
-  },
-
-  // ═══════════════════════════════════════════════════════════════
-  // PAINTING
-  // ═══════════════════════════════════════════════════════════════
-  paintingWorkTypes: {
-    'צביעת דירה כללית': 'filters.painting.generalPainting',
-    'תיקוני קירות - חורים, סדקים, שפכטל': 'filters.painting.wallRepairs',
-    'החלקת קירות (שפכטל מלא)': 'filters.painting.wallSmoothing',
-    'תיקון רטיבות / עובש': 'filters.painting.moistureMold',
-    'הסרת צבע ישן': 'filters.painting.paintStripping',
-    'צביעת אפקטים - בטון, משי, אומבר': 'filters.painting.effectPainting',
-    'קיר דקורטיבי / אקסנט': 'filters.painting.accentWall',
-    'טקסטורות מיוחדות': 'filters.painting.specialTextures',
-  },
-
-  // ═══════════════════════════════════════════════════════════════
   // WATERPROOFING
   // ═══════════════════════════════════════════════════════════════
   waterproofingWorkTypes: {
-    'איטום גגות': 'filters.waterproofing.roofs',
-    'איטום קירות חיצוניים': 'filters.waterproofing.externalWalls',
-    'איטום מרפסות': 'filters.waterproofing.balconies',
-    'איטום חדרים רטובים': 'filters.waterproofing.wetRooms',
-    'איטום תת קרקעי': 'filters.waterproofing.underground',
-    'בדיקה, אבחון וציוד': 'filters.waterproofing.inspection',
+    'roofWaterproofing': 'filters.waterproofing.roofs',
+    'wallWaterproofing': 'filters.waterproofing.externalWalls',
+    'balconyWaterproofing': 'filters.waterproofing.balconies',
+    'wetRoomWaterproofing': 'filters.waterproofing.wetRooms',
+    'undergroundWaterproofing': 'filters.waterproofing.underground',
+    'inspectionEquipment': 'filters.waterproofing.inspection',
+  },
+  waterproofingRoof: {
+    'bituminousSheets': 'filters.waterproofing.bituminousSheets',
+    'hotAsphalt': 'filters.waterproofing.hotAsphalt',
+    'polyurethane': 'filters.waterproofing.polyurethane',
+    'tileRoof': 'filters.waterproofing.tileRoof',
+    'maintenance': 'filters.waterproofing.maintenance',
+  },
+  waterproofingWall: {
+    'waterPenetration': 'filters.waterproofing.waterPenetration',
+    'exteriorRestoration': 'filters.waterproofing.exteriorRestoration',
+    'crackSealing': 'filters.waterproofing.crackSealing',
+    'dampnessTreatment': 'filters.waterproofing.dampnessTreatment',
+  },
+  waterproofingBalcony: {
+    'beforeTiling': 'filters.waterproofing.beforeTiling',
+    'leakRepair': 'filters.waterproofing.leakRepair',
+    'tilingAndSealing': 'filters.waterproofing.tilingAndSealing',
+  },
+  waterproofingWetRoom: {
+    'bathroom': 'filters.waterproofing.bathroom',
+    'shower': 'filters.waterproofing.shower',
+    'toilet': 'filters.waterproofing.toilet',
+    'beforeRenovation': 'filters.waterproofing.beforeRenovation',
+  },
+  waterproofingUnderground: {
+    'basements': 'filters.waterproofing.basements',
+    'foundations': 'filters.waterproofing.foundations',
+    'undergroundWalls': 'filters.waterproofing.undergroundWalls',
+  },
+  waterproofingInspection: {
+    'leakDetection': 'filters.waterproofing.leakDetection',
+    'moistureTests': 'filters.waterproofing.moistureTests',
+    'thermalImaging': 'filters.waterproofing.thermalImaging',
   },
 
   // ═══════════════════════════════════════════════════════════════
@@ -565,7 +698,47 @@ const translationMappings = {
     'שיפוצים כלליים': 'filters.contractor.generalRenovation',
     'חשמל ואינסטלציה': 'filters.contractor.electricPlumbing',
     'עבודות חוץ': 'filters.contractor.exteriorWork',
-    'שיקום ותיקון חזיתות': 'filters.contractor.facadeRepair',
+    'שיקום ותיקון חוץ': 'filters.contractor.facadeRepair',
+  },
+  contractorStructure: {
+    'בניית שלד': 'filters.contractor.buildingFrame',
+    'יציקות בטון': 'filters.contractor.concretePours',
+    'טפסנות': 'filters.contractor.formwork',
+    'חיזוק מבנים': 'filters.contractor.structuralReinforcement',
+    'בניית קירות בלוקים': 'filters.contractor.blockWalls',
+    'הריסה ובנייה מחדש': 'filters.contractor.demolitionRebuild',
+  },
+  contractorRenovation: {
+    'שיפוץ דירה מלא': 'filters.contractor.fullApartmentReno',
+    'שיפוץ חדרים': 'filters.contractor.roomRenovation',
+    'שיפוץ חדרי רחצה': 'filters.contractor.bathroomReno',
+    'שיפוץ מטבח': 'filters.contractor.kitchenReno',
+    'החלפת ריצוף': 'filters.contractor.flooringReplacement',
+    'עבודות גבס': 'filters.contractor.drywallWork',
+    'טיח ושפכטל': 'filters.contractor.plasterWork',
+    'סגירת מרפסת': 'filters.contractor.balconyEnclosure',
+    'צביעה מקצועית': 'filters.contractor.professionalPainting',
+    'החלפת דלתות ומשקופים': 'filters.contractor.doorFrameReplacement',
+  },
+  contractorElectricPlumbing: {
+    'עבודות חשמל': 'filters.contractor.electricalWork',
+    'החלפת לוח חשמל': 'filters.contractor.panelReplacement',
+    'אינסטלציה כללית': 'filters.contractor.generalPlumbing',
+    'החלפת צנרת': 'filters.contractor.pipeReplacement',
+    'איתור ותיקון נזילות': 'filters.contractor.leakDetection',
+  },
+  contractorExterior: {
+    'ריצוף חוץ': 'filters.contractor.exteriorFlooring',
+    'בניית פרגולה': 'filters.contractor.pergolaConstruction',
+    'חיפויי אבן / חיפויי קירות חוץ': 'filters.contractor.stoneCladding',
+    'גידור': 'filters.contractor.fencing',
+    'בניית שבילים בגינה': 'filters.contractor.gardenPathways',
+  },
+  contractorFacade: {
+    'תיקון טיח חוץ': 'filters.contractor.exteriorPlasterRepair',
+    'שיקום קירות חיצוניים': 'filters.contractor.exteriorWallRestoration',
+    'איטום סדקים בקירות': 'filters.contractor.wallCrackSealing',
+    'טיפול בנפילת טיח': 'filters.contractor.fallingPlasterTreatment',
   },
 
   // ═══════════════════════════════════════════════════════════════
@@ -575,93 +748,143 @@ const translationMappings = {
     'חלונות ודלתות': 'filters.aluminum.windowsDoors',
     'פרגולות ואלומיניום חוץ': 'filters.aluminum.pergolas',
     'תיקונים ושירות': 'filters.aluminum.repairs',
-    'חיפוי אלומיניום': 'filters.aluminum.cladding',
+    'חיפויי אלומיניום': 'filters.aluminum.cladding',
+  },
+  aluminumWindowsDoors: {
+    'התקנת חלונות אלומיניום': 'filters.aluminum.installWindows',
+    'דלתות אלומיניום': 'filters.aluminum.aluminumDoors',
+    'דלתות הזזה (ויטרינות)': 'filters.aluminum.slidingDoors',
+    'דלתות כניסה מאלומיניום': 'filters.aluminum.entryDoors',
+    'רשתות נגד יתושים': 'filters.aluminum.mosquitoNets',
+    'תריסים ידניים': 'filters.aluminum.manualShutters',
+    'תריסים חשמליים': 'filters.aluminum.electricShutters',
+  },
+  aluminumPergolas: {
+    'פרגולות אלומיניום': 'filters.aluminum.aluminumPergolas',
+    'סגירת מרפסות': 'filters.aluminum.balconyEnclosure',
+    'חיפויי אלומיניום חיצוניים': 'filters.aluminum.exteriorCladding',
+    'מעקות אלומיניום לגינה / מרפסות': 'filters.aluminum.railings',
+  },
+  aluminumRepairs: {
+    'תיקון מנועי תריס חשמלי': 'filters.aluminum.repairShutterMotor',
+    'תיקון מסילות': 'filters.aluminum.repairTracks',
+    'תיקון גלגלים בחלונות': 'filters.aluminum.repairWheels',
+    'החלפת ידיות / צירים': 'filters.aluminum.replaceHandles',
+    'איטום וחידוש מסביב לחלונות': 'filters.aluminum.sealingRenewal',
+    'תיקון תריסים ידניים': 'filters.aluminum.repairManualShutters',
+  },
+  aluminumCladding: {
+    'חיפוי צנרת / כיסוי צינורות': 'filters.aluminum.pipeCovering',
+    'חיפוי מונים (חשמל / מים / גז)': 'filters.aluminum.meterCovering',
+    'ארגזים דקורטיביים מאלומיניום': 'filters.aluminum.decorativeBoxes',
+    'חיפוי קווי מזגן': 'filters.aluminum.acLineCovering',
+    'הגנה למנוע מזגן חיצוני': 'filters.aluminum.acMotorProtection',
+    'חיפוי קירות חוץ מאלומיניום': 'filters.aluminum.wallCladding',
+    'חיפויים דקורטיביים': 'filters.aluminum.decorativeCladding',
+    'חיפוי וארגזי תריס': 'filters.aluminum.shutterBoxCladding',
   },
 
   // ═══════════════════════════════════════════════════════════════
   // GLASS WORKS
   // ═══════════════════════════════════════════════════════════════
   glassWorkTypes: {
-    'זכוכית ביתית': 'filters.glass.homeGlass',
-    'מקלחונים': 'filters.glass.showers',
-    'מחיצות וקירות זכוכית': 'filters.glass.partitions',
-    'מעקות זכוכית': 'filters.glass.railings',
-    'רהיטים וזכוכית דקורטיבית': 'filters.glass.furniture',
-    'תיקונים ושירות': 'filters.glass.repairs',
+    'זכוכית למקלחונים': 'filters.glass.showers',
+    'זכוכית לחלונות ודלתות': 'filters.glass.homeGlass',
+    'זכוכית למטבח ובית': 'filters.glass.furniture',
+    'זכוכית מיוחדת ובטיחות': 'filters.glass.partitions',
+    'שירותי תיקון והתאמה אישית': 'filters.glass.repairs',
+  },
+  glassShower: {
+    'התקנת מקלחון זכוכית': 'filters.glass.showerInstall',
+    'תיקון מקלחון': 'filters.glass.showerRepair',
+    'החלפת זכוכית במקלחון': 'filters.glass.showerGlassReplacement',
+    'דלתות מקלחת': 'filters.glass.showerDoors',
+  },
+  glassWindowsDoors: {
+    'החלפת זכוכית בחלון': 'filters.glass.windowReplacement',
+    'זכוכית מבודדת (Double)': 'filters.glass.doubleGlazing',
+    'זיגוג מחדש': 'filters.glass.reglazing',
+    'דלתות זכוכית פנימיות': 'filters.glass.interiorGlassDoors',
+    'מחיצות זכוכית': 'filters.glass.glassPartitions',
+  },
+  glassKitchenHome: {
+    'זכוכית למטבח (Backsplash)': 'filters.glass.kitchenBacksplash',
+    'מדפי זכוכית': 'filters.glass.glassShelves',
+    'שולחנות זכוכית': 'filters.glass.glassTables',
+    'מראות לחדר אמבטיה': 'filters.glass.bathroomMirrors',
+    'מראות דקורטיביות': 'filters.glass.decorativeMirrors',
+  },
+  glassSpecialSafety: {
+    'זכוכית מחוסמת (בטיחותית)': 'filters.glass.temperedGlass',
+    'זכוכית חכמה': 'filters.glass.smartGlass',
+    'זכוכית עמידה לפריצה': 'filters.glass.securityGlass',
+    'זכוכית אקוסטית (בידוד רעש)': 'filters.glass.acousticGlass',
+    'זכוכית צבעונית / מעוצבת': 'filters.glass.decorativeGlass',
+  },
+  glassRepairCustom: {
+    'תיקון שריטות וסדקים': 'filters.glass.scratchRepair',
+    'ליטוש זכוכית': 'filters.glass.glassPolishing',
+    'חיתוך זכוכית לפי מידה': 'filters.glass.customCutting',
   },
 
   // ═══════════════════════════════════════════════════════════════
   // LOCKSMITH
   // ═══════════════════════════════════════════════════════════════
   locksmithWorkTypes: {
-    '🔐 פתיחת דלתות בחירום': 'filters.locksmith.emergencyOpening',
-    '🔑 החלפת מנעולים': 'filters.locksmith.lockReplacement',
-    '🚪 תיקון דלתות ובטיחות': 'filters.locksmith.doorRepair',
-    '📡 מערכות מתקדמות': 'filters.locksmith.advancedSystems',
+    'החלפת מנעולים': 'filters.locksmith.lockReplacement',
+    'פתיחת דלתות': 'filters.locksmith.emergencyOpening',
+    'התקנת מערכות נעילה': 'filters.locksmith.advancedSystems',
+    'תיקון מנעולים ודלתות': 'filters.locksmith.doorRepair',
+    'שירותי ביטחון': 'serviceForm.locksmith.securityServices',
   },
   locksmithLockReplacement: {
     'מנעול צילינדר': 'filters.locksmith.cylinderLock',
-    'מנעול אבטחה': 'filters.locksmith.securityLock',
+    'מנעול ביטחון': 'filters.locksmith.securityLock',
     'מנעול דלת כניסה': 'filters.locksmith.entranceLock',
-    'מנעול משרד / חנות': 'filters.locksmith.officeLock',
+    'מנעול למשרד / חנות': 'filters.locksmith.officeLock',
   },
   locksmithDoorOpening: {
     'פתיחת דלת ללא נזק': 'filters.locksmith.noDamageOpening',
-    'פתיחת חירום 24/7': 'filters.locksmith.emergency247',
-    'פתיחת כספות': 'filters.locksmith.safeOpening',
+    'פתיחה חירום 24/7': 'filters.locksmith.emergency247',
+    'פתיחת כספת': 'filters.locksmith.safeOpening',
     'שכפול מפתחות במקום': 'filters.locksmith.keyDuplication',
   },
   locksmithSystems: {
     'מנעולים חכמים': 'filters.locksmith.smartLocks',
     'מערכת אינטרקום': 'filters.locksmith.intercom',
-    'קוד כניסה למשרד': 'filters.locksmith.accessCode',
+    'קוד כניסה למשרדים': 'filters.locksmith.accessCode',
     'מנעול אלקטרוני': 'filters.locksmith.electronicLock',
   },
   locksmithRepairs: {
     'תיקון מנעול תקוע': 'filters.locksmith.stuckLockRepair',
-    'תיקון צירי דלת': 'filters.locksmith.hingeRepair',
-    'שיוף דלת (לא נסגרת)': 'filters.locksmith.doorSanding',
+    'תיקון ציר דלת': 'filters.locksmith.hingeRepair',
+    'שיוף דלת שלא נסגרת': 'filters.locksmith.doorSanding',
     'החלפת ידית דלת': 'filters.locksmith.handleReplacement',
   },
   locksmithSecurity: {
-    'שדרוג מערכת אבטחה': 'filters.locksmith.securityUpgrade',
+    'שדרוג מערכת ביטחון': 'filters.locksmith.securityUpgrade',
     'התקנת דלת ביטחון': 'filters.locksmith.securityDoorInstall',
-    'בדיקת פרצות בדלתות': 'filters.locksmith.vulnerabilityCheck',
-    'מסגרות לעסקים': 'filters.locksmith.commercialLocksmith',
+    'בדיקת פגיעות דלת': 'filters.locksmith.vulnerabilityCheck',
+    'שירות מסגרות מסחרי': 'filters.locksmith.commercialLocksmith',
   },
 
   // ═══════════════════════════════════════════════════════════════
   // PROPERTY MANAGEMENT
   // ═══════════════════════════════════════════════════════════════
-  propertyWorkTypes: {
-    '🏠 ניהול השכרה לשנה': 'filters.property.fullYearRental',
-    '🏖️ השכרה לטווח קצר': 'filters.property.shortTermRental',
-  },
   propertyFullYear: {
-    'חיפוש וסינון דיירים': 'filters.property.tenantSearch',
-    'ניהול חוזה וערבויות': 'filters.property.contractManagement',
-    'גביית שכירות והעברה לבעלים': 'filters.property.rentCollection',
-    'בדיקת מצב הנכס': 'filters.property.propertyInspection',
-    'העברת חשבונות לדייר חדש': 'filters.property.utilityTransfer',
+    'חיפוש ובדיקת שוכרים מתאימים': 'filters.property.tenantSearch',
+    'חתימה על חוזה וניהול ערבויות': 'filters.property.contractManagement',
+    'גביית שכ"ד והעברת תשלומים לבעל הדירה': 'filters.property.rentCollection',
+    'בדיקת מצב הנכס לפני ואחרי תקופת השכירות': 'filters.property.propertyInspection',
+    'העברת חשבונות השירותים (מים, חשמל, גז) על שם השוכר החדש': 'filters.property.utilityTransfer',
   },
   propertyShortTerm: {
-    'ניהול מודעות ופרסום': 'filters.property.listingManagement',
-    'תקשורת והזמנות מאורחים': 'filters.property.guestCommunication',
-    'צ׳ק-אין / מסירת מפתחות': 'filters.property.guestCheckin',
-    'ניקיון בין אורחים': 'filters.property.turnaroundCleaning',
-    'בדיקת נכס תקופתית': 'filters.property.periodicInspection',
-    'תיקונים כלליים (חשמל, אינסטלציה, מזגן)': 'filters.property.generalRepairs',
-  },
-
-  // ═══════════════════════════════════════════════════════════════
-  // LAUNDRY
-  // ═══════════════════════════════════════════════════════════════
-  laundryServices: {
-    'גיהוץ בבית הלקוח': 'filters.laundry.ironingAtHome',
-    'איסוף ומשלוח כביסה': 'filters.laundry.pickupDelivery',
-    'ניקוי יבש / מכבסה': 'filters.laundry.dryCleaning',
-    'מצעים, מגבות, וילונות': 'filters.laundry.linens',
-    'כביסה תעשייתית (מלונות, מסעדות)': 'filters.laundry.industrial',
+    'פרסום וניהול מודעות באתרים': 'filters.property.listingManagement',
+    'ניהול הזמנות ותקשורת עם אורחים': 'filters.property.guestCommunication',
+    'קבלת אורחים / מסירת מפתחות': 'filters.property.guestCheckin',
+    'ניקיון בין השהיות': 'filters.property.turnaroundCleaning',
+    'בדיקה תקופתית של הנכס': 'filters.property.periodicInspection',
+    'תיקונים כלליים (חשמל, אינסטלציה, מזגן וכו׳)': 'filters.property.generalRepairs',
   },
 };
 

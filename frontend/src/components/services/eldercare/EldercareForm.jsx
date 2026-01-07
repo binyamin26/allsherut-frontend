@@ -141,47 +141,50 @@ const EldercareForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
           </div>
         </div>
 
-        <div className="input-group">
-          <label>{t('filters.eldercare.administrativeHelp')}</label>
-          <select
-            value={serviceDetails.administrativeHelp || ''}
-            onChange={(e) => handleServiceDetailsChange('administrativeHelp', e.target.value)}
-            className="standard-input"
-            data-field="administrativeHelp"
-          >
-            <option value="">{t('filters.noMatter')}</option>
-            <option value="yes">{t('common.yes')}</option>
-            <option value="no">{t('common.no')}</option>
-          </select>
-        </div>
+        {/* עזרה אדמיניסטרטיבית */}
+<div className="input-group">
+  <label>{t('filters.eldercare.administrativeHelp')}</label>
+  <select
+    value={serviceDetails.administrativeHelp || 'not_specified'}
+    onChange={(e) => handleServiceDetailsChange('administrativeHelp', e.target.value)}
+    className="standard-input"
+    data-field="administrativeHelp"
+  >
+    <option value="not_specified">{t('filters.noMatter')}</option>
+    <option value="yes">{t('common.yes')}</option>
+    <option value="no">{t('common.no')}</option>
+  </select>
+</div>
 
-        <div className="input-group">
-          <label>{t('filters.eldercare.medicalAccompaniment')}</label>
-          <select
-            value={serviceDetails.medicalAccompaniment || ''}
-            onChange={(e) => handleServiceDetailsChange('medicalAccompaniment', e.target.value)}
-            className="standard-input"
-            data-field="medicalAccompaniment"
-          >
-            <option value="">{t('filters.noMatter')}</option>
-            <option value="yes">{t('common.yes')}</option>
-            <option value="no">{t('common.no')}</option>
-          </select>
-        </div>
+{/* ליווי רפואי */}
+<div className="input-group">
+  <label>{t('filters.eldercare.medicalAccompaniment')}</label>
+  <select
+    value={serviceDetails.medicalAccompaniment || 'not_specified'}
+    onChange={(e) => handleServiceDetailsChange('medicalAccompaniment', e.target.value)}
+    className="standard-input"
+    data-field="medicalAccompaniment"
+  >
+    <option value="not_specified">{t('filters.noMatter')}</option>
+    <option value="yes">{t('common.yes')}</option>
+    <option value="no">{t('common.no')}</option>
+  </select>
+</div>
 
-        <div className="input-group">
-          <label>{t('filters.eldercare.vehicleForOutings')}</label>
-          <select
-            value={serviceDetails.vehicleForOutings || ''}
-            onChange={(e) => handleServiceDetailsChange('vehicleForOutings', e.target.value)}
-            className="standard-input"
-            data-field="vehicleForOutings"
-          >
-            <option value="">{t('filters.noMatter')}</option>
-            <option value="yes">{t('common.yes')}</option>
-            <option value="no">{t('common.no')}</option>
-          </select>
-        </div>
+{/* רכב לטיולים */}
+<div className="input-group">
+  <label>{t('filters.eldercare.vehicleForOutings')}</label>
+  <select
+    value={serviceDetails.vehicleForOutings || 'not_specified'}
+    onChange={(e) => handleServiceDetailsChange('vehicleForOutings', e.target.value)}
+    className="standard-input"
+    data-field="vehicleForOutings"
+  >
+    <option value="not_specified">{t('filters.noMatter')}</option>
+    <option value="yes">{t('common.yes')}</option>
+    <option value="no">{t('common.no')}</option>
+  </select>
+</div>
       </div>
 
       <div className="form-section optional">

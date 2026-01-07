@@ -266,8 +266,9 @@ const serviceFieldsConfig = {
   },
 
 
-  laundry: {
+ laundry: {
     fields: [
+      { name: 'experience', label: 'serviceFields.laundry.experienceYears', type: 'number' },
       { 
         name: 'laundryTypes', 
         label: 'serviceFields.laundry.laundryTypes', 
@@ -280,19 +281,18 @@ const serviceFieldsConfig = {
           'כביסה תעשייתית (מלונות, מסעדות)'
         ]
       },
-      { name: 'rate', label: 'serviceFields.laundry.rate', type: 'text' },
-      { 
-        name: 'availableDays', 
-        label: 'serviceFields.laundry.availableDays', 
-        type: 'checkbox',
-        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע']
-      },
-      { 
-        name: 'availableHours', 
-        label: 'serviceFields.laundry.availableHours', 
-        type: 'checkbox',
-        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
-      },
+    { 
+      name: 'availability_days', 
+      label: 'serviceFields.laundry.availableDays',  // ← garde l'ancien label
+      type: 'checkbox',
+      options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע']
+    },
+    { 
+      name: 'availability_hours', 
+      label: 'serviceFields.laundry.availableHours',  // ← garde l'ancien label
+      type: 'checkbox',
+      options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+    },
       { 
         name: 'pickupService', 
         label: 'serviceFields.laundry.pickupService', 
@@ -301,11 +301,10 @@ const serviceFieldsConfig = {
           { value: 'yes', label: 'מספק שירות איסוף' },
           { value: 'no', label: 'לא מספק שירות איסוף' }
         ]
-      },
-      { name: 'experienceYears', label: 'serviceFields.laundry.experienceYears', type: 'number' }
+      }
     ]
   },
-
+  
   property_management: {
     fields: [
       { 

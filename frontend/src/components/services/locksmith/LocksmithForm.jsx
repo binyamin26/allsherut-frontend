@@ -27,6 +27,22 @@ const LocksmithForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
           />
           {errors['serviceDetails.age'] && <span className="error-text">{errors['serviceDetails.age']}</span>}
         </div>
+        <div className="input-group">
+          <label>{t('serviceForm.common.experience')}</label>
+          <input
+            type="text"
+            inputMode="numeric"
+            autoComplete="off"
+            value={serviceDetails.experience || ''}
+            onChange={(e) => {
+              const numericValue = e.target.value.replace(/\D/g, '');
+              handleServiceDetailsChange('experience', numericValue);
+            }}
+            className={`standard-input ${errors['serviceDetails.experience'] ? 'error' : ''}`}
+            data-field="experience"
+          />
+          {errors['serviceDetails.experience'] && <span className="error-text">{errors['serviceDetails.experience']}</span>}
+        </div>
 <div className="input-group">
   <label>{t('serviceForm.common.availabilityDays')}</label>
   <div className="checkbox-group" data-field="availability_days">

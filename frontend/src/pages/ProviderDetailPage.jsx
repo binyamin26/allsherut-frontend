@@ -113,11 +113,15 @@ const ProviderDetailPage = () => {
     const providerResponse = await apiService.getProvider(id);
     if (providerResponse.success) {
       console.log('✅ Provider data:', providerResponse.data);
-console.log('📸 FULL RESPONSE DATA:', providerResponse.data); // ← AJOUTE CETTE LIGNE
-  console.log('📸 MEDIA OBJECT:', providerResponse.data.media);
+      console.log('📸 FULL RESPONSE DATA:', providerResponse.data);
+      console.log('📸 MEDIA OBJECT:', providerResponse.data.media);
+      
+      // ⬇️ AJOUTE CETTE LIGNE ICI ⬇️
+      console.log('📋 SERVICE DETAILS:', JSON.stringify(providerResponse.data.serviceDetails, null, 2));
+      
       setProvider(providerResponse.data);
-        loadReviews();
-      } else {
+      loadReviews();
+    } else {
         console.error('❌ Provider API failed:', providerResponse);
         setError('ספק השירות לא נמצא');
       }
@@ -247,7 +251,7 @@ const handleContact = () => {
         {(details.languages && details.languages.length > 0) && (
           <div className="detail-item">
             <strong>{t('provider.details.languages')}:</strong>
-            <span>{Array.isArray(details.languages) ? details.languages.join(', ') : details.languages}</span>
+         <span>{Array.isArray(details.languages) ? translateAndJoin(details.languages, 'languages', t) : translateValue(details.languages, 'languages', t)}</span>
           </div>
         )}
 
@@ -263,7 +267,7 @@ const handleContact = () => {
             {details.religiosity && (
               <div className="detail-item">
                <strong>{t('provider.details.religiosity')}:</strong>
-                <span>{details.religiosity}</span>
+             <span>{translateValue(details.religiosity, 'religiousLevels', t)}</span>
               </div>
             )}
             {details.can_travel_alone !== undefined && (
@@ -281,7 +285,7 @@ const handleContact = () => {
             {details.legalStatus && (
               <div className="detail-item">
               <strong>{t('provider.details.legalStatus')}:</strong>
-                <span>{details.legalStatus}</span>
+             <span>{translateValue(details.legalStatus, 'cleaningLegalStatus', t)}</span>
               </div>
             )}
             {details.materialsProvided && (
@@ -305,7 +309,7 @@ const handleContact = () => {
             {details.seasons && details.seasons.length > 0 && (
               <div className="detail-item">
                 <strong>{t('provider.details.seasons')}:</strong>
-                <span>{details.seasons.join(', ')}</span>
+               <span>{translateAndJoin(details.seasons, 'gardeningSeasons', t)}</span>
               </div>
             )}
           </>
@@ -317,7 +321,7 @@ const handleContact = () => {
             {details.location && (
               <div className="detail-item">
                <strong>{t('provider.details.careLocation')}:</strong>
-                <span>{details.location}</span>
+            <span>{translateValue(details.location, 'petcareLocation', t)}</span>
               </div>
             )}
           </>
@@ -344,22 +348,34 @@ const handleContact = () => {
                 <span>{details.certification}</span>
               </div>
             )}
-            {details.administrativeHelp && (
-              <div className="detail-item">
-               <strong>{t('provider.details.adminHelp')}:</strong>
+{details.administrativeHelp && details.administrativeHelp !== 'not_specified' && (
+  <div className="detail-item">
+   <strong>{t('provider.details.adminHelp')}:</strong>
 <span>{details.administrativeHelp === 'yes' ? t('common.yes') : t('common.no')}</span>
-              </div>
-            )}
-            {details.medicalAccompaniment && (
-              <div className="detail-item">
-              <strong>{t('provider.details.medicalAccompaniment')}:</strong>
+  </div>
+)}
+{details.medicalAccompaniment && details.medicalAccompaniment !== 'not_specified' && (
+  <div className="detail-item">
+  <strong>{t('provider.details.medicalAccompaniment')}:</strong>
 <span>{details.medicalAccompaniment === 'yes' ? t('common.yes') : t('common.no')}</span>
-              </div>
-            )}
-            {details.vehicleForOutings && (
-              <div className="detail-item">
-               <strong>{t('provider.details.vehicleForOutings')}:</strong>
+  </div>
+)}
+{details.vehicleForOutings && details.vehicleForOutings !== 'not_specified' && (
+  <div className="detail-item">
+   <strong>{t('provider.details.vehicleForOutings')}:</strong>
 <span>{details.vehicleForOutings === 'yes' ? t('common.yes') : t('common.no')}</span>
+  </div>
+)}
+          </>
+        )}
+
+        {/* === LAUNDRY - CHAMPS COMPACTS === */}
+        {provider.serviceType === 'laundry' && (
+          <>
+            {details.pickupService && (
+              <div className="detail-item">
+                <strong>{t('provider.details.pickupService')}:</strong>
+                <span>{details.pickupService === 'yes' ? t('common.yes') : t('common.no')}</span>
               </div>
             )}
           </>
@@ -381,11 +397,11 @@ const handleContact = () => {
           </div>
         )}
 
-        {/* Certifications */}
-{details.certifications && provider.serviceType !== 'cleaning' && (
+{/* Certifications */}
+{details.certifications && details.certifications.length > 0 && provider.serviceType !== 'cleaning' && provider.serviceType !== 'eldercare' && provider.serviceType !== 'laundry' && (
   <div className="detail-item">
    <strong>{t('provider.details.certifications')}:</strong>
-    <span>{Array.isArray(details.certifications) ? details.certifications.join(', ') : details.certifications}</span>
+    <span>{Array.isArray(details.certifications) ? translateAndJoin(details.certifications, 'babysittingCertifications', t) : translateValue(details.certifications, 'babysittingCertifications', t)}</span>
   </div>
 )}
 
@@ -411,7 +427,7 @@ const handleContact = () => {
         {provider.serviceType === 'cleaning' && details.cleaningTypes && details.cleaningTypes.length > 0 && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
           <strong>{t('provider.details.cleaningTypes')}:</strong>
-         <span>{translateArrayFromMultipleCategories(details.cleaningTypes, ['cleaningHome', 'cleaningOffice', 'cleaningSpecial'], t).join(', ')}</span>
+       <span>{translateArrayFromMultipleCategories(details.cleaningTypes, ['cleaningHome', 'cleaningOffice', 'cleaningSpecial', 'cleaningAdditional'], t).join(', ')}</span>
           </div>
         )}
 
@@ -431,6 +447,14 @@ const handleContact = () => {
           </div>
         )}
 
+        {/* GARDENING - Additional Services */}
+        {provider.serviceType === 'gardening' && details.additionalServices && details.additionalServices.length > 0 && (
+          <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+            <strong>{t('provider.details.additionalServices')}:</strong>
+          <span>{translateAndJoin(details.additionalServices, 'gardeningAdditional', t)}</span>
+          </div>
+        )}
+
         {/* PETCARE - Animal types */}
         {provider.serviceType === 'petcare' && details.animalTypes && details.animalTypes.length > 0 && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
@@ -447,11 +471,629 @@ const handleContact = () => {
           </div>
         )}
 
-        {/* TUTORING - Subjects */}
-        {provider.serviceType === 'tutoring' && details.subjects && details.subjects.length > 0 && (
+        {/* PETCARE - Dog sizes */}
+        {provider.serviceType === 'petcare' && details.dogSizes && details.dogSizes.length > 0 && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-        <span>{details.subjects.join(', ')}</span>
+            <strong>{t('provider.details.dogSizes')}:</strong>
+          <span>{translateAndJoin(details.dogSizes, 'petcareDogSizes', t)}</span>
           </div>
+        )}
+
+        {/* PETCARE - Additional Services */}
+        {provider.serviceType === 'petcare' && details.additionalServices && details.additionalServices.length > 0 && (
+          <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+            <strong>{t('provider.details.additionalServices')}:</strong>
+          <span>{translateAndJoin(details.additionalServices, 'petcareServices', t)}</span>
+          </div>
+        )}
+
+        {/* PETCARE - Veterinary Services */}
+        {provider.serviceType === 'petcare' && details.veterinaryServices && details.veterinaryServices.length > 0 && (
+          <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+            <strong>{t('provider.details.veterinaryServices')}:</strong>
+       <span>{translateAndJoin(details.veterinaryServices, 'petcareVeterinary', t)}</span>
+          </div>
+        )}
+
+        {/* === AIR_CONDITIONING === */}
+        {provider.serviceType === 'air_conditioning' && (
+          <>
+            {details.age && (
+              <div className="detail-item">
+                <strong>{t('provider.details.age')}:</strong>
+                <span>{details.age} {t('provider.details.years')}</span>
+              </div>
+            )}
+            {details.work_types?.includes('התקנת מזגנים') && details.installation_types && details.installation_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>❄️ {t('provider.details.acInstallation')}:</strong>
+             <span>{translateAndJoin(details.installation_types, 'acInstallation', t)}</span>
+              </div>
+            )}
+            {details.work_types?.includes('תיקון מזגנים') && details.repair_types && details.repair_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🔧 {t('provider.details.acRepair')}:</strong>
+             <span>{translateAndJoin(details.repair_types, 'acRepair', t)}</span>
+              </div>
+            )}
+            {details.work_types?.includes('פירוק והרכבת מזגנים') && details.disassembly_types && details.disassembly_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🔄 {t('provider.details.acDisassembly')}:</strong>
+             <span>{translateAndJoin(details.disassembly_types, 'acDisassembly', t)}</span>
+              </div>
+            )}
+          </>
+        )}
+
+        {/* === DRYWALL === */}
+        {provider.serviceType === 'drywall' && (
+          <>
+            {details.age && (
+              <div className="detail-item">
+                <strong>{t('provider.details.age')}:</strong>
+                <span>{details.age} {t('provider.details.years')}</span>
+              </div>
+            )}
+            {details.work_types?.includes('עיצובים בגבס') && details.design_types && details.design_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🎨 {t('provider.details.drywallDesigns')}:</strong>
+             <span>{translateAndJoin(details.design_types, 'drywallDesign', t)}</span>
+              </div>
+            )}
+            {details.work_types?.includes('עבודות גבס') && details.construction_types && details.construction_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🏗️ {t('provider.details.drywallConstruction')}:</strong>
+               <span>{translateAndJoin(details.construction_types, 'drywallConstruction', t)}</span>
+              </div>
+            )}
+          </>
+        )}
+
+        {/* === CARPENTRY === */}
+        {provider.serviceType === 'carpentry' && (
+          <>
+            {details.age && (
+              <div className="detail-item">
+                <strong>{t('provider.details.age')}:</strong>
+                <span>{details.age} {t('provider.details.years')}</span>
+              </div>
+            )}
+            {details.work_types?.includes('בניית רהיטים') && details.furniture_building_types && details.furniture_building_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🪑 {t('provider.details.furnitureBuilding')}:</strong>
+               <span>{translateAndJoin(details.furniture_building_types, 'carpentryFurnitureBuilding', t)}</span>
+              </div>
+            )}
+            {details.work_types?.includes('תיקון רהיטים') && details.furniture_repair_types && details.furniture_repair_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🔧 {t('provider.details.furnitureRepair')}:</strong>
+               <span>{translateAndJoin(details.furniture_repair_types, 'carpentryFurnitureRepair', t)}</span>
+              </div>
+            )}
+            {details.work_types?.includes('עבודות נגרות אחרות') && details.other_carpentry_types && details.other_carpentry_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🪵 {t('provider.details.otherCarpentry')}:</strong>
+               <span>{translateAndJoin(details.other_carpentry_types, 'carpentryOther', t)}</span>
+              </div>
+            )}
+            {details.work_types?.includes('נגרות חוץ') && (
+              <>
+                {details.pergola_types && details.pergola_types.length > 0 && (
+                  <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                    <strong>🏕️ {t('provider.details.pergolas')}:</strong>
+                    <span>{translateAndJoin(details.pergola_types, 'carpentryPergolas', t)}</span>
+                  </div>
+                )}
+                {details.deck_types && details.deck_types.length > 0 && (
+                  <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                    <strong>🪵 {t('provider.details.decks')}:</strong>
+                   <span>{translateAndJoin(details.deck_types, 'carpentryDecks', t)}</span>
+                  </div>
+                )}
+                {details.fence_types && details.fence_types.length > 0 && (
+                  <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                    <strong>🚧 {t('provider.details.fences')}:</strong>
+                 <span>{translateAndJoin(details.fence_types, 'carpentryFences', t)}</span>
+                  </div>
+                )}
+              </>
+            )}
+          </>
+        )}
+
+        {/* === HOME_ORGANIZATION === */}
+        {provider.serviceType === 'home_organization' && (
+          <>
+            {details.age && (
+              <div className="detail-item">
+                <strong>{t('provider.details.age')}:</strong>
+                <span>{details.age} {t('provider.details.years')}</span>
+              </div>
+            )}
+            {details.hourlyRate && (
+              <div className="detail-item">
+                <strong>{t('provider.details.hourlyRate')}:</strong>
+                <span className="price-highlight">₪{details.hourlyRate}/שעה</span>
+              </div>
+            )}
+            {details.work_types?.includes('סידור כללי') && details.general_organization_types && details.general_organization_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🏠 {t('provider.details.generalOrganization')}:</strong>
+              <span>{translateAndJoin(details.general_organization_types, 'homeOrgGeneral', t)}</span>
+              </div>
+            )}
+            {details.work_types?.includes('סידור + מיון') && details.sorting_types && details.sorting_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>📦 {t('provider.details.sortingOrganization')}:</strong>
+              <span>{translateAndJoin(details.sorting_types, 'homeOrgSorting', t)}</span>
+              </div>
+            )}
+            {details.work_types?.includes('ארגון מקצועי') && details.professional_organization_types && details.professional_organization_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>✨ {t('provider.details.professionalOrganization')}:</strong>
+               <span>{translateAndJoin(details.professional_organization_types, 'homeOrgProfessional', t)}</span>
+              </div>
+            )}
+          </>
+        )}
+
+        {/* === EVENT_ENTERTAINMENT === */}
+        {provider.serviceType === 'event_entertainment' && (
+          <>
+            {details.age && (
+              <div className="detail-item">
+                <strong>{t('provider.details.age')}:</strong>
+                <span>{details.age} {t('provider.details.years')}</span>
+              </div>
+            )}
+            {details.work_types?.includes('השכרת ציוד לאירועים') && (
+              <>
+                {details.food_machine_types && details.food_machine_types.length > 0 && (
+                  <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                    <strong>🍿 {t('provider.details.foodMachines')}:</strong>
+                <span>{translateAndJoin(details.food_machine_types, 'eventFoodMachines', t)}</span>
+                  </div>
+                )}
+                {details.inflatable_game_types && details.inflatable_game_types.length > 0 && (
+                  <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                    <strong>🎪 {t('provider.details.inflatables')}:</strong>
+                    <span>{translateAndJoin(details.inflatable_game_types, 'eventInflatableGames', t)}</span>
+                  </div>
+                )}
+                {details.effect_machine_types && details.effect_machine_types.length > 0 && (
+                  <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                    <strong>💨 {t('provider.details.effectMachines')}:</strong>
+<span>{translateAndJoin(details.effect_machine_types, 'eventEffectMachines', t)}</span>
+                  </div>
+                )}
+              </>
+            )}
+            {details.work_types?.includes('סוגי ההפעלה') && details.entertainment_types && details.entertainment_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🎭 {t('provider.details.entertainmentTypes')}:</strong>
+               <span>{translateAndJoin(details.entertainment_types, 'eventEntertainment', t)}</span>
+              </div>
+            )}
+            {details.work_types?.includes('אחר') && details.other_types && details.other_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🎉 {t('provider.details.otherEventServices')}:</strong>
+              <span>{translateAndJoin(details.other_types, 'eventOther', t)}</span>
+              </div>
+            )}
+          </>
+        )}
+
+        {/* === PRIVATE_CHEF === */}
+        {provider.serviceType === 'private_chef' && (
+          <>
+            {details.age && (
+              <div className="detail-item">
+                <strong>{t('provider.details.age')}:</strong>
+                <span>{details.age} {t('provider.details.years')}</span>
+              </div>
+            )}
+            {details.work_types?.includes('סוג המטבח') && details.cuisine_types && details.cuisine_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🍳 {t('provider.details.cuisineTypes')}:</strong>
+              <span>{translateAndJoin(details.cuisine_types, 'chefCuisine', t)}</span>
+              </div>
+            )}
+            {details.work_types?.includes('כשרות') && details.kosher_types && details.kosher_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>✡️ {t('provider.details.kosherTypes')}:</strong>
+<span>{translateAndJoin(details.kosher_types, 'chefKosher', t)}</span>
+              </div>
+            )}
+          </>
+        )}
+
+        {/* === PAINTING === */}
+        {provider.serviceType === 'painting' && (
+          <>
+            {details.age && (
+              <div className="detail-item">
+                <strong>{t('provider.details.age')}:</strong>
+                <span>{details.age} {t('provider.details.years')}</span>
+              </div>
+            )}
+            {details.work_types && details.work_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🎨 {t('provider.details.paintingServices')}:</strong>
+               <span>{translateAndJoin(details.work_types, 'paintingWorkTypes', t)}</span>
+              </div>
+            )}
+          </>
+        )}
+
+        {/* === CONTRACTOR === */}
+        {provider.serviceType === 'contractor' && (
+          <>
+            {details.age && (
+              <div className="detail-item">
+                <strong>{t('provider.details.age')}:</strong>
+                <span>{details.age} {t('provider.details.years')}</span>
+              </div>
+            )}
+            {details.work_types?.includes('עבודות שלד') && details.structure_work_types && details.structure_work_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🏗️ {t('provider.details.structureWork')}:</strong>
+               <span>{translateAndJoin(details.structure_work_types, 'contractorStructure', t)}</span>
+              </div>
+            )}
+            {details.work_types?.includes('שיפוצים כלליים') && details.general_renovation_types && details.general_renovation_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🔨 {t('provider.details.generalRenovation')}:</strong>
+               <span>{translateAndJoin(details.general_renovation_types, 'contractorRenovation', t)}</span>
+              </div>
+            )}
+            {details.work_types?.includes('חשמל ואינסטלציה') && details.electric_plumbing_types && details.electric_plumbing_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>⚡ {t('provider.details.electricPlumbing')}:</strong>
+<span>{translateAndJoin(details.electric_plumbing_types, 'contractorElectricPlumbing', t)}</span>
+              </div>
+            )}
+            {details.work_types?.includes('עבודות חוץ') && details.exterior_work_types && details.exterior_work_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🌳 {t('provider.details.exteriorWork')}:</strong>
+               <span>{translateAndJoin(details.exterior_work_types, 'contractorExterior', t)}</span>
+              </div>
+            )}
+            {details.work_types?.includes('שיקום ותיקון חוץ') && details.facade_repair_types && details.facade_repair_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🧱 {t('provider.details.facadeRepair')}:</strong>
+                <span>{translateAndJoin(details.facade_repair_types, 'contractorFacade', t)}</span>
+              </div>
+            )}
+          </>
+        )}
+
+        {/* === WATERPROOFING === */}
+        {provider.serviceType === 'waterproofing' && (
+          <>
+            {details.age && (
+              <div className="detail-item">
+                <strong>{t('provider.details.age')}:</strong>
+                <span>{details.age} {t('provider.details.years')}</span>
+              </div>
+            )}
+            {details.work_types?.includes('roofWaterproofing') && details.roof_waterproofing_types && details.roof_waterproofing_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🏠 {t('provider.details.roofWaterproofing')}:</strong>
+               <span>{translateAndJoin(details.roof_waterproofing_types, 'waterproofingRoof', t)}</span>
+              </div>
+            )}
+            {details.work_types?.includes('wallWaterproofing') && details.wall_waterproofing_types && details.wall_waterproofing_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🧱 {t('provider.details.wallWaterproofing')}:</strong>
+               <span>{translateAndJoin(details.wall_waterproofing_types, 'waterproofingWall', t)}</span>
+              </div>
+            )}
+            {details.work_types?.includes('balconyWaterproofing') && details.balcony_waterproofing_types && details.balcony_waterproofing_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🌿 {t('provider.details.balconyWaterproofing')}:</strong>
+               <span>{translateAndJoin(details.balcony_waterproofing_types, 'waterproofingBalcony', t)}</span>
+              </div>
+            )}
+            {details.work_types?.includes('wetRoomWaterproofing') && details.wet_room_waterproofing_types && details.wet_room_waterproofing_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🚿 {t('provider.details.wetRoomWaterproofing')}:</strong>
+              <span>{translateAndJoin(details.wet_room_waterproofing_types, 'waterproofingWetRoom', t)}</span>
+              </div>
+            )}
+            {details.work_types?.includes('undergroundWaterproofing') && details.underground_waterproofing_types && details.underground_waterproofing_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>⬇️ {t('provider.details.undergroundWaterproofing')}:</strong>
+               <span>{translateAndJoin(details.underground_waterproofing_types, 'waterproofingUnderground', t)}</span>
+              </div>
+            )}
+            {details.work_types?.includes('inspectionEquipment') && details.inspection_equipment_types && details.inspection_equipment_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🔍 {t('provider.details.inspectionEquipment')}:</strong>
+               <span>{translateAndJoin(details.inspection_equipment_types, 'waterproofingInspection', t)}</span>
+              </div>
+            )}
+          </>
+        )}
+
+        {/* === ALUMINUM === */}
+        {provider.serviceType === 'aluminum' && (
+          <>
+            {details.age && (
+              <div className="detail-item">
+                <strong>{t('provider.details.age')}:</strong>
+                <span>{details.age} {t('provider.details.years')}</span>
+              </div>
+            )}
+            {details.work_types?.includes('חלונות ודלתות') && details.windows_doors_types && details.windows_doors_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🪟 {t('provider.details.aluminumWindowsDoors')}:</strong>
+               <span>{translateAndJoin(details.windows_doors_types, 'aluminumWindowsDoors', t)}</span>
+              </div>
+            )}
+            {details.work_types?.includes('פרגולות ואלומיניום חוץ') && details.pergolas_outdoor_types && details.pergolas_outdoor_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🏕️ {t('provider.details.aluminumPergolas')}:</strong>
+                <span>{translateAndJoin(details.pergolas_outdoor_types, 'aluminumPergolas', t)}</span>
+              </div>
+            )}
+            {details.work_types?.includes('תיקונים ושירות') && details.repairs_service_types && details.repairs_service_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🔧 {t('provider.details.aluminumRepairs')}:</strong>
+               <span>{translateAndJoin(details.repairs_service_types, 'aluminumRepairs', t)}</span>
+              </div>
+            )}
+            {details.work_types?.includes('חיפויי אלומיניום') && details.cladding_types && details.cladding_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🏗️ {t('provider.details.aluminumCladding')}:</strong>
+                <span>{translateAndJoin(details.cladding_types, 'aluminumCladding', t)}</span>
+              </div>
+            )}
+          </>
+        )}
+
+        {/* === GLASS_WORKS === */}
+        {provider.serviceType === 'glass_works' && (
+          <>
+            {details.age && (
+              <div className="detail-item">
+                <strong>{t('provider.details.age')}:</strong>
+                <span>{details.age} {t('provider.details.years')}</span>
+              </div>
+            )}
+            {details.work_types?.includes('זכוכית למקלחונים') && details.shower_glass_types && details.shower_glass_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🚿 {t('provider.details.showerGlass')}:</strong>
+                <span>{translateAndJoin(details.shower_glass_types, 'glassShower', t)}</span>
+              </div>
+            )}
+            {details.work_types?.includes('זכוכית לחלונות ודלתות') && details.windows_doors_glass_types && details.windows_doors_glass_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🪟 {t('provider.details.windowsDoorsGlass')}:</strong>
+               <span>{translateAndJoin(details.windows_doors_glass_types, 'glassWindowsDoors', t)}</span>
+              </div>
+            )}
+            {details.work_types?.includes('זכוכית למטבח ובית') && details.kitchen_home_glass_types && details.kitchen_home_glass_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🏠 {t('provider.details.kitchenHomeGlass')}:</strong>
+               <span>{translateAndJoin(details.kitchen_home_glass_types, 'glassKitchenHome', t)}</span>
+              </div>
+            )}
+            {details.work_types?.includes('זכוכית מיוחדת ובטיחות') && details.special_safety_glass_types && details.special_safety_glass_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🛡️ {t('provider.details.specialSafetyGlass')}:</strong>
+               <span>{translateAndJoin(details.special_safety_glass_types, 'glassSpecialSafety', t)}</span>
+              </div>
+            )}
+            {details.work_types?.includes('שירותי תיקון והתאמה אישית') && details.repair_custom_types && details.repair_custom_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🔧 {t('provider.details.glassRepairCustom')}:</strong>
+               <span>{translateAndJoin(details.repair_custom_types, 'glassRepairCustom', t)}</span>
+              </div>
+            )}
+          </>
+        )}
+
+        {/* === LOCKSMITH === */}
+        {provider.serviceType === 'locksmith' && (
+          <>
+            {details.age && (
+              <div className="detail-item">
+                <strong>{t('provider.details.age')}:</strong>
+                <span>{details.age} {t('provider.details.years')}</span>
+              </div>
+            )}
+            {details.work_types?.includes('החלפת מנעולים') && details.lock_replacement_types && details.lock_replacement_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🔐 {t('provider.details.lockReplacement')}:</strong>
+               <span>{translateAndJoin(details.lock_replacement_types, 'locksmithLockReplacement', t)}</span>
+              </div>
+            )}
+            {details.work_types?.includes('פתיחת דלתות') && details.door_opening_types && details.door_opening_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🚪 {t('provider.details.doorOpening')}:</strong>
+                <span>{translateAndJoin(details.door_opening_types, 'locksmithDoorOpening', t)}</span>
+              </div>
+            )}
+            {details.work_types?.includes('התקנת מערכות נעילה') && details.lock_system_installation_types && details.lock_system_installation_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>⚙️ {t('provider.details.lockSystemInstallation')}:</strong>
+                <span>{translateAndJoin(details.lock_system_installation_types, 'locksmithSystems', t)}</span>
+              </div>
+            )}
+            {details.work_types?.includes('תיקון מנעולים ודלתות') && details.lock_door_repair_types && details.lock_door_repair_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🔧 {t('provider.details.lockDoorRepair')}:</strong>
+                <span>{translateAndJoin(details.lock_door_repair_types, 'locksmithRepairs', t)}</span>
+              </div>
+            )}
+            {details.work_types?.includes('שירותי ביטחון') && details.security_services_types && details.security_services_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🛡️ {t('provider.details.securityServices')}:</strong>
+                <span>{translateAndJoin(details.security_services_types, 'locksmithSecurity', t)}</span>
+              </div>
+            )}
+          </>
+        )}
+
+        {/* === GAS_TECHNICIAN === */}
+        {provider.serviceType === 'gas_technician' && (
+          <>
+            {details.age && (
+              <div className="detail-item">
+                <strong>{t('provider.details.age')}:</strong>
+                <span>{details.age} {t('provider.details.years')}</span>
+              </div>
+            )}
+            {details.work_types?.includes('התקנת צנרת גז בבית') && details.installation_types && details.installation_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🔥 {t('provider.details.gasInstallation')}:</strong>
+               <span>{translateAndJoin(details.installation_types, 'gasInstallation', t)}</span>
+              </div>
+            )}
+            {details.work_types?.includes('תיקוני גז בבית') && details.repair_types && details.repair_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🔧 {t('provider.details.gasRepairs')}:</strong>
+              <span>{translateAndJoin(details.repair_types, 'gasRepair', t)}</span>
+              </div>
+            )}
+          </>
+        )}
+
+    {/* TUTORING - Subjects groupés par catégorie */}
+        {provider.serviceType === 'tutoring' && details.subjects && details.subjects.length > 0 && (
+          <>
+            {/* Musique */}
+            {(() => {
+              const musicSubjects = ['פסנתר', 'גיטרה', 'כינור / ויולה / צ׳לו', 'תופים / כלי הקשה', 'חליל, קלרינט, סקסופון, חצוצרה', 'נבל', 'פיתוח קול / שירה'];
+              const selected = details.subjects.filter(s => musicSubjects.includes(s));
+              return selected.length > 0 && (
+                <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                  <strong>🎵 {t('filters.tutoring.music')}:</strong>
+                  <span>{selected.join(', ')}</span>
+                </div>
+              );
+            })()}
+            
+            {/* Art */}
+            {(() => {
+              const artSubjects = ['ציור (שמן, אקריליק, צבעי מים)', 'רישום', 'פיסול', 'צילום', 'גרפיקה / עיצוב חזותי', 'קליגרפיה', 'קרמיקה / פסיפס'];
+              const selected = details.subjects.filter(s => artSubjects.includes(s));
+              return selected.length > 0 && (
+                <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                  <strong>🎨 {t('filters.tutoring.art')}:</strong>
+                  <span>{selected.join(', ')}</span>
+                </div>
+              );
+            })()}
+            
+            {/* Danse */}
+            {(() => {
+              const danceSubjects = ['בלט קלאסי', 'מחול מודרני / עכשווי', 'מחול עממי', 'ג׳אז / היפ הופ', 'ריקודים סלוניים'];
+              const selected = details.subjects.filter(s => danceSubjects.includes(s));
+              return selected.length > 0 && (
+                <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                  <strong>💃 {t('filters.tutoring.dance')}:</strong>
+                  <span>{selected.join(', ')}</span>
+                </div>
+              );
+            })()}
+            
+            {/* Théâtre */}
+            {(() => {
+              const theaterSubjects = ['משחק', 'אילתור / מִים', 'מחזות זמר', 'דיבור בפני קהל / דקלום'];
+              const selected = details.subjects.filter(s => theaterSubjects.includes(s));
+              return selected.length > 0 && (
+                <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                  <strong>🎭 {t('filters.tutoring.theater')}:</strong>
+                  <span>{selected.join(', ')}</span>
+                </div>
+              );
+            })()}
+            
+            {/* Langues */}
+            {(() => {
+              const languageSubjects = ['אנגלית', 'צרפתית', 'ספרדית', 'רוסית', 'ערבית', 'סדנאות שיחה', 'ספרות ותרבות'];
+              const selected = details.subjects.filter(s => languageSubjects.includes(s));
+              return selected.length > 0 && (
+                <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                  <strong>🌍 {t('filters.tutoring.languages')}:</strong>
+                  <span>{selected.join(', ')}</span>
+                </div>
+              );
+            })()}
+            
+            {/* Artisanat */}
+            {(() => {
+              const craftsSubjects = ['תפירה / סריגה / קרושה', 'רקמה', 'תכשיטנות', 'עץ / נגרות', 'יצירה חופשית'];
+              const selected = details.subjects.filter(s => craftsSubjects.includes(s));
+              return selected.length > 0 && (
+                <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                  <strong>✂️ {t('filters.tutoring.crafts')}:</strong>
+                  <span>{selected.join(', ')}</span>
+                </div>
+              );
+            })()}
+            
+            {/* Tech */}
+            {(() => {
+              const techSubjects = ['מחשבים / קידוד', 'רובוטיקה', 'הדפסה תלת־ממדית', 'אלקטרוניקה בסיסית', 'ניסויים מדעיים לילדים'];
+              const selected = details.subjects.filter(s => techSubjects.includes(s));
+              return selected.length > 0 && (
+                <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                  <strong>💻 {t('filters.tutoring.tech')}:</strong>
+                  <span>{selected.join(', ')}</span>
+                </div>
+              );
+            })()}
+            
+            {/* Cuisine */}
+            {(() => {
+              const cookingSubjects = ['בישול', 'אפייה', 'קונדיטוריה', 'עיצוב עוגות'];
+              const selected = details.subjects.filter(s => cookingSubjects.includes(s));
+              return selected.length > 0 && (
+                <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                  <strong>👨‍🍳 {t('filters.tutoring.cooking')}:</strong>
+                  <span>{selected.join(', ')}</span>
+                </div>
+              );
+            })()}
+            
+            {/* Développement personnel */}
+            {(() => {
+              const personalSubjects = ['דיבור מול קהל', 'מנהיגות / העצמה אישית', 'מיינדפולנס / מדיטציה', 'ארגון וניהול זמן', 'טכניקות למידה'];
+              const selected = details.subjects.filter(s => personalSubjects.includes(s));
+              return selected.length > 0 && (
+                <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                  <strong>🧘 {t('filters.tutoring.personal')}:</strong>
+                  <span>{selected.join(', ')}</span>
+                </div>
+              );
+            })()}
+            
+            {/* Sports */}
+            {(() => {
+              const sportsSubjects = ['כדורגל', 'כדורסל', 'כדורעף', 'טניס', 'טניס שולחן', 'סקווש / בדמינטון', 'שחייה', 'אתלטיקה', 'התעמלות קרקע / מכשירים', 'רכיבה על אופניים', 'ג׳ודו', 'קראטה', 'טאקוונדו', 'אייקידו', 'היאבקות', 'אומנויות לחימה משולבות', 'קרב מגע', 'קפוארה', 'טיפוס קירות', 'סקייטבורד / גלגיליות'];
+              const selected = details.subjects.filter(s => sportsSubjects.includes(s));
+              return selected.length > 0 && (
+                <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                  <strong>⚽ {t('filters.tutoring.sports')}:</strong>
+                  <span>{selected.join(', ')}</span>
+                </div>
+              );
+            })()}
+            
+            {/* Matières académiques */}
+            {(() => {
+              const academicSubjects = ['מתמטיקה', 'פיזיקה', 'כימיה', 'ביולוגיה', 'מדעי המחשב', 'סטטיסטיקה והסתברות', 'גיאומטריה', 'היסטוריה', 'גיאוגרפיה', 'אזרחות', 'כלכלה', 'פסיכולוגיה', 'סוציולוגיה', 'פילוסופיה', 'עברית / ספרות', 'תנ״ך', 'ערבית', 'לשון עברית'];
+              const selected = details.subjects.filter(s => academicSubjects.includes(s));
+              return selected.length > 0 && (
+                <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                  <strong>📚 {t('filters.tutoring.academicSubjects')}:</strong>
+                  <span>{selected.join(', ')}</span>
+                </div>
+              );
+            })()}
+          </>
         )}
 
         {/* TUTORING - Levels */}
@@ -459,6 +1101,22 @@ const handleContact = () => {
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
            <strong>{t('provider.details.levels')}:</strong>
           <span>{translateAndJoin(details.levels, 'tutoringLevels', t)}</span>
+          </div>
+        )}
+
+{/* TUTORING - Specializations */}
+        {provider.serviceType === 'tutoring' && details.specializations && details.specializations.length > 0 && (
+          <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+            <strong>{t('provider.details.specializations')}:</strong>
+         <span>{translateAndJoin(details.specializations, 'tutoringSpecializations', t)}</span>
+          </div>
+        )}
+
+        {/* TUTORING - Qualifications */}
+        {provider.serviceType === 'tutoring' && details.qualifications && (
+          <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+            <strong>{t('provider.details.qualifications')}:</strong>
+            <span>{details.qualifications}</span>
           </div>
         )}
 
@@ -476,6 +1134,148 @@ const handleContact = () => {
           <strong>{t('provider.details.specificConditions')}:</strong>
            <span>{translateAndJoin(details.specificConditions, 'eldercareConditions', t)}</span>
           </div>
+        )}
+
+        {/* LAUNDRY - Types */}
+        {provider.serviceType === 'laundry' && details.laundryTypes && details.laundryTypes.length > 0 && (
+          <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+            <strong>{t('provider.details.laundryTypes')}:</strong>
+         <span>{translateAndJoin(details.laundryTypes, 'laundryServices', t)}</span>
+          </div>
+        )}
+
+     {/* PROPERTY_MANAGEMENT - Types groupés par catégorie */}
+        {provider.serviceType === 'property_management' && details.management_type && details.management_type.length > 0 && (
+          <>
+            {/* Long term */}
+            {(() => {
+              const longTermOptions = [
+                'חיפוש ובדיקת שוכרים מתאימים',
+                'חתימה על חוזה וניהול ערבויות',
+                'גביית שכ"ד והעברת תשלומים לבעל הדירה',
+                'בדיקת מצב הנכס לפני ואחרי תקופת השכירות',
+                'העברת חשבונות השירותים (מים, חשמל, גז) על שם השוכר החדש'
+              ];
+              const selectedLongTerm = details.management_type.filter(t => longTermOptions.includes(t));
+              
+              return selectedLongTerm.length > 0 && (
+                <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                  <strong>🏠 {t('provider.details.longTermRental')}:</strong>
+                 <span>{translateAndJoin(selectedLongTerm, 'propertyFullYear', t)}</span>
+                </div>
+              );
+            })()}
+            
+            {/* Short term */}
+            {(() => {
+              const shortTermOptions = [
+                'פרסום וניהול מודעות באתרים',
+                'ניהול הזמנות ותקשורת עם אורחים',
+                'קבלת אורחים / מסירת מפתחות',
+                'ניקיון בין השהיות',
+                'בדיקה תקופתית של הנכס',
+                'תיקונים כלליים (חשמל, אינסטלציה, מזגן וכו׳)'
+              ];
+              const selectedShortTerm = details.management_type.filter(t => shortTermOptions.includes(t));
+              
+              return selectedShortTerm.length > 0 && (
+                <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                  <strong>🏖️ {t('provider.details.shortTermRental')}:</strong>
+                <span>{translateAndJoin(selectedShortTerm, 'propertyShortTerm', t)}</span>
+                </div>
+              );
+            })()}
+          </>
+        )}
+
+        {/* === ELECTRICIAN - CHAMPS COMPACTS === */}
+        {provider.serviceType === 'electrician' && (
+          <>
+            {details.age && (
+              <div className="detail-item">
+                <strong>{t('provider.details.age')}:</strong>
+                <span>{details.age} {t('provider.details.years')}</span>
+              </div>
+            )}
+          </>
+        )}
+
+        {/* ELECTRICIAN - Types groupés par catégorie */}
+        {provider.serviceType === 'electrician' && (
+          <>
+            {/* Réparations */}
+            {details.work_types?.includes('תיקונים') && details.repair_types && details.repair_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🔧 {t('provider.details.electricianRepairs')}:</strong>
+               <span>{translateAndJoin(details.repair_types, 'electricianRepairs', t)}</span>
+              </div>
+            )}
+            
+            {/* Installations */}
+            {details.work_types?.includes('התקנות') && details.installation_types && details.installation_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>⚡ {t('provider.details.electricianInstallations')}:</strong>
+             <span>{translateAndJoin(details.installation_types, 'electricianInstallations', t)}</span>
+              </div>
+            )}
+            
+            {/* Gros travaux */}
+            {details.work_types?.includes('עבודות חשמל גדולות') && details.large_work_types && details.large_work_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🏗️ {t('provider.details.electricianLargeWork')}:</strong>
+            <span>{translateAndJoin(details.large_work_types, 'electricianLargeWork', t)}</span>
+              </div>
+            )}
+          </>
+        )}
+
+        {/* === PLUMBING - CHAMPS COMPACTS === */}
+        {provider.serviceType === 'plumbing' && (
+          <>
+            {details.age && (
+              <div className="detail-item">
+                <strong>{t('provider.details.age')}:</strong>
+                <span>{details.age} {t('provider.details.years')}</span>
+              </div>
+            )}
+          </>
+        )}
+
+        {/* PLUMBING - Types groupés par catégorie */}
+        {provider.serviceType === 'plumbing' && (
+          <>
+            {/* Bouchons/Blocages */}
+            {details.work_types?.includes('סתימות') && details.blockage_types && details.blockage_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🚿 {t('provider.details.plumbingBlockages')}:</strong>
+          <span>{translateAndJoin(details.blockage_types, 'plumbingBlockages', t)}</span>
+              </div>
+            )}
+            
+            {/* Réparation tuyauterie */}
+            {details.work_types?.includes('תיקון צנרת') && details.pipe_repair_types && details.pipe_repair_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🔧 {t('provider.details.plumbingPipeRepair')}:</strong>
+             <span>{translateAndJoin(details.pipe_repair_types, 'plumbingPipeRepair', t)}</span>
+              </div>
+            )}
+            
+            {/* Gros travaux */}
+            {details.work_types?.includes('עבודות גדולות') && details.large_work_types && details.large_work_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🏗️ {t('provider.details.plumbingLargeWork')}:</strong>
+            <span>{translateAndJoin(details.large_work_types, 'plumbingLargeWork', t)}</span>
+              </div>
+            )}
+            
+            {/* Équipements sanitaires */}
+            {details.work_types?.includes('תיקון והתקנת אביזרי אינסטלציה') && details.fixture_types && details.fixture_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🚽 {t('provider.details.plumbingFixtures')}:</strong>
+           <span>{translateAndJoin(details.fixture_types, 'plumbingFixtures', t)}</span>
+              </div>
+            )}
+          </>
         )}
 
         {/* Services additionnels (tous services) */}
@@ -692,10 +1492,10 @@ const handleContact = () => {
               
                   {renderServiceDetails()}
 
-                  {/* Certifications */}
-                  {provider.certifications && provider.certifications.length > 0 && (
-                    <div className="certifications-section">
-                      <h3 className="section-title">הכשרות ותעודות</h3>
+               {/* Certifications */}
+{provider.certifications && provider.certifications.length > 0 && provider.serviceType !== 'eldercare' && provider.serviceType !== 'laundry' && (
+  <div className="certifications-section">
+    <h3 className="section-title">הכשרות ותעודות</h3>
                       <div className="certifications-list">
                         {provider.certifications.map((cert, index) => (
                           <div key={index} className="certification-item">

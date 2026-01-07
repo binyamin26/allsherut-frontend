@@ -97,7 +97,7 @@ textarea::placeholder {
 
 .password-toggle {
   position: absolute;
-  left: var(--space-4);
+  left: 48px;
   right: auto;
   top: 50%;
   transform: translateY(-50%);
@@ -114,6 +114,11 @@ textarea::placeholder {
 .password-toggle:hover {
   color: var(--primary-500);
   background: var(--primary-50);
+}
+
+/* Inputs avec icône + toggle mot de passe */
+.input-wrapper:has(.password-toggle) input {
+  padding-left: 88px;
 }
 
 /* Error states */
