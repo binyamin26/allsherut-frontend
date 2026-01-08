@@ -158,7 +158,20 @@ const languages = [
                 </button>
               </div>
             )}
-            
+
+            {/* Language flags - mobile */}
+<div className="header-language-flags">
+  {languages.map((lang) => (
+    <button
+      key={lang.code}
+      onClick={() => changeLanguage(lang.code)}
+      className={`header-flag-btn ${currentLanguage === lang.code ? 'active' : ''}`}
+    >
+      <img src={lang.flag} alt={lang.alt} />
+    </button>
+  ))}
+</div>
+
             {/* Mobile menu button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
