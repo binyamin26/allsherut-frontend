@@ -200,7 +200,37 @@ const languages = [
                 </button>
               </div>
             )}
-
+{/* 🆕 AJOUTE ÇA ICI - Language dropdown MOBILE */}
+            <div className="header-language-dropdown mobile-only">
+              <button 
+                className="header-language-trigger"
+                onClick={() => setShowLangDropdown(!showLangDropdown)}
+              >
+                <img 
+                  src={languages.find(l => l.code === currentLanguage)?.flag} 
+                  alt={currentLanguage} 
+                />
+                <span className={`lang-arrow ${showLangDropdown ? 'open' : ''}`}>▼</span>
+              </button>
+              {showLangDropdown && (
+                <div className="header-language-menu">
+                  {languages.filter(l => l.code !== currentLanguage).map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => {
+                        changeLanguage(lang.code);
+                        setShowLangDropdown(false);
+                      }}
+                      className="header-language-option"
+                    >
+                      <img src={lang.flag} alt={lang.alt} />
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+            {/* 🆕 FIN DU CODE À AJOUTER */}
+            
             {/* Mobile menu button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
