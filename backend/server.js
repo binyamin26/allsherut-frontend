@@ -383,7 +383,7 @@ cronService.start();
 // Gestion gracieuse de l'arrêt
 process.on('SIGTERM', () => {
   console.log('🔄 שרת נסגר בצורה מסודרת...');
-  process.exit(0);
+
 });
 
 process.on('SIGINT', () => {
@@ -393,24 +393,20 @@ process.on('SIGINT', () => {
   // TODO: Sauvegarder les données importantes avant fermeture
   setTimeout(() => {
     console.log('✅ נתונים נשמרו בהצלחה');
-    process.exit(0);
+
   }, 2000);
 });
 
-// Gestion des erreurs non capturées
 process.on('unhandledRejection', (reason, promise) => {
-  console.error('❌ Unhandled Rejection at:', promise, 'reason:', reason);
-  // Ne pas fermer le serveur en production, juste logger
-  if (config.server.env !== 'production') {
-    process.exit(1);
-  }
+  console.error('❌ Unhandled Rejection:', reason);
+  // ne pas exit en prod
 });
 
 process.on('uncaughtException', (error) => {
   console.error('❌ Uncaught Exception:', error);
-  // Fermer gracieusement même en production pour ce type d'erreur
-  process.exit(1);
+  // idéalement, loguer mais ne pas exit
 });
+
 
 // Démarrage
 startServer();
