@@ -22,31 +22,22 @@ const {
 } = require('./middleware/subscriptionMiddleware');
 
 const app = express();
+app.set('trust proxy', 1); // Indispensable pour Render
 
 // =============================================
 // MIDDLEWARE DE SÉCURITÉ
 // =============================================
 const allowedOrigins = [
-  'https://homesherut-frontend.vercel.app', // frontend Vercel
-  'http://localhost:5173',                  // dev local
+  process.env.FRONTEND_URL || 'https://homesherut-frontend.vercel.app',
+  'http://localhost:5173',
 ];
+// Remplacez votre bloc app.use(cors(...)) par celui-ci :
 app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin) return callback(null, true); // pour Postman ou curl
-
-    if (allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      console.warn(`🚫 Requête CORS bloquée depuis: ${origin}`);
-      callback(new Error('Non autorisé par la politique CORS'));
-    }
-  },
+  origin: ['https://homesherut-frontend.vercel.app', 'http://localhost:5173'],
   credentials: true,
-  methods: ['GET','POST','PUT','DELETE','OPTIONS'],
-  allowedHeaders: ['Origin','X-Requested-With','Content-Type','Accept','Authorization','Cache-Control','Pragma'],
-  optionsSuccessStatus: 200
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
-
 // Configuration CORS
 
 
