@@ -78,6 +78,15 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(responseMiddleware);
 
+
+// 1. Route de test immédiat (Racine)
+app.get('/', (req, res) => {
+  res.json({ success: true, message: '🚀 Backend HomeSherut is running!' });
+});
+
+// 2. Route de santé (Health)
+app.use('/api/health', require('./routes/health'));
+
 // Logging en développement
 if (config.server.env === 'development') {
   app.use(morgan('combined'));
