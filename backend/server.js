@@ -26,21 +26,15 @@ const app = express();
 // =============================================
 // MIDDLEWARE DE SÉCURITÉ
 // =============================================
-
-// Configuration CORS
+const allowedOrigins = [
+  'https://homesherut-frontend.vercel.app', // frontend Vercel
+  'http://localhost:5173',                  // dev local
+];
 app.use(cors({
   origin: function (origin, callback) {
-    if (!origin) return callback(null, true);
-    
-    const allowedOrigins = [
-      config.server.frontendUrl,
-      'http://localhost:5173',
-      'http://localhost:5174', 
-      'http://localhost:3000',
-      process.env.FRONTEND_URL
-    ].filter(Boolean);
-    
-    if (allowedOrigins.indexOf(origin) !== -1) {
+    if (!origin) return callback(null, true); // pour Postman ou curl
+
+    if (allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
       console.warn(`🚫 Requête CORS bloquée depuis: ${origin}`);
@@ -48,18 +42,13 @@ app.use(cors({
     }
   },
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: [
-    'Origin', 
-    'X-Requested-With', 
-    'Content-Type', 
-    'Accept', 
-    'Authorization',
-    'Cache-Control',
-    'Pragma'
-  ],
+  methods: ['GET','POST','PUT','DELETE','OPTIONS'],
+  allowedHeaders: ['Origin','X-Requested-With','Content-Type','Accept','Authorization','Cache-Control','Pragma'],
   optionsSuccessStatus: 200
 }));
+
+// Configuration CORS
+
 
 // Helmet pour la sécurité
 app.use(helmet({
@@ -173,6 +162,12 @@ app.use('/api/reviews',
 
 // Gestion utilisateurs
 app.use('/api/users', require('./routes/users'));
+
+   // Route racine pour vérifier que le serveur est actif
+app.get('/', (req, res) => {
+  res.json({ success: true, message: '🚀 Backend HomeSherut is running!' });
+});
+
 
 // Upload avec rate limiting spécifique
 const uploadLimiter = rateLimit({
@@ -311,7 +306,9 @@ const startServer = async () => {
       process.exit(1);
     }
 
-    const PORT = config.server.port;
+    const PORT = process.env.PORT || 10000;
+
+
     app.listen(PORT, () => {
       console.log('\n🚀 ╔═══════════════════════════════════════════════╗');
       console.log(`✅ שרת HomeSherut פועל על פורט ${PORT}`);

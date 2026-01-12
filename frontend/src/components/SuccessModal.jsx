@@ -27,7 +27,7 @@ const SuccessModal = ({ isOpen, onClose, userRole, userName, serviceType, isPrem
     title: t('success.title'),
  subtitle: t('success.subtitle').replace('{userName}', userName).replace('{serviceType}', t(`services.${serviceType}`)),
     benefits: [
-      { icon: <Gift size={20} />, text: t('success.benefits.freeMonth') },
+      // { icon: <Gift size={20} />, text: t('success.benefits.freeMonth') },
       { icon: <Star size={20} />, text: t('success.benefits.professionalProfile') },
       { icon: <Users size={20} />, text: t('success.benefits.localExposure') },
       { icon: <Phone size={20} />, text: t('success.benefits.directContact') },

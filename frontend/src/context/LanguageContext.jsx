@@ -83,8 +83,8 @@ const translations = {
     'services.locksmith.desc': 'שירותי מנעולן ופתיחת דלתות',
 
     // HomePage - Hero
-    'homepage.hero.tagline': 'כל השירותים בבית אחד',
-    'homepage.hero.description1': 'מחפשים שירות לבית? ב־AllSherut תמצאו את כל שירותי הבית במקום אחד — ניקיון, גינון, שיעורים פרטיים, עזרה לאזרחים ותיקים, שף פרטי, ניהול נכסים ועוד מגוון גדול של שירותים. הכול עם ספקים אמינים, דירוגים, ביקורות ומידע מלא שמאפשר לכם לבחור בביטחון.',
+  'homepage.hero.tagline': 'כל השירותים שאתם צריכים, במקום אחד',
+   'homepage.hero.description1': 'ב־AllSherut תמצאו את כל השירותים שאתם צריכים במקום אחד — לבית, למשפחה, לעסק ולאירועים. ניקיון, גינון, שיעורים פרטיים, סיוע לאזרחים ותיקים, שף פרטי, ניהול נכסים ועוד מגוון רחב של שירותים. הכול עם ספקים אמינים, דירוגים, ביקורות ומידע מלא לבחירה חכמה ובטוחה.',
     'homepage.hero.description2': 'אם אתם ספקים — זו ההזדמנות שלכם להגיע ליותר לקוחות, להציג את השירותים שלכם, ולקבל הזמנות ישירות דרך הפלטפורמה.',
     
     // HomePage - Clients Section
@@ -118,7 +118,7 @@ const translations = {
     
     // HomePage - CTA Section
     'homepage.cta.title': 'מוכנים להתחיל?',
-    'homepage.cta.description': 'הצטרפו כנותני שירות ל־AllSherut ופתחו לעצמכם דלת ללקוחות חדשים. קבלו חודש ראשון חינם – הרשמה מהירה!',
+    'homepage.cta.description': 'הצטרפו כנותני שירות ל־AllSherut ופתחו לעצמכם דלת ללקוחות חדשים.  הרשמה מהירה!',
     'homepage.cta.searchServices': 'חפש שירותים',
     'homepage.cta.becomeProvider': 'הפוך לספק',
     'homepage.cta.register': 'הרשמו עכשיו',
@@ -2644,8 +2644,8 @@ const translations = {
     'services.locksmith.desc': 'Locksmith and door opening services',
 
     // HomePage - Hero
-    'homepage.hero.tagline': 'All services in one place',
-    'homepage.hero.description1': 'Looking for home services? At AllSherut you\'ll find all home services in one place — cleaning, gardening, private lessons, senior care, private chef, property management and a wide variety of services. All with reliable providers, ratings, reviews and complete information that allows you to choose with confidence.',
+ 'homepage.hero.tagline': 'All the services you need, in one place',
+'homepage.hero.description1': 'On AllSherut, find all the services you need in one place — for your home, family, business, and events. Cleaning, gardening, private lessons, senior assistance, private chef services, property management, and much more. Trusted providers, ratings, reviews, and full information to help you choose with confidence.',
     'homepage.hero.description2': 'If you are a provider — this is your opportunity to reach more customers, showcase your services, and receive bookings directly through the platform.',
     
     // HomePage - Clients Section
@@ -2679,7 +2679,7 @@ const translations = {
     
     // HomePage - CTA Section
     'homepage.cta.title': 'Ready to Start?',
-    'homepage.cta.description':'Join AllSherut as a service provider and open the door to new customers. Get your first month free – quick registration!',
+    'homepage.cta.description':'Join AllSherut as a service provider and open the door to new customers. Quick registration!',
     'homepage.cta.searchServices': 'Search Services',
     'homepage.cta.becomeProvider': 'Become Provider',
     'homepage.cta.register': 'Register Now',
@@ -5217,8 +5217,8 @@ const translations = {
     'services.locksmith.desc': 'Услуги слесаря и вскрытие дверей',
 
     // HomePage sections
-    'homepage.hero.tagline': 'Все услуги в одном месте',
-    'homepage.hero.description1': 'Ищете услуги для дома? В AllSherut вы найдёте все домашние услуги в одном месте — уборка, садоводство, частные уроки, помощь пожилым, частный повар, управление недвижимостью и большое разнообразие услуг. Всё с надёжными поставщиками, рейтингами, отзывами и полной информацией для уверенного выбора.',
+ 'homepage.hero.tagline': 'Все нужные вам услуги — в одном месте',
+    'homepage.hero.description1': 'На AllSherut вы найдёте все необходимые услуги в одном месте — для дома, семьи, бизнеса и мероприятий. Уборка, садоводство, частные уроки, помощь пожилым людям, личный шеф-повар, управление недвижимостью и многое другое. Надёжные исполнители, рейтинги, отзывы и полная информация — для уверенного и правильного выбора.',
     'homepage.hero.description2': 'Если вы поставщик услуг — это ваша возможность привлечь больше клиентов, продемонстрировать свои услуги и получать заказы напрямую через платформу.',
     'homepage.clients.title': 'Для клиентов',
     'homepage.clients.subtitle': 'С AllSherut нет необходимости усложнять или тратить время на бесконечные поиски',
@@ -5244,7 +5244,7 @@ const translations = {
     'homepage.providers.management.title': 'Простое управление',
     'homepage.providers.management.description': 'Управляйте своей доступностью и ценами легко через платформу',
     'homepage.cta.title': 'Готовы начать?',
-    'homepage.cta.description': 'Присоединяйтесь к AllSherut как поставщик услуг и откройте дверь к новым клиентам. Получите первый месяц бесплатно – быстрая регистрация!',
+    'homepage.cta.description': 'Присоединяйтесь к AllSherut как поставщик услуг и откройте дверь к новым клиентам. быстрая регистрация!',
     'homepage.cta.searchServices': 'Поиск услуг',
     'homepage.cta.becomeProvider': 'Стать поставщиком',
     'homepage.cta.register': 'Зарегистрироваться',
@@ -7762,8 +7762,8 @@ const translations = {
     'services.locksmith.desc': 'Services de serrurerie et ouverture de portes',
     
     // HomePage - Hero
-    'homepage.hero.tagline': 'Tous les services en un seul endroit',
-   'homepage.hero.description1': 'Vous cherchez un service à domicile ? Chez AllSherut, vous trouverez tous les services à domicile en un seul endroit — ménage, jardinage, cours particuliers, aide aux seniors, chef privé, gestion immobilière et une grande variété de services. Le tout avec des prestataires fiables, des notes, des avis et des informations complètes pour choisir en toute confiance.',
+'homepage.hero.tagline': 'Tous les services dont vous avez besoin, en un seul endroit',
+'homepage.hero.description1': 'Sur AllSherut, retrouvez tous les services dont vous avez besoin en un seul endroit — pour la maison, la famille, les entreprises et les événements. Ménage, jardinage, cours particuliers, aide aux personnes âgées, chef privé, gestion de biens et bien plus encore. Des prestataires fiables, des avis, des notes et des informations complètes pour choisir en toute confiance.',
     'homepage.hero.description2': 'Si vous êtes prestataire — c\'est votre opportunité d\'atteindre plus de clients, de présenter vos services et de recevoir des réservations directement via la plateforme.',
     
     // HomePage - Clients Section
@@ -7797,7 +7797,7 @@ const translations = {
     
     // HomePage - CTA Section
     'homepage.cta.title': 'Prêt à commencer ?',
-    'homepage.cta.description':'Rejoignez AllSherut en tant que prestataire de services et ouvrez la porte à de nouveaux clients. Premier mois gratuit – inscription rapide !',
+    'homepage.cta.description':'Rejoignez AllSherut en tant que prestataire de services et ouvrez la porte à de nouveaux clients. Inscription rapide !',
     'homepage.cta.searchServices': 'Rechercher services',
     'homepage.cta.becomeProvider': 'Devenir prestataire',
     'homepage.cta.register': 'S\'inscrire maintenant',
