@@ -1368,7 +1368,8 @@ const handleContact = () => {
               <div className="image-wrapper">
   {provider.media?.profileImage ? (
     <img 
-      src={`http://localhost:5000/${provider.media.profileImage.replace(/\\/g, '/').replace(/^\/+/, '')}`}
+    // REMPLACEZ le src de l'image par :
+src={`${import.meta.env.VITE_API_URL.replace('/api', '')}/${provider.media.profileImage.replace(/\\/g, '/').replace(/^\/+/, '')}`}
       alt={provider.name}
       className="provider-image"
     />
@@ -1603,10 +1604,10 @@ const handleContact = () => {
       <div className="provider-info" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
   <div className="provider-avatar">
     <img 
-      src={provider.media?.profileImage 
-        ? `http://localhost:5000/${provider.media.profileImage.replace(/\\/g, '/').replace(/^\/+/, '')}`
-        : '/api/placeholder/40/40'
-      }
+    src={provider.media?.profileImage 
+  ? `${import.meta.env.VITE_API_URL.replace('/api', '')}/${provider.media.profileImage.replace(/\\/g, '/').replace(/^\/+/, '')}`
+  : '/images/placeholder-user.png' // Utilisez un chemin local pour le placeholder
+}
       alt={provider.name}
       className="provider-response-image"
     />

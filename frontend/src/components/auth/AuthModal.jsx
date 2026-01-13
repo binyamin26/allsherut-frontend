@@ -145,7 +145,7 @@ const services = [
   { key: 'tutoring', name: t('services.tutoring'), icon: '📚', image: '/images/tutoring.png', gradient: 'tutoring-gradient' },
   { key: 'eldercare', name: t('services.eldercare'), icon: '👵', image: '/images/eldercare.png', gradient: 'eldercare-gradient' },
   { key: 'laundry', name: t('services.laundry'), image: '/images/kvissa.jpg', gradient: 'laundry-gradient' },
-  { key: 'property_management', name: t('services.property_management'), image: '/images/nihoul dirot.jpg', gradient: 'property_management-gradient' },
+  { key: 'property_management', name: t('services.property_management'), image: '/images/nihoul-dirot.jpg', gradient: 'property_management-gradient' },
   { key: 'electrician', name: t('services.electrician'), image: '/images/electrician.jpg', gradient: 'electrician-gradient' },
   { key: 'plumbing', name: t('services.plumbing'), image: '/images/plombier.jpg', gradient: 'plumbing-gradient' },
   { key: 'air_conditioning', name: t('services.air_conditioning'), image: '/images/clim.png', gradient: 'air_conditioning-gradient' },

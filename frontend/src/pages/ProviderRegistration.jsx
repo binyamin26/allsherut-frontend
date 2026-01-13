@@ -319,12 +319,13 @@ const ProviderRegistration = () => {
   hourlyRate: formData.serviceDetails.hourlyRate,
   can_travel_alone: formData.serviceDetails.can_travel_alone
 });
+// REMPLACEZ l'URL fixe par la variable Vite
+const response = await axios.post(`${import.meta.env.VITE_API_URL}/auth/register/provider`, formDataToSend, {
+  headers: {
+    'Content-Type': 'multipart/form-data'
+  }
+});
 
-      const response = await axios.post('http://localhost:5000/api/auth/register/provider', formDataToSend, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      });
 if (response.data.success) {
   // ✅ Stocker le token
   localStorage.setItem('homesherut_token', response.data.data.token);

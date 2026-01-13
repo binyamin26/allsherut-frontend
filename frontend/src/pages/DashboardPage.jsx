@@ -1003,8 +1003,9 @@ console.log('🔍 DEBUG serviceDetails COMPLET:', JSON.stringify(userData?.servi
   style={{ width: '100px', height: '100px', objectFit: 'cover', borderRadius: '50%', border: 'none', boxShadow: 'none' }}
 />
   ) : userData?.providerProfile?.profile_image ? (
- <img 
-  src={`http://localhost:5000/${userData.providerProfile.profile_image.replace(/^\/+/, '')}`} 
+// REMPLACEZ la balise <img> par celle-ci :
+<img 
+  src={`${import.meta.env.VITE_API_URL.replace('/api', '')}/${userData.providerProfile.profile_image.replace(/^\/+/, '')}`} 
   alt={userData.firstName}
   style={{ width: '100px', height: '100px', objectFit: 'cover', borderRadius: '50%', border: 'none', boxShadow: 'none' }}
 />

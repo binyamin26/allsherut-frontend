@@ -1,10 +1,12 @@
 class ApiService {
   constructor() {
-    this.baseURL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+    // On s'assure que VITE_API_URL est la priorité absolue
+    this.baseURL = import.meta.env.VITE_API_URL;
     this.defaultHeaders = {
       'Content-Type': 'application/json',
     };
   }
+
 
   // Récupération du token depuis localStorage
   getAuthToken() {

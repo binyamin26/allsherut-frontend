@@ -24,9 +24,10 @@ const ProviderCard = ({ provider, onOpenReviewModal }) => {
   };
 
   // Image URL
-  const imageUrl = provider.profile_image 
-    ? `http://localhost:5000/${provider.profile_image.replace(/\\/g, '/').replace(/^\/+/, '')}` 
-    : '';
+const baseUrl = import.meta.env.VITE_API_URL.replace('/api', '');
+const imageUrl = provider.profile_image 
+  ? `${baseUrl}/${provider.profile_image.replace(/\\/g, '/').replace(/^\/+/, '')}` 
+  : '';
 
   // Prix (seulement si > 0)
   const hourlyRate = (provider.hourly_rate && provider.hourly_rate > 0) 

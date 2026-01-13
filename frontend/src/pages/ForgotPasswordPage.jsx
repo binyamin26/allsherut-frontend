@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Mail, ArrowRight, CheckCircle, AlertCircle, Loader, Home } from 'lucide-react';
 
 
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = import.meta.env.VITE_API_URL;
 
 const ForgotPasswordPage = () => {
   const navigate = useNavigate();
