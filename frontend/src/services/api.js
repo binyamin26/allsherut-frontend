@@ -25,7 +25,7 @@ class ApiService {
 
     console.log(`🚀 APPEL API : ${options.method || 'GET'} -> ${fullURL}`);
 
-    try {
+   try {
       const response = await fetch(fullURL, { ...options, headers });
 
       if (response.status === 401) {
@@ -33,16 +33,18 @@ class ApiService {
         return { success: false, message: 'Session expirée' };
       }
 
-      // Gestion du cas où la réponse est vide
       const contentType = response.headers.get("content-type");
       if (contentType && contentType.includes("application/json")) {
-        return await response.json();
+        const data = await response.json();
+        // Force un objet vide si data est null pour éviter le bug 'undefined'
+        return data || { success: false };
       }
       return { success: response.ok };
 
     } catch (error) {
       console.error(`❌ Erreur critique sur ${fullURL}:`, error);
-      return { success: false, message: 'שגיאה בחיבור לשרת' };
+      // TRÈS IMPORTANT : On retourne un objet avec providers vide pour éviter le crash
+      return { success: false, providers: [], message: 'שגיאה בחיבור לשרת' };
     }
   }
 
@@ -50,9 +52,21 @@ class ApiService {
   // SERVICES ET RECHERCHE (Ce qui te manquait !)
   // =============================================
 
-  async searchProviders(filters) {
+async searchProviders(filters) {
     const queryParams = new URLSearchParams(filters).toString();
-    return this.request(`/search/providers?${queryParams}`);
+    const result = await this.request(`/search/providers?${queryParams}`);
+    
+    // Si le serveur renvoie directement la liste au lieu de {providers: []}
+    if (Array.isArray(result)) {
+      return { success: true, providers: result };
+    }
+    
+    // Si le serveur renvoie une erreur, on garantit que 'providers' existe
+    if (!result || !result.providers) {
+      return { ...result, providers: result?.providers || [] };
+    }
+    
+    return result;
   }
 
   async getProvider(id) {
