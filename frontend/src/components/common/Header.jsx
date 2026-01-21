@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-// Remplacer l'import actuel par :
 import { Menu, X, Home, Users, Heart, BookOpen, UserCheck, Sparkles, Baby, LogOut, Shirt, Zap, Wrench, Wind, Flame, Package, Layers, Hammer, PartyPopper, ChefHat, Paintbrush, Droplets, HardHat, Frame, Square, Key, Leaf, PawPrint } from 'lucide-react'
 import { useAuth } from '../../context/AuthContext'
 import AuthModal from '../auth/AuthModal'
@@ -13,7 +12,7 @@ const Header = () => {
   const [showMobileServices, setShowMobileServices] = useState(false)
   const { user, isAuthenticated, logout } = useAuth()
   const navigate = useNavigate()
-const [showLangDropdown, setShowLangDropdown] = useState(false)
+  const [showLangDropdown, setShowLangDropdown] = useState(false)
   
   // Fermer le dropdown au clic extérieur
   React.useEffect(() => {
@@ -29,19 +28,19 @@ const [showLangDropdown, setShowLangDropdown] = useState(false)
 
   const { t, changeLanguage, currentLanguage } = useLanguage()
 
-const languages = [
-  { code: 'he', flag: 'https://flagcdn.com/w40/il.png', alt: 'עברית' },
-  { code: 'en', flag: 'https://flagcdn.com/w40/gb.png', alt: 'English' },
-  { code: 'fr', flag: 'https://flagcdn.com/w40/fr.png', alt: 'Français' },
-  { code: 'ru', flag: 'https://flagcdn.com/w40/ru.png', alt: 'Русский' }
-];
+  const languages = [
+    { code: 'he', flag: 'https://flagcdn.com/w40/il.png', alt: 'עברית' },
+    { code: 'en', flag: 'https://flagcdn.com/w40/gb.png', alt: 'English' },
+    { code: 'fr', flag: 'https://flagcdn.com/w40/fr.png', alt: 'Français' },
+    { code: 'ru', flag: 'https://flagcdn.com/w40/ru.png', alt: 'Русский' }
+  ];
 
   // Services avec traductions
   const services = [
     { icon: <Baby className="w-5 h-5" />, nameKey: 'services.babysitting', descKey: 'services.babysitting.desc', href: '/services/babysitting' },
     { icon: <Sparkles className="w-5 h-5" />, nameKey: 'services.cleaning', descKey: 'services.cleaning.desc', href: '/services/cleaning' },
-   { icon: <Leaf className="w-5 h-5" />, nameKey: 'services.gardening', descKey: 'services.gardening.desc', href: '/services/gardening' },
-{ icon: <PawPrint className="w-5 h-5" />, nameKey: 'services.petcare', descKey: 'services.petcare.desc', href: '/services/petcare' },
+    { icon: <Leaf className="w-5 h-5" />, nameKey: 'services.gardening', descKey: 'services.gardening.desc', href: '/services/gardening' },
+    { icon: <PawPrint className="w-5 h-5" />, nameKey: 'services.petcare', descKey: 'services.petcare.desc', href: '/services/petcare' },
     { icon: <BookOpen className="w-5 h-5" />, nameKey: 'services.tutoring', descKey: 'services.tutoring.desc', href: '/services/tutoring' },
     { icon: <UserCheck className="w-5 h-5" />, nameKey: 'services.eldercare', descKey: 'services.eldercare.desc', href: '/services/eldercare' },
     { icon: <Shirt className="w-5 h-5" />, nameKey: 'services.laundry', descKey: 'services.laundry.desc', href: '/services/laundry' },
@@ -200,7 +199,7 @@ const languages = [
                 </button>
               </div>
             )}
-{/* 🆕 AJOUTE ÇA ICI - Language dropdown MOBILE */}
+{/* Language dropdown MOBILE */}
             <div className="header-language-dropdown mobile-only">
               <button 
                 className="header-language-trigger"
@@ -229,7 +228,6 @@ const languages = [
                 </div>
               )}
             </div>
-            {/* 🆕 FIN DU CODE À AJOUTER */}
             
             {/* Mobile menu button */}
             <button
@@ -244,9 +242,9 @@ const languages = [
         {/* Mobile menu */}
         <div className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}>
           <div className="space-y-4">
-            {/* Navigation mobile */}
+            {/* Navigation mobile - CORRECTION ICI */}
             <Link to="/" className="nav-link" onClick={() => setIsMenuOpen(false)}>
-              דף הבית
+              {t('nav.home')}
             </Link>
             
 <div className="space-y-2">
@@ -274,8 +272,9 @@ const languages = [
               ))}
             </div>
             
+            {/* CORRECTION ICI */}
             <Link to="/contact" className="nav-link" onClick={() => setIsMenuOpen(false)}>
-              צור קשר
+              {t('nav.contact')}
             </Link>
             
             <div className="space-y-3" style={{paddingTop: '16px', borderTop: '1px solid #e5e7eb'}}>
@@ -290,16 +289,18 @@ const languages = [
                     style={{width: '100%', display: 'block', textAlign: 'center'}}
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    דשבורד
+                    {/* CORRECTION ICI */}
+                    {t('nav.dashboard', 'דשבורד')}
                   </Link>
                   <button 
                     onClick={handleLogout}
                     className="w-full py-2 px-4 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
                   >
-                    התנתק
+                    {/* CORRECTION ICI */}
+                    {t('auth.logout')}
                   </button>
                 </div>
-     ) : (
+      ) : (
                 <>
                   <button 
                     onClick={handleRegisterClick}
