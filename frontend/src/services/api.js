@@ -11,42 +11,35 @@ class ApiService {
   }
 
   // Méthode de requête universelle et ultra-robuste
-  async request(endpoint, options = {}) {
-    const fullURL = this.baseURL + endpoint;
+ async request(endpoint, options = {}) {
+  const fullURL = this.baseURL + endpoint;
+  const token = this.getAuthToken();
+  
+  const headers = {
+    'Accept': 'application/json',
+    ...(options.body instanceof FormData ? {} : { 'Content-Type': 'application/json' }),
+    ...(token && { 'Authorization': `Bearer ${token}` }),
+    ...options.headers
+  };
+
+  try {
+    const response = await fetch(fullURL, { ...options, headers });
+
+    // Si le serveur répond, on essaie de lire le JSON quoi qu'il arrive
+    const data = await response.json();
     
-    // Configuration des headers (Auth + JSON)
-    const token = this.getAuthToken();
-    const headers = {
-      'Accept': 'application/json',
-      ...(options.body instanceof FormData ? {} : { 'Content-Type': 'application/json' }),
-      ...(token && { 'Authorization': `Bearer ${token}` }),
-      ...options.headers
+    // On s'assure que 'success' et 'providers' existent pour éviter le crash du frontend
+    return {
+      success: data.success || response.ok,
+      providers: data.providers || (Array.isArray(data) ? data : []),
+      ...data
     };
-
-    console.log(`🚀 APPEL API : ${options.method || 'GET'} -> ${fullURL}`);
-
-   try {
-      const response = await fetch(fullURL, { ...options, headers });
-
-      if (response.status === 401) {
-        localStorage.removeItem('homesherut_token');
-        return { success: false, message: 'Session expirée' };
-      }
-
-      const contentType = response.headers.get("content-type");
-      if (contentType && contentType.includes("application/json")) {
-        const data = await response.json();
-        // Force un objet vide si data est null pour éviter le bug 'undefined'
-        return data || { success: false };
-      }
-      return { success: response.ok };
-
-    } catch (error) {
-      console.error(`❌ Erreur critique sur ${fullURL}:`, error);
-      // TRÈS IMPORTANT : On retourne un objet avec providers vide pour éviter le crash
-      return { success: false, providers: [], message: 'שגיאה בחיבור לשרת' };
-    }
+  } catch (error) {
+    console.error(`❌ Échec sur ${fullURL}:`, error);
+    // Retourne un objet vide au lieu de 'undefined' pour empêcher le crash
+    return { success: false, providers: [], message: 'שגיאה בחיבור לשרת' };
   }
+}
 
   // =============================================
   // SERVICES ET RECHERCHE (Ce qui te manquait !)
