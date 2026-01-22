@@ -10,47 +10,44 @@ class ApiService {
   }
 
 async request(endpoint, options = {}) {
-  // On ignore complètement les chemins relatifs, on force l'adresse de Render
-  const base = 'https://homesherut-backend.onrender.com/api';
-  const fullURL = base + (endpoint.startsWith('/') ? endpoint : `/${endpoint}`);
+  // 1. On force l'adresse Render en dur ici pour court-circuiter les bugs de baseURL
+  const serverUrl = 'https://homesherut-backend.onrender.com/api';
+  
+  // 2. On nettoie l'endpoint pour éviter les doubles slashes
+  const cleanEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
+  const fullURL = serverUrl + cleanEndpoint;
   
   console.log(`🚀 APPEL API RÉEL : ${fullURL}`);
-  
-  console.log(`🚀 APPEL API RÉEL : ${fullURL}`);
-    
-    console.log(`🚀 TENTATIVE DE CONNEXION VERS : ${fullURL}`);
 
-    const token = this.getAuthToken();
-    const headers = {
-      'Accept': 'application/json',
-      ...(options.body instanceof FormData ? {} : { 'Content-Type': 'application/json' }),
-      ...(token && { 'Authorization': `Bearer ${token}` }),
-      ...options.headers
-    };
+  const token = this.getAuthToken();
+  const headers = {
+    'Accept': 'application/json',
+    ...(options.body instanceof FormData ? {} : { 'Content-Type': 'application/json' }),
+    ...(token && { 'Authorization': `Bearer ${token}` }),
+    ...options.headers
+  };
 
-    try {
-      const response = await fetch(fullURL, { ...options, headers });
+  try {
+    const response = await fetch(fullURL, { ...options, headers });
 
-      // Vérification du type de contenu pour éviter de lire du HTML comme du JSON
-      const contentType = response.headers.get("content-type");
-      if (contentType && contentType.includes("text/html")) {
-        console.error("❌ ERREUR : Le serveur a renvoyé du HTML. Vérifiez l'URL de l'API.");
-        return { success: false, providers: [] };
-      }
-
-      const data = await response.json();
-      
-      // On sécurise le retour pour que le frontend ne plante jamais
-      return {
-        success: data.success || response.ok,
-        providers: data.providers || (Array.isArray(data) ? data : []),
-        ...data
-      };
-    } catch (error) {
-      console.error(`❌ Échec critique sur ${fullURL}:`, error);
-      return { success: false, providers: [], message: 'שגיאה בחיבור לשרת' };
+    // Sécurité : si on reçoit du HTML (code <!doctype), on arrête tout
+    const contentType = response.headers.get("content-type");
+    if (contentType && contentType.includes("text/html")) {
+      console.error("❌ ERREUR : Le serveur a renvoyé du HTML au lieu de JSON.");
+      return { success: false, providers: [] };
     }
+
+    const data = await response.json();
+    return {
+      success: data.success || response.ok,
+      providers: data.providers || (Array.isArray(data) ? data : []),
+      ...data
+    };
+  } catch (error) {
+    console.error(`❌ Échec sur ${fullURL}:`, error);
+    return { success: false, providers: [], message: 'שגיאה בחיבור לשרת' };
   }
+}
 
   // =============================================
   // SERVICES ET RECHERCHE
