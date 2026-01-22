@@ -15,6 +15,8 @@ async request(endpoint, options = {}) {
   const fullURL = base + (endpoint.startsWith('/') ? endpoint : `/${endpoint}`);
   
   console.log(`🚀 APPEL API RÉEL : ${fullURL}`);
+  
+  console.log(`🚀 APPEL API RÉEL : ${fullURL}`);
     
     console.log(`🚀 TENTATIVE DE CONNEXION VERS : ${fullURL}`);
 
