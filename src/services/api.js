@@ -10,10 +10,9 @@ class ApiService {
   }
 
 async request(endpoint, options = {}) {
- 
-  console.log("DEBUG endpoint:", endpoint);
- const backendURL = "https://homesherut-backend.onrender.com/api" + endpoint;
-  console.log("DEBUG backendURL:", backendURL);
+console.log("DEBUG endpoint:", endpoint);
+const backendURL = "https://homesherut-backend.onrender.com/api" + endpoint;
+console.log("DEBUG backendURL:", backendURL);
 
   const token = this.getAuthToken();
   const headers = {
