@@ -10,10 +10,10 @@ class ApiService {
   }
 
 async request(endpoint, options = {}) {
-  // ✅ URL FORCÉE - NE JAMAIS UTILISER baseURL
+ 
+  console.log("DEBUG endpoint:", endpoint);
   const backendURL = `https://homesherut-backend.onrender.com/api${endpoint}`;
-  
-console.log("APPEL API:", backendURL);
+  console.log("DEBUG backendURL:", backendURL);
 
   const token = this.getAuthToken();
   const headers = {
