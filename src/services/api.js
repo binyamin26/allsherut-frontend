@@ -1,7 +1,5 @@
-// src/services/api.js
 class ApiService {
   constructor() {
-    // FORCEZ l'URL complète ici pour éviter que Vercel ne cherche en local
     this.baseURL = 'https://homesherut-backend.onrender.com/api';
   }
 
@@ -9,66 +7,51 @@ class ApiService {
     return localStorage.getItem('homesherut_token');
   }
 
-async request(endpoint, options = {}) {
-console.log("DEBUG endpoint:", endpoint);
-const backendURL = "https://homesherut-backend.onrender.com/api" + endpoint;
-console.log("DEBUG backendURL:", backendURL);
+  async request(endpoint, options = {}) {
+    const fullURL = "https://homesherut-backend.onrender.com/api" + endpoint;
+    console.log("FINAL URL:", fullURL);
 
-  const token = this.getAuthToken();
-  const headers = {
-    'Accept': 'application/json',
-    ...(options.body instanceof FormData ? {} : { 'Content-Type': 'application/json' }),
-    ...(token && { 'Authorization': `Bearer ${token}` }),
-    ...options.headers
-  };
-
-  try {
-    const response = await fetch(backendURL, { ...options, headers });
-
-    const contentType = response.headers.get("content-type");
-    if (contentType && contentType.includes("text/html")) {
-      console.error("❌ ERREUR : Le serveur a renvoyé du HTML au lieu de JSON.");
-      return { success: false, providers: [] };
-    }
-
-    const data = await response.json();
-    return {
-      success: data.success || response.ok,
-      providers: data.providers || (Array.isArray(data) ? data : []),
-      ...data
+    const token = this.getAuthToken();
+    const headers = {
+      'Accept': 'application/json',
+      ...(options.body instanceof FormData ? {} : { 'Content-Type': 'application/json' }),
+      ...(token && { 'Authorization': `Bearer ${token}` }),
+      ...options.headers
     };
-  } catch (error) {
-    console.error(`❌ Échec sur ${backendURL}:`, error);
-    return { success: false, providers: [], message: 'שגיאה בחיבור לשרת' };
-  }
-}
 
-  // =============================================
-  // SERVICES ET RECHERCHE
-  // =============================================
+    try {
+      const response = await fetch(fullURL, { ...options, headers });
+      const contentType = response.headers.get("content-type");
+      
+      if (contentType && contentType.includes("text/html")) {
+        console.error("ERROR: HTML instead of JSON");
+        return { success: false, providers: [] };
+      }
+
+      const data = await response.json();
+      return {
+        success: data.success || response.ok,
+        providers: data.providers || (Array.isArray(data) ? data : []),
+        ...data
+      };
+    } catch (error) {
+      console.error("Fetch error:", error);
+      return { success: false, providers: [], message: 'Error' };
+    }
+  }
 
   async searchProviders(filters) {
     const queryParams = new URLSearchParams(filters).toString();
-    const result = await this.request(`/search/providers?${queryParams}`);
-    
-    // On garantit que 'providers' est toujours un tableau exploitable
-    return {
-      ...result,
-      providers: result?.providers || []
-    };
+    return this.request("/search/providers?" + queryParams);
   }
 
   async getProvider(id) {
-    return this.request(`/providers/${id}`);
+    return this.request("/providers/" + id);
   }
 
   async getProviderReviews(id) {
-    return this.request(`/providers/${id}/reviews`);
+    return this.request("/providers/" + id + "/reviews");
   }
-
-  // =============================================
-  // AUTHENTIFICATION ET AUTRES
-  // =============================================
 
   async login(email, password) {
     return this.request('/auth/login', {
