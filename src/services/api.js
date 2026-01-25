@@ -13,8 +13,8 @@ async request(endpoint, options = {}) {
   // ✅ URL FORCÉE - NE JAMAIS UTILISER baseURL
   const backendURL = `https://homesherut-backend.onrender.com/api${endpoint}`;
   
-  console.log(`🚀 APPEL API RÉEL : ${backendURL}`);
-// Build 2026-01-25
+console.log("APPEL API:", backendURL);
+
   const token = this.getAuthToken();
   const headers = {
     'Accept': 'application/json',
