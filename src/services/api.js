@@ -40,10 +40,15 @@ class ApiService {
     }
   }
 
- async searchProviders(filters) {
+async searchProviders(filters) {
   const queryParams = new URLSearchParams(filters).toString();
-  const fullEndpoint = "https://homesherut-backend.onrender.com/api/search/providers?" + queryParams;
-  console.log("HARDCODED URL:", fullEndpoint);
+  const parts = [
+    "https://homesherut-backend.onrender.com",
+    "/api/search/providers?",
+    queryParams
+  ];
+  const fullEndpoint = parts.join("");
+  console.log("FINAL HARDCODED URL:", fullEndpoint);
   
   const response = await fetch(fullEndpoint);
   const data = await response.json();
