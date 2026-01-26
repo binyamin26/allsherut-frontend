@@ -136,7 +136,7 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
   const { login, register, loading, error, clearError, apiCall } = useAuth();
 
 
-  const API_BASE = 'https://homesherut-backend.onrender.com/api';
+ const API_BASE = '/api';
 
 const services = [
   { key: 'babysitting', name: t('services.babysitting'), icon: '👶', image: '/images/babysite.png', gradient: 'babysitting-gradient' },
