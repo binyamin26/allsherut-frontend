@@ -70,12 +70,11 @@
   text-align: center;
 }
 
-/* Service selection */
 .service-selection {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: var(--space-3);
-  margin-top: var(--space-3);
+  grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); /* 200px au lieu de 160px */
+  gap: var(--space-4);
+  margin-top: var(--space-6);
   direction: rtl;
 }
 

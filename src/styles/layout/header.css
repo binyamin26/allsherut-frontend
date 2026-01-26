@@ -180,6 +180,12 @@ nav {
   color: var(--neutral-700);
   transition: all var(--transition-fast);
   border-bottom: 1px solid var(--neutral-50);
+  flex-direction: row-reverse; /* Ajoute cette ligne */
+}
+
+/* En mode LTR, remettre l'ordre normal */
+[dir="ltr"] .services-dropdown-item {
+  flex-direction: row;
 }
 
 .services-dropdown-item:hover {
