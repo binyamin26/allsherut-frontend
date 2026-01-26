@@ -1,6 +1,7 @@
-// Service Worker HomeSherut - Mode Offline
-const CACHE_NAME = 'homesherut-v1';
-const RUNTIME_CACHE = 'homesherut-runtime-v1';
+// Service Worker HomeSherut - Version avec auto-update
+const CACHE_VERSION = 'v2.0.0'; // Incrémente ce numéro à chaque déploiement
+const CACHE_NAME = `homesherut-${CACHE_VERSION}`;
+const RUNTIME_CACHE = `homesherut-runtime-${CACHE_VERSION}`;
 
 // Fichiers à mettre en cache immédiatement (App Shell)
 const STATIC_CACHE_URLS = [
@@ -8,8 +9,7 @@ const STATIC_CACHE_URLS = [
   '/index.html',
   '/manifest.json',
   '/icon-192.png',
-  '/icon-512.png',
-  // Ajoute tes fichiers CSS/JS compilés ici
+  '/icon-512.png'
 ];
 
 // URLs des API à ne PAS mettre en cache
@@ -18,10 +18,10 @@ const API_URLS = [
 ];
 
 // ============================================
-// INSTALLATION - Se déclenche une seule fois
+// INSTALLATION - Force le nouveau SW
 // ============================================
 self.addEventListener('install', (event) => {
-  console.log('🔧 Service Worker: Installation...');
+  console.log('🔧 Service Worker: Installation version', CACHE_VERSION);
   
   event.waitUntil(
     caches.open(CACHE_NAME)
@@ -31,24 +31,24 @@ self.addEventListener('install', (event) => {
       })
       .then(() => {
         console.log('✅ Service Worker installé!');
-        return self.skipWaiting(); // Active immédiatement
+        return self.skipWaiting(); // Active immédiatement la nouvelle version
       })
   );
 });
 
 // ============================================
-// ACTIVATION - Nettoyage vieux caches
+// ACTIVATION - Nettoyage TOUS les vieux caches
 // ============================================
 self.addEventListener('activate', (event) => {
-  console.log('🚀 Service Worker: Activation...');
+  console.log('🚀 Service Worker: Activation version', CACHE_VERSION);
   
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames
           .filter((cacheName) => {
-            // Supprime tous les caches sauf le courant
-            return cacheName !== CACHE_NAME && cacheName !== RUNTIME_CACHE;
+            // Supprime TOUS les caches qui ne correspondent pas à la version actuelle
+            return !cacheName.includes(CACHE_VERSION);
           })
           .map((cacheName) => {
             console.log('🗑️ Suppression ancien cache:', cacheName);
@@ -57,14 +57,25 @@ self.addEventListener('activate', (event) => {
       );
     })
     .then(() => {
-      console.log('✅ Service Worker activé!');
+      console.log('✅ Service Worker activé et vieux caches supprimés!');
       return self.clients.claim(); // Prend le contrôle immédiatement
+    })
+    .then(() => {
+      // Force le rechargement de TOUS les clients ouverts
+      return self.clients.matchAll().then(clients => {
+        clients.forEach(client => {
+          client.postMessage({
+            type: 'SW_UPDATED',
+            version: CACHE_VERSION
+          });
+        });
+      });
     })
   );
 });
 
 // ============================================
-// FETCH - Stratégie de cache intelligente
+// FETCH - Stratégie Network First pour JS/CSS
 // ============================================
 self.addEventListener('fetch', (event) => {
   const { request } = event;
@@ -85,7 +96,36 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Stratégie: Cache First, Network Fallback
+  // Stratégie NETWORK FIRST pour JS/CSS (toujours la dernière version)
+  if (request.url.includes('/assets/') || request.url.endsWith('.js') || request.url.endsWith('.css')) {
+    event.respondWith(
+      fetch(request)
+        .then((networkResponse) => {
+          // Clone et met en cache la nouvelle version
+          const responseToCache = networkResponse.clone();
+          if (networkResponse.ok) {
+            caches.open(RUNTIME_CACHE).then((cache) => {
+              cache.put(request, responseToCache);
+            });
+          }
+          console.log('🌐 Depuis réseau:', request.url);
+          return networkResponse;
+        })
+        .catch(() => {
+          // Si offline, utilise le cache
+          return caches.match(request).then((cachedResponse) => {
+            if (cachedResponse) {
+              console.log('📦 Depuis cache (offline):', request.url);
+              return cachedResponse;
+            }
+            throw new Error('No cache available');
+          });
+        })
+    );
+    return;
+  }
+
+  // Stratégie CACHE FIRST pour images et autres fichiers statiques
   event.respondWith(
     caches.match(request)
       .then((cachedResponse) => {
@@ -94,26 +134,19 @@ self.addEventListener('fetch', (event) => {
           return cachedResponse;
         }
 
-        // Pas en cache, on fetch depuis le réseau
         return fetch(request)
           .then((networkResponse) => {
-            // Clone la réponse (elle ne peut être utilisée qu'une fois)
             const responseToCache = networkResponse.clone();
-
-            // Mise en cache uniquement si succès (status 200)
             if (networkResponse.ok) {
               caches.open(RUNTIME_CACHE).then((cache) => {
                 cache.put(request, responseToCache);
               });
             }
-
             console.log('🌐 Depuis réseau:', request.url);
             return networkResponse;
           })
           .catch((error) => {
-            console.log('❌ Erreur réseau, page offline:', error);
-            
-            // Page d'erreur offline optionnelle
+            console.log('❌ Erreur réseau, page offline');
             return new Response(
               `
               <!DOCTYPE html>
@@ -134,10 +167,7 @@ self.addEventListener('fetch', (event) => {
                     color: white;
                     text-align: center;
                   }
-                  .container {
-                    max-width: 400px;
-                    padding: 2rem;
-                  }
+                  .container { max-width: 400px; padding: 2rem; }
                   h1 { font-size: 2rem; margin-bottom: 1rem; }
                   p { font-size: 1.1rem; margin-bottom: 2rem; }
                   button {
@@ -161,9 +191,7 @@ self.addEventListener('fetch', (event) => {
               </body>
               </html>
               `,
-              {
-                headers: { 'Content-Type': 'text/html; charset=utf-8' }
-              }
+              { headers: { 'Content-Type': 'text/html; charset=utf-8' } }
             );
           });
       })
@@ -178,7 +206,6 @@ self.addEventListener('message', (event) => {
     self.skipWaiting();
   }
   
-  // Effacer tous les caches (utile pour debug)
   if (event.data && event.data.type === 'CLEAR_CACHE') {
     caches.keys().then((cacheNames) => {
       return Promise.all(cacheNames.map(cache => caches.delete(cache)));
