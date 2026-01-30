@@ -120,11 +120,6 @@
   animation: fadeIn 0.2s ease;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
 .filter-sidebar {
   position: fixed;
   top: 0;
@@ -139,6 +134,13 @@
   animation: slideInRight 0.3s ease;
   direction: rtl;
 }
+
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 
 @keyframes slideInRight {
   from { 
@@ -993,4 +995,88 @@
 
 .filter-sidebar-footer .btn-primary:hover {
   background: #3b82f6 !important;
+}
+
+/* ====================================
+   FIX SCROLLBAR - FILTER SIDEBAR
+   ==================================== */
+.filter-sidebar-content {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+.filter-sidebar-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.filter-sidebar-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.filter-sidebar-content::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.filter-sidebar-content::-webkit-scrollbar-button {
+  display: none;
+  height: 0;
+  width: 0;
+}
+
+/* ====================================
+   FIX GLOBAL SCROLLBAR - TOUS LES ELEMENTS
+   ==================================== */
+.filter-sidebar,
+.filter-sidebar-content,
+.filter-sidebar *,
+.location-panel,
+.location-selector,
+.location-dropdowns-container,
+.location-dropdowns {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+.filter-sidebar::-webkit-scrollbar,
+.filter-sidebar-content::-webkit-scrollbar,
+.filter-sidebar *::-webkit-scrollbar,
+.location-panel::-webkit-scrollbar,
+.location-selector::-webkit-scrollbar,
+.location-dropdowns-container::-webkit-scrollbar,
+.location-dropdowns::-webkit-scrollbar {
+  width: 6px;
+}
+
+.filter-sidebar::-webkit-scrollbar-track,
+.filter-sidebar-content::-webkit-scrollbar-track,
+.filter-sidebar *::-webkit-scrollbar-track,
+.location-panel::-webkit-scrollbar-track,
+.location-selector::-webkit-scrollbar-track,
+.location-dropdowns-container::-webkit-scrollbar-track,
+.location-dropdowns::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.filter-sidebar::-webkit-scrollbar-thumb,
+.filter-sidebar-content::-webkit-scrollbar-thumb,
+.filter-sidebar *::-webkit-scrollbar-thumb,
+.location-panel::-webkit-scrollbar-thumb,
+.location-selector::-webkit-scrollbar-thumb,
+.location-dropdowns-container::-webkit-scrollbar-thumb,
+.location-dropdowns::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.filter-sidebar::-webkit-scrollbar-button,
+.filter-sidebar-content::-webkit-scrollbar-button,
+.filter-sidebar *::-webkit-scrollbar-button,
+.location-panel::-webkit-scrollbar-button,
+.location-selector::-webkit-scrollbar-button,
+.location-dropdowns-container::-webkit-scrollbar-button,
+.location-dropdowns::-webkit-scrollbar-button {
+  display: none !important;
+  height: 0 !important;
+  width: 0 !important;
 }

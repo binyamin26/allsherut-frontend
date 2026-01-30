@@ -150,15 +150,38 @@ const Header = () => {
       </svg>
     </div>
     <div className="services-dropdown-menu">
-      {services.map((service, index) => (
-        <Link key={index} to={service.href} className="services-dropdown-item" onClick={() => setIsMenuOpen(false)}>
-          <div className="dropdown-icon">{service.icon}</div>
-          <div className="dropdown-content">
-            <h4>{t(service.nameKey)}</h4>
-            <p>{t(service.descKey)}</p>
-          </div>
-        </Link>
-      ))}
+   {services.map((service, index) => (
+  <Link 
+    key={index} 
+    to={service.href} 
+    className="services-dropdown-item"
+    style={{
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: '12px'
+    }}
+    onClick={() => setIsMenuOpen(false)}
+  >
+    {currentLanguage === 'he' ? (
+      <>
+        <div style={{ flexShrink: 0 }}>{service.icon}</div>
+        <div style={{ flexGrow: 1, textAlign: 'right' }}>
+          <h4>{t(service.nameKey)}</h4>
+          <p>{t(service.descKey)}</p>
+        </div>
+      </>
+    ) : (
+      <>
+        <div style={{ flexGrow: 1, textAlign: 'left' }}>
+          <h4>{t(service.nameKey)}</h4>
+          <p>{t(service.descKey)}</p>
+        </div>
+        <div style={{ flexShrink: 0 }}>{service.icon}</div>
+      </>
+    )}
+  </Link>
+))}
     </div>
   </div>
   

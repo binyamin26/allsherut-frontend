@@ -8,6 +8,7 @@ import SuccessModal from '../SuccessModal';
 import imageCompression from 'browser-image-compression';
 import ServiceDetailsForm from '../services/ServiceDetailsForm';
 import { useLanguage } from '../../context/LanguageContext';
+import CustomDropdown from '../common/CustomDropdown';
 
 // Fonction de scroll automatique vers le premier champ en erreur
 const scrollToFirstError = (errors, currentStep = 1) => {
@@ -136,7 +137,7 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
   const { login, register, loading, error, clearError, apiCall } = useAuth();
 
 
-  const API_BASE = 'https://homesherut-backend.onrender.com/api';
+ const API_BASE = '/api';
 
 const services = [
   { key: 'babysitting', name: t('services.babysitting'), icon: '👶', image: '/images/babysite.png', gradient: 'babysitting-gradient' },
@@ -1660,18 +1661,16 @@ const renderWorkingAreasSection = () => {
         {/* Si כל ישראל n'est PAS sélectionné */}
         {!formData.workingAreas?.some(area => area.neighborhood === 'כל ישראל') && (
           <>
-            <div className="city-selector">
-              <select
-                value={selectedCity}
-                onChange={(e) => setSelectedCity(e.target.value)}
-                className={`standard-input ${errors.workingAreas ? 'error' : ''}`}
-              >
-               <option value="">{t('auth.selectCity')}</option>
-                {cities.map(city => (
-                  <option key={city} value={city}>{city}</option>
-                ))}
-              </select>
-            </div>
+          <div className="city-selector">
+  <CustomDropdown
+    name="city"
+    options={cities}
+    value={selectedCity}
+    onChange={(e) => setSelectedCity(e.target.value)}
+    placeholder={t('auth.selectCity')}
+    error={errors.workingAreas}
+  />
+</div>
 
             {selectedCity && (
               <>

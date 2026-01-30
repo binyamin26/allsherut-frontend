@@ -18,18 +18,14 @@ export function registerServiceWorker() {
           registration.addEventListener('updatefound', () => {
             const newWorker = registration.installing;
             
-            newWorker.addEventListener('statechange', () => {
-              if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                // Nouvelle version disponible
-                console.log('🆕 Nouvelle version disponible!');
-                
-                // Optionnel: Afficher notification à l'utilisateur
-                if (confirm('גרסה חדשה זמינה! רוצה לרענן?')) {
-                  newWorker.postMessage({ type: 'SKIP_WAITING' });
-                  window.location.reload();
-                }
-              }
-            });
+           newWorker.addEventListener('statechange', () => {
+  if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+    console.log('🆕 Nouvelle version disponible!');
+    
+    // Recharge automatiquement SANS popup
+    newWorker.postMessage({ type: 'SKIP_WAITING' });
+  }
+});
           });
         })
         .catch((error) => {
@@ -44,6 +40,18 @@ export function registerServiceWorker() {
           window.location.reload();
         }
       });
+
+    // NOUVEAU: Écoute les messages du Service Worker
+navigator.serviceWorker.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SW_UPDATED') {
+    console.log('🔄 Nouvelle version détectée:', event.data.version);
+    
+    // Recharge automatiquement SANS popup
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000); // Attend 2 secondes avant de recharger
+  }
+});
     });
   } else {
     console.log('⚠️ Service Workers non supportés par ce navigateur');
@@ -54,6 +62,10 @@ export function registerServiceWorker() {
 export function clearServiceWorkerCache() {
   if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
     navigator.serviceWorker.controller.postMessage({ type: 'CLEAR_CACHE' });
+    console.log('🗑️ Demande de suppression des caches envoyée');
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
   }
 }
 
@@ -63,7 +75,22 @@ export function unregisterServiceWorker() {
     navigator.serviceWorker.ready.then((registration) => {
       registration.unregister().then(() => {
         console.log('🗑️ Service Worker désinstallé');
-        window.location.reload();
+        
+        // Supprime aussi tous les caches
+        if ('caches' in window) {
+          caches.keys().then((cacheNames) => {
+            return Promise.all(
+              cacheNames.map((cacheName) => {
+                console.log('🗑️ Suppression cache:', cacheName);
+                return caches.delete(cacheName);
+              })
+            );
+          }).then(() => {
+            window.location.reload();
+          });
+        } else {
+          window.location.reload();
+        }
       });
     });
   }

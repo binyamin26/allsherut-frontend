@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
- const API_BASE = 'https://homesherut-backend.onrender.com/api';
+ const API_BASE = '/api';
 
   const checkSubscriptionExpired = (user) => {
   if (user?.role === 'provider' && user?.premium_until) {
