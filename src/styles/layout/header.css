@@ -180,13 +180,35 @@ nav {
   color: var(--neutral-700);
   transition: all var(--transition-fast);
   border-bottom: 1px solid var(--neutral-50);
-  flex-direction: row-reverse; /* Ajoute cette ligne */
 }
 
-/* En mode LTR, remettre l'ordre normal */
-[dir="ltr"] .services-dropdown-item {
-  flex-direction: row;
+/* RTL (hébreu) - icône à gauche du texte */
+[dir="rtl"] .services-dropdown-item {
+  flex-direction: row !important;
 }
+
+[dir="rtl"] .services-dropdown-item .dropdown-icon {
+  order: 0 !important;
+  margin-left: var(--space-3);
+  margin-right: 0;
+}
+[dir="ltr"] .services-dropdown-item {
+  flex-direction: row !important;
+  direction: ltr !important;
+}
+
+[dir="ltr"] .services-dropdown-item .dropdown-content {
+  order: 1 !important;
+  flex-grow: 1;
+  text-align: left;
+}
+
+[dir="ltr"] .services-dropdown-item .dropdown-icon {
+  order: 2 !important;
+  margin-left: var(--space-3);
+  margin-right: 0;
+}
+
 
 .services-dropdown-item:hover {
   background: linear-gradient(135deg, var(--primary-50) 0%, var(--accent-50) 100%);
@@ -235,6 +257,11 @@ nav {
   height: 20px;
   color: var(--neutral-400);
   pointer-events: none;
+}
+
+/* Espacement entre les boutons auth */
+.flex.items-center.space-x-4 {
+  gap: var(--space-3);
 }
 
 /* Bouton CTA moderne */
@@ -662,4 +689,13 @@ body {
     display: flex !important;
     margin-left: 0.5rem;
   }
+}
+
+/* Force icône à droite pour langues non-hébraïques */
+.services-dropdown-item.ltr-icon {
+  flex-direction: row-reverse !important;
+}
+
+.services-dropdown-item.ltr-icon .dropdown-content {
+  text-align: left;
 }

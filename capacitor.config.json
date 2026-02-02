@@ -1,0 +1,10 @@
+{
+  "appId": "com.allsherut.app",
+  "appName": "AllSherut",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https",
+    "url": "https://www.allsherut.com",
+    "cleartext": true
+  }
+}

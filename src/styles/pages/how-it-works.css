@@ -16,27 +16,30 @@ padding: var(--space-8) 0 var(--space-16) 0;
    HERO SECTION
    ==================================== */
 .how-it-works-page .hero-section {
-  text-align: center;
+  text-align: center !important;
   margin-bottom: var(--space-12);
- padding: var(--space-12) var(--space-10);
-  background: linear-gradient(135deg, var(--primary-50) 0%, var(--accent-50) 100%);
-  border-radius: var(--radius-3xl);
+  padding: var(--space-8) var(--space-10) var(--space-6);
+  background: linear-gradient(135deg, var(--primary-50) 0%, var(--accent-25, rgba(16, 185, 129, 0.1)) 50%, var(--neutral-50) 100%);
+  border-radius: var(--radius-2xl);
   min-height: auto !important;
   display: block !important;
   overflow: visible !important;
   position: relative;
-  align-items: normal !important;
 }
 
 .how-it-works-page .page-title {
-  font-size: var(--text-6xl);
-  font-weight: 900;
-  background: linear-gradient(135deg, var(--primary-600) 0%, var(--accent-600) 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  margin: 0 0 var(--space-10) 0;
-  font-family: var(--font-primary);
+  font-size: 3.5rem !important;
+  font-weight: 900 !important;
+  background: linear-gradient(180deg, #0891b2 0%, #0d9488 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+  margin: 0 auto var(--space-16) auto !important;
+  text-align: center !important;
+  display: block !important;
+  width: 100% !important;
+  direction: rtl !important;
 }
 
 .how-it-works-page .page-subtitle {
@@ -45,6 +48,7 @@ padding: var(--space-8) 0 var(--space-16) 0;
   max-width: 800px;
   margin: 0 auto;
   line-height: 1.7;
+  text-align: center !important;
 }
 
 /* ====================================
@@ -83,22 +87,38 @@ padding: var(--space-8) 0 var(--space-16) 0;
 }
 
 .how-it-works-page .section-title {
-  font-size: var(--text-4xl);
-  font-weight: 800;
-  background: linear-gradient(135deg, var(--primary-600) 0%, var(--accent-600) 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  margin: 0 0 var(--space-4) 0;
+  font-size: 2.5rem !important;
+  font-weight: 800 !important;
+  color: var(--neutral-900) !important;
+  background: none !important;
+  -webkit-text-fill-color: var(--neutral-900) !important;
+  margin: 0 0 var(--space-4) 0 !important;
   font-family: var(--font-primary);
+  text-align: right !important;
+}
+
+.how-it-works-page .section-header {
+  text-align: right !important;
+  margin-bottom: var(--space-16);
+}
+
+.how-it-works-page .section-icon {
+  color: var(--primary-500);
+  margin: 0 0 var(--space-6) 0 !important;
+  margin-right: auto !important;
+  margin-left: 0 !important;
+  display: block;
 }
 
 .how-it-works-page .section-description {
   font-size: var(--text-lg);
   color: var(--neutral-600);
   max-width: 700px;
-  margin: 0 auto;
+  margin: 0 !important;
+  margin-right: auto !important;
+  margin-left: 0 !important;
   line-height: 1.7;
+  text-align: right !important;
 }
 
 /* ====================================
@@ -264,34 +284,53 @@ padding: var(--space-8) 0 var(--space-16) 0;
    FINAL CTA SECTION
    ==================================== */
 .how-it-works-page .final-cta-section {
- background: linear-gradient(135deg, var(--neutral-900) 0%, var(--primary-700) 100%);
+  background: linear-gradient(135deg, var(--neutral-900) 0%, var(--primary-700) 100%);
   border-radius: var(--radius-3xl);
-  padding: var(--space-20) var(--space-12);
-  text-align: center;
-  margin-top: var(--space-24);
+  padding: var(--space-16) var(--space-12);
+  text-align: center !important;
+  margin-top: var(--space-16);
   box-shadow: var(--shadow-2xl);
+  position: relative;
+  overflow: hidden;
 }
 
+.how-it-works-page .final-cta-section::after {
+  display: none !important;
+}
+
+.how-it-works-page .cta-content {
+  margin-top: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  position: relative;
+  z-index: 2;
+}
 
 .how-it-works-page .cta-content svg {
   color: var(--accent-400);
   margin: 0 auto var(--space-6);
+  display: block;
 }
 
 .how-it-works-page .cta-content h2 {
-  font-size: var(--text-5xl);
+  font-size: var(--text-4xl);
   font-weight: 900;
   color: white;
-  margin: 0 0 var(--space-4) 0;
-  font-family: var(--font-primary);
+  margin: 0 auto var(--space-4) auto;
+  text-align: center !important;
+  direction: rtl;
 }
 
 .how-it-works-page .cta-content p {
   font-size: var(--text-xl);
   color: rgba(255, 255, 255, 0.8);
   max-width: 700px;
-  margin: 0 auto var(--space-10);
+  margin: 0 auto var(--space-10) auto;
   line-height: 1.7;
+  text-align: center !important;
+  direction: rtl;
 }
 
 .how-it-works-page .cta-buttons {
@@ -318,6 +357,19 @@ padding: var(--space-8) 0 var(--space-16) 0;
 .how-it-works-page .cta-buttons .btn-outline:hover {
   background: white;
   color: var(--primary-600);
+}
+
+/* ====================================
+   FIX - ANNULE STYLES HOME.CSS
+   ==================================== */
+.how-it-works-page .hero-section::before,
+.how-it-works-page .hero-section::after {
+  display: none !important;
+}
+
+.how-it-works-page .final-cta-section .cta-content::before,
+.how-it-works-page .final-cta-section .cta-content::after {
+  display: none !important;
 }
 
 /* ====================================
@@ -417,4 +469,84 @@ padding: var(--space-8) 0 var(--space-16) 0;
     width: 100%;
     max-width: none;
   }
+}
+
+/* ====================================
+   FIX - ANNULE LES STYLES DE HOME.CSS
+   ==================================== */
+.how-it-works-page .final-cta-section .cta-content {
+  margin-top: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+}
+
+.how-it-works-page .final-cta-section::after {
+  display: none !important;
+}
+
+/* PAR : */
+.how-it-works-page .info-section .section-header .section-title {
+  font-size: 2.5rem !important;
+  font-weight: 800 !important;
+  color: var(--neutral-900) !important;
+  -webkit-text-fill-color: var(--neutral-900) !important;
+  text-align: right !important;
+  display: block !important;
+  margin: 0 0 var(--space-4) 0 !important;
+}
+
+.how-it-works-page .info-section .section-header {
+  text-align: right !important;
+}
+
+.how-it-works-page .info-section .section-header .section-icon {
+  margin: 0 auto var(--space-6) auto !important;
+}
+
+.how-it-works-page .info-section .section-header .section-description {
+  text-align: center !important;
+  margin: 0 auto !important;
+}
+
+/* INFO-BOX CENTRÉ */
+.how-it-works-page .client-section .info-box {
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+}
+
+.how-it-works-page .client-section .info-box > svg {
+  display: none;
+}
+
+.how-it-works-page .client-section .info-box > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.how-it-works-page .client-section .info-box h3 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4) !important;
+}
+
+.how-it-works-page .client-section .info-box h3::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.how-it-works-page .client-section .info-box p {
+  text-align: center !important;
+  max-width: 700px;
 }

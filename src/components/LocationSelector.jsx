@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { MapPin, ChevronDown } from 'lucide-react';
-import { getAllCities, getNeighborhoodsByCity, getCitiesByArea, israelAreas } from '../data/israelLocations';
+import { MapPin } from 'lucide-react';
+import { getAllCities, getNeighborhoodsByCity } from '../data/israelLocations';
+import CustomDropdown from './common/CustomDropdown';
 
 const LocationSelector = ({ 
   onLocationChange, 
@@ -15,23 +16,10 @@ const LocationSelector = ({
   const [availableCities, setAvailableCities] = useState(getAllCities());
   const [availableNeighborhoods, setAvailableNeighborhoods] = useState([]);
 
-  // Mise à jour des villes disponibles selon la région sélectionnée
-  useEffect(() => {
-    if (selectedArea) {
-      setAvailableCities(getCitiesByArea(selectedArea));
-      setSelectedCity(''); // Reset city when area changes
-      setSelectedNeighborhood(''); // Reset neighborhood when area changes
-    } else {
-      setAvailableCities(getAllCities());
-    }
-  }, [selectedArea]);
-
-  // Mise à jour des quartiers disponibles selon la ville sélectionnée
   useEffect(() => {
     if (selectedCity) {
       const neighborhoods = getNeighborhoodsByCity(selectedCity);
       setAvailableNeighborhoods(neighborhoods);
-      // Reset neighborhood if it doesn't exist in new city
       if (selectedNeighborhood && !neighborhoods.includes(selectedNeighborhood)) {
         setSelectedNeighborhood('');
       }
@@ -41,15 +29,13 @@ const LocationSelector = ({
     }
   }, [selectedCity]);
 
-  // Synchroniser avec les props externes (pour le bouton נקה)
-useEffect(() => {
-  if (initialCity === '' && selectedCity !== '') {
-    setSelectedCity('');
-    setSelectedNeighborhood('');
-  }
-}, [initialCity]);
+  useEffect(() => {
+    if (initialCity === '' && selectedCity !== '') {
+      setSelectedCity('');
+      setSelectedNeighborhood('');
+    }
+  }, [initialCity]);
 
-  // Notifier le parent des changements
   useEffect(() => {
     onLocationChange({
       area: selectedArea,
@@ -67,22 +53,12 @@ useEffect(() => {
     return parts.join(', ');
   };
 
-  const handleAreaChange = (e) => {
-    setSelectedArea(e.target.value);
-  };
-
   const handleCityChange = (e) => {
     setSelectedCity(e.target.value);
   };
 
   const handleNeighborhoodChange = (e) => {
     setSelectedNeighborhood(e.target.value);
-  };
-
-  const clearSelection = () => {
-    setSelectedArea('');
-    setSelectedCity('');
-    setSelectedNeighborhood('');
   };
 
   return (
@@ -98,58 +74,38 @@ useEffect(() => {
         <div className="location-dropdowns">
           {/* Sélection de ville */}
           <div className="dropdown-group">
-            <label htmlFor="city-select">עיר:</label>
-            <div className="dropdown-wrapper">
-              <select
-                id="city-select"
-                value={selectedCity}
-                onChange={handleCityChange}
-                className="location-dropdown city-dropdown"
-              >
-                <option value="">בחר עיר</option>
-                {availableCities.map((city) => (
-                  <option key={city} value={city}>
-                    {city}
-                  </option>
-                ))}
-              </select>
-              <ChevronDown size={16} className="dropdown-icon" />
-            </div>
+            <label>עיר:</label>
+            <CustomDropdown
+              name="city"
+              options={availableCities}
+              value={selectedCity}
+              onChange={handleCityChange}
+              placeholder="בחר עיר"
+            />
           </div>
 
           {/* Sélection de quartier - CONDITIONNEL */}
           {selectedCity && availableNeighborhoods.length > 0 && (
             <div className="dropdown-group">
-              <label htmlFor="neighborhood-select">שכונה:</label>
-              <div className="dropdown-wrapper">
-                <select
-                  id="neighborhood-select"
-                  value={selectedNeighborhood}
-                  onChange={handleNeighborhoodChange}
-                  className="location-dropdown neighborhood-dropdown"
-                >
-                  <option value="">כל השכונות ב{selectedCity}</option>
-                  {availableNeighborhoods.map((neighborhood) => (
-                    <option key={neighborhood} value={neighborhood}>
-                      {neighborhood}
-                    </option>
-                  ))}
-                </select>
-                <ChevronDown size={16} className="dropdown-icon" />
-              </div>
+              <label>שכונה:</label>
+              <CustomDropdown
+                name="neighborhood"
+                options={availableNeighborhoods}
+                value={selectedNeighborhood}
+                onChange={handleNeighborhoodChange}
+                placeholder={`כל השכונות ב${selectedCity}`}
+              />
             </div>
           )}
         </div>
       </div>
 
-      {/* Affichage de la sélection actuelle */}
       {getFullLocationString() && (
         <div className="selected-location-display">
           <div className="selected-location-label">מיקום נבחר:</div>
           <div className="selected-location-value">{getFullLocationString()}</div>
         </div>
       )}
-
     </div>
   );
 };

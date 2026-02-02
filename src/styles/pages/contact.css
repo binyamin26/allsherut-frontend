@@ -7,10 +7,27 @@
    ==================================== */
 .contact-hero {
   background: linear-gradient(135deg, var(--primary-50) 0%, var(--accent-25) 50%, var(--neutral-50) 100%);
-  padding: var(--space-16) 0 var(--space-12);
+  padding: var(--space-8) 0 var(--space-6) !important;
   border-radius: var(--radius-2xl);
   position: relative;
   overflow: hidden;
+  text-align: center !important;
+}
+
+.contact-hero .hero-title {
+  font-size: 3rem !important;
+  font-weight: 900 !important;
+  text-align: center !important;
+  margin: 0 auto var(--space-4) auto !important;
+}
+
+.contact-hero .hero-description {
+  font-size: 1.15rem !important;
+  color: var(--neutral-600) !important;
+  max-width: 550px !important;
+  margin: 0 auto !important;
+  line-height: 1.7 !important;
+  text-align: center !important;
 }
 
 .contact-hero::before {
@@ -102,6 +119,13 @@
   gap: var(--space-2);
 }
 
+/* Bouton submit - espace au-dessus */
+.contact-form .form-actions {
+  margin-top: var(--space-6);
+}
+
+
+
 /* ====================================
    SUCCESS MODAL - FENÊTRE DE SUCCÈS
    ==================================== */
@@ -114,6 +138,56 @@
   overflow: hidden;
   border: 2px solid var(--accent-200);
   animation: successModalAppear 0.4s ease-out;
+}
+
+
+/* ====================================
+   CONTACT PAGE - CORRECTIFS SPÉCIFIQUES
+   ==================================== */
+
+/* Titre principal - grand et centré */
+.contact-hero .hero-title,
+body .contact-hero .hero-title,
+body .contact-hero h1.hero-title {
+  font-size: 3.5rem !important;
+  font-weight: 900 !important;
+  text-align: center !important;
+  display: block !important;
+  width: 100% !important;
+}
+
+/* Texte descriptif - centré */
+.contact-hero .hero-description,
+body .contact-hero .hero-description {
+  text-align: center !important;
+  margin: 0 auto !important;
+  max-width: 600px !important;
+}
+
+/* Bouton submit - plus d'espace au-dessus */
+.contact-form .form-actions {
+  margin-top: var(--space-8) !important;
+  padding-top: var(--space-4) !important;
+}
+
+/* ====================================
+   FIX CUSTOM DROPDOWN CONTACT PAGE
+   ==================================== */
+.contact-form .custom-dropdown-wrapper {
+  position: relative;
+  z-index: 100;
+}
+
+.contact-form .input-group {
+  overflow: visible !important;
+}
+
+.form-card {
+  overflow: visible !important;
+}
+
+.contact-form {
+  overflow: visible !important;
 }
 
 @keyframes successModalAppear {
@@ -198,7 +272,7 @@
    FAQ SECTION
    ==================================== */
 .faq-section {
-  margin-top: var(--space-20);
+  margin-top: 120px !important;
 }
 
 .faq-header {

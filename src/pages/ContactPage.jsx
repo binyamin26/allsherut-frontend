@@ -11,6 +11,7 @@ import {
   Mail
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import CustomDropdown from '../components/common/CustomDropdown';
 
 const ContactPage = () => {
   const navigate = useNavigate();
@@ -140,19 +141,39 @@ const ContactPage = () => {
   return (
     <div className="min-h-screen bg-neutral-50 pt-20 pb-16">
       <div className="container">
-        {/* Hero Section */}
-        <div className="contact-hero text-center mb-16">
-          <div className="hero-content max-w-4xl mx-auto">
-            <h1 className="hero-title mb-6">
-              {t('contact.hero.title')} <span className="gradient-text">{t('contact.hero.titleAccent')}</span>
-            </h1>
-            <p className="hero-description">
-              {t('contact.hero.description')}
-              <br />
-              {t('contact.hero.availability')}
-            </p>
-          </div>
-        </div>
+
+{/* Hero Section */}
+<div className="contact-hero text-center mb-16">
+  <div style={{ 
+    display: 'flex', 
+    flexDirection: 'column', 
+    alignItems: 'center', 
+    textAlign: 'center',
+    width: '100%'
+  }}>
+    <h1 style={{ 
+      fontSize: '3rem', 
+      fontWeight: 900, 
+      textAlign: 'center',
+      marginBottom: '4.5rem',
+      width: '100%'
+    }}>
+      {t('contact.hero.title')} <span className="gradient-text">{t('contact.hero.titleAccent')}</span>
+    </h1>
+    <p style={{ 
+      fontSize: '1.15rem', 
+      color: 'var(--neutral-600)',
+      textAlign: 'center',
+      maxWidth: '550px',
+      margin: '0 auto',
+      lineHeight: 1.7
+    }}>
+      {t('contact.hero.description')}
+      <br />
+      {t('contact.hero.availability')}
+    </p>
+  </div>
+</div>
 
         {/* Contact Form */}
         <div className="max-w-4xl mx-auto">
@@ -241,20 +262,14 @@ const ContactPage = () => {
 
                 <div className="input-group">
                   <label className="auth-form-label">{t('contact.form.subject')} *</label>
-                  <div className="select-wrapper">
-                    <select
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      className={`modern-select ${errors.subject ? 'error' : ''}`}
-                      disabled={loading}
-                    >
-                      <option value="">{t('contact.form.subjectPlaceholder')}</option>
-                      {contactReasons.map((reason, index) => (
-                        <option key={index} value={reason}>{reason}</option>
-                      ))}
-                    </select>
-                  </div>
+                 <CustomDropdown
+  options={contactReasons}
+  value={formData.subject}
+  onChange={handleChange}
+  placeholder={t('contact.form.subjectPlaceholder')}
+  disabled={loading}
+  error={errors.subject}
+/>
                   {errors.subject && <span className="error-text">{errors.subject}</span>}
                 </div>
               </div>

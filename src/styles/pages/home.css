@@ -726,3 +726,28 @@ body .homepage .cta-section {
 .cta-buttons {
   margin-top: 60px !important; /* C'est ici que tu gères l'écart */
 }
+
+/* === LTR SUPPORT - Barre de recherche (langues autres que hébreu) === */
+[dir="ltr"] .service-search-wrapper,
+[dir="ltr"].homepage .service-search-wrapper,
+body[dir="ltr"] .service-search-wrapper,
+body[dir="ltr"] .homepage .service-search-wrapper {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+[dir="ltr"] .service-search-input,
+[dir="ltr"].homepage .service-search-input,
+body[dir="ltr"] .service-search-input,
+body[dir="ltr"] .homepage .service-search-input {
+  text-align: left !important;
+  direction: ltr !important;
+  padding-left: 60px !important;
+  padding-right: 30px !important;
+}
+
+[dir="ltr"] .service-search-wrapper .service-search-icon,
+body[dir="ltr"] .service-search-wrapper .service-search-icon {
+  right: auto !important;
+  left: 20px !important;
+}

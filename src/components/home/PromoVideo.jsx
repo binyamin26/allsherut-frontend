@@ -1,625 +1,558 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { 
-  Volume2, VolumeX, Pause, Play, Globe, CheckCircle, 
-  ShieldCheck, Star, Zap, Briefcase, MousePointer, ExternalLink, Leaf
-} from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
 
-// --- DESIGN CORRIGÉ (PREMIUM & SOBRE) ---
-const cssStyles = `
-/* --- Conteneur Principal --- */
-.promo-container {
-  position: relative;
-  width: 100%;
-  /* Ratio 16/9 standard, s'adapte à la largeur du parent */
-  aspect-ratio: 16/9;
-  /* Fond Blanc Pur pour la propreté */
-  background: #ffffff; 
-  /* Ombre portée douce pour le relief */
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-  /* Coins légèrement arrondis (moderne mais pas enfantin) */
-  border-radius: 12px;
-  overflow: hidden;
-  direction: ltr;
-  /* Police très lisible et pro */
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  color: #1e293b; /* Gris très foncé (presque noir) pour le texte */
-}
+// --- STYLES CSS ---
+const styles = `
+  /* --- CONFIGURATION GLOBALE --- */
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap');
 
-/* Adaptation mobile : On passe en format un peu plus carré pour l'occupation d'écran */
-@media (max-width: 768px) {
   .promo-container {
-    aspect-ratio: 4/5;
-    border-radius: 0; /* Plein écran sur mobile souvent mieux */
+      position: relative;
+      width: 100%;
+      height: 100%; 
+      min-height: 600px;
+      /* DÉGRADÉ LUMINEUX & PRO */
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      font-family: 'Montserrat', sans-serif;
+      color: #1e293b;
   }
-}
 
-.promo-container.paused * {
-  animation-play-state: paused !important;
-}
+  .promo-container.is-paused * {
+      animation-play-state: paused !important;
+  }
 
-/* --- Header --- */
-.promo-header {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  z-index: 50;
-  display: flex;
-  justify-content: flex-end;
-  pointer-events: none;
-}
+  /* --- ARRIÈRE-PLAN VIDÉO --- */
+  .bg-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.15;
+      mix-blend-mode: multiply;
+      z-index: 0;
+      filter: grayscale(100%);
+  }
 
-.promo-lang-wrapper {
-  pointer-events: auto;
-}
+  /* --- PARTICULES FLOTTANTES (Pastel) --- */
+  .particles-container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+      overflow: hidden;
+  }
 
-/* --- Boutons UI (Discrets) --- */
-.ui-btn-minimal {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid #e2e8f0;
-  color: #334155;
-  padding: 8px 16px;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 0.8rem;
-  transition: all 0.2s;
-}
+  .particle {
+      position: absolute;
+      border-radius: 50%;
+      mix-blend-mode: multiply;
+      filter: blur(40px);
+      animation: floatUp 25s infinite linear;
+  }
 
-.ui-btn-minimal:hover {
-  background: #f8fafc;
-  color: #0f172a;
-}
+  .p-1 { width: 300px; height: 300px; background: #e0f2fe; left: -10%; top: -10%; animation-duration: 35s; opacity: 0.8; }
+  .p-2 { width: 250px; height: 250px; background: #dbeafe; left: 80%; bottom: -5%; animation-duration: 28s; opacity: 0.7; }
+  .p-3 { width: 400px; height: 400px; background: #f3e8ff; left: 30%; top: 40%; animation-duration: 45s; opacity: 0.6; }
 
-.control-icon-btn {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.6); /* Fond sombre semi-transparent */
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: white;
-  cursor: pointer;
-  transition: all 0.2s;
-  backdrop-filter: blur(4px);
-}
+  @keyframes floatUp {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      33% { transform: translate(30px, -50px) rotate(10deg); }
+      66% { transform: translate(-20px, 20px) rotate(-5deg); }
+      100% { transform: translate(0, 0) rotate(0deg); }
+  }
 
-.control-icon-btn:hover {
-  background: rgba(0, 0, 0, 0.8);
-  transform: scale(1.05);
-}
+  /* --- MARQUEE (DÉFILÉ CONTINU) --- */
+  .marquee-layer {
+      position: absolute;
+      top: -20%;
+      left: -20%;
+      width: 140%;
+      height: 140%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 40px;
+      transform: rotate(-6deg); 
+      z-index: 2;
+      opacity: 0.6;
+      pointer-events: none; 
+      mask-image: radial-gradient(circle, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 80%);
+      -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 80%);
+      
+      /* IMPORTANT : Force la direction LTR pour que l'animation des images ne casse pas en Hébreu */
+      direction: ltr; 
+  }
 
-.lang-menu {
-  position: absolute;
-  top: 110%;
-  right: 0;
-  background: white;
-  border-radius: 6px;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  min-width: 120px;
-  border: 1px solid #e2e8f0;
-  pointer-events: auto;
-}
+  .marquee-row {
+      display: flex;
+      gap: 24px;
+      width: max-content;
+  }
 
-.lang-option {
-  padding: 10px 16px;
-  text-align: left;
-  border: none;
-  background: none;
-  cursor: pointer;
-  font-size: 0.85rem;
-  color: #475569;
-}
+  .scroll-left { animation: scroll 50s linear infinite; }
+  .scroll-right { animation: scrollReverse 50s linear infinite; }
 
-.lang-option:hover {
-  background-color: #f1f5f9;
-}
+  @keyframes scroll { 
+      0% { transform: translateX(0); } 
+      100% { transform: translateX(-50%); } 
+  }
+  @keyframes scrollReverse { 
+      0% { transform: translateX(-50%); } 
+      100% { transform: translateX(0); } 
+  }
 
-/* --- Contrôles (Bas) --- */
-.promo-controls {
-  position: absolute;
-  bottom: 24px;
-  right: 24px;
-  z-index: 50;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
+  .marquee-media {
+      width: 220px;
+      height: 140px;
+      border-radius: 16px;
+      object-fit: cover;
+      background: white;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+      border: 4px solid #ffffff;
+      transition: transform 0.3s ease;
+  }
 
-/* --- Scènes --- */
-.promo-scene {
-  display: none;
-  opacity: 0;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  transition: opacity 0.8s ease-in-out;
-  overflow: hidden;
-  background: white; 
-}
+  /* --- TEXTES & SCÈNE (GLASSMORPHISM CLAIR) --- */
+  .scene {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      pointer-events: none; 
+  }
 
-.promo-scene.active {
-  display: flex;
-  opacity: 1;
-  z-index: 10;
-}
+  .text-card {
+      position: absolute;
+      padding: 50px 70px;
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 30px;
+      box-shadow: 
+          0 20px 50px rgba(0,0,0,0.05),
+          0 1px 3px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 900px;
+      width: 85%;
+      opacity: 0;
+      transform: scale(0.95) translateY(20px);
+      pointer-events: none; 
+  }
 
-/* --- Arrière-plans --- */
-.scene-bg-image {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  /* Zoom lent et classe */
-  animation: kenBurns 20s linear forwards; 
-}
+  .main-text {
+      font-size: clamp(32px, 5vw, 64px);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.02em;
+  }
 
-/* Overlay sombre pour texte blanc (lisibilité MAXIMALE) */
-.overlay-dark {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6); 
-}
+  .sub-text {
+      display: block;
+      font-size: clamp(16px, 2vw, 24px);
+      font-weight: 600;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-top: 10px;
+  }
 
-/* Overlay léger pour texte noir */
-.overlay-light {
-  position: absolute;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.92);
-}
+  /* --- SÉQUENCAGE --- */
+  .active-slide {
+      animation: elegantReveal 3.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
 
-/* --- Contenu & Typographie (CENTRÉ & LISIBLE) --- */
-.scene-content {
-  position: relative;
-  z-index: 20;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 0 20px; /* Marges latérales */
-}
+  .active-slide-long {
+      animation: elegantRevealLong 9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
 
-/* Titre Principal : Grand, Gras, Impactant */
-.scene-title {
-  font-size: 2.8rem;
-  font-weight: 800;
-  color: #0f172a; /* Bleu Nuit Profond */
-  margin-bottom: 1.5rem;
-  line-height: 1.2;
-}
+  @keyframes elegantReveal {
+      0% { opacity: 0; transform: scale(0.9) translateY(40px); filter: blur(8px); }
+      15% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0px); }
+      85% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0px); }
+      100% { opacity: 0; transform: scale(1.05) translateY(-20px); filter: blur(4px); }
+  }
 
-.scene-title.white { color: white; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+  @keyframes elegantRevealLong {
+      0% { opacity: 0; transform: scale(0.9) translateY(40px); filter: blur(8px); }
+      5% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0px); }
+      95% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0px); }
+      100% { opacity: 0; transform: scale(1.05) translateY(-20px); filter: blur(4px); }
+  }
 
-/* Sous-titre / Texte secondaire */
-.scene-text {
-  font-size: 1.5rem;
-  color: #475569; /* Gris soutenu */
-  font-weight: 500;
-  max-width: 800px;
-  line-height: 1.5;
-}
+  /* --- CONTRÔLES (DESIGN BLANC) --- */
+  .controls-container {
+      position: absolute;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1000;
+      display: flex;
+      gap: 15px;
+      pointer-events: auto; 
+  }
 
-.scene-text.white { color: rgba(255,255,255,0.9); text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+  .control-btn {
+      width: 54px;
+      height: 54px;
+      background: #ffffff;
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      color: #334155;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative; 
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  
+  .control-btn:hover { 
+      transform: translateY(-2px); 
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      color: #2563eb;
+      border-color: #bfdbfe;
+  }
+  
+  .control-btn svg { width: 22px; height: 22px; fill: currentColor; }
 
-/* Texte accentué (Marque) */
-.text-brand {
-  color: #2563eb; /* Bleu AllSherut */
-}
+  /* Menu Langue Style iOS */
+  .lang-menu {
+      position: absolute;
+      bottom: 70px;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      min-width: 120px;
+      border: 1px solid rgba(0,0,0,0.05);
+      animation: slideUp 0.2s ease-out;
+  }
+  
+  @keyframes slideUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+  }
 
-/* --- Éléments Spécifiques --- */
-.info-card {
-  background: white;
-  padding: 2rem 3rem;
-  border-radius: 16px;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-  border: 1px solid #e2e8f0;
-  max-width: 600px;
-  width: 90%;
-}
+  .lang-option {
+      padding: 10px 16px;
+      color: #334155;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 10px;
+      font-size: 14px;
+      transition: background 0.2s;
+      white-space: nowrap;
+      text-align: left;
+  }
+  .lang-option:hover { background: #f1f5f9; color: #2563eb; }
 
-.info-list-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 1.1rem;
-  color: #334155;
-  margin-bottom: 12px;
-  text-align: left;
-}
-
-/* --- Marquee (Défilement des photos) --- */
-.marquee-container {
-  position: absolute;
-  inset: 0;
-  background: #0f172a; /* Fond bleu nuit */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 16px;
-  transform: rotate(-3deg) scale(1.1); /* Petit style dynamique */
-}
-
-.marquee-row {
-  display: flex;
-  gap: 16px;
-  width: max-content;
-}
-
-.scroll-left { animation: scroll 40s linear infinite; }
-.scroll-right { animation: scrollReverse 40s linear infinite; }
-
-.marquee-img {
-  width: 240px;
-  height: 150px;
-  border-radius: 8px;
-  object-fit: cover;
-  opacity: 0.8;
-  transition: opacity 0.3s;
-}
-.marquee-img:hover { opacity: 1; }
-
-/* --- Bouton Final --- */
-.btn-cta {
-  background: #2563eb;
-  color: white;
-  padding: 16px 40px;
-  border-radius: 8px;
-  font-size: 1.1rem;
-  font-weight: 700;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3);
-  transition: transform 0.2s;
-  margin-top: 2rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.btn-cta:hover {
-  background: #1d4ed8;
-  transform: translateY(-2px);
-}
-
-/* --- Barre de progression --- */
-.progress-container {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 5px;
-  background: rgba(0,0,0,0.1);
-  z-index: 60;
-}
-
-.progress-bar {
-  height: 100%;
-  background: #2563eb;
-  transition: width 0.1s linear;
-}
-
-/* --- Animations --- */
-@keyframes kenBurns { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
-@keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-@keyframes scrollReverse { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
-
-.anim-up { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; transform: translateY(20px); }
-.delay-1 { animation-delay: 0.2s; }
-.delay-2 { animation-delay: 0.4s; }
-
-@keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+  .progress-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+      width: 0%;
+      z-index: 100;
+      transition: width 0.1s linear;
+  }
 `;
 
-const TRANSLATIONS = {
+// --- DONNÉES DE TRADUCTION ---
+const translations = {
   fr: {
-    // SCENE 1
-    s1_title: "Vous êtes prestataire de services ?",
-    s1_sub: "Vous cherchez à vous faire connaître ?",
-    
-    // SCENE 2
-    s2_title: "AllSherut",
-    s2_sub: "Est là pour vous accompagner",
-    s2_badge: "Inscription simple et rapide",
-    
-    // SCENE 3
-    s3_title: "Vous sélectionnez les services que vous proposez",
-    s3_list: ["Plomberie", "Électricité", "Ménage", "Jardinage", "Travaux"], // PAS d'informatique
-    
-    // SCENE 4
-    s4_title: "Accédez à votre espace personnel",
-    s4_sub: "Modifiez vos informations à tout moment. Votre profil reste clair et à jour.",
-    
-    // SCENE 5
-    s5_title: "Gagnez en visibilité selon vos services",
-    s5_sub: "Touchez des clients réellement intéressés",
-    
-    // SCENE 6
-    s6_title: "Les clients évaluent votre travail",
-    s6_sub: "Les avis renforcent votre crédibilité",
-    
-    // SCENE 7 (MARQUEE)
-    s7_overlay: "Plus de 20 catégories de services disponibles",
-    s7_sub: "Un seul espace pour gérer votre activité",
-    
-    // SCENE 8
-    s8_title: "AllSherut lance son offre de lancement",
-    s8_sub: "Inscription gratuite pour les prestataires",
-    
-    // SCENE 9
-    s9_title: "Rejoignez AllSherut dès maintenant",
-    s9_cta: "AllSherut", // C'est le nom du bouton ou la fin
-    s9_link: "www.allsherut.com"
+      1: { main: "Prestataire de services ?", sub: "Boostez votre visibilité" },
+      2: { main: "AllSherut", sub: "Votre partenaire croissance" },
+      3: { main: "Inscription Rapide", sub: "En moins de 2 minutes" },
+      4: { main: "Vos Services", sub: "Sélectionnez vos compétences" },
+      5: { main: "+20 Catégories", sub: "Un espace unique pour tout gérer" },
+      6: { main: "Espace Pro", sub: "Tableau de bord intuitif" },
+      7: { main: "Nouveaux Clients", sub: "Développez votre clientèle" },
+      8: { main: "Offre Spéciale", sub: "Inscription 100% Gratuite" },
+      9: { main: "Rejoignez-nous", sub: "allsherut.com" }
   },
-  // Je garde l'anglais simple au cas où, mais focus sur le FR demandé
+  he: {
+      1: { main: "אתם נותני שירות?", sub: "רוצים להגדיל חשיפה?" },
+      2: { main: "AllSherut", sub: "השותף שלכם לצמיחה" },
+      3: { main: "הרשמה מהירה", sub: "תוך פחות מ-2 דקות" },
+      4: { main: "השירותים שלכם", sub: "בחרו את תחומי ההתמחות" },
+      5: { main: "+20 קטגוריות", sub: "מקום אחד לניהול העסק" },
+      6: { main: "אזור אישי", sub: "לוח בקרה מתקדם" },
+      7: { main: "לקוחות חדשים", sub: "הגדילו את מעגל הלקוחות" },
+      8: { main: "מבצע השקה", sub: "הרשמה חינם כרגע" },
+      9: { main: "הצטרפו אלינו", sub: "allsherut.com" }
+  },
   en: {
-    s1_title: "Are you a service provider?",
-    s1_sub: "Looking to get known?",
-    s2_title: "AllSherut",
-    s2_sub: "Is here to support you",
-    s2_badge: "Simple and fast registration",
-    s3_title: "Select the services you offer",
-    s3_list: ["Plumbing", "Electrical", "Cleaning", "Gardening", "Works"],
-    s4_title: "Access your personal space",
-    s4_sub: "Update your info anytime. Your profile stays clear and up-to-date.",
-    s5_title: "Gain visibility based on your services",
-    s5_sub: "Reach clients who are genuinely interested",
-    s6_title: "Clients rate your work",
-    s6_sub: "Reviews boost your credibility",
-    s7_overlay: "Over 20 service categories available",
-    s7_sub: "One space to manage your activity",
-    s8_title: "AllSherut launches its intro offer",
-    s8_sub: "Free registration for providers",
-    s9_title: "Join AllSherut now",
-    s9_cta: "AllSherut",
-    s9_link: "www.allsherut.com"
+      1: { main: "Service Provider?", sub: "Boost your visibility" },
+      2: { main: "AllSherut", sub: "Your growth partner" },
+      3: { main: "Fast Sign Up", sub: "In less than 2 minutes" },
+      4: { main: "Your Services", sub: "Select your skills" },
+      5: { main: "+20 Categories", sub: "One hub to manage it all" },
+      6: { main: "Pro Dashboard", sub: "Intuitive interface" },
+      7: { main: "New Customers", sub: "Expand your reach" },
+      8: { main: "Launch Offer", sub: "100% Free Registration" },
+      9: { main: "Join Us", sub: "allsherut.com" }
+  },
+  ru: {
+      1: { main: "Поставщик услуг?", sub: "Увеличьте свою видимость" },
+      2: { main: "AllSherut", sub: "Ваш партнер по росту" },
+      3: { main: "Быстрая регистрация", sub: "Менее чем за 2 минуты" },
+      4: { main: "Ваши услуги", sub: "Выберите свои навыки" },
+      5: { main: "+20 Категорий", sub: "Единый центр управления" },
+      6: { main: "Личный кабинет", sub: "Интуитивный интерфейс" },
+      7: { main: "Новые клиенты", sub: "Расширьте свою базу" },
+      8: { main: "Спецпредложение", sub: "Бесплатная регистрация" },
+      9: { main: "Присоединяйтесь", sub: "allsherut.com" }
   }
 };
 
-const PromoVideo = ({ services = [], onRegisterClick }) => {
-  const [currentScene, setCurrentScene] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(false);
+const MarqueeItem = ({ src }) => {
+    if (!src) return null;
+    const isVideo = typeof src === 'string' && src.match(/\.(mp4|webm|mov)$/i);
+  
+    if (isVideo) {
+      return <video src={src} className="marquee-media" autoPlay loop muted playsInline />;
+    }
+    
+   return (
+    <img 
+      src={src} 
+      className="marquee-media" 
+      alt="service"
+      loading="eager"
+      onError={(e) => {
+        e.target.onerror = null;
+        e.target.src = `https://placehold.co/240x150/f1f5f9/cbd5e1?text=Service`;
+      }}
+    />
+  );
+};
+
+const PromoVideo = ({ videoSrc = "/background.mp4", services = [] }) => {
   const [lang, setLang] = useState('fr');
+  const [isPaused, setIsPaused] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
   const [showLangMenu, setShowLangMenu] = useState(false);
+  
+  const [currentTime, setCurrentTime] = useState(0);
+  const duration = 33; 
 
+  const videoRef = useRef(null);
   const audioRef = useRef(null);
-  
-  // Séquençage précis basé sur le texte
-  // 0: Intro (Vous êtes prestataire...)
-  // 1: AllSherut est là (Inscription simple)
-  // 2: Sélection services
-  // 3: Espace perso
-  // 4: Visibilité
-  // 5: Avis
-  // 6: "Plus de 20 catégories" (LE DÉFILÉ)
-  // 7: Offre lancement
-  // 8: Rejoignez (Fin)
-  const sceneDurations = [4000, 3500, 4000, 5000, 4000, 4000, 6000, 4000, 6000]; 
-  
-  const totalDuration = sceneDurations.reduce((a, b) => a + b, 0);
-  const [progress, setProgress] = useState(0);
-  
-  const timerRef = useRef(null);
-  const startTimeRef = useRef(Date.now());
-  const elapsedPausedTimeRef = useRef(0);
+  const requestRef = useRef(null);
+  const startTimeRef = useRef(null);
+  const langMenuRef = useRef(null); // Ref pour le menu de langue
 
-  const t = TRANSLATIONS[lang];
-
-  // Images pour le défilé (Fallback propre)
-  const defaultImages = [
-    '/images/plombier.jpg', '/images/electrician.jpg', '/images/peinture.jpg', 
-    '/images/cleaning.jpg', '/images/mechanic.jpg', '/images/garden.jpg'
+  // Images par défaut
+  const defaultMedia = [
+    '/images/babysite.png', '/images/nikayon.jpg', '/images/jardinage.jpg',
+    '/images/chien.jpg', '/images/tutoring.png', '/images/eldercare.png',
+    '/images/plombier.jpg', '/images/clim.png', '/images/gaz.jpg'
   ];
-  const displayImages = services.length > 0 ? services.map(s => s.image) : defaultImages;
-  const marqueeList = [...displayImages, ...displayImages, ...displayImages];
+  
+  const displayMedia = services.length > 0 ? services.map(s => s.image || s) : defaultMedia;
+
+  // --- LOGIQUE POUR DIFFÉRENCIER HAUT ET BAS ---
+  // Liste 1 (Haut) : Ordre normal
+  const marqueeListTop = [...displayMedia, ...displayMedia, ...displayMedia, ...displayMedia];
+  
+  // Liste 2 (Milieu) : On décale un peu (commence à la moitié)
+  const midIndex = Math.floor(displayMedia.length / 2);
+  const shiftedMedia = [...displayMedia.slice(midIndex), ...displayMedia.slice(0, midIndex)];
+  const marqueeListMiddle = [...shiftedMedia, ...shiftedMedia, ...shiftedMedia, ...shiftedMedia];
+
+  // Liste 3 (Bas) : Ordre inversé pour être sûr que ce n'est pas pareil que le haut
+  const reversedMedia = [...displayMedia].reverse();
+  const marqueeListBottom = [...reversedMedia, ...reversedMedia, ...reversedMedia, ...reversedMedia];
+
+  // Gestion animation Frame
+  const animate = (time) => {
+      if (!startTimeRef.current) startTimeRef.current = time;
+      
+      if (!isPaused) {
+        const elapsed = (time - startTimeRef.current) / 1000;
+        // Permet de boucler proprement
+        const loopedTime = elapsed % duration;
+        setCurrentTime(loopedTime);
+      } else {
+         // Ajuste le start time pour que la reprise soit fluide
+         startTimeRef.current = time - (currentTime * 1000);
+      }
+      
+      requestRef.current = requestAnimationFrame(animate);
+  };
 
   useEffect(() => {
-    if (!isPlaying) {
-      if (timerRef.current) cancelAnimationFrame(timerRef.current);
-      return;
-    }
-    const animate = () => {
-      const now = Date.now();
-      let totalElapsed = (now - startTimeRef.current - elapsedPausedTimeRef.current) % totalDuration;
-      setProgress((totalElapsed / totalDuration) * 100);
+      requestRef.current = requestAnimationFrame(animate);
+      return () => cancelAnimationFrame(requestRef.current);
+  }, [isPaused, currentTime]); 
 
-      let accumulatedTime = 0;
-      let newScene = 0;
-      for (let i = 0; i < sceneDurations.length; i++) {
-        accumulatedTime += sceneDurations[i];
-        if (totalElapsed < accumulatedTime) {
-          newScene = i; break;
-        }
-      }
-      if (newScene !== currentScene) setCurrentScene(newScene);
-      timerRef.current = requestAnimationFrame(animate);
-    };
-    timerRef.current = requestAnimationFrame(animate);
-    return () => { if (timerRef.current) cancelAnimationFrame(timerRef.current); };
-  }, [isPlaying, currentScene, totalDuration]);
+  // --- SYNCHRONISATION PAUSE/LECTURE ---
+  // Cela garantit que le bouton et la vidéo sont toujours en phase
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
 
-  const togglePlay = () => {
-    if (isPlaying) {
-      setIsPlaying(false);
-      audioRef.current?.pause();
+    if (isPaused) {
+        video.pause();
     } else {
-      startTimeRef.current = Date.now() - (progress / 100 * totalDuration); 
-      elapsedPausedTimeRef.current = 0; 
-      setIsPlaying(true);
-      if (!isMuted) audioRef.current?.play().catch(() => {});
+        video.play().catch(e => console.log("Auto-play prevented or handled:", e));
+    }
+  }, [isPaused]);
+
+  // --- GESTION DU CLIC À L'EXTÉRIEUR DU MENU LANGUE ---
+  useEffect(() => {
+      const handleClickOutside = (event) => {
+          if (langMenuRef.current && !langMenuRef.current.contains(event.target)) {
+              setShowLangMenu(false);
+          }
+      };
+
+      if (showLangMenu) {
+          document.addEventListener('mousedown', handleClickOutside);
+      }
+      return () => {
+          document.removeEventListener('mousedown', handleClickOutside);
+      };
+  }, [showLangMenu]);
+
+
+  const getActiveSequence = (time) => {
+     if (time < 3.5) return 1;
+     if (time < 7.0) return 2;
+     if (time < 10.5) return 3;
+     if (time < 14.0) return 4;
+     if (time < 22.0) return 5; 
+     if (time < 25.5) return 6;
+     if (time < 29.0) return 7;
+     if (time < 32.5) return 8;
+     return 9; 
+  };
+
+  const activeSeq = getActiveSequence(currentTime);
+
+  const toggleVideo = (e) => {
+    // On garde uniquement stopPropagation pour éviter que le clic ne traverse
+    e && e.stopPropagation(); 
+    setIsPaused(prev => !prev);
+  };
+
+  const toggleSound = (e) => {
+    e && e.stopPropagation();
+    const audio = audioRef.current;
+    if (audio) {
+      if (audio.paused) {
+          audio.play().catch(() => {});
+          setIsMuted(false);
+      } else {
+          audio.pause();
+          setIsMuted(true);
+      }
     }
   };
 
-  const toggleMute = () => {
-    setIsMuted(!isMuted);
-    if (audioRef.current) {
-      audioRef.current.muted = !audioRef.current.muted;
-      if (!audioRef.current.muted && isPlaying) audioRef.current.play().catch(() => {});
-    }
+  const handleLangChange = (e, newLang) => {
+      e.stopPropagation();
+      setLang(newLang);
+      setShowLangMenu(false);
   };
 
-  const openSite = () => window.open("https://allsherut.com", "_blank");
+  const IconPlay = () => <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>;
+  const IconPause = () => <svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>;
+  const IconSoundOn = () => <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>;
+  const IconSoundOff = () => <svg viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>;
+  const IconLang = () => <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2 0 .68.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c.96-1.66 2.49-2.93 4.33-3.56C8.81 5.55 8.35 6.75 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2 0-.68.07-1.35.16-2h4.68c.09.65.16 1.32.16 2 0 .68-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2 0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"/></svg>;
 
   return (
-    <div className={`promo-container ${!isPlaying ? 'paused' : ''}`}>
-      <style>{cssStyles}</style>
-      <audio ref={audioRef} loop muted={isMuted}><source src="/musique.mp3" type="audio/mpeg" /></audio>
+    <div className={`promo-container ${isPaused ? 'is-paused' : ''}`} dir={lang === 'he' ? 'rtl' : 'ltr'}>
+      <style>{styles}</style>
 
-      {/* HEADER */}
-      <div className="promo-header">
-        <div className="promo-lang-wrapper">
-          <button onClick={() => setShowLangMenu(!showLangMenu)} className="ui-btn-minimal">
-            <Globe size={16} /> <span>{lang.toUpperCase()}</span>
+      {/* 1. ARRIÈRE-PLAN VIDÉO */}
+      <video ref={videoRef} className="bg-video" autoPlay loop muted playsInline>
+          <source src={videoSrc} type="video/mp4" />
+      </video>
+      
+      {/* 2. PARTICULES FLOTTANTES */}
+      <div className="particles-container">
+          <div className="particle p-1"></div>
+          <div className="particle p-2"></div>
+          <div className="particle p-3"></div>
+      </div>
+
+      {/* 3. MARQUEE MULTI-DIRECTIONNEL (3 listes distinctes) */}
+      <div className="marquee-layer">
+          <div className="marquee-row scroll-left">
+              {marqueeListTop.map((src, i) => <MarqueeItem key={`top-${i}`} src={src} />)}
+          </div>
+          <div className="marquee-row scroll-right">
+              {marqueeListMiddle.map((src, i) => <MarqueeItem key={`mid-${i}`} src={src} />)}
+          </div>
+          <div className="marquee-row scroll-left">
+              {marqueeListBottom.map((src, i) => <MarqueeItem key={`bot-${i}`} src={src} />)}
+          </div>
+      </div>
+
+      <audio ref={audioRef} loop src="/musique.mp3"></audio>
+
+      {/* 4. SCÈNE TEXTE */}
+      <div className="scene">
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((id) => {
+             const isActive = activeSeq === id;
+             const animClass = isActive ? (id === 5 ? 'active-slide-long' : 'active-slide') : '';
+             
+             return (
+              <div key={id} className={`text-card ${animClass}`}>
+                  <div className="main-text">{translations[lang][id].main}</div>
+                  <span className="sub-text">{translations[lang][id].sub}</span>
+              </div>
+             );
+          })}
+      </div>
+
+      {/* CONTRÔLES UI */}
+      <div className="controls-container">
+          <button className="control-btn" onClick={toggleVideo} title="Lecture/Pause">
+             {isPaused ? <IconPlay /> : <IconPause />}
           </button>
-          {showLangMenu && (
-            <div className="lang-menu">
-              <button onClick={() => {setLang('fr'); setShowLangMenu(false)}} className="lang-option">Français</button>
-              <button onClick={() => {setLang('en'); setShowLangMenu(false)}} className="lang-option">English</button>
-            </div>
-          )}
-        </div>
+          
+          <button className="control-btn" onClick={toggleSound} title="Son">
+             {isMuted ? <IconSoundOff /> : <IconSoundOn />}
+          </button>
+          
+          {/* AJOUT DE e.stopPropagation() ICI pour le menu langue */}
+          <div className="control-btn" ref={langMenuRef} onClick={(e) => { e.stopPropagation(); setShowLangMenu(!showLangMenu); }} title="Langue">
+              <IconLang />
+              {showLangMenu && (
+                  <div className="lang-menu">
+                      <div className="lang-option" onClick={(e) => handleLangChange(e, 'he')}>עברית</div>
+                      <div className="lang-option" onClick={(e) => handleLangChange(e, 'fr')}>Français</div>
+                      <div className="lang-option" onClick={(e) => handleLangChange(e, 'en')}>English</div>
+                      <div className="lang-option" onClick={(e) => handleLangChange(e, 'ru')}>Русский</div>
+                  </div>
+              )}
+          </div>
       </div>
 
-      {/* --- SCENE 1 : INTRO --- */}
-      <div className={`promo-scene ${currentScene === 0 ? 'active' : ''}`}>
-        <img src="/images/meeting.jpg" className="scene-bg-image" alt="" />
-        <div className="overlay-dark"></div>
-        <div className="scene-content">
-           <h2 className="scene-title white anim-up">{t.s1_title}</h2>
-           <p className="scene-text white anim-up delay-1">{t.s1_sub}</p>
-        </div>
-      </div>
-
-      {/* --- SCENE 2 : ALLSHERUT EST LÀ --- */}
-      <div className={`promo-scene ${currentScene === 1 ? 'active' : ''}`}>
-        <div className="scene-content">
-           <img src="/images/Logo moderne d'AllSherut avec sphère 3D.png" className="h-24 mb-6 anim-up" alt="Logo" />
-           <h2 className="scene-title anim-up delay-1">{t.s2_title}</h2>
-           <p className="scene-text anim-up delay-1">{t.s2_sub}</p>
-           <div className="mt-6 px-6 py-2 bg-blue-50 text-blue-700 font-bold rounded-full anim-up delay-2">
-             {t.s2_badge}
-           </div>
-        </div>
-      </div>
-
-      {/* --- SCENE 3 : SÉLECTION SERVICES --- */}
-      <div className={`promo-scene ${currentScene === 2 ? 'active' : ''}`}>
-         <img src="/images/tools.jpg" className="scene-bg-image" alt="" />
-         <div className="overlay-dark"></div>
-         <div className="scene-content">
-            <h2 className="scene-title white anim-up">{t.s3_title}</h2>
-            <div className="flex flex-wrap justify-center gap-3 mt-6 anim-up delay-1">
-               {t.s3_list.map((s, i) => (
-                  <span key={i} className="px-4 py-2 bg-white/20 backdrop-blur-md text-white rounded-lg font-bold border border-white/30">
-                     {s}
-                  </span>
-               ))}
-            </div>
-         </div>
-      </div>
-
-      {/* --- SCENE 4 : ESPACE PERSONNEL --- */}
-      <div className={`promo-scene ${currentScene === 3 ? 'active' : ''}`}>
-         <div className="scene-content" style={{background: '#f8fafc'}}>
-            <div className="info-card anim-up">
-               <Briefcase size={40} className="text-blue-600 mb-4 mx-auto" />
-               <h2 className="scene-title" style={{fontSize: '2rem'}}>{t.s4_title}</h2>
-               <p className="scene-text">{t.s4_sub}</p>
-            </div>
-         </div>
-      </div>
-
-      {/* --- SCENE 5 : VISIBILITÉ --- */}
-      <div className={`promo-scene ${currentScene === 4 ? 'active' : ''}`}>
-         <img src="/images/map-city.jpg" className="scene-bg-image" alt="" />
-         <div className="overlay-dark"></div>
-         <div className="scene-content">
-            <h2 className="scene-title white anim-up">{t.s5_title}</h2>
-            <p className="scene-text white anim-up delay-1">{t.s5_sub}</p>
-         </div>
-      </div>
-
-      {/* --- SCENE 6 : AVIS --- */}
-      <div className={`promo-scene ${currentScene === 5 ? 'active' : ''}`}>
-         <div className="scene-content">
-            <h2 className="scene-title anim-up">{t.s6_title}</h2>
-            <div className="flex gap-2 text-yellow-400 my-4 anim-up delay-1">
-               {[1,2,3,4,5].map(i => <Star key={i} fill="currentColor" size={32} />)}
-            </div>
-            <p className="scene-text anim-up delay-1">{t.s6_sub}</p>
-         </div>
-      </div>
-
-      {/* --- SCENE 7 : DÉFILÉ PHOTOS (LE MOMENT CLÉ) --- */}
-      <div className={`promo-scene ${currentScene === 6 ? 'active' : ''}`}>
-         <div className="marquee-container">
-            <div className="marquee-row scroll-left">
-               {marqueeList.map((src, i) => <img key={`l1-${i}`} src={src} className="marquee-img" alt="" onError={(e)=>e.target.style.display='none'} />)}
-            </div>
-            <div className="marquee-row scroll-right">
-               {marqueeList.map((src, i) => <img key={`l2-${i}`} src={src} className="marquee-img" alt="" onError={(e)=>e.target.style.display='none'} />)}
-            </div>
-         </div>
-         <div className="overlay-dark" style={{background:'rgba(0,0,0,0.7)'}}></div>
-         <div className="scene-content">
-            <h2 className="scene-title white anim-up" style={{fontSize: '3.5rem', textTransform: 'uppercase'}}>
-               {t.s7_overlay}
-            </h2>
-            <p className="scene-text white anim-up delay-1" style={{fontSize: '1.2rem', marginTop: '1rem'}}>
-               {t.s7_sub}
-            </p>
-         </div>
-      </div>
-
-      {/* --- SCENE 8 : OFFRE LANCEMENT --- */}
-      <div className={`promo-scene ${currentScene === 7 ? 'active' : ''}`}>
-         <div className="scene-content" style={{background: '#eff6ff'}}>
-            <h2 className="scene-title text-brand anim-up">{t.s8_title}</h2>
-            <p className="scene-text anim-up delay-1" style={{fontSize: '1.8rem', fontWeight: 'bold'}}>
-               {t.s8_sub}
-            </p>
-         </div>
-      </div>
-
-      {/* --- SCENE 9 : FIN --- */}
-      <div className={`promo-scene ${currentScene === 8 ? 'active' : ''}`}>
-         <div className="scene-content">
-            <img src="/images/Logo moderne d'AllSherut avec sphère 3D.png" className="h-28 mb-8 anim-up" alt="Logo" />
-            <h2 className="scene-title anim-up">{t.s9_title}</h2>
-            
-            <button onClick={onRegisterClick} className="btn-cta anim-up delay-1">
-               {t.s9_cta} <ExternalLink size={20} />
-            </button>
-            
-            <div className="mt-8 text-gray-400 font-medium cursor-pointer hover:text-blue-600 transition-colors" onClick={openSite}>
-               {t.s9_link}
-            </div>
-         </div>
-      </div>
-
-      {/* Footer UI */}
-      <div className="progress-container"><div className="progress-bar" style={{width: `${progress}%`}}></div></div>
-      <div className="promo-controls">
-         <button onClick={toggleMute} className="control-icon-btn">
-            {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
-         </button>
-         <button onClick={togglePlay} className="control-icon-btn">
-            {isPlaying ? <Pause size={20} /> : <Play size={20} />}
-         </button>
-      </div>
+      <div className="progress-bar" style={{ width: `${(currentTime / duration) * 100}%` }}></div>
     </div>
   );
 };

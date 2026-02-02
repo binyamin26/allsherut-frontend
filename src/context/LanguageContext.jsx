@@ -201,7 +201,6 @@ const translations = {
     'search.services.all': 'כל השירותים',
     'search.title': 'חיפוש שירותים',
     'search.subtitle': 'מצאו את הספק המושלם עבורכם מתוך {count} ספקים זמינים',
-    'search.placeholder': 'חפשו לפי שם, מיומנות או תיאור...',
     'search.searchButton': 'חפש',
     'search.loading': 'מחפש ספקים...',
     'search.errors.selectCity': 'אנא בחר עיר לחיפוש',
@@ -240,7 +239,7 @@ const translations = {
     'search.noResults.title': 'לא נמצאו תוצאות',
     'search.noResults.description': 'נסו לשנות את קריטריוני החיפוש או להרחיב את הסינון',
     'search.noResults.clearFilters': 'נקה סינון',
-    'search.placeholder': 'חפש שירות... (לדוגמה: ניקיון, מנעולן)',
+    'search.placeholder': 'חפש שירות... (לדוגמה: ניקיון, גינון)',
 
     // Footer
     'footer.category.home': 'שירותים לבית',
@@ -2754,7 +2753,6 @@ const translations = {
     'search.services.all': 'All Services',
     'search.title': 'Search Services',
     'search.subtitle': 'Find the perfect provider for you from {count} available providers',
-    'search.placeholder': 'Search by name, skill or description...',
     'search.searchButton': 'Search',
     'search.loading': 'Searching providers...',
     'search.errors.selectCity': 'Please select a city to search',
@@ -2793,7 +2791,7 @@ const translations = {
     'search.noResults.title': 'No results found',
     'search.noResults.description': 'Try changing search criteria or expand filters',
     'search.noResults.clearFilters': 'Clear Filters',
-    'search.placeholder': 'Search service... (e.g.: cleaning, locksmith)',
+   'search.placeholder': 'Search... (cleaning, locksmith)',
 
     // Footer
     'footer.category.home': 'Home Services',
@@ -5319,7 +5317,7 @@ const translations = {
     'search.services.all': 'Все услуги',
     'search.title': 'Поиск услуг',
     'search.subtitle': 'Найдите идеального поставщика из {count} доступных',
-    'search.placeholder': 'Поиск по имени, навыку или описанию...',
+   'search.placeholder': 'Поиск... (пример: уборка)',
     'search.searchButton': 'Поиск',
     'search.loading': 'Поиск поставщиков...',
     'search.errors.selectCity': 'Пожалуйста, выберите город для поиска',
@@ -5358,7 +5356,6 @@ const translations = {
     'search.noResults.title': 'Результаты не найдены',
     'search.noResults.description': 'Попробуйте изменить критерии поиска или расширить фильтры',
     'search.noResults.clearFilters': 'Очистить фильтры',
-    'search.placeholder': 'Поиск услуги... (например: уборка, слесарь)',
 
     // Footer
     'footer.category.home': 'Домашние услуги',
@@ -7872,7 +7869,6 @@ const translations = {
     'search.services.all': 'Tous les services',
     'search.title': 'Rechercher services',
     'search.subtitle': 'Trouvez le prestataire parfait parmi {count} prestataires disponibles',
-    'search.placeholder': 'Recherche par nom, compétence ou description...',
     'search.searchButton': 'Rechercher',
     'search.loading': 'Recherche de prestataires...',
     'search.errors.selectCity': 'Veuillez sélectionner une ville pour la recherche',
@@ -7911,7 +7907,7 @@ const translations = {
     'search.noResults.title': 'Aucun résultat trouvé',
     'search.noResults.description': 'Essayez de changer les critères de recherche ou d\'élargir les filtres',
     'search.noResults.clearFilters': 'Effacer les filtres',
-    'search.placeholder': 'Rechercher un service... (ex: ménage, serrurier)',
+   'search.placeholder': 'Rechercher... (ménage, serrurier)',
 
     // Footer
     'footer.category.home': 'Services maison',

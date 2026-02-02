@@ -12,6 +12,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@capacitor/android": "^8.0.2",
+    "@capacitor/cli": "^8.0.2",
+    "@capacitor/core": "^8.0.2",
     "axios": "^1.6.2",
     "browser-image-compression": "^2.0.2",
     "lucide-react": "^0.294.0",
