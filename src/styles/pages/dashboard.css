@@ -1423,70 +1423,111 @@ body .dashboard-page .info-section h3.section-title {
 
 /* Settings card danger zone */
 .settings-card.danger-zone {
-  border: 2px solid #dc2626;
+  border: 3px solid #dc2626;
   background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
   transition: all var(--transition-medium);
+  box-shadow: 0 4px 20px rgba(220, 38, 38, 0.15);
 }
 
 .settings-card.danger-zone:hover {
   border-color: #b91c1c;
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 8px 30px rgba(220, 38, 38, 0.25);
   transform: translateY(-2px);
 }
 
 .settings-card.danger-zone .settings-card-header {
-  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
-  border-bottom: 1px solid #dc2626;
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  border-bottom: none;
+  padding: var(--space-5) var(--space-6);
 }
 
 .settings-card.danger-zone .settings-card-header h4 {
-  color: #991b1b;
+  color: white;
   font-weight: 700;
+  font-size: var(--text-xl);
 }
 
 .settings-card.danger-zone .settings-card-header svg {
+  color: white;
+}
+
+.settings-card.danger-zone .settings-content {
+  background: transparent;
+  padding: var(--space-6);
+}
+
+.settings-card.danger-zone .account-action-info h5 {
+  color: #991b1b;
+  font-size: var(--text-xl);
+}
+
+.settings-card.danger-zone .account-action-info p {
+  color: #7f1d1d;
+}
+
+.settings-card.danger-zone .warning-list li {
+  color: #991b1b;
+}
+
+.settings-card.danger-zone .warning-list li::before {
   color: #dc2626;
 }
 
-/* Danger zone content layout */
-.danger-zone-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: var(--space-6);
-  padding: var(--space-2);
+/* Cartes de service dans danger zone */
+.settings-card.danger-zone .service-deletion-card {
+  background: white;
+  border: 2px solid #fca5a5;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.1);
 }
 
-.danger-zone-info {
-  flex: 1;
+.settings-card.danger-zone .service-deletion-card:hover {
+  border-color: #dc2626;
+  background: #fff5f5;
+  box-shadow: 0 4px 15px rgba(220, 38, 38, 0.2);
 }
 
-.danger-zone-info h5 {
-  font-size: var(--text-lg);
-  font-weight: 700;
+.settings-card.danger-zone .service-deletion-card h5 {
   color: #991b1b;
-  margin: 0 0 var(--space-2) 0;
-  font-family: var(--font-primary);
 }
 
-.danger-zone-info p {
-  font-size: var(--text-sm);
-  color: #7f1d1d;
-  line-height: 1.5;
-  margin: 0;
-  font-family: var(--font-primary);
+/* Bouton danger amélioré */
+.settings-card.danger-zone .btn-danger {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  color: white;
+  border: none;
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-xl);
+  font-size: var(--text-base);
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  transition: all var(--transition-medium);
+  box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.settings-card.danger-zone .btn-danger:hover {
+  background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
+}
+
+.settings-card.danger-zone .btn-danger:active {
+  transform: translateY(0);
 }
 
 /* Responsive danger zone */
 @media (max-width: 768px) {
-  .danger-zone-content {
-    flex-direction: column;
-    align-items: stretch;
-    gap: var(--space-4);
+  .settings-card.danger-zone .settings-card-header {
+    padding: var(--space-4) var(--space-5);
   }
   
-  .danger-zone-info {
-    text-align: center;
+  .settings-card.danger-zone .settings-card-header h4 {
+    font-size: var(--text-lg);
   }
 }
 
@@ -2112,3 +2153,4 @@ select.inline-edit {
     font-size: var(--text-base);
   }
 }
+
