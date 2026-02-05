@@ -8,7 +8,7 @@ const PrivateChefForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
       <h3>{t('serviceForm.chef.title')}</h3>
       
       <div className="form-section">
-     {t('serviceForm.common.requiredFields')}
+    <h4>{t('serviceForm.common.requiredFields')}</h4>
         
         <div className="input-group">
           <label>{t('serviceForm.common.age')}</label>

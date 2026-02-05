@@ -11,7 +11,8 @@ const styles = `
       height: 100%; 
       min-height: 600px;
       /* DÉGRADÉ LUMINEUX & PRO */
-      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -24,7 +25,7 @@ const styles = `
       animation-play-state: paused !important;
   }
 
-  /* --- ARRIÈRE-PLAN VIDÉO --- */
+  /* --- ARRIÈRE-PLAN VIDÉO (Subtil) --- */
   .bg-video {
       position: absolute;
       top: 0;
@@ -32,39 +33,90 @@ const styles = `
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0.15;
+      opacity: 0.05; 
       mix-blend-mode: multiply;
       z-index: 0;
       filter: grayscale(100%);
+      pointer-events: none; /* IMPORTANT: Ne bloque pas les clics */
   }
 
-  /* --- PARTICULES FLOTTANTES (Pastel) --- */
-  .particles-container {
+  /* --- ANIMATION "IDLE" (Carte Blanche - Pro & Design) --- */
+  .idle-layer {
       position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       z-index: 1;
-      pointer-events: none;
+      opacity: 0;
+      transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
       overflow: hidden;
+      pointer-events: none; /* IMPORTANT: Clics traversants */
   }
 
-  .particle {
+  .idle-layer.visible {
+      opacity: 1;
+  }
+
+  .tech-grid {
       position: absolute;
-      border-radius: 50%;
-      mix-blend-mode: multiply;
-      filter: blur(40px);
-      animation: floatUp 25s infinite linear;
+      width: 200%;
+      height: 200%;
+      top: -50%;
+      left: -50%;
+      background-image: 
+          linear-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+      transform: perspective(500px) rotateX(60deg);
+      animation: gridMove 20s linear infinite;
   }
 
-  .p-1 { width: 300px; height: 300px; background: #e0f2fe; left: -10%; top: -10%; animation-duration: 35s; opacity: 0.8; }
-  .p-2 { width: 250px; height: 250px; background: #dbeafe; left: 80%; bottom: -5%; animation-duration: 28s; opacity: 0.7; }
-  .p-3 { width: 400px; height: 400px; background: #f3e8ff; left: 30%; top: 40%; animation-duration: 45s; opacity: 0.6; }
+  @keyframes gridMove {
+      0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+      100% { transform: perspective(500px) rotateX(60deg) translateY(60px); }
+  }
 
-  @keyframes floatUp {
-      0% { transform: translate(0, 0) rotate(0deg); }
-      33% { transform: translate(30px, -50px) rotate(10deg); }
-      66% { transform: translate(-20px, 20px) rotate(-5deg); }
-      100% { transform: translate(0, 0) rotate(0deg); }
+  /* Cercles concentriques "Pulse" */
+  .pulse-circle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 1px solid rgba(59, 130, 246, 0.15);
+      border-radius: 50%;
+      animation: pulseExpand 8s infinite linear;
+  }
+
+  .pc-1 { width: 300px; height: 300px; animation-delay: 0s; }
+  .pc-2 { width: 500px; height: 500px; animation-delay: -2s; border-color: rgba(139, 92, 246, 0.1); }
+  .pc-3 { width: 700px; height: 700px; animation-delay: -4s; }
+
+  @keyframes pulseExpand {
+      0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translate(-50%, -50%) scale(1.4); opacity: 0; }
+  }
+
+  /* Formes géométriques flottantes */
+  .geo-shape {
+      position: absolute;
+      background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(255,255,255,0.2));
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.5);
+      box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
+      border-radius: 20px;
+      z-index: 2;
+  }
+
+  .gs-1 { width: 80px; height: 80px; top: 20%; left: 15%; animation: floatGeo 12s ease-in-out infinite; border-radius: 12px; }
+  .gs-2 { width: 120px; height: 120px; bottom: 25%; right: 10%; animation: floatGeo 15s ease-in-out infinite reverse; border-radius: 50%; }
+  .gs-3 { width: 60px; height: 60px; top: 15%; right: 20%; animation: floatGeo 10s ease-in-out infinite 1s; transform: rotate(45deg); border-radius: 8px; }
+
+  @keyframes floatGeo {
+      0% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-30px) rotate(10deg); }
+      100% { transform: translateY(0) rotate(0deg); }
   }
 
   /* --- MARQUEE (DÉFILÉ CONTINU) --- */
@@ -80,13 +132,16 @@ const styles = `
       gap: 40px;
       transform: rotate(-6deg); 
       z-index: 2;
-      opacity: 0.6;
-      pointer-events: none; 
+      opacity: 0;
+      transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none; /* CRUCIAL: Empêche de bloquer les boutons */
       mask-image: radial-gradient(circle, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 80%);
       -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 80%);
-      
-      /* IMPORTANT : Force la direction LTR pour que l'animation des images ne casse pas en Hébreu */
       direction: ltr; 
+  }
+
+  .marquee-layer.visible {
+      opacity: 0.8;
   }
 
   .marquee-row {
@@ -127,26 +182,26 @@ const styles = `
       display: flex;
       justify-content: center;
       align-items: center;
-      pointer-events: none; 
+      pointer-events: none; /* CRUCIAL */
   }
 
   .text-card {
       position: absolute;
       padding: 50px 70px;
-      background: rgba(255, 255, 255, 0.65);
+      background: rgba(255, 255, 255, 0.75);
       backdrop-filter: blur(20px) saturate(180%);
       -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border: 1px solid rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.9);
       border-radius: 30px;
       box-shadow: 
-          0 20px 50px rgba(0,0,0,0.05),
+          0 20px 50px rgba(0,0,0,0.08),
           0 1px 3px rgba(0,0,0,0.1);
       text-align: center;
       max-width: 900px;
       width: 85%;
       opacity: 0;
       transform: scale(0.95) translateY(20px);
-      pointer-events: none; 
+      pointer-events: none; /* CRUCIAL */
   }
 
   .main-text {
@@ -193,15 +248,15 @@ const styles = `
       100% { opacity: 0; transform: scale(1.05) translateY(-20px); filter: blur(4px); }
   }
 
-  /* --- CONTRÔLES (DESIGN BLANC) --- */
+  /* --- CONTRÔLES --- */
   .controls-container {
       position: absolute;
       bottom: 30px;
       right: 30px;
-      z-index: 1000;
+      z-index: 2000; /* Z-INDEX AUGMENTÉ AU MAX */
       display: flex;
       gap: 15px;
-      pointer-events: auto; 
+      pointer-events: auto; /* S'assure que les clics sont acceptés */
   }
 
   .control-btn {
@@ -217,7 +272,9 @@ const styles = `
       color: #334155;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative; 
+      z-index: 2001; /* Z-INDEX SUPÉRIEUR */
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      pointer-events: auto;
   }
   
   .control-btn:hover { 
@@ -229,7 +286,7 @@ const styles = `
   
   .control-btn svg { width: 22px; height: 22px; fill: currentColor; }
 
-  /* Menu Langue Style iOS */
+  /* Menu Langue */
   .lang-menu {
       position: absolute;
       bottom: 70px;
@@ -245,6 +302,8 @@ const styles = `
       min-width: 120px;
       border: 1px solid rgba(0,0,0,0.05);
       animation: slideUp 0.2s ease-out;
+      z-index: 3000; /* Toujours au dessus */
+      pointer-events: auto;
   }
   
   @keyframes slideUp {
@@ -360,7 +419,7 @@ const PromoVideo = ({ videoSrc = "/background.mp4", services = [] }) => {
   const audioRef = useRef(null);
   const requestRef = useRef(null);
   const startTimeRef = useRef(null);
-  const langMenuRef = useRef(null); // Ref pour le menu de langue
+  const langMenuRef = useRef(null); 
 
   // Images par défaut
   const defaultMedia = [
@@ -371,16 +430,10 @@ const PromoVideo = ({ videoSrc = "/background.mp4", services = [] }) => {
   
   const displayMedia = services.length > 0 ? services.map(s => s.image || s) : defaultMedia;
 
-  // --- LOGIQUE POUR DIFFÉRENCIER HAUT ET BAS ---
-  // Liste 1 (Haut) : Ordre normal
   const marqueeListTop = [...displayMedia, ...displayMedia, ...displayMedia, ...displayMedia];
-  
-  // Liste 2 (Milieu) : On décale un peu (commence à la moitié)
   const midIndex = Math.floor(displayMedia.length / 2);
   const shiftedMedia = [...displayMedia.slice(midIndex), ...displayMedia.slice(0, midIndex)];
   const marqueeListMiddle = [...shiftedMedia, ...shiftedMedia, ...shiftedMedia, ...shiftedMedia];
-
-  // Liste 3 (Bas) : Ordre inversé pour être sûr que ce n'est pas pareil que le haut
   const reversedMedia = [...displayMedia].reverse();
   const marqueeListBottom = [...reversedMedia, ...reversedMedia, ...reversedMedia, ...reversedMedia];
 
@@ -390,11 +443,9 @@ const PromoVideo = ({ videoSrc = "/background.mp4", services = [] }) => {
       
       if (!isPaused) {
         const elapsed = (time - startTimeRef.current) / 1000;
-        // Permet de boucler proprement
         const loopedTime = elapsed % duration;
         setCurrentTime(loopedTime);
       } else {
-         // Ajuste le start time pour que la reprise soit fluide
          startTimeRef.current = time - (currentTime * 1000);
       }
       
@@ -406,8 +457,6 @@ const PromoVideo = ({ videoSrc = "/background.mp4", services = [] }) => {
       return () => cancelAnimationFrame(requestRef.current);
   }, [isPaused, currentTime]); 
 
-  // --- SYNCHRONISATION PAUSE/LECTURE ---
-  // Cela garantit que le bouton et la vidéo sont toujours en phase
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -449,9 +498,10 @@ const PromoVideo = ({ videoSrc = "/background.mp4", services = [] }) => {
   };
 
   const activeSeq = getActiveSequence(currentTime);
+  
+  const isServicesSlide = activeSeq === 5;
 
   const toggleVideo = (e) => {
-    // On garde uniquement stopPropagation pour éviter que le clic ne traverse
     e && e.stopPropagation(); 
     setIsPaused(prev => !prev);
   };
@@ -491,15 +541,20 @@ const PromoVideo = ({ videoSrc = "/background.mp4", services = [] }) => {
           <source src={videoSrc} type="video/mp4" />
       </video>
       
-      {/* 2. PARTICULES FLOTTANTES */}
-      <div className="particles-container">
-          <div className="particle p-1"></div>
-          <div className="particle p-2"></div>
-          <div className="particle p-3"></div>
+      {/* 2. NOUVELLE ANIMATION "IDLE" */}
+      <div className={`idle-layer ${!isServicesSlide ? 'visible' : ''}`}>
+          <div className="tech-grid"></div>
+          <div className="pulse-circle pc-1"></div>
+          <div className="pulse-circle pc-2"></div>
+          <div className="pulse-circle pc-3"></div>
+          
+          <div className="geo-shape gs-1"></div>
+          <div className="geo-shape gs-2"></div>
+          <div className="geo-shape gs-3"></div>
       </div>
 
-      {/* 3. MARQUEE MULTI-DIRECTIONNEL (3 listes distinctes) */}
-      <div className="marquee-layer">
+      {/* 3. MARQUEE MULTI-DIRECTIONNEL */}
+      <div className={`marquee-layer ${isServicesSlide ? 'visible' : ''}`}>
           <div className="marquee-row scroll-left">
               {marqueeListTop.map((src, i) => <MarqueeItem key={`top-${i}`} src={src} />)}
           </div>
@@ -538,7 +593,7 @@ const PromoVideo = ({ videoSrc = "/background.mp4", services = [] }) => {
              {isMuted ? <IconSoundOff /> : <IconSoundOn />}
           </button>
           
-          {/* AJOUT DE e.stopPropagation() ICI pour le menu langue */}
+          {/* Utilisation de div car contient des éléments interactifs, mais stylé comme un bouton */}
           <div className="control-btn" ref={langMenuRef} onClick={(e) => { e.stopPropagation(); setShowLangMenu(!showLangMenu); }} title="Langue">
               <IconLang />
               {showLangMenu && (

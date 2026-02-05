@@ -84,7 +84,7 @@ const translations = {
 
     // HomePage - Hero
   'homepage.hero.tagline': 'כל השירותים שאתם צריכים, במקום אחד',
-   'homepage.hero.description1': 'ב־AllSherut תמצאו את כל השירותים שאתם צריכים במקום אחד — לבית, למשפחה, לעסק ולאירועים. ניקיון, גינון, שיעורים פרטיים, סיוע לאזרחים ותיקים, שף פרטי, ניהול נכסים ועוד מגוון רחב של שירותים. הכול עם ספקים אמינים, דירוגים, ביקורות ומידע מלא לבחירה חכמה ובטוחה.',
+   'homepage.hero.description1': 'תמצאו את כל השירותים שאתם צריכים במקום אחד — לבית, למשפחה, לעסק ולאירועים.',
     'homepage.hero.description2': 'אם אתם ספקים — זו ההזדמנות שלכם להגיע ליותר לקוחות, להציג את השירותים שלכם, ולקבל הזמנות ישירות דרך הפלטפורמה.',
     
     // HomePage - Clients Section
@@ -201,6 +201,7 @@ const translations = {
     'search.services.all': 'כל השירותים',
     'search.title': 'חיפוש שירותים',
     'search.subtitle': 'מצאו את הספק המושלם עבורכם מתוך {count} ספקים זמינים',
+    'search.placeholder': 'חפשו לפי שם, מיומנות או תיאור...',
     'search.searchButton': 'חפש',
     'search.loading': 'מחפש ספקים...',
     'search.errors.selectCity': 'אנא בחר עיר לחיפוש',
@@ -239,7 +240,7 @@ const translations = {
     'search.noResults.title': 'לא נמצאו תוצאות',
     'search.noResults.description': 'נסו לשנות את קריטריוני החיפוש או להרחיב את הסינון',
     'search.noResults.clearFilters': 'נקה סינון',
-    'search.placeholder': 'חפש שירות... (לדוגמה: ניקיון, גינון)',
+    'search.placeholder': 'חפש שירות... (לדוגמה: ניקיון, מנעולן)',
 
     // Footer
     'footer.category.home': 'שירותים לבית',
@@ -2644,7 +2645,7 @@ const translations = {
 
     // HomePage - Hero
  'homepage.hero.tagline': 'All the services you need, in one place',
-'homepage.hero.description1': 'On AllSherut, find all the services you need in one place — for your home, family, business, and events. Cleaning, gardening, private lessons, senior assistance, private chef services, property management, and much more. Trusted providers, ratings, reviews, and full information to help you choose with confidence.',
+'homepage.hero.description1': 'On AllSherut, find all the services you need in one place — for your home, family, business, and events.',
     'homepage.hero.description2': 'If you are a provider — this is your opportunity to reach more customers, showcase your services, and receive bookings directly through the platform.',
     
     // HomePage - Clients Section
@@ -2753,6 +2754,7 @@ const translations = {
     'search.services.all': 'All Services',
     'search.title': 'Search Services',
     'search.subtitle': 'Find the perfect provider for you from {count} available providers',
+    'search.placeholder': 'Search by name, skill or description...',
     'search.searchButton': 'Search',
     'search.loading': 'Searching providers...',
     'search.errors.selectCity': 'Please select a city to search',
@@ -2791,7 +2793,7 @@ const translations = {
     'search.noResults.title': 'No results found',
     'search.noResults.description': 'Try changing search criteria or expand filters',
     'search.noResults.clearFilters': 'Clear Filters',
-   'search.placeholder': 'Search... (cleaning, locksmith)',
+    'search.placeholder': 'Search service... (e.g.: cleaning, locksmith)',
 
     // Footer
     'footer.category.home': 'Home Services',
@@ -5216,7 +5218,7 @@ const translations = {
 
     // HomePage sections
  'homepage.hero.tagline': 'Все нужные вам услуги — в одном месте',
-    'homepage.hero.description1': 'На AllSherut вы найдёте все необходимые услуги в одном месте — для дома, семьи, бизнеса и мероприятий. Уборка, садоводство, частные уроки, помощь пожилым людям, личный шеф-повар, управление недвижимостью и многое другое. Надёжные исполнители, рейтинги, отзывы и полная информация — для уверенного и правильного выбора.',
+    'homepage.hero.description1': 'На AllSherut вы найдёте все необходимые услуги в одном месте — для дома, семьи, бизнеса и мероприятий.',
     'homepage.hero.description2': 'Если вы поставщик услуг — это ваша возможность привлечь больше клиентов, продемонстрировать свои услуги и получать заказы напрямую через платформу.',
     'homepage.clients.title': 'Для клиентов',
     'homepage.clients.subtitle': 'С AllSherut нет необходимости усложнять или тратить время на бесконечные поиски',
@@ -5317,7 +5319,7 @@ const translations = {
     'search.services.all': 'Все услуги',
     'search.title': 'Поиск услуг',
     'search.subtitle': 'Найдите идеального поставщика из {count} доступных',
-   'search.placeholder': 'Поиск... (пример: уборка)',
+    'search.placeholder': 'Поиск по имени, навыку или описанию...',
     'search.searchButton': 'Поиск',
     'search.loading': 'Поиск поставщиков...',
     'search.errors.selectCity': 'Пожалуйста, выберите город для поиска',
@@ -5356,6 +5358,7 @@ const translations = {
     'search.noResults.title': 'Результаты не найдены',
     'search.noResults.description': 'Попробуйте изменить критерии поиска или расширить фильтры',
     'search.noResults.clearFilters': 'Очистить фильтры',
+    'search.placeholder': 'Поиск услуги... (например: уборка, слесарь)',
 
     // Footer
     'footer.category.home': 'Домашние услуги',
@@ -7760,7 +7763,7 @@ const translations = {
     
     // HomePage - Hero
 'homepage.hero.tagline': 'Tous les services dont vous avez besoin, en un seul endroit',
-'homepage.hero.description1': 'Sur AllSherut, retrouvez tous les services dont vous avez besoin en un seul endroit — pour la maison, la famille, les entreprises et les événements. Ménage, jardinage, cours particuliers, aide aux personnes âgées, chef privé, gestion de biens et bien plus encore. Des prestataires fiables, des avis, des notes et des informations complètes pour choisir en toute confiance.',
+'homepage.hero.description1': 'Sur AllSherut, retrouvez tous les services dont vous avez besoin en un seul endroit — pour la maison, la famille, les entreprises et les événements.',
     'homepage.hero.description2': 'Si vous êtes prestataire — c\'est votre opportunité d\'atteindre plus de clients, de présenter vos services et de recevoir des réservations directement via la plateforme.',
     
     // HomePage - Clients Section
@@ -7869,6 +7872,7 @@ const translations = {
     'search.services.all': 'Tous les services',
     'search.title': 'Rechercher services',
     'search.subtitle': 'Trouvez le prestataire parfait parmi {count} prestataires disponibles',
+    'search.placeholder': 'Recherche par nom, compétence ou description...',
     'search.searchButton': 'Rechercher',
     'search.loading': 'Recherche de prestataires...',
     'search.errors.selectCity': 'Veuillez sélectionner une ville pour la recherche',
@@ -7907,7 +7911,7 @@ const translations = {
     'search.noResults.title': 'Aucun résultat trouvé',
     'search.noResults.description': 'Essayez de changer les critères de recherche ou d\'élargir les filtres',
     'search.noResults.clearFilters': 'Effacer les filtres',
-   'search.placeholder': 'Rechercher... (ménage, serrurier)',
+    'search.placeholder': 'Rechercher un service... (ex: ménage, serrurier)',
 
     // Footer
     'footer.category.home': 'Services maison',

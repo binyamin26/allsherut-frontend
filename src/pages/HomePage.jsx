@@ -299,6 +299,53 @@ const HomePage = () => {
         </div>
       </section>
 
+        {/* Services Section */}
+      <section id="services" className="services-section">
+        <div className="container">
+          <div className="section-header">
+            <h2 className="section-title animate-fade-in-down">{t('homepage.services.title')}</h2>
+            <p className="hero-description text-center mb-16 animate-fade-in-up delay-100">
+              {t('homepage.services.subtitle')}
+            </p>
+          </div>
+        </div>
+
+        <div className="services-carousel-container">
+          <Swiper
+            modules={[Navigation]}
+            navigation
+            spaceBetween={1}
+            slidesPerView={1}
+            breakpoints={{
+              640: { slidesPerView: 2 },
+              900: { slidesPerView: 3 },
+              1200: { slidesPerView: 4 }
+            }}
+          >
+            {services.map((service) => (
+              <SwiperSlide key={service.id}>
+                <Link to={service.href} className="service-card-image">
+                  {service.image ? (
+                    <img 
+                      src={service.image} 
+                      alt={service.name} 
+                      className="service-image"
+                    />
+                  ) : (
+                    <div className={`service-icon-fallback bg-gradient-to-br ${service.color}`}>
+                      <Star size={48} color="white" /> {/* Fallback icon générique */}
+                    </div>
+                  )}
+                  <div className="service-name-overlay">
+                    <h3>{service.name}</h3>
+                  </div>
+                </Link>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      </section>
+
       {/* Section Clients */}
       <section className="section">
         <div className="container">
@@ -353,52 +400,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Services Section */}
-      <section id="services" className="services-section">
-        <div className="container">
-          <div className="section-header">
-            <h2 className="section-title animate-fade-in-down">{t('homepage.services.title')}</h2>
-            <p className="hero-description text-center mb-16 animate-fade-in-up delay-100">
-              {t('homepage.services.subtitle')}
-            </p>
-          </div>
-        </div>
-
-        <div className="services-carousel-container">
-          <Swiper
-            modules={[Navigation]}
-            navigation
-            spaceBetween={1}
-            slidesPerView={1}
-            breakpoints={{
-              640: { slidesPerView: 2 },
-              900: { slidesPerView: 3 },
-              1200: { slidesPerView: 4 }
-            }}
-          >
-            {services.map((service) => (
-              <SwiperSlide key={service.id}>
-                <Link to={service.href} className="service-card-image">
-                  {service.image ? (
-                    <img 
-                      src={service.image} 
-                      alt={service.name} 
-                      className="service-image"
-                    />
-                  ) : (
-                    <div className={`service-icon-fallback bg-gradient-to-br ${service.color}`}>
-                      <Star size={48} color="white" /> {/* Fallback icon générique */}
-                    </div>
-                  )}
-                  <div className="service-name-overlay">
-                    <h3>{service.name}</h3>
-                  </div>
-                </Link>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-      </section>
 
       {/* Section Prestataires */}
       <section className="section" style={{background: 'linear-gradient(135deg, var(--primary-25) 0%, var(--accent-25) 100%)'}}>

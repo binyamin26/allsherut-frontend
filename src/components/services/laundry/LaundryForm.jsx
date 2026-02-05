@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
+import CustomDropdown from '../../common/CustomDropdown';
 
 const LaundryForm = ({ serviceDetails, errors, handleServiceDetailsChange, handleExclusiveCheckbox }) => {
     const { t } = useLanguage();
@@ -8,7 +9,7 @@ const LaundryForm = ({ serviceDetails, errors, handleServiceDetailsChange, handl
    <h3>{t('serviceForm.laundry.title')}</h3>
    
    <div className="form-section">
-      {t('serviceForm.common.requiredFields')}
+     <h4>{t('serviceForm.common.requiredFields')}</h4>
 
         <div className="input-group">
           <label>{t('serviceForm.common.experience')}</label>
@@ -106,15 +107,16 @@ const LaundryForm = ({ serviceDetails, errors, handleServiceDetailsChange, handl
         
         <div className="input-group">
          <label>{t('serviceForm.laundry.pickupService')}</label>
-<select 
-  value={serviceDetails.pickupService || ''} 
+<CustomDropdown
+  name="pickupService"
+  value={serviceDetails.pickupService || ''}
   onChange={(e) => handleServiceDetailsChange('pickupService', e.target.value)}
-  className="standard-input"
->
-  <option value="">{t('serviceForm.laundry.selectOption')}</option>
-  <option value="yes">{t('serviceForm.laundry.providesPickup')}</option>
-  <option value="no">{t('serviceForm.laundry.noPickup')}</option>
-</select>
+  placeholder={t('serviceForm.laundry.selectOption')}
+  options={[
+    { value: 'yes', label: t('serviceForm.laundry.providesPickup') },
+    { value: 'no', label: t('serviceForm.laundry.noPickup') }
+  ]}
+/>
         </div>
       </div>
     </div>

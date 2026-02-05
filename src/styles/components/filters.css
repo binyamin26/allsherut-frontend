@@ -1357,9 +1357,13 @@
   height: 0;
 }
 
-.filter-sidebar .location-panel,
-.filter-sidebar-content {
+.filter-sidebar .location-panel {
   overflow: visible !important;
+}
+
+.filter-sidebar-content {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
 }
 
 /* ====================================

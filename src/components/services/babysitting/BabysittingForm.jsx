@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
+import CustomDropdown from '../../common/CustomDropdown';
 
 const BabysittingForm = ({ serviceDetails, errors, handleServiceDetailsChange, handleExclusiveCheckbox }) => {
   const { t } = useLanguage();
@@ -37,7 +38,7 @@ const BabysittingForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
       <h3>{t('serviceForm.babysitting.title')}</h3>
       
       <div className="form-section">
-        {t('serviceForm.common.requiredFields')}
+       <h4>{t('serviceForm.common.requiredFields')}</h4>
         
         {/* ✅ AGE */}
         <div className="input-group">
@@ -192,16 +193,17 @@ const BabysittingForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
 
         <div className="input-group">
           <label>{t('serviceForm.babysitting.canTravelAlone')}</label>
-          <select
-            value={serviceDetails.can_travel_alone === true ? 'yes' : serviceDetails.can_travel_alone === false ? 'no' : ''}
-            onChange={(e) => handleServiceDetailsChange('can_travel_alone', e.target.value === 'yes')}
-            className={`standard-input ${errors['serviceDetails.can_travel_alone'] ? 'error' : ''}`}
-            data-field="can_travel_alone"
-          >
-            <option value="">{t('serviceForm.common.select')}</option>
-            <option value="yes">{t('common.yes')}</option>
-            <option value="no">{t('common.no')}</option>
-          </select>
+         <CustomDropdown
+  name="can_travel_alone"
+  value={serviceDetails.can_travel_alone === true ? 'yes' : serviceDetails.can_travel_alone === false ? 'no' : ''}
+  onChange={(e) => handleServiceDetailsChange('can_travel_alone', e.target.value === 'yes')}
+  placeholder={t('serviceForm.common.select')}
+  error={errors['serviceDetails.can_travel_alone']}
+  options={[
+    { value: 'yes', label: t('common.yes') },
+    { value: 'no', label: t('common.no') }
+  ]}
+/>
           {errors['serviceDetails.can_travel_alone'] && <span className="error-text">{errors['serviceDetails.can_travel_alone']}</span>}
         </div>
 
@@ -260,32 +262,34 @@ const BabysittingForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
         
         <div className="input-group">
           <label>{t('serviceForm.babysitting.certifications')}</label>
-          <select
-            value={serviceDetails.certifications || ''}
-            onChange={(e) => handleServiceDetailsChange('certifications', e.target.value)}
-            className="standard-input"
-          >
-            <option value="">{t('serviceForm.common.selectCertification')}</option>
-            <option value="הכשרה בתחום החינוך המיוחד">{t('filters.babysitting.certSpecialEd')}</option>
-            <option value="קורס עזרה ראשונה">{t('filters.babysitting.certFirstAid')}</option>
-            <option value="ניסיון בגני ילדים או מעונות">{t('filters.babysitting.certKindergarten')}</option>
-          </select>
+          <CustomDropdown
+  name="certifications"
+  value={serviceDetails.certifications || ''}
+  onChange={(e) => handleServiceDetailsChange('certifications', e.target.value)}
+  placeholder={t('serviceForm.common.selectCertification')}
+  options={[
+    { value: 'הכשרה בתחום החינוך המיוחד', label: t('filters.babysitting.certSpecialEd') },
+    { value: 'קורס עזרה ראשונה', label: t('filters.babysitting.certFirstAid') },
+    { value: 'ניסיון בגני ילדים או מעונות', label: t('filters.babysitting.certKindergarten') }
+  ]}
+/>
         </div>
 
         <div className="input-group">
           <label>{t('serviceForm.babysitting.religiosity')}</label>
-          <select
-            value={serviceDetails.religiosity || ''}
-            onChange={(e) => handleServiceDetailsChange('religiosity', e.target.value)}
-            className="standard-input"
-          >
-            <option value="">{t('serviceForm.common.selectLevel')}</option>
-            <option value="">{t('filters.noMatter')}</option>
-            <option value="חילוני">{t('filters.religious.secular')}</option>
-            <option value="מסורתי">{t('filters.religious.traditional')}</option>
-            <option value="דתי">{t('filters.religious.religious')}</option>
-            <option value="חרדי">{t('filters.religious.orthodox')}</option>
-          </select>
+       <CustomDropdown
+  name="religiosity"
+  value={serviceDetails.religiosity || ''}
+  onChange={(e) => handleServiceDetailsChange('religiosity', e.target.value)}
+  placeholder={t('serviceForm.common.selectLevel')}
+  options={[
+    { value: '', label: t('filters.noMatter') },
+    { value: 'חילוני', label: t('filters.religious.secular') },
+    { value: 'מסורתי', label: t('filters.religious.traditional') },
+    { value: 'דתי', label: t('filters.religious.religious') },
+    { value: 'חרדי', label: t('filters.religious.orthodox') }
+  ]}
+/>
         </div>
       </div>
     </div>

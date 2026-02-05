@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
+import CustomDropdown from '../../common/CustomDropdown';
 
 const PetcareForm = ({ serviceDetails, errors, handleServiceDetailsChange, handleExclusiveCheckbox }) => {
     const { t } = useLanguage();
@@ -8,7 +9,7 @@ const PetcareForm = ({ serviceDetails, errors, handleServiceDetailsChange, handl
     <h3>{t('serviceForm.petcare.title')}</h3>
       
       <div className="form-section">
-      {t('serviceForm.common.requiredFields')}
+     <h4>{t('serviceForm.common.requiredFields')}</h4>
         
         <div className="input-group">
       <label>{t('serviceForm.petcare.animalTypes')}</label>
@@ -71,17 +72,18 @@ const PetcareForm = ({ serviceDetails, errors, handleServiceDetailsChange, handl
 
         <div className="input-group">
         <label>{t('serviceForm.petcare.location')}</label>
-<select
+<CustomDropdown
+  name="location"
   value={serviceDetails.location || ''}
   onChange={(e) => handleServiceDetailsChange('location', e.target.value)}
-  className={`standard-input ${errors['serviceDetails.location'] ? 'error' : ''}`}
-  data-field="location"
->
-  <option value="">{t('serviceForm.petcare.selectLocation')}</option>
-  <option value="בבית הלקוח">{t('filters.petcare.clientHome')}</option>
-  <option value="בבית המטפל">{t('filters.petcare.caregiverHome')}</option>
-  <option value="שניהם">{t('filters.common.both')}</option>
-</select>
+  placeholder={t('serviceForm.petcare.selectLocation')}
+  error={errors['serviceDetails.location']}
+  options={[
+    { value: 'בבית הלקוח', label: t('filters.petcare.clientHome') },
+    { value: 'בבית המטפל', label: t('filters.petcare.caregiverHome') },
+    { value: 'שניהם', label: t('filters.common.both') }
+  ]}
+/>
           {errors['serviceDetails.location'] && <span className="error-text">{errors['serviceDetails.location']}</span>}
         </div>
 

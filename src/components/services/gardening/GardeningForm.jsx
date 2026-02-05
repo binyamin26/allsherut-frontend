@@ -8,7 +8,7 @@ const GardeningForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
      <h3>{t('serviceForm.gardening.title')}</h3>
    
    <div className="form-section">
-     {t('serviceForm.common.requiredFields')}
+    <h4>{t('serviceForm.common.requiredFields')}</h4>
 
         <div className="input-group">
           <label>{t('serviceForm.common.experience')}</label>

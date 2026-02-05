@@ -8,7 +8,7 @@ const AluminumForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
       {t('serviceForm.aluminum.title')}
       
       <div className="form-section">
-      {t('serviceForm.common.requiredFields')}
+     <h4>{t('serviceForm.common.requiredFields')}</h4>
         
         <div className="input-group">
           <label>{t('serviceForm.common.age')}</label>

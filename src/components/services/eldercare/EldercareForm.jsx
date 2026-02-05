@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
+import CustomDropdown from '../../common/CustomDropdown';
 
 const EldercareForm = ({ serviceDetails, errors, handleServiceDetailsChange, handleExclusiveCheckbox }) => {
     const { t } = useLanguage();
@@ -26,7 +27,7 @@ const EldercareForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
       <h3>{t('serviceForm.eldercare.title')}</h3>
       
       <div className="form-section">
-        {t('serviceForm.common.requiredFields')}
+       <h4>{t('serviceForm.common.requiredFields')}</h4>
         
         <div className="input-group">
           <label>{t('serviceForm.eldercare.careTypesLabel')}</label>
@@ -176,46 +177,49 @@ const EldercareForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
         {/* עזרה אדמיניסטרטיבית */}
 <div className="input-group">
   <label>{t('filters.eldercare.administrativeHelp')}</label>
-  <select
-    value={serviceDetails.administrativeHelp || 'not_specified'}
-    onChange={(e) => handleServiceDetailsChange('administrativeHelp', e.target.value)}
-    className="standard-input"
-    data-field="administrativeHelp"
-  >
-    <option value="not_specified">{t('filters.noMatter')}</option>
-    <option value="yes">{t('common.yes')}</option>
-    <option value="no">{t('common.no')}</option>
-  </select>
+  <CustomDropdown
+  name="administrativeHelp"
+  value={serviceDetails.administrativeHelp || 'not_specified'}
+  onChange={(e) => handleServiceDetailsChange('administrativeHelp', e.target.value)}
+  placeholder={t('filters.noMatter')}
+  options={[
+    { value: 'not_specified', label: t('filters.noMatter') },
+    { value: 'yes', label: t('common.yes') },
+    { value: 'no', label: t('common.no') }
+  ]}
+/>
 </div>
 
 {/* ליווי רפואי */}
 <div className="input-group">
   <label>{t('filters.eldercare.medicalAccompaniment')}</label>
-  <select
-    value={serviceDetails.medicalAccompaniment || 'not_specified'}
-    onChange={(e) => handleServiceDetailsChange('medicalAccompaniment', e.target.value)}
-    className="standard-input"
-    data-field="medicalAccompaniment"
-  >
-    <option value="not_specified">{t('filters.noMatter')}</option>
-    <option value="yes">{t('common.yes')}</option>
-    <option value="no">{t('common.no')}</option>
-  </select>
+<CustomDropdown
+  name="medicalAccompaniment"
+  value={serviceDetails.medicalAccompaniment || 'not_specified'}
+  onChange={(e) => handleServiceDetailsChange('medicalAccompaniment', e.target.value)}
+  placeholder={t('filters.noMatter')}
+  options={[
+    { value: 'not_specified', label: t('filters.noMatter') },
+    { value: 'yes', label: t('common.yes') },
+    { value: 'no', label: t('common.no') }
+  ]}
+/>
 </div>
 
 {/* רכב לטיולים */}
 <div className="input-group">
   <label>{t('filters.eldercare.vehicleForOutings')}</label>
-  <select
-    value={serviceDetails.vehicleForOutings || 'not_specified'}
-    onChange={(e) => handleServiceDetailsChange('vehicleForOutings', e.target.value)}
-    className="standard-input"
-    data-field="vehicleForOutings"
-  >
-    <option value="not_specified">{t('filters.noMatter')}</option>
-    <option value="yes">{t('common.yes')}</option>
-    <option value="no">{t('common.no')}</option>
-  </select>
+  <CustomDropdown
+  name="vehicleForOutings"
+  value={serviceDetails.vehicleForOutings || 'not_specified'}
+  onChange={(e) => handleServiceDetailsChange('vehicleForOutings', e.target.value)}
+  placeholder={t('filters.noMatter')}
+  options={[
+    { value: 'not_specified', label: t('filters.noMatter') },
+    { value: 'yes', label: t('common.yes') },
+    { value: 'no', label: t('common.no') }
+  ]}
+/>
 </div>
       </div>
 

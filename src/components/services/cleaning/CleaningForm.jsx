@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
+import CustomDropdown from '../../common/CustomDropdown';
 
 const CleaningForm = ({ serviceDetails, errors, handleServiceDetailsChange, handleExclusiveCheckbox }) => {
     const { t } = useLanguage();
@@ -8,20 +9,21 @@ const CleaningForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
       <h3>{t('serviceForm.cleaning.title')}</h3>
       
       <div className="form-section">
-      {t('serviceForm.common.requiredFields')}
+     <h4>{t('serviceForm.common.requiredFields')}</h4>
         
         <div className="input-group">
         <label>{t('serviceForm.cleaning.legalStatus')}</label>
-<select 
-  value={serviceDetails.legalStatus || ''} 
+<CustomDropdown
+  name="legalStatus"
+  value={serviceDetails.legalStatus || ''}
   onChange={(e) => handleServiceDetailsChange('legalStatus', e.target.value)}
-  className={`standard-input ${errors['serviceDetails.legalStatus'] ? 'error' : ''}`}
-  data-field="legalStatus"
->
-  <option value="">{t('serviceForm.common.selectStatus')}</option>
-  <option value="חברה">{t('serviceForm.cleaning.company')}</option>
-  <option value="עצמאי">{t('serviceForm.cleaning.selfEmployed')}</option>
-</select>
+  placeholder={t('serviceForm.common.selectStatus')}
+  error={errors['serviceDetails.legalStatus']}
+  options={[
+    { value: 'חברה', label: t('serviceForm.cleaning.company') },
+    { value: 'עצמאי', label: t('serviceForm.cleaning.selfEmployed') }
+  ]}
+/>
        {errors['serviceDetails.legalStatus'] && <span className="error-text">{errors['serviceDetails.legalStatus']}</span>}
         </div>
 

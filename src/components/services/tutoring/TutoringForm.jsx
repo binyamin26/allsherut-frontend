@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
 import { useAuth } from '../../../context/AuthContext';
 import { FILTER_CONFIG } from '../../config/filterConfig';
+import CustomDropdown from '../../common/CustomDropdown';
 
 const TutoringForm = ({ serviceDetails, errors, handleServiceDetailsChange }) => {
 const { t, currentLanguage } = useLanguage();
@@ -85,7 +86,7 @@ const { t, currentLanguage } = useLanguage();
             <h3>{t('serviceForm.tutoring.title')}</h3>
             
            <div className="form-section">
-                {t('serviceForm.common.requiredFields')}
+               <h4>{t('serviceForm.common.requiredFields')}</h4>
 
                 {/* EXPÉRIENCE */}
                 <div className="input-group">
@@ -230,16 +231,17 @@ const { t, currentLanguage } = useLanguage();
                 {/* MODE D'ENSEIGNEMENT */}
                 <div className="input-group">
                     <label>{t('serviceForm.tutoring.teachingMode')}</label>
-                    <select
-                        value={serviceDetails.teachingMode || ''}
-                        onChange={(e) => handleServiceDetailsChange('teachingMode', e.target.value)}
-                        className={`standard-input ${errors['serviceDetails.teachingMode'] ? 'error' : ''}`}
-                        data-field="teachingMode"
-                    >
-                        {config.teachingModes.map(mode => (
-                            <option key={mode.value} value={mode.value}>{t(mode.key)}</option>
-                        ))}
-                    </select>
+                    <CustomDropdown
+    name="teachingMode"
+    value={serviceDetails.teachingMode || ''}
+    onChange={(e) => handleServiceDetailsChange('teachingMode', e.target.value)}
+    placeholder={t('serviceForm.common.select')}
+    error={errors['serviceDetails.teachingMode']}
+    options={config.teachingModes.map(mode => ({
+        value: mode.value,
+        label: t(mode.key)
+    }))}
+/>
                     {errors['serviceDetails.teachingMode'] && <span className="error-text">{errors['serviceDetails.teachingMode']}</span>}
                 </div>
 

@@ -8,7 +8,7 @@ const EventEntertainmentForm = ({ serviceDetails, errors, handleServiceDetailsCh
      <h3>{t('serviceForm.event.title')}</h3>
       
       <div className="form-section">
-   {t('serviceForm.common.requiredFields')}
+  <h4>{t('serviceForm.common.requiredFields')}</h4>
         
         <div className="input-group">
           <label>{t('serviceForm.common.age')}</label>

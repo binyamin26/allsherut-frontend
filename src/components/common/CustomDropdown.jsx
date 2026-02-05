@@ -15,18 +15,32 @@ const CustomDropdown = ({
   const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0, width: 0 });
   const wrapperRef = useRef(null);
   const triggerRef = useRef(null);
+  const menuRef = useRef(null);
+
+  // Normaliser les options : supporter string[] ou {value, label}[]
+  const normalizedOptions = options.map(opt => 
+    typeof opt === 'string' ? { value: opt, label: opt } : opt
+  );
+
+  // Trouver le label pour la valeur actuelle
+  const selectedOption = normalizedOptions.find(opt => opt.value === value);
+  const displayLabel = selectedOption?.label || '';
 
   useEffect(() => {
     const handleClickOutside = (e) => {
-      if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
+      if (
+        wrapperRef.current && 
+        !wrapperRef.current.contains(e.target) &&
+        menuRef.current &&
+        !menuRef.current.contains(e.target)
+      ) {
         setIsOpen(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+  }, [isOpen]);
 
-  // Calculer la position du menu quand il s'ouvre
   useEffect(() => {
     if (isOpen && triggerRef.current) {
       const rect = triggerRef.current.getBoundingClientRect();
@@ -38,7 +52,6 @@ const CustomDropdown = ({
     }
   }, [isOpen]);
 
-  // Recalculer sur scroll/resize
   useEffect(() => {
     if (!isOpen) return;
     
@@ -63,12 +76,13 @@ const CustomDropdown = ({
   }, [isOpen]);
 
   const handleSelect = (option) => {
-    onChange({ target: { name: name, value: option } });
+    onChange({ target: { name: name, value: option.value } });
     setIsOpen(false);
   };
 
   const menuContent = isOpen && createPortal(
     <ul 
+      ref={menuRef}
       className="custom-dropdown-menu-portal"
       style={{
         position: 'fixed',
@@ -78,13 +92,13 @@ const CustomDropdown = ({
         zIndex: 99999
       }}
     >
-      {options.map((option, index) => (
+      {normalizedOptions.map((option, index) => (
         <li
           key={index}
-          className={`custom-dropdown-item ${value === option ? 'selected' : ''}`}
+          className={`custom-dropdown-item ${value === option.value ? 'selected' : ''}`}
           onClick={() => handleSelect(option)}
         >
-          {option}
+          {option.label}
         </li>
       ))}
     </ul>,
@@ -101,7 +115,7 @@ const CustomDropdown = ({
         disabled={disabled}
       >
         <span className={value ? 'has-value' : 'placeholder'}>
-          {value || placeholder}
+          {displayLabel || placeholder}
         </span>
         <ChevronDown className={`dropdown-icon ${isOpen ? 'rotated' : ''}`} size={18} />
       </button>

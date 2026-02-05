@@ -709,12 +709,8 @@ body .homepage .cta-section {
   padding-top: 0 !important;
 }
 
-/* 2. On tire le contenu vers le haut avec une marge NÉGATIVE */
 .cta-content {
-  /* C'est ici le secret : le signe "-" fait remonter le bloc */
-  margin-top: -180px !important;  
-  
-  /* S'assure que le texte reste visible par-dessus le fond */
+  margin-top: 0 !important;  
   position: relative !important;
   z-index: 10 !important;
 }
@@ -750,4 +746,18 @@ body[dir="ltr"] .homepage .service-search-input {
 body[dir="ltr"] .service-search-wrapper .service-search-icon {
   right: auto !important;
   left: 20px !important;
+}
+
+.homepage > .hero-section:last-of-type {
+  min-height: auto !important;
+  padding-top: 80px !important;
+  padding-bottom: 80px !important;
+}
+
+.cta-content .hero-title,
+.cta-content h2 {
+  text-align: center !important;
+  width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
