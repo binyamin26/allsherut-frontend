@@ -392,7 +392,8 @@ laundry: {
       { value: 'ניקוי פילטרים', key: 'filters.ac.filterCleaning' },
       { value: 'תיקון צ\'ילרים', key: 'filters.ac.chillerRepair' },
       { value: 'טכנאי חדרי קירור', key: 'filters.ac.coldRoomTech' },
-      { value: 'מילוי גז', key: 'filters.ac.gasRefill' }
+      { value: 'מילוי גז', key: 'filters.ac.gasRefill' },
+      { value: 'תיקון קצר', key: 'filters.electrician.shortCircuitRepair' }
     ],
     installationTypes: [
       { value: 'התקנת מאוורר תקרה', key: 'filters.electrician.ceilingFan' },

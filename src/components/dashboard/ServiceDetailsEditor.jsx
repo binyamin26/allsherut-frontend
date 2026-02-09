@@ -252,6 +252,22 @@ const translateFieldValue = (fieldName, value) => {
   
   const normalizedValue = normalizeValue(value);
   
+  // ✅ FONCTION HELPER : Vérifier si une option match (exact OU partiel)
+  const optionMatches = (optValue, searchValue) => {
+    const normalizedOpt = normalizeValue(optValue);
+    const normalizedSearch = normalizeValue(searchValue);
+    
+    // Match exact
+    if (normalizedOpt === normalizedSearch) return true;
+    
+    // Match partiel : l'option COMMENCE par la valeur cherchée
+    // Ex: "בינוני / 10-25 ק״ג" match "בינוני"
+    if (normalizedOpt.startsWith(normalizedSearch + ' ')) return true;
+    if (normalizedOpt.startsWith(normalizedSearch + '/')) return true;
+    
+    return false;
+  };
+  
   // Chercher dans toutes les catégories de filterConfig
   for (const serviceKey in FILTER_CONFIG) {
     for (const categoryKey in FILTER_CONFIG[serviceKey]) {
@@ -259,9 +275,7 @@ const translateFieldValue = (fieldName, value) => {
       
       const options = FILTER_CONFIG[serviceKey][categoryKey];
       if (Array.isArray(options)) {
-        const found = options.find(opt => 
-          normalizeValue(opt.value) === normalizedValue
-        );
+        const found = options.find(opt => optionMatches(opt.value, value));
         if (found) {
           return t(found.key);
         }
@@ -274,9 +288,7 @@ const translateFieldValue = (fieldName, value) => {
     for (const categoryKey in FILTER_CONFIG.common) {
       const options = FILTER_CONFIG.common[categoryKey];
       if (Array.isArray(options)) {
-        const found = options.find(opt => 
-          normalizeValue(opt.value) === normalizedValue
-        );
+        const found = options.find(opt => optionMatches(opt.value, value));
         if (found) {
           return t(found.key);
         }
@@ -288,13 +300,32 @@ const translateFieldValue = (fieldName, value) => {
   return value;
 };
 
-  const translateFieldArray = (fieldName, values) => {
+const translateFieldArray = (fieldName, values) => {
   if (!Array.isArray(values) || values.length === 0) {
     return t('dashboard.notSpecified');
   }
   
+  // Cas spécial : matières tutoring
+  if (serviceType === 'tutoring' && fieldName === 'subjects') {
+    const translatedValues = values.map(v => translateTutoringSubject(v));
+    return translatedValues.join(', ');
+  }
+  
+  // Autres champs
   const translatedValues = values.map(value => translateFieldValue(fieldName, value));
   return translatedValues.join(', ');
+};
+
+// ✅ Traduire les matières tutoring qui viennent de la DB
+const translateTutoringSubject = (subjectNameHe) => {
+  if (serviceType !== 'tutoring') return subjectNameHe;
+  
+  const found = tutoringSubcategories.find(s => s.name_he === subjectNameHe);
+  if (found) {
+    return found[`name_${currentLanguage}`] || found.name_he;
+  }
+  
+  return subjectNameHe;
 };
 
   // Rendu spécial pour les matières tutoring
