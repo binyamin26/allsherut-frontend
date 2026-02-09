@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
 import { useAuth } from '../../context/AuthContext';
 import serviceFieldsConfig from './../config/serviceFieldsConfig';
-import { translateValue, translateAndJoin } from '../../utils/translationMapper';
+import { FILTER_CONFIG } from './../config/filterConfig';
 import CustomDropdown from '../common/CustomDropdown';
 
 // ✅ Mapping des champs vers leurs catégories de traduction
@@ -237,56 +237,48 @@ const ServiceDetailsEditor = ({
   }
 
   // ✅ NOUVELLE FONCTION : Traduire une valeur selon le champ
-  const translateFieldValue = (fieldName, value) => {
-    if (!value) return t('dashboard.notSpecified');
-    
-    // Chercher la catégorie de traduction pour ce champ
-    const category = fieldToCategoryMapping[fieldName];
-    
-    if (category) {
-      const translated = translateValue(value, category, t);
-      return translated !== value ? translated : value;
-    }
-    
-    // Si pas de mapping direct, essayer les catégories multiples
-    const multiCategories = fieldToMultipleCategories[fieldName];
-    if (multiCategories) {
-      for (const cat of multiCategories) {
-        const translated = translateValue(value, cat, t);
-        if (translated !== value) return translated;
+ const translateFieldValue = (fieldName, value) => {
+  if (!value) return t('dashboard.notSpecified');
+  
+  // Chercher dans toutes les catégories de filterConfig
+  for (const serviceKey in FILTER_CONFIG) {
+    for (const categoryKey in FILTER_CONFIG[serviceKey]) {
+      if (categoryKey === 'sectionTitles') continue;
+      
+      const options = FILTER_CONFIG[serviceKey][categoryKey];
+      if (Array.isArray(options)) {
+        const found = options.find(opt => opt.value === value);
+        if (found) {
+          return t(found.key);
+        }
       }
     }
-    
-    return value;
-  };
-
-  // ✅ NOUVELLE FONCTION : Traduire un tableau de valeurs
-  const translateFieldArray = (fieldName, values) => {
-    if (!Array.isArray(values) || values.length === 0) {
-      return t('dashboard.notSpecified');
-    }
-    
-    const category = fieldToCategoryMapping[fieldName];
-    
-    if (category) {
-      return translateAndJoin(values, category, t);
-    }
-    
-    // Si pas de mapping direct, essayer les catégories multiples
-    const multiCategories = fieldToMultipleCategories[fieldName];
-    if (multiCategories) {
-      const translatedValues = values.map(val => {
-        for (const cat of multiCategories) {
-          const translated = translateValue(val, cat, t);
-          if (translated !== val) return translated;
+  }
+  
+  // Chercher aussi dans common
+  if (FILTER_CONFIG.common) {
+    for (const categoryKey in FILTER_CONFIG.common) {
+      const options = FILTER_CONFIG.common[categoryKey];
+      if (Array.isArray(options)) {
+        const found = options.find(opt => opt.value === value);
+        if (found) {
+          return t(found.key);
         }
-        return val;
-      });
-      return translatedValues.join(', ');
+      }
     }
-    
-    return values.join(', ');
-  };
+  }
+  
+  return value;
+};
+
+  const translateFieldArray = (fieldName, values) => {
+  if (!Array.isArray(values) || values.length === 0) {
+    return t('dashboard.notSpecified');
+  }
+  
+  const translatedValues = values.map(value => translateFieldValue(fieldName, value));
+  return translatedValues.join(', ');
+};
 
   // Rendu spécial pour les matières tutoring
   const renderTutoringSubjects = (field) => {
