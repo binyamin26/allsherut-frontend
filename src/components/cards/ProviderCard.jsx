@@ -29,9 +29,11 @@ const baseUrl = import.meta.env.VITE_API_URL
   : 'https://homesherut-backend.onrender.com';
 
 // 2. Création de la variable 'imageUrl' UNIQUE et SÉCURISÉE
-// Cette variable contient déjà l'URL complète pour la ligne 70
+// ✅ Ne rajouter baseUrl QUE si l'URL n'est pas déjà complète
 const imageUrl = provider.profile_image 
-  ? `${baseUrl}/${provider.profile_image.replace(/\\/g, '/').replace(/^\/+/, '')}` 
+  ? (provider.profile_image.startsWith('http') 
+      ? provider.profile_image 
+      : `https://homesherut-backend.onrender.com/${provider.profile_image.replace(/\\/g, '/').replace(/^\/+/, '')}`)
   : null;
 
 // 🔍 Log de contrôle (Ligne 36 de votre console)
