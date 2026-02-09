@@ -168,6 +168,8 @@ const userData = useMemo(() => {
     if (!isAuthenticated) {
       navigate('/');
     }
+      console.log('🔍 DEBUG Dashboard - user:', user);
+  console.log('🔍 DEBUG Dashboard - userData:', userData);
   }, [isAuthenticated, navigate]);
 
   useEffect(() => {
