@@ -314,12 +314,16 @@ const uploadProfileImage = async (imageFile, serviceType = null) => {
     const data = await response.json();
 
     if (data.success) {
-      const baseUrl = import.meta.env.VITE_API_URL.replace('/api', '');
-const imageFullUrl = `${baseUrl}${data.data.imageUrl}`;
-      const updatedUser = { 
-        ...user, 
-        profileImage: imageFullUrl,
-        profile_image: imageFullUrl,
+
+ // ✅ Le backend renvoie déjà l'URL complète, ne rien rajouter si elle commence par http
+const imageFullUrl = data.data.imageUrl.startsWith('http') 
+  ? data.data.imageUrl 
+  : `https://homesherut-backend.onrender.com${data.data.imageUrl.startsWith('/') ? '' : '/'}${data.data.imageUrl}`;
+
+const updatedUser = { 
+  ...user, 
+  profileImage: imageFullUrl,
+  profile_image: imageFullUrl,
         providerProfile: user.providerProfile ? {
           ...user.providerProfile,
           profile_image: imageFullUrl
