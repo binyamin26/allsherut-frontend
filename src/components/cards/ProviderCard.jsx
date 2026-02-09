@@ -24,7 +24,9 @@ const ProviderCard = ({ provider, onOpenReviewModal }) => {
   };
 
 // 1. Définition sécurisée de l'URL de base du serveur
-const baseUrl = (import.meta.env.VITE_API_URL || '').replace('/api', '');
+const baseUrl = import.meta.env.VITE_API_URL 
+  ? import.meta.env.VITE_API_URL.replace('/api', '')
+  : 'https://homesherut-backend.onrender.com';
 
 // 2. Création de la variable 'imageUrl' UNIQUE et SÉCURISÉE
 // Cette variable contient déjà l'URL complète pour la ligne 70

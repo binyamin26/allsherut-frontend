@@ -168,8 +168,9 @@ const userData = useMemo(() => {
     if (!isAuthenticated) {
       navigate('/');
     }
-      console.log('🔍 DEBUG Dashboard - user:', user);
-  console.log('🔍 DEBUG Dashboard - userData:', userData);
+    console.log('🔍 user.providerProfile:', user?.providerProfile);
+  console.log('🔍 profile_image:', user?.providerProfile?.profile_image);
+  console.log('🔍 userData:', userData);
   }, [isAuthenticated, navigate]);
 
   useEffect(() => {
@@ -312,12 +313,12 @@ useEffect(() => {
   }
 }, [user]);
 
-// ✅ NOUVEAU - Recharger les données quand activeService change
 useEffect(() => {
   const loadServiceData = async () => {
     if (activeService && user?.role === 'provider') {
       const currentServiceType = user.providerProfile?.service_type;
       
+      // ✅ FIX : Ne recharger QUE si le service a vraiment changé
       if (currentServiceType !== activeService) {
         console.log('🔄 Rechargement données pour:', activeService);
         await switchService(activeService);
@@ -326,7 +327,7 @@ useEffect(() => {
   };
   
   loadServiceData();
-}, [activeService]);
+}, [activeService]); // ✅ Enlever user et switchService des dépendances
 
   const togglePasswordVisibility = (field) => {
     setShowPasswords(prev => ({
