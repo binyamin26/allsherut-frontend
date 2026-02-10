@@ -284,27 +284,26 @@ const Header = () => {
       transition: 'transform 0.3s ease'
     }}>▼</span>
   </div>
- {showMobileServices && services.map((service, index) => (
-                <Link key={index} to={service.href} className="dropdown-item" style={{marginRight: '16px', display: 'flex', alignItems: 'center', gap: '12px', direction: currentLanguage === 'he' ? 'rtl' : 'ltr'}} onClick={() => setIsMenuOpen(false)}>
-                  {currentLanguage === 'he' ? (
-                    <>
-                      <div className="dropdown-icon" style={{flexShrink: 0}}>{service.icon}</div>
-                      <div className="dropdown-content" style={{flexGrow: 1, textAlign: 'right'}}>
-                        <h4>{t(service.nameKey)}</h4>
-                        <p>{t(service.descKey)}</p>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <div className="dropdown-content" style={{flexGrow: 1, textAlign: 'left'}}>
-                        <h4>{t(service.nameKey)}</h4>
-                        <p>{t(service.descKey)}</p>
-                      </div>
-                      <div className="dropdown-icon" style={{flexShrink: 0}}>{service.icon}</div>
-                    </>
-                  )}
-                </Link>
-              ))}
+{showMobileServices && services.map((service, index) => (
+  <Link key={index} to={service.href}
+    style={{
+      display: 'flex',
+      direction: currentLanguage === 'he' ? 'rtl' : 'ltr',
+      alignItems: 'center',
+      gap: '12px',
+      padding: '12px 16px',
+      textDecoration: 'none',
+      color: '#374151',
+      borderRadius: '8px'
+    }}
+    onClick={() => setIsMenuOpen(false)}>
+    <div style={{flexGrow: 1}}>
+      <h4 style={{margin: 0, fontSize: '16px', fontWeight: 600, color: '#1f2937'}}>{t(service.nameKey)}</h4>
+      <p style={{margin: 0, fontSize: '14px', color: '#6b7280'}}>{t(service.descKey)}</p>
+    </div>
+    <div style={{flexShrink: 0}}>{service.icon}</div>
+  </Link>
+))}
             </div>
             
             {/* CORRECTION ICI */}
