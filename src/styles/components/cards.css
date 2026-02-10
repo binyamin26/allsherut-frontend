@@ -505,29 +505,6 @@
 .provider-card .contact-provider-btn,
 .provider-card .review-action-btn {
   flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-2);
-  padding: var(--space-3) var(--space-4);
   min-height: 48px;
-  border: none;
-  border-radius: var(--radius-xl);
-  font-size: var(--text-base);
-  font-weight: 600;
-  cursor: pointer;
-  transition: all var(--transition-medium);
-  box-shadow: var(--shadow-md);
-  font-family: var(--font-primary);
   margin-top: 0;
-}
-
-.provider-card .contact-provider-btn {
-  background: linear-gradient(135deg, var(--primary-500) 0%, var(--primary-600) 100%);
-  color: white;
-}
-
-.provider-card .review-action-btn {
-  background: linear-gradient(135deg, var(--accent-500) 0%, var(--accent-600) 100%);
-  color: white;
 }
