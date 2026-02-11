@@ -342,6 +342,7 @@
   min-height: 56px;
   font-size: var(--text-base);
   font-weight: 600;
+  justify-content: center;
 }
 
 .step-navigation .btn-secondary {
