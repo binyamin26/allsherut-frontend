@@ -5,7 +5,7 @@ const AluminumForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
   const { t } = useLanguage();
   return (
     <div className="service-details-form">
-      {t('serviceForm.aluminum.title')}
+    <h3>{t('serviceForm.aluminum.title')}</h3>
       
       <div className="form-section">
      <h4>{t('serviceForm.common.requiredFields')}</h4>

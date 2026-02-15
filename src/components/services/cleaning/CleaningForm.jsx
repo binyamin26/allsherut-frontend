@@ -219,7 +219,7 @@ onChange={(e) => {
         </div>
 
      <div className="input-group">
-<label>{t('serviceForm.cleaning.availability')}</label>
+<label className="auth-form-label required">{t('serviceForm.cleaning.availability')}</label>
   
   <div className="availability-subsection">
  <h5 className="subsection-title">{t('serviceForm.cleaning.frequency')}</h5>
