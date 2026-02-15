@@ -31,7 +31,7 @@ const EldercareForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
 
        {/* ✅ AGE */}
         <div className="input-group">
-          <label>{t('serviceForm.common.age')}</label>
+          <label className="auth-form-label required">{t('serviceForm.common.age')}</label>
           <input
             type="text"
             inputMode="numeric"
@@ -48,7 +48,7 @@ const EldercareForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
         </div>
         
         <div className="input-group">
-          <label>{t('serviceForm.eldercare.careTypesLabel')}</label>
+          <label className="auth-form-label required">{t('serviceForm.eldercare.careTypesLabel')}</label>
           <div className="checkbox-group" data-field="careTypes">
             {careTypes.map(type => (
               <label key={type.key} className="checkbox-item">
@@ -71,7 +71,7 @@ const EldercareForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
         </div>
 
         <div className="input-group">
-          <label>{t('serviceForm.eldercare.certification')}</label>
+          <label className="auth-form-label required">{t('serviceForm.eldercare.certification')}</label>
           <input
             type="text"
              inputMode="numeric"
@@ -86,7 +86,7 @@ const EldercareForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
 
         {/* JOURS DE DISPONIBILITÉ */}
 <div className="input-group">
-  <label>{t('serviceForm.common.availabilityDays')}</label>
+  <label className="auth-form-label required">{t('serviceForm.common.availabilityDays')}</label>
   <div className="checkbox-group" data-field="availability_days">
     {[
       { value: 'ראשון', label: t('days.sunday') },
@@ -117,7 +117,7 @@ const EldercareForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
 </div>
 
 <div className="input-group">
-          <label>{t('serviceForm.eldercare.availability')}</label>
+          <label className="auth-form-label required">{t('serviceForm.eldercare.availability')}</label>
           <div className="checkbox-group" data-field="availability_hours">
             {[
               { value: 'בוקר', label: t('hours.morning') },
@@ -147,7 +147,7 @@ const EldercareForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
         </div>
 
      <div className="input-group">
-          <label>{t('serviceForm.eldercare.experience')}</label>
+          <label className="auth-form-label required">{t('serviceForm.eldercare.experience')}</label>
           <input
            type="text"
  inputMode="numeric"
@@ -164,7 +164,7 @@ const EldercareForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
         </div>
 
         <div className="input-group">
-          <label>{t('serviceForm.eldercare.languages')}</label>
+          <label className="auth-form-label required">{t('serviceForm.eldercare.languages')}</label>
           <div className="checkbox-group" data-field="languages">
             {[
               { value: 'עברית', label: t('languages.hebrew') },
@@ -194,7 +194,7 @@ const EldercareForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
 
         {/* עזרה אדמיניסטרטיבית */}
 <div className="input-group">
-  <label>{t('filters.eldercare.administrativeHelp')}</label>
+  <label className="auth-form-label required">{t('filters.eldercare.administrativeHelp')}</label>
   <CustomDropdown
   name="administrativeHelp"
   value={serviceDetails.administrativeHelp || 'not_specified'}
@@ -210,7 +210,7 @@ const EldercareForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
 
 {/* ליווי רפואי */}
 <div className="input-group">
-  <label>{t('filters.eldercare.medicalAccompaniment')}</label>
+  <label className="auth-form-label required">{t('filters.eldercare.medicalAccompaniment')}</label>
 <CustomDropdown
   name="medicalAccompaniment"
   value={serviceDetails.medicalAccompaniment || 'not_specified'}
@@ -226,7 +226,7 @@ const EldercareForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
 
 {/* רכב לטיולים */}
 <div className="input-group">
-  <label>{t('filters.eldercare.vehicleForOutings')}</label>
+  <label className="auth-form-label required">{t('filters.eldercare.vehicleForOutings')}</label>
   <CustomDropdown
   name="vehicleForOutings"
   value={serviceDetails.vehicleForOutings || 'not_specified'}
