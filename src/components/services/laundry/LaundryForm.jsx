@@ -13,7 +13,7 @@ const LaundryForm = ({ serviceDetails, errors, handleServiceDetailsChange, handl
 
      {/* ✅ AGE */}
         <div className="input-group">
-          <label v>{t('serviceForm.common.age')}</label>
+          <label className="auth-form-label required">{t('serviceForm.common.age')}</label>
           <input
             type="text"
             inputMode="numeric"
@@ -124,7 +124,7 @@ const LaundryForm = ({ serviceDetails, errors, handleServiceDetailsChange, handl
         <h4>{t('serviceForm.common.optionalFields')}</h4>
         
         <div className="input-group">
-         <label className="auth-form-label required">{t('serviceForm.laundry.pickupService')}</label>
+         <label>{t('serviceForm.laundry.pickupService')}</label>
 <CustomDropdown
   name="pickupService"
   value={serviceDetails.pickupService || ''}
