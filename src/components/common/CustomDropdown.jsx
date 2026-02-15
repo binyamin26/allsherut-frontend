@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { ChevronDown, Search } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 
 const CustomDropdown = ({ 
   name,
@@ -9,29 +9,18 @@ const CustomDropdown = ({
   onChange, 
   placeholder, 
   disabled,
-  error,
-  searchable = true
+  error 
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
   const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0, width: 0 });
   const wrapperRef = useRef(null);
   const triggerRef = useRef(null);
   const menuRef = useRef(null);
-  const searchInputRef = useRef(null);
 
   // Normaliser les options : supporter string[] ou {value, label}[]
   const normalizedOptions = options.map(opt => 
     typeof opt === 'string' ? { value: opt, label: opt } : opt
   );
-
-  // Filtrer les options selon la recherche
-  const filteredOptions = searchTerm
-    ? normalizedOptions.filter(opt => 
-        opt.label.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        opt.value.toLowerCase().includes(searchTerm.toLowerCase())
-      )
-    : normalizedOptions;
 
   // Trouver le label pour la valeur actuelle
   const selectedOption = normalizedOptions.find(opt => opt.value === value);
@@ -46,7 +35,6 @@ const CustomDropdown = ({
         !menuRef.current.contains(e.target)
       ) {
         setIsOpen(false);
-        setSearchTerm('');
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
@@ -61,14 +49,6 @@ const CustomDropdown = ({
         left: rect.left,
         width: rect.width
       });
-    }
-    if (isOpen && searchable) {
-      setTimeout(() => {
-        searchInputRef.current?.focus();
-      }, 50);
-    }
-    if (!isOpen) {
-      setSearchTerm('');
     }
   }, [isOpen]);
 
@@ -98,7 +78,6 @@ const CustomDropdown = ({
   const handleSelect = (option) => {
     onChange({ target: { name: name, value: option.value } });
     setIsOpen(false);
-    setSearchTerm('');
   };
 
   const menuContent = isOpen && createPortal(
@@ -113,37 +92,15 @@ const CustomDropdown = ({
         zIndex: 99999
       }}
     >
-      {searchable && normalizedOptions.length > 5 && (
-        <li className="custom-dropdown-search" onClick={(e) => e.stopPropagation()}>
-          <div className="dropdown-search-wrapper">
-            <Search size={16} className="dropdown-search-icon" />
-            <input
-              ref={searchInputRef}
-              type="text"
-              className="dropdown-search-input"
-              placeholder="חיפוש..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              onClick={(e) => e.stopPropagation()}
-            />
-          </div>
+      {normalizedOptions.map((option, index) => (
+        <li
+          key={index}
+          className={`custom-dropdown-item ${value === option.value ? 'selected' : ''}`}
+          onClick={() => handleSelect(option)}
+        >
+          {option.label}
         </li>
-      )}
-      {filteredOptions.length > 0 ? (
-        filteredOptions.map((option, index) => (
-          <li
-            key={index}
-            className={`custom-dropdown-item ${value === option.value ? 'selected' : ''}`}
-            onClick={() => handleSelect(option)}
-          >
-            {option.label}
-          </li>
-        ))
-      ) : (
-        <li className="custom-dropdown-item no-results">
-          לא נמצאו תוצאות
-        </li>
-      )}
+      ))}
     </ul>,
     document.body
   );
