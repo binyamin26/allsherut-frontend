@@ -8,7 +8,7 @@ const PaintingForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
     <h3>{t('serviceForm.painting.title')}</h3>
       
       <div className="form-section">
-{t('serviceForm.common.requiredFields')}
+<h4>{t('serviceForm.common.requiredFields')}</h4>
         
         <div className="input-group">
           <label className="auth-form-label required">{t('serviceForm.common.age')}</label>
