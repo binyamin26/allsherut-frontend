@@ -90,7 +90,7 @@ const { t, currentLanguage } = useLanguage();
 
                {/* ✅ AGE */}
         <div className="input-group">
-          <label>{t('serviceForm.common.age')}</label>
+          <label className="auth-form-label required">{t('serviceForm.common.age')}</label>
           <input
             type="text"
             inputMode="numeric"
@@ -108,7 +108,7 @@ const { t, currentLanguage } = useLanguage();
 
                 {/* EXPÉRIENCE */}
                 <div className="input-group">
-                    <label>{t('serviceForm.common.experience')}</label>
+                    <label className="auth-form-label required">{t('serviceForm.common.experience')}</label>
                     <input
                         type="text"
                         inputMode="numeric"
@@ -126,7 +126,7 @@ const { t, currentLanguage } = useLanguage();
 
                 {/* JOURS DE DISPONIBILITÉ */}
 <div className="input-group">
-  <label>{t('serviceForm.common.availabilityDays')}</label>
+  <label className="auth-form-label required">{t('serviceForm.common.availabilityDays')}</label>
   <div className="checkbox-group" data-field="availability_days">
     {[
       { value: 'ראשון', label: t('days.sunday') },
@@ -158,7 +158,7 @@ const { t, currentLanguage } = useLanguage();
 
 {/* HEURES DE DISPONIBILITÉ */}
 <div className="input-group">
-  <label>{t('serviceForm.common.availabilityHours')}</label>
+  <label className="auth-form-label required">{t('serviceForm.common.availabilityHours')}</label>
   <div className="checkbox-group" data-field="availability_hours">
     {[
       { value: 'בוקר', label: t('hours.morning') },
@@ -188,7 +188,7 @@ const { t, currentLanguage } = useLanguage();
                 
                 {/* MATIÈRES - Chargées depuis la DB */}
                 <div className="input-group">
-                    <label>{t('serviceForm.tutoring.subjectsLabel')}</label>
+                    <label className="auth-form-label required">{t('serviceForm.tutoring.subjectsLabel')}</label>
                     
                     {loading ? (
                         <div style={{ textAlign: 'center', padding: '1rem', color: '#64748b' }}>
@@ -230,7 +230,7 @@ const { t, currentLanguage } = useLanguage();
 
                 {/* NIVEAUX */}
                 <div className="input-group">
-                    <label>{t('serviceForm.tutoring.levelsLabel')}</label>
+                    <label className="auth-form-label required">{t('serviceForm.tutoring.levelsLabel')}</label>
                     <div className="checkbox-group" data-field="levels">
                         {config.levels.map(level => (
                             <label key={level.value} className="checkbox-item">
@@ -248,7 +248,7 @@ const { t, currentLanguage } = useLanguage();
 
                 {/* MODE D'ENSEIGNEMENT */}
                 <div className="input-group">
-                    <label>{t('serviceForm.tutoring.teachingMode')}</label>
+                    <label className="auth-form-label required">{t('serviceForm.tutoring.teachingMode')}</label>
                     <CustomDropdown
     name="teachingMode"
     value={serviceDetails.teachingMode || ''}
@@ -265,7 +265,7 @@ const { t, currentLanguage } = useLanguage();
 
                 {/* SPÉCIALISATIONS */}
                 <div className="input-group">
-                    <label>{t('filters.tutoring.specializations')}</label>
+                    <label className="auth-form-label required">{t('filters.tutoring.specializations')}</label>
                     <div className="checkbox-group" data-field="specializations">
                         {config.specializations.map(spec => (
                             <label key={spec.value} className="checkbox-item">
@@ -298,7 +298,7 @@ const { t, currentLanguage } = useLanguage();
 
                 {/* QUALIFICATIONS */}
                 <div className="input-group">
-                    <label>{t('serviceForm.tutoring.qualifications')}</label>
+                    <label className="auth-form-label required">{t('serviceForm.tutoring.qualifications')}</label>
                     <input
                         type="text"
                         autoComplete="off"

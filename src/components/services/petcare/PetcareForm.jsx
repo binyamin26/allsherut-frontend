@@ -13,7 +13,7 @@ const PetcareForm = ({ serviceDetails, errors, handleServiceDetailsChange, handl
 
      {/* ✅ AGE */}
         <div className="input-group">
-          <label>{t('serviceForm.common.age')}</label>
+          <label className="auth-form-label required">{t('serviceForm.common.age')}</label>
           <input
             type="text"
             inputMode="numeric"
@@ -30,7 +30,7 @@ const PetcareForm = ({ serviceDetails, errors, handleServiceDetailsChange, handl
         </div>
         
         <div className="input-group">
-      <label>{t('serviceForm.petcare.animalTypes')}</label>
+      <label className="auth-form-label required">{t('serviceForm.petcare.animalTypes')}</label>
 <div className="checkbox-group" data-field="animalTypes">
   {[
     { value: 'כלבים', label: t('filters.petcare.dogs') },
@@ -60,7 +60,7 @@ const PetcareForm = ({ serviceDetails, errors, handleServiceDetailsChange, handl
         </div>
 {serviceDetails.animalTypes?.includes('כלבים') && (
   <div className="input-group">
-    <label>{t('serviceForm.petcare.dogSizes')}</label>
+    <label className="auth-form-label required">{t('serviceForm.petcare.dogSizes')}</label>
     <div className="checkbox-group" data-field="dogSizes">
       {[
         { size: 'קטן', weight: 'עד 10 ק״ג', label: t('filters.petcare.smallDog') },
@@ -89,7 +89,7 @@ const PetcareForm = ({ serviceDetails, errors, handleServiceDetailsChange, handl
 )}
 
         <div className="input-group">
-        <label>{t('serviceForm.petcare.location')}</label>
+        <label className="auth-form-label required">{t('serviceForm.petcare.location')}</label>
 <CustomDropdown
   name="location"
   value={serviceDetails.location || ''}
@@ -123,7 +123,7 @@ onChange={(e) => {
         </div>
         {/* JOURS DE DISPONIBILITÉ */}
 <div className="input-group">
-  <label>{t('serviceForm.common.availabilityDays')}</label>
+  <label className="auth-form-label required">{t('serviceForm.common.availabilityDays')}</label>
   <div className="checkbox-group" data-field="availability_days">
     {[
       { value: 'ראשון', label: t('days.sunday') },
@@ -155,7 +155,7 @@ onChange={(e) => {
 
 {/* HEURES DE DISPONIBILITÉ */}
 <div className="input-group">
-  <label>{t('serviceForm.common.availabilityHours')}</label>
+  <label className="auth-form-label required">{t('serviceForm.common.availabilityHours')}</label>
   <div className="checkbox-group" data-field="availability_hours">
     {[
       { value: 'בוקר', label: t('hours.morning') },
@@ -220,7 +220,7 @@ onChange={(e) => {
         </div>
 
         <div className="input-group">
-         <label>{t('serviceForm.petcare.facilities')}</label>
+         <label className="auth-form-label required">{t('serviceForm.petcare.facilities')}</label>
 <div className="checkbox-group">
   {[
     { value: 'גינה מגודרת', label: t('filters.petcare.fencedGarden') },

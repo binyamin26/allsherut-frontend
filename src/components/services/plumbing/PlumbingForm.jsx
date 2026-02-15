@@ -11,7 +11,7 @@ const PlumbingForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
    <h4>{t('serviceForm.common.requiredFields')}</h4>
         
         <div className="input-group">
-          <label>{t('serviceForm.common.age')}</label>
+          <label className="auth-form-label required">{t('serviceForm.common.age')}</label>
           <input
            type="text"
  inputMode="numeric"
@@ -29,7 +29,7 @@ const PlumbingForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
         </div>
 
         <div className="input-group">
-          <label>{t('serviceForm.common.experience')}</label>
+          <label className="auth-form-label required">{t('serviceForm.common.experience')}</label>
           <input
            type="text"
  inputMode="numeric"
@@ -46,7 +46,7 @@ const PlumbingForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
         </div>
 
       <div className="input-group">
-  <label>{t('serviceForm.common.availabilityDays')}</label>
+  <label className="auth-form-label required">{t('serviceForm.common.availabilityDays')}</label>
   <div className="checkbox-group" data-field="availability_days">
     {[
       { value: 'ראשון', label: t('days.sunday') },
@@ -71,7 +71,7 @@ const PlumbingForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
 </div>
 
       <div className="input-group">
-  <label>{t('serviceForm.common.availabilityHours')}</label>
+  <label className="auth-form-label required">{t('serviceForm.common.availabilityHours')}</label>
   <div className="checkbox-group" data-field="availability_hours">
     {[
       { value: 'בוקר', label: t('hours.morning') },
@@ -93,7 +93,7 @@ const PlumbingForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
 </div>
 
         <div className="input-group">
-          <label>{t('serviceForm.common.workTypes')}</label>
+          <label className="auth-form-label required">{t('serviceForm.common.workTypes')}</label>
           
           <div style={{marginBottom: '20px'}}>
             <label className="checkbox-item" style={{fontWeight: 'bold'}}>

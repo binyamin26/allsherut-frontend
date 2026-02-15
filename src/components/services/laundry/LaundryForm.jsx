@@ -13,7 +13,7 @@ const LaundryForm = ({ serviceDetails, errors, handleServiceDetailsChange, handl
 
      {/* ✅ AGE */}
         <div className="input-group">
-          <label>{t('serviceForm.common.age')}</label>
+          <label v>{t('serviceForm.common.age')}</label>
           <input
             type="text"
             inputMode="numeric"
@@ -30,7 +30,7 @@ const LaundryForm = ({ serviceDetails, errors, handleServiceDetailsChange, handl
         </div>
 
         <div className="input-group">
-          <label>{t('serviceForm.common.experience')}</label>
+          <label className="auth-form-label required">{t('serviceForm.common.experience')}</label>
           <input
             type="text"
             inputMode="numeric"
@@ -47,7 +47,7 @@ const LaundryForm = ({ serviceDetails, errors, handleServiceDetailsChange, handl
         </div>
         
         <div className="input-group">
-         <label>{t('serviceForm.laundry.serviceTypes')}</label>
+         <label className="auth-form-label required">{t('serviceForm.laundry.serviceTypes')}</label>
 <div className="checkbox-group" data-field="laundryTypes">
   {[
     { value: 'גיהוץ בבית הלקוח', label: t('filters.laundry.ironingAtHome') },
@@ -76,7 +76,7 @@ const LaundryForm = ({ serviceDetails, errors, handleServiceDetailsChange, handl
         </div>
 
         <div className="input-group">
-         <label>{t('serviceForm.laundry.availabilityDays')}</label>
+         <label className="auth-form-label required">{t('serviceForm.laundry.availabilityDays')}</label>
           <div className="checkbox-group">
           {[
   { value: 'ראשון', label: t('days.sunday') },
@@ -100,7 +100,7 @@ const LaundryForm = ({ serviceDetails, errors, handleServiceDetailsChange, handl
         </div>
 
         <div className="input-group">
-       <label>{t('serviceForm.laundry.availabilityHours')}</label>
+       <label className="auth-form-label required">{t('serviceForm.laundry.availabilityHours')}</label>
           <div className="checkbox-group">
       {[
   { value: 'בוקר', label: t('hours.morning') },
@@ -124,7 +124,7 @@ const LaundryForm = ({ serviceDetails, errors, handleServiceDetailsChange, handl
         <h4>{t('serviceForm.common.optionalFields')}</h4>
         
         <div className="input-group">
-         <label>{t('serviceForm.laundry.pickupService')}</label>
+         <label className="auth-form-label required">{t('serviceForm.laundry.pickupService')}</label>
 <CustomDropdown
   name="pickupService"
   value={serviceDetails.pickupService || ''}
