@@ -239,7 +239,7 @@ const BabysittingForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
 
         {/* ✅ HOURLY RATE */}
         <div className="input-group">
-          <label>{t('serviceForm.babysitting.hourlyRate')}</label>
+          <label className="auth-form-label required">{t('serviceForm.babysitting.hourlyRate')}</label>
           <input
             ref={hourlyRateRef}
             type="text"

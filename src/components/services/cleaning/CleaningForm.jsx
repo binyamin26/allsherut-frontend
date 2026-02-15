@@ -13,7 +13,7 @@ const CleaningForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
 
      {/* ✅ AGE */}
         <div className="input-group">
-          <label>{t('serviceForm.common.age')}</label>
+          <label className="auth-form-label required">{t('serviceForm.common.age')}</label>
           <input
             type="text"
             inputMode="numeric"
@@ -30,7 +30,7 @@ const CleaningForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
         </div>
         
         <div className="input-group">
-        <label>{t('serviceForm.cleaning.legalStatus')}</label>
+        <label className="auth-form-label required">{t('serviceForm.cleaning.legalStatus')}</label>
 <CustomDropdown
   name="legalStatus"
   value={serviceDetails.legalStatus || ''}
@@ -46,7 +46,7 @@ const CleaningForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
         </div>
 
         <div className="input-group">
-          <label>{t('serviceForm.common.experience')}</label>
+          <label className="auth-form-label required">{t('serviceForm.common.experience')}</label>
           <input
             type="text"
             autoComplete="off"
@@ -63,7 +63,7 @@ const CleaningForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
         </div>
 
       <div className="input-group">
-          <label>{t('serviceForm.cleaning.hourlyRate')}</label>
+          <label className="auth-form-label required">{t('serviceForm.cleaning.hourlyRate')}</label>
 <input
  type="text"
  autoComplete="off"
@@ -82,7 +82,7 @@ onChange={(e) => {
         </div>
 
         <div className="input-group">
-     <label>{t('serviceForm.cleaning.cleaningCategories')}</label>
+     <label className="auth-form-label required">{t('serviceForm.cleaning.cleaningCategories')}</label>
           
           <div className="category-group">
          <h5 className="category-title">{t('serviceForm.cleaning.homeCleaning')}</h5>
