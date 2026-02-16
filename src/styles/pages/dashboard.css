@@ -2440,3 +2440,16 @@ select.inline-edit {
     justify-content: center;
   }
 }
+
+.provider-header-new .provider-avatar {
+  width: 150px !important;
+  height: 150px !important;
+  margin-bottom: 60px;
+}
+
+.provider-header-new .provider-avatar img {
+  width: 150px !important;
+  height: 150px !important;
+  object-fit: cover;
+  border-radius: var(--radius-full);
+}
