@@ -2372,8 +2372,8 @@ select.inline-edit {
 }
 
 .provider-header-new .provider-avatar {
-  width: 120px;
-  height: 120px;
+  width: 150px;
+  height: 150px;
   flex-shrink: 0;
 }
 
@@ -2406,8 +2406,8 @@ select.inline-edit {
 }
 
 .provider-service-icon {
-  width: 120px;
-  height: 120px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   overflow: hidden;
   background: #f0f0f0;
@@ -2431,8 +2431,8 @@ select.inline-edit {
 
   .provider-header-new .provider-avatar,
   .provider-service-icon {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
   }
 
   .provider-header-actions {
