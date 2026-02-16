@@ -1370,124 +1370,114 @@ const handleContact = () => {
       <section className="provider-hero">
         <div className="container">
           <div className="provider-hero-content">
-            <div className="provider-main-info">
-              <div className="provider-image-section">
-              <div className="image-wrapper">
-  {provider.media?.profileImage ? (
-    <img 
-    // REMPLACEZ le src de l'image par :
-src={provider.media?.profileImage?.startsWith('http') 
-  ? provider.media.profileImage 
-  : `${(import.meta.env.VITE_API_URL || '').replace('/api', '')}/${(provider.media?.profileImage || '').replace(/\\/g, '/').replace(/^\/+/, '')}`}
-      alt={provider.name}
-      className="provider-image"
-    />
-  ) : (
-    <div style={{
-      width: '100%',
-      height: '100%',
-      borderRadius: '50%',
-      background: 'linear-gradient(145deg, #e8eef5 0%, #d1dbe8 100%)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      boxShadow: 'inset 0 2px 8px rgba(0,0,0,0.08)'
-    }}>
-      <svg width="90" height="90" viewBox="0 0 100 100" fill="none">
-        <defs>
-          <linearGradient id="avatarGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#a0aec0"/>
-            <stop offset="100%" stopColor="#718096"/>
-          </linearGradient>
-          <clipPath id="circleClip">
-            <circle cx="50" cy="50" r="48"/>
-          </clipPath>
-        </defs>
-        <g clipPath="url(#circleClip)">
-          <circle cx="50" cy="38" r="18" fill="url(#avatarGradient)"/>
-          <ellipse cx="50" cy="85" rx="32" ry="28" fill="url(#avatarGradient)"/>
-        </g>
-      </svg>
+          <div className="provider-main-info">
+  {/* Logo service - à droite */}
+  <div className="hero-service-logo">
+    <img src={serviceIconUrl} alt={provider.serviceType} />
+    <span>{t(`services.${provider.serviceType}`)}</span>
+  </div>
+
+  {/* Contenu central */}
+  <div className="hero-center-content">
+    <h1 className="provider-name">{provider.name}</h1>
+
+    <div className="provider-rating-location">
+      <div className="rating">
+        <Star fill="#fbbf24" color="#fbbf24" size={20} />
+        <span className="rating-score">{reviews.length > 0 ? (reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length).toFixed(1) : 0}</span>
+        <span className="reviews-count">({reviews.length} {t('provider.reviews')})</span>
+      </div>
     </div>
-  )}
 
-                  {provider.verified && (
-                    <div className="verified-badge">
-                      <CheckCircle size={20} />
-                    </div>
-                  )}
-                </div>
-              </div>
+    <div className="provider-highlights">
+      {provider.experience && (
+        <div className="highlight">
+          <Award size={16} />
+          <span>{provider.experience} {t('provider.yearsExperience')}</span>
+        </div>
+      )}
+      {provider.languages && (
+        <div className="highlight">
+          <MessageCircle size={16} />
+          <span>שפות: {Array.isArray(provider.languages) ? provider.languages.join(', ') : provider.languages}</span>
+        </div>
+      )}
+    </div>
 
-              <div className="provider-info">
-            <div className="service-badge">
-  <div className="service-icon">
-    <img 
-      src={serviceIconUrl}
-      alt={provider.serviceType}
-    />
+    {provider.phone && (
+      <div className="contact-info">
+        <Phone size={16} />
+        <span className="phone-number">{provider.phone}</span>
+      </div>
+    )}
+
+    <div className="contact-actions">
+      <button 
+        onClick={() => window.location.href = `tel:${provider.phone}`}
+        className="btn btn-primary btn-large"
+      >
+        <Phone size={18} />
+        {t('provider.callNow')}
+      </button>
+      
+      <button 
+        onClick={() => window.open(`https://wa.me/972${provider.phone?.replace(/^0/, '')}`, '_blank')}
+        className="btn btn-success btn-large"
+      >
+        <MessageCircle size={18} />
+        {t('provider.sendWhatsapp')}
+      </button>
+    </div>
   </div>
 
-                  <span>
-                  {t(`services.${provider.serviceType}`)}
-                  </span>
-                </div>
+  {/* Photo de profil - à gauche */}
+  <div className="provider-image-section">
+    <div className="image-wrapper">
+      {provider.media?.profileImage ? (
+        <img 
+          src={provider.media?.profileImage?.startsWith('http') 
+            ? provider.media.profileImage 
+            : `${(import.meta.env.VITE_API_URL || '').replace('/api', '')}/${(provider.media?.profileImage || '').replace(/\\/g, '/').replace(/^\/+/, '')}`}
+          alt={provider.name}
+          className="provider-image"
+        />
+      ) : (
+        <div style={{
+          width: '100%',
+          height: '100%',
+          borderRadius: '50%',
+          background: 'linear-gradient(145deg, #e8eef5 0%, #d1dbe8 100%)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          boxShadow: 'inset 0 2px 8px rgba(0,0,0,0.08)'
+        }}>
+          <svg width="90" height="90" viewBox="0 0 100 100" fill="none">
+            <defs>
+              <linearGradient id="avatarGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#a0aec0"/>
+                <stop offset="100%" stopColor="#718096"/>
+              </linearGradient>
+              <clipPath id="circleClip">
+                <circle cx="50" cy="50" r="48"/>
+              </clipPath>
+            </defs>
+            <g clipPath="url(#circleClip)">
+              <circle cx="50" cy="38" r="18" fill="url(#avatarGradient)"/>
+              <ellipse cx="50" cy="85" rx="32" ry="28" fill="url(#avatarGradient)"/>
+            </g>
+          </svg>
+        </div>
+      )}
 
-                <h1 className="provider-name">{provider.name}</h1>
-
-                <div className="provider-rating-location">
-                  <div className="rating">
-                    <Star fill="#fbbf24" color="#fbbf24" size={20} />
-<span className="rating-score">{reviews.length > 0 ? (reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length).toFixed(1) : 0}</span>
-<span className="reviews-count">({reviews.length} {t('provider.reviews')})</span>
-                  </div>
-  
-                </div>
-
-                <p className="provider-description">{provider.description || provider.title}</p>
-
-                <div className="provider-highlights">
-                  {provider.experience && (
-                    <div className="highlight">
-                      <Award size={16} />
-                     <span>{provider.experience} {t('provider.yearsExperience')}</span>
-                    </div>
-                  )}
-                  
-                  {provider.languages && (
-                    <div className="highlight">
-                      <MessageCircle size={16} />
-                      <span>שפות: {Array.isArray(provider.languages) ? provider.languages.join(', ') : provider.languages}</span>
-                    </div>
-                  )}
-                </div>
-
-
-{provider.phone && (
-  <div className="contact-info">
-    <Phone size={16} />
-    <span className="phone-number">{provider.phone}</span>
+      {provider.verified && (
+        <div className="verified-badge">
+          <CheckCircle size={20} />
+        </div>
+      )}
+    </div>
   </div>
-)}
-
-<div className="contact-actions">
-  <button 
-    onClick={() => window.location.href = `tel:${provider.phone}`}
-    className="btn btn-primary btn-large"
-  >
-    <Phone size={18} />
-    {t('provider.callNow')}</button>
-  
-  <button 
-    onClick={() => window.open(`https://wa.me/972${provider.phone?.replace(/^0/, '')}`, '_blank')}
-    className="btn btn-success btn-large"
-  >
-    <MessageCircle size={18} />
-  {t('provider.sendWhatsapp')}</button>
 </div>
-
-              </div>
-            </div>
           </div>
         </div>
       </section>
