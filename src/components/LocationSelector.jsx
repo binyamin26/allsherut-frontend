@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { MapPin } from 'lucide-react';
 import { getAllCities, getNeighborhoodsByCity } from '../data/israelLocations';
 import CustomDropdown from './common/CustomDropdown';
+import { useLanguage } from '../context/LanguageContext';
 
 const LocationSelector = ({ 
   onLocationChange, 
@@ -15,6 +16,7 @@ const LocationSelector = ({
   const [selectedNeighborhood, setSelectedNeighborhood] = useState(initialNeighborhood);
   const [availableCities, setAvailableCities] = useState(getAllCities());
   const [availableNeighborhoods, setAvailableNeighborhoods] = useState([]);
+  const { t } = useLanguage();
 
   useEffect(() => {
     if (selectedCity) {
