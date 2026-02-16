@@ -1369,7 +1369,7 @@ const handleContact = () => {
       {/* Hero Section */}
       <section className="provider-hero">
         <div className="container">
-          <div className="hero-content">
+          <div className="provider-hero-content">
             <div className="provider-main-info">
               <div className="provider-image-section">
               <div className="image-wrapper">

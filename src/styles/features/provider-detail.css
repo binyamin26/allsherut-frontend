@@ -7,6 +7,64 @@
   background: var(--neutral-25);
 }
 
+/* Hero Layout Desktop - Compact & Horizontal */
+.provider-hero-content {
+  display: block;
+}
+
+.provider-detail-page .provider-main-info {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  direction: rtl;
+}
+
+.provider-detail-page .provider-info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+  flex: 1;
+  min-width: 0;
+  direction: rtl;
+}
+
+.provider-detail-page .provider-info .service-badge {
+  order: 1;
+}
+
+.provider-detail-page .provider-info .provider-name {
+  order: 2;
+  font-size: var(--text-2xl);
+}
+
+.provider-detail-page .provider-info .provider-rating-location {
+  order: 3;
+}
+
+.provider-detail-page .provider-info .provider-description {
+  order: 4;
+  width: 100%;
+  font-size: var(--text-sm);
+  margin: 0;
+}
+
+.provider-detail-page .provider-info .provider-highlights {
+  order: 5;
+}
+
+.provider-detail-page .provider-info .contact-info {
+  order: 6;
+  margin-bottom: 0;
+}
+
+.provider-detail-page .provider-info .contact-actions {
+  order: 7;
+  margin-bottom: 0;
+  gap: var(--space-3);
+}
+
 /* Navigation Header */
 .provider-nav {
   background: white;
