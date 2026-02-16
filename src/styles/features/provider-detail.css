@@ -55,24 +55,23 @@
   color: var(--neutral-400);
 }
 
-/* Hero Section */
 .provider-hero {
   background: white;
-  padding: var(--space-12) 0;
+  padding: var(--space-8) 0;
   box-shadow: var(--shadow-sm);
   margin-bottom: var(--space-8);
 }
 
 .provider-main-info {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: var(--space-8);
-  align-items: start;
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  direction: rtl;
 }
 
 @media (max-width: 768px) {
   .provider-main-info {
-    grid-template-columns: 1fr;
+    flex-direction: column;
     text-align: center;
     gap: var(--space-6);
   }
@@ -89,8 +88,9 @@
 
 .image-wrapper {
   position: relative;
-  width: 240px;
-  height: 240px;
+  width: 160px;
+  height: 160px;
+  flex-shrink: 0;
 }
 
 .provider-image {
@@ -160,12 +160,13 @@
   font-weight: 500;
 }
 
-/* Provider Info */
 .provider-info {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: var(--space-3);
   direction: rtl;
+  flex: 1;
+  min-width: 0;
 }
 
 .provider-detail-page .service-badge {
@@ -183,12 +184,12 @@
 }
 
 .provider-detail-page .provider-hero .service-badge .service-icon {
-  width: 80px;
-  height: 80px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   overflow: hidden;
   flex-shrink: 0;
-  background: transparent; /* au lieu de #f0f0f0 */
+  background: transparent;
 }
 
 .provider-detail-page .provider-hero .service-badge .service-icon img {
@@ -209,7 +210,7 @@
 }
 
 .provider-name {
-  font-size: var(--text-4xl);
+  font-size: var(--text-3xl);
   font-weight: 800;
   color: var(--neutral-900);
   margin: 0;
@@ -279,10 +280,12 @@
 }
 
 /* Contact Section */
-.contact-section {
-  margin-top: var(--space-6);
-  padding-top: var(--space-6);
-  border-top: 1px solid var(--neutral-200);
+.contact-actions {
+  display: flex;
+  gap: var(--space-3);
+  margin-bottom: 0;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .contact-info {
@@ -1099,4 +1102,31 @@
 
 .response-header .response-badge {
   margin-right: auto;
+}
+
+.provider-info .contact-info {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: 0;
+  font-size: var(--text-base);
+}
+
+.provider-info .provider-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  align-items: center;
+}
+
+.provider-info .provider-rating-location {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.provider-info .provider-description {
+  font-size: var(--text-base);
+  margin: 0;
+  line-height: 1.5;
 }
