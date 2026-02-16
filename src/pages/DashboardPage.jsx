@@ -994,165 +994,127 @@ console.log('🔍 DEBUG serviceDetails COMPLET:', JSON.stringify(userData?.servi
 {userData?.role === 'provider' && (
   <div className="provider-info-card">
     
-    <div className="provider-header" style={{ justifyContent: 'space-between', alignItems: 'flex-start' }}>
-      <div style={{ display: 'flex', gap: '2rem' }}>
-        
-    <div className="provider-avatar" style={{ width: '100px', height: '100px' }}>
-  {imagePreview ? (
-    <img 
-      src={imagePreview} 
-      alt="Preview" 
-    />
-  ) : userData?.providerProfile?.profile_image ? (
-    <img 
-      src={
-        userData.providerProfile.profile_image.startsWith('http') 
-          ? userData.providerProfile.profile_image 
-          : `https://homesherut-backend.onrender.com/${userData.providerProfile.profile_image.replace(/^\/+/, '')}`
-      }
-      alt={userData.firstName}
-    />
-  ) : (
-    <User size={60} />
-  )}
-  
-  <div className="avatar-actions">
-  {!imagePreview ? (
-    <>
-      <input
-        type="file"
-        id="profileImageInput"
-        accept="image/jpeg,image/jpg,image/png,image/webp"
-        onChange={handleImageSelect}
-        style={{ display: 'none' }}
-        disabled={uploadingImage}
-      />
-      <label 
-        htmlFor="profileImageInput" 
-        className="btn btn-secondary btn-sm"
-        style={{ cursor: uploadingImage ? 'not-allowed' : 'pointer' }}
-      >
-        <Edit size={14} />
-        {userData?.providerProfile?.profile_image ? 'שנה תמונה' : 'הוסף תמונה'}
-      </label>
-      
-      {userData?.providerProfile?.profile_image && (
-        <button
-          onClick={handleDeleteImage}
-          className="btn btn-danger btn-sm"
-          disabled={uploadingImage}
-        >
-          <Trash2 size={14} />
-          הסר תמונה
-        </button>
-      )}
-    </>
-  ) : (
-    <>
-      <button
-        onClick={handleUploadImage}
-        className="btn btn-primary btn-sm"
-        disabled={uploadingImage}
-      >
-        {uploadingImage ? (
-          <>
-            <LoadingSpinner size="small" />
-            {t('dashboard.uploading')}
-          </>
+   <div className="provider-header-new">
+      {/* DROITE - Avatar profil */}
+      <div className="provider-avatar" style={{ width: '120px', height: '120px' }}>
+        {imagePreview ? (
+          <img src={imagePreview} alt="Preview" />
+        ) : userData?.providerProfile?.profile_image ? (
+          <img 
+            src={
+              userData.providerProfile.profile_image.startsWith('http') 
+                ? userData.providerProfile.profile_image 
+                : `https://homesherut-backend.onrender.com/${userData.providerProfile.profile_image.replace(/^\/+/, '')}`
+            }
+            alt={userData.firstName}
+          />
         ) : (
-          <>
-            <Save size={14} />
-            {t('dashboard.savePhoto')}
-          </>
+          <User size={60} />
         )}
-      </button>
-      
-      <button
-        onClick={handleCancelImageSelection}
-        className="btn btn-secondary btn-sm"
-        disabled={uploadingImage}
-      >
-        <X size={14} />
-        {t('common.cancel')}
-      </button>
-    </>
-  )}
-</div>
-</div>
-        <div className="provider-main-info">
-          <h2 className="provider-name">{userData?.firstName} {userData?.lastName}</h2>
-          <div className="service-badge">
-     <div style={{ 
-  width: '120px',
-  height: '120px',
-  borderRadius: '50%',
-  overflow: 'hidden',
-  background: '#f0f0f0',
-  flexShrink: 0
-}}>
-  <img 
-    src={serviceImages[activeService] || serviceImages[userData?.serviceType] || serviceImages[user?.service_type]} 
-    alt=""
-    style={{ 
-      width: '100%', 
-      height: '100%',
-      objectFit: 'cover',
-      transform: 'scale(1.3)'
-    }}
-  />
-</div>
-           <span className="service-name">{getServiceName(activeService || userData?.serviceType)}</span>
-          </div>
-        {userData?.verified && (
-            <div className="verified-badge">
-              <Shield size={14} />
-              <span>{t('dashboard.verified')}</span>
-            </div>
+        
+        <div className="avatar-actions">
+          {!imagePreview ? (
+            <>
+              <input
+                type="file"
+                id="profileImageInput"
+                accept="image/jpeg,image/jpg,image/png,image/webp"
+                onChange={handleImageSelect}
+                style={{ display: 'none' }}
+                disabled={uploadingImage}
+              />
+              <label 
+                htmlFor="profileImageInput" 
+                className="btn btn-secondary btn-sm"
+                style={{ cursor: uploadingImage ? 'not-allowed' : 'pointer' }}
+              >
+                <Edit size={14} />
+                {userData?.providerProfile?.profile_image ? 'שנה תמונה' : 'הוסף תמונה'}
+              </label>
+              
+              {userData?.providerProfile?.profile_image && (
+                <button
+                  onClick={handleDeleteImage}
+                  className="btn btn-danger btn-sm"
+                  disabled={uploadingImage}
+                >
+                  <Trash2 size={14} />
+                  הסר תמונה
+                </button>
+              )}
+            </>
+          ) : (
+            <>
+              <button
+                onClick={handleUploadImage}
+                className="btn btn-primary btn-sm"
+                disabled={uploadingImage}
+              >
+                {uploadingImage ? (
+                  <>
+                    <LoadingSpinner size="small" />
+                    {t('dashboard.uploading')}
+                  </>
+                ) : (
+                  <>
+                    <Save size={14} />
+                    {t('dashboard.savePhoto')}
+                  </>
+                )}
+              </button>
+              <button
+                onClick={handleCancelImageSelection}
+                className="btn btn-secondary btn-sm"
+                disabled={uploadingImage}
+              >
+                <X size={14} />
+                {t('common.cancel')}
+              </button>
+            </>
           )}
         </div>
       </div>
 
-      <div style={{ display: 'flex', gap: '1rem' }}>
-        {isEditMode ? (
-          <>
-        <button 
-              onClick={handleSaveProfile}
-              className="btn btn-primary"
-              disabled={editLoading}
-            >
-              {editLoading ? (
-                <>
-                  <LoadingSpinner size="small" />
-                  {t('dashboard.saving')}
-                </>
-              ) : (
-                <>
-                  <Save size={18} />
-                  {t('dashboard.saveChanges')}
-                </>
-              )}
-            </button>
-            
-        <button 
-              onClick={handleEditToggle}
-              className="btn btn-secondary"
-              disabled={editLoading}
-            >
-              <X size={18} />
-              {t('common.cancel')}
-            </button>
-          </>
-        ) : (
-          !isSubscriptionExpired && (
-        <button 
-  onClick={handleEditToggle}
-  className="btn btn-secondary"
->
-  <Edit size={18} />
-  {t('dashboard.editProfile')}
-</button>
-          )
+      {/* CENTRE - Nom + bouton éditer */}
+      <div className="provider-center-info">
+        <h2 className="provider-name">{userData?.firstName} {userData?.lastName}</h2>
+        <span className="service-name-label">{getServiceName(activeService || userData?.serviceType)}</span>
+        {userData?.verified && (
+          <div className="verified-badge">
+            <Shield size={14} />
+            <span>{t('dashboard.verified')}</span>
+          </div>
         )}
+        <div className="provider-header-actions">
+          {isEditMode ? (
+            <>
+              <button onClick={handleSaveProfile} className="btn btn-primary" disabled={editLoading}>
+                {editLoading ? (
+                  <><LoadingSpinner size="small" />{t('dashboard.saving')}</>
+                ) : (
+                  <><Save size={18} />{t('dashboard.saveChanges')}</>
+                )}
+              </button>
+              <button onClick={handleEditToggle} className="btn btn-secondary" disabled={editLoading}>
+                <X size={18} />{t('common.cancel')}
+              </button>
+            </>
+          ) : (
+            !isSubscriptionExpired && (
+              <button onClick={handleEditToggle} className="btn btn-secondary">
+                <Edit size={18} />{t('dashboard.editProfile')}
+              </button>
+            )
+          )}
+        </div>
+      </div>
+
+      {/* GAUCHE - Icône service */}
+      <div className="provider-service-icon">
+        <img 
+          src={serviceImages[activeService] || serviceImages[userData?.serviceType] || serviceImages[user?.service_type]} 
+          alt=""
+        />
       </div>
     </div>
 
