@@ -224,7 +224,7 @@ const handleContact = () => {
         {/* === CHAMPS COMPACTS D'ABORD === */}
         
         {/* Taux horaire */}
-        {(provider.hourlyRate || details.hourlyRate || details.rate) && (
+        {['babysitting', 'cleaning', 'gardening', 'tutoring'].includes(provider.serviceType) && (provider.hourlyRate || details.hourlyRate || details.rate) && (
           <div className="detail-item">
             <strong>{t('provider.details.hourlyRate')}:</strong>
             <span className="price-highlight">₪{provider.hourlyRate || details.hourlyRate || details.rate}/שעה</span>
