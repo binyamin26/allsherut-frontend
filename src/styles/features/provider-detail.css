@@ -181,8 +181,6 @@
     gap: var(--space-6);
   }
 }
-
-
 /* Image Section */
 .provider-image-section {
   display: flex;
@@ -1127,6 +1125,14 @@
   .review-header-horizontal {
     flex-direction: column;
     align-items: flex-start;
+  }
+  .hero-logo-wrapper {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .hero-service-logo {
+    width: 80px;
   }
 }
 
