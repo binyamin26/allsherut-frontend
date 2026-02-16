@@ -523,7 +523,7 @@
   position: relative;
 }
 
-.provider-avatar img {
+.search-results .provider-avatar img {
   width: 60px;
   height: 60px;
   border-radius: var(--radius-full);
@@ -881,7 +881,7 @@
     padding: var(--space-8);
   }
   
-  .provider-avatar img {
+   .search-results .provider-avatar img {
     width: 50px;
     height: 50px;
   }
