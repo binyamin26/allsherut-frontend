@@ -1373,7 +1373,9 @@ const handleContact = () => {
           <div className="provider-main-info">
   {/* Logo service - à droite */}
   <div className="hero-service-logo">
-    <img src={serviceIconUrl} alt={provider.serviceType} />
+   <div className="hero-logo-wrapper">
+  <img src={serviceIconUrl} alt={provider.serviceType} />
+</div>
     <span>{t(`services.${provider.serviceType}`)}</span>
   </div>
 
