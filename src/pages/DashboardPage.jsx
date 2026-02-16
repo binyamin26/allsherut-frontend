@@ -933,10 +933,9 @@ console.log('🔍 DEBUG serviceDetails COMPLET:', JSON.stringify(userData?.servi
         <button
           key={service}
           className={`service-tab-btn ${activeService === service ? 'active' : ''}`}
-       onClick={async () => {
-        localStorage.setItem('activeService', service);
+    onClick={() => {
+  localStorage.setItem('activeService', service);
   setActiveService(service);
-  await switchService(service);
 }}
           style={{
             padding: '0.5rem 1rem',
