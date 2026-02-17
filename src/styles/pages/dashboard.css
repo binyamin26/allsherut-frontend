@@ -10,12 +10,12 @@
 
 /* Dashboard header */
 .dashboard-header {
-  background: white;
+  background: linear-gradient(135deg, var(--primary-50) 0%, var(--accent-50) 50%, white 100%);
   padding: var(--space-8);
   border-radius: var(--radius-2xl);
-  border: 1px solid var(--neutral-200);
+  border: 1px solid var(--primary-200);
   margin-bottom: var(--space-8);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-md);
 }
 
 .dashboard-header-content {
@@ -31,14 +31,18 @@
 .dashboard-title {
   font-size: var(--text-3xl);
   font-weight: 800;
-  color: var(--neutral-800);
+  background: linear-gradient(135deg, var(--primary-600) 0%, var(--accent-500) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
   margin: 0 0 var(--space-2) 0;
 }
 
 .dashboard-subtitle {
   font-size: var(--text-lg);
-  color: var(--neutral-600);
+  color: var(--primary-600);
   margin: 0;
+  font-weight: 600;
 }
 
 .quick-actions {
@@ -692,12 +696,12 @@
 
 /* Provider info card styles */
 .provider-info-card {
-  background: white;
-  border: 2px solid var(--neutral-200);
+  background: linear-gradient(180deg, white 0%, var(--primary-50) 100%);
+  border: 2px solid var(--primary-200);
   border-radius: var(--radius-2xl);
   padding: var(--space-8);
   margin-bottom: var(--space-8);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-lg);
 }
 
 .provider-header {
@@ -772,10 +776,15 @@
 body .dashboard-page .info-section h3.section-title {
   font-size: var(--text-3xl) !important;
   font-weight: 700 !important;
-  color: var(--neutral-800) !important;
+  background: linear-gradient(135deg, var(--primary-600) 0%, var(--accent-500) 100%) !important;
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+  color: transparent !important;
   margin: 0 0 var(--space-4) 0 !important;
   font-family: var(--font-primary) !important;
   text-align: right !important;
+  padding-bottom: var(--space-3) !important;
+  border-bottom: 3px solid var(--primary-200) !important;
 }
 
 .contact-grid,
@@ -2424,14 +2433,20 @@ select.inline-edit {
 .provider-center-info .provider-name {
   font-size: var(--text-2xl);
   font-weight: 800;
-  color: var(--neutral-800);
+  background: linear-gradient(135deg, var(--primary-700) 0%, var(--accent-600) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
   margin: 0;
 }
 
 .service-name-label {
   font-size: var(--text-lg);
-  font-weight: 600;
-  color: var(--primary-600);
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--primary-500) 0%, var(--accent-400) 100%);
+  padding: var(--space-1) var(--space-4);
+  border-radius: var(--radius-full);
+  color: white;
 }
 
 .provider-header-actions {
