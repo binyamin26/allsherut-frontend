@@ -2470,10 +2470,14 @@ select.inline-edit {
   margin-top: var(--space-3);
 }
 
-/* Boutons avatar - visible au clic via classe JS */
 .provider-header-new .provider-avatar .avatar-actions {
-  opacity: 0;
-  visibility: hidden;
+    display: none;
+}
+
+.provider-header-new .provider-avatar.actions-visible .avatar-actions {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
 }
 
 .provider-header-new .provider-avatar.actions-visible .avatar-actions {
