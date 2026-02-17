@@ -1007,11 +1007,12 @@ console.log('🔍 DEBUG serviceDetails COMPLET:', JSON.stringify(userData?.servi
 {userData?.role === 'provider' && (
   <div className="provider-info-card">
     
-   <div className="provider-header-new">
+   <div className="provider-header-new" style={{ flexDirection: window.innerWidth <= 768 ? 'column' : 'flex', alignItems: window.innerWidth <= 768 ? 'center' : 'flex-start' }}>
       {/* DROITE - Avatar profil */}
     <div 
      ref={avatarRef}
         className={`provider-avatar ${showAvatarActions ? 'actions-visible' : ''}`}
+        style={{ marginBottom: 0 }}
         onClick={() => setShowAvatarActions(!showAvatarActions)}
       >
         {imagePreview ? (
