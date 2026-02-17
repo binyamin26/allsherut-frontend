@@ -2465,9 +2465,7 @@ select.inline-edit {
   }
 
   .provider-header-new .provider-avatar {
-    margin-bottom: 0;
-    display: flex;
-    justify-content: center;
+    margin-bottom: 0 !important;
   }
 
     .provider-header-new .provider-service-icon {
