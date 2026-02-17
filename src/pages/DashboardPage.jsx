@@ -163,6 +163,7 @@ const userData = useMemo(() => {
   const [imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [uploadingImage, setUploadingImage] = useState(false);
+  const [showAvatarActions, setShowAvatarActions] = useState(false);
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -996,7 +997,10 @@ console.log('🔍 DEBUG serviceDetails COMPLET:', JSON.stringify(userData?.servi
     
    <div className="provider-header-new">
       {/* DROITE - Avatar profil */}
-      <div className="provider-avatar" style={{ width: '120px', height: '120px' }}>
+    <div 
+        className={`provider-avatar ${showAvatarActions ? 'actions-visible' : ''}`}
+        onClick={() => setShowAvatarActions(!showAvatarActions)}
+      >
         {imagePreview ? (
           <img src={imagePreview} alt="Preview" />
         ) : userData?.providerProfile?.profile_image ? (

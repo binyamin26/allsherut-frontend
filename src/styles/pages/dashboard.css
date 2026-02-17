@@ -2461,6 +2461,10 @@ select.inline-edit {
     height: 120px !important;
   }
 
+  .provider-header-new .provider-service-icon {
+    order: -1;
+  }
+
   .provider-header-new .provider-avatar img {
     width: 120px !important;
     height: 120px !important;
