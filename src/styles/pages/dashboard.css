@@ -2125,6 +2125,7 @@ input[type="file"]#profileImageInput {
   .provider-avatar {
     width: 100px;
     height: 100px;
+    margin-bottom: 0 !important;
   }
 
   .avatar-actions {
@@ -2451,30 +2452,19 @@ select.inline-edit {
     gap: var(--space-4);
     overflow: visible;
   }
- 
+
   .provider-header-new .provider-avatar,
   .provider-header-new .provider-service-icon {
     width: 120px !important;
     height: 120px !important;
+    align-self: center !important;
+    margin-bottom: 0 !important;
   }
 
   .provider-header-new .provider-avatar img {
     width: 120px !important;
     height: 120px !important;
   }
-
-  .provider-header-new .provider-avatar {
-    margin-bottom: 0 !important;
-  }
-
-  .provider-avatar {
-    margin-bottom: 0 !important;
-  }
-
-    .provider-header-new .provider-service-icon {
-    align-self: center;
-  }
-
 
   .provider-center-info {
     width: 100%;
