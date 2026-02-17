@@ -2363,18 +2363,47 @@ select.inline-edit {
    ======================================== */
 .provider-header-new {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   margin-bottom: var(--space-8);
   padding-bottom: var(--space-6);
+  padding-top: var(--space-6);
   border-bottom: 1px solid var(--neutral-200);
   gap: var(--space-6);
 }
 
+/* TAILLE IMAGES - Change 150px pour ajuster les deux */
 .provider-header-new .provider-avatar {
-  width: 150px;
-  height: 150px;
+  width: 150px !important;
+  height: 150px !important;
   flex-shrink: 0;
+  margin-bottom: 60px;
+  cursor: pointer;
+}
+
+.provider-header-new .provider-avatar img {
+  width: 150px !important;
+  height: 150px !important;
+  object-fit: cover;
+  border-radius: var(--radius-full);
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.provider-header-new .provider-service-icon {
+  width: 150px !important;
+  height: 150px !important;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #f0f0f0;
+  flex-shrink: 0;
+}
+
+.provider-header-new .provider-service-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.3);
 }
 
 .provider-center-info {
@@ -2405,31 +2434,19 @@ select.inline-edit {
   margin-top: var(--space-3);
 }
 
-.provider-service-icon {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  overflow: hidden;
-  background: #f0f0f0;
-  flex-shrink: 0;
+/* Boutons avatar - visible au clic via classe JS */
+.provider-header-new .provider-avatar .avatar-actions {
+  opacity: 0;
+  visibility: hidden;
 }
 
-.provider-service-icon img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transform: scale(1.3);
+.provider-header-new .provider-avatar.actions-visible .avatar-actions {
+  opacity: 1;
+  visibility: visible;
 }
 
 /* RESPONSIVE MOBILE */
 @media (max-width: 768px) {
-  .provider-header-new {
-    flex-direction: column;
-    text-align: center;
-    gap: var(--space-4);
-  }
-
-  @media (max-width: 768px) {
   .provider-header-new {
     flex-direction: column;
     align-items: center;
@@ -2444,9 +2461,13 @@ select.inline-edit {
     height: 120px !important;
   }
 
+  .provider-header-new .provider-avatar img {
+    width: 120px !important;
+    height: 120px !important;
+  }
+
   .provider-header-new .provider-avatar {
     margin-bottom: 0;
-    overflow: visible;
   }
 
   .provider-header-new .avatar-actions {
@@ -2454,63 +2475,27 @@ select.inline-edit {
     bottom: auto;
     left: auto;
     transform: none;
-    opacity: 1;
-    visibility: visible;
     margin-top: var(--space-3);
     flex-wrap: wrap;
     justify-content: center;
   }
 
+  .provider-header-new .provider-avatar .avatar-actions {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .provider-header-new .provider-avatar.actions-visible .avatar-actions {
+    opacity: 1;
+    visibility: visible;
+  }
+
   .provider-info-card {
     overflow: visible;
   }
-}
 
   .provider-header-actions {
     flex-wrap: wrap;
     justify-content: center;
   }
-}
-
-/* ========================================
-   TAILLE DES IMAGES - MODIFIE ICI
-   Change 150px → ce que tu veux (180px, 200px, etc.)
-   ======================================== */
-.provider-header-new .provider-avatar,
-.provider-header-new .provider-service-icon {
-  width: 150px !important;
-  height: 150px !important;
-}
-
-.provider-header-new .provider-avatar img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover;
-  border-radius: var(--radius-full);
-}
-
-.provider-header-new .provider-service-icon img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transform: scale(1.3);
-}
-
-/* Alignement parfait - même distance du haut */
-.provider-header-new {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  padding-top: var(--space-6);
-}
-
-.provider-header-new .provider-avatar,
-.provider-header-new .provider-service-icon,
-.provider-header-new .provider-center-info {
-  margin-top: 0;
-  padding-top: 0;
-}
-
-.provider-header-new .provider-avatar {
-  margin-bottom: 60px;
 }
