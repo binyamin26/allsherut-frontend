@@ -1990,7 +1990,13 @@ body .dashboard-page .info-section h3.section-title {
   box-shadow: none;
   flex-shrink: 0;
   overflow: visible;
-  margin-bottom: 60px;
+  margin-bottom: 0px;
+}
+
+@media (min-width: 769px) {
+  .provider-avatar {
+    margin-bottom: 60px;
+  }
 }
 
 .provider-avatar img {
