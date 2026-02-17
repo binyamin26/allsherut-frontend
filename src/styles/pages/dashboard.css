@@ -833,11 +833,15 @@ body .dashboard-page .info-section h3.section-title,
 .professional-item label {
   display: block;
   font-size: var(--text-xs);
-  font-weight: 600;
-  color: var(--neutral-500);
+  font-weight: 700;
+  color: var(--primary-600);
   margin-bottom: var(--space-1);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
+  background: linear-gradient(135deg, var(--primary-600) 0%, var(--accent-500) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .contact-details span,
