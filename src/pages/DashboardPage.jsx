@@ -165,6 +165,18 @@ const userData = useMemo(() => {
   const [uploadingImage, setUploadingImage] = useState(false);
   const [showAvatarActions, setShowAvatarActions] = useState(false);
 
+  const avatarRef = React.useRef(null);
+
+useEffect(() => {
+  const handleClickOutside = (e) => {
+    if (avatarRef.current && !avatarRef.current.contains(e.target)) {
+      setShowAvatarActions(false);
+    }
+  };
+  document.addEventListener('click', handleClickOutside);
+  return () => document.removeEventListener('click', handleClickOutside);
+}, []);
+
   useEffect(() => {
     if (!isAuthenticated) {
       navigate('/');
@@ -998,6 +1010,7 @@ console.log('🔍 DEBUG serviceDetails COMPLET:', JSON.stringify(userData?.servi
    <div className="provider-header-new">
       {/* DROITE - Avatar profil */}
     <div 
+     ref={avatarRef}
         className={`provider-avatar ${showAvatarActions ? 'actions-visible' : ''}`}
         onClick={() => setShowAvatarActions(!showAvatarActions)}
       >

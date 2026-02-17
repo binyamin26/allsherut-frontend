@@ -2445,12 +2445,10 @@ select.inline-edit {
   visibility: visible;
 }
 
-/* RESPONSIVE MOBILE */
 @media (max-width: 768px) {
   .provider-header-new {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: var(--space-4);
     overflow: visible;
   }
@@ -2461,10 +2459,6 @@ select.inline-edit {
     height: 120px !important;
   }
 
-  .provider-header-new .provider-service-icon {
-    order: -1;
-  }
-
   .provider-header-new .provider-avatar img {
     width: 120px !important;
     height: 120px !important;
@@ -2472,6 +2466,11 @@ select.inline-edit {
 
   .provider-header-new .provider-avatar {
     margin-bottom: 0;
+  }
+
+  .provider-center-info {
+    width: 100%;
+    order: 3;
   }
 
   .provider-header-new .avatar-actions {
