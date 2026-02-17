@@ -779,12 +779,15 @@
   margin-bottom: 0;
 }
 
-body .dashboard-page .info-section h3.section-title {
+body .dashboard-page .info-section h3.section-title,
+.dashboard-page .section-title,
+.info-section .section-title {
   font-size: var(--text-3xl) !important;
   font-weight: 700 !important;
   background: linear-gradient(135deg, var(--primary-600) 0%, var(--accent-500) 100%) !important;
-  background-clip: text !important;
   -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
   color: transparent !important;
   margin: 0 0 var(--space-4) 0 !important;
   font-family: var(--font-primary) !important;
@@ -2450,9 +2453,11 @@ select.inline-edit {
   font-size: var(--text-lg);
   font-weight: 700;
   background: linear-gradient(135deg, var(--primary-500) 0%, var(--accent-400) 100%);
-  padding: var(--space-1) var(--space-4);
+  padding: var(--space-2) var(--space-8);
   border-radius: var(--radius-full);
   color: white;
+  letter-spacing: 0.5px;
+  display: inline-block;
 }
 
 .provider-header-actions {
