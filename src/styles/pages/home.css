@@ -16,7 +16,13 @@
   overflow: visible;
   
   /* Fond Aurore Boréale PLUS INTENSE */
-  background: linear-gradient(135deg, #0B1220 0%, #111827 100%);
+ background: 
+  radial-gradient(at 20% 50%, rgba(21, 128, 61, 0.3) 0px, transparent 50%),
+  radial-gradient(at 80% 20%, rgba(22, 163, 74, 0.2) 0px, transparent 50%),
+  radial-gradient(at 60% 80%, rgba(11, 18, 32, 0.9) 0px, transparent 50%),
+  #0B1220;
+background-size: 150% 150%;
+animation: aurora 15s ease infinite;
 }
 
 /* SUPPRESSION DES SÉPARATIONS VISUELLES */
@@ -83,6 +89,12 @@
   line-height: 1.6;
   max-width: 90%; /* Prend la place qu'il faut */
   font-weight: 400;
+}
+
+@keyframes aurora {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 /* LA VIDÉO (À GAUCHE) */
