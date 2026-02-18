@@ -515,13 +515,12 @@ body .homepage .cta-title,
   display: block !important;
   
   /* Gradient forcé */
+/* Gradient forcé */
 background: none !important;
--webkit-text-fill-color: #E2E8F0 !important;
-color: #E2E8F0 !important;
-  background-clip: text !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  color: transparent !important;
+background-clip: unset !important;
+-webkit-background-clip: unset !important;
+-webkit-text-fill-color: #FFFFFF !important;
+color: #FFFFFF !important;
 }
 
 /* TAILLES SPÉCIFIQUES - ÉCRASE LE WIDGET ACCESSIBILITÉ */
