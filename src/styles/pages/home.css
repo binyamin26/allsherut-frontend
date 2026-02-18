@@ -16,13 +16,10 @@
   overflow: visible;
   
   /* Fond Aurore Boréale PLUS INTENSE */
- background: 
-  radial-gradient(at 20% 50%, rgba(21, 128, 61, 0.3) 0px, transparent 50%),
-  radial-gradient(at 80% 20%, rgba(22, 163, 74, 0.2) 0px, transparent 50%),
-  radial-gradient(at 60% 80%, rgba(11, 18, 32, 0.9) 0px, transparent 50%),
-  #0B1220;
+ background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
+animation: none;
 background-size: 150% 150%;
-animation: aurora 15s ease infinite;
+
 }
 
 /* SUPPRESSION DES SÉPARATIONS VISUELLES */
@@ -529,10 +526,10 @@ body .homepage .cta-title,
   /* Gradient forcé */
 /* Gradient forcé */
 background: none !important;
-background-clip: unset !important;
--webkit-background-clip: unset !important;
 -webkit-text-fill-color: #FFFFFF !important;
 color: #FFFFFF !important;
+background-clip: unset !important;
+-webkit-background-clip: unset !important;
 }
 
 /* TAILLES SPÉCIFIQUES - ÉCRASE LE WIDGET ACCESSIBILITÉ */

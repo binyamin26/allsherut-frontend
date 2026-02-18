@@ -3,7 +3,7 @@
    ==================================== */
 
 footer {
-  background: linear-gradient(135deg, var(--neutral-900) 0%, var(--neutral-800) 100%);
+  background: #1E3A8A;
   color: white;
   padding: var(--space-16) 0 var(--space-8);
   margin-top: 0;
