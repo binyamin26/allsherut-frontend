@@ -16,14 +16,7 @@
   overflow: visible;
   
   /* Fond Aurore Boréale PLUS INTENSE */
-  background: 
-    radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.25) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(16, 185, 129, 0.25) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.20) 0px, transparent 50%),
-    radial-gradient(at 0% 100%, rgba(20, 184, 166, 0.20) 0px, transparent 50%),
-    #ffffff;
-  background-size: 150% 150%;
-  animation: aurora 15s ease infinite;
+  background: linear-gradient(135deg, #0B1220 0%, #111827 100%);
 }
 
 /* SUPPRESSION DES SÉPARATIONS VISUELLES */
@@ -86,7 +79,7 @@
 
 .hero-description {
   font-size: 1.25rem !important;
-  color: var(--neutral-600);
+ color: #94a3b8 !important;
   line-height: 1.6;
   max-width: 90%; /* Prend la place qu'il faut */
   font-weight: 400;
@@ -286,7 +279,7 @@
 
 .feature-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 20px 30px rgba(99, 102, 241, 0.1); /* Lueur Indigo */
+box-shadow: 0 20px 30px rgba(21, 128, 61, 0.1);/* Lueur Indigo */
   border-color: var(--primary-200);
 }
 
@@ -319,7 +312,7 @@
 .cta-section {
   padding: var(--space-24) 0;
   /* Bleu Nuit Profond + Accent */
-  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+background: linear-gradient(135deg, #0f172a 0%, #15803D 100%);
   color: white;
   position: relative;
   overflow: hidden;
@@ -522,7 +515,9 @@ body .homepage .cta-title,
   display: block !important;
   
   /* Gradient forcé */
-  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #10b981 100%) !important;
+background: none !important;
+-webkit-text-fill-color: #E2E8F0 !important;
+color: #E2E8F0 !important;
   background-clip: text !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
