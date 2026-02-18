@@ -13,9 +13,9 @@
   --primary-200: #c7d2fe;
   --primary-300: #a5b4fc;
   --primary-400: #818cf8;
-  --primary-500: #2563EB; /* La nouvelle couleur STAR (Indigo vibrant) */
-  --primary-600: #1E3A8A; /* Pour les survels */
-  --primary-700: #1E3A8A;
+  --primary-500: #15803D; /* La nouvelle couleur STAR (Indigo vibrant) */
+  --primary-600: #16A34A; /* Pour les survels */
+  --primary-700: #0f6630;
   --primary-800: #3730a3;
   --primary-900: #0F172A; /* Textes très sombres */
 
@@ -27,7 +27,7 @@
   --accent-300: #5eead4;
   --accent-400: #16A34A; /* Menthe vive */
   --accent-500: #15803D;
-  --accent-600: #16A34A;
+  --accent-600: #0f6630;
 
   /* NEUTRALS : "ICE GRAYS" (Propreté Clinique) */
   /* Finis les gris sales. On part sur des gris bleutés très froids. */
@@ -55,11 +55,11 @@
   /* Ces ombres sont colorées (indigo) au lieu d'être noires. C'est le secret du design moderne. */
   --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
 /* SHADOWS - remplace (supprime le glow indigo) */
---shadow-md: 0 4px 6px rgba(0,0,0,0.07)
---shadow-lg: 0 10px 15px rgba(0,0,0,0.08)
---shadow-xl: 0 20px 25px rgba(0,0,0,0.1)
---shadow-primary: 0 4px 14px rgba(21,128,61,0.35)
---shadow-primary-hover: 0 10px 25px rgba(21,128,61,0.45)
+--shadow-md: 0 4px 6px -1px rgba(99, 102, 241, 0.1)...  →  0 4px 6px -1px rgba(0,0,0,0.08);
+--shadow-lg: 0 10px 15px -3px rgba(99, 102, 241, 0.1)...  →  0 10px 15px -3px rgba(0,0,0,0.08);
+--shadow-xl: 0 25px 50px -12px rgba(99, 102, 241, 0.25)  →  0 25px 50px -12px rgba(0,0,0,0.15);
+--shadow-primary: ...rgba(99, 102, 241, 0.4)  →  0 4px 14px 0 rgba(21, 128, 61, 0.4);
+--shadow-primary-hover: ...rgba(79, 70, 229, 0.5)  →  0 10px 25px -5px rgba(21, 128, 61, 0.5);
 
   /* --- 3. TYPOGRAPHIE --- */
   --font-primary: 'Heebo', 'Inter', sans-serif;

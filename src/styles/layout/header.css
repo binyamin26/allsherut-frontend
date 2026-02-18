@@ -3,15 +3,15 @@
    ==================================== */
 
 header {
-  background: #FFFFFF;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid #E5E7EB;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  box-shadow: var(--shadow-sm);
   transition: all var(--transition-medium);
 }
 
@@ -61,7 +61,7 @@ header .container {
 .logo-main {
   font-size: var(--text-2xl);
   font-weight: 800;
-  background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
+  background: linear-gradient(135deg, var(--primary-600) 0%, var(--accent-600) 100%);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
@@ -267,13 +267,13 @@ nav {
 /* Bouton CTA moderne */
 .cta-button {
   padding: var(--space-3) var(--space-6);
-  background:linear-gradient(135deg, #15803D 0%, #16A34A 100%);
+  background: linear-gradient(135deg, var(--primary-500) 0%, var(--accent-500) 100%);
   color: white;
   text-decoration: none;
   border-radius: var(--radius-full);
   font-size: var(--text-lg);
   font-weight: 600;
-  box-shadow: 0 4px 12px rgba(21,128,61,0.3);
+  box-shadow: var(--shadow-lg);
   transition: all var(--transition-medium);
   border: none;
   cursor: pointer;

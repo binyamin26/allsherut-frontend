@@ -16,10 +16,14 @@
   overflow: visible;
   
   /* Fond Aurore Boréale PLUS INTENSE */
- background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
-animation: none;
-background-size: 150% 150%;
-
+  background: 
+    radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.25) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(16, 185, 129, 0.25) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.20) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(20, 184, 166, 0.20) 0px, transparent 50%),
+    #ffffff;
+  background-size: 150% 150%;
+  animation: aurora 15s ease infinite;
 }
 
 /* SUPPRESSION DES SÉPARATIONS VISUELLES */
@@ -82,16 +86,10 @@ background-size: 150% 150%;
 
 .hero-description {
   font-size: 1.25rem !important;
- color: #94a3b8 !important;
+  color: var(--neutral-600);
   line-height: 1.6;
   max-width: 90%; /* Prend la place qu'il faut */
   font-weight: 400;
-}
-
-@keyframes aurora {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
 }
 
 /* LA VIDÉO (À GAUCHE) */
@@ -288,7 +286,7 @@ background-size: 150% 150%;
 
 .feature-card:hover {
   transform: translateY(-5px);
-box-shadow: 0 20px 30px rgba(21, 128, 61, 0.1);/* Lueur Indigo */
+  box-shadow: 0 20px 30px rgba(99, 102, 241, 0.1); /* Lueur Indigo */
   border-color: var(--primary-200);
 }
 
@@ -321,7 +319,7 @@ box-shadow: 0 20px 30px rgba(21, 128, 61, 0.1);/* Lueur Indigo */
 .cta-section {
   padding: var(--space-24) 0;
   /* Bleu Nuit Profond + Accent */
-background: linear-gradient(135deg, #0f172a 0%, #15803D 100%);
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
   color: white;
   position: relative;
   overflow: hidden;
@@ -524,12 +522,11 @@ body .homepage .cta-title,
   display: block !important;
   
   /* Gradient forcé */
-/* Gradient forcé */
-background: none !important;
--webkit-text-fill-color: #FFFFFF !important;
-color: #FFFFFF !important;
-background-clip: unset !important;
--webkit-background-clip: unset !important;
+  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #10b981 100%) !important;
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
 }
 
 /* TAILLES SPÉCIFIQUES - ÉCRASE LE WIDGET ACCESSIBILITÉ */
