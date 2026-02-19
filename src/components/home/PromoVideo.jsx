@@ -264,7 +264,7 @@ const styles = `
     12%  { transform:translateX(-2%) scaleX(1.02); }
     16%  { transform:translateX(0) scaleX(1) skewX(0); }
     80%  { opacity:1; transform:translateX(0) scale(1); }
-    100% { opacity:0; transform:translateX(6%) scale(1.04); filter:blur(5px); }
+    100% { opacity:0; transform:translateX(6%) scale(1.04); }
   }
   @keyframes impactFromRight {
     0%   { opacity:0; transform:translateX(150%) scaleX(1.5) skewX(12deg);  filter:blur(20px); }
@@ -272,7 +272,7 @@ const styles = `
     12%  { transform:translateX(2%) scaleX(1.02); }
     16%  { transform:translateX(0) scaleX(1) skewX(0); }
     80%  { opacity:1; transform:translateX(0) scale(1); }
-    100% { opacity:0; transform:translateX(-6%) scale(1.04); filter:blur(5px); }
+    100% { opacity:0; transform:translateX(-6%) scale(1.04); }
   }
   @keyframes impactFromTop {
     0%   { opacity:0; transform:translateY(-150%) scaleY(1.5) skewY(-6deg); filter:blur(20px); }
@@ -280,7 +280,7 @@ const styles = `
     13%  { transform:translateY(-2%) scaleY(1.03); }
     17%  { transform:translateY(0) scaleY(1) skewY(0); }
     80%  { opacity:1; transform:scale(1); }
-    100% { opacity:0; transform:translateY(-5%) scale(1.03); filter:blur(5px); }
+    100% { opacity:0; transform:translateY(-5%) scale(1.03); }
   }
   @keyframes impactZoom {
     0%   { opacity:0; transform:scale(5) rotate(10deg);    filter:blur(30px); }
@@ -288,7 +288,7 @@ const styles = `
     13%  { transform:scale(1.04) rotate(0.5deg); }
     17%  { transform:scale(1) rotate(0); }
     80%  { opacity:1; transform:scale(1); }
-    100% { opacity:0; transform:scale(1.06); filter:blur(5px); }
+    100% { opacity:0; transform:scale(1.06);}
   }
   @keyframes impactShrink {
     0%   { opacity:0; transform:scale(0.02) rotate(-15deg); filter:blur(24px); }
@@ -296,7 +296,7 @@ const styles = `
     15%  { transform:scale(0.97) rotate(-0.5deg); }
     19%  { transform:scale(1) rotate(0); }
     80%  { opacity:1; transform:scale(1); }
-    100% { opacity:0; transform:scale(0.95); filter:blur(5px); }
+    100% { opacity:0; transform:scale(0.95);}
   }
 
   /* ── CONTRÔLES ── */
