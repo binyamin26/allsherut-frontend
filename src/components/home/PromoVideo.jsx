@@ -56,7 +56,7 @@ const styles = `
       width: 100%;
       height: 100%; 
       min-height: 600px;
-      background: linear-gradient(135deg, #020617 0%, #0f172a 50%, #1e293b 100%);
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #2d4a7a 100%);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -349,7 +349,7 @@ const styles = `
   .control-btn {
       width: 60px;
       height: 60px;
-      background: rgba(15,23,42,0.4);
+      background: rgba(30, 58, 100, 0.55);
       backdrop-filter: blur(15px);
       border: 1px solid rgba(255,255,255,0.2);
       border-radius: 50%;
@@ -525,16 +525,14 @@ const PromoVideo = ({ videoSrc = "/background.mp4", audioSrc = "/musique.mp3", s
       <div className="controls-container">
         <button
           className="control-btn"
-          onClick={toggleVideo}
-          onTouchEnd={(e) => { e.preventDefault(); toggleVideo(); }}
+          onPointerDown={(e) => { e.preventDefault(); e.stopPropagation(); toggleVideo(); }}
           title="Lecture/Pause"
         >
           {isPaused ? <IconPlay /> : <IconPause />}
         </button>
         <button
           className="control-btn"
-          onClick={toggleSound}
-          onTouchEnd={(e) => { e.preventDefault(); toggleSound(); }}
+          onPointerDown={(e) => { e.preventDefault(); e.stopPropagation(); toggleSound(); }}
           title="Activer/Désactiver le son"
         >
           {isMuted ? <IconSoundOff /> : <IconSoundOn />}
