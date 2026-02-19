@@ -108,8 +108,8 @@ const styles = `
       width: 200%; height: 200%;
       top: -50%; left: -50%;
       background-image: 
-          linear-gradient(rgba(59,130,246,0.15) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(59,130,246,0.15) 1px, transparent 1px);
+          linear-gradient(rgba(96, 165, 250, 0.35), transparent 1px),
+          linear-gradient(90deg, rgba(96, 165, 250, 0.35)1px, transparent 1px);
       background-size: 80px 80px;
       transform: perspective(500px) rotateX(60deg);
       animation: gridMove 15s linear infinite;
@@ -200,7 +200,7 @@ const styles = `
   .text-card {
       position:absolute;
       padding:60px 80px;
-      background:rgba(15,23,42,0.6);
+      background: rgba(30, 58, 100, 0.55);
       backdrop-filter:blur(25px) saturate(200%);
       -webkit-backdrop-filter:blur(25px) saturate(200%);
       border:1px solid rgba(255,255,255,0.15);
