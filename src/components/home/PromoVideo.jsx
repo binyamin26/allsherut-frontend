@@ -56,7 +56,7 @@ const styles = `
       width: 100%;
       height: 100%; 
       min-height: 600px;
-      background: linear-gradient(135deg, #1a1a4e 0%, #2d1b5e 20%, #0d3b6e 40%, #1a4a3a 60%, #3d1a2e 80%, #1e3a5f 100%);
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #2d4a7a 100%);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -102,29 +102,6 @@ const styles = `
       transition: opacity 1s ease;
   }
   .idle-layer.hidden { opacity: 0.2; }
-
-  /* Dégradé animé tournant */
-.color-wheel {
-    position: absolute;
-    top: -50%; left: -50%;
-    width: 200%; height: 200%;
-    background: conic-gradient(
-        rgba(99, 20, 180, 0.4)   0deg,
-        rgba(20, 100, 220, 0.4)  60deg,
-        rgba(0, 180, 160, 0.35)  120deg,
-        rgba(220, 60, 80, 0.3)   180deg,
-        rgba(240, 140, 20, 0.25) 240deg,
-        rgba(40, 200, 120, 0.3)  300deg,
-        rgba(99, 20, 180, 0.4)   360deg
-    );
-    animation: spinWheel 18s linear infinite;
-    z-index: 0;
-    filter: blur(60px);
-}
-@keyframes spinWheel {
-    0%   { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
 
   .tech-grid {
       position: absolute;
@@ -279,46 +256,72 @@ const styles = `
     animation: impactFromLeft 8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
   @keyframes impactFromLeft {
-    0%   { opacity:0; transform: translateX(-150%) scaleX(1.5) skewX(-12deg); filter: blur(20px); }
-    8%   { opacity:1; transform: translateX(8%) scaleX(0.94) skewX(3deg);    filter: blur(0); }
-    11%  { transform: translateX(-3%) scaleX(1.03); }
-    14%  { transform: translateX(0) scaleX(1) skewX(0); }
-    80%  { opacity:1; transform: translateX(0) scale(1); }
-    92%  { opacity:1; transform: translateX(-2%) scale(1.01); }
-    100% { opacity:0; transform: translateX(8%) scale(1.05); filter: blur(6px); }
-}
-@keyframes impactFromRight {
-    0%   { opacity:0; transform: translateX(150%) scaleX(1.5) skewX(12deg); filter: blur(20px); }
-    8%   { opacity:1; transform: translateX(-8%) scaleX(0.94) skewX(-3deg); filter: blur(0); }
-    11%  { transform: translateX(3%) scaleX(1.03); }
-    14%  { transform: translateX(0) scaleX(1) skewX(0); }
-    80%  { opacity:1; transform: translateX(0) scale(1); }
-    100% { opacity:0; transform: translateX(-8%) scale(1.05); filter: blur(6px); }
-}
-@keyframes impactFromTop {
-    0%   { opacity:0; transform: translateY(-150%) scaleY(1.5) skewY(-6deg); filter: blur(20px); }
-    8%   { opacity:1; transform: translateY(8%) scaleY(0.93) skewY(2deg);    filter: blur(0); }
-    12%  { transform: translateY(-3%) scaleY(1.04); }
-    16%  { transform: translateY(0) scaleY(1) skewY(0); }
-    80%  { opacity:1; transform: scale(1); }
-    100% { opacity:0; transform: translateY(-6%) scale(1.04); filter: blur(6px); }
-}
-@keyframes impactZoom {
-    0%   { opacity:0; transform: scale(5) rotate(10deg); filter: blur(30px); }
-    8%   { opacity:1; transform: scale(0.93) rotate(-2deg); filter: blur(0); }
-    12%  { transform: scale(1.04) rotate(0.5deg); }
-    16%  { transform: scale(1) rotate(0); }
-    80%  { opacity:1; transform: scale(1); }
-    100% { opacity:0; transform: scale(1.07); filter: blur(6px); }
-}
-@keyframes impactShrink {
-    0%   { opacity:0; transform: scale(0.02) rotate(-15deg); filter: blur(24px); }
-    10%  { opacity:1; transform: scale(1.08) rotate(2deg); filter: blur(0); }
-    14%  { transform: scale(0.97) rotate(-0.5deg); }
-    18%  { transform: scale(1) rotate(0); }
-    80%  { opacity:1; transform: scale(1); }
-    100% { opacity:0; transform: scale(0.95); filter: blur(6px); }
-}
+    0%   { opacity:0; transform: translateX(-130%) scaleX(1.4) skewX(-8deg); filter: blur(16px); }
+    10%  { opacity:1; transform: translateX(5%) scaleX(0.97) skewX(2deg);   filter: blur(0px); }
+    14%  { transform: translateX(0) scaleX(1) skewX(0deg); }
+    82%  { opacity:1; transform: translateX(0) scale(1); filter: blur(0px); }
+    100% { opacity:0; transform: translateX(6%) scale(1.04); filter: blur(4px); }
+  }
+
+  /* Slide depuis la droite */
+  .impact-right {
+    animation: impactFromRight 4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .impact-right-long {
+    animation: impactFromRight 8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  @keyframes impactFromRight {
+    0%   { opacity:0; transform: translateX(130%) scaleX(1.4) skewX(8deg); filter: blur(16px); }
+    10%  { opacity:1; transform: translateX(-5%) scaleX(0.97) skewX(-2deg); filter: blur(0px); }
+    14%  { transform: translateX(0) scaleX(1) skewX(0deg); }
+    82%  { opacity:1; transform: translateX(0) scale(1); filter: blur(0px); }
+    100% { opacity:0; transform: translateX(-6%) scale(1.04); filter: blur(4px); }
+  }
+
+  /* Tombe d'en haut */
+  .impact-top {
+    animation: impactFromTop 4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .impact-top-long {
+    animation: impactFromTop 8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  @keyframes impactFromTop {
+    0%   { opacity:0; transform: translateY(-120%) scaleY(1.5) skewY(-4deg); filter: blur(20px); }
+    10%  { opacity:1; transform: translateY(6%) scaleY(0.96) skewY(1deg);    filter: blur(0px); }
+    14%  { transform: translateY(0) scaleY(1) skewY(0deg); }
+    82%  { opacity:1; transform: translateY(0) scale(1); filter: blur(0px); }
+    100% { opacity:0; transform: translateY(-4%) scale(1.03); filter: blur(4px); }
+  }
+
+  /* Explose depuis le centre (zoom-in brutal) */
+  .impact-zoom {
+    animation: impactZoom 4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .impact-zoom-long {
+    animation: impactZoom 8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  @keyframes impactZoom {
+    0%   { opacity:0; transform: scale(4) rotate(6deg); filter: blur(24px); }
+    10%  { opacity:1; transform: scale(0.96) rotate(-1deg); filter: blur(0px); }
+    14%  { transform: scale(1) rotate(0deg); }
+    82%  { opacity:1; transform: scale(1) rotate(0deg); filter: blur(0px); }
+    100% { opacity:0; transform: scale(1.06); filter: blur(4px); }
+  }
+
+  /* Rétréci depuis le néant (zoom-out) */
+  .impact-shrink {
+    animation: impactShrink 4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .impact-shrink-long {
+    animation: impactShrink 8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  @keyframes impactShrink {
+    0%   { opacity:0; transform: scale(0.05) rotate(-10deg); filter: blur(20px); }
+    12%  { opacity:1; transform: scale(1.05) rotate(1deg);   filter: blur(0px); }
+    16%  { transform: scale(1) rotate(0deg); }
+    82%  { opacity:1; transform: scale(1); filter: blur(0px); }
+    100% { opacity:0; transform: scale(0.96); filter: blur(4px); }
+  }
 
   /* ============================================================
      CONTRÔLES — FIX MOBILE (touch-action + z-index élevé)
