@@ -78,7 +78,6 @@ textarea::placeholder {
   color: var(--neutral-400);
   font-weight: 400;
   text-align: start;
-  direction: rtl;
 }
 
 /* Icônes dans les inputs - CORRIGÉ POUR RTL */
