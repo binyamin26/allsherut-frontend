@@ -4,18 +4,18 @@
 
 .dashboard-page {
   padding: var(--space-8) 0;
-  background: var(--neutral-50);
+  background: #f8f9fb;
   min-height: 100vh;
 }
 
 /* Dashboard header */
 .dashboard-header {
- background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 50%, white 100%);
+ background: white;
   padding: var(--space-8);
   border-radius: var(--radius-2xl);
-  border: 1px solid var(--primary-200);
+  border: 1px solid #e2e8f0;
   margin-bottom: var(--space-8);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
 }
 
 .dashboard-header-content {
@@ -35,10 +35,10 @@
 .dashboard-title {
   font-size: var(--text-4xl);
   font-weight: 800;
-  background: linear-gradient(135deg, var(--primary-600) 0%, var(--accent-500) 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
+  background: none;
+  background-clip: unset;
+  -webkit-background-clip: unset;
+  color: #1e293b;;
   margin: 0 0 var(--space-2) 0;
 }
 
@@ -105,9 +105,9 @@
 }
 
 .tab-btn.active {
-  background: linear-gradient(135deg, var(--primary-500) 0%, var(--accent-500) 100%);
-  color: white;
-  box-shadow: var(--shadow-md);
+  background: #2563eb;
+color: white;
+box-shadow: none;
 }
 
 /* Dashboard content */
@@ -702,12 +702,12 @@
 
 /* Provider info card styles */
 .provider-info-card {
-  background: linear-gradient(180deg, white 0%, #f0f9ff 100%);
-border: 2px solid #bae6fd;
+  background: white;
+ border: 1px solid #e2e8f0;
   border-radius: var(--radius-2xl);
   padding: var(--space-8);
   margin-bottom: var(--space-8);
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
 }
 
 .provider-header {
