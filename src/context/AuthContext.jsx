@@ -380,6 +380,70 @@ const deleteProfileImage = async (serviceType = null) => {
   }
 };
 
+// Upload image galerie
+const uploadGalleryImage = async (imageFile, serviceType = null) => {
+  try {
+    setLoading(true);
+    const formData = new FormData();
+    formData.append('galleryImage', imageFile);
+    formData.append('serviceType', serviceType || user?.service_type);
+
+    const response = await fetch(`${API_BASE}/upload/gallery-image`, {
+      method: 'POST',
+      headers: { 'Authorization': `Bearer ${localStorage.getItem('homesherut_token')}` },
+      body: formData
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      const updatedUser = {
+        ...user,
+        providerProfile: user.providerProfile ? {
+          ...user.providerProfile,
+          profile_images: data.data.gallery
+        } : null
+      };
+      setUser(updatedUser);
+      return { success: true, gallery: data.data.gallery };
+    } else {
+      return { success: false, message: data.message };
+    }
+  } catch (error) {
+    return { success: false, message: 'שגיאה בהעלאת התמונה' };
+  } finally {
+    setLoading(false);
+  }
+};
+
+// Supprimer image galerie
+const deleteGalleryImage = async (imageUrl, serviceType = null) => {
+  try {
+    setLoading(true);
+    const response = await apiCall('/upload/gallery-image', 'DELETE', {
+      imageUrl,
+      serviceType: serviceType || user?.service_type
+    });
+
+    if (response.success) {
+      const updatedUser = {
+        ...user,
+        providerProfile: user.providerProfile ? {
+          ...user.providerProfile,
+          profile_images: response.data.gallery
+        } : null
+      };
+      setUser(updatedUser);
+      return { success: true, gallery: response.data.gallery };
+    }
+    return { success: false, message: response.message };
+  } catch (error) {
+    return { success: false, message: 'שגיאה במחיקת התמונה' };
+  } finally {
+    setLoading(false);
+  }
+};
+
   // Changement de mot de passe
   const changePassword = async (currentPassword, newPassword) => {
     try {
@@ -799,6 +863,9 @@ const switchService = async (serviceType) => {
     refreshUser,
     uploadProfileImage,     // ← AJOUTER
   deleteProfileImage,
+
+  uploadGalleryImage,
+deleteGalleryImage,
     
     // Provider spécifique
     completeProviderProfile,

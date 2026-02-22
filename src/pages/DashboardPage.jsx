@@ -32,7 +32,9 @@ import {
   MapPin,
   X,
   Save,
-  Trash2
+  Trash2,
+  Camera,
+   Images
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import LoadingSpinner from '../components/common/LoadingSpinner';
@@ -83,7 +85,7 @@ const serviceImages = {
 };
 
 const DashboardPage = () => {
-const {user, isAuthenticated, isSubscriptionExpired, getMyReviews, apiCall, updateProfile, uploadProfileImage, deleteProfileImage, switchService, deleteService, changePassword} = useAuth();
+const {user, isAuthenticated, isSubscriptionExpired, getMyReviews, apiCall, updateProfile, uploadProfileImage, deleteProfileImage, switchService, deleteService, changePassword, uploadGalleryImage, deleteGalleryImage} = useAuth();
   const { t } = useLanguage();
   const navigate = useNavigate();
   
@@ -164,6 +166,8 @@ const userData = useMemo(() => {
   const [imagePreview, setImagePreview] = useState(null);
   const [uploadingImage, setUploadingImage] = useState(false);
   const [showAvatarActions, setShowAvatarActions] = useState(false);
+  const [galleryUploading, setGalleryUploading] = useState(false);
+const [galleryError, setGalleryError] = useState('');
 
   const avatarRef = React.useRef(null);
 
@@ -724,6 +728,58 @@ const handleDeleteImage = async () => {
   } finally {
     console.log('🔴 13. Finally - fin de la fonction');
     setUploadingImage(false);
+  }
+};
+
+const handleGalleryImageUpload = async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const gallery = user?.providerProfile?.profile_images || [];
+  if (gallery.length >= 6) {
+    setMessage({ type: 'error', text: 'מקסימום 6 תמונות בגלריה' });
+    return;
+  }
+
+  if (file.size > 2 * 1024 * 1024) {
+    setMessage({ type: 'error', text: 'הקובץ גדול מדי (מקסימום 2MB)' });
+    return;
+  }
+
+  setGalleryUploading(true);
+  try {
+    const imageCompression = (await import('browser-image-compression')).default;
+    const compressed = await imageCompression(file, { maxSizeMB: 1, maxWidthOrHeight: 1200, useWebWorker: true });
+    const result = await uploadGalleryImage(compressed, activeService || userData?.serviceType);
+    if (result.success) {
+      setMessage({ type: 'success', text: 'התמונה הועלתה לגלריה' });
+      await switchService(activeService || userData?.serviceType);
+    } else {
+      setMessage({ type: 'error', text: result.message || 'שגיאה בהעלאת התמונה' });
+    }
+  } catch (err) {
+    setMessage({ type: 'error', text: 'שגיאה בהעלאת התמונה' });
+  } finally {
+    setGalleryUploading(false);
+    e.target.value = '';
+  }
+};
+
+const handleGalleryImageDelete = async (imageUrl) => {
+  if (!window.confirm('האם אתה בטוח שברצונך למחוק תמונה זו?')) return;
+  setGalleryUploading(true);
+  try {
+    const result = await deleteGalleryImage(imageUrl, activeService || userData?.serviceType);
+    if (result.success) {
+      setMessage({ type: 'success', text: 'התמונה נמחקה' });
+      await switchService(activeService || userData?.serviceType);
+    } else {
+      setMessage({ type: 'error', text: result.message });
+    }
+  } catch (err) {
+    setMessage({ type: 'error', text: 'שגיאה במחיקת התמונה' });
+  } finally {
+    setGalleryUploading(false);
   }
 };
 
@@ -1332,6 +1388,76 @@ console.log('🔍 DEBUG serviceDetails COMPLET:', JSON.stringify(userData?.servi
         </>
       )}
     </div>
+
+    {/* ===== GALERIE DE SERVICES ===== */}
+<div className="info-section">
+  <h3 className="section-title" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+    <Images size={20} />
+    גלריית שירותים
+    <span style={{ fontSize: '0.8rem', fontWeight: '400', color: '#6b7280' }}>
+      ({(user?.providerProfile?.profile_images || []).length}/6)
+    </span>
+  </h3>
+  <p style={{ color: '#6b7280', fontSize: '0.9rem', marginBottom: '1rem' }}>
+    העלה עד 6 תמונות שמציגות את עבודתך ללקוחות
+  </p>
+
+  <div style={{
+    display: 'grid',
+    gridTemplateColumns: 'repeat(3, 1fr)',
+    gap: '0.75rem'
+  }}>
+    {/* Images existantes */}
+    {(user?.providerProfile?.profile_images || []).map((url, index) => (
+      <div key={index} style={{ position: 'relative', aspectRatio: '4/3', borderRadius: '8px', overflow: 'hidden', background: '#f3f4f6' }}>
+        <img
+          src={url}
+          alt={`גלריה ${index + 1}`}
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+        />
+        <button
+          onClick={() => handleGalleryImageDelete(url)}
+          disabled={galleryUploading}
+          style={{
+            position: 'absolute', top: '6px', left: '6px',
+            background: 'rgba(220,38,38,0.85)', border: 'none',
+            borderRadius: '50%', width: '28px', height: '28px',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            cursor: 'pointer', color: 'white'
+          }}
+        >
+          <X size={14} />
+        </button>
+      </div>
+    ))}
+
+    {/* Slot d'ajout */}
+    {(user?.providerProfile?.profile_images || []).length < 6 && (
+      <label style={{
+        aspectRatio: '4/3', border: '2px dashed #d1d5db', borderRadius: '8px',
+        display: 'flex', flexDirection: 'column', alignItems: 'center',
+        justifyContent: 'center', cursor: galleryUploading ? 'not-allowed' : 'pointer',
+        background: '#f9fafb', gap: '6px', color: '#9ca3af'
+      }}>
+        <input
+          type="file"
+          accept="image/jpeg,image/jpg,image/png,image/webp"
+          onChange={handleGalleryImageUpload}
+          style={{ display: 'none' }}
+          disabled={galleryUploading}
+        />
+        {galleryUploading ? (
+          <LoadingSpinner size="small" />
+        ) : (
+          <>
+            <Camera size={24} />
+            <span style={{ fontSize: '0.75rem', textAlign: 'center' }}>הוסף תמונה<br/>(מקס׳ 2MB)</span>
+          </>
+        )}
+      </label>
+    )}
+  </div>
+</div>
 
     {isEditMode && (
       <div className="form-actions-bottom">
