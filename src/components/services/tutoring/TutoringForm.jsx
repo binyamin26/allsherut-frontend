@@ -204,7 +204,7 @@ const { t, currentLanguage } = useLanguage();
                         <div className="subjects-container">
     {Object.entries(groupedSubcategories).map(([key, group]) => (
         group.items.length > 0 && (
-            <div key={key} style={{ marginBottom: '0.5rem', border: '1px solid #e5e7eb', borderRadius: '8px', overflow: 'hidden' }}>
+           <div key={key} className="accordion-group">
                 <button
                     type="button"
                     onClick={() => setOpenGroups(prev => ({ ...prev, [key]: !prev[key] }))}
