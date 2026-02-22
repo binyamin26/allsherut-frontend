@@ -1258,7 +1258,7 @@
 .custom-dropdown-trigger .placeholder {
   color: var(--neutral-400);
   flex: 1;
-  text-align: right;
+  text-align: start;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -1267,7 +1267,7 @@
 .custom-dropdown-trigger .has-value {
   color: var(--neutral-800);
   flex: 1;
-  text-align: right;
+  text-align: start;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -1404,4 +1404,9 @@
   background: var(--primary-100);
   color: var(--primary-700);
   font-weight: 600;
+}
+
+[dir="ltr"] .custom-dropdown-trigger .dropdown-icon {
+  left: auto;
+  right: 14px;
 }
