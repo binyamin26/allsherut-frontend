@@ -208,7 +208,7 @@ const { t, currentLanguage } = useLanguage();
                 <button
                     type="button"
                     onClick={() => setOpenGroups(prev => ({ ...prev, [key]: !prev[key] }))}
-                    style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.75rem 1rem', background: '#f9fafb', border: 'none', cursor: 'pointer', fontWeight: '600', color: '#374151', fontSize: '0.95rem' }}
+                    className="accordion-trigger"
                 >
                     <span>{group.title}</span>
                     <span>{openGroups[key] ? '▲' : '▼'}</span>

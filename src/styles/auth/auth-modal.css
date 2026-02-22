@@ -1378,3 +1378,23 @@
   padding-left: 48px !important;
   padding-right: 20px !important;
 }
+
+.accordion-trigger {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(135deg, var(--primary-50) 0%, var(--primary-100) 100%);
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--primary-700);
+  font-size: var(--text-base);
+  font-family: var(--font-primary);
+  transition: background var(--transition-fast);
+}
+
+.accordion-trigger:hover {
+  background: linear-gradient(135deg, var(--primary-100) 0%, var(--primary-200) 100%);
+}
