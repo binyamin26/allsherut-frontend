@@ -14,7 +14,7 @@ const CustomDropdown = ({
   error,
   searchable = true
 }) => {
-   const { t } = useLanguage();
+   const { t, direction } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0, width: 0 });
@@ -128,6 +128,7 @@ const CustomDropdown = ({
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               onClick={(e) => e.stopPropagation()}
+                style={{ textAlign: 'start', direction: direction }}
             />
           </div>
         </li>
@@ -138,6 +139,7 @@ const CustomDropdown = ({
             key={index}
             className={`custom-dropdown-item ${value === option.value ? 'selected' : ''}`}
             onClick={() => handleSelect(option)}
+            style={{ textAlign: direction === 'ltr' ? 'left' : 'right', direction: direction }}
           >
             {option.label}
           </li>
@@ -159,6 +161,7 @@ const CustomDropdown = ({
         className={`custom-dropdown-trigger ${isOpen ? 'open' : ''} ${error ? 'error' : ''}`}
         onClick={() => !disabled && setIsOpen(!isOpen)}
         disabled={disabled}
+        style={{ textAlign: direction === 'ltr' ? 'left' : 'right', direction: direction }}
       >
         <span className={value ? 'has-value' : 'placeholder'}>
           {displayLabel || placeholder}
