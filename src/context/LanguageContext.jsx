@@ -25,6 +25,21 @@ const translations = {
     'auth.profile': 'פרופיל',
     'nav.dashboard': 'דשבורד',
 
+    'dashboard.gallery.title': 'גלריית שירותים',
+'dashboard.gallery.description': 'העלה עד 6 תמונות שמציגות את עבודתך ללקוחות',
+'dashboard.gallery.addPhoto': 'הוסף תמונה',
+'dashboard.gallery.changePhoto': 'שנה תמונה',
+'dashboard.gallery.removePhoto': 'הסר תמונה',
+'dashboard.gallery.maxSize': '(מקס׳ 2MB)',
+'dashboard.gallery.uploadSuccess': 'התמונה הועלתה לגלריה',
+'dashboard.gallery.deleteSuccess': 'התמונה נמחקה',
+'dashboard.gallery.errorSize': 'הקובץ גדול מדי — מקסימום 2MB לתמונה',
+'dashboard.gallery.errorMax': 'מקסימום 6 תמונות בגלריה',
+'dashboard.gallery.errorUpload': 'שגיאה בהעלאת התמונה',
+'dashboard.gallery.errorDelete': 'שגיאה במחיקת התמונה',
+'dashboard.gallery.confirmDelete': 'האם אתה בטוח שברצונך למחוק תמונה זו?',
+'dashboard.gallery.count': 'תמונות',
+
     //plumbing
     // Service Forms - Plumbing
 'serviceForm.plumbing.title': 'פרטי שירות אינסטלציה',
@@ -2593,6 +2608,21 @@ const translations = {
     'auth.logout': 'Logout',
     'auth.profile': 'Profile',
     'nav.dashboard': 'Dashboard',
+
+    'dashboard.gallery.title': 'Service Gallery',
+'dashboard.gallery.description': 'Upload up to 6 photos to showcase your work to clients',
+'dashboard.gallery.addPhoto': 'Add photo',
+'dashboard.gallery.changePhoto': 'Change photo',
+'dashboard.gallery.removePhoto': 'Remove photo',
+'dashboard.gallery.maxSize': '(max 2MB)',
+'dashboard.gallery.uploadSuccess': 'Photo added to gallery',
+'dashboard.gallery.deleteSuccess': 'Photo deleted',
+'dashboard.gallery.errorSize': 'File too large — 2MB maximum',
+'dashboard.gallery.errorMax': 'Maximum 6 photos in gallery',
+'dashboard.gallery.errorUpload': 'Error uploading photo',
+'dashboard.gallery.errorDelete': 'Error deleting photo',
+'dashboard.gallery.confirmDelete': 'Are you sure you want to delete this photo?',
+'dashboard.gallery.count': 'photos',
     
     // Services
     'services.babysitting': 'Babysitting',
@@ -5159,6 +5189,21 @@ const translations = {
     'auth.logout': 'Выйти',
     'auth.profile': 'Профиль',
     'nav.dashboard': 'Панель управления',
+
+    'dashboard.gallery.title': 'Галерея услуг',
+'dashboard.gallery.description': 'Загрузите до 6 фотографий для показа вашей работы',
+'dashboard.gallery.addPhoto': 'Добавить фото',
+'dashboard.gallery.changePhoto': 'Изменить фото',
+'dashboard.gallery.removePhoto': 'Удалить фото',
+'dashboard.gallery.maxSize': '(макс. 2 МБ)',
+'dashboard.gallery.uploadSuccess': 'Фото добавлено в галерею',
+'dashboard.gallery.deleteSuccess': 'Фото удалено',
+'dashboard.gallery.errorSize': 'Файл слишком большой — максимум 2 МБ',
+'dashboard.gallery.errorMax': 'Максимум 6 фотографий в галерее',
+'dashboard.gallery.errorUpload': 'Ошибка при загрузке фото',
+'dashboard.gallery.errorDelete': 'Ошибка при удалении фото',
+'dashboard.gallery.confirmDelete': 'Вы уверены, что хотите удалить это фото?',
+'dashboard.gallery.count': 'фото',
     
   // Service Forms - Plumbing
   'serviceForm.plumbing.title': 'Детали сантехнических услуг',
@@ -7703,6 +7748,21 @@ const translations = {
     'auth.logout': 'Déconnexion',
     'auth.profile': 'Profil',
     'nav.dashboard': 'Tableau de bord',
+
+    'dashboard.gallery.title': 'Galerie de services',
+'dashboard.gallery.description': 'Ajoutez jusqu\'à 6 photos pour montrer votre travail aux clients',
+'dashboard.gallery.addPhoto': 'Ajouter une photo',
+'dashboard.gallery.changePhoto': 'Changer la photo',
+'dashboard.gallery.removePhoto': 'Supprimer la photo',
+'dashboard.gallery.maxSize': '(max 2 Mo)',
+'dashboard.gallery.uploadSuccess': 'Photo ajoutée à la galerie',
+'dashboard.gallery.deleteSuccess': 'Photo supprimée',
+'dashboard.gallery.errorSize': 'Fichier trop grand — 2 Mo maximum',
+'dashboard.gallery.errorMax': '6 photos maximum dans la galerie',
+'dashboard.gallery.errorUpload': 'Erreur lors de l\'upload',
+'dashboard.gallery.errorDelete': 'Erreur lors de la suppression',
+'dashboard.gallery.confirmDelete': 'Êtes-vous sûr de vouloir supprimer cette photo ?',
+'dashboard.gallery.count': 'photos',
 
     // Service Forms - Plumbing
 'serviceForm.plumbing.title': 'Détails du service plomberie',

@@ -735,16 +735,17 @@ const handleGalleryImageUpload = async (e) => {
   const file = e.target.files[0];
   if (!file) return;
 
-  const gallery = user?.providerProfile?.profile_images || [];
+  const gallery = galleryImages || [];
   if (gallery.length >= 6) {
     setMessage({ type: 'error', text: 'מקסימום 6 תמונות בגלריה' });
     return;
   }
 
-  if (file.size > 2 * 1024 * 1024) {
-    setMessage({ type: 'error', text: 'הקובץ גדול מדי (מקסימום 2MB)' });
-    return;
-  }
+ if (file.size > 2 * 1024 * 1024) {
+  setGalleryError('הקובץ גדול מדי — מקסימום 2MB לתמונה');
+  return;
+}
+setGalleryError('');
 
   setGalleryUploading(true);
   try {
@@ -944,6 +945,14 @@ console.log('🔍 Dashboard userData:', {
   fullProviderProfile: userData?.providerProfile
 });
 console.log('🔍 DEBUG serviceDetails COMPLET:', JSON.stringify(userData?.serviceDetails, null, 2));
+
+const galleryImages = (() => {
+  const raw = user?.providerProfile?.profile_images;
+  if (!raw) return [];
+  if (Array.isArray(raw)) return raw;
+  try { return JSON.parse(raw); } catch { return []; }
+})();
+
   return (
     <div className="dashboard-page">
       <div className="container">
@@ -1102,7 +1111,7 @@ console.log('🔍 DEBUG serviceDetails COMPLET:', JSON.stringify(userData?.servi
                 style={{ cursor: uploadingImage ? 'not-allowed' : 'pointer' }}
               >
                 <Edit size={14} />
-                {userData?.providerProfile?.profile_image ? 'שנה תמונה' : 'הוסף תמונה'}
+               {userData?.providerProfile?.profile_image ? t('dashboard.gallery.changePhoto') : t('dashboard.gallery.addPhoto')}
               </label>
               
               {userData?.providerProfile?.profile_image && (
@@ -1112,7 +1121,7 @@ console.log('🔍 DEBUG serviceDetails COMPLET:', JSON.stringify(userData?.servi
                   disabled={uploadingImage}
                 >
                   <Trash2 size={14} />
-                  הסר תמונה
+                 {t('dashboard.gallery.removePhoto')}
                 </button>
               )}
             </>
@@ -1392,14 +1401,14 @@ console.log('🔍 DEBUG serviceDetails COMPLET:', JSON.stringify(userData?.servi
     {/* ===== GALERIE DE SERVICES ===== */}
 <div className="info-section">
   <h3 className="section-title" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-   <LayoutGrid size={20} />
-    גלריית שירותים
-    <span style={{ fontSize: '0.8rem', fontWeight: '400', color: '#6b7280' }}>
-      ({(user?.providerProfile?.profile_images || []).length}/6)
-    </span>
-  </h3>
+  <LayoutGrid size={20} />
+  {t('dashboard.gallery.title')}
+  <span style={{ fontSize: '0.8rem', fontWeight: '400', color: '#6b7280' }}>
+    ({galleryImages.length}/6 {t('dashboard.gallery.count')})
+  </span>
+</h3>
   <p style={{ color: '#6b7280', fontSize: '0.9rem', marginBottom: '1rem' }}>
-    העלה עד 6 תמונות שמציגות את עבודתך ללקוחות
+   {t('dashboard.gallery.description')}
   </p>
 
   <div style={{
@@ -1408,7 +1417,7 @@ console.log('🔍 DEBUG serviceDetails COMPLET:', JSON.stringify(userData?.servi
     gap: '0.75rem'
   }}>
     {/* Images existantes */}
-    {(user?.providerProfile?.profile_images || []).map((url, index) => (
+    {(galleryImages || []).map((url, index) => (
       <div key={index} style={{ position: 'relative', aspectRatio: '4/3', borderRadius: '8px', overflow: 'hidden', background: '#f3f4f6' }}>
         <img
           src={url}
@@ -1432,7 +1441,7 @@ console.log('🔍 DEBUG serviceDetails COMPLET:', JSON.stringify(userData?.servi
     ))}
 
     {/* Slot d'ajout */}
-    {(user?.providerProfile?.profile_images || []).length < 6 && (
+    {(galleryImages || []).length < 6 && (
       <label style={{
         aspectRatio: '4/3', border: '2px dashed #d1d5db', borderRadius: '8px',
         display: 'flex', flexDirection: 'column', alignItems: 'center',
@@ -1451,13 +1460,19 @@ console.log('🔍 DEBUG serviceDetails COMPLET:', JSON.stringify(userData?.servi
         ) : (
           <>
             <Camera size={24} />
-            <span style={{ fontSize: '0.75rem', textAlign: 'center' }}>הוסף תמונה<br/>(מקס׳ 2MB)</span>
+           <span style={{ fontSize: '0.75rem', textAlign: 'center' }}>{t('dashboard.gallery.addPhoto')}<br/>{t('dashboard.gallery.maxSize')}</span>
           </>
         )}
       </label>
     )}
   </div>
 </div>
+
+{galleryError && (
+  <p style={{ color: '#dc2626', fontSize: '0.85rem', marginTop: '0.5rem' }}>
+    {galleryError}
+  </p>
+)}
 
     {isEditMode && (
       <div className="form-actions-bottom">
