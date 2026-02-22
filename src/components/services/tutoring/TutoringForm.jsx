@@ -11,6 +11,7 @@ const { t, currentLanguage } = useLanguage();
     const [subcategories, setSubcategories] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [openGroups, setOpenGroups] = useState({});
 
     const config = FILTER_CONFIG.tutoring;
 
@@ -201,29 +202,38 @@ const { t, currentLanguage } = useLanguage();
                         </div>
                     ) : (
                         <div className="subjects-container">
-                            {Object.entries(groupedSubcategories).map(([key, group]) => (
-                                group.items.length > 0 && (
-                                    <div key={key} className="subject-category" style={{ marginBottom: '1rem' }}>
-                                        <h5 style={{ marginBottom: '0.5rem', color: '#374151', fontWeight: '600' }}>{group.title}</h5>
-                                        <div className="checkbox-group" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '0.5rem' }}>
-                                            {group.items.map(subcat => (
-                                                <label key={subcat.id} className="checkbox-item">
-                                                    <input
-                                                        type="checkbox"
-                                                        checked={serviceDetails.subjects?.includes(subcat.name_he) || false}
-                                                        onChange={(e) => handleSubjectChange(subcat.name_he, e.target.checked)}
-                                                    />
-                                                    <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                                        <span>{subcat.icon}</span>
-                                                      <span>{subcat[`name_${currentLanguage}`] || subcat.name_he}</span>
-                                                    </span>
-                                                </label>
-                                            ))}
-                                        </div>
-                                    </div>
-                                )
-                            ))}
-                        </div>
+    {Object.entries(groupedSubcategories).map(([key, group]) => (
+        group.items.length > 0 && (
+            <div key={key} style={{ marginBottom: '0.5rem', border: '1px solid #e5e7eb', borderRadius: '8px', overflow: 'hidden' }}>
+                <button
+                    type="button"
+                    onClick={() => setOpenGroups(prev => ({ ...prev, [key]: !prev[key] }))}
+                    style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.75rem 1rem', background: '#f9fafb', border: 'none', cursor: 'pointer', fontWeight: '600', color: '#374151', fontSize: '0.95rem' }}
+                >
+                    <span>{group.title}</span>
+                    <span>{openGroups[key] ? '▲' : '▼'}</span>
+                </button>
+                {openGroups[key] && (
+                    <div className="checkbox-group" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '0.5rem', padding: '0.75rem 1rem', background: 'white' }}>
+                        {group.items.map(subcat => (
+                            <label key={subcat.id} className="checkbox-item">
+                                <input
+                                    type="checkbox"
+                                    checked={serviceDetails.subjects?.includes(subcat.name_he) || false}
+                                    onChange={(e) => handleSubjectChange(subcat.name_he, e.target.checked)}
+                                />
+                                <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                    <span>{subcat.icon}</span>
+                                    <span>{subcat[`name_${currentLanguage}`] || subcat.name_he}</span>
+                                </span>
+                            </label>
+                        ))}
+                    </div>
+                )}
+            </div>
+        )
+    ))}
+</div>
                     )}
                     {errors['serviceDetails.subjects'] && <span className="error-text">{errors['serviceDetails.subjects']}</span>}
                 </div>
