@@ -44,7 +44,7 @@
 
 .dashboard-subtitle {
   font-size: var(--text-lg);
-  color: var(--primary-600);
+  color: #475569;
   margin: 0 auto;
   font-weight: 600;
   text-align: center;
@@ -2429,12 +2429,10 @@ select.inline-edit {
 }
 
 .provider-center-info .provider-name {
-  font-size: var(--text-2xl);
-  font-weight: 800;
-  background: linear-gradient(135deg, var(--primary-700) 0%, var(--accent-600) 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+  color: #1e293b;
   margin: 0;
 }
 
