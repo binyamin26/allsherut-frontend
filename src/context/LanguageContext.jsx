@@ -23,7 +23,7 @@ const translations = {
     'auth.register': 'הרשמה',
     'auth.logout': 'התנתק',
     'auth.profile': 'פרופיל',
-    'nav.dashboard': 'דשבורד',
+    'nav.dashboard': 'אזור אישי',
 
     'dashboard.gallery.title': 'גלריית שירותים',
 'dashboard.gallery.description': 'העלה עד 6 תמונות שמציגות את עבודתך ללקוחות',
@@ -271,9 +271,9 @@ const translations = {
     'footer.copyright': '© 2026 AllSherut. כל הזכויות שמורות.',
 
     // Dashboard
-    'dashboard.loading': 'טוען דשבורד...',
-    'dashboard.providerDashboard': 'דשבורד ספק',
-    'dashboard.clientDashboard': 'דשבורד שלך - כל מה שאתה צריך במקום אחד',
+    'dashboard.loading': 'טוען אזור אישי...',
+    'dashboard.providerDashboard': 'אזור אישי ספק',
+    'dashboard.clientDashboard': 'אזור אישי שלך - כל מה שאתה צריך במקום אחד',
     'dashboard.searchServices': 'חפש שירותים',
     'dashboard.myFavorites': 'המועדפים שלי',
     'dashboard.subscriptionExpired': 'המנוי שלך פג תוקף',
