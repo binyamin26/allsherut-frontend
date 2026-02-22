@@ -406,6 +406,13 @@ nav {
   }
 }
 
+@media (max-width: 768px) {
+  .logo-sub {
+    font-size: 11px;
+    white-space: nowrap;
+  }
+}
+
 .logo-icon {
   width: 58px;
   height: 58px;
