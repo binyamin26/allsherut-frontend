@@ -145,7 +145,7 @@ const translations = {
     // Common
     'common.hello': 'שלום',
     'common.welcome': 'ברוכים הבאים',
-    'common.tagline': 'שירותי בית מקצועיים',
+    'common.tagline': 'כל השירותים במקום אחד',
     
     // ContactPage - TRADUCTIONS COMPLÈTES
     'contact.hero.title': 'צור',
@@ -2722,7 +2722,7 @@ const translations = {
     // Common
     'common.hello': 'Hello',
     'common.welcome': 'Welcome',
-    'common.tagline': 'Professional Home Services',
+    'common.tagline': 'All the services in one place',
     
     // ContactPage - COMPLETE TRANSLATIONS
     'contact.hero.title': 'Contact',
@@ -5302,7 +5302,7 @@ const translations = {
     // Common
     'common.hello': 'Привет',
     'common.welcome': 'Добро пожаловать',
-    'common.tagline': 'Профессиональные домашние услуги',
+    'common.tagline': 'Все услуги в одном месте',
     
     // ContactPage - COMPLETE TRANSLATIONS
     'contact.hero.title': 'Свяжитесь',
@@ -7869,7 +7869,7 @@ const translations = {
     // Common
     'common.hello': 'Bonjour',
     'common.welcome': 'Bienvenue',
-    'common.tagline': 'Services à domicile professionnels',
+    'common.tagline': 'Tous les services, en un seul endroit',
     
     
     // ContactPage - COMPLETE TRANSLATIONS
