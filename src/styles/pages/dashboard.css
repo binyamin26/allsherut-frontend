@@ -702,8 +702,8 @@
 
 /* Provider info card styles */
 .provider-info-card {
-  background: linear-gradient(180deg, white 0%, #e0f2fe 100%);
-  border: 2px solid var(--primary-200);
+  background: linear-gradient(180deg, white 0%, #f0f9ff 100%);
+border: 2px solid #bae6fd;
   border-radius: var(--radius-2xl);
   padding: var(--space-8);
   margin-bottom: var(--space-8);
