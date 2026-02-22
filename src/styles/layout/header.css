@@ -106,7 +106,7 @@ nav {
   right: 50%;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--primary-500), var(--primary-400));
+  background: linear-gradient(90deg, #0ea5e9, #38bdf8);
   transition: all var(--transition-medium);
   transform: translateX(50%);
 }
@@ -491,9 +491,9 @@ nav {
     text-align: right;
   }
   
-  .mobile-menu .nav-link:hover {
-    background: var(--primary-50);
-    color: var(--primary-600);
+  .nav-link:hover {
+  color: #0ea5e9;
+  background-color: rgba(14, 165, 233, 0.1);
   }
   
   /* Services dans menu mobile */
