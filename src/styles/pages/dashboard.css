@@ -10,7 +10,7 @@
 
 /* Dashboard header */
 .dashboard-header {
- background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 50%, white 100%);
+  background: linear-gradient(135deg, var(--primary-50) 0%, var(--accent-50) 50%, white 100%);
   padding: var(--space-8);
   border-radius: var(--radius-2xl);
   border: 1px solid var(--primary-200);
@@ -702,7 +702,7 @@
 
 /* Provider info card styles */
 .provider-info-card {
-  background: linear-gradient(180deg, white 0%, #e0f2fe 100%);
+  background: linear-gradient(180deg, white 0%, var(--primary-50) 100%);
   border: 2px solid var(--primary-200);
   border-radius: var(--radius-2xl);
   padding: var(--space-8);
