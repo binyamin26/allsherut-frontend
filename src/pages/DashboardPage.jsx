@@ -742,7 +742,7 @@ const handleGalleryImageUpload = async (e) => {
   }
 
  if (file.size > 2 * 1024 * 1024) {
-  setGalleryError('הקובץ גדול מדי — מקסימום 2MB לתמונה');
+ setGalleryError(t('dashboard.gallery.errorSize'));
   return;
 }
 setGalleryError('');
