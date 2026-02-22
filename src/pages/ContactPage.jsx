@@ -212,6 +212,7 @@ const ContactPage = () => {
                     <input
                       type="text"
                       name="name"
+                      style={{ textAlign: 'start' }}
                       value={formData.name}
                       onChange={handleChange}
                       placeholder={t('contact.form.namePlaceholder')}
@@ -229,6 +230,7 @@ const ContactPage = () => {
                     <input
                       type="email"
                       name="email"
+                      style={{ textAlign: 'start' }}
                       value={formData.email}
                       onChange={handleChange}
                       placeholder={t('contact.form.emailPlaceholder')}
@@ -249,6 +251,7 @@ const ContactPage = () => {
                     <input
                       type="tel"
                       name="phone"
+                      style={{ textAlign: 'start' }}
                       value={formData.phone}
                       onChange={handleChange}
                       placeholder={t('contact.form.phonePlaceholder')}
@@ -279,12 +282,12 @@ const ContactPage = () => {
                 <label className="auth-form-label">{t('contact.form.message')} *</label>
                 <textarea
                   name="message"
+                   style={{ minHeight: '150px', resize: 'vertical', textAlign: 'start' }}
                   value={formData.message}
                   onChange={handleChange}
                   placeholder={t('contact.form.messagePlaceholder')}
                   rows={6}
                   className={`profile-input ${errors.message ? 'error' : ''}`}
-                  style={{ minHeight: '150px', resize: 'vertical' }}
                   disabled={loading}
                 />
                 {errors.message && <span className="error-text">{errors.message}</span>}
