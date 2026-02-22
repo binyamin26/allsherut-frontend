@@ -368,7 +368,7 @@ nav {
 
 @media (max-width: 768px) {
   header .container {
-    height: 70px;
+    height: 90px;
   }
   
   nav {
@@ -403,6 +403,20 @@ nav {
   
   .logo-main {
     font-size: var(--text-lg);
+  }
+}
+
+@media (max-width: 768px) {
+  .logo-sub {
+    font-size: 11px;
+    white-space: normal;
+    max-width: 130px;
+    line-height: 1.1;
+  }
+  
+  .logo-icon {
+    width: 90px;
+    height: 90px;
   }
 }
 
@@ -524,7 +538,7 @@ body {
 
 @media (max-width: 768px) {
   body {
-    padding-top: 70px;
+    padding-top: 90px;
   }
 }
 
