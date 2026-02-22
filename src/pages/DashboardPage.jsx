@@ -34,7 +34,7 @@ import {
   Save,
   Trash2,
   Camera,
-   Images
+   LayoutGrid
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import LoadingSpinner from '../components/common/LoadingSpinner';
@@ -1392,7 +1392,7 @@ console.log('🔍 DEBUG serviceDetails COMPLET:', JSON.stringify(userData?.servi
     {/* ===== GALERIE DE SERVICES ===== */}
 <div className="info-section">
   <h3 className="section-title" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-    <Images size={20} />
+   <LayoutGrid size={20} />
     גלריית שירותים
     <span style={{ fontSize: '0.8rem', fontWeight: '400', color: '#6b7280' }}>
       ({(user?.providerProfile?.profile_images || []).length}/6)
