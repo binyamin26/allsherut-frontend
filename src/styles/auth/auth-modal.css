@@ -57,7 +57,6 @@
   border: 1px solid #d1d5db;
   border-radius: 8px;
   background: #f9fafb;
-  direction: rtl;
 }
 
 .dropdown-search-icon {
@@ -73,7 +72,7 @@
   font-size: 14px;
   font-family: inherit;
   direction: rtl;
-  text-align: right;
+  text-align: start;
 }
 
 .custom-dropdown-item.no-results {
