@@ -161,7 +161,11 @@ const CustomDropdown = ({
         className={`custom-dropdown-trigger ${isOpen ? 'open' : ''} ${error ? 'error' : ''}`}
         onClick={() => !disabled && setIsOpen(!isOpen)}
         disabled={disabled}
-        style={{ textAlign: direction === 'ltr' ? 'left' : 'right', direction: direction }}
+        style={{ 
+  textAlign: direction === 'ltr' ? 'left' : 'right', 
+  direction: direction,
+  flexDirection: direction === 'ltr' ? 'row' : 'row-reverse'
+}}
       >
         <span className={value ? 'has-value' : 'placeholder'}>
           {displayLabel || placeholder}
