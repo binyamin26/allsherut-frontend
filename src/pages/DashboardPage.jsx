@@ -767,7 +767,6 @@ setGalleryError('');
 };
 
 const handleGalleryImageDelete = async (imageUrl) => {
-  if (!window.confirm('האם אתה בטוח שברצונך למחוק תמונה זו?')) return;
   setGalleryUploading(true);
   try {
     const result = await deleteGalleryImage(imageUrl, activeService || userData?.serviceType);
