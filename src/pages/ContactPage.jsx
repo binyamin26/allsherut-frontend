@@ -15,7 +15,7 @@ import CustomDropdown from '../components/common/CustomDropdown';
 
 const ContactPage = () => {
   const navigate = useNavigate();
-  const { t } = useLanguage();
+  const { t, direction } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -212,7 +212,7 @@ const ContactPage = () => {
                     <input
                       type="text"
                       name="name"
-                      style={{ textAlign: 'start' }}
+                      style={{ textAlign: 'start', direction: direction }}
                       value={formData.name}
                       onChange={handleChange}
                       placeholder={t('contact.form.namePlaceholder')}
@@ -230,7 +230,7 @@ const ContactPage = () => {
                     <input
                       type="email"
                       name="email"
-                      style={{ textAlign: 'start' }}
+                     style={{ textAlign: 'start', direction: direction }}
                       value={formData.email}
                       onChange={handleChange}
                       placeholder={t('contact.form.emailPlaceholder')}
@@ -251,7 +251,8 @@ const ContactPage = () => {
                     <input
                       type="tel"
                       name="phone"
-                      style={{ textAlign: 'start' }}
+                     style={{ textAlign: 'start', direction: direction }}
+                    
                       value={formData.phone}
                       onChange={handleChange}
                       placeholder={t('contact.form.phonePlaceholder')}
@@ -282,7 +283,7 @@ const ContactPage = () => {
                 <label className="auth-form-label">{t('contact.form.message')} *</label>
                 <textarea
                   name="message"
-                   style={{ minHeight: '150px', resize: 'vertical', textAlign: 'start' }}
+                 style={{ minHeight: '150px', resize: 'vertical', textAlign: 'start', direction: direction }}
                   value={formData.message}
                   onChange={handleChange}
                   placeholder={t('contact.form.messagePlaceholder')}
