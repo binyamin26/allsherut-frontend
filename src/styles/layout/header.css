@@ -94,8 +94,8 @@ nav {
 }
 
 .nav-link:hover {
-  color: var(--primary-600);
-  background-color: var(--primary-50);
+ color: var(--primary-500);
+  background-color: rgba(14, 165, 233, 0.1);
   transform: translateY(-1px);
 }
 
@@ -106,7 +106,7 @@ nav {
   right: 50%;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--primary-500), var(--accent-500));
+  background: linear-gradient(90deg, var(--primary-500), var(--primary-400));
   transition: all var(--transition-medium);
   transform: translateX(50%);
 }
