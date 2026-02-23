@@ -610,12 +610,18 @@ box-shadow: none;
 .password-input {
   flex: 1;
   padding-right: var(--space-4);
-  padding-left: var(--space-12); /* Plus d'espace à droite pour l'icône */
+  padding-left: var(--space-12);
 }
+
 
 .password-toggle {
   position: absolute;
-  left: var(--space-3); /* Position fixe à droite pour RTL */
+  left: var(--space-3);
+
+[dir="ltr"] .password-toggle {
+  left: auto;
+  right: var(--space-3);
+}
   background: none;
   border: none;
   cursor: pointer;
@@ -1748,6 +1754,16 @@ body .dashboard-page .info-section h3.section-title,
   font-weight: bold;
   font-size: 1.2rem;
   line-height: 1;
+}
+
+[dir="ltr"] .warning-list li {
+  padding-right: 0;
+  padding-left: var(--space-5);
+}
+
+[dir="ltr"] .warning-list li::before {
+  right: auto;
+  left: 0;
 }
 
 /* Dans danger-zone, les points sont rouges */
