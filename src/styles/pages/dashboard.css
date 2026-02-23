@@ -1767,6 +1767,12 @@ body .dashboard-page .info-section h3.section-title,
   left: 0;
 }
 
+@media (max-width: 768px) {
+  .settings-form .form-input::placeholder {
+    color: transparent;
+  }
+}
+
 /* Dans danger-zone, les points sont rouges */
 .danger-zone .warning-list li::before {
   color: var(--danger);
