@@ -23,8 +23,8 @@ body {
   line-height: 1.6;
   color: var(--neutral-800);
   background-color: var(--neutral-50);
-  direction: rtl;
-  text-align: right;
+  direction: var(--direction);
+  text-align: var(--text-align);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

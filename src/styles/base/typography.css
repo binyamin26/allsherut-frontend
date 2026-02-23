@@ -15,8 +15,8 @@ body {
   font-size: var(--text-base);
   line-height: 1.6;
   color: var(--neutral-800);
-  direction: rtl;
-  text-align: start;
+  direction: var(--direction);
+  text-align: var(--text-align);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
