@@ -25,6 +25,8 @@ const translations = {
     'auth.profile': 'פרופיל',
     'nav.dashboard': 'אזור אישי',
 
+    'provider.gallery': 'גלריה',
+
     'dashboard.gallery.title': 'גלריית שירותים',
 'dashboard.gallery.description': 'העלה עד 6 תמונות שמציגות את עבודתך ללקוחות',
 'dashboard.gallery.addPhoto': 'הוסף תמונה',
@@ -2609,6 +2611,8 @@ const translations = {
     'auth.profile': 'Profile',
     'nav.dashboard': 'Dashboard',
 
+    'provider.gallery': 'Gallery',
+
     'dashboard.gallery.title': 'Service Gallery',
 'dashboard.gallery.description': 'Upload up to 6 photos to showcase your work to clients',
 'dashboard.gallery.addPhoto': 'Add photo',
@@ -5190,6 +5194,8 @@ const translations = {
     'auth.profile': 'Профиль',
     'nav.dashboard': 'Панель управления',
 
+    'provider.gallery': 'Галерея',
+
     'dashboard.gallery.title': 'Галерея услуг',
 'dashboard.gallery.description': 'Загрузите до 6 фотографий для показа вашей работы',
 'dashboard.gallery.addPhoto': 'Добавить фото',
@@ -7749,7 +7755,9 @@ const translations = {
     'auth.profile': 'Profil',
     'nav.dashboard': 'Tableau de bord',
 
-    'dashboard.gallery.title': 'Galerie de services',
+    'provider.gallery': 'Galerie',
+
+'dashboard.gallery.title': 'Galerie de services',
 'dashboard.gallery.description': 'Ajoutez jusqu\'à 6 photos pour montrer votre travail aux clients',
 'dashboard.gallery.addPhoto': 'Ajouter une photo',
 'dashboard.gallery.changePhoto': 'Changer la photo',

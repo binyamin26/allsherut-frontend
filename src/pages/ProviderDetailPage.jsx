@@ -1495,8 +1495,8 @@ const handleContact = () => {
                   {renderServiceDetails()}
 
 {provider.media?.gallery?.length > 0 && (
-  <div className="gallery-section">
-    <h3 className="details-title">{t('provider.gallery') || 'גלריה'}</h3>
+  <div className="service-details-section">
+    <h3 className="details-title">{t('provider.gallery')}</h3>
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.75rem' }}>
       {provider.media.gallery.map((url, i) => (
         <img key={i} src={url} alt={`תמונה ${i + 1}`} style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover', borderRadius: '8px' }} />
