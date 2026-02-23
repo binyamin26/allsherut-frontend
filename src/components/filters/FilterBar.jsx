@@ -41,9 +41,12 @@ const FilterBar = ({
       case 'experience':
         return activeFilters.experience ? 1 : 0;
       case 'service':
-        return Object.keys(activeFilters).filter(key => 
-          !['minPrice', 'maxPrice', 'experience'].includes(key)
-        ).length;
+  return Object.keys(activeFilters).filter(key => 
+    !['minPrice', 'maxPrice', 'experience', 'minRating'].includes(key)
+  ).reduce((total, key) => {
+    const val = activeFilters[key];
+    return total + (Array.isArray(val) ? val.length : (val ? 1 : 0));
+  }, 0);
       case 'rating':
         return activeFilters.minRating ? 1 : 0;
       default:
