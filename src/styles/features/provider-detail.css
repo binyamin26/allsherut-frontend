@@ -1254,3 +1254,11 @@ text-align: start;
   box-shadow: var(--shadow-md);
   min-height: 48px;
 }
+
+.contact-top-frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
