@@ -293,8 +293,6 @@
   position: relative;
   max-width: 420px;
   margin: 0 auto;
-  direction: rtl;
-  text-align: right;
 }
 
 .provider-card.enhanced-card:hover {

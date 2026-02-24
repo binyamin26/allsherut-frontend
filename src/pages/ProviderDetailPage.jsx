@@ -1406,14 +1406,15 @@ const handleContact = () => {
       )}
     </div>
 
-    {provider.phone && (
-      <div className="contact-info">
-        <Phone size={16} />
-        <span className="phone-number">{provider.phone}</span>
-      </div>
-    )}
+  <button 
+  className="review-action-btn"
+  onClick={handleOpenReviewModal}
+>
+  <MessageCircle size={16} />
+  <span>{t('card.leaveReview')}</span>
+</button>
 
-    <div className="contact-actions">
+<div className="contact-actions">
       <button 
         onClick={() => window.location.href = `tel:${provider.phone}`}
         className="btn btn-primary btn-large"
