@@ -1406,20 +1406,14 @@ const handleContact = () => {
       )}
     </div>
 
-   <div className="contact-top-frame">
-  {provider.phone && (
-    <div className="contact-info">
-      <Phone size={16} />
-      <span className="phone-number">{provider.phone}</span>
-    </div>
-  )}
-  <button className="btn btn-secondary" onClick={handleOpenReviewModal}>
-    <MessageCircle size={16} />
-    {t('provider.reviews.writeReview')}
-  </button>
-</div>
+    {provider.phone && (
+      <div className="contact-info">
+        <Phone size={16} />
+        <span className="phone-number">{provider.phone}</span>
+      </div>
+    )}
 
-<div className="contact-actions">
+    <div className="contact-actions">
       <button 
         onClick={() => window.location.href = `tel:${provider.phone}`}
         className="btn btn-primary btn-large"
