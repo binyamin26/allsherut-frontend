@@ -1534,7 +1534,7 @@ body .dashboard-page .info-section h3.section-title,
 .settings-card.danger-zone .warning-list li {
   direction: var(--direction);
   padding-inline-end: var(--space-6);
-  padding-inline-start: 0;
+  padding-inline-start: var(--space-8);;
   position: relative;
   color: #991b1b;
   font-size: var(--text-base);
