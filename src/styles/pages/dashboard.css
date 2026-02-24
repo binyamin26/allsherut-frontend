@@ -1747,8 +1747,8 @@ body .dashboard-page .info-section h3.section-title,
 }
 
 .warning-list li {
- padding-inline-end: var(--space-5);
-  padding-inline-start: 0;
+  padding-inline-start: var(--space-5);
+  padding-inline-end: 0;
   position: relative;
   color: var(--neutral-700);
   font-size: var(--text-sm);
@@ -1759,8 +1759,7 @@ body .dashboard-page .info-section h3.section-title,
 .warning-list li::before {
   content: '•';
   position: absolute;
-  inset-inline-end: 0;
-  inset-inline-start: auto;
+  inset-inline-start: 0;
   color: #f59e0b;
   font-weight: bold;
   font-size: 1.2rem;
@@ -1769,16 +1768,6 @@ body .dashboard-page .info-section h3.section-title,
 
 .danger-zone .warning-list li::before {
   color: var(--danger);
-}
-
-[dir="ltr"] .warning-list li {
-  padding-right: 0;
-  padding-left: var(--space-5);
-}
-
-[dir="ltr"] .warning-list li::before {
-  right: auto;
-  left: 0;
 }
 
 @media (max-width: 768px) {
