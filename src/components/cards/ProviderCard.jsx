@@ -131,7 +131,7 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
       </div>
 
       <div className="card-footer">
-        <div className="action-buttons">
+       <div className="action-buttons" dir={language === 'he' ? 'rtl' : 'ltr'}>
           <button 
             className="contact-provider-btn"
             onClick={handleViewProfile}

@@ -1237,3 +1237,16 @@ text-align: start;
   line-height: 1.5;
 }
 
+.contact-top-frame {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--neutral-200);
+  border-radius: var(--radius-xl);
+  background: var(--neutral-50);
+  width: 100%;
+}
+
