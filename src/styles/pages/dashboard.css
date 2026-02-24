@@ -1474,9 +1474,9 @@ body .dashboard-page .info-section h3.section-title,
   padding: var(--space-5) var(--space-6);
   display: flex;
   align-items: center;
-  gap: var(--space-3);
+  justify-content: flex-start;
   direction: var(--direction);
-justify-content: space-between;
+  gap: var(--space-3);
 }
 
 .settings-card.danger-zone .settings-card-header h4 {
@@ -1532,10 +1532,14 @@ justify-content: space-between;
 }
 
 .settings-card.danger-zone .warning-list li {
-  color: #991b1b;
   direction: var(--direction);
+  padding-inline-end: var(--space-6);
+  padding-inline-start: 0;
+  position: relative;
+  color: #991b1b;
   font-size: var(--text-base);
-  padding: var(--space-2) var(--space-6) var(--space-2) 0;
+  line-height: 1.7;
+  margin-bottom: var(--space-2);
 }
 
 .settings-card.danger-zone .warning-list li::before {
@@ -2381,14 +2385,20 @@ select.inline-edit {
 
 .settings-card.danger-zone .service-deletion-card {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: stretch;
   direction: var(--direction);
   text-align: var(--text-align);
   padding: var(--space-4);
-  flex-wrap: wrap;
   gap: var(--space-3);
+}
+
+.settings-card.danger-zone .service-deletion-card .btn-danger {
+  width: 100%;
+  font-size: var(--text-sm);
+  padding: var(--space-2) var(--space-4);
+  flex-shrink: 1;
+  white-space: normal;
 }
 
 
