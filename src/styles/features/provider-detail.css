@@ -490,7 +490,7 @@
   font-weight: 700 !important;
   color: var(--neutral-900) !important;
   margin-bottom: var(--space-6) !important;
-text-align: var(--text-align);
+text-align: start;
 }
 
 .details-grid {
@@ -1202,7 +1202,7 @@ text-align: var(--text-align);
   background: none !important;
   background-clip: unset !important;
   -webkit-background-clip: unset !important;
-  text-align: right !important;
+  text-align: start !important;
   line-height: 1.2 !important;
 }
 
