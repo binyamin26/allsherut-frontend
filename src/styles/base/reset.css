@@ -10,6 +10,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  color-scheme: light;
 }
 
 html {
@@ -39,6 +40,11 @@ appearance: none;
   html, body {
     background-color: #ffffff;
     color: #0f172a;
+  }
+  input, textarea, select, button {
+    background-color: #ffffff;
+    color: #0f172a;
+    border-color: #e2e8f0;
   }
 }
 

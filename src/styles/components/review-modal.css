@@ -368,7 +368,7 @@
   box-shadow: var(--shadow-md);
   font-family: var(--font-primary);
   margin-top: var(--space-3);
-  direction: rtl;
+  direction: ltr;
 }
 
 .review-action-btn:hover {

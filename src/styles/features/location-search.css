@@ -649,6 +649,7 @@
   transition: all var(--transition-medium);
   box-shadow: var(--shadow-md);
   font-family: var(--font-primary);
+  direction: ltr;
 }
 
 .contact-provider-btn:hover {
