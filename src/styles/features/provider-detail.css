@@ -1262,3 +1262,43 @@ text-align: start;
   gap: var(--space-4);
   flex-wrap: wrap;
 }
+
+.hero-actions-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+}
+
+.hero-buttons-grid {
+  display: flex;
+  gap: var(--space-3);
+  width: 100%;
+  justify-content: center;
+}
+
+.hero-btn {
+  flex: 1;
+  max-width: 220px;
+  min-height: 48px;
+  justify-content: center;
+}
+
+/* Mobile : colonne, whatsapp au milieu */
+@media (max-width: 768px) {
+  .hero-buttons-grid {
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 100%;
+  }
+
+  .hero-btn {
+    max-width: 100%;
+  }
+
+  /* Ordre : call (1), whatsapp (2), review (3) */
+  .btn-primary.hero-btn { order: 1; }
+  .btn-success.hero-btn { order: 2; }
+  .review-action-btn.hero-btn { order: 3; }
+}

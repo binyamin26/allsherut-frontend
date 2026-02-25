@@ -1406,39 +1406,28 @@ const handleContact = () => {
       )}
     </div>
 
-  <div className="contact-top-frame">
+  <div className="hero-actions-wrapper">
   {provider.phone && (
     <div className="contact-info">
       <Phone size={16} />
       <span className="phone-number">{provider.phone}</span>
     </div>
   )}
-  <button 
-    className="review-action-btn"
-    onClick={handleOpenReviewModal}
-  >
-    <MessageCircle size={16} />
-    <span>{t('card.leaveReview')}</span>
-  </button>
+  <div className="hero-buttons-grid">
+    <button onClick={() => window.location.href = `tel:${provider.phone}`} className="btn btn-primary btn-large hero-btn">
+      <Phone size={18} />
+      {t('provider.callNow')}
+    </button>
+    <button className="review-action-btn hero-btn" onClick={handleOpenReviewModal}>
+      <MessageCircle size={16} />
+      <span>{t('card.leaveReview')}</span>
+    </button>
+    <button onClick={() => window.open(`https://wa.me/972${provider.phone?.replace(/^0/, '')}`, '_blank')} className="btn btn-success btn-large hero-btn">
+      <MessageCircle size={18} />
+      {t('provider.sendWhatsapp')}
+    </button>
+  </div>
 </div>
-
-<div className="contact-actions">
-      <button 
-        onClick={() => window.location.href = `tel:${provider.phone}`}
-        className="btn btn-primary btn-large"
-      >
-        <Phone size={18} />
-        {t('provider.callNow')}
-      </button>
-      
-      <button 
-        onClick={() => window.open(`https://wa.me/972${provider.phone?.replace(/^0/, '')}`, '_blank')}
-        className="btn btn-success btn-large"
-      >
-        <MessageCircle size={18} />
-        {t('provider.sendWhatsapp')}
-      </button>
-    </div>
   </div>
 
   {/* Photo de profil - à gauche */}
