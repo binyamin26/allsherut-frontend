@@ -353,7 +353,7 @@
 .review-action-btn {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: var(--space-2);
   width: 100%;
   padding: var(--space-3) var(--space-4);
@@ -368,7 +368,6 @@
   box-shadow: var(--shadow-md);
   font-family: var(--font-primary);
   margin-top: var(--space-3);
-  direction: ltr;
 }
 
 .review-action-btn:hover {
@@ -507,28 +506,7 @@
   }
 }
 
-/* Dark mode support (optionnel) */
-@media (prefers-color-scheme: dark) {
-  .review-modal {
-    background: var(--neutral-800);
-    color: var(--neutral-100);
-  }
-  
-  .modal-header {
-    background: linear-gradient(135deg, var(--neutral-700) 0%, var(--neutral-600) 100%);
-    border-bottom-color: var(--neutral-600);
-  }
-  
-  .modal-title {
-    color: var(--neutral-100);
-  }
-  
-  .info-box,
-  .success-box {
-    background: var(--neutral-700);
-    border-color: var(--neutral-600);
-  }
-}
+/* Dark mode désactivé - le site est en mode clair uniquement */
 
 /* Display name options */
 .display-name-options {

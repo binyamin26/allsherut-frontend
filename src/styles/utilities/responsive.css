@@ -1018,35 +1018,7 @@
   }
 }
 
-/* ====================================
-   DARK MODE SUPPORT (OPTIONAL)
-   ==================================== */
-@media (prefers-color-scheme: dark) {
-  .form-section {
-    background: var(--neutral-800);
-    border-color: var(--neutral-600);
-    color: var(--neutral-200);
-  }
-  
-  .checkbox-item {
-    background: var(--neutral-700);
-    border-color: var(--neutral-600);
-    color: var(--neutral-200);
-  }
-  
-  .modern-select,
-  textarea {
-    background: var(--neutral-700);
-    border-color: var(--neutral-600);
-    color: var(--neutral-200);
-  }
-  
-  .image-upload-btn {
-    background: var(--neutral-700);
-    border-color: var(--neutral-600);
-    color: var(--neutral-200);
-  }
-}
+/* Dark mode désactivé - le site est en mode clair uniquement */
 
 /* ====================================
    HIGH CONTRAST MODE

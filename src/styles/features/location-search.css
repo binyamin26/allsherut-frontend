@@ -636,7 +636,7 @@
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: var(--space-2);
   padding: var(--space-3) var(--space-4);
   background: linear-gradient(135deg, var(--primary-500) 0%, var(--accent-500) 100%);
@@ -649,7 +649,6 @@
   transition: all var(--transition-medium);
   box-shadow: var(--shadow-md);
   font-family: var(--font-primary);
-  direction: ltr;
 }
 
 .contact-provider-btn:hover {
