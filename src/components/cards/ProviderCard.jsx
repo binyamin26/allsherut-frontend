@@ -12,7 +12,7 @@ const ProviderCard = ({ provider, onOpenReviewModal }) => {
   });
   
   const navigate = useNavigate();
-  const { t, language } = useLanguage();
+  const { t, isRTL } = useLanguage();
 
   const handleViewProfile = () => {
     navigate(`/provider/${provider.provider_id || provider.providerId || provider.id}`);
@@ -70,7 +70,7 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
   };
 
   return (
-    <div className="provider-card enhanced-card" dir={language === 'he' ? 'rtl' : 'ltr'}>
+    <div className="provider-card enhanced-card" dir={isRTL ? 'rtl' : 'ltr'}>
       <div className="card-header">
         <div className="provider-image-wrapper">
          <img 
@@ -131,7 +131,7 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
       </div>
 
       <div className="card-footer">
-       <div className="action-buttons" dir={language === 'he' ? 'rtl' : 'ltr'}>
+       <div className="action-buttons" dir={isRTL ? 'rtl' : 'ltr'}>
           <button 
             className="contact-provider-btn"
             onClick={handleViewProfile}
