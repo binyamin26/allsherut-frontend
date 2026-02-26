@@ -1788,35 +1788,20 @@ const renderWorkingAreasSection = () => {
     <>
       <div className="modal-overlay" onClick={onClose}>
         <div className="modal-content auth-modal" onClick={(e) => e.stopPropagation()}>
-          {mode !== 'register' && (
-            <button className="modal-close" onClick={onClose}>
-              <X size={24} />
-            </button>
-          )}
+          <button className="modal-close" onClick={onClose}>
+            <X size={24} />
+          </button>
 
-          {mode === 'register' ? (
-            <div className="auth-register-header">
-              <button className="modal-close auth-register-close" onClick={onClose}>
-                <X size={20} />
-              </button>
-              <div className="auth-register-header-content">
-                <div className="auth-register-icon">
-                  <Wrench size={30} />
-                </div>
-                <div className="auth-register-text">
-                  <h2 className="auth-register-title">{t('auth.modal.registerTitle')}</h2>
-                  <p className="auth-register-subtitle">
-                    {step === 2 ? t('auth.modal.step2Subtitle') : t('auth.freeMonth')}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ) : (
-            <div className="modal-header">
-              <h2>{t('auth.modal.loginTitle')}</h2>
-              <p className="modal-subtitle">{t('auth.modal.loginSubtitle')}</p>
-            </div>
-          )}
+          <div className="modal-header">
+          <h2>{mode === 'login' ? t('auth.modal.loginTitle') : t('auth.modal.registerTitle')}</h2>
+<p className="modal-subtitle">
+  {mode === 'login' 
+    ? t('auth.modal.loginSubtitle') 
+    : step === 2 
+      ? t('auth.modal.step2Subtitle')
+      : ''}
+</p>
+          </div>
 
           {mode === 'register' && step === 1 && (
             <form onSubmit={handleStep1Submit} className="auth-form" autoComplete="off">
