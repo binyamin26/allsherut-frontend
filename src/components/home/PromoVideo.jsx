@@ -1,22 +1,56 @@
 import React, { useState, useRef, useEffect } from 'react';
 
+// ─── TEXTES + IMAGES DE FOND ───────────────────────────────────────────────
+// bgImage  : chemin vers l'image (null = animation techno par défaut)
+// isMarquee: garde le défilé de photos existant
+// time     : durée d'affichage en secondes
 const promoTexts = [
-  { main: "האם אתם נותני שירות ומחפשים להיחשף לקהל רחב יותר?", sub: "", time: 4 },
-  { main: "AllSherut כאן כדי ללוות אתכם", sub: "", time: 4 },
-  { main: "הרשמה פשוטה ומהירה", sub: "", time: 4 },
-  { main: "בחרו את השירותים שאתם מציעים", sub: "", time: 4 },
-  { main: "+20 קטגוריות", sub: "מקום אחד לניהול העסק", isMarquee: true, time: 8 },
-  { main: "גשו לאזור האישי שלכם", sub: "", time: 4 },
-  { main: "עדכנו את הפרטים שלכם בכל עת", sub: "", time: 4 },
-  { main: "הפרופיל שלכם נשאר ברור ומעודכן", sub: "", time: 4 },
-  { main: "הגדילו את החשיפה שלכם בהתאם לשירותים שאתם מציעים", sub: "", time: 4 },
-  { main: "הגיעו ללקוחות שמחפשים באמת את השירות שלכם", sub: "", time: 4 },
-  { main: "הלקוחות מדרגים את העבודה שלכם", sub: "", time: 4 },
-  { main: "הביקורות מחזקות את האמינות שלכם", sub: "", time: 4 },
-  { main: "מקום אחד לניהול כל הפעילות שלכם", sub: "", time: 4 },
-  { main: "AllSherut משיקה את מבצע ההשקה", sub: "", time: 4 },
-  { main: "הרשמה חינם לנותני שירות", sub: "", time: 4 },
-  { main: "הצטרפו ל-AllSherut כבר עכשיו", sub: "", time: 4 }
+  {
+    main: "האם אתם נותני שירות ומעוניינים להיחשף לקהל רחב יותר?",
+    bgImage: "/artisan.png",
+    time: 5
+  },
+  {
+    main: "AllSherut עוזרת לכם לפתח את העסק שלכם.",
+    bgImage: null,
+    time: 4
+  },
+  {
+    main: "הרשמה פשוטה ומהירה אונליין.",
+    bgImage: null,
+    time: 4
+  },
+  {
+    main: "בחרו את השירותים שלכם מתוך יותר מ־20 קטגוריות.",
+    isMarquee: true,
+    bgImage: null,
+    time: 8
+  },
+  {
+    main: "גשו לאזור האישי שלכם.",
+    bgImage: null,
+    time: 4
+  },
+  {
+    main: "עדכנו את הפרטים שלכם בכל עת.",
+    bgImage: null,
+    time: 4
+  },
+  {
+    main: "הלקוחות מדרגים את העבודה שלכם. הביקורות מחזקות את האמינות שלכם.",
+    bgImage: "/avis.png",
+    time: 5
+  },
+  {
+    main: "מבצע השקה: הרשמה חינם.",
+    bgImage: null,
+    time: 4
+  },
+  {
+    main: "הצטרפו ל-AllSherut עוד היום והגדילו את החשיפה והנוכחות שלכם בשוק.",
+    bgImage: null,
+    time: 5
+  }
 ];
 
 const ANIM_CLASSES = ['impact-left', 'impact-right', 'impact-top', 'impact-zoom', 'impact-shrink'];
@@ -66,6 +100,36 @@ const styles = `
     animation-play-state: paused !important;
   }
 
+  /* ── IMAGE DE FOND PAR SLIDE ── */
+  .slide-bg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    transition: opacity 0.8s ease;
+  }
+  .slide-bg img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  /* Overlay dégradé pour garder le texte lisible */
+  .slide-bg::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(
+      160deg,
+      rgba(255,255,255,0.55) 0%,
+      rgba(239,246,255,0.45) 40%,
+      rgba(219,234,254,0.40) 75%,
+      rgba(191,219,254,0.50) 100%
+    );
+  }
+  .slide-bg.hidden { opacity: 0; }
+  .slide-bg.visible { opacity: 1; }
+
   .bg-video {
     position: absolute;
     top: 0; left: 0;
@@ -102,7 +166,7 @@ const styles = `
     66%     { transform: translate(-20px,30px) scale(0.97); }
   }
 
-  /* ── COUCHE TECH ── */
+  /* ── COUCHE TECH (affiché seulement quand pas d'image de fond) ── */
   .idle-layer {
     position: absolute;
     top: 0; left: 0;
@@ -110,9 +174,10 @@ const styles = `
     z-index: 1;
     overflow: hidden;
     pointer-events: none;
-    transition: opacity 1s ease;
+    transition: opacity 0.8s ease;
   }
-  .idle-layer.hidden { opacity: 0.15; }
+  .idle-layer.hidden  { opacity: 0; }
+  .idle-layer.visible { opacity: 1; }
 
   .tech-grid {
     position: absolute;
@@ -226,9 +291,9 @@ const styles = `
   }
 
   .main-text {
-    font-size: clamp(36px, 7vw, 105px);
+    font-size: clamp(28px, 5.5vw, 88px);
     font-weight: 900;
-    line-height: 1.15;
+    line-height: 1.2;
     background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 35%, #0ea5e9 70%, #38bdf8 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -249,14 +314,19 @@ const styles = `
   /* ── ANIMATIONS IMPACT ── */
   .impact-left        { animation: impactFromLeft  4s cubic-bezier(0.16,1,0.3,1) forwards; }
   .impact-left-long   { animation: impactFromLeft  8s cubic-bezier(0.16,1,0.3,1) forwards; }
+  .impact-left-5s     { animation: impactFromLeft  5s cubic-bezier(0.16,1,0.3,1) forwards; }
   .impact-right       { animation: impactFromRight 4s cubic-bezier(0.16,1,0.3,1) forwards; }
   .impact-right-long  { animation: impactFromRight 8s cubic-bezier(0.16,1,0.3,1) forwards; }
+  .impact-right-5s    { animation: impactFromRight 5s cubic-bezier(0.16,1,0.3,1) forwards; }
   .impact-top         { animation: impactFromTop   4s cubic-bezier(0.16,1,0.3,1) forwards; }
   .impact-top-long    { animation: impactFromTop   8s cubic-bezier(0.16,1,0.3,1) forwards; }
+  .impact-top-5s      { animation: impactFromTop   5s cubic-bezier(0.16,1,0.3,1) forwards; }
   .impact-zoom        { animation: impactZoom      4s cubic-bezier(0.16,1,0.3,1) forwards; }
   .impact-zoom-long   { animation: impactZoom      8s cubic-bezier(0.16,1,0.3,1) forwards; }
+  .impact-zoom-5s     { animation: impactZoom      5s cubic-bezier(0.16,1,0.3,1) forwards; }
   .impact-shrink      { animation: impactShrink    4s cubic-bezier(0.16,1,0.3,1) forwards; }
   .impact-shrink-long { animation: impactShrink    8s cubic-bezier(0.16,1,0.3,1) forwards; }
+  .impact-shrink-5s   { animation: impactShrink    5s cubic-bezier(0.16,1,0.3,1) forwards; }
 
   @keyframes impactFromLeft {
     0%   { opacity:0; transform:translateX(-150%) scaleX(1.5) skewX(-12deg); filter:blur(20px); }
@@ -361,6 +431,13 @@ const styles = `
   }
 `;
 
+// Retourne la classe d'animation adaptée à la durée de la slide
+const getAnimClass = (baseClass, time) => {
+  if (time >= 8) return `${baseClass}-long`;
+  if (time >= 5) return `${baseClass}-5s`;
+  return baseClass;
+};
+
 const PromoVideo = ({ videoSrc = "/background.mp4", audioSrc = "/musique.mp3", services = [] }) => {
   const [isPaused, setIsPaused] = useState(false);
   const [isMuted,  setIsMuted]  = useState(true);
@@ -407,12 +484,17 @@ const PromoVideo = ({ videoSrc = "/background.mp4", audioSrc = "/musique.mp3", s
     isPaused ? v.pause() : v.play().catch(() => {});
   }, [isPaused]);
 
+  // Calcule quelle slide est active
   let accum = 0, activeSeq = 0;
   for (let i = 0; i < promoTexts.length; i++) {
     accum += promoTexts[i].time;
     if (currentTime < accum) { activeSeq = i; break; }
   }
-  const isMarqueeActive = promoTexts[activeSeq]?.isMarquee;
+  const activeSlide     = promoTexts[activeSeq];
+  const isMarqueeActive = activeSlide?.isMarquee;
+  const hasImage        = !!activeSlide?.bgImage;
+  // L'animation techno s'affiche quand il n'y a pas d'image et pas de marquee
+  const showIdleLayer   = !hasImage && !isMarqueeActive;
 
   const toggleVideo = () => setIsPaused(p => !p);
   const toggleSound = () => {
@@ -431,14 +513,34 @@ const PromoVideo = ({ videoSrc = "/background.mp4", audioSrc = "/musique.mp3", s
     <div className={`promo-container ${isPaused ? 'is-paused' : ''}`}>
       <style>{styles}</style>
 
+      {/* Vidéo de fond subtile */}
       <video ref={videoRef} className="bg-video" autoPlay loop muted playsInline>
         <source src={videoSrc} type="video/mp4" />
       </video>
 
+      {/* Blobs décoratifs */}
       <div className="bg-blob bb-1"></div>
       <div className="bg-blob bb-2"></div>
 
-      <div className={`idle-layer ${isMarqueeActive ? 'hidden' : ''}`}>
+      {/* ── IMAGE DE FOND PAR SLIDE ── */}
+      {/* On render TOUTES les images mais on cache celles qui ne sont pas actives */}
+      {promoTexts.map((slide, i) =>
+        slide.bgImage ? (
+          <div
+            key={`bg-${i}`}
+            className={`slide-bg ${activeSeq === i ? 'visible' : 'hidden'}`}
+          >
+            <img
+              src={slide.bgImage}
+              alt=""
+              onError={(e) => { e.target.style.display = 'none'; }}
+            />
+          </div>
+        ) : null
+      )}
+
+      {/* ── ANIMATION TECHNO (uniquement si pas d'image et pas de marquee) ── */}
+      <div className={`idle-layer ${showIdleLayer ? 'visible' : 'hidden'}`}>
         <div className="tech-grid"></div>
         <div className="pulse-circle pc-1"></div>
         <div className="pulse-circle pc-2"></div>
@@ -449,6 +551,7 @@ const PromoVideo = ({ videoSrc = "/background.mp4", audioSrc = "/musique.mp3", s
         <div className="geo-shape gs-4"></div>
       </div>
 
+      {/* ── MARQUEE ── */}
       <div className={`marquee-layer ${isMarqueeActive ? 'visible' : ''}`}>
         <div className="marquee-row scroll-left">
           {marqueeListTop.map((src,i) => <MarqueeItem key={`t-${i}`} src={src}/>)}
@@ -463,11 +566,12 @@ const PromoVideo = ({ videoSrc = "/background.mp4", audioSrc = "/musique.mp3", s
 
       <audio ref={audioRef} loop src={audioSrc}></audio>
 
+      {/* ── TEXTES ── */}
       <div className="scene">
         {promoTexts.map((textObj, index) => {
           if (activeSeq !== index) return null;
           const base = ANIM_CLASSES[index % ANIM_CLASSES.length];
-          const cls  = textObj.isMarquee ? `${base}-long` : base;
+          const cls  = getAnimClass(base, textObj.time);
           return (
             <div key={index} className={`text-card ${cls}`}>
               <div className="main-text">{textObj.main}</div>
@@ -477,6 +581,7 @@ const PromoVideo = ({ videoSrc = "/background.mp4", audioSrc = "/musique.mp3", s
         })}
       </div>
 
+      {/* ── CONTRÔLES ── */}
       <div className="controls-container">
         <button
           className="control-btn"

@@ -1189,11 +1189,39 @@
 /* Grille des services step 1 */
 .service-selection {
   display: grid;
-  grid-template-columns: 1fr; 
+  grid-template-columns: 1fr;
   gap: var(--space-4);
-  margin-top: var(--space-6);
-  margin-bottom: var(--space-6);
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-4);
   direction: rtl;
+
+  /* === Fond premium "galerie de services" === */
+  background:
+    radial-gradient(ellipse at 12% 8%,  rgba(99, 102, 241, 0.22) 0%, transparent 42%),
+    radial-gradient(ellipse at 88% 92%, rgba(20, 184, 166, 0.18) 0%, transparent 38%),
+    radial-gradient(ellipse at 65% 18%, rgba(139, 92, 246, 0.12) 0%, transparent 32%),
+    radial-gradient(ellipse at 30% 80%, rgba(99, 102, 241, 0.08) 0%, transparent 35%),
+    linear-gradient(150deg, #f0f4ff 0%, #fafbff 45%, #f0fffe 100%);
+  border-radius: 24px;
+  padding: 20px 16px 16px;
+  position: relative;
+  isolation: isolate;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 4px 24px rgba(99, 102, 241, 0.09),
+    0 0 0 1px rgba(99, 102, 241, 0.11);
+}
+
+/* Pattern de points en superposition */
+.service-selection::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(99, 102, 241, 0.15) 1.5px, transparent 1.5px);
+  background-size: 22px 22px;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: -1;
 }
 
 .service-btn {
@@ -1217,9 +1245,8 @@
   .service-selection {
     grid-template-columns: 1fr;
     gap: var(--space-3);
-    max-width: 100%;
-    margin-left: 0;
-    margin-right: 0;
+    padding: 14px 12px 12px;
+    border-radius: 20px;
   }
   
   .service-btn {
@@ -1479,4 +1506,14 @@
    border: 1px solid var(--primary-200);
   border-radius: var(--radius-lg);
   overflow: hidden;
+}
+
+/* ====================================
+   BORDURES ARRONDIES MOBILE - AUTH MODAL
+   Bottom-sheet style avec coins arrondis en haut
+   ==================================== */
+@media (max-width: 640px) {
+  .modal-content.auth-modal {
+    border-radius: 28px 28px 0 0 !important;
+  }
 }
