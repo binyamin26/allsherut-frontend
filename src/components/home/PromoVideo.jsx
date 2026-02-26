@@ -7,12 +7,12 @@ import React, { useState, useRef, useEffect } from 'react';
 const promoTexts = [
   {
     main: "האם אתם נותני שירות ומעוניינים להיחשף לקהל רחב יותר?",
-    bgImage: "/artisan.png",
+    bgImage: "/artisan.jpg",
     time: 5
   },
   {
     main: "AllSherut עוזרת לכם לפתח את העסק שלכם.",
-    bgImage: null,
+    bgImage: "/aide.jpg",
     time: 4
   },
   {
@@ -38,12 +38,12 @@ const promoTexts = [
   },
   {
     main: "הלקוחות מדרגים את העבודה שלכם. הביקורות מחזקות את האמינות שלכם.",
-    bgImage: "/avis.png",
+    bgImage: "/avis.jpg",
     time: 5
   },
   {
     main: "מבצע השקה: הרשמה חינם.",
-    bgImage: null,
+    bgImage: "/gratos.jpg",
     time: 4
   },
   {
