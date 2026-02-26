@@ -28,7 +28,7 @@ const promoTexts = [
   },
   {
     main: "גשו לאזור האישי שלכם.",
-    bgImage: null,
+    bgImage: "/dashboard.mp4",
     time: 4
   },
   {
