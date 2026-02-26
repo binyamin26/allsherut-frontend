@@ -78,7 +78,8 @@ const styles = `
     position: relative;
     width: 100%;
     height: 100%;
-    min-height: 600px;
+    aspect-ratio: 16/9;
+min-height: unset;
     background: linear-gradient(160deg, #ffffff 0%, #eff6ff 40%, #dbeafe 75%, #bfdbfe 100%);
     display: flex;
     justify-content: center;
@@ -90,9 +91,7 @@ const styles = `
 
   @media (max-width: 768px) {
     .promo-container {
-      min-height: 320px;
-      height: 55vw;
-      max-height: 480px;
+      aspect-ratio: 16/9;
     }
   }
 
@@ -111,7 +110,7 @@ const styles = `
   }
   .slide-bg img {
     width: 100%; height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     display: block;
   }
   /* Overlay dégradé pour garder le texte lisible */
