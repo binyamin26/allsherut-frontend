@@ -1815,19 +1815,16 @@ const renderWorkingAreasSection = () => {
                       className={`service-btn ${formData.serviceType === service.key ? 'active' : ''}`}
                       onClick={() => handleServiceChange(service.key)}
                     >
-   {service.image ? (
-  <img 
-    src={service.image} 
-    alt={service.name} 
-    className="service-image"
-    loading="lazy"  // ← AJOUTER CETTE LIGNE
-  />
+  {service.image ? (
+  <div className="service-card-image-wrapper">
+    <img src={service.image} alt={service.name} className="service-image" loading="lazy" />
+  </div>
 ) : (
   <div className={`service-icon-fallback ${service.gradient}`}>
     <span style={{ fontSize: '48px' }}>{service.icon}</span>
   </div>
 )}
-<div className="service-name-overlay">
+<div className="service-card-label">
   <h3>{service.name}</h3>
 </div>
                     </button>
