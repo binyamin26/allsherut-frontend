@@ -235,7 +235,7 @@
     height: 100dvh;
     max-height: 100dvh;
     min-height: auto;
-    border-radius: 40px;
+    border-radius: 0px;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
   }
