@@ -1490,3 +1490,172 @@
     border-radius: 28px 28px 0 0 !important;
   }
 }
+
+/* ============================================
+   CORRECTIFS AUTH MODAL - 3 MODIFICATIONS
+   À COLLER À LA FIN DE auth-modal.css
+   ============================================ */
+
+/* ─────────────────────────────────────────── */
+/* 1. BORDS ARRONDIS EN HAUT DU HEADER        */
+/* ─────────────────────────────────────────── */
+/* overflow:hidden force le contenu à respecter le border-radius du modal */
+.modal-content.auth-modal {
+  overflow: hidden;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+}
+
+/* La barre colorée du haut respecte aussi les coins */
+.auth-modal::before {
+  border-radius: 24px 24px 0 0;
+}
+
+/* Le header reste fixe (ne scroll pas) */
+.auth-modal .modal-header {
+  flex-shrink: 0;
+}
+
+
+/* ─────────────────────────────────────────── */
+/* 2. SCROLLBAR DANS LE CADRE                 */
+/* ─────────────────────────────────────────── */
+/* Le formulaire scrolle à l'intérieur du modal */
+.auth-modal .auth-form {
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex: 1;
+  /* Scrollbar fine et stylée */
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-300) transparent;
+}
+
+.auth-modal .auth-form::-webkit-scrollbar {
+  width: 4px;
+}
+.auth-modal .auth-form::-webkit-scrollbar-track {
+  background: transparent;
+}
+.auth-modal .auth-form::-webkit-scrollbar-thumb {
+  background: var(--primary-300);
+  border-radius: 4px;
+}
+.auth-modal .auth-form::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-500);
+}
+
+
+/* ─────────────────────────────────────────── */
+/* 3. CARTES GLASSMORPHISM                    */
+/* ─────────────────────────────────────────── */
+
+/* Fond sombre avec dégradé derrière les cartes */
+.service-selection {
+  position: relative;
+  padding: 16px;
+  border-radius: 20px;
+  background: linear-gradient(
+    135deg,
+    #1a1a2e 0%,
+    #16213e 30%,
+    #0f3460 60%,
+    #533483 100%
+  );
+  overflow: hidden;
+}
+
+/* Orbe lumineux animé en arrière-plan */
+.service-selection::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(99, 102, 241, 0.35) 0%,
+    rgba(15, 52, 96, 0.2) 40%,
+    transparent 70%
+  );
+  animation: rotateBg 10s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes rotateBg {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Les cartes au-dessus de l'orbe */
+.service-btn {
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.07) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+}
+
+.service-btn:hover {
+  background: rgba(255, 255, 255, 0.14) !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  box-shadow:
+    0 10px 36px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+  transform: translateY(-6px) scale(1.02);
+}
+
+.service-btn.active {
+  background: rgba(99, 102, 241, 0.38) !important;
+  border-color: rgba(139, 92, 246, 0.75) !important;
+  box-shadow:
+    0 0 24px rgba(99, 102, 241, 0.55),
+    0 10px 36px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+  transform: translateY(-4px) scale(1.03);
+}
+
+/* Photo légèrement désaturée par défaut, pleine couleur au hover */
+.service-btn .service-image {
+  opacity: 0.82;
+  filter: saturate(0.85);
+  transition: opacity 0.35s ease, filter 0.35s ease, transform 0.4s ease;
+}
+
+.service-btn:hover .service-image {
+  opacity: 1;
+  filter: saturate(1.1);
+}
+
+/* Overlay texte adapté au fond sombre */
+.service-name-overlay {
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.78));
+}
+
+.service-name-overlay h3 {
+  color: white;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85);
+}
+
+
+/* ─────────────────────────────────────────── */
+/* MOBILE                                     */
+/* ─────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .modal-content.auth-modal {
+    border-radius: 28px 28px 0 0 !important;
+    max-height: 95vh;
+  }
+
+  .auth-modal::before {
+    border-radius: 28px 28px 0 0;
+  }
+}
