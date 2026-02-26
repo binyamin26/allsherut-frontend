@@ -679,29 +679,6 @@
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
 }
 
-/* ====================================
-   DARK MODE SUPPORT (OPTIONNEL)
-   ==================================== */
-@media (prefers-color-scheme: dark) {
-  .filter-bar {
-    background: #1f2937;
-    border-color: #374151;
-  }
-  
-  .filter-pill {
-    background: #1f2937;
-    border-color: #4b5563;
-    color: #e5e7eb;
-  }
-  
-  .filter-sidebar {
-    background: #1f2937;
-  }
-  
-  .filter-sidebar-title {
-    color: #f9fafb;
-  }
-}
 
 /* ====================================
    SERVICE PANEL - FILTRES SPÉCIFIQUES
