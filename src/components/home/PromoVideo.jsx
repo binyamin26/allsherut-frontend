@@ -111,7 +111,7 @@ const styles = `
   }
   .slide-bg img {
     width: 100%; height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
   }
   /* Overlay dégradé pour garder le texte lisible */
