@@ -1546,115 +1546,35 @@
   background: var(--primary-500);
 }
 
-
-/* ─────────────────────────────────────────── */
-/* 3. CARTES GLASSMORPHISM                    */
-/* ─────────────────────────────────────────── */
-
-/* Fond sombre avec dégradé derrière les cartes */
 .service-selection {
   position: relative;
   padding: 16px;
   border-radius: 20px;
-  background: linear-gradient(
-    135deg,
-    #1a1a2e 0%,
-    #16213e 30%,
-    #0f3460 60%,
-    #533483 100%
-  );
-  overflow: hidden;
+  background: linear-gradient(135deg, #e0f2fe 0%, #ede9fe 50%, #f0fdf4 100%);
 }
 
-/* Orbe lumineux animé en arrière-plan */
-.service-selection::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  right: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(99, 102, 241, 0.35) 0%,
-    rgba(15, 52, 96, 0.2) 40%,
-    transparent 70%
-  );
-  animation: rotateBg 10s linear infinite;
-  pointer-events: none;
-  z-index: 0;
-}
-
-@keyframes rotateBg {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-
-/* Les cartes au-dessus de l'orbe */
 .service-btn {
   position: relative;
   z-index: 1;
-  background: transparent !important;
-  border: 1.5px solid rgba(255, 255, 255, 0.25) !important;
+  background: rgba(255, 255, 255, 0.55) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.8) !important;
   box-shadow:
-    0 4px 16px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.05) !important;
+    0 4px 20px rgba(99, 102, 241, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
 }
 
 .service-btn:hover {
-  background: rgba(255, 255, 255, 0.14) !important;
-  border-color: rgba(255, 255, 255, 0.35) !important;
+  background: rgba(255, 255, 255, 0.75) !important;
   box-shadow:
-    0 10px 36px rgba(0, 0, 0, 0.45),
-    0 0 0 1px rgba(255, 255, 255, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+    0 8px 30px rgba(99, 102, 241, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 1) !important;
   transform: translateY(-6px) scale(1.02);
 }
 
 .service-btn.active {
-  background: rgba(99, 102, 241, 0.38) !important;
-  border-color: rgba(139, 92, 246, 0.75) !important;
-  box-shadow:
-    0 0 24px rgba(99, 102, 241, 0.55),
-    0 10px 36px rgba(0, 0, 0, 0.45),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
-  transform: translateY(-4px) scale(1.03);
-}
-
-/* Photo légèrement désaturée par défaut, pleine couleur au hover */
-.service-btn .service-image {
-  opacity: 0.35;
-  filter: saturate(0.7) brightness(0.8);
-  transition: opacity 0.35s ease, filter 0.35s ease, transform 0.4s ease;
-}
-
-.service-btn:hover .service-image {
-  opacity: 0.55;
-  filter: saturate(1) brightness(0.9);
-}
-
-/* Overlay texte adapté au fond sombre */
-.service-name-overlay {
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.78));
-}
-
-.service-name-overlay h3 {
-  color: white;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85);
-}
-
-
-/* ─────────────────────────────────────────── */
-/* MOBILE                                     */
-/* ─────────────────────────────────────────── */
-@media (max-width: 640px) {
-  .modal-content.auth-modal {
-    border-radius: 28px 28px 0 0 !important;
-    max-height: 95vh;
-  }
-
-  .auth-modal::before {
-    border-radius: 28px 28px 0 0;
-  }
+  background: rgba(238, 242, 255, 0.85) !important;
+  border-color: rgba(99, 102, 241, 0.5) !important;
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.3) !important;
 }
