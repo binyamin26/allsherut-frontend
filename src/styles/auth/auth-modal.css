@@ -1550,7 +1550,7 @@
   position: relative;
   padding: 16px;
   border-radius: 20px;
-  background: linear-gradient(135deg, #e0f2fe 0%, #ede9fe 50%, #f0fdf4 100%);
+  background: white;
 }
 
 .service-btn {
