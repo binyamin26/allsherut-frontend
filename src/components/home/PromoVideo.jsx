@@ -223,42 +223,13 @@ const styles = `
     50%     { transform: translateY(-25px) rotate(12deg); }
   }
 
-  /* ── LOGO EN HAUT ── */
-  .logo-top {
-    position: absolute;
-    top: 6%;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 20;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-  }
-  .logo-name {
-    font-size: clamp(22px, 7vw, 42px);
-    font-weight: 900;
-    background: linear-gradient(135deg, #1d4ed8, #0ea5e9);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    letter-spacing: -0.02em;
-    filter: drop-shadow(0 2px 8px rgba(37,99,235,0.3));
-  }
-  .logo-sub {
-    font-size: clamp(10px, 3vw, 16px);
-    font-weight: 600;
-    color: #3b82f6;
-    opacity: 0.8;
-  }
-
   /* ── MARQUEE (vertical: colonnes) ── */
   .marquee-layer {
     position: absolute;
     top: 0; left: -10%;
     width: 120%; height: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     gap: 12px;
     z-index: 2;
@@ -270,11 +241,11 @@ const styles = `
     direction: ltr;
   }
   .marquee-layer.visible { opacity: 0.9; }
-  .marquee-col { display: flex; flex-direction: column; gap: 12px; width: max-content; }
-  .scroll-up   { animation: scrollDiagUp   35s linear infinite; }
-.scroll-down { animation: scrollDiagDown 35s linear infinite; }
-@keyframes scrollDiagUp   { 0%{transform:translate(0,0)}         100%{transform:translate(-30px,-50%)} }
-@keyframes scrollDiagDown { 0%{transform:translate(0,-50%)}      100%{transform:translate(30px,0)} }
+  .marquee-row { display: flex; flex-direction: column; gap: 12px; width: max-content; }
+.scroll-left  { animation: scroll 40s linear infinite; }
+.scroll-right { animation: scrollReverse 40s linear infinite; }
+@keyframes scroll        { 0%{transform:translateX(0)}    100%{transform:translateX(-50%)} }
+@keyframes scrollReverse { 0%{transform:translateX(-50%)} 100%{transform:translateX(0)} }
   .marquee-media {
     width: 130px; height: 130px;
     border-radius: 18px;
@@ -326,28 +297,6 @@ const styles = `
     background-clip: text;
     letter-spacing: -0.01em;
     filter: drop-shadow(0 2px 12px rgba(37,99,235,0.2));
-  }
-
-  /* ── CTA EN BAS ── */
-  .cta-bottom {
-    position: absolute;
-    bottom: 8%;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 20;
-    background: linear-gradient(135deg, #2563eb, #0ea5e9);
-    color: white;
-    font-family: 'Heebo', sans-serif;
-    font-weight: 800;
-    font-size: clamp(14px, 4vw, 22px);
-    padding: 14px 36px;
-    border-radius: 50px;
-    border: none;
-    white-space: nowrap;
-    box-shadow: 0 8px 30px rgba(37,99,235,0.35);
-    letter-spacing: 0.01em;
-    pointer-events: none;
-    direction: rtl;
   }
 
   /* ── ANIMATIONS IMPACT ── */
@@ -552,26 +501,21 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
         <div className="geo-shape gs-4"></div>
       </div>
 
-      {/* Marquee vertical (3 colonnes) */}
+    {/* Marquee horizontal (3 lignes) */}
       <div className={`marquee-layer ${isMarqueeActive ? 'visible' : ''}`}>
-        <div className="marquee-col scroll-up">
+        <div className="marquee-row scroll-left">
           {col1.map((src, i) => <MarqueeItem key={`c1-${i}`} src={src} />)}
         </div>
-        <div className="marquee-col scroll-down">
+        <div className="marquee-row scroll-right">
           {col2.map((src, i) => <MarqueeItem key={`c2-${i}`} src={src} />)}
         </div>
-        <div className="marquee-col scroll-up">
+        <div className="marquee-row scroll-left">
           {col3.map((src, i) => <MarqueeItem key={`c3-${i}`} src={src} />)}
         </div>
       </div>
 
       <audio ref={audioRef} loop src={audioSrc}></audio>
 
-      {/* Logo en haut */}
-      <div className="logo-top">
-        <span className="logo-name">AllSherut</span>
-        <span className="logo-sub">כל השירותים במקום אחד</span>
-      </div>
 
       {/* Textes */}
       <div className="scene">
@@ -586,9 +530,6 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
           );
         })}
       </div>
-
-      {/* CTA fixe en bas */}
-      <div className="cta-bottom">הצטרפו עכשיו — allsherut.com</div>
 
       {/* Contrôles */}
       <div className="controls-container">
