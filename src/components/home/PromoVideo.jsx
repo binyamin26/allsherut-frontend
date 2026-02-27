@@ -242,10 +242,10 @@ const styles = `
   }
   .marquee-layer.visible { opacity: 0.9; }
   .marquee-row { display: flex; flex-direction: column; gap: 12px; width: max-content; }
-.scroll-left  { animation: scroll 40s linear infinite; }
-.scroll-right { animation: scrollReverse 40s linear infinite; }
-@keyframes scroll        { 0%{transform:translateX(0)}    100%{transform:translateX(-50%)} }
-@keyframes scrollReverse { 0%{transform:translateX(-50%)} 100%{transform:translateX(0)} }
+.scroll-left  { animation:scroll 40s linear infinite; }
+  .scroll-right { animation:scrollReverse 40s linear infinite; }
+  @keyframes scroll        { 0%{transform:translateX(0)}    100%{transform:translateX(-50%)} }
+  @keyframes scrollReverse { 0%{transform:translateX(-50%)} 100%{transform:translateX(0)} }
   .marquee-media {
     width: 130px; height: 130px;
     border-radius: 18px;
