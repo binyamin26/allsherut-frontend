@@ -223,35 +223,32 @@ const styles = `
     50%     { transform: translateY(-25px) rotate(12deg); }
   }
 
-  /* ── MARQUEE (vertical: colonnes) ── */
   .marquee-layer {
     position: absolute;
-    top: 0; left: -10%;
-    width: 120%; height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 12px;
-    z-index: 2;
-    opacity: 0;
-    transition: opacity 1s cubic-bezier(0.4,0,0.2,1);
-    pointer-events: none;
-    mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 90%);
-    -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 90%);
-    direction: ltr;
+    top:-20%; left:-20%;
+    width:140%; height:140%;
+    display:flex; flex-direction:column; justify-content:center; gap:36px;
+    transform:rotate(-5deg);
+    z-index:2;
+    opacity:0;
+    transition:opacity 1s cubic-bezier(0.4,0,0.2,1);
+    pointer-events:none;
+    mask-image:radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 80%);
+    -webkit-mask-image:radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 80%);
+    direction:ltr;
   }
-  .marquee-layer.visible { opacity: 0.9; }
-  .marquee-row { display: flex; flex-direction: column; gap: 12px; width: max-content; }
-.scroll-left  { animation:scroll 40s linear infinite; }
+  .marquee-layer.visible { opacity:0.88; }
+  .marquee-row { display:flex; gap:20px; width:max-content; }
+  .scroll-left  { animation:scroll 40s linear infinite; }
   .scroll-right { animation:scrollReverse 40s linear infinite; }
   @keyframes scroll        { 0%{transform:translateX(0)}    100%{transform:translateX(-50%)} }
   @keyframes scrollReverse { 0%{transform:translateX(-50%)} 100%{transform:translateX(0)} }
   .marquee-media {
-    width: 130px; height: 130px;
-    border-radius: 18px;
-    object-fit: cover;
-    box-shadow: 0 6px 20px rgba(59,130,246,0.15);
-    border: 2px solid rgba(255,255,255,0.95);
+    width:250px; height:155px;
+    border-radius:18px;
+    object-fit:cover;
+    box-shadow:0 10px 30px rgba(59,130,246,0.15), 0 2px 8px rgba(0,0,0,0.06);
+    border:2.5px solid rgba(255,255,255,0.95);
   }
 
   /* ── TEXTES ── */
