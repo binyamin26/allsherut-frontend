@@ -1,9 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-// ─── TEXTES + IMAGES DE FOND ───────────────────────────────────────────────
-// bgImage  : chemin vers l'image (null = animation techno par défaut)
-// isMarquee: garde le défilé de photos existant
-// time     : durée d'affichage en secondes
 const promoTexts = [
   {
     main: "האם אתם נותני שירות ומעוניינים להיחשף לקהל רחב יותר?",
@@ -65,10 +61,16 @@ const MarqueeItem = ({ src }) => {
       loading="eager"
       onError={(e) => {
         e.target.onerror = null;
-        e.target.src = `https://placehold.co/240x150/dbeafe/2563eb?text=AllSherut`;
+        e.target.src = `https://placehold.co/200x200/dbeafe/2563eb?text=AllSherut`;
       }}
     />
   );
+};
+
+const getAnimClass = (baseClass, time) => {
+  if (time >= 8) return `${baseClass}-long`;
+  if (time >= 5) return `${baseClass}-5s`;
+  return baseClass;
 };
 
 const styles = `
@@ -77,22 +79,17 @@ const styles = `
   .promo-container {
     position: relative;
     width: 100%;
-    height: 100%;
-    aspect-ratio: 16/9;
-min-height: unset;
-    background: linear-gradient(160deg, #ffffff 0%, #eff6ff 40%, #dbeafe 75%, #bfdbfe 100%);
+    /* 9:16 vertical pour WhatsApp Status */
+    aspect-ratio: 9/16;
+    max-width: 480px;
+    margin: 0 auto;
+    background: linear-gradient(180deg, #ffffff 0%, #eff6ff 40%, #dbeafe 75%, #bfdbfe 100%);
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
     font-family: 'Heebo', sans-serif;
     direction: rtl;
-  }
-
-  @media (max-width: 768px) {
-    .promo-container {
-      aspect-ratio: 16/9;
-    }
   }
 
   .promo-container.is-paused * {
@@ -111,19 +108,18 @@ min-height: unset;
   .slide-bg img {
     width: 100%; height: 100%;
     object-fit: cover;
+    object-position: center top;
     display: block;
   }
-  /* Overlay dégradé pour garder le texte lisible */
   .slide-bg::after {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
     background: linear-gradient(
-      160deg,
-      rgba(255,255,255,0.55) 0%,
-      rgba(239,246,255,0.45) 40%,
-      rgba(219,234,254,0.40) 75%,
-      rgba(191,219,254,0.50) 100%
+      180deg,
+      rgba(255,255,255,0.45) 0%,
+      rgba(239,246,255,0.35) 40%,
+      rgba(219,234,254,0.50) 100%
     );
   }
   .slide-bg.hidden { opacity: 0; }
@@ -134,7 +130,7 @@ min-height: unset;
     top: 0; left: 0;
     width: 100%; height: 100%;
     object-fit: cover;
-    opacity: 0.06;
+    opacity: 0.05;
     mix-blend-mode: multiply;
     z-index: 0;
     pointer-events: none;
@@ -148,24 +144,24 @@ min-height: unset;
     z-index: 0;
   }
   .bb-1 {
-    width:500px; height:500px;
-    top:-150px; left:-100px;
+    width: 400px; height: 400px;
+    top: -100px; left: -150px;
     background: radial-gradient(circle, rgba(219,234,254,0.8) 0%, transparent 70%);
     animation: blobDrift 20s ease-in-out infinite;
   }
   .bb-2 {
-    width:420px; height:420px;
-    bottom:-120px; right:-80px;
+    width: 350px; height: 350px;
+    bottom: -80px; right: -100px;
     background: radial-gradient(circle, rgba(191,219,254,0.7) 0%, transparent 70%);
     animation: blobDrift 26s ease-in-out infinite reverse 5s;
   }
   @keyframes blobDrift {
     0%,100% { transform: translate(0,0) scale(1); }
-    33%     { transform: translate(30px,-20px) scale(1.05); }
-    66%     { transform: translate(-20px,30px) scale(0.97); }
+    33%     { transform: translate(20px,-15px) scale(1.05); }
+    66%     { transform: translate(-15px,20px) scale(0.97); }
   }
 
-  /* ── COUCHE TECH (affiché seulement quand pas d'image de fond) ── */
+  /* ── ANIMATION TECHNO ── */
   .idle-layer {
     position: absolute;
     top: 0; left: 0;
@@ -185,13 +181,13 @@ min-height: unset;
     background-image:
       linear-gradient(rgba(59,130,246,0.1) 1px, transparent 1px),
       linear-gradient(90deg, rgba(59,130,246,0.1) 1px, transparent 1px);
-    background-size: 70px 70px;
+    background-size: 60px 60px;
     transform: perspective(600px) rotateX(55deg);
     animation: gridMove 18s linear infinite;
   }
   @keyframes gridMove {
     0%   { transform: perspective(600px) rotateX(55deg) translateY(0); }
-    100% { transform: perspective(600px) rotateX(55deg) translateY(70px); }
+    100% { transform: perspective(600px) rotateX(55deg) translateY(60px); }
   }
 
   .pulse-circle {
@@ -201,9 +197,9 @@ min-height: unset;
     border-radius: 50%;
     animation: pulseExpand 7s infinite linear;
   }
-  .pc-1 { width:280px; height:280px; border:2px solid rgba(59,130,246,0.22); animation-delay:0s; }
-  .pc-2 { width:560px; height:560px; border:2px solid rgba(96,165,250,0.16); animation-delay:-2.3s; }
-  .pc-3 { width:840px; height:840px; border:1.5px solid rgba(147,197,253,0.12); animation-delay:-4.6s; }
+  .pc-1 { width:200px; height:200px; border:2px solid rgba(59,130,246,0.22); animation-delay:0s; }
+  .pc-2 { width:400px; height:400px; border:2px solid rgba(96,165,250,0.16); animation-delay:-2.3s; }
+  .pc-3 { width:600px; height:600px; border:1.5px solid rgba(147,197,253,0.12); animation-delay:-4.6s; }
   @keyframes pulseExpand {
     0%   { transform:translate(-50%,-50%) scale(0.4); opacity:0; }
     40%  { opacity:1; }
@@ -214,100 +210,144 @@ min-height: unset;
     position: absolute;
     background: rgba(255,255,255,0.8);
     border: 1.5px solid rgba(147,197,253,0.55);
-    box-shadow: 0 8px 32px rgba(59,130,246,0.1), 0 2px 8px rgba(59,130,246,0.06);
+    box-shadow: 0 8px 32px rgba(59,130,246,0.1);
     backdrop-filter: blur(8px);
     z-index: 2;
   }
-  .gs-1 { width:110px; height:110px; top:12%; left:7%; border-radius:24px; animation:floatGeo 13s ease-in-out infinite; background:linear-gradient(135deg,rgba(255,255,255,0.95),rgba(219,234,254,0.8)); }
-  .gs-2 { width:160px; height:160px; bottom:15%; right:6%; border-radius:50%; animation:floatGeo 16s ease-in-out infinite reverse; background:linear-gradient(135deg,rgba(219,234,254,0.85),rgba(191,219,254,0.6)); }
-  .gs-3 { width:75px; height:75px; top:18%; right:12%; border-radius:16px; transform:rotate(30deg); animation:floatGeo 10s ease-in-out infinite 1.5s; }
-  .gs-4 { width:50px; height:50px; bottom:25%; left:12%; border-radius:12px; transform:rotate(-20deg); animation:floatGeo 9s ease-in-out infinite 3s; }
+  .gs-1 { width:80px; height:80px; top:10%; left:6%; border-radius:18px; animation:floatGeo 13s ease-in-out infinite; background:linear-gradient(135deg,rgba(255,255,255,0.95),rgba(219,234,254,0.8)); }
+  .gs-2 { width:110px; height:110px; bottom:20%; right:5%; border-radius:50%; animation:floatGeo 16s ease-in-out infinite reverse; background:linear-gradient(135deg,rgba(219,234,254,0.85),rgba(191,219,254,0.6)); }
+  .gs-3 { width:55px; height:55px; top:25%; right:8%; border-radius:12px; transform:rotate(30deg); animation:floatGeo 10s ease-in-out infinite 1.5s; }
+  .gs-4 { width:40px; height:40px; bottom:35%; left:8%; border-radius:10px; transform:rotate(-20deg); animation:floatGeo 9s ease-in-out infinite 3s; }
   @keyframes floatGeo {
     0%,100% { transform: translateY(0) rotate(0deg); }
-    50%     { transform: translateY(-35px) rotate(12deg); }
+    50%     { transform: translateY(-25px) rotate(12deg); }
   }
 
-  /* ── MARQUEE ── */
-  .marquee-layer {
+  /* ── LOGO EN HAUT ── */
+  .logo-top {
     position: absolute;
-    top:-20%; left:-20%;
-    width:140%; height:140%;
-    display:flex; flex-direction:column; justify-content:center; gap:36px;
-    transform:rotate(-5deg);
-    z-index:2;
-    opacity:0;
-    transition:opacity 1s cubic-bezier(0.4,0,0.2,1);
-    pointer-events:none;
-    mask-image:radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 80%);
-    -webkit-mask-image:radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 80%);
-    direction:ltr;
+    top: 6%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
   }
-  .marquee-layer.visible { opacity:0.88; }
-  .marquee-row { display:flex; gap:20px; width:max-content; }
-  .scroll-left  { animation:scroll 40s linear infinite; }
-  .scroll-right { animation:scrollReverse 40s linear infinite; }
-  @keyframes scroll        { 0%{transform:translateX(0)}    100%{transform:translateX(-50%)} }
-  @keyframes scrollReverse { 0%{transform:translateX(-50%)} 100%{transform:translateX(0)} }
-  .marquee-media {
-    width:250px; height:155px;
-    border-radius:18px;
-    object-fit:cover;
-    box-shadow:0 10px 30px rgba(59,130,246,0.15), 0 2px 8px rgba(0,0,0,0.06);
-    border:2.5px solid rgba(255,255,255,0.95);
-  }
-
-  /* ── TEXTES ── */
-  .scene {
-    position:relative; z-index:10;
-    width:100%; height:100%;
-    display:flex; justify-content:center; align-items:center;
-    pointer-events:none;
-  }
-
-  .text-card {
-    position:absolute;
-    padding:52px 72px;
-    background: rgba(255,255,255,0.75);
-    backdrop-filter:blur(28px) saturate(180%);
-    -webkit-backdrop-filter:blur(28px) saturate(180%);
-    border:1.5px solid rgba(147,197,253,0.45);
-    border-top:1.5px solid rgba(255,255,255,0.98);
-    border-left:1.5px solid rgba(255,255,255,0.98);
-    border-radius:36px;
-    box-shadow:
-      0 24px 64px rgba(59,130,246,0.13),
-      0 4px 16px rgba(59,130,246,0.07),
-      inset 0 0 0 1px rgba(255,255,255,0.65);
-    text-align:center;
-    max-width:1100px; width:90%;
-    opacity:0;
-    transform:scale(0.95) translateY(20px);
-    pointer-events:none;
-  }
-
-  @media (max-width: 768px) {
-    .text-card { padding:26px 20px; border-radius:20px; width:88%; }
-  }
-
-  .main-text {
-    font-size: clamp(28px, 5.5vw, 88px);
+  .logo-name {
+    font-size: clamp(22px, 7vw, 42px);
     font-weight: 900;
-    line-height: 1.2;
-    background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 35%, #0ea5e9 70%, #38bdf8 100%);
+    background: linear-gradient(135deg, #1d4ed8, #0ea5e9);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     letter-spacing: -0.02em;
+    filter: drop-shadow(0 2px 8px rgba(37,99,235,0.3));
+  }
+  .logo-sub {
+    font-size: clamp(10px, 3vw, 16px);
+    font-weight: 600;
+    color: #3b82f6;
+    opacity: 0.8;
+  }
+
+  /* ── MARQUEE (vertical: colonnes) ── */
+  .marquee-layer {
+    position: absolute;
+    top: 0; left: -10%;
+    width: 120%; height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 12px;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 1s cubic-bezier(0.4,0,0.2,1);
+    pointer-events: none;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 90%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 90%);
+    direction: ltr;
+  }
+  .marquee-layer.visible { opacity: 0.9; }
+  .marquee-col { display: flex; flex-direction: column; gap: 12px; width: max-content; }
+  .scroll-up   { animation: scrollUp   35s linear infinite; }
+  .scroll-down { animation: scrollDown 35s linear infinite; }
+  @keyframes scrollUp   { 0%{transform:translateY(0)}    100%{transform:translateY(-50%)} }
+  @keyframes scrollDown { 0%{transform:translateY(-50%)} 100%{transform:translateY(0)} }
+  .marquee-media {
+    width: 130px; height: 130px;
+    border-radius: 18px;
+    object-fit: cover;
+    box-shadow: 0 6px 20px rgba(59,130,246,0.15);
+    border: 2px solid rgba(255,255,255,0.95);
+  }
+
+  /* ── TEXTES ── */
+  .scene {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    padding: 20% 0;
+  }
+
+  .text-card {
+    position: absolute;
+    padding: 36px 28px;
+    background: rgba(255,255,255,0.82);
+    backdrop-filter: blur(28px) saturate(180%);
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+    border: 1.5px solid rgba(147,197,253,0.45);
+    border-top: 1.5px solid rgba(255,255,255,0.98);
+    border-left: 1.5px solid rgba(255,255,255,0.98);
+    border-radius: 32px;
+    box-shadow:
+      0 20px 50px rgba(59,130,246,0.15),
+      inset 0 0 0 1px rgba(255,255,255,0.65);
+    text-align: center;
+    width: 82%;
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+    pointer-events: none;
+  }
+
+  .main-text {
+    font-size: clamp(20px, 6.5vw, 52px);
+    font-weight: 900;
+    line-height: 1.3;
+    background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 35%, #0ea5e9 70%, #38bdf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.01em;
     filter: drop-shadow(0 2px 12px rgba(37,99,235,0.2));
   }
 
-  .sub-text {
-    display:block;
-    font-size: clamp(18px, 3vw, 48px);
-    font-weight:600;
-    color:#3b82f6;
-    margin-top:16px;
-    opacity:0.85;
+  /* ── CTA EN BAS ── */
+  .cta-bottom {
+    position: absolute;
+    bottom: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    background: linear-gradient(135deg, #2563eb, #0ea5e9);
+    color: white;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 800;
+    font-size: clamp(14px, 4vw, 22px);
+    padding: 14px 36px;
+    border-radius: 50px;
+    border: none;
+    white-space: nowrap;
+    box-shadow: 0 8px 30px rgba(37,99,235,0.35);
+    letter-spacing: 0.01em;
+    pointer-events: none;
+    direction: rtl;
   }
 
   /* ── ANIMATIONS IMPACT ── */
@@ -357,7 +397,7 @@ min-height: unset;
     13%  { transform:scale(1.04) rotate(0.5deg); }
     17%  { transform:scale(1) rotate(0); }
     80%  { opacity:1; transform:scale(1); }
-    100% { opacity:0; transform:scale(1.06);}
+    100% { opacity:0; transform:scale(1.06); }
   }
   @keyframes impactShrink {
     0%   { opacity:0; transform:scale(0.02) rotate(-15deg); filter:blur(24px); }
@@ -365,79 +405,54 @@ min-height: unset;
     15%  { transform:scale(0.97) rotate(-0.5deg); }
     19%  { transform:scale(1) rotate(0); }
     80%  { opacity:1; transform:scale(1); }
-    100% { opacity:0; transform:scale(0.95);}
+    100% { opacity:0; transform:scale(0.95); }
   }
 
   /* ── CONTRÔLES ── */
   .controls-container {
-    position:absolute;
-    bottom:24px; left:24px;
-    z-index:9999;
-    display:flex; gap:12px;
-    pointer-events:auto;
-    touch-action:manipulation;
-    direction:ltr;
-  }
-  @media (max-width:768px) {
-    .controls-container { bottom:12px; left:12px; gap:8px; }
+    position: absolute;
+    bottom: 3%;
+    left: 5%;
+    z-index: 9999;
+    display: flex;
+    gap: 10px;
+    pointer-events: auto;
+    direction: ltr;
   }
 
   .control-btn {
-    width:52px; height:52px;
-    background:rgba(255,255,255,0.88);
-    backdrop-filter:blur(12px);
-    border:1.5px solid rgba(147,197,253,0.65);
-    border-radius:50%;
-    display:flex; justify-content:center; align-items:center;
-    cursor:pointer;
-    color:#2563eb;
-    transition:all 0.25s cubic-bezier(0.4,0,0.2,1);
-    box-shadow:0 4px 16px rgba(59,130,246,0.15);
-    pointer-events:auto;
-    touch-action:manipulation;
-    -webkit-tap-highlight-color:transparent;
-    user-select:none;
+    width: 44px; height: 44px;
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(12px);
+    border: 1.5px solid rgba(147,197,253,0.65);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #2563eb;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 16px rgba(59,130,246,0.15);
+    pointer-events: auto;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
-  @media (max-width:768px) {
-    .control-btn { width:42px; height:42px; }
-    .control-btn svg { width:20px; height:20px; }
-  }
-  .control-btn:hover,
-  .control-btn:active {
-    transform:translateY(-3px) scale(1.08);
-    background:rgba(219,234,254,0.97);
-    border-color:#3b82f6;
-    box-shadow:0 8px 24px rgba(59,130,246,0.28);
-  }
-  .control-btn svg { width:24px; height:24px; fill:currentColor; }
+  .control-btn:hover { transform: scale(1.08); background: rgba(219,234,254,0.97); }
+  .control-btn svg { width: 20px; height: 20px; fill: currentColor; }
 
   /* ── BARRE DE PROGRESSION ── */
   .progress-bar {
-    position:absolute;
-    bottom:0; right:0;
-    height:5px;
-    background:linear-gradient(90deg, #2563eb, #38bdf8, #7dd3fc);
-    background-size:200% 200%;
-    animation:gradientShift 3s ease infinite;
-    z-index:100;
-    transition:width 0.1s linear;
-    border-radius:0 0 0 4px;
-  }
-  @keyframes gradientShift {
-    0%   { background-position:0% 50%; }
-    50%  { background-position:100% 50%; }
-    100% { background-position:0% 50%; }
+    position: absolute;
+    bottom: 0; left: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #2563eb, #38bdf8);
+    z-index: 100;
+    transition: width 0.1s linear;
+    border-radius: 0 4px 0 0;
   }
 `;
 
-// Retourne la classe d'animation adaptée à la durée de la slide
-const getAnimClass = (baseClass, time) => {
-  if (time >= 8) return `${baseClass}-long`;
-  if (time >= 5) return `${baseClass}-5s`;
-  return baseClass;
-};
-
-const PromoVideo = ({ videoSrc = "/background.mp4", audioSrc = "/musique.mp3", services = [] }) => {
+const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique.mp3", services = [] }) => {
   const [isPaused, setIsPaused] = useState(false);
   const [isMuted,  setIsMuted]  = useState(true);
   const [currentTime, setCurrentTime] = useState(0);
@@ -452,13 +467,12 @@ const PromoVideo = ({ videoSrc = "/background.mp4", audioSrc = "/musique.mp3", s
     '/images/chien.jpg','/images/tutoring.png','/images/eldercare.png',
     '/images/plombier.jpg','/images/clim.png','/images/gaz.jpg'
   ];
-  const displayMedia      = services.length > 0 ? services.map(s => s.image || s) : defaultMedia;
-  const marqueeListTop    = [...displayMedia,...displayMedia,...displayMedia];
-  const mid               = Math.floor(displayMedia.length / 2);
-  const shifted           = [...displayMedia.slice(mid),...displayMedia.slice(0,mid)];
-  const marqueeListMiddle = [...shifted,...shifted,...shifted];
-  const reversed          = [...displayMedia].reverse();
-  const marqueeListBottom = [...reversed,...reversed,...reversed];
+  const displayMedia = services.length > 0 ? services.map(s => s.image || s) : defaultMedia;
+
+  // 3 colonnes pour le marquee vertical
+  const col1 = [...displayMedia, ...displayMedia, ...displayMedia];
+  const col2 = [...displayMedia.slice(3), ...displayMedia.slice(0,3), ...displayMedia.slice(3), ...displayMedia.slice(0,3), ...displayMedia.slice(3), ...displayMedia.slice(0,3)];
+  const col3 = [...displayMedia].reverse().concat([...displayMedia].reverse()).concat([...displayMedia].reverse());
 
   const duration = promoTexts.reduce((a, c) => a + c.time, 0);
 
@@ -483,7 +497,6 @@ const PromoVideo = ({ videoSrc = "/background.mp4", audioSrc = "/musique.mp3", s
     isPaused ? v.pause() : v.play().catch(() => {});
   }, [isPaused]);
 
-  // Calcule quelle slide est active
   let accum = 0, activeSeq = 0;
   for (let i = 0; i < promoTexts.length; i++) {
     accum += promoTexts[i].time;
@@ -492,7 +505,6 @@ const PromoVideo = ({ videoSrc = "/background.mp4", audioSrc = "/musique.mp3", s
   const activeSlide     = promoTexts[activeSeq];
   const isMarqueeActive = activeSlide?.isMarquee;
   const hasImage        = !!activeSlide?.bgImage;
-  // L'animation techno s'affiche quand il n'y a pas d'image et pas de marquee
   const showIdleLayer   = !hasImage && !isMarqueeActive;
 
   const toggleVideo = () => setIsPaused(p => !p);
@@ -512,33 +524,23 @@ const PromoVideo = ({ videoSrc = "/background.mp4", audioSrc = "/musique.mp3", s
     <div className={`promo-container ${isPaused ? 'is-paused' : ''}`}>
       <style>{styles}</style>
 
-      {/* Vidéo de fond subtile */}
       <video ref={videoRef} className="bg-video" autoPlay loop muted playsInline>
         <source src={videoSrc} type="video/mp4" />
       </video>
 
-      {/* Blobs décoratifs */}
       <div className="bg-blob bb-1"></div>
       <div className="bg-blob bb-2"></div>
 
-      {/* ── IMAGE DE FOND PAR SLIDE ── */}
-      {/* On render TOUTES les images mais on cache celles qui ne sont pas actives */}
+      {/* Images de fond par slide */}
       {promoTexts.map((slide, i) =>
         slide.bgImage ? (
-          <div
-            key={`bg-${i}`}
-            className={`slide-bg ${activeSeq === i ? 'visible' : 'hidden'}`}
-          >
-            <img
-              src={slide.bgImage}
-              alt=""
-              onError={(e) => { e.target.style.display = 'none'; }}
-            />
+          <div key={`bg-${i}`} className={`slide-bg ${activeSeq === i ? 'visible' : 'hidden'}`}>
+            <img src={slide.bgImage} alt="" onError={(e) => { e.target.style.display = 'none'; }} />
           </div>
         ) : null
       )}
 
-      {/* ── ANIMATION TECHNO (uniquement si pas d'image et pas de marquee) ── */}
+      {/* Animation techno */}
       <div className={`idle-layer ${showIdleLayer ? 'visible' : 'hidden'}`}>
         <div className="tech-grid"></div>
         <div className="pulse-circle pc-1"></div>
@@ -550,22 +552,28 @@ const PromoVideo = ({ videoSrc = "/background.mp4", audioSrc = "/musique.mp3", s
         <div className="geo-shape gs-4"></div>
       </div>
 
-      {/* ── MARQUEE ── */}
+      {/* Marquee vertical (3 colonnes) */}
       <div className={`marquee-layer ${isMarqueeActive ? 'visible' : ''}`}>
-        <div className="marquee-row scroll-left">
-          {marqueeListTop.map((src,i) => <MarqueeItem key={`t-${i}`} src={src}/>)}
+        <div className="marquee-col scroll-up">
+          {col1.map((src, i) => <MarqueeItem key={`c1-${i}`} src={src} />)}
         </div>
-        <div className="marquee-row scroll-right">
-          {marqueeListMiddle.map((src,i) => <MarqueeItem key={`m-${i}`} src={src}/>)}
+        <div className="marquee-col scroll-down">
+          {col2.map((src, i) => <MarqueeItem key={`c2-${i}`} src={src} />)}
         </div>
-        <div className="marquee-row scroll-left">
-          {marqueeListBottom.map((src,i) => <MarqueeItem key={`b-${i}`} src={src}/>)}
+        <div className="marquee-col scroll-up">
+          {col3.map((src, i) => <MarqueeItem key={`c3-${i}`} src={src} />)}
         </div>
       </div>
 
       <audio ref={audioRef} loop src={audioSrc}></audio>
 
-      {/* ── TEXTES ── */}
+      {/* Logo en haut */}
+      <div className="logo-top">
+        <span className="logo-name">AllSherut</span>
+        <span className="logo-sub">כל השירותים במקום אחד</span>
+      </div>
+
+      {/* Textes */}
       <div className="scene">
         {promoTexts.map((textObj, index) => {
           if (activeSeq !== index) return null;
@@ -574,26 +582,20 @@ const PromoVideo = ({ videoSrc = "/background.mp4", audioSrc = "/musique.mp3", s
           return (
             <div key={index} className={`text-card ${cls}`}>
               <div className="main-text">{textObj.main}</div>
-              {textObj.sub && <span className="sub-text">{textObj.sub}</span>}
             </div>
           );
         })}
       </div>
 
-      {/* ── CONTRÔLES ── */}
+      {/* CTA fixe en bas */}
+      <div className="cta-bottom">הצטרפו עכשיו — allsherut.com</div>
+
+      {/* Contrôles */}
       <div className="controls-container">
-        <button
-          className="control-btn"
-          onPointerDown={(e) => { e.preventDefault(); e.stopPropagation(); toggleVideo(); }}
-          title="Lecture/Pause"
-        >
+        <button className="control-btn" onPointerDown={(e) => { e.preventDefault(); toggleVideo(); }}>
           {isPaused ? <IconPlay /> : <IconPause />}
         </button>
-        <button
-          className="control-btn"
-          onPointerDown={(e) => { e.preventDefault(); e.stopPropagation(); toggleSound(); }}
-          title="Son"
-        >
+        <button className="control-btn" onPointerDown={(e) => { e.preventDefault(); toggleSound(); }}>
           {isMuted ? <IconSoundOff /> : <IconSoundOn />}
         </button>
       </div>
@@ -603,4 +605,4 @@ const PromoVideo = ({ videoSrc = "/background.mp4", audioSrc = "/musique.mp3", s
   );
 };
 
-export default PromoVideo;
+export default PromoVideoVertical;
