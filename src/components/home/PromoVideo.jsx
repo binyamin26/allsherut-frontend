@@ -271,10 +271,10 @@ const styles = `
   }
   .marquee-layer.visible { opacity: 0.9; }
   .marquee-col { display: flex; flex-direction: column; gap: 12px; width: max-content; }
-  .scroll-up   { animation: scrollUp   35s linear infinite; }
-  .scroll-down { animation: scrollDown 35s linear infinite; }
-  @keyframes scrollUp   { 0%{transform:translateY(0)}    100%{transform:translateY(-50%)} }
-  @keyframes scrollDown { 0%{transform:translateY(-50%)} 100%{transform:translateY(0)} }
+  .scroll-up   { animation: scrollDiagUp   35s linear infinite; }
+.scroll-down { animation: scrollDiagDown 35s linear infinite; }
+@keyframes scrollDiagUp   { 0%{transform:translate(0,0)}         100%{transform:translate(-30px,-50%)} }
+@keyframes scrollDiagDown { 0%{transform:translate(0,-50%)}      100%{transform:translate(30px,0)} }
   .marquee-media {
     width: 130px; height: 130px;
     border-radius: 18px;
