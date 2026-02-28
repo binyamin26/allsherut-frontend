@@ -458,7 +458,7 @@ const HomePage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="hero-section" style={{marginTop: 0, marginBottom: 0, paddingTop: 'var(--space-16)', paddingBottom: 'var(--space-16)'}}>
+      <section className="hero-section cta-section" style={{marginTop: 0, marginBottom: 0, paddingTop: 'var(--space-16)', paddingBottom: 'var(--space-16)'}}>
         <div className="container">
           <div className="cta-content text-center">
             <h2 className="hero-title animate-fade-in-down">{t('homepage.cta.title')}</h2>
