@@ -16,14 +16,10 @@
   overflow: visible;
   
   /* Fond Aurore Boréale PLUS INTENSE */
-  background: 
-    radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.25) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(16, 185, 129, 0.25) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.20) 0px, transparent 50%),
-    radial-gradient(at 0% 100%, rgba(20, 184, 166, 0.20) 0px, transparent 50%),
-    #ffffff;
-  background-size: 150% 150%;
-  animation: aurora 15s ease infinite;
+  background-image: url('/images/logo-homesherut2.jpg');
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
 }
 
 /* SUPPRESSION DES SÉPARATIONS VISUELLES */
@@ -154,7 +150,14 @@
 /* --- 2. SECTION SERVICES (FOND BLANC & CARTES COMPACTES) --- */
 .services-section {
   padding: var(--space-20) 0;
-  background-color: #ffffff; /* FOND BLANC PUR pour contraste */
+background: 
+  radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.25) 0px, transparent 50%),
+  radial-gradient(at 100% 0%, rgba(16, 185, 129, 0.25) 0px, transparent 50%),
+  radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.20) 0px, transparent 50%),
+  radial-gradient(at 0% 100%, rgba(20, 184, 166, 0.20) 0px, transparent 50%),
+  #ffffff;
+background-size: 150% 150%;
+animation: aurora 15s ease infinite;
   position: relative;
 }
 
