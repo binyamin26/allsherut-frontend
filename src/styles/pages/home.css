@@ -25,7 +25,7 @@
   background-size: 70% !important;
   background-position: 60% 50% !important;
   background-repeat: no-repeat !important;
-  background-color: #dbeeff !important;
+  background-color: #ffffff !important;
 }
 
 .hero-main::before {
@@ -766,4 +766,9 @@ body[dir="ltr"] .service-search-wrapper .service-search-icon {
   width: 100% !important;
   margin-left: auto !important;
   margin-right: auto !important;
+}
+
+.cta-section {
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%) !important;
+  animation: none !important;
 }
