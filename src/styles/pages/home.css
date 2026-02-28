@@ -25,10 +25,10 @@
   position: absolute;
   inset: 0;
   background-image: url('/images/logo-homesherut2.jpg');
-  background-size: 55%;
+  background-size: 80%;
   background-position: 60% 50%;
   background-repeat: no-repeat;
-  filter: blur(8px) brightness(1.1) saturate(0.7) opacity(0.55);
+  filter: blur(8px) brightness(1.1) saturate(0.7) opacity(0.35);
   z-index: 0;
 }
 
