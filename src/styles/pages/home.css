@@ -20,23 +20,20 @@
   box-shadow: none !important;
 }
 
-.hero-section:not(.cta-section)::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url('/images/logo-homesherut2.jpg');
-  background-size: 70%;
-  background-position: 60% 50%;
-  background-repeat: no-repeat;
-  z-index: 0;
+.hero-main {
+  background-image: url('/images/logo-homesherut2.jpg') !important;
+  background-size: 70% !important;
+  background-position: 60% 50% !important;
+  background-repeat: no-repeat !important;
+  background-color: #dbeeff !important;
 }
 
-.hero-section:not(.cta-section)::after {
+.hero-main::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(255, 255, 255, 0.65);
-  z-index: 1;
+  background: rgba(255, 255, 255, 0.5);
+  z-index: 0;
 }
 
 /* Supprime aussi les pseudo-éléments qui créent des lignes */

@@ -250,7 +250,7 @@ const HomePage = () => {
   return (
     <div className="homepage">
       {/* Hero Section */}
-      <section className="hero-section">
+    <section className="hero-section hero-main">
         <div className="container">
           <div className="hero-content">
             <div className="hero-text">
