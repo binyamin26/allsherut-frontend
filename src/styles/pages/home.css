@@ -22,7 +22,7 @@
 
 .hero-main {
   background-image: url('/images/logo-homesherut2.jpg') !important;
-  background-size: 70% !important;
+  background-size: 90% !important;
   background-position: 60% 50% !important;
   background-repeat: no-repeat !important;
   background-color: #ffffff !important;
@@ -681,6 +681,11 @@ body .homepage .service-search-wrapper .search-icon {
     display: block !important;
     border-radius: 30px !important;
   }
+
+  .hero-main {
+  background-size: 160% !important;
+  background-position: center 40% !important;
+}
 }
 
 /* =================================================================
