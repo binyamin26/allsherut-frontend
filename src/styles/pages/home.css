@@ -20,16 +20,23 @@
   box-shadow: none !important;
 }
 
-.hero-section::before {
+.hero-section:not(.cta-section)::before {
   content: '';
   position: absolute;
   inset: 0;
   background-image: url('/images/logo-homesherut2.jpg');
-  background-size: 80%;
+  background-size: 70%;
   background-position: 60% 50%;
   background-repeat: no-repeat;
-  filter: blur(8px) brightness(1.1) saturate(0.7) opacity(0.90);
   z-index: 0;
+}
+
+.hero-section:not(.cta-section)::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.25);
+  z-index: 1;
 }
 
 /* Supprime aussi les pseudo-éléments qui créent des lignes */
