@@ -28,7 +28,7 @@
   background-size: 80%;
   background-position: 60% 50%;
   background-repeat: no-repeat;
-  filter: blur(8px) brightness(1.1) saturate(0.7) opacity(0.80);
+  filter: blur(8px) brightness(1.1) saturate(0.7) opacity(0.90);
   z-index: 0;
 }
 
