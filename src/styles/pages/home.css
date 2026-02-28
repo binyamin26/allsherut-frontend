@@ -1,11 +1,3 @@
-/* ====================================
-   HOME PAGE - VERSION ULTIME "GRAND DESIGN"
-   ==================================== */
-
-/* ====================================
-   HOME PAGE - FIX "PHOTO STYLE" (CÔTE À CÔTE)
-   ==================================== */
-
 /* --- 1. HERO SECTION --- */
 .hero-section {
   padding: var(--space-12) 0;
@@ -14,12 +6,7 @@
   align-items: center;
   position: relative;
   overflow: visible;
-  
-  /* Fond Aurore Boréale PLUS INTENSE */
-  background-image: url('/images/logo-homesherut2.jpg');
-background-size: cover;
-background-position: center;
-background-repeat: no-repeat;
+  background: #dbeeff;
 }
 
 /* SUPPRESSION DES SÉPARATIONS VISUELLES */
@@ -31,6 +18,18 @@ background-repeat: no-repeat;
   border-top: none !important;
   border-bottom: none !important;
   box-shadow: none !important;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/images/logo-homesherut2.jpg');
+  background-size: 55%;
+  background-position: 60% 50%;
+  background-repeat: no-repeat;
+  filter: blur(8px) brightness(1.1) saturate(0.7) opacity(0.55);
+  z-index: 0;
 }
 
 /* Supprime aussi les pseudo-éléments qui créent des lignes */
