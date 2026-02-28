@@ -22,7 +22,7 @@
 
 .hero-main {
   background-image: url('/images/logo-homesherut2.jpg') !important;
-  background-size: 90% !important;
+  background-size: 80% !important;
   background-position: 60% 50% !important;
   background-repeat: no-repeat !important;
   background-color: #ffffff !important;
@@ -148,6 +148,13 @@
   .hero-visual {
     margin-top: var(--space-8);
   }
+
+  .hero-text {
+  order: 1;
+}
+.hero-visual {
+  order: 2;
+}
 }
 
 /* --- 2. SECTION SERVICES (FOND BLANC & CARTES COMPACTES) --- */
@@ -552,7 +559,6 @@ body .homepage .cta-title,
 }
 
 /* ESPACEMENT CTA - REMONTE "מוכנים להתחיל?" */
-.cta-section,
 .homepage > .hero-section:last-of-type {
   margin-top: 0 !important;
   padding-top: 20px !important;
@@ -682,9 +688,9 @@ body .homepage .service-search-wrapper .search-icon {
     border-radius: 30px !important;
   }
 
-  .hero-main {
-  background-size: 160% !important;
-  background-position: center 40% !important;
+ .hero-main {
+  background-size: 150% !important;
+  background-position: center 85% !important;
 }
 }
 
@@ -715,7 +721,6 @@ body .homepage .cta-section {
    ================================================================= */
 
 /* 1. On supprime tout espace au-dessus de la section */
-.cta-section, 
 .homepage > .hero-section:last-of-type {
   padding-top: 0 !important;
 }
