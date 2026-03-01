@@ -1454,6 +1454,26 @@
   padding-right: 20px !important;
 }
 
+[dir="ltr"] .auth-modal .input-icon {
+  right: auto !important;
+  left: var(--space-4) !important;
+}
+
+[dir="ltr"] .auth-modal .password-toggle {
+  right: var(--space-4) !important;
+  left: auto !important;
+}
+
+[dir="ltr"] .auth-modal .standard-input {
+  padding-left: 48px !important;
+  padding-right: 20px !important;
+}
+
+[dir="ltr"] .auth-modal .input-wrapper:has(.password-toggle) input {
+  padding-right: 48px !important;
+  padding-left: 48px !important;
+}
+
 .accordion-trigger {
   width: 100%;
   display: flex;
@@ -1546,11 +1566,16 @@
   background: var(--primary-500);
 }
 
+/* PAR : */
 .service-selection {
   position: relative;
   padding: 16px;
   border-radius: 20px;
   background: white;
+  max-height: 55vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-300) transparent;
 }
 
 .service-btn {
