@@ -1660,3 +1660,9 @@
   justify-content: center !important;
   margin-top: var(--space-4) !important;
 }
+
+.step-navigation .btn {
+  height: 52px !important;
+  flex: 1 !important;
+  min-height: unset !important;
+}
