@@ -422,6 +422,17 @@ word-break: break-word;
   box-shadow: var(--shadow-md);
 }
 
+.review-action-btn {
+  background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);
+  color: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.review-action-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
 .card-footer {
   padding: var(--space-4) var(--space-6) var(--space-6);
   border-top: 1px solid var(--neutral-100);
