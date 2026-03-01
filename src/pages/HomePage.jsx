@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { 
+import {
   Search, Star, Users, Clock, Shield, Heart, Baby, Scissors, PawPrint,
   BookOpen, Home, ArrowLeft, CheckCircle, TrendingUp, Award, Smile,
   Sparkles, TreePine, Shirt, Building2, Zap, Wrench, Wind, Flame,
@@ -250,7 +250,7 @@ const HomePage = () => {
   return (
     <div className="homepage">
       {/* Hero Section */}
-    <section className="hero-section hero-main">
+      <section className="hero-section">
         <div className="container">
           <div className="hero-content">
             <div className="hero-text">
@@ -268,7 +268,7 @@ const HomePage = () => {
                 {t('homepage.hero.description2')}
               </p>
               {!isAuthenticated && (
-                <button 
+                <button
                   className="btn btn-primary hero-register-btn text-custom animate-fade-in-up delay-500"
                   onClick={() => openAuthModal('register')}
                 >
@@ -276,30 +276,30 @@ const HomePage = () => {
                 </button>
               )}
             </div>
-            
-            <div 
-  className="hero-visual animate-fade-in-left delay-400" 
-  style={{ 
-    width: '100%', 
-    /* C'est ici que vous contrôlez la place qu'elle prend dans la page */
-    maxWidth: '1000px', /* Augmentez ceci (ex: 1200px ou 100%) */
-    margin: '0 auto',
-    display: 'flex',
-    justifyContent: 'center'
-  }}
->
-  <PromoVideo 
-    services={services} 
-    onRegisterClick={() => openAuthModal('register')} 
-  />
-</div>
+
+            <div
+              className="hero-visual animate-fade-in-left delay-400"
+              style={{
+                width: '100%',
+                /* C'est ici que vous contrôlez la place qu'elle prend dans la page */
+                maxWidth: '1000px', /* Augmentez ceci (ex: 1200px ou 100%) */
+                margin: '0 auto',
+                display: 'flex',
+                justifyContent: 'center'
+              }}
+            >
+              <PromoVideo
+                services={services}
+                onRegisterClick={() => openAuthModal('register')}
+              />
+            </div>
 
             {/* ... le reste du code après ... */}
           </div>
         </div>
       </section>
 
-        {/* Services Section */}
+      {/* Services Section */}
       <section id="services" className="services-section">
         <div className="container">
           <div className="section-header">
@@ -311,26 +311,26 @@ const HomePage = () => {
         </div>
 
         <div className="services-carousel-container">
-         <Swiper
-  modules={[Navigation]}
-  navigation
-  spaceBetween={1}
-  slidesPerView={1}
-  dir={direction === 'rtl' ? 'rtl' : 'ltr'}
-  key={direction}
-  breakpoints={{
-    640: { slidesPerView: 2 },
-    900: { slidesPerView: 3 },
-    1200: { slidesPerView: 4 }
-  }}
->
+          <Swiper
+            modules={[Navigation]}
+            navigation
+            spaceBetween={1}
+            slidesPerView={1}
+            dir={direction === 'rtl' ? 'rtl' : 'ltr'}
+            key={direction}
+            breakpoints={{
+              640: { slidesPerView: 2 },
+              900: { slidesPerView: 3 },
+              1200: { slidesPerView: 4 }
+            }}
+          >
             {services.map((service) => (
               <SwiperSlide key={service.id}>
                 <Link to={service.href} className="service-card-image">
                   {service.image ? (
-                    <img 
-                      src={service.image} 
-                      alt={service.name} 
+                    <img
+                      src={service.image}
+                      alt={service.name}
                       className="service-image"
                     />
                   ) : (
@@ -357,7 +357,7 @@ const HomePage = () => {
           <p className="hero-description text-center mb-12 animate-fade-in-up delay-100">
             {t('homepage.clients.subtitle')}
           </p>
-          
+
           <div className="features-grid">
             <div className="feature-card animate-fade-in delay-100">
               <div className="feature-icon">
@@ -404,7 +404,7 @@ const HomePage = () => {
 
 
       {/* Section Prestataires */}
-      <section className="section" style={{background: 'linear-gradient(135deg, var(--primary-25) 0%, var(--accent-25) 100%)'}}>
+      <section className="section" style={{ background: 'linear-gradient(135deg, var(--primary-25) 0%, var(--accent-25) 100%)' }}>
         <div className="container">
           <h2 className="section-title animate-fade-in-up">
             {t('homepage.providers.title')}
@@ -412,7 +412,7 @@ const HomePage = () => {
           <p className="hero-description text-center mb-12 animate-fade-in-up delay-100">
             {t('homepage.providers.subtitle')}
           </p>
-          
+
           <div className="features-grid">
             <div className="feature-card animate-fade-in delay-100">
               <div className="feature-icon">
@@ -458,24 +458,24 @@ const HomePage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="hero-section cta-section" style={{marginTop: 0, marginBottom: 0, paddingTop: 'var(--space-16)', paddingBottom: 'var(--space-16)'}}>
+      <section className="hero-section" style={{ marginTop: 0, marginBottom: 0, paddingTop: 'var(--space-16)', paddingBottom: 'var(--space-16)' }}>
         <div className="container">
           <div className="cta-content text-center">
             <h2 className="hero-title animate-fade-in-down">{t('homepage.cta.title')}</h2>
             <p className="hero-description animate-fade-in-up delay-200">
               {t('homepage.cta.description')}
             </p>
-            
+
             {/* Boutons visibles UNIQUEMENT si NON connecté */}
             {!isAuthenticated && (
               <div className="cta-buttons animate-fade-in-up delay-300">
-                <button 
+                <button
                   className="btn btn-primary btn-large"
                   onClick={() => openAuthModal('register')}
                 >
                   {t('homepage.cta.register')}
                 </button>
-                <button 
+                <button
                   className="btn btn-primary btn-large"
                   onClick={() => openAuthModal('login')}
                 >
@@ -483,7 +483,7 @@ const HomePage = () => {
                 </button>
               </div>
             )}
-            
+
             <div className="cta-features animate-fade-in-up delay-400">
               <div className="cta-feature">
                 <CheckCircle size={20} />
@@ -503,7 +503,7 @@ const HomePage = () => {
       </section>
 
       {/* Auth Modal */}
-      <AuthModal 
+      <AuthModal
         isOpen={isAuthModalOpen}
         onClose={() => setIsAuthModalOpen(false)}
         initialMode={authMode}

@@ -1,3 +1,11 @@
+/* ====================================
+   HOME PAGE - VERSION ULTIME "GRAND DESIGN"
+   ==================================== */
+
+/* ====================================
+   HOME PAGE - FIX "PHOTO STYLE" (CÔTE À CÔTE)
+   ==================================== */
+
 /* --- 1. HERO SECTION --- */
 .hero-section {
   padding: var(--space-12) 0;
@@ -6,7 +14,16 @@
   align-items: center;
   position: relative;
   overflow: visible;
-  background: #dbeeff;
+  
+  /* Fond Aurore Boréale PLUS INTENSE */
+  background: 
+    radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.25) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(16, 185, 129, 0.25) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.20) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(20, 184, 166, 0.20) 0px, transparent 50%),
+    #ffffff;
+  background-size: 150% 150%;
+  animation: aurora 15s ease infinite;
 }
 
 /* SUPPRESSION DES SÉPARATIONS VISUELLES */
@@ -18,22 +35,6 @@
   border-top: none !important;
   border-bottom: none !important;
   box-shadow: none !important;
-}
-
-.hero-main {
-  background-image: url('/images/logo-homesherut2.jpg') !important;
-  background-size: 80% !important;
-  background-position: 60% 50% !important;
-  background-repeat: no-repeat !important;
-  background-color: #ffffff !important;
-}
-
-.hero-main::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.5);
-  z-index: 0;
 }
 
 /* Supprime aussi les pseudo-éléments qui créent des lignes */
@@ -148,26 +149,12 @@
   .hero-visual {
     margin-top: var(--space-8);
   }
-
-  .hero-text {
-  order: 1;
-}
-.hero-visual {
-  order: 2;
-}
 }
 
 /* --- 2. SECTION SERVICES (FOND BLANC & CARTES COMPACTES) --- */
 .services-section {
   padding: var(--space-20) 0;
-background: 
-  radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.25) 0px, transparent 50%),
-  radial-gradient(at 100% 0%, rgba(16, 185, 129, 0.25) 0px, transparent 50%),
-  radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.20) 0px, transparent 50%),
-  radial-gradient(at 0% 100%, rgba(20, 184, 166, 0.20) 0px, transparent 50%),
-  #ffffff;
-background-size: 150% 150%;
-animation: aurora 15s ease infinite;
+  background-color: #ffffff; /* FOND BLANC PUR pour contraste */
   position: relative;
 }
 
@@ -559,6 +546,7 @@ body .homepage .cta-title,
 }
 
 /* ESPACEMENT CTA - REMONTE "מוכנים להתחיל?" */
+.cta-section,
 .homepage > .hero-section:last-of-type {
   margin-top: 0 !important;
   padding-top: 20px !important;
@@ -687,11 +675,6 @@ body .homepage .service-search-wrapper .search-icon {
     display: block !important;
     border-radius: 30px !important;
   }
-
- .hero-main {
-  background-size: 150% !important;
-  background-position: center 85% !important;
-}
 }
 
 /* =================================================================
@@ -721,6 +704,7 @@ body .homepage .cta-section {
    ================================================================= */
 
 /* 1. On supprime tout espace au-dessus de la section */
+.cta-section, 
 .homepage > .hero-section:last-of-type {
   padding-top: 0 !important;
 }
@@ -776,9 +760,4 @@ body[dir="ltr"] .service-search-wrapper .service-search-icon {
   width: 100% !important;
   margin-left: auto !important;
   margin-right: auto !important;
-}
-
-.cta-section {
-  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%) !important;
-  animation: none !important;
 }
