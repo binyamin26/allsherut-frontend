@@ -1046,6 +1046,13 @@ LOCATION SELECTOR - VERSION PLEINE LARGEUR
   margin: 0 auto;
 }
 
+@media (max-width: 768px) {
+  .providers-grid {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-3);
+  }
+}
+
 /* S'assurer que les cards restent visibles */
 .provider-card {
   position: relative;
