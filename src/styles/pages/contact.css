@@ -485,3 +485,27 @@ body .contact-hero .hero-description {
     height: 64px;
   }
 }
+
+/* ====================================
+   FIX ICON / PLACEHOLDER OVERLAP - MOBILE LTR
+   ==================================== */
+
+/* Assure que le wrapper est bien en position relative */
+.contact-form .input-wrapper {
+  position: relative;
+}
+
+/* L'icône positionnée à droite en LTR */
+.contact-form .input-wrapper .input-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  inset-inline-end: var(--space-3);  /* droite en LTR, gauche en RTL */
+  pointer-events: none;
+  color: var(--neutral-400);
+}
+
+/* Padding suffisant côté icône */
+.contact-form .input-wrapper .profile-input {
+  padding-inline-end: 2.5rem !important; /* espace pour l'icône */
+}
