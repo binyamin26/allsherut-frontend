@@ -102,7 +102,7 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
       <div className="card-horizontal-info">
         <h3 className="provider-name">{provider.name || provider.full_name}</h3>
         <div className="rating-stars">
-          <Star size={13} fill="currentColor" className="text-yellow-400" />
+<Star size={13} fill="#fbbf24" color="#fbbf24" />
           <span className="rating-score">{provider.average_rating || t('card.new')}</span>
           <span className="reviews-count">({provider.reviewsCount || provider.reviews_count || 0} {t('card.reviews')})</span>
         </div>
