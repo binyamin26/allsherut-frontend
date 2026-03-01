@@ -336,18 +336,10 @@ const Header = () => {
                 </div>
       ) : (
                 <>
-                  <button 
-                    onClick={handleRegisterClick}
-                    className="nav-link"
-                    style={{background: 'none', border: 'none', cursor: 'pointer', width: '100%'}}
-                  >
+                  <button onClick={handleRegisterClick} className="cta-button" style={{width: '100%', marginBottom: '8px'}}>
                     {t('auth.register')}
                   </button>
-                  <button 
-                    onClick={handleAuthClick}
-                    className="nav-link"
-                    style={{background: 'none', border: 'none', cursor: 'pointer', width: '100%'}}
-                  >
+                 <button onClick={handleAuthClick} className="cta-button" style={{width: '100%', background: 'white', color: 'var(--primary-600)', border: '2px solid var(--primary-400)', boxShadow: 'none'}}>
                     {t('auth.login')}
                   </button>
                 </>
