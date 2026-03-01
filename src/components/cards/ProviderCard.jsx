@@ -73,14 +73,40 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
     <div className="provider-card enhanced-card" dir={isRTL ? 'rtl' : 'ltr'}>
       <div className="card-header">
         <div className="provider-image-wrapper">
-         <img 
-  src={imageUrl || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="80" height="80"%3E%3Crect width="80" height="80" fill="%23e5e7eb"/%3E%3Ctext x="50%25" y="50%25" font-size="30" text-anchor="middle" dy=".3em" fill="%236b7280"%3E👤%3C/text%3E%3C/svg%3E'}
-  alt={provider.name || provider.full_name}
-  className="provider-image"
-  onError={(e) => {
-    e.target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="80" height="80"%3E%3Crect width="80" height="80" fill="%23e5e7eb"/%3E%3Ctext x="50%25" y="50%25" font-size="30" text-anchor="middle" dy=".3em" fill="%236b7280"%3E👤%3C/text%3E%3C/svg%3E';
-  }}
-/>
+      {imageUrl ? (
+  <img 
+    src={imageUrl}
+    alt={provider.name || provider.full_name}
+    className="provider-image"
+    onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }}
+  />
+) : null}
+<div style={{
+  display: imageUrl ? 'none' : 'flex',
+  width: '100%',
+  height: '100%',
+  borderRadius: '50%',
+  background: 'linear-gradient(145deg, #e8eef5 0%, #d1dbe8 100%)',
+  alignItems: 'center',
+  justifyContent: 'center',
+  boxShadow: 'inset 0 2px 8px rgba(0,0,0,0.08)'
+}}>
+  <svg width="70" height="70" viewBox="0 0 100 100" fill="none">
+    <defs>
+      <linearGradient id="avatarGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#a0aec0"/>
+        <stop offset="100%" stopColor="#718096"/>
+      </linearGradient>
+      <clipPath id="circleClip">
+        <circle cx="50" cy="50" r="48"/>
+      </clipPath>
+    </defs>
+    <g clipPath="url(#circleClip)">
+      <circle cx="50" cy="38" r="18" fill="url(#avatarGradient)"/>
+      <ellipse cx="50" cy="85" rx="32" ry="28" fill="url(#avatarGradient)"/>
+    </g>
+  </svg>
+</div>
         </div>
 
         <div className="provider-basic-info">
