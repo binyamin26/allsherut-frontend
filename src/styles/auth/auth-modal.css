@@ -1649,6 +1649,7 @@
   display: flex !important;
   width: 100% !important;
   min-height: 52px !important;
+  max-height: 52px !important;
   background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-500) 100%) !important;
   color: white !important;
   border-radius: var(--radius-xl) !important;
@@ -1659,4 +1660,10 @@
   align-items: center !important;
   justify-content: center !important;
   margin-top: var(--space-4) !important;
+}
+
+.step-navigation button {
+  min-height: 52px !important;
+  max-height: 52px !important;
+  margin-top: 0 !important;
 }
