@@ -1566,16 +1566,11 @@
   background: var(--primary-500);
 }
 
-/* PAR : */
 .service-selection {
   position: relative;
   padding: 16px;
   border-radius: 20px;
   background: white;
-  max-height: 55vh;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--primary-300) transparent;
 }
 
 .service-btn {
