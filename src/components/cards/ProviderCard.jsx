@@ -69,71 +69,43 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
     return neighborhood;
   };
 
-  return (
-    <div className="provider-card enhanced-card" dir={isRTL ? 'rtl' : 'ltr'}>
-      <div className="card-header">
-        <div className="provider-image-wrapper">
-      {imageUrl ? (
-  <img 
-    src={imageUrl}
-    alt={provider.name || provider.full_name}
-    className="provider-image"
-    onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }}
-  />
-) : null}
-<div style={{
-  display: imageUrl ? 'none' : 'flex',
-  width: '100%',
-  height: '100%',
-  borderRadius: '50%',
-  background: 'linear-gradient(145deg, #e8eef5 0%, #d1dbe8 100%)',
-  alignItems: 'center',
-  justifyContent: 'center',
-  boxShadow: 'inset 0 2px 8px rgba(0,0,0,0.08)'
-}}>
-  <svg width="70" height="70" viewBox="0 0 100 100" fill="none">
-    <defs>
-      <linearGradient id="avatarGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#a0aec0"/>
-        <stop offset="100%" stopColor="#718096"/>
-      </linearGradient>
-      <clipPath id="circleClip">
-        <circle cx="50" cy="50" r="48"/>
-      </clipPath>
-    </defs>
-    <g clipPath="url(#circleClip)">
-      <circle cx="50" cy="38" r="18" fill="url(#avatarGradient)"/>
-      <ellipse cx="50" cy="85" rx="32" ry="28" fill="url(#avatarGradient)"/>
-    </g>
-  </svg>
-</div>
+ return (
+  <div className="provider-card enhanced-card" dir={isRTL ? 'rtl' : 'ltr'}>
+    <div className="card-horizontal-body">
+      <div className="card-horizontal-image">
+        {imageUrl ? (
+          <img src={imageUrl} alt={provider.name || provider.full_name} className="provider-image"
+            onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
+        ) : null}
+        <div style={{
+          display: imageUrl ? 'none' : 'flex',
+          width: '80px', height: '80px', borderRadius: '50%',
+          background: 'linear-gradient(145deg, #e8eef5 0%, #d1dbe8 100%)',
+          alignItems: 'center', justifyContent: 'center',
+          boxShadow: 'inset 0 2px 8px rgba(0,0,0,0.08)'
+        }}>
+          <svg width="50" height="50" viewBox="0 0 100 100" fill="none">
+            <defs>
+              <linearGradient id="avatarGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#a0aec0"/><stop offset="100%" stopColor="#718096"/>
+              </linearGradient>
+              <clipPath id="circleClip2"><circle cx="50" cy="50" r="48"/></clipPath>
+            </defs>
+            <g clipPath="url(#circleClip2)">
+              <circle cx="50" cy="38" r="18" fill="url(#avatarGradient2)"/>
+              <ellipse cx="50" cy="85" rx="32" ry="28" fill="url(#avatarGradient2)"/>
+            </g>
+          </svg>
         </div>
+      </div>
 
-        <div className="provider-basic-info">
-          <h3 className="provider-name">{provider.name || provider.full_name}</h3>
+      <div className="card-horizontal-info">
+        <h3 className="provider-name">{provider.name || provider.full_name}</h3>
+        <div className="rating-stars">
+          <Star size={13} fill="currentColor" className="text-yellow-400" />
+          <span className="rating-score">{provider.average_rating || t('card.new')}</span>
+          <span className="reviews-count">({provider.reviewsCount || provider.reviews_count || 0} {t('card.reviews')})</span>
         </div>
-
-        <div className="provider-rating">
-          <div className="rating-stars">
-            <Star size={14} fill="currentColor" className="text-yellow-400" />
-            <span className="rating-score">{provider.average_rating || t('card.new')}</span>
-            <span className="reviews-count">({provider.reviewsCount || provider.reviews_count || 0} {t('card.reviews')})</span>
-          </div>
-        </div>
-
-        {/* Ville au-dessus si prix existe */}
-        {hourlyRate && (
-          <div className="provider-location">
-            <div className="location-main">
-              <span>{t('card.serviceArea')} </span>
-              <strong style={{ color: '#1f2937' }}>{getCity()}</strong>
-              {getNeighborhood() && (
-                <span style={{ color: '#1f2937' }}><strong> - {getNeighborhood()}</strong></span>
-              )}
-            </div>
-          </div>
-        )}
-
         <div className="price-experience-info">
           {hourlyRate ? (
             <div className="hourly-rate">
@@ -144,9 +116,7 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
             <div className="location-info">
               <span>{t('card.serviceArea')} </span>
               <strong style={{ color: '#1f2937' }}>{getCity()}</strong>
-              {getNeighborhood() && (
-                <span style={{ color: '#1f2937' }}><strong> - {getNeighborhood()}</strong></span>
-              )}
+              {getNeighborhood() && <strong style={{ color: '#1f2937' }}> - {getNeighborhood()}</strong>}
             </div>
           )}
           <div className="experience-info">
@@ -155,28 +125,22 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
           </div>
         </div>
       </div>
+    </div>
 
-      <div className="card-footer">
-       <div className="action-buttons" dir={isRTL ? 'rtl' : 'ltr'}>
-          <button 
-            className="contact-provider-btn"
-            onClick={handleViewProfile}
-          >
-            <Phone size={16} />
-            <span>{t('card.viewProfile')}</span>
-          </button>
-          
-          <button 
-            className="review-action-btn"
-            onClick={handleReviewClick}
-          >
-            <MessageCircle size={16} />
-            <span>{t('card.leaveReview')}</span>
-          </button>
-        </div>
+    <div className="card-footer">
+      <div className="action-buttons" dir={isRTL ? 'rtl' : 'ltr'}>
+        <button className="contact-provider-btn" onClick={handleViewProfile}>
+          <Phone size={15} />
+          <span>{t('card.viewProfile')}</span>
+        </button>
+        <button className="review-action-btn" onClick={handleReviewClick}>
+          <MessageCircle size={15} />
+          <span>{t('card.leaveReview')}</span>
+        </button>
       </div>
     </div>
-  );
+  </div>
+);
 };
 
 export default ProviderCard;
