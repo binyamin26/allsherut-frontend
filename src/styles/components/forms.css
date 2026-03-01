@@ -471,19 +471,31 @@ textarea,
     font-size: var(--text-sm);
   }
   
-  .input-icon {
-    right: var(--space-3);
-    left: auto;
+.input-icon {
+    right: var(--space-3) !important;
+    left: auto !important;
   }
-  
+
   .password-toggle {
-    left: var(--space-3);
-    right: auto;
+    left: var(--space-3) !important;
+    right: auto !important;
   }
   
   .modern-select {
     font-size: var(--text-sm);
     padding: var(--space-3) var(--space-10) var(--space-3) var(--space-8);
+  }
+}
+
+@media (max-width: 480px) {
+  [dir="rtl"] .input-icon {
+    left: var(--space-3) !important;
+    right: auto !important;
+  }
+
+  [dir="rtl"] .password-toggle {
+    right: var(--space-3) !important;
+    left: auto !important;
   }
 }
 
