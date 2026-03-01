@@ -1642,3 +1642,21 @@
   max-height: 52px !important;
   padding: 0 var(--space-6) !important;
 }
+
+/* Fix bouton submit step 1 */
+.auth-form .btn.btn-primary.btn-block,
+.auth-form button[type="submit"] {
+  display: flex !important;
+  width: 100% !important;
+  min-height: 52px !important;
+  background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-500) 100%) !important;
+  color: white !important;
+  border-radius: var(--radius-xl) !important;
+  font-weight: 600 !important;
+  font-size: var(--text-base) !important;
+  border: none !important;
+  cursor: pointer !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-top: var(--space-4) !important;
+}
