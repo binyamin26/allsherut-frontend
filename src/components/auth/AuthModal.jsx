@@ -213,22 +213,22 @@ const services = [
   }, [selectedCity]);
 
   useEffect(() => {
-    const modalContent = document.querySelector('.modal-content.auth-modal');
-    if (modalContent) {
-      modalContent.scrollTop = 0;
-    }
+    const authForm = document.querySelector('.auth-modal .auth-form');
+if (authForm) {
+  authForm.scrollTop = 0;
+}
   }, [step]);
 
   useEffect(() => {
     if (mode === 'register' && step === 1 && formData.serviceType) {
       setTimeout(() => {
-        const modalContent = document.querySelector('.modal-content.auth-modal');
-        if (modalContent) {
-          modalContent.scrollTo({ 
-            top: modalContent.scrollHeight,
-            behavior: 'smooth'
-          });
-        }
+       const authForm = document.querySelector('.auth-modal .auth-form');
+if (authForm) {
+  authForm.scrollTo({ 
+    top: authForm.scrollHeight,
+    behavior: 'smooth'
+  });
+}
       }, 300);
     }
   }, [mode, step, formData.serviceType]);
