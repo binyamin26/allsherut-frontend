@@ -235,14 +235,6 @@
   padding: var(--space-8) 0 var(--space-16);
 }
 
-.providers-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr));
-  gap: var(--space-8);
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
 .providers-loading {
   display: flex;
   flex-direction: column;
@@ -342,9 +334,8 @@
   font-weight: 700;
   color: var(--neutral-900);
   margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+ white-space: normal;
+word-break: break-word;
 }
 
 .card-horizontal-info .rating-stars {
@@ -525,8 +516,8 @@
     height: 60px;
   }
   
-    .providers-grid {
-    grid-template-columns: repeat(2, 1fr);
+ .providers-grid {
+    grid-template-columns: 1fr;
     gap: var(--space-3);
   }
   
@@ -552,16 +543,10 @@
   }
 }
 
-@media (max-width: 400px) {
-  .providers-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 @media (max-width: 480px) {
   .service-header {
     padding: var(--space-8) 0 var(--space-6);
-  }
+  }e
   
   .service-title {
     font-size: var(--text-2xl);
