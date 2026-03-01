@@ -238,7 +238,7 @@
 
 .step-navigation {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   gap: var(--space-4);
 }
 
