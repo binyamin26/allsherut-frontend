@@ -1665,4 +1665,5 @@
   height: 52px !important;
   flex: 1 !important;
   min-height: unset !important;
+  padding: 0 var(--space-4) !important;
 }
