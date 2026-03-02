@@ -1687,38 +1687,27 @@
 }
 
 /* ============================================
-   UNIFORMISATION COULEUR DES 3 BOUTONS PRINCIPAUX
-   חזור / השלם הרשמה / המשך — couleur fixe identique
+   FIX DÉFINITIF — 3 BOUTONS COULEUR UNIFORME
+   Doit être en DERNIER dans le fichier
    ============================================ */
 
-/* Bouton המשך (step 1) */
-.auth-form .btn.btn-primary.btn-block,
-.auth-form button[type="submit"],
-.auth-form .btn-primary.btn-block {
-  background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-500) 100%) !important;
-  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.35) !important;
-  color: white !important;
-  border: none !important;
-}
-
-/* Boutons חזור et השלם הרשמה (step 2) */
-.step-navigation .btn,
-.step-navigation button[type="submit"],
-.step-navigation button[type="button"] {
-  background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-500) 100%) !important;
+.auth-modal .step-navigation .btn,
+.auth-modal .step-navigation button,
+.auth-modal .auth-form .btn.btn-primary.btn-block,
+.auth-modal .auth-form button[type="submit"],
+.auth-modal .auth-form .btn-primary.btn-block {
+  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%) !important;
   box-shadow: 0 4px 15px rgba(59, 130, 246, 0.35) !important;
   color: white !important;
   border: none !important;
   border-radius: var(--radius-xl) !important;
 }
 
-/* Hover identique — légèrement plus lumineux, pas de changement de couleur */
-.auth-form .btn.btn-primary.btn-block:hover,
-.auth-form button[type="submit"]:hover,
-.auth-form .btn-primary.btn-block:hover,
-.step-navigation .btn:hover,
-.step-navigation button:hover {
-  background: linear-gradient(135deg, var(--primary-500) 0%, var(--primary-400) 100%) !important;
-  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.45) !important;
-  transform: translateY(-1px);
+.auth-modal .step-navigation .btn:hover,
+.auth-modal .step-navigation button:hover,
+.auth-modal .auth-form .btn.btn-primary.btn-block:hover,
+.auth-modal .auth-form button[type="submit"]:hover,
+.auth-modal .auth-form .btn-primary.btn-block:hover {
+  background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%) !important;
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5) !important;
 }
