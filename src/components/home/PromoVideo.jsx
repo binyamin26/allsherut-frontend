@@ -13,7 +13,7 @@ const promoTexts = [
   },
   {
     main: "הרשמה פשוטה ומהירה אונליין.",
-    bgImage: null,
+    bgImage: "/archama.mp4",
     time: 4
   },
   {
