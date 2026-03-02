@@ -1670,18 +1670,18 @@
   flex: 1 !important;
 }
 
-.step-navigation .btn,
-.step-navigation button,
+.step-navigation .btn {
+  background: linear-gradient(135deg, var(--accent-600) 0%, var(--accent-500) 100%) !important;
+  color: white !important;
+  border: none !important;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3) !important;
+  border-radius: var(--radius-xl) !important;
+}
+
 .auth-form .btn-primary.btn-block {
   background: linear-gradient(135deg, var(--accent-600) 0%, var(--accent-500) 100%) !important;
   color: white !important;
   border: none !important;
   box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3) !important;
-}
-
-.step-navigation .btn:hover,
-.step-navigation button:hover,
-.auth-form .btn-primary.btn-block:hover {
-  background: linear-gradient(135deg, var(--accent-500) 0%, var(--accent-400) 100%) !important;
-  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4) !important;
+  border-radius: var(--radius-xl) !important;
 }
