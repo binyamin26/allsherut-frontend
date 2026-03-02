@@ -1643,7 +1643,6 @@
   padding: 0 var(--space-6) !important;
 }
 
-/* Fix bouton submit step 1 */
 .auth-form .btn.btn-primary.btn-block,
 .auth-form button[type="submit"] {
   display: flex !important;
@@ -1662,8 +1661,11 @@
   margin-top: var(--space-4) !important;
 }
 
-.step-navigation button {
+.step-navigation .btn,
+.step-navigation button[type="submit"],
+.step-navigation button[type="button"] {
   min-height: 52px !important;
   max-height: 52px !important;
   margin-top: 0 !important;
+  flex: 1 !important;
 }
