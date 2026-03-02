@@ -1670,11 +1670,18 @@
   flex: 1 !important;
 }
 
-.step-navigation .btn-secondary-style,
-.auth-form .btn-primary.btn-block {
-  background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-500) 100%) !important;
+.step-navigation .btn {
+  background: linear-gradient(135deg, var(--accent-600) 0%, var(--accent-500) 100%) !important;
   color: white !important;
   border: none !important;
-  box-shadow: var(--shadow-primary) !important;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3) !important;
+  border-radius: var(--radius-xl) !important;
+}
+
+.auth-form .btn-primary.btn-block {
+  background: linear-gradient(135deg, var(--accent-600) 0%, var(--accent-500) 100%) !important;
+  color: white !important;
+  border: none !important;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3) !important;
   border-radius: var(--radius-xl) !important;
 }
