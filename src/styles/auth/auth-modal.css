@@ -1669,3 +1669,12 @@
   margin-top: 0 !important;
   flex: 1 !important;
 }
+
+.step-navigation .btn-secondary-style,
+.auth-form .btn-primary.btn-block {
+  background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-500) 100%) !important;
+  color: white !important;
+  border: none !important;
+  box-shadow: var(--shadow-primary) !important;
+  border-radius: var(--radius-xl) !important;
+}
