@@ -44,8 +44,8 @@ const promoTexts = [
   },
   {
     main: "הצטרפו ל-AllSherut עוד היום והגדילו את החשיפה והנוכחות שלכם בשוק.",
-    bgImage: null,
-    time: 5
+    bgImage: "/itstarfou.jpg",
+    time: 5 
   }
 ];
 
