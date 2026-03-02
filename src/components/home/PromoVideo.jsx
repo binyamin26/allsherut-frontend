@@ -13,23 +13,21 @@ const promoTexts = [
   },
   {
     main: "הרשמה פשוטה ומהירה אונליין.",
-    bgImage: "/archama.mp4",
+    bgVideo: "/archama.mp4",
     time: 4
   },
   {
     main: "בחרו את השירותים שלכם מתוך יותר מ־20 קטגוריות.",
     isMarquee: true,
-    bgImage: null,
     time: 8
   },
   {
     main: "גשו לאזור האישי שלכם.",
-    bgImage: "/dashboard.mp4",
+    bgVideo: "/dashboard.mp4",
     time: 4
   },
   {
     main: "עדכנו את הפרטים שלכם בכל עת.",
-    bgImage: null,
     time: 4
   },
   {
@@ -45,7 +43,7 @@ const promoTexts = [
   {
     main: "הצטרפו ל-AllSherut עוד היום והגדילו את החשיפה והנוכחות שלכם בשוק.",
     bgImage: "/itstarfou.jpg",
-    time: 5 
+    time: 5
   }
 ];
 
@@ -79,11 +77,10 @@ const styles = `
   .promo-container {
     position: relative;
     width: 100%;
-    /* 9:16 vertical pour WhatsApp Status */
     aspect-ratio: 9/16;
     max-width: 480px;
     margin: 0 auto;
-    background: linear-gradient(180deg, #ffffff 0%, #eff6ff 40%, #dbeafe 75%, #bfdbfe 100%);
+    background: linear-gradient(180deg, #060c1f 0%, #0d1b3e 50%, #060c1f 100%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -92,80 +89,129 @@ const styles = `
     direction: rtl;
   }
 
-  .promo-container.is-paused * {
-    animation-play-state: paused !important;
-  }
-
-  /* ── IMAGE DE FOND PAR SLIDE ── */
+  /* ── IMAGE DE FOND ── */
   .slide-bg {
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
     z-index: 1;
     pointer-events: none;
-    transition: opacity 0.8s ease;
+    transition: opacity 1s ease;
   }
   .slide-bg img {
     width: 100%; height: 100%;
     object-fit: cover;
     object-position: center top;
     display: block;
+    transform-origin: center center;
+  }
+  .slide-bg.visible img {
+    animation: kenBurns 7s ease-out forwards;
+  }
+  @keyframes kenBurns {
+    0%   { transform: scale(1.1) translateX(-8px); }
+    100% { transform: scale(1.0) translateX(0px); }
   }
   .slide-bg::after {
     content: '';
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
+    inset: 0;
     background: linear-gradient(
       180deg,
-      rgba(255,255,255,0.45) 0%,
-      rgba(239,246,255,0.35) 40%,
-      rgba(219,234,254,0.50) 100%
+      rgba(0,0,0,0.1) 0%,
+      rgba(0,0,0,0.0) 30%,
+      rgba(6,12,31,0.7) 65%,
+      rgba(6,12,31,0.95) 100%
     );
   }
   .slide-bg.hidden { opacity: 0; }
   .slide-bg.visible { opacity: 1; }
 
-  .bg-video {
+  /* ── VIDÉO SLIDE (letterbox 16:9 dans 9:16) ── */
+  .slide-video-wrap {
     position: absolute;
-    top: 0; left: 0;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    transition: opacity 1s ease;
+    overflow: hidden;
+  }
+  .slide-video-wrap.hidden  { opacity: 0; }
+  .slide-video-wrap.visible { opacity: 1; }
+  .slide-video-blur {
+    position: absolute;
+    inset: 0;
     width: 100%; height: 100%;
     object-fit: cover;
-    opacity: 0.05;
-    mix-blend-mode: multiply;
-    z-index: 0;
+    filter: blur(24px) brightness(0.35) saturate(1.5);
+    transform: scale(1.1);
+  }
+  .slide-video-main {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: auto;
+    max-height: 56%;
+    object-fit: contain;
+    border-radius: 6px;
+    box-shadow: 0 0 80px rgba(0,0,0,0.7);
+  }
+  .slide-video-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(6,12,31,0.0) 40%, rgba(6,12,31,0.75) 75%, rgba(6,12,31,0.96) 100%);
     pointer-events: none;
   }
 
-  /* ── BLOBS ── */
-  .bg-blob {
+  .bg-ambient {
     position: absolute;
-    border-radius: 50%;
-    pointer-events: none;
+    inset: 0;
     z-index: 0;
+    pointer-events: none;
   }
-  .bb-1 {
-    width: 400px; height: 400px;
-    top: -100px; left: -150px;
-    background: radial-gradient(circle, rgba(219,234,254,0.8) 0%, transparent 70%);
-    animation: blobDrift 20s ease-in-out infinite;
-  }
-  .bb-2 {
+  .blob-1 {
+    position: absolute;
     width: 350px; height: 350px;
-    bottom: -80px; right: -100px;
-    background: radial-gradient(circle, rgba(191,219,254,0.7) 0%, transparent 70%);
-    animation: blobDrift 26s ease-in-out infinite reverse 5s;
+    top: -100px; left: -120px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(37,99,235,0.18) 0%, transparent 70%);
+    animation: blobDrift 22s ease-in-out infinite;
+  }
+  .blob-2 {
+    position: absolute;
+    width: 300px; height: 300px;
+    bottom: 100px; right: -80px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(14,165,233,0.15) 0%, transparent 70%);
+    animation: blobDrift 28s ease-in-out infinite reverse 6s;
   }
   @keyframes blobDrift {
     0%,100% { transform: translate(0,0) scale(1); }
-    33%     { transform: translate(20px,-15px) scale(1.05); }
-    66%     { transform: translate(-15px,20px) scale(0.97); }
+    33%     { transform: translate(15px,-12px) scale(1.04); }
+    66%     { transform: translate(-12px,15px) scale(0.97); }
   }
 
-  /* ── ANIMATION TECHNO ── */
+  /* ── PARTICULES ── */
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 3;
+    animation: floatUp linear infinite;
+  }
+  @keyframes floatUp {
+    0%   { transform: translateY(0) translateX(0); opacity: 0; }
+    8%   { opacity: 1; }
+    92%  { opacity: 0.4; }
+    100% { transform: translateY(-110vh) translateX(20px); opacity: 0; }
+  }
+
+  /* ── IDLE TECH ── */
   .idle-layer {
     position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    inset: 0;
     z-index: 1;
     overflow: hidden;
     pointer-events: none;
@@ -173,56 +219,37 @@ const styles = `
   }
   .idle-layer.hidden  { opacity: 0; }
   .idle-layer.visible { opacity: 1; }
-
   .tech-grid {
     position: absolute;
     width: 200%; height: 200%;
     top: -50%; left: -50%;
     background-image:
-      linear-gradient(rgba(59,130,246,0.1) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(59,130,246,0.1) 1px, transparent 1px);
-    background-size: 60px 60px;
+      linear-gradient(rgba(59,130,246,0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,0.07) 1px, transparent 1px);
+    background-size: 55px 55px;
     transform: perspective(600px) rotateX(55deg);
     animation: gridMove 18s linear infinite;
   }
   @keyframes gridMove {
     0%   { transform: perspective(600px) rotateX(55deg) translateY(0); }
-    100% { transform: perspective(600px) rotateX(55deg) translateY(60px); }
+    100% { transform: perspective(600px) rotateX(55deg) translateY(55px); }
   }
-
   .pulse-circle {
     position: absolute;
     top: 50%; left: 50%;
-    transform: translate(-50%,-50%);
     border-radius: 50%;
     animation: pulseExpand 7s infinite linear;
   }
-  .pc-1 { width:200px; height:200px; border:2px solid rgba(59,130,246,0.22); animation-delay:0s; }
-  .pc-2 { width:400px; height:400px; border:2px solid rgba(96,165,250,0.16); animation-delay:-2.3s; }
-  .pc-3 { width:600px; height:600px; border:1.5px solid rgba(147,197,253,0.12); animation-delay:-4.6s; }
+  .pc-1 { width:180px; height:180px; border:1px solid rgba(59,130,246,0.25);  animation-delay:0s; }
+  .pc-2 { width:360px; height:360px; border:1px solid rgba(96,165,250,0.18);  animation-delay:-2.3s; }
+  .pc-3 { width:560px; height:560px; border:1px solid rgba(147,197,253,0.12); animation-delay:-4.6s; }
   @keyframes pulseExpand {
     0%   { transform:translate(-50%,-50%) scale(0.4); opacity:0; }
     40%  { opacity:1; }
-    100% { transform:translate(-50%,-50%) scale(1.6); opacity:0; }
+    100% { transform:translate(-50%,-50%) scale(1.7); opacity:0; }
   }
 
-  .geo-shape {
-    position: absolute;
-    background: rgba(255,255,255,0.8);
-    border: 1.5px solid rgba(147,197,253,0.55);
-    box-shadow: 0 8px 32px rgba(59,130,246,0.1);
-    backdrop-filter: blur(8px);
-    z-index: 2;
-  }
-  .gs-1 { width:80px; height:80px; top:10%; left:6%; border-radius:18px; animation:floatGeo 13s ease-in-out infinite; background:linear-gradient(135deg,rgba(255,255,255,0.95),rgba(219,234,254,0.8)); }
-  .gs-2 { width:110px; height:110px; bottom:20%; right:5%; border-radius:50%; animation:floatGeo 16s ease-in-out infinite reverse; background:linear-gradient(135deg,rgba(219,234,254,0.85),rgba(191,219,254,0.6)); }
-  .gs-3 { width:55px; height:55px; top:25%; right:8%; border-radius:12px; transform:rotate(30deg); animation:floatGeo 10s ease-in-out infinite 1.5s; }
-  .gs-4 { width:40px; height:40px; bottom:35%; left:8%; border-radius:10px; transform:rotate(-20deg); animation:floatGeo 9s ease-in-out infinite 3s; }
-  @keyframes floatGeo {
-    0%,100% { transform: translateY(0) rotate(0deg); }
-    50%     { transform: translateY(-25px) rotate(12deg); }
-  }
-
+  /* ── MARQUEE ── */
   .marquee-layer {
     position: absolute;
     top:-20%; left:-20%;
@@ -247,163 +274,176 @@ const styles = `
     width:250px; height:155px;
     border-radius:18px;
     object-fit:cover;
-    box-shadow:0 10px 30px rgba(59,130,246,0.15), 0 2px 8px rgba(0,0,0,0.06);
-    border:2.5px solid rgba(255,255,255,0.95);
+    box-shadow:0 10px 30px rgba(59,130,246,0.15);
+    border:2.5px solid rgba(255,255,255,0.9);
   }
 
-  /* ── TEXTES ── */
-  .scene {
-    position: relative;
-    z-index: 10;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  /* ── WATERMARK ── */
+  .watermark {
+    position: absolute;
+    top: 22px; right: 18px;
+    z-index: 30;
+    font-size: clamp(14px, 4.5vw, 20px);
+    font-weight: 900;
+    color: rgba(255,255,255,0.9);
+    text-shadow: 0 2px 16px rgba(0,0,0,0.5);
     pointer-events: none;
-    padding: 20% 0;
+    letter-spacing: -0.01em;
+  }
+  .watermark span { color: #38bdf8; }
+
+  /* ── TEXTE EN BAS ── */
+  .scene {
+    position: absolute;
+    z-index: 20;
+    bottom: 0; left: 0; right: 0;
+    padding: 0 22px 44px;
+    pointer-events: none;
   }
 
   .text-card {
-    position: absolute;
-    padding: 36px 28px;
-    background: rgba(255,255,255,0.82);
-    backdrop-filter: blur(28px) saturate(180%);
-    -webkit-backdrop-filter: blur(28px) saturate(180%);
-    border: 1.5px solid rgba(147,197,253,0.45);
-    border-top: 1.5px solid rgba(255,255,255,0.98);
-    border-left: 1.5px solid rgba(255,255,255,0.98);
-    border-radius: 32px;
-    box-shadow:
-      0 20px 50px rgba(59,130,246,0.15),
-      inset 0 0 0 1px rgba(255,255,255,0.65);
-    text-align: center;
-    width: 82%;
     opacity: 0;
-    transform: scale(0.95) translateY(20px);
     pointer-events: none;
   }
 
+  /* Ligne lumineuse */
+  .glow-line {
+    height: 2px;
+    width: 0;
+    border-radius: 2px;
+    background: linear-gradient(90deg, transparent, #38bdf8 40%, #2563eb 70%, transparent);
+    margin-bottom: 14px;
+  }
+  .glow-line.active {
+    animation: lineSlide 0.5s 0.1s cubic-bezier(0.4,0,0.2,1) forwards;
+  }
+  @keyframes lineSlide {
+    from { width: 0; opacity: 0; }
+    to   { width: 100%; opacity: 1; }
+  }
+
+  .text-label {
+    display: block;
+    font-size: clamp(9px, 2.8vw, 13px);
+    font-weight: 700;
+    color: #38bdf8;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    opacity: 0.85;
+  }
+
   .main-text {
-    font-size: clamp(20px, 6.5vw, 52px);
+    font-size: clamp(20px, 6.8vw, 44px);
     font-weight: 900;
-    line-height: 1.3;
-    background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 35%, #0ea5e9 70%, #38bdf8 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    line-height: 1.25;
+    color: #ffffff;
+    text-align: right;
+    text-shadow:
+      0 2px 24px rgba(14,165,233,0.4),
+      0 0 80px rgba(37,99,235,0.25);
     letter-spacing: -0.01em;
-    filter: drop-shadow(0 2px 12px rgba(37,99,235,0.2));
   }
 
-  /* ── ANIMATIONS IMPACT ── */
-  .impact-left        { animation: impactFromLeft  4s cubic-bezier(0.16,1,0.3,1) forwards; }
-  .impact-left-long   { animation: impactFromLeft  8s cubic-bezier(0.16,1,0.3,1) forwards; }
-  .impact-left-5s     { animation: impactFromLeft  5s cubic-bezier(0.16,1,0.3,1) forwards; }
-  .impact-right       { animation: impactFromRight 4s cubic-bezier(0.16,1,0.3,1) forwards; }
-  .impact-right-long  { animation: impactFromRight 8s cubic-bezier(0.16,1,0.3,1) forwards; }
-  .impact-right-5s    { animation: impactFromRight 5s cubic-bezier(0.16,1,0.3,1) forwards; }
-  .impact-top         { animation: impactFromTop   4s cubic-bezier(0.16,1,0.3,1) forwards; }
-  .impact-top-long    { animation: impactFromTop   8s cubic-bezier(0.16,1,0.3,1) forwards; }
-  .impact-top-5s      { animation: impactFromTop   5s cubic-bezier(0.16,1,0.3,1) forwards; }
-  .impact-zoom        { animation: impactZoom      4s cubic-bezier(0.16,1,0.3,1) forwards; }
-  .impact-zoom-long   { animation: impactZoom      8s cubic-bezier(0.16,1,0.3,1) forwards; }
-  .impact-zoom-5s     { animation: impactZoom      5s cubic-bezier(0.16,1,0.3,1) forwards; }
-  .impact-shrink      { animation: impactShrink    4s cubic-bezier(0.16,1,0.3,1) forwards; }
-  .impact-shrink-long { animation: impactShrink    8s cubic-bezier(0.16,1,0.3,1) forwards; }
-  .impact-shrink-5s   { animation: impactShrink    5s cubic-bezier(0.16,1,0.3,1) forwards; }
+  /* ── ANIMATIONS TEXTE ── */
+  .impact-left      { animation: txtLeft   4s cubic-bezier(0.16,1,0.3,1) forwards; }
+  .impact-left-5s   { animation: txtLeft   5s cubic-bezier(0.16,1,0.3,1) forwards; }
+  .impact-left-long { animation: txtLeft   8s cubic-bezier(0.16,1,0.3,1) forwards; }
+  .impact-right      { animation: txtRight  4s cubic-bezier(0.16,1,0.3,1) forwards; }
+  .impact-right-5s   { animation: txtRight  5s cubic-bezier(0.16,1,0.3,1) forwards; }
+  .impact-right-long { animation: txtRight  8s cubic-bezier(0.16,1,0.3,1) forwards; }
+  .impact-top      { animation: txtUp    4s cubic-bezier(0.16,1,0.3,1) forwards; }
+  .impact-top-5s   { animation: txtUp    5s cubic-bezier(0.16,1,0.3,1) forwards; }
+  .impact-top-long { animation: txtUp    8s cubic-bezier(0.16,1,0.3,1) forwards; }
+  .impact-zoom      { animation: txtZoom  4s cubic-bezier(0.16,1,0.3,1) forwards; }
+  .impact-zoom-5s   { animation: txtZoom  5s cubic-bezier(0.16,1,0.3,1) forwards; }
+  .impact-zoom-long { animation: txtZoom  8s cubic-bezier(0.16,1,0.3,1) forwards; }
+  .impact-shrink      { animation: txtDown  4s cubic-bezier(0.16,1,0.3,1) forwards; }
+  .impact-shrink-5s   { animation: txtDown  5s cubic-bezier(0.16,1,0.3,1) forwards; }
+  .impact-shrink-long { animation: txtDown  8s cubic-bezier(0.16,1,0.3,1) forwards; }
 
-  @keyframes impactFromLeft {
-    0%   { opacity:0; transform:translateX(-150%) scaleX(1.5) skewX(-12deg); filter:blur(20px); }
-    8%   { opacity:1; transform:translateX(7%) scaleX(0.94) skewX(3deg);    filter:blur(0); }
-    12%  { transform:translateX(-2%) scaleX(1.02); }
-    16%  { transform:translateX(0) scaleX(1) skewX(0); }
-    80%  { opacity:1; transform:translateX(0) scale(1); }
-    100% { opacity:0; transform:translateX(6%) scale(1.04); }
+  @keyframes txtLeft {
+    0%   { opacity:0; transform:translateX(-60px); filter:blur(10px); }
+    12%  { opacity:1; transform:translateX(5px);   filter:blur(0); }
+    18%  { transform:translateX(-1px); }
+    23%  { transform:translateX(0); }
+    80%  { opacity:1; }
+    100% { opacity:0; transform:translateX(8px); filter:blur(5px); }
   }
-  @keyframes impactFromRight {
-    0%   { opacity:0; transform:translateX(150%) scaleX(1.5) skewX(12deg);  filter:blur(20px); }
-    8%   { opacity:1; transform:translateX(-7%) scaleX(0.94) skewX(-3deg);  filter:blur(0); }
-    12%  { transform:translateX(2%) scaleX(1.02); }
-    16%  { transform:translateX(0) scaleX(1) skewX(0); }
-    80%  { opacity:1; transform:translateX(0) scale(1); }
-    100% { opacity:0; transform:translateX(-6%) scale(1.04); }
+  @keyframes txtRight {
+    0%   { opacity:0; transform:translateX(60px);  filter:blur(10px); }
+    12%  { opacity:1; transform:translateX(-5px);  filter:blur(0); }
+    18%  { transform:translateX(1px); }
+    23%  { transform:translateX(0); }
+    80%  { opacity:1; }
+    100% { opacity:0; transform:translateX(-8px); filter:blur(5px); }
   }
-  @keyframes impactFromTop {
-    0%   { opacity:0; transform:translateY(-150%) scaleY(1.5) skewY(-6deg); filter:blur(20px); }
-    8%   { opacity:1; transform:translateY(7%) scaleY(0.93) skewY(2deg);    filter:blur(0); }
-    13%  { transform:translateY(-2%) scaleY(1.03); }
-    17%  { transform:translateY(0) scaleY(1) skewY(0); }
-    80%  { opacity:1; transform:scale(1); }
-    100% { opacity:0; transform:translateY(-5%) scale(1.03); }
+  @keyframes txtUp {
+    0%   { opacity:0; transform:translateY(40px);  filter:blur(10px); }
+    12%  { opacity:1; transform:translateY(-4px);  filter:blur(0); }
+    18%  { transform:translateY(1px); }
+    23%  { transform:translateY(0); }
+    80%  { opacity:1; }
+    100% { opacity:0; transform:translateY(-6px); filter:blur(5px); }
   }
-  @keyframes impactZoom {
-    0%   { opacity:0; transform:scale(5) rotate(10deg);    filter:blur(30px); }
-    9%   { opacity:1; transform:scale(0.93) rotate(-2deg); filter:blur(0); }
-    13%  { transform:scale(1.04) rotate(0.5deg); }
-    17%  { transform:scale(1) rotate(0); }
-    80%  { opacity:1; transform:scale(1); }
-    100% { opacity:0; transform:scale(1.06); }
+  @keyframes txtZoom {
+    0%   { opacity:0; transform:scale(1.3);   filter:blur(14px); }
+    12%  { opacity:1; transform:scale(0.98);  filter:blur(0); }
+    18%  { transform:scale(1.01); }
+    23%  { transform:scale(1); }
+    80%  { opacity:1; }
+    100% { opacity:0; transform:scale(1.04); filter:blur(5px); }
   }
-  @keyframes impactShrink {
-    0%   { opacity:0; transform:scale(0.02) rotate(-15deg); filter:blur(24px); }
-    10%  { opacity:1; transform:scale(1.08) rotate(2deg);   filter:blur(0); }
-    15%  { transform:scale(0.97) rotate(-0.5deg); }
-    19%  { transform:scale(1) rotate(0); }
-    80%  { opacity:1; transform:scale(1); }
-    100% { opacity:0; transform:scale(0.95); }
+  @keyframes txtDown {
+    0%   { opacity:0; transform:translateY(-40px) scale(0.95); filter:blur(10px); }
+    12%  { opacity:1; transform:translateY(3px) scale(1.01);   filter:blur(0); }
+    18%  { transform:translateY(-1px) scale(1); }
+    23%  { transform:translateY(0) scale(1); }
+    80%  { opacity:1; }
+    100% { opacity:0; transform:translateY(6px); filter:blur(5px); }
   }
-
-  /* ── CONTRÔLES ── */
-  .controls-container {
-    position: absolute;
-    bottom: 3%;
-    left: 5%;
-    z-index: 9999;
-    display: flex;
-    gap: 10px;
-    pointer-events: auto;
-    direction: ltr;
-  }
-
-  .control-btn {
-    width: 44px; height: 44px;
-    background: rgba(255,255,255,0.88);
-    backdrop-filter: blur(12px);
-    border: 1.5px solid rgba(147,197,253,0.65);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    color: #2563eb;
-    transition: all 0.25s ease;
-    box-shadow: 0 4px 16px rgba(59,130,246,0.15);
-    pointer-events: auto;
-    touch-action: manipulation;
-    -webkit-tap-highlight-color: transparent;
-  }
-  .control-btn:hover { transform: scale(1.08); background: rgba(219,234,254,0.97); }
-  .control-btn svg { width: 20px; height: 20px; fill: currentColor; }
 
   /* ── BARRE DE PROGRESSION ── */
   .progress-bar {
     position: absolute;
     bottom: 0; left: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #2563eb, #38bdf8);
+    height: 3px;
+    background: linear-gradient(90deg, #1d4ed8, #38bdf8, #7dd3fc);
     z-index: 100;
     transition: width 0.1s linear;
-    border-radius: 0 4px 0 0;
+    border-radius: 0 2px 0 0;
+    box-shadow: 0 0 8px rgba(56,189,248,0.6);
   }
 `;
 
-const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique.mp3", services = [] }) => {
-  const [isPaused, setIsPaused] = useState(false);
-  const [isMuted,  setIsMuted]  = useState(true);
-  const [currentTime, setCurrentTime] = useState(0);
+const SlideVideo = ({ src, isActive }) => {
+  const ref = useRef(null);
+  useEffect(() => {
+    if (!ref.current) return;
+    if (isActive) { ref.current.currentTime = 0; ref.current.play().catch(() => {}); }
+    else ref.current.pause();
+  }, [isActive]);
+  return (
+    <div className={`slide-video-wrap ${isActive ? 'visible' : 'hidden'}`}>
+      <video className="slide-video-blur" src={src} autoPlay loop muted playsInline />
+      <video ref={ref} className="slide-video-main" src={src} loop muted playsInline />
+    </div>
+  );
+};
 
-  const videoRef     = useRef(null);
+const particles = [
+  { size: 2, left: '10%', dur: 12, delay: 0,   color: 'rgba(255,255,255,0.5)' },
+  { size: 3, left: '25%', dur: 18, delay: -4,  color: 'rgba(255,255,255,0.5)' },
+  { size: 1, left: '40%', dur: 14, delay: -8,  color: 'rgba(255,255,255,0.5)' },
+  { size: 2, left: '55%', dur: 20, delay: -2,  color: 'rgba(255,255,255,0.5)' },
+  { size: 3, left: '70%', dur: 16, delay: -6,  color: 'rgba(96,165,250,0.7)'  },
+  { size: 1, left: '82%', dur: 13, delay: -10, color: 'rgba(255,255,255,0.5)' },
+  { size: 2, left: '16%', dur: 22, delay: -3,  color: 'rgba(147,197,253,0.6)' },
+  { size: 2, left: '60%', dur: 17, delay: -7,  color: 'rgba(255,255,255,0.5)' },
+];
+
+const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique.mp3", services = [] }) => {
+  const [currentTime, setCurrentTime] = useState(0);
   const audioRef     = useRef(null);
   const requestRef   = useRef(null);
   const startTimeRef = useRef(null);
@@ -413,35 +453,27 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
     '/images/chien.jpg','/images/tutoring.png','/images/eldercare.png',
     '/images/plombier.jpg','/images/clim.png','/images/gaz.jpg'
   ];
-  const displayMedia = services.length > 0 ? services.map(s => s.image || s) : defaultMedia;
-
-  // 3 colonnes pour le marquee vertical
-  const col1 = [...displayMedia, ...displayMedia, ...displayMedia];
-  const col2 = [...displayMedia.slice(3), ...displayMedia.slice(0,3), ...displayMedia.slice(3), ...displayMedia.slice(0,3), ...displayMedia.slice(3), ...displayMedia.slice(0,3)];
-  const col3 = [...displayMedia].reverse().concat([...displayMedia].reverse()).concat([...displayMedia].reverse());
+  const displayMedia      = services.length > 0 ? services.map(s => s.image || s) : defaultMedia;
+  const marqueeListTop    = [...displayMedia,...displayMedia,...displayMedia];
+  const mid               = Math.floor(displayMedia.length / 2);
+  const shifted           = [...displayMedia.slice(mid),...displayMedia.slice(0,mid)];
+  const marqueeListMiddle = [...shifted,...shifted,...shifted];
+  const reversed          = [...displayMedia].reverse();
+  const marqueeListBottom = [...reversed,...reversed,...reversed];
 
   const duration = promoTexts.reduce((a, c) => a + c.time, 0);
 
-  const animate = (time) => {
-    if (!startTimeRef.current) startTimeRef.current = time;
-    if (!isPaused) {
-      setCurrentTime(((time - startTimeRef.current) / 1000) % duration);
-    } else {
-      startTimeRef.current = time - (currentTime * 1000);
-    }
+  const animate = (ts) => {
+    if (!startTimeRef.current) startTimeRef.current = ts;
+    setCurrentTime(((ts - startTimeRef.current) / 1000) % duration);
     requestRef.current = requestAnimationFrame(animate);
   };
 
   useEffect(() => {
+    if (audioRef.current) audioRef.current.play().catch(() => {});
     requestRef.current = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(requestRef.current);
-  }, [isPaused, currentTime, duration]);
-
-  useEffect(() => {
-    const v = videoRef.current;
-    if (!v) return;
-    isPaused ? v.pause() : v.play().catch(() => {});
-  }, [isPaused]);
+  }, []);
 
   let accum = 0, activeSeq = 0;
   for (let i = 0; i < promoTexts.length; i++) {
@@ -449,35 +481,33 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
     if (currentTime < accum) { activeSeq = i; break; }
   }
   const activeSlide     = promoTexts[activeSeq];
-  const isMarqueeActive = activeSlide?.isMarquee;
+  const isMarqueeActive = !!activeSlide?.isMarquee;
   const hasImage        = !!activeSlide?.bgImage;
-  const showIdleLayer   = !hasImage && !isMarqueeActive;
-
-  const toggleVideo = () => setIsPaused(p => !p);
-  const toggleSound = () => {
-    const a = audioRef.current;
-    if (!a) return;
-    if (a.paused || isMuted) { a.play().catch(()=>{}); setIsMuted(false); }
-    else { a.pause(); setIsMuted(true); }
-  };
-
-  const IconPlay     = () => <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>;
-  const IconPause    = () => <svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>;
-  const IconSoundOn  = () => <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>;
-  const IconSoundOff = () => <svg viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>;
+  const hasVideo        = !!activeSlide?.bgVideo;
+  const showIdleLayer   = !hasImage && !hasVideo && !isMarqueeActive;
 
   return (
-    <div className={`promo-container ${isPaused ? 'is-paused' : ''}`}>
+    <div className="promo-container">
       <style>{styles}</style>
 
-      <video ref={videoRef} className="bg-video" autoPlay loop muted playsInline>
-        <source src={videoSrc} type="video/mp4" />
-      </video>
+      {/* Ambient background */}
+      <div className="bg-ambient">
+        <div className="blob-1"></div>
+        <div className="blob-2"></div>
+      </div>
 
-      <div className="bg-blob bb-1"></div>
-      <div className="bg-blob bb-2"></div>
+      {/* Particules */}
+      {particles.map((p, i) => (
+        <div key={i} className="particle" style={{
+          width: p.size, height: p.size,
+          left: p.left, bottom: '-10px',
+          background: p.color,
+          animationDuration: `${p.dur}s`,
+          animationDelay: `${p.delay}s`,
+        }} />
+      ))}
 
-      {/* Images de fond par slide */}
+      {/* Images de fond (Ken Burns) */}
       {promoTexts.map((slide, i) =>
         slide.bgImage ? (
           <div key={`bg-${i}`} className={`slide-bg ${activeSeq === i ? 'visible' : 'hidden'}`}>
@@ -486,59 +516,58 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
         ) : null
       )}
 
-      {/* Animation techno */}
+      {/* Vidéos letterbox */}
+      {promoTexts.map((slide, i) =>
+        slide.bgVideo ? (
+          <SlideVideo key={`vid-${i}`} src={slide.bgVideo} isActive={activeSeq === i} />
+        ) : null
+      )}
+
+      {/* Idle tech */}
       <div className={`idle-layer ${showIdleLayer ? 'visible' : 'hidden'}`}>
         <div className="tech-grid"></div>
         <div className="pulse-circle pc-1"></div>
         <div className="pulse-circle pc-2"></div>
         <div className="pulse-circle pc-3"></div>
-        <div className="geo-shape gs-1"></div>
-        <div className="geo-shape gs-2"></div>
-        <div className="geo-shape gs-3"></div>
-        <div className="geo-shape gs-4"></div>
       </div>
 
-    {/* Marquee horizontal (3 lignes) */}
+      {/* Marquee */}
       <div className={`marquee-layer ${isMarqueeActive ? 'visible' : ''}`}>
         <div className="marquee-row scroll-left">
-          {col1.map((src, i) => <MarqueeItem key={`c1-${i}`} src={src} />)}
+          {marqueeListTop.map((src,i) => <MarqueeItem key={`t-${i}`} src={src}/>)}
         </div>
         <div className="marquee-row scroll-right">
-          {col2.map((src, i) => <MarqueeItem key={`c2-${i}`} src={src} />)}
+          {marqueeListMiddle.map((src,i) => <MarqueeItem key={`m-${i}`} src={src}/>)}
         </div>
         <div className="marquee-row scroll-left">
-          {col3.map((src, i) => <MarqueeItem key={`c3-${i}`} src={src} />)}
+          {marqueeListBottom.map((src,i) => <MarqueeItem key={`b-${i}`} src={src}/>)}
         </div>
       </div>
 
-      <audio ref={audioRef} loop src={audioSrc}></audio>
+      <audio ref={audioRef} loop src={audioSrc} />
 
+      {/* Watermark */}
+      <div className="watermark">All<span>Sherut</span></div>
 
-      {/* Textes */}
+      {/* Texte EN BAS */}
       <div className="scene">
         {promoTexts.map((textObj, index) => {
           if (activeSeq !== index) return null;
           const base = ANIM_CLASSES[index % ANIM_CLASSES.length];
           const cls  = getAnimClass(base, textObj.time);
           return (
-            <div key={index} className={`text-card ${cls}`}>
-              <div className="main-text">{textObj.main}</div>
+            <div key={`${index}-${activeSeq}`}>
+              <div className="glow-line active"></div>
+              <div className={`text-card ${cls}`}>
+                <span className="text-label">AllSherut ·</span>
+                <div className="main-text">{textObj.main}</div>
+              </div>
             </div>
           );
         })}
       </div>
 
-      {/* Contrôles */}
-      <div className="controls-container">
-        <button className="control-btn" onPointerDown={(e) => { e.preventDefault(); toggleVideo(); }}>
-          {isPaused ? <IconPlay /> : <IconPause />}
-        </button>
-        <button className="control-btn" onPointerDown={(e) => { e.preventDefault(); toggleSound(); }}>
-          {isMuted ? <IconSoundOff /> : <IconSoundOn />}
-        </button>
-      </div>
-
-      <div className="progress-bar" style={{ width: `${(currentTime / duration) * 100}%` }}></div>
+      <div className="progress-bar" style={{ width: `${(currentTime / duration) * 100}%` }} />
     </div>
   );
 };
