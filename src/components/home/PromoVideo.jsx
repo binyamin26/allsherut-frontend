@@ -297,7 +297,7 @@ const styles = `
     position: absolute;
     z-index: 20;
     bottom: 0; left: 0; right: 0;
-    padding: 0 22px 44px;
+    padding: 0 22px 90px;
     pointer-events: none;
   }
 
@@ -367,40 +367,40 @@ const styles = `
     12%  { opacity:1; transform:translateX(5px);   filter:blur(0); }
     18%  { transform:translateX(-1px); }
     23%  { transform:translateX(0); }
-    80%  { opacity:1; }
-    100% { opacity:0; transform:translateX(8px); filter:blur(5px); }
+      93%  { opacity:1; transform:translateX(0);    filter:blur(0); }
+  100% { opacity:0; transform:translateX(8px);  filter:blur(14px); }
   }
   @keyframes txtRight {
     0%   { opacity:0; transform:translateX(60px);  filter:blur(10px); }
     12%  { opacity:1; transform:translateX(-5px);  filter:blur(0); }
     18%  { transform:translateX(1px); }
     23%  { transform:translateX(0); }
-    80%  { opacity:1; }
-    100% { opacity:0; transform:translateX(-8px); filter:blur(5px); }
+      93%  { opacity:1; transform:translateX(0);    filter:blur(0); }
+  100% { opacity:0; transform:translateX(-8px); filter:blur(14px); }
   }
   @keyframes txtUp {
     0%   { opacity:0; transform:translateY(40px);  filter:blur(10px); }
     12%  { opacity:1; transform:translateY(-4px);  filter:blur(0); }
     18%  { transform:translateY(1px); }
     23%  { transform:translateY(0); }
-    80%  { opacity:1; }
-    100% { opacity:0; transform:translateY(-6px); filter:blur(5px); }
+      93%  { opacity:1; transform:translateY(0);    filter:blur(0); }
+  100% { opacity:0; transform:translateY(-6px); filter:blur(14px); }
   }
   @keyframes txtZoom {
     0%   { opacity:0; transform:scale(1.3);   filter:blur(14px); }
     12%  { opacity:1; transform:scale(0.98);  filter:blur(0); }
     18%  { transform:scale(1.01); }
     23%  { transform:scale(1); }
-    80%  { opacity:1; }
-    100% { opacity:0; transform:scale(1.04); filter:blur(5px); }
+93%  { opacity:1; transform:scale(1);         filter:blur(0); }
+  100% { opacity:0; transform:scale(1.04);      filter:blur(14px); 
   }
   @keyframes txtDown {
     0%   { opacity:0; transform:translateY(-40px) scale(0.95); filter:blur(10px); }
     12%  { opacity:1; transform:translateY(3px) scale(1.01);   filter:blur(0); }
     18%  { transform:translateY(-1px) scale(1); }
     23%  { transform:translateY(0) scale(1); }
-    80%  { opacity:1; }
-    100% { opacity:0; transform:translateY(6px); filter:blur(5px); }
+      93%  { opacity:1; transform:translateY(0) scale(1); filter:blur(0); }
+  100% { opacity:0; transform:translateY(6px);        filter:blur(14px);
   }
 
   /* ── BARRE DE PROGRESSION ── */
@@ -547,7 +547,9 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
       <audio ref={audioRef} loop src={audioSrc} />
 
       {/* Watermark */}
-      <div className="watermark">All<span>Sherut</span></div>
+      <div className="watermark">
+  <img src="/icon-192.jpg" alt="AllSherut" style={{height:'48px', width:'auto'}} />
+</div>
 
       {/* Texte EN BAS */}
       <div className="scene">
