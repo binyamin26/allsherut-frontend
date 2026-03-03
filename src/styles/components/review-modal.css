@@ -51,7 +51,7 @@
   cursor: pointer;
   transition: all var(--transition-medium);
   color: var(--neutral-500);
-  order: -1;
+  order: 1;
 }
 
 .modal-close-btn:hover {
