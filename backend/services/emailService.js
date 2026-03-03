@@ -29,22 +29,33 @@ class EmailService {
   // HEADER & FOOTER COMMUNS
   // ============================================
 
- getEmailHeader(subtitle = '') {
-  return `
-    <!DOCTYPE html>
-    <html dir="rtl" lang="he">
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body style="font-family: 'Heebo', Arial, sans-serif; background: #f8fafc; margin: 0; padding: 20px; direction: rtl;">
-      <div style="max-width: 600px; margin: 0 auto; background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 8px 30px rgba(99,102,241,0.12);">
-        <div style="background: linear-gradient(135deg, #6366f1 0%, #14b8a6 100%); padding: 28px 40px; text-align: center;">
-          <img src="${this.logoUrl}" alt="AllSherut" style="width: 110px; height: 110px; border-radius: 50%; border: 3px solid rgba(255,255,255,0.3); display: inline-block; object-fit: contain;" />
-          ${subtitle ? `<div style="margin-top: 10px; display: inline-block; background: rgba(255,255,255,0.2); padding: 5px 16px; border-radius: 20px; font-size: 13px; color: white; font-weight: 600;">${subtitle}</div>` : ''}
-        </div>
-  `;
-}
+  getEmailHeader(subtitle = '') {
+    return `
+      <!DOCTYPE html>
+      <html dir="rtl" lang="he">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      </head>
+      <body style="font-family: 'Heebo', Arial, sans-serif; background: #f8fafc; margin: 0; padding: 20px; direction: rtl;">
+        <div style="max-width: 600px; margin: 0 auto; background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 8px 30px rgba(99,102,241,0.12);">
+          <!-- Header avec logo à côté du texte -->
+          <div style="background: linear-gradient(135deg, #6366f1 0%, #14b8a6 100%); padding: 28px 40px;">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%" style="direction: rtl;">
+              <tr>
+                <td style="vertical-align: middle; text-align: right;">
+                  <div style="font-size: 28px; font-weight: 800; color: white; margin-bottom: 4px; letter-spacing: 0.5px;">AllSherut</div>
+                  <div style="font-size: 14px; color: rgba(255,255,255,0.85);">שירותי בית מקצועיים</div>
+                  ${subtitle ? `<div style="margin-top: 8px; display: inline-block; background: rgba(255,255,255,0.2); padding: 5px 16px; border-radius: 20px; font-size: 13px; color: white; font-weight: 600;">${subtitle}</div>` : ''}
+                </td>
+                <td style="width: 110px; vertical-align: middle; text-align: left;">
+                  <img src="${this.logoUrl}" alt="AllSherut" style="width: 180px; height: 180px; border-radius: 50%; border: 3px solid rgba(255,255,255,0.3); display: block;" />
+                </td>
+              </tr>
+            </table>
+          </div>
+    `;
+  }
 
   getEmailFooter() {
     return `
@@ -119,7 +130,9 @@ class EmailService {
     };
     const serviceName = serviceNames[serviceType] || '';
 
-    return `          <div style="padding: 40px; direction: rtl;">
+    return `
+      ${this.getEmailHeader('⭐ השארת ביקורת ודירוג')}
+          <div style="padding: 40px; direction: rtl;">
             ${serviceName ? `<div style="text-align: center; margin-bottom: 20px;">
               <span style="display: inline-block; background: linear-gradient(135deg, #14b8a6, #0d9488); color: white; padding: 6px 18px; border-radius: 20px; font-size: 13px; font-weight: 700;">שירותי ${serviceName}</span>
             </div>` : ''}
