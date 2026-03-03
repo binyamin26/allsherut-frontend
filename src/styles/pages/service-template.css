@@ -11,10 +11,11 @@
    HEADER SIMPLE
    ==================================== */
 .service-header {
-  background: linear-gradient(135deg, #f0fdf4 0%, #eff6ff 50%, #faf5ff 100%);
+  background: linear-gradient(135deg, var(--primary-100) 0%, var(--accent-100) 100%);
   padding: var(--space-12) 0 var(--space-8);
-  border-bottom: 2px solid rgba(16, 185, 129, 0.2);
-  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.08);
+  border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
 }
 
 .service-title-section {
