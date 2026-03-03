@@ -592,7 +592,7 @@
 .verification-code-step .input-wrapper .verification-input {
   padding: var(--space-3) var(--space-4) !important;
   text-align: center !important;
-  direction: ltr !important;
+  direction: rtl !important;
   box-sizing: border-box !important;
   width: 100% !important;
 }
