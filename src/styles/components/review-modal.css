@@ -191,7 +191,7 @@
   letter-spacing: 0.3em;
   font-family: monospace;
   padding: var(--space-3) var(--space-4) !important;
-  direction: ltr !important;
+  direction: rtl !important;
 }
 
 .verification-input::placeholder {
