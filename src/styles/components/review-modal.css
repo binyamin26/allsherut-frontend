@@ -194,6 +194,11 @@
   direction: ltr !important;
 }
 
+.verification-input::placeholder {
+  direction: rtl;
+  text-align: center;
+}
+
 /* Form groups et inputs */
 .auth-form {
   display: flex;
