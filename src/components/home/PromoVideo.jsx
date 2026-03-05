@@ -573,7 +573,7 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
             <div key={`${index}-${activeSeq}`}>
               <div className="glow-line active"></div>
               <div className={`text-card ${cls}`}>
-                <div className="main-text" style={{ fontSize: 'clamp(34px, 11vw, 68px)' }}>{textObj.main}</div>
+                <div className="main-text" style={{ fontSize: '100px' }}>{textObj.main}</div>
               </div>
             </div>
           );
