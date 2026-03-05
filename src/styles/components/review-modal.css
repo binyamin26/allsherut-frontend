@@ -737,3 +737,20 @@
   padding: var(--space-4);
 }
 
+/* LTR fix (français, anglais) */
+[dir="ltr"] .standard-input,
+[dir="ltr"] .review-textarea {
+  direction: ltr !important;
+  text-align: left !important;
+  padding-left: var(--space-12) !important;
+  padding-right: var(--space-4) !important;
+}
+
+[dir="ltr"] .input-icon {
+  right: auto !important;
+  left: var(--space-4) !important;
+}
+
+[dir="ltr"] .form-label {
+  text-align: left !important;
+}
