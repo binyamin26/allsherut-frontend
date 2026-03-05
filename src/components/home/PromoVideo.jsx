@@ -391,20 +391,7 @@ const styles = `
   100% { opacity:0; transform:translateY(6px);        filter:blur(14px);}
   }
 
-@media (max-width: 520px) {
-    .promo-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      max-width: 100vw;
-      height: 100svh;
-      aspect-ratio: unset;
-      margin: 0;
-      border-radius: 0;
-      z-index: 1001;
-    }
-  }
+  /* Mobile full-screen géré dans promo-video.css */
 
   /* ── BARRE DE PROGRESSION ── */
   .progress-bar {
