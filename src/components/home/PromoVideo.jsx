@@ -390,15 +390,15 @@ const styles = `
   100% { opacity:0; transform:translateY(6px);        filter:blur(14px);}
   }
 
- @media (max-width: 520px) {
+@media (max-width: 520px) {
     .promo-container {
-      position: fixed;
-      inset: 0;
-      max-width: 100vw;
+      position: relative;
       width: 100vw;
-      height: 100dvh;
+      max-width: 100vw;
+      height: 100svh;
       aspect-ratio: unset;
-      z-index: 9999;
+      margin-left: calc(-50vw + 50%);
+      margin-right: calc(-50vw + 50%);
     }
   }
 
