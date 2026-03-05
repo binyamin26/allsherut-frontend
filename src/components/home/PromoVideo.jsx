@@ -321,7 +321,7 @@ const styles = `
   }
 
   .main-text {
-    font-size: clamp(20px, 6.8vw, 44px);
+    font-size: clamp(28px, 9vw, 52px);
     font-weight: 900;
     line-height: 1.25;
     color: #ffffff;
@@ -390,13 +390,17 @@ const styles = `
   100% { opacity:0; transform:translateY(6px);        filter:blur(14px);}
   }
 
-  @media (max-width: 520px) {
+ @media (max-width: 520px) {
     .promo-container {
+      position: fixed;
+      inset: 0;
       max-width: 100vw;
       width: 100vw;
       height: 100dvh;
       aspect-ratio: unset;
+      z-index: 9999;
     }
+  }
   }
 
   /* ── BARRE DE PROGRESSION ── */
@@ -557,9 +561,8 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
             </div>
           );
         })}
-      <div style={{display:'flex', alignItems:'center', gap:'10px', marginTop:'10px', justifyContent:'flex-end'}}>
-                  <img src="/icon-192.jpg" alt="" style={{height:'28px', width:'28px', borderRadius:'50%', opacity:0.85}} />
-                  <span style={{color:'rgba(255,255,255,0.6)', fontSize:'12px', fontWeight:700, letterSpacing:'0.12em'}}>ALLSHERUT.COM</span>
+      <div style={{display:'flex', justifyContent:'flex-end', marginTop:'10px'}}>
+                  <img src="/icon-192.jpg" alt="" style={{height:'48px', width:'48px', borderRadius:'50%', opacity:0.9}} />
                 </div>
       </div>
 
