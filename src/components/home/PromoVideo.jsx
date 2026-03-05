@@ -312,7 +312,7 @@ const styles = `
 
   .text-label {
     display: block;
-    font-size: clamp(9px, 2.8vw, 13px);
+    font-size: clamp(9px, 2.8vw, 13px) !important;;
     font-weight: 700;
     color: #38bdf8;
     letter-spacing: 0.18em;
