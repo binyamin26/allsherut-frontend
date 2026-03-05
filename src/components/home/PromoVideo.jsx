@@ -261,8 +261,8 @@ const styles = `
     opacity:0;
     transition:opacity 1s cubic-bezier(0.4,0,0.2,1);
     pointer-events:none;
-    mask-image:radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 80%);
-    -webkit-mask-image:radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 80%);
+    mask-image:radial-gradient(ellipse 90% 70% at 50% 50%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
+-webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 50%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
     direction:ltr;
   }
   .marquee-layer.visible { opacity:0.88; }
@@ -278,20 +278,6 @@ const styles = `
     box-shadow:0 10px 30px rgba(59,130,246,0.15);
     border:2.5px solid rgba(255,255,255,0.9);
   }
-
-  /* ── WATERMARK ── */
-  .watermark {
-    position: absolute;
-    top: 22px; right: 18px;
-    z-index: 30;
-    font-size: clamp(14px, 4.5vw, 20px);
-    font-weight: 900;
-    color: rgba(255,255,255,0.9);
-    text-shadow: 0 2px 16px rgba(0,0,0,0.5);
-    pointer-events: none;
-    letter-spacing: -0.01em;
-  }
-  .watermark span { color: #38bdf8; }
 
   /* ── TEXTE EN BAS ── */
   .scene {
@@ -393,7 +379,7 @@ const styles = `
     18%  { transform:scale(1.01); }
     23%  { transform:scale(1); }
 93%  { opacity:1; transform:scale(1);         filter:blur(0); }
-  100% { opacity:0; transform:scale(1.04);      filter:blur(14px); 
+  100% { opacity:0; transform:scale(1.04);      filter:blur(14px);} 
   }
   @keyframes txtDown {
     0%   { opacity:0; transform:translateY(-40px) scale(0.95); filter:blur(10px); }
@@ -401,9 +387,18 @@ const styles = `
     18%  { transform:translateY(-1px) scale(1); }
     23%  { transform:translateY(0) scale(1); }
       93%  { opacity:1; transform:translateY(0) scale(1); filter:blur(0); }
-  100% { opacity:0; transform:translateY(6px);        filter:blur(14px);
+  100% { opacity:0; transform:translateY(6px);        filter:blur(14px);}
   }
 
+  @media (max-width: 520px) {
+    .promo-container {
+      max-width: 100vw;
+      width: 100vw;
+      height: 100dvh;
+      aspect-ratio: unset;
+    }
+  }
+    
   /* ── BARRE DE PROGRESSION ── */
   .progress-bar {
     position: absolute;
@@ -547,11 +542,6 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
 
       <audio ref={audioRef} loop src={audioSrc} />
 
-      {/* Watermark */}
-      <div className="watermark">
-  <img src="/icon-192.jpg" alt="AllSherut" style={{height:'48px', width:'auto'}} />
-</div>
-
       {/* Texte EN BAS */}
       <div className="scene">
         {promoTexts.map((textObj, index) => {
@@ -568,6 +558,9 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
             </div>
           );
         })}
+      <div style={{display:'flex', alignItems:'center', justifyContent:'flex-end', marginTop:'12px'}}>
+        <img src="/icon-192.jpg" alt="AllSherut" style={{height:'36px', width:'auto', opacity:0.9}} />
+      </div>
       </div>
 
       <div className="progress-bar" style={{ width: `${(currentTime / duration) * 100}%` }} />
