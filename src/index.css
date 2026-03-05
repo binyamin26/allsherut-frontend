@@ -25,7 +25,6 @@
 @import './styles/components/subscription.css'; /* 🆕 NOUVEAU - Styles abonnements */
 @import './styles/components/response-modal.css';
 @import './styles/components/service-search-bar.css';
-@import './styles/components/promo-video.css';
 
 /* Pages */
 @import './styles/pages/home.css';

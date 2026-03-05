@@ -322,7 +322,7 @@ const styles = `
   }
 
   .main-text {
-    font-size: clamp(34px, min(12vw, 12cqw), 68px);
+    font-size: clamp(34px, 11vw, 68px);
     font-weight: 900;
     line-height: 1.25;
     color: #ffffff;
@@ -391,7 +391,20 @@ const styles = `
   100% { opacity:0; transform:translateY(6px);        filter:blur(14px);}
   }
 
-  /* Mobile full-screen géré dans promo-video.css */
+@media (max-width: 520px) {
+    .promo-container {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100vw !important;
+      max-width: 100vw !important;
+      height: 100svh !important;
+      aspect-ratio: unset !important;
+      margin: 0 !important;
+      border-radius: 0 !important;
+      z-index: 1001 !important;
+    }
+  }
 
   /* ── BARRE DE PROGRESSION ── */
   .progress-bar {
