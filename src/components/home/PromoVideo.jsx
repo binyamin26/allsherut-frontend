@@ -447,9 +447,16 @@ const particles = [
 
 const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique.mp3", services = [] }) => {
   const [currentTime, setCurrentTime] = useState(0);
+  const [isMobile, setIsMobile]       = useState(window.innerWidth <= 520);
   const audioRef     = useRef(null);
   const requestRef   = useRef(null);
   const startTimeRef = useRef(null);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 520);
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   const defaultMedia = [
     '/images/babysite.png','/images/nikayon.jpg','/images/jardinage.jpg',
@@ -489,8 +496,15 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
   const hasVideo        = !!activeSlide?.bgVideo;
   const showIdleLayer   = !hasImage && !hasVideo && !isMarqueeActive;
 
+  const mobileStyle = isMobile ? {
+    position: 'fixed', top: 0, left: 0,
+    width: '100vw', height: '100svh',
+    maxWidth: '100vw', aspectRatio: 'unset',
+    margin: 0, borderRadius: 0, zIndex: 1001,
+  } : {};
+
   return (
-    <div className="promo-container">
+    <div className="promo-container" style={mobileStyle}>
       <style>{styles}</style>
 
       {/* Ambient background */}
@@ -559,7 +573,7 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
             <div key={`${index}-${activeSeq}`}>
               <div className="glow-line active"></div>
               <div className={`text-card ${cls}`}>
-                <div className="main-text">{textObj.main}</div>
+                <div className="main-text" style={{ fontSize: 'clamp(34px, 11vw, 68px)' }}>{textObj.main}</div>
               </div>
             </div>
           );
