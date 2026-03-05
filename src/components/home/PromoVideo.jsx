@@ -13,7 +13,7 @@ const promoTexts = [
   },
   {
     main: "הרשמה פשוטה ומהירה אונליין.",
-    bgVideo: "/archama.mp4",
+    bgVideo: "/arshama.mp4",
     time: 4
   },
   {
@@ -29,7 +29,7 @@ const promoTexts = [
   {
     main: "עדכנו את הפרטים שלכם בכל עת.",
      bgVideo: "/idkounpratim.mp4",
-    time: 7 
+    time: 8 
   },
   {
     main: "הלקוחות מדרגים את העבודה שלכם. הביקורות מחזקות את האמינות שלכם.",
