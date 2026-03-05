@@ -321,7 +321,7 @@ const styles = `
     opacity: 0.85;
   }
 
-  .main-text {
+  .text-main {
     font-size: clamp(34px, 11vw, 68px);
     font-weight: 900;
     line-height: 1.25;
@@ -573,7 +573,7 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
             <div key={`${index}-${activeSeq}`}>
               <div className="glow-line active"></div>
               <div className={`text-card ${cls}`}>
-                <div className="main-text" style={{ fontSize: '100px' }}>{textObj.main}</div>
+                <div className="text-main">{textObj.main}</div>
               </div>
             </div>
           );
