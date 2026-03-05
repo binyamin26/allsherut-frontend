@@ -210,7 +210,6 @@
   gap: var(--space-3);
   color: var(--neutral-600);
   font-size: var(--text-lg);
-  direction: rtl;
 }
 
 .loading-text::before {

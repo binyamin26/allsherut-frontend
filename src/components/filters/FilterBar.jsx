@@ -427,11 +427,11 @@ const RatingPanel = ({ selected, onChange }) => {
             {option.value !== '' && (
               <div className="stars-display">
                 {[...Array(5)].map((_, i) => (
-                  <Star 
-                    key={i} 
-                    size={14} 
+                  <Star
+                    key={i}
+                    size={14}
                     fill={i < option.value ? "currentColor" : "none"}
-                    className={i < option.value ? "text-yellow-400" : "text-gray-300"}
+                    style={{ color: i < option.value ? '#facc15' : '#d1d5db' }}
                   />
                 ))}
               </div>
