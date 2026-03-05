@@ -754,3 +754,7 @@
 [dir="ltr"] .form-label {
   text-align: left !important;
 }
+
+[dir="ltr"] .verification-input::placeholder {
+  text-align: left !important;
+}
