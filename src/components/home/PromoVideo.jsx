@@ -284,7 +284,7 @@ const styles = `
     position: absolute;
     z-index: 20;
     bottom: 0; left: 0; right: 0;
-    padding: 0 22px 90px;
+    padding: 0 22px 40px;
     pointer-events: none;
   }
 
@@ -398,7 +398,7 @@ const styles = `
       aspect-ratio: unset;
     }
   }
-    
+
   /* ── BARRE DE PROGRESSION ── */
   .progress-bar {
     position: absolute;
@@ -552,15 +552,15 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
             <div key={`${index}-${activeSeq}`}>
               <div className="glow-line active"></div>
               <div className={`text-card ${cls}`}>
-                <span className="text-label">AllSherut ·</span>
                 <div className="main-text">{textObj.main}</div>
               </div>
             </div>
           );
         })}
-      <div style={{display:'flex', alignItems:'center', justifyContent:'flex-end', marginTop:'12px'}}>
-        <img src="/icon-192.jpg" alt="AllSherut" style={{height:'36px', width:'auto', opacity:0.9}} />
-      </div>
+      <div style={{display:'flex', alignItems:'center', gap:'10px', marginTop:'10px', justifyContent:'flex-end'}}>
+                  <img src="/icon-192.jpg" alt="" style={{height:'28px', width:'28px', borderRadius:'50%', opacity:0.85}} />
+                  <span style={{color:'rgba(255,255,255,0.6)', fontSize:'12px', fontWeight:700, letterSpacing:'0.12em'}}>ALLSHERUT.COM</span>
+                </div>
       </div>
 
       <div className="progress-bar" style={{ width: `${(currentTime / duration) * 100}%` }} />
