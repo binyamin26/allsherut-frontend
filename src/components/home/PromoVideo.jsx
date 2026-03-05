@@ -322,7 +322,7 @@ const styles = `
   }
 
   .text-main {
-    font-size: clamp(34px, 11vw, 68px);
+    font-size: clamp(22px, 7vw, 44px);
     font-weight: 900;
     line-height: 1.25;
     color: #ffffff;
