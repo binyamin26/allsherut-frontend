@@ -758,3 +758,12 @@
 [dir="ltr"] .verification-input::placeholder {
   text-align: left !important;
 }
+
+[dir="ltr"] .modal-title {
+  text-align: left !important;
+}
+
+[dir="ltr"] .success-box p,
+[dir="ltr"] .info-box p {
+  text-align: left !important;
+}
