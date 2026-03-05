@@ -14,7 +14,7 @@ const promoTexts = [
   {
     main: "הרשמה פשוטה ומהירה אונליין.",
     bgVideo: "/arshama.mp4",
-    time: 4
+    time: 6
   },
   {
     main: "בחרו את השירותים שלכם מתוך יותר מ־20 קטגוריות.",
@@ -24,7 +24,7 @@ const promoTexts = [
   {
     main: "גשו לאזור האישי שלכם.",
     bgVideo: "/dashboard.mp4",
-    time: 4
+    time: 6
   },
   {
     main: "עדכנו את הפרטים שלכם בכל עת.",
