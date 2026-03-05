@@ -88,6 +88,7 @@ const styles = `
     overflow: hidden;
     font-family: 'Heebo', sans-serif;
     direction: rtl;
+    container-type: inline-size;
   }
 
   /* ── IMAGE DE FOND ── */
@@ -321,7 +322,7 @@ const styles = `
   }
 
   .main-text {
-    font-size: clamp(28px, 9vw, 52px);
+    font-size: clamp(28px, min(9vw, 9cqw), 52px);
     font-weight: 900;
     line-height: 1.25;
     color: #ffffff;
