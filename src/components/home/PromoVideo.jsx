@@ -322,7 +322,7 @@ const styles = `
   }
 
   .main-text {
-    font-size: clamp(28px, min(9vw, 9cqw), 52px);
+    font-size: clamp(34px, min(12vw, 12cqw), 68px);
     font-weight: 900;
     line-height: 1.25;
     color: #ffffff;
@@ -393,13 +393,16 @@ const styles = `
 
 @media (max-width: 520px) {
     .promo-container {
-      position: relative;
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100vw;
       max-width: 100vw;
       height: 100svh;
       aspect-ratio: unset;
-      margin-left: calc(-50vw + 50%);
-      margin-right: calc(-50vw + 50%);
+      margin: 0;
+      border-radius: 0;
+      z-index: 1001;
     }
   }
 
@@ -561,8 +564,8 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
             </div>
           );
         })}
-      <div style={{display:'flex', justifyContent:'flex-end', marginTop:'10px'}}>
-                  <img src="/icon-192.jpg" alt="" style={{height:'56px', width:'56px', borderRadius:'50%', opacity:0.9}} />
+      <div style={{display:'flex', justifyContent:'flex-end', marginTop:'12px'}}>
+                  <img src="/icon-192.jpg" alt="" style={{height:'76px', width:'76px', borderRadius:'50%', opacity:0.9}} />
                 </div>
       </div>
 

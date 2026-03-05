@@ -281,18 +281,24 @@ const HomePage = () => {
               className="hero-visual animate-fade-in-left delay-400"
               style={{
                 width: '100%',
-                /* C'est ici que vous contrôlez la place qu'elle prend dans la page */
-                maxWidth: '1000px', /* Augmentez ceci (ex: 1200px ou 100%) */
+                maxWidth: '1000px',
                 margin: '0 auto',
                 display: 'flex',
-                justifyContent: 'center'
+                justifyContent: 'center',
               }}
             >
               <PromoVideo
                 services={services}
                 onRegisterClick={() => openAuthModal('register')}
               />
+              {/* Placeholder mobile : pousse le contenu sous la vidéo fixed */}
+              <div style={{ display: 'none' }} className="promo-mobile-spacer" />
             </div>
+            <style>{`
+              @media (max-width: 520px) {
+                .promo-mobile-spacer { display: block !important; height: 100svh; width: 1px; }
+              }
+            `}</style>
 
             {/* ... le reste du code après ... */}
           </div>
