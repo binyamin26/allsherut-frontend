@@ -761,6 +761,7 @@
 
 [dir="ltr"] .modal-title {
   text-align: left !important;
+  direction: ltr !important;
 }
 
 [dir="ltr"] .success-box p,
