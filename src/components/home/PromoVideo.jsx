@@ -29,7 +29,7 @@ const promoTexts = [
   {
     main: "עדכנו את הפרטים שלכם בכל עת.",
      bgVideo: "/idkounpratim.mp4",
-    time: 4 
+    time: 7 
   },
   {
     main: "הלקוחות מדרגים את העבודה שלכם. הביקורות מחזקות את האמינות שלכם.",
