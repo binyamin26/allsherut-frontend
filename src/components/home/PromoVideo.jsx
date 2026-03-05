@@ -401,7 +401,6 @@ const styles = `
       z-index: 9999;
     }
   }
-  }
 
   /* ── BARRE DE PROGRESSION ── */
   .progress-bar {
@@ -562,7 +561,7 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
           );
         })}
       <div style={{display:'flex', justifyContent:'flex-end', marginTop:'10px'}}>
-                  <img src="/icon-192.jpg" alt="" style={{height:'48px', width:'48px', borderRadius:'50%', opacity:0.9}} />
+                  <img src="/icon-192.jpg" alt="" style={{height:'56px', width:'56px', borderRadius:'50%', opacity:0.9}} />
                 </div>
       </div>
 
