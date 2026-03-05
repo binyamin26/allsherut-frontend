@@ -588,4 +588,4 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
   );
 };
 
-export default PromoVideoVertical;
+export default PromoVideoVertical;// force rebuild Thu, Mar  5, 2026 10:42:35 PM
