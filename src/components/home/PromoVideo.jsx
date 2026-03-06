@@ -589,7 +589,7 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
         })}
       {activeSeq === promoTexts.length - 1 && (
         <div style={{display:'flex', justifyContent:'flex-end', marginTop:'16px', animation:'logoAppear 0.8s cubic-bezier(0.16,1,0.3,1) forwards'}}>
-          <img src="/icon-192.jpg" alt="" style={{height:'76px', width:'76px', borderRadius:'50%', opacity:0.95, boxShadow:'0 0 24px rgba(56,189,248,0.5)'}} />
+          <img src="/icon-192.jpg" alt="" style={{height:'120px', width:'120px', borderRadius:'50%', opacity:0.95, boxShadow:'0 0 32px rgba(56,189,248,0.6)'}} />
         </div>
       )}
       </div>
