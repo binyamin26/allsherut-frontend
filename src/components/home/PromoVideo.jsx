@@ -17,7 +17,7 @@ const promoTexts = [
     time: 6
   },
   {
-    main: "בחרו את השירותים שלכם מתוך יותר מ־20 קטגוריות.",
+    main: "מעל 20 קטגוריות של שירותים במקום אחד",
     isMarquee: true,
     time: 8
   },
@@ -111,8 +111,8 @@ const styles = `
     animation: kenBurns 7s ease-out forwards;
   }
   @keyframes kenBurns {
-    0%   { transform: scale(1.1) translateX(-8px); }
-    100% { transform: scale(1.0) translateX(0px); }
+    0%   { transform: scale(1.05); }
+    100% { transform: scale(1.15); }
   }
   .slide-bg::after {
     content: '';
@@ -284,8 +284,10 @@ const styles = `
   .scene {
     position: absolute;
     z-index: 20;
-    bottom: 0; left: 0; right: 0;
-    padding: 0 22px 40px;
+    bottom: 12%;
+    left: 0;
+    right: 0;
+    padding: 0 24px;
     pointer-events: none;
   }
 
@@ -322,7 +324,7 @@ const styles = `
   }
 
   .text-main {
-    font-size: clamp(14px, 4.5vw, 28px);
+    font-size: clamp(26px, 6vw, 44px);
     font-weight: 900;
     line-height: 1.25;
     color: #ffffff;
@@ -331,6 +333,8 @@ const styles = `
       0 2px 24px rgba(14,165,233,0.4),
       0 0 80px rgba(37,99,235,0.25);
     letter-spacing: -0.01em;
+    max-width: 90%;
+    margin-left: auto;
   }
 
   /* ── ANIMATIONS TEXTE ── */
@@ -404,6 +408,11 @@ const styles = `
       border-radius: 0 !important;
       z-index: 1001 !important;
     }
+  }
+
+  @keyframes logoAppear {
+    0%   { opacity: 0; transform: scale(0.6) translateY(12px); }
+    100% { opacity: 0.95; transform: scale(1) translateY(0); }
   }
 
   /* ── BARRE DE PROGRESSION ── */
@@ -578,9 +587,11 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
             </div>
           );
         })}
-      <div style={{display:'flex', justifyContent:'flex-end', marginTop:'12px'}}>
-                  <img src="/icon-192.jpg" alt="" style={{height:'76px', width:'76px', borderRadius:'50%', opacity:0.9}} />
-                </div>
+      {activeSeq === promoTexts.length - 1 && (
+        <div style={{display:'flex', justifyContent:'flex-end', marginTop:'16px', animation:'logoAppear 0.8s cubic-bezier(0.16,1,0.3,1) forwards'}}>
+          <img src="/icon-192.jpg" alt="" style={{height:'76px', width:'76px', borderRadius:'50%', opacity:0.95, boxShadow:'0 0 24px rgba(56,189,248,0.5)'}} />
+        </div>
+      )}
       </div>
 
       <div className="progress-bar" style={{ width: `${(currentTime / duration) * 100}%` }} />
