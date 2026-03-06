@@ -578,17 +578,18 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
           if (activeSeq !== index) return null;
           const base = ANIM_CLASSES[index % ANIM_CLASSES.length];
           const cls  = getAnimClass(base, textObj.time);
+          const isLast = index === promoTexts.length - 1;
           return (
             <div key={`${index}-${activeSeq}`}>
-              <div className="glow-line active"></div>
+              <div className="glow-line active" style={isLast ? {margin:'0 auto'} : {}}></div>
               <div className={`text-card ${cls}`}>
-                <div className="text-main">{textObj.main}</div>
+                <div className="text-main" style={isLast ? {textAlign:'center', margin:'0 auto'} : {}}>{textObj.main}</div>
               </div>
             </div>
           );
         })}
       {activeSeq === promoTexts.length - 1 && (
-        <div style={{display:'flex', justifyContent:'flex-end', marginTop:'16px', animation:'logoAppear 0.8s cubic-bezier(0.16,1,0.3,1) forwards'}}>
+        <div style={{display:'flex', justifyContent:'center', marginTop:'20px', animation:'logoAppear 0.8s cubic-bezier(0.16,1,0.3,1) forwards'}}>
           <img src="/icon-192.jpg" alt="" style={{height:'120px', width:'120px', borderRadius:'50%', opacity:0.95, boxShadow:'0 0 32px rgba(56,189,248,0.6)'}} />
         </div>
       )}
