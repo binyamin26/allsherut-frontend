@@ -420,7 +420,7 @@ const styles = `
     from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
   }
-  .promo-line {
+  .text-promo-line {
     display: block;
     opacity: 0;
     animation: promoFadeInUp 0.6s ease forwards;
@@ -602,7 +602,7 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
                       ? [textObj.main]
                       : [words.slice(0, half).join(' '), words.slice(half).join(' ')];
                     return lines.map((line, li) => (
-                      <span key={li} className="promo-line" style={{ animationDelay: `${0.3 + li * 0.5}s` }}>
+                      <span key={li} className="text-promo-line" style={{ animationDelay: `${0.3 + li * 0.5}s` }}>
                         {line}
                       </span>
                     ));
