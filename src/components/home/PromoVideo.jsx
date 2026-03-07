@@ -111,8 +111,8 @@ const styles = `
     animation: kenBurns 7s ease-out forwards;
   }
   @keyframes kenBurns {
-    0%   { transform: scale(1.05); }
-    100% { transform: scale(1.15); }
+    0%   { transform: scale(1); }
+    100% { transform: scale(1.1); }
   }
   .slide-bg::after {
     content: '';
@@ -415,6 +415,17 @@ const styles = `
     100% { opacity: 0.95; transform: scale(1) translateY(0); }
   }
 
+  /* ── ANIMATION LIGNE PAR LIGNE ── */
+  @keyframes promoFadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .promo-line {
+    display: block;
+    opacity: 0;
+    animation: promoFadeInUp 0.6s ease forwards;
+  }
+
   /* ── BARRE DE PROGRESSION ── */
   .progress-bar {
     position: absolute;
@@ -583,7 +594,20 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
             <div key={`${index}-${activeSeq}`}>
               <div className="glow-line active" style={isLast ? {margin:'0 auto'} : {}}></div>
               <div className={`text-card ${cls}`}>
-                <div className="text-main" style={isLast ? {textAlign:'center', margin:'0 auto'} : {}}>{textObj.main}</div>
+                <div className="text-main" style={isLast ? {textAlign:'center', margin:'0 auto'} : {}}>
+                  {(() => {
+                    const words = textObj.main.split(' ');
+                    const half  = Math.ceil(words.length / 2);
+                    const lines = words.length <= 4
+                      ? [textObj.main]
+                      : [words.slice(0, half).join(' '), words.slice(half).join(' ')];
+                    return lines.map((line, li) => (
+                      <span key={li} className="promo-line" style={{ animationDelay: `${0.3 + li * 0.5}s` }}>
+                        {line}
+                      </span>
+                    ));
+                  })()}
+                </div>
               </div>
             </div>
           );
@@ -600,4 +624,4 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
   );
 };
 
-export default PromoVideoVertical;// force rebuild Thu, Mar  5, 2026 10:42:35 PM
+export default PromoVideoVertical;// rebuild Sat Mar 7 2026 - fadeInUp lines + kenBurns 1→1.1
