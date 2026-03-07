@@ -18,7 +18,7 @@ const promoTexts = [
   },
   {
     main: "מעל 20 קטגוריות של שירותים במקום אחד",
-    animation: "scroll 55s",
+   isMarquee: true,
     time: 8
   },
   {
