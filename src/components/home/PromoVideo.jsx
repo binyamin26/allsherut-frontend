@@ -18,7 +18,7 @@ const promoTexts = [
   },
   {
     main: "מעל 20 קטגוריות של שירותים במקום אחד",
-    isMarquee: true,
+    animation: "scroll 55s",
     time: 8
   },
   {
@@ -42,7 +42,7 @@ const promoTexts = [
     time: 4
   },
   {
-    main: "הצטרפו ל-AllSherut עוד היום והגדילו את החשיפה והנוכחות שלכם בשוק.",
+    main: "הצטרפו ל-AllSherut עוד היום והגדילו את החשיפה שלכם",
     bgImage: "/itstarfou.jpg",
     time: 5
   }
@@ -284,7 +284,7 @@ const styles = `
   .scene {
     position: absolute;
     z-index: 20;
-    bottom: 12%;
+    bottom: 16%;
     left: 0;
     right: 0;
     padding: 0 24px;
