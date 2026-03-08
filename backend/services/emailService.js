@@ -18,7 +18,7 @@ class EmailService {
   });
 
   // Logo Cloudinary
-  this.logoUrl = 'logo_transparent_z2dfyz';
+  this.logoUrl = 'https://res.cloudinary.com/ddzskq7hd/image/upload/logo_transparent_z2dfyz.png';
 }
 
   generateResetToken() {
@@ -41,8 +41,8 @@ class EmailService {
         <div style="max-width: 600px; margin: 0 auto; background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 8px 30px rgba(99,102,241,0.12);">
           <!-- Header avec logo à côté du texte -->
           <div style="background: linear-gradient(135deg, #6366f1 0%, #14b8a6 100%); padding: 28px 40px;">
-           <div style="background: linear-gradient(135deg, #6366f1 0%, #14b8a6 100%); padding: 28px 40px; text-align: center;">
-  <img src="${this.logoUrl}" alt="AllSherut" style="width: 220px; height: auto; display: inline-block; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.15);" />
+   <div style="text-align: center; padding: 28px 40px;">
+  <img src="${this.logoUrl}" alt="AllSherut" style="width: 200px; height: auto; display: inline-block;" />
 </div>
           </div>
     `;

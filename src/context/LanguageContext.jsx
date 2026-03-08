@@ -100,7 +100,7 @@ const translations = {
     'services.locksmith.desc': 'שירותי מנעולן ופתיחת דלתות',
 
     // HomePage - Hero
-  'homepage.hero.tagline': 'כל השירותים שאתם צריכים, במקום אחד',
+  'homepage.hero.tagline': 'כל בעלי המקצוע במקום אחד',
    'homepage.hero.description1': 'תמצאו את כל השירותים שאתם צריכים במקום אחד — לבית, למשפחה, לעסק ולאירועים.',
     'homepage.hero.description2': 'אם אתם ספקים — זו ההזדמנות שלכם להגיע ליותר לקוחות, להציג את השירותים שלכם, ולקבל הזמנות ישירות דרך הפלטפורמה.',
     
