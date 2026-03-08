@@ -99,7 +99,7 @@ const Header = () => {
           <Link to="/" className="logo" onClick={() => setIsMenuOpen(false)}>
           <div className="logo-icon">
   <img 
-    src="/images/logo-homesherut.jpg" 
+    src="/images/logo-homesherut2.jpg" 
     alt="AllSherut" 
     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
   />
