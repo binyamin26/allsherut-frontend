@@ -727,3 +727,372 @@ body {
 .services-dropdown-item.ltr-icon .dropdown-content {
   text-align: left;
 }
+
+/* ============================================================
+   MOBILE DRAWER — REDESIGN COMPLET
+   ============================================================ */
+
+/* Overlay semi-transparent */
+.mobile-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 1001;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Drawer — override toutes les anciennes règles */
+.mobile-menu {
+  display: flex !important;
+  flex-direction: column !important;
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: auto !important;
+  width: 85vw !important;
+  max-width: 380px !important;
+  background: #ffffff !important;
+  z-index: 1002 !important;
+  transform: translateX(105%) !important;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  max-height: none !important;
+  border-radius: 0 !important;
+  border-top: none !important;
+  box-shadow: -20px 0 60px rgba(0, 0, 0, 0.22) !important;
+  animation: none !important;
+}
+
+.mobile-menu.open {
+  transform: translateX(0) !important;
+  display: flex !important;
+  animation: none !important;
+}
+
+/* ——— Tête du drawer ——— */
+.mobile-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  background: linear-gradient(135deg, var(--primary-600) 0%, var(--accent-600) 100%);
+  flex-shrink: 0;
+}
+
+.mobile-drawer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mobile-drawer-logo .logo-icon {
+  width: 38px !important;
+  height: 38px !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+  flex-shrink: 0;
+}
+
+.mobile-drawer-logo .logo-main {
+  font-size: 20px !important;
+  font-weight: 800 !important;
+  color: #fff !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  -webkit-text-fill-color: #fff !important;
+}
+
+.mobile-drawer-close {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #fff;
+  transition: background 0.2s ease;
+  flex-shrink: 0;
+}
+
+.mobile-drawer-close:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* ——— Zone scrollable ——— */
+.mobile-drawer-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.mobile-drawer-content::-webkit-scrollbar { width: 3px; }
+.mobile-drawer-content::-webkit-scrollbar-track { background: transparent; }
+.mobile-drawer-content::-webkit-scrollbar-thumb {
+  background: var(--neutral-200);
+  border-radius: 4px;
+}
+
+/* ——— Liens de navigation ——— */
+.mobile-drawer-nav {
+  padding: 12px;
+}
+
+.mobile-drawer-link {
+  display: flex !important;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 13px 14px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--neutral-800);
+  text-decoration: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: right;
+  box-sizing: border-box;
+}
+
+.mobile-drawer-link:hover {
+  background: var(--primary-50);
+  color: var(--primary-700);
+}
+
+.mobile-drawer-link::after {
+  display: none !important;
+}
+
+.mobile-drawer-link svg {
+  color: var(--primary-500);
+  flex-shrink: 0;
+}
+
+/* Toggle services */
+.mobile-drawer-services-toggle {
+  justify-content: space-between;
+}
+
+.drawer-link-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.mobile-drawer-chevron {
+  width: 18px !important;
+  height: 18px !important;
+  color: var(--neutral-400);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.mobile-drawer-chevron.open {
+  transform: rotate(180deg);
+}
+
+/* ——— Grille de services ——— */
+.mobile-drawer-services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  padding: 8px 4px 14px;
+}
+
+.mobile-drawer-service-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 6px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--neutral-700);
+  background: #f8fafc;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.mobile-drawer-service-item:hover {
+  background: var(--primary-50);
+  color: var(--primary-700);
+  border-color: var(--primary-100);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.12);
+}
+
+.mobile-service-icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
+  color: var(--primary-600);
+  flex-shrink: 0;
+}
+
+/* Nom du service — classe "text-" pour éviter l'override AccessibilityWidget */
+.text-mobile-service {
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: inherit;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+/* ——— Auth section ——— */
+.mobile-drawer-auth {
+  padding: 14px 16px;
+  border-top: 1px solid #f1f5f9;
+  flex-shrink: 0;
+}
+
+/* Classe "text-" pour ne pas être overridée */
+.text-drawer-greeting {
+  font-size: 13px;
+  color: var(--neutral-500);
+  text-align: center;
+  margin: 0 0 12px;
+  font-weight: 500;
+}
+
+.mobile-drawer-cta {
+  width: 100% !important;
+  margin-bottom: 10px !important;
+  height: 48px !important;
+  font-size: 15px !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-drawer-logout {
+  width: 100%;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1.5px solid #e2e8f0;
+  background: none;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--neutral-600);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mobile-drawer-logout:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.mobile-drawer-login {
+  width: 100%;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--primary-400);
+  background: #fff;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--primary-600);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mobile-drawer-login:hover {
+  background: var(--primary-50);
+}
+
+/* ——— Sélecteur de langue ——— */
+.mobile-drawer-langs {
+  padding: 12px 16px 22px;
+  border-top: 1px solid #f1f5f9;
+  flex-shrink: 0;
+}
+
+.mobile-drawer-langs-row {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.mobile-drawer-lang-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 12px;
+  border: 1.5px solid transparent;
+  border-radius: 10px;
+  background: #f8fafc;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mobile-drawer-lang-btn:hover {
+  background: var(--primary-50);
+  border-color: var(--primary-200);
+}
+
+.mobile-drawer-lang-btn.active {
+  border-color: var(--primary-400);
+  background: var(--primary-50);
+}
+
+.mobile-drawer-lang-btn img {
+  width: 32px;
+  height: 22px;
+  object-fit: cover;
+  border-radius: 3px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* Classe "text-" pour résister à l'override AccessibilityWidget */
+.text-lang-label {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--neutral-600);
+}
+
+.mobile-drawer-lang-btn.active .text-lang-label {
+  color: var(--primary-600);
+  font-weight: 600;
+}
+
+/* Cacher overlay/drawer sur desktop */
+@media (min-width: 769px) {
+  .mobile-overlay {
+    display: none !important;
+  }
+}

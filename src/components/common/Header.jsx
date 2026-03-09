@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Menu, X, Home, Users, Heart, BookOpen, UserCheck, Sparkles, Baby, LogOut, Shirt, Zap, Wrench, Wind, Flame, Package, Layers, Hammer, PartyPopper, ChefHat, Paintbrush, Droplets, HardHat, Frame, Square, Key, Leaf, PawPrint } from 'lucide-react'
+import { Menu, X, Home, Users, Heart, BookOpen, UserCheck, Sparkles, Baby, LogOut, Shirt, Zap, Wrench, Wind, Flame, Package, Layers, Hammer, PartyPopper, ChefHat, Paintbrush, Droplets, HardHat, Frame, Square, Key, Leaf, PawPrint, ChevronDown, Phone } from 'lucide-react'
 import { useAuth } from '../../context/AuthContext'
 import AuthModal from '../auth/AuthModal'
 import { useLanguage } from '../../context/LanguageContext'
@@ -262,93 +262,123 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Mobile menu */}
-        <div className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}>
-          <div className="space-y-4">
-            {/* Navigation mobile - CORRECTION ICI */}
-            <Link to="/" className="nav-link" onClick={() => setIsMenuOpen(false)}>
-              {t('nav.home')}
-            </Link>
-            
-<div className="space-y-2">
-<div 
-  className="nav-link" 
-  style={{fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}
-  onClick={() => setShowMobileServices(!showMobileServices)}
->
-    {t('nav.services')}
-    <span style={{
-      display: 'inline-block',
-      fontSize: '12px',
-      transform: showMobileServices ? 'rotate(180deg)' : 'rotate(0deg)',
-      transition: 'transform 0.3s ease'
-    }}>▼</span>
-  </div>
-{showMobileServices && services.map((service, index) => (
-  <Link key={index} to={service.href}
-    style={{
-      display: 'flex',
-      direction: currentLanguage === 'he' ? 'rtl' : 'ltr',
-      alignItems: 'center',
-      gap: '12px',
-      padding: '12px 16px',
-      textDecoration: 'none',
-      color: '#374151',
-      borderRadius: '8px'
-    }}
-    onClick={() => setIsMenuOpen(false)}>
-    <div style={{flexGrow: 1}}>
-      <h4 style={{margin: 0, fontSize: '16px', fontWeight: 600, color: '#1f2937'}}>{t(service.nameKey)}</h4>
-      <p style={{margin: 0, fontSize: '14px', color: '#6b7280'}}>{t(service.descKey)}</p>
-    </div>
-    <div style={{flexShrink: 0}}>{service.icon}</div>
-  </Link>
-))}
+      </header>
+
+      {/* Mobile overlay */}
+      <div
+        className={`mobile-overlay ${isMenuOpen ? 'open' : ''}`}
+        onClick={() => setIsMenuOpen(false)}
+      />
+
+      {/* Mobile drawer */}
+      <div className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}>
+
+        {/* Drawer header */}
+        <div className="mobile-drawer-header">
+          <div className="mobile-drawer-logo">
+            <div className="logo-icon">
+              <img src="/images/logo-homesherut2.jpg" alt="AllSherut" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
-            
-            {/* CORRECTION ICI */}
-            <Link to="/contact" className="nav-link" onClick={() => setIsMenuOpen(false)}>
-              {t('nav.contact')}
+            <span className="logo-main">AllSherut</span>
+          </div>
+          <button className="mobile-drawer-close" onClick={() => setIsMenuOpen(false)}>
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Scrollable nav content */}
+        <div className="mobile-drawer-content">
+          <div className="mobile-drawer-nav">
+
+            <Link to="/" className="mobile-drawer-link" onClick={() => setIsMenuOpen(false)}>
+              <Home className="w-5 h-5" />
+              <span>{t('nav.home')}</span>
             </Link>
-            
-            <div className="space-y-3" style={{paddingTop: '16px', borderTop: '1px solid #e5e7eb'}}>
-              {isAuthenticated ? (
-                <div className="space-y-2">
-                  <p className="text-sm text-gray-600 text-center">
-{t('common.hello')} {user?.firstName}
-                  </p>
-                  <Link 
-                    to="/dashboard"
-                    className="cta-button" 
-                    style={{width: '100%', display: 'block', textAlign: 'center'}}
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {/* CORRECTION ICI */}
-                    {t('nav.dashboard', 'דשבורד')}
-                  </Link>
-                  <button 
-                    onClick={handleLogout}
-                    className="w-full py-2 px-4 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
-                  >
-                    {/* CORRECTION ICI */}
-                    {t('auth.logout')}
-                  </button>
+
+            {/* Services accordion */}
+            <div>
+              <button
+                className="mobile-drawer-link mobile-drawer-services-toggle"
+                onClick={() => setShowMobileServices(!showMobileServices)}
+              >
+                <div className="drawer-link-left">
+                  <Sparkles className="w-5 h-5" />
+                  <span>{t('nav.services')}</span>
                 </div>
-      ) : (
-                <>
-                  <button onClick={handleRegisterClick} className="cta-button" style={{width: '100%', marginBottom: '8px'}}>
-                    {t('auth.register')}
-                  </button>
-                 <button onClick={handleAuthClick} className="cta-button" style={{width: '100%', background: 'white', color: 'var(--primary-600)', border: '2px solid var(--primary-400)', boxShadow: 'none'}}>
-                    {t('auth.login')}
-                  </button>
-                </>
+                <ChevronDown className={`mobile-drawer-chevron ${showMobileServices ? 'open' : ''}`} />
+              </button>
+
+              {showMobileServices && (
+                <div className="mobile-drawer-services-grid">
+                  {services.map((service, index) => (
+                    <Link
+                      key={index}
+                      to={service.href}
+                      className="mobile-drawer-service-item"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <div className="mobile-service-icon">{service.icon}</div>
+                      <span className="text-mobile-service">{t(service.nameKey)}</span>
+                    </Link>
+                  ))}
+                </div>
               )}
             </div>
-  
+
+            <Link to="/contact" className="mobile-drawer-link" onClick={() => setIsMenuOpen(false)}>
+              <Phone className="w-5 h-5" />
+              <span>{t('nav.contact')}</span>
+            </Link>
+
           </div>
         </div>
-      </header>
+
+        {/* Auth section */}
+        <div className="mobile-drawer-auth">
+          {isAuthenticated ? (
+            <>
+              <p className="text-drawer-greeting">{t('common.hello')} {user?.firstName} 👋</p>
+              <Link
+                to="/dashboard"
+                className="cta-button mobile-drawer-cta"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {t('nav.dashboard', 'דשבורד')}
+              </Link>
+              <button onClick={handleLogout} className="mobile-drawer-logout">
+                <LogOut className="w-4 h-4" />
+                {t('auth.logout')}
+              </button>
+            </>
+          ) : (
+            <>
+              <button onClick={handleRegisterClick} className="cta-button mobile-drawer-cta">
+                {t('auth.register')}
+              </button>
+              <button onClick={handleAuthClick} className="mobile-drawer-login">
+                {t('auth.login')}
+              </button>
+            </>
+          )}
+        </div>
+
+        {/* Language section */}
+        <div className="mobile-drawer-langs">
+          <div className="mobile-drawer-langs-row">
+            {languages.map((lang) => (
+              <button
+                key={lang.code}
+                onClick={() => changeLanguage(lang.code)}
+                className={`mobile-drawer-lang-btn ${currentLanguage === lang.code ? 'active' : ''}`}
+              >
+                <img src={lang.flag} alt={lang.alt} />
+                <span className="text-lang-label">{lang.alt}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+      </div>
 
       {/* AuthModal */}
       {showAuthModal && (
