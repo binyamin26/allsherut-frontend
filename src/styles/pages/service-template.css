@@ -62,7 +62,7 @@
 }
 
 .tutoring-gradient {
-  background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+  background: linear-gradient(135deg, #1A5490 0%, #0F2A44 100%);
 }
 
 .eldercare-gradient {
@@ -422,7 +422,7 @@ word-break: break-word;
 }
 
 .review-action-btn {
-  background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);
+  background: linear-gradient(135deg, #2F80ED 0%, #0F2A44 100%);
   color: white;
   box-shadow: var(--shadow-sm);
 }

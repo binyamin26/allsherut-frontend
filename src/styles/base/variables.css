@@ -6,39 +6,37 @@
    color-scheme: light only;
   /* --- 1. NOUVELLE IDENTITÉ VISUELLE "CARTE BLANCHE" --- */
   
-  /* PRIMARY : INDIGO ROYAL (Confiance & Luxe) */
-  /* On oublie le bleu standard. Voici un bleu profond, sérieux et digital. */
-  --primary-50:  #eef2ff;
-  --primary-100: #e0e7ff;
-  --primary-200: #c7d2fe;
-  --primary-300: #a5b4fc;
-  --primary-400: #818cf8;
-  --primary-500: #6366f1; /* La nouvelle couleur STAR (Indigo vibrant) */
-  --primary-600: #4f46e5; /* Pour les survels */
-  --primary-700: #4338ca;
-  --primary-800: #3730a3;
-  --primary-900: #312e81; /* Textes très sombres */
+  /* PRIMARY : BLEU MARINE — tiré du logo AS */
+  --primary-50:  #E8EEF5;
+  --primary-100: #C5D4E8;
+  --primary-200: #9DB6D8;
+  --primary-300: #6E93C3;
+  --primary-400: #3D71AD;
+  --primary-500: #1A5490; /* Bleu marine moyen — boutons, liens */
+  --primary-600: #134578; /* Hover */
+  --primary-700: #0E3563;
+  --primary-800: #0A284D;
+  --primary-900: #0F2A44; /* Bleu nuit profond — côté sombre du logo */
 
-  /* ACCENT : MENTHE ÉLECTRIQUE (Modernité & Fraîcheur) */
-  /* Utilise ça pour les boutons de validation ou les détails qui doivent "popper" */
-  --accent-50:  #f0fdfa;
-  --accent-100: #ccfbf1;
-  --accent-200: #99f6e4;
-  --accent-300: #5eead4;
-  --accent-400: #2dd4bf; /* Menthe vive */
-  --accent-500: #14b8a6;
-  --accent-600: #0d9488;
+  /* ACCENT : BLEU ROYAL — côté lumineux du dégradé logo */
+  --accent-50:  #EBF3FE;
+  --accent-100: #C8DFFB;
+  --accent-200: #91BEF7;
+  --accent-300: #5A9AF3;
+  --accent-400: #2F80ED; /* Bleu royal — CTA, highlights */
+  --accent-500: #1E6DD8;
+  --accent-600: #155BB8;
 
   /* NEUTRALS : "ICE GRAYS" (Propreté Clinique) */
   /* Finis les gris sales. On part sur des gris bleutés très froids. */
-  --neutral-50:  #f8fafc; /* Fond de page principal */
+  --neutral-50:  #F5F7FA; /* Fond de page principal */
   --neutral-100: #f1f5f9;
   --neutral-200: #e2e8f0; /* Lignes de séparation */
   --neutral-300: #cbd5e1;
   --neutral-400: #94a3b8;
   --neutral-500: #64748b;
   --neutral-600: #475569;
-  --neutral-700: #334155; /* Texte courant */
+  --neutral-700: #2D3748; /* Texte courant */
   --neutral-800: #1e293b; /* Pied de page */
   --neutral-900: #0f172a; /* Titres noirs profonds */
 
@@ -54,13 +52,13 @@
   /* OMBRES "GLOW" (L'effet Wow) */
   /* Ces ombres sont colorées (indigo) au lieu d'être noires. C'est le secret du design moderne. */
   --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
-  --shadow-md: 0 4px 6px -1px rgba(99, 102, 241, 0.1), 0 2px 4px -1px rgba(99, 102, 241, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(99, 102, 241, 0.1), 0 4px 6px -2px rgba(99, 102, 241, 0.05);
-  --shadow-xl: 0 25px 50px -12px rgba(99, 102, 241, 0.25);
-  
+  --shadow-md: 0 4px 6px -1px rgba(15, 42, 68, 0.10), 0 2px 4px -1px rgba(15, 42, 68, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(15, 42, 68, 0.10), 0 4px 6px -2px rgba(15, 42, 68, 0.05);
+  --shadow-xl: 0 25px 50px -12px rgba(47, 128, 237, 0.20);
+
   /* Ombre spécifique bouton */
-  --shadow-primary: 0 4px 14px 0 rgba(99, 102, 241, 0.4); 
-  --shadow-primary-hover: 0 10px 25px -5px rgba(79, 70, 229, 0.5);
+  --shadow-primary: 0 4px 14px 0 rgba(47, 128, 237, 0.35);
+  --shadow-primary-hover: 0 10px 25px -5px rgba(47, 128, 237, 0.45);
 
   /* --- 3. TYPOGRAPHIE --- */
   --font-primary: 'Heebo', 'Inter', sans-serif;
@@ -90,8 +88,8 @@
   --transition-medium: 300ms cubic-bezier(0.4, 0, 0.2, 1);
 
   /* --- 4. VARIABLES TECHNIQUES (Ne pas toucher pour RTL) --- */
-  --primary-25: #eef2ff;
-  --accent-25: #f0fdfa;
+  --primary-25: #E8EEF5;
+  --accent-25: #EBF3FE;
   --neutral-25: #f8fafc;
   
   /* Sémantique */

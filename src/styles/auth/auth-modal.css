@@ -1357,7 +1357,7 @@
 }
 
 .service-icon-fallback.property_management-gradient {
-  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  background: linear-gradient(135deg, #1A5490 0%, #0F2A44 100%);
 }
 
 .service-icon-fallback.electrician-gradient {
@@ -1365,11 +1365,11 @@
 }
 
 .service-icon-fallback.plumbing-gradient {
-  background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+  background: linear-gradient(135deg, #1A5490 0%, #2F80ED 100%);
 }
 
 .service-icon-fallback.air_conditioning-gradient {
-  background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%);
+  background: linear-gradient(135deg, #2F80ED 0%, #0F2A44 100%);
 }
 
 .service-icon-fallback.gas_technician-gradient {
