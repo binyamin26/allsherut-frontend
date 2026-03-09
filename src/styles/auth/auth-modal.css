@@ -684,7 +684,7 @@
   justify-content: center;
   text-align: center;
   padding: 44px var(--space-6) 28px;
-  background: linear-gradient(180deg, #f3f4ff 0%, #ffffff 100%);
+  background: linear-gradient(180deg, #E8EEF5 0%, #ffffff 100%);
   border-bottom: 1px solid var(--neutral-100);
   margin-bottom: 0;
 }
@@ -1696,8 +1696,8 @@
 .auth-modal .auth-form .btn.btn-primary.btn-block,
 .auth-modal .auth-form button[type="submit"],
 .auth-modal .auth-form .btn-primary.btn-block {
-  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%) !important;
-  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.35) !important;
+  background: linear-gradient(135deg, #0F2A44 0%, #2F80ED 100%) !important;
+  box-shadow: 0 4px 15px rgba(47, 128, 237, 0.35) !important;
   color: white !important;
   border: none !important;
   border-radius: var(--radius-xl) !important;
@@ -1708,6 +1708,6 @@
 .auth-modal .auth-form .btn.btn-primary.btn-block:hover,
 .auth-modal .auth-form button[type="submit"]:hover,
 .auth-modal .auth-form .btn-primary.btn-block:hover {
-  background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%) !important;
-  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5) !important;
+  background: linear-gradient(135deg, #0A284D 0%, #1A5490 100%) !important;
+  box-shadow: 0 6px 20px rgba(47, 128, 237, 0.45) !important;
 }
