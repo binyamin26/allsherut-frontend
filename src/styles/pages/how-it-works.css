@@ -19,7 +19,7 @@ padding: var(--space-8) 0 var(--space-16) 0;
   text-align: center !important;
   margin-bottom: var(--space-12);
   padding: var(--space-8) var(--space-10) var(--space-6);
-  background: linear-gradient(135deg, var(--primary-50) 0%, var(--accent-25, rgba(16, 185, 129, 0.1)) 50%, var(--neutral-50) 100%);
+  background: linear-gradient(135deg, var(--primary-50) 0%, var(--accent-25) 50%, var(--neutral-50) 100%);
   border-radius: var(--radius-2xl);
   min-height: auto !important;
   display: block !important;
@@ -60,7 +60,7 @@ padding: var(--space-8) 0 var(--space-16) 0;
 }
 
 .how-it-works-page .provider-section {
-  background: linear-gradient(135deg, rgba(14, 165, 233, 0.03) 0%, rgba(16, 185, 129, 0.03) 100%);
+  background: linear-gradient(135deg, rgba(47, 128, 237, 0.03) 0%, rgba(15, 42, 68, 0.03) 100%);
   border-radius: var(--radius-3xl);
   padding: var(--space-16) var(--space-12);
 }

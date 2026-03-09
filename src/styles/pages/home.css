@@ -15,12 +15,12 @@
   position: relative;
   overflow: visible;
   
-  /* Fond Aurore Boréale PLUS INTENSE */
-  background: 
-    radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.25) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(16, 185, 129, 0.25) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.20) 0px, transparent 50%),
-    radial-gradient(at 0% 100%, rgba(20, 184, 166, 0.20) 0px, transparent 50%),
+  /* Fond Aurore Bleue Marine */
+  background:
+    radial-gradient(at 0% 0%, rgba(15, 42, 68, 0.12) 0px, transparent 55%),
+    radial-gradient(at 100% 0%, rgba(47, 128, 237, 0.18) 0px, transparent 55%),
+    radial-gradient(at 100% 100%, rgba(26, 84, 144, 0.12) 0px, transparent 55%),
+    radial-gradient(at 0% 100%, rgba(47, 128, 237, 0.10) 0px, transparent 55%),
     #ffffff;
   background-size: 150% 150%;
   animation: aurora 15s ease infinite;
@@ -286,7 +286,7 @@
 
 .feature-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 20px 30px rgba(99, 102, 241, 0.1); /* Lueur Indigo */
+  box-shadow: 0 20px 30px rgba(15, 42, 68, 0.10); /* Lueur Marine */
   border-color: var(--primary-200);
 }
 
@@ -318,8 +318,8 @@
 /* --- 4. CTA FINAL (FOND SOMBRE PREMIUM) --- */
 .cta-section {
   padding: var(--space-24) 0;
-  /* Bleu Nuit Profond + Accent */
-  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+  /* Bleu Nuit Profond — palette logo AS */
+  background: linear-gradient(135deg, #0F2A44 0%, #1A5490 100%);
   color: white;
   position: relative;
   overflow: hidden;
@@ -344,7 +344,7 @@ body .homepage .cta-content h2 {
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(47, 128, 237, 0.25) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -360,7 +360,7 @@ body .homepage .cta-content h2 {
   font-size: 3.5rem;
   font-weight: 900;
   margin-bottom: var(--space-6);
-  background: linear-gradient(to right, #fff, #93c5fd);
+  background: linear-gradient(to right, #ffffff, #91BEF7);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
@@ -446,7 +446,7 @@ body .homepage .cta-content h2 {
   font-weight: 900 !important;  /* Ultra gras */
   line-height: 1.1 !important;
   letter-spacing: -1px;
-  color: #111827; /* Noir profond lisible */
+  color: #0F2A44; /* Bleu nuit profond — palette logo */
 }
 
 .section-title {
@@ -521,8 +521,8 @@ body .homepage .cta-title,
   letter-spacing: -1px !important;
   display: block !important;
   
-  /* Gradient forcé */
-  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #10b981 100%) !important;
+  /* Gradient forcé — palette logo AS */
+  background: linear-gradient(135deg, #0F2A44 0%, #1A5490 50%, #2F80ED 100%) !important;
   background-clip: text !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
