@@ -105,9 +105,9 @@
 }
 
 .tab-btn.active {
-  background: #2563eb;
-color: white;
-box-shadow: none;
+  background: linear-gradient(135deg, var(--primary-900) 0%, var(--primary-600) 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(15, 42, 68, 0.25);
 }
 
 /* Dashboard content */

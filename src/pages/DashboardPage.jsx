@@ -1018,7 +1018,7 @@ const galleryImages = (() => {
             padding: '0.5rem 1rem',
             borderRadius: '6px',
             border: 'none',
-            background: activeService === service ? '#4F46E5' : 'white',
+            background: activeService === service ? '#0F2A44' : 'white',
             color: activeService === service ? 'white' : '#666',
             cursor: 'pointer',
             fontWeight: '600'
@@ -1263,7 +1263,7 @@ const galleryImages = (() => {
       {isEditMode ? (
         <>
           {/* Option כל ישראל */}
-          <div className="form-group" style={{ marginBottom: '1rem', padding: '1rem', backgroundColor: '#f0f9ff', borderRadius: '8px', border: '2px solid #3b82f6' }}>
+          <div className="form-group" style={{ marginBottom: '1rem', padding: '1rem', backgroundColor: '#E8EEF5', borderRadius: '8px', border: '2px solid #2F80ED' }}>
             <label className="checkbox-item" style={{ fontWeight: '600', fontSize: '1.1rem' }}>
               <input
                 type="checkbox"
@@ -1618,7 +1618,7 @@ const galleryImages = (() => {
   className="btn btn-primary btn-sm"
   disabled={isSubscriptionExpired}
   style={{ 
-    background: 'linear-gradient(135deg, #3b82f6, #10b981)',
+    background: 'linear-gradient(135deg, #1A5490, #2F80ED)',
     border: 'none'
   }}
 >
