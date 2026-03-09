@@ -95,7 +95,7 @@ nav {
 
 .nav-link:hover {
   color: #0F2A44;
-  background-color: rgba(15, 42, 68, 0.07);
+  background-color: #E8EEF5;
   transform: translateY(-1px);
 }
 
@@ -211,8 +211,8 @@ nav {
 
 
 .services-dropdown-item:hover {
-  background: linear-gradient(135deg, var(--primary-50) 0%, var(--accent-50) 100%);
-  color: var(--primary-700);
+  background: linear-gradient(135deg, #C8DFFB 0%, #E8EEF5 100%);
+  color: #0F2A44;
   transform: translateX(-4px);
 }
 
@@ -506,7 +506,7 @@ nav {
   
   .nav-link:hover {
   color: #0F2A44;
-  background-color: rgba(15, 42, 68, 0.07);
+  background-color: #E8EEF5;
   }
   
   /* Services dans menu mobile */
@@ -871,7 +871,7 @@ body {
 }
 
 .mobile-drawer-link:hover {
-  background: rgba(15, 42, 68, 0.07);
+  background: #E8EEF5;
   color: #0F2A44;
 }
 
