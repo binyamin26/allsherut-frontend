@@ -267,7 +267,7 @@ const styles = `
     direction:ltr;
   }
   .marquee-layer.visible { opacity:0.88; }
-  .marquee-row { display:flex; gap:20px; width:max-content; }
+  .marquee-row { display:flex; gap:20px; width:max-content; will-change:transform; backface-visibility:hidden; }
   .scroll-left  { animation:scroll 40s linear infinite; }
   .scroll-right { animation:scrollReverse 40s linear infinite; }
   @keyframes scroll        { 0%{transform:translateX(0)}    100%{transform:translateX(-50%)} }
@@ -278,6 +278,7 @@ const styles = `
     object-fit:cover;
     box-shadow:0 10px 30px rgba(59,130,246,0.15);
     border:2.5px solid rgba(255,255,255,0.9);
+    will-change:transform;
   }
 
   /* ── TEXTE EN BAS ── */
@@ -624,4 +625,4 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
   );
 };
 
-export default PromoVideoVertical;// rebuild Sat Mar 7 2026 - fadeInUp lines + kenBurns 1→1.1
+export default PromoVideoVertical;// rebuild Tue Mar 11 2026 - marquee GPU smooth
