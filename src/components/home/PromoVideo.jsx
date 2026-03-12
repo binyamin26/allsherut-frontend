@@ -427,6 +427,46 @@ const styles = `
     animation: promoFadeInUp 0.6s ease forwards;
   }
 
+  /* ── OVERLAY TAP TO START ── */
+  .tap-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(6,12,31,0.55);
+    cursor: pointer;
+    gap: 12px;
+  }
+  .tap-pulse {
+    position: absolute;
+    width: 90px; height: 90px;
+    border-radius: 50%;
+    border: 2px solid rgba(56,189,248,0.6);
+    animation: tapPulse 1.6s ease-out infinite;
+  }
+  @keyframes tapPulse {
+    0%   { transform: scale(0.8); opacity: 0.9; }
+    100% { transform: scale(1.8); opacity: 0; }
+  }
+  .tap-icon {
+    font-size: 44px;
+    color: #fff;
+    text-shadow: 0 0 24px rgba(56,189,248,0.8);
+    position: relative;
+    z-index: 1;
+  }
+  .tap-label {
+    font-size: 16px !important;
+    font-weight: 700;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 0.05em;
+    position: relative;
+    z-index: 1;
+  }
+
   /* ── BARRE DE PROGRESSION ── */
   .progress-bar {
     position: absolute;
@@ -469,6 +509,7 @@ const particles = [
 const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique.mp3", services = [] }) => {
   const [currentTime, setCurrentTime] = useState(0);
   const [isMobile, setIsMobile]       = useState(window.innerWidth <= 520);
+  const [started, setStarted]         = useState(false);
   const audioRef     = useRef(null);
   const requestRef   = useRef(null);
   const startTimeRef = useRef(null);
@@ -501,10 +542,15 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
   };
 
   useEffect(() => {
+    if (!started) return;
     if (audioRef.current) audioRef.current.play().catch(() => {});
     requestRef.current = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(requestRef.current);
-  }, []);
+  }, [started]);
+
+  const handleStart = () => {
+    setStarted(true);
+  };
 
   let accum = 0, activeSeq = 0;
   for (let i = 0; i < promoTexts.length; i++) {
@@ -621,6 +667,15 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
       </div>
 
       <div className="progress-bar" style={{ width: `${(currentTime / duration) * 100}%` }} />
+
+      {/* Overlay tap-to-start pour iOS Safari */}
+      {!started && (
+        <div className="tap-overlay" onClick={handleStart}>
+          <div className="tap-pulse"></div>
+          <span className="tap-icon">▶</span>
+          <span className="tap-label">הקש להתחיל</span>
+        </div>
+      )}
     </div>
   );
 };
