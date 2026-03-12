@@ -4,7 +4,7 @@ const promoTexts = [
   {
     main: "האם אתם נותני שירות ומעוניינים להיחשף לקהל רחב יותר?",
     bgImage: "/artisan.jpg",
-    time: 5
+    time: 7
   },
   {
     main: "AllSherut עוזרת לכם לפתח את העסק שלכם.",
