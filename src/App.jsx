@@ -197,7 +197,7 @@ function App() {
             <Footer />
             
             {/* Widget d'accessibilité */}
-            <AccessibilityWidget />
+            {/* <AccessibilityWidget /> */}
           </div>
         </Router>
       </AuthProvider>
