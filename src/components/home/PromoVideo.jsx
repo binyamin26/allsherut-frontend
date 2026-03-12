@@ -29,7 +29,7 @@ const promoTexts = [
   {
     main: "עדכנו את הפרטים שלכם בכל עת.",
      bgVideo: "/idkounpratim.mp4",
-    time: 6 
+    time: 7 
   },
   {
     main: "הלקוחות מדרגים את העבודה שלכם. הביקורות מחזקות את האמינות שלכם.",
@@ -98,8 +98,7 @@ const styles = `
     width: 100%; height: 100%;
     z-index: 1;
     pointer-events: none;
-    transition: opacity 1.2s ease-in-out;
-    will-change: opacity;
+    transition: opacity 1s ease;
   }
   .slide-bg img {
     width: 100%; height: 100%;
@@ -136,8 +135,7 @@ const styles = `
     inset: 0;
     z-index: 1;
     pointer-events: none;
-    transition: opacity 1.2s ease-in-out;
-    will-change: opacity;
+    transition: opacity 1s ease;
     overflow: hidden;
   }
   .slide-video-wrap.hidden  { opacity: 0; }
@@ -269,11 +267,11 @@ const styles = `
     direction:ltr;
   }
   .marquee-layer.visible { opacity:0.88; }
-  .marquee-row { display:flex; gap:20px; width:max-content; will-change:transform; backface-visibility:hidden; transform:translateZ(0); }
+  .marquee-row { display:flex; gap:20px; width:max-content; will-change:transform; backface-visibility:hidden; }
   .scroll-left  { animation:scroll 40s linear infinite; }
   .scroll-right { animation:scrollReverse 40s linear infinite; }
-  @keyframes scroll        { 0%{transform:translateX(0)}          100%{transform:translateX(-33.333%)} }
-  @keyframes scrollReverse { 0%{transform:translateX(-33.333%)}   100%{transform:translateX(0)} }
+  @keyframes scroll        { 0%{transform:translateX(0)}    100%{transform:translateX(-50%)} }
+  @keyframes scrollReverse { 0%{transform:translateX(-50%)} 100%{transform:translateX(0)} }
   .marquee-media {
     width:250px; height:155px;
     border-radius:18px;
@@ -627,4 +625,4 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
   );
 };
 
-export default PromoVideoVertical;// rebuild Thu Mar 12 2026 - marquee seamless loop + smooth transitions
+export default PromoVideoVertical;// rebuild Tue Mar 11 2026 - marquee GPU smooth
