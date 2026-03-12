@@ -14,7 +14,7 @@ const promoTexts = [
   {
     main: "הרשמה פשוטה ומהירה אונליין.",
     bgVideo: "/arshama.mp4",
-    time: 6
+    time: 5
   },
   {
     main: "מעל 20 קטגוריות של שירותים במקום אחד",
@@ -24,12 +24,12 @@ const promoTexts = [
   {
     main: "גשו לאזור האישי שלכם.",
     bgVideo: "/dashboard.mp4",
-    time: 6
+    time: 5
   },
   {
     main: "עדכנו את הפרטים שלכם בכל עת.",
      bgVideo: "/idkounpratim.mp4",
-    time: 8 
+    time: 6 
   },
   {
     main: "הלקוחות מדרגים את העבודה שלכם. הביקורות מחזקות את האמינות שלכם.",
@@ -485,12 +485,12 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
     '/images/plombier.jpg','/images/clim.png','/images/gaz.jpg'
   ];
   const displayMedia      = services.length > 0 ? services.map(s => s.image || s) : defaultMedia;
-  const marqueeListTop    = [...displayMedia,...displayMedia];
+  const marqueeListTop    = [...displayMedia,...displayMedia,...displayMedia];
   const mid               = Math.floor(displayMedia.length / 2);
   const shifted           = [...displayMedia.slice(mid),...displayMedia.slice(0,mid)];
-  const marqueeListMiddle = [...shifted,...shifted];
+  const marqueeListMiddle = [...shifted,...shifted,...shifted];
   const reversed          = [...displayMedia].reverse();
-  const marqueeListBottom = [...reversed,...reversed];
+  const marqueeListBottom = [...reversed,...reversed,...reversed];
 
   const duration = promoTexts.reduce((a, c) => a + c.time, 0);
 
@@ -625,4 +625,4 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
   );
 };
 
-export default PromoVideoVertical;// rebuild Tue Mar 11 2026 - marquee seamless 2x
+export default PromoVideoVertical;// rebuild Tue Mar 11 2026 - marquee GPU smooth
