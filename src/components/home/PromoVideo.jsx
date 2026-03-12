@@ -14,7 +14,7 @@ const promoTexts = [
   {
     main: "הרשמה פשוטה ומהירה אונליין.",
     bgVideo: "/arshama.mp4",
-    time: 5
+    time: 6
   },
   {
     main: "מעל 20 קטגוריות של שירותים במקום אחד",
