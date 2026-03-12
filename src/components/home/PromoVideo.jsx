@@ -548,8 +548,16 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
     return () => cancelAnimationFrame(requestRef.current);
   }, [started]);
 
+  const containerRef = useRef(null);
+
   const handleStart = () => {
     setStarted(true);
+    // Fullscreen natif (Android Chrome, etc.)
+    const el = containerRef.current;
+    if (el) {
+      const req = el.requestFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen;
+      if (req) req.call(el).catch(() => {});
+    }
   };
 
   let accum = 0, activeSeq = 0;
@@ -567,11 +575,12 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
     position: 'fixed', top: 0, left: 0,
     width: '100vw', height: '100svh',
     maxWidth: '100vw', aspectRatio: 'unset',
-    margin: 0, borderRadius: 0, zIndex: 1001,
+    margin: 0, borderRadius: 0,
+    zIndex: started ? 9999 : 1001,
   } : {};
 
   return (
-    <div className="promo-container" style={mobileStyle}>
+    <div ref={containerRef} className="promo-container" style={mobileStyle}>
       <style>{styles}</style>
 
       {/* Ambient background */}
