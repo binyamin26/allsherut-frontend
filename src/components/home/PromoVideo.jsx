@@ -2,47 +2,47 @@ import React, { useState, useRef, useEffect } from 'react';
 
 const promoTexts = [
   {
-    main: "האם אתם נותני שירות ומעוניינים להיחשף לקהל רחב יותר?",
+    main: "Vous proposez des services et cherchez à développer votre clientèle ?",
     bgImage: "/artisan.jpg",
     time: 7
   },
   {
-    main: "AllSherut עוזרת לכם לפתח את העסק שלכם.",
+    main: "AllSherut vous aide à développer votre activité.",
     bgImage: "/aide.jpg",
     time: 4
   },
   {
-    main: "הרשמה פשוטה ומהירה אונליין.",
+    main: "Inscription simple et rapide en ligne.",
     bgVideo: "/arshama.mp4",
     time: 5
   },
   {
-    main: "מעל 20 קטגוריות של שירותים במקום אחד",
-   isMarquee: true,
+    main: "Plus de 20 catégories de services réunies sur une seule plateforme.",
+    isMarquee: true,
     time: 7
   },
   {
-    main: "גשו לאזור האישי שלכם.",
+    main: "Accédez facilement à votre espace personnel.",
     bgVideo: "/dashboard.mp4",
     time: 5
   },
   {
-    main: "עדכנו את הפרטים שלכם בכל עת.",
-     bgVideo: "/idkounpratim.mp4",
+    main: "Mettez à jour vos informations à tout moment.",
+    bgVideo: "/idkounpratim.mp4",
     time: 6 
   },
   {
-    main: "הלקוחות מדרגים את העבודה שלכם. הביקורות מחזקות את האמינות שלכם.",
+    main: "Les clients évaluent votre travail. Les avis renforcent votre crédibilité.",
     bgImage: "/avis.jpg",
     time: 5
   },
   {
-    main: "מבצע השקה: הרשמה חינם.",
+    main: "Offre de lancement : inscription gratuite.",
     bgImage: "/gratos.jpg",
     time: 4
   },
   {
-    main: "הצטרפו ל-AllSherut עוד היום והגדילו את החשיפה שלכם",
+    main: "Rejoignez AllSherut dès aujourd’hui et augmentez votre visibilité.",
     bgImage: "/itstarfou.jpg",
     time: 5
   }
@@ -87,7 +87,7 @@ const styles = `
     align-items: center;
     overflow: hidden;
     font-family: 'Heebo', sans-serif;
-    direction: rtl;
+    direction: ltr;
     container-type: inline-size;
   }
 
@@ -329,13 +329,13 @@ const styles = `
     font-weight: 900;
     line-height: 1.25;
     color: #ffffff;
-    text-align: right;
+    text-align: left;
     text-shadow:
       0 2px 24px rgba(14,165,233,0.4),
       0 0 80px rgba(37,99,235,0.25);
     letter-spacing: -0.01em;
     max-width: 90%;
-    margin-left: auto;
+    margin-right: auto;
   }
 
   /* ── ANIMATIONS TEXTE ── */
