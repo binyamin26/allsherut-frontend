@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Ne pas indexer les pages privées
+Disallow: /dashboard
+Disallow: /api/
+
+Sitemap: https://allsherut.com/sitemap.xml
