@@ -19,7 +19,7 @@ const promoTexts = [
   {
     main: "מעל 20 קטגוריות של שירותים במקום אחד",
    isMarquee: true,
-    time: 8
+    time: 7
   },
   {
     main: "גשו לאזור האישי שלכם.",
