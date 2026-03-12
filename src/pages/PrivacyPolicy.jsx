@@ -258,7 +258,7 @@ const PrivacyPolicy = () => {
               </p>
               <ul className="privacy-list">
                 <li>צו שיפוטי או דרישה חוקית מרשויות אכיפת החוק</li>
-                <li>הגנה על זכויות ורכוש HomeSherut</li>
+                <li>הגנה על זכויות ורכוש AllSherut</li>
                 <li>מניעת פעילות בלתי חוקית או חשודה</li>
                 <li>הגנה על בטחונם של משתמשים אחרים</li>
               </ul>
@@ -454,7 +454,7 @@ const PrivacyPolicy = () => {
               <h3 className="subsection-title">כיצד לממש את זכויותיכם:</h3>
               <p className="section-text">
                 כדי לממש אחת מהזכויות האלו, פשוט צרו קשר עמנו במייל: 
-                <strong> privacy@homesherut.co.il</strong>
+                <strong> privacy@allsherut.com</strong>
               </p>
               <p className="section-text">
                 נשיב לכם תוך 30 יום ממועד הפנייה ונעזור לכם לממש את זכויותיכם.
@@ -603,8 +603,8 @@ const PrivacyPolicy = () => {
                   </div>
                   <div className="method-content">
                     <h4>דוא"ל</h4>
-                    <p><strong>פרטיות ו-GDPR:</strong> privacy@homesherut.co.il</p>
-                    <p><strong>תמיכה כללית:</strong> support@homesherut.co.il</p>
+                    <p><strong>פרטיות ו-GDPR:</strong> privacy@allsherut.com</p>
+                    <p><strong>תמיכה כללית:</strong> support@allsherut.com</p>
                   </div>
                 </div>
 
@@ -614,7 +614,7 @@ const PrivacyPolicy = () => {
                   </div>
                   <div className="method-content">
                     <h4>ממונה על הגנת הפרטיות</h4>
-                    <p>ניתן לפנות ישירות לממונה הפרטיות שלנו בכתובת: dpo@homesherut.co.il</p>
+                    <p>ניתן לפנות ישירות לממונה הפרטיות שלנו בכתובת: dpo@allsherut.com</p>
                   </div>
                 </div>
               </div>

@@ -98,7 +98,7 @@ const ForgotPasswordPage = () => {
                   <h3>מה עכשיו?</h3>
                   <ol>
                     <li>בדק את תיבת האימייל שלך</li>
-                    <li>חפש אימייל מ-HomeSherut</li>
+                    <li>חפש אימייל מ-AllSherut</li>
                     <li>לחץ על הקישור באימייל</li>
                     <li>בחר סיסמה חדשה</li>
                   </ol>

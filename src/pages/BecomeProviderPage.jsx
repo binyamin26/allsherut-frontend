@@ -133,7 +133,7 @@ const BecomeProviderPage = () => {
               </h1>
               
               <p className="hero-description">
-                הצטרף ל-HomeSherut והתחל להרוויח כסף מהכישורים שלך. 
+                הצטרף ל-AllSherut והתחל להרוויח כסף מהכישורים שלך.
                 אלפי לקוחות מחפשים ספקי שירות איכותיים כמוך.
               </p>
 
@@ -266,7 +266,7 @@ const BecomeProviderPage = () => {
       <section className="why-choose-us">
         <div className="container">
           <div className="section-header">
-            <h2 className="section-title">למה לבחור ב-HomeSherut?</h2>
+            <h2 className="section-title">למה לבחור ב-AllSherut?</h2>
             <p className="section-subtitle">
               אנחנו הפלטפורמה המובילה לספקי שירות בישראל
             </p>
@@ -430,7 +430,7 @@ const BecomeProviderPage = () => {
                 </div>
                 <p>
                   "בתוך 3 חודשים הפכתי ללקוחה קבועה של 8 משפחות. 
-                  HomeSherut שינה לי את החיים!"
+                  AllSherut שינה לי את החיים!"
                 </p>
                 <div className="story-stats">
                   <span>₪4,200 בחודש</span>
