@@ -643,14 +643,14 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
       <div className="scene">
         {promoTexts.map((textObj, index) => {
           if (activeSeq !== index) return null;
+          if (index === 0 && currentTime < 2) return null;
           const base = ANIM_CLASSES[index % ANIM_CLASSES.length];
           const cls  = getAnimClass(base, textObj.time);
           const isLast = index === promoTexts.length - 1;
-          const d = index === 0 ? 2 : 0;
           return (
             <div key={`${index}-${activeSeq}`}>
-              <div className="glow-line active" style={{...(isLast ? {margin:'0 auto'} : {}), animationDelay:`${d + 0.1}s`}}></div>
-              <div className={`text-card ${cls}`} style={{animationDelay:`${d}s`}}>
+              <div className="glow-line active" style={isLast ? {margin:'0 auto'} : {}}></div>
+              <div className={`text-card ${cls}`}>
                 <div className="text-main" style={isLast ? {textAlign:'center', margin:'0 auto'} : {}}>
                   {(() => {
                     const words = textObj.main.split(' ');
@@ -659,7 +659,7 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
                       ? [textObj.main]
                       : [words.slice(0, half).join(' '), words.slice(half).join(' ')];
                     return lines.map((line, li) => (
-                      <span key={li} className="text-promo-line" style={{ animationDelay: `${d + 0.3 + li * 0.5}s` }}>
+                      <span key={li} className="text-promo-line" style={{ animationDelay: `${0.3 + li * 0.5}s` }}>
                         {line}
                       </span>
                     ));
