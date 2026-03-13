@@ -37,7 +37,7 @@ const promoTexts = [
     time: 5
   },
   {
-    main: "Offre de lancement : inscription gratuite.",
+    main: "Offre de lancement: inscription gratuite.",
     bgImage: "/gratos.jpg",
     time: 4
   },
