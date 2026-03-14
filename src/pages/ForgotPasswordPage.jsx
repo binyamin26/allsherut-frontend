@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Mail, ArrowRight, CheckCircle, AlertCircle, Loader, Home } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 
 const API_BASE = import.meta.env.VITE_API_URL;
 
 const ForgotPasswordPage = () => {
   const navigate = useNavigate();
-  
+  const { t } = useLanguage();
+
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -22,23 +24,20 @@ const ForgotPasswordPage = () => {
   const handleEmailChange = (e) => {
     const value = e.target.value;
     setEmail(value);
-    
-    // Clear errors when user starts typing
     if (error) setError('');
     if (emailError) setEmailError('');
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Validation
+
     if (!email.trim()) {
-      setEmailError('כתובת אימייל נדרשת');
+      setEmailError(t('forgotPage.errorEmailRequired'));
       return;
     }
-    
+
     if (!validateEmail(email)) {
-      setEmailError('כתובת אימייל לא תקינה');
+      setEmailError(t('forgotPage.errorEmailInvalid'));
       return;
     }
 
@@ -47,7 +46,7 @@ const ForgotPasswordPage = () => {
     setEmailError('');
 
     try {
-   const response = await fetch(`${API_BASE}/auth/forgot-password`, {
+      const response = await fetch(`${API_BASE}/auth/forgot-password`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -61,16 +60,16 @@ const ForgotPasswordPage = () => {
         setSuccess(true);
       } else {
         if (response.status === 404) {
-          setError('כתובת האימייל לא נמצאה במערכת');
+          setError(t('forgotPage.errorNotFound'));
         } else if (response.status === 429) {
-          setError('יותר מדי בקשות. נסה שוב בעוד 15 דקות');
+          setError(t('forgotPage.errorRateLimit'));
         } else {
-          setError(data.message || 'שגיאה בשליחת האימייל');
+          setError(data.message || t('forgotPage.errorSend'));
         }
       }
     } catch (error) {
       console.error('Forgot password error:', error);
-      setError('שגיאה בחיבור לשרת. נסה שוב מאוחר יותר');
+      setError(t('forgotPage.errorServer'));
     } finally {
       setLoading(false);
     }
@@ -86,50 +85,47 @@ const ForgotPasswordPage = () => {
               <div className="success-icon">
                 <CheckCircle size={64} />
               </div>
-              
-              <h1>אימייל נשלח בהצלחה!</h1>
-              
+
+              <h1>{t('forgotPage.successTitle')}</h1>
+
               <div className="success-content">
                 <p className="success-message">
-                  שלחנו לכתובת <strong>{email}</strong> אימייל עם קישור לאיפוס סיסמה.
+                  {t('forgotPage.successMsg').replace('{email}', '')} <strong>{email}</strong>
                 </p>
-                
+
                 <div className="success-instructions">
-                  <h3>מה עכשיו?</h3>
+                  <h3>{t('forgotPage.whatNow')}</h3>
                   <ol>
-                    <li>בדק את תיבת האימייל שלך</li>
-                    <li>חפש אימייל מ-AllSherut</li>
-                    <li>לחץ על הקישור באימייל</li>
-                    <li>בחר סיסמה חדשה</li>
+                    <li>{t('forgotPage.step1')}</li>
+                    <li>{t('forgotPage.step2')}</li>
+                    <li>{t('forgotPage.step3')}</li>
+                    <li>{t('forgotPage.step4')}</li>
                   </ol>
                 </div>
-                
+
                 <div className="success-notes">
-                  <p><strong>לא רואה את האימייל?</strong></p>
+                  <p><strong>{t('forgotPage.noEmail')}</strong></p>
                   <ul>
-                    <li>בדק בתיקיית הספאם/זבל</li>
-                    <li>הקישור תקף ל-24 שעות בלבד</li>
-                    <li>אפשר לבקש אימייל חדש אחרי 15 דקות</li>
+                    <li>{t('forgotPage.checkSpam')}</li>
+                    <li>{t('forgotPage.linkValid')}</li>
+                    <li>{t('forgotPage.resendAfter')}</li>
                   </ul>
                 </div>
-                
-               // Dans ForgotPasswordPage.jsx
-// Remplacez la section success-actions par :
 
-<div className="success-actions">
-  <Link to="/" className="btn btn-primary">
-    <Home size={18} />
-    חזרה לדף הבית
-  </Link>
-  
-  <button 
-    onClick={() => window.location.reload()}
-    className="btn btn-primary"
-  >
-    <Mail size={18} />
-    שלח אימייל נוסף
-  </button>
-</div>
+                <div className="success-actions">
+                  <Link to="/" className="btn btn-primary">
+                    <Home size={18} />
+                    {t('forgotPage.backHome')}
+                  </Link>
+
+                  <button
+                    onClick={() => window.location.reload()}
+                    className="btn btn-primary"
+                  >
+                    <Mail size={18} />
+                    {t('forgotPage.sendAnother')}
+                  </button>
+                </div>
 
               </div>
             </div>
@@ -149,9 +145,9 @@ const ForgotPasswordPage = () => {
             <div className="forgot-icon">
               <Mail size={48} />
             </div>
-            <h1>שכחת סיסמה?</h1>
+            <h1>{t('forgotPage.title')}</h1>
             <p className="forgot-subtitle">
-              אין בעיה! הזן את כתובת האימייל שלך ונשלח לך קישור לאיפוס הסיסמה
+              {t('forgotPage.subtitle')}
             </p>
           </div>
 
@@ -167,7 +163,7 @@ const ForgotPasswordPage = () => {
             {/* Email Input */}
             <div className="input-group">
               <label htmlFor="email" className="form-label">
-                כתובת אימייל
+                {t('forgotPage.emailLabel')}
               </label>
               <div className="input-wrapper">
                 <Mail className="input-icon" size={20} />
@@ -175,7 +171,7 @@ const ForgotPasswordPage = () => {
                   type="email"
                   id="email"
                   name="email"
-                  placeholder="הזן את כתובת האימייל שלך"
+                  placeholder={t('forgotPage.emailPlaceholder')}
                   value={email}
                   onChange={handleEmailChange}
                   className={emailError ? 'error' : ''}
@@ -189,42 +185,39 @@ const ForgotPasswordPage = () => {
             </div>
 
             {/* Submit Button */}
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               className="btn btn-primary btn-full"
               disabled={loading}
             >
               {loading ? (
                 <>
                   <Loader className="animate-spin" size={18} />
-                  שולח אימייל...
+                  {t('forgotPage.sending')}
                 </>
               ) : (
                 <>
                   <ArrowRight size={18} />
-                  שלח קישור לאיפוס סיסמה
+                  {t('forgotPage.submitBtn')}
                 </>
               )}
             </button>
 
             {/* Help text */}
             <div className="help-text">
-              <p>
-                נשלח לך אימייל עם קישור לאיפוס הסיסמה. 
-                הקישור יהיה תקף למשך 24 שעות.
-              </p>
+              <p>{t('forgotPage.helpText')}</p>
             </div>
 
             {/* Back to login */}
             <div className="form-footer">
               <p>
-                נזכרת בסיסמה?{' '}
-                <button 
+                {t('forgotPage.rememberPassword')}{' '}
+                <button
                   type="button"
                   onClick={() => navigate('/', { state: { showAuthModal: true } })}
                   className="link-btn"
                 >
-                  התחבר כאן
+                  {t('forgotPage.loginHere')}
                 </button>
               </p>
             </div>
@@ -232,13 +225,13 @@ const ForgotPasswordPage = () => {
 
           {/* Additional help */}
           <div className="additional-help">
-            <h3>זקוק לעזרה נוספת?</h3>
+            <h3>{t('forgotPage.needHelp')}</h3>
             <p>
-              אם אתה לא זוכר את כתובת האימייל שלך או נתקל בבעיות,{' '}
+              {t('forgotPage.helpMore')}{' '}
               <Link to="/contact" className="link-btn">
-                צור איתנו קשר
+                {t('forgotPage.contactUs')}
               </Link>{' '}
-              ואנחנו נעזור לך.
+              {t('forgotPage.helpMore2')}
             </p>
           </div>
         </div>
