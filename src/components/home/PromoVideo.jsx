@@ -147,14 +147,7 @@ const styles = `
   }
   .slide-video-wrap.hidden  { opacity: 0; }
   .slide-video-wrap.visible { opacity: 1; }
-  .slide-video-blur {
-    position: absolute;
-    inset: 0;
-    width: 100%; height: 100%;
-    object-fit: cover;
-    filter: blur(24px) brightness(0.35) saturate(1.5);
-    transform: scale(1.1);
-  }
+  /* slide-video-blur supprimé — remplacé par le dégradé ::after pour économiser la RAM iOS */
   .slide-video-main {
     position: absolute;
     top: 50%; left: 50%;
@@ -558,34 +551,25 @@ const styles = `
 
 const SlideVideo = ({ src, isActive, playing }) => {
   const ref = useRef(null);
-  const blurRef = useRef(null);
 
   useEffect(() => {
     if (!ref.current) return;
     if (isActive) {
       ref.current.currentTime = 0;
       if (playing) ref.current.play().catch(() => {});
-      if (blurRef.current) { blurRef.current.currentTime = 0; if (playing) blurRef.current.play().catch(() => {}); }
     } else {
       ref.current.pause();
-      if (blurRef.current) blurRef.current.pause();
     }
   }, [isActive]);
 
   useEffect(() => {
     if (!ref.current || !isActive) return;
-    if (playing) {
-      ref.current.play().catch(() => {});
-      if (blurRef.current) blurRef.current.play().catch(() => {});
-    } else {
-      ref.current.pause();
-      if (blurRef.current) blurRef.current.pause();
-    }
+    if (playing) ref.current.play().catch(() => {});
+    else ref.current.pause();
   }, [playing]);
 
   return (
     <div className={`slide-video-wrap ${isActive ? 'visible' : 'hidden'}`}>
-      <video ref={blurRef} className="slide-video-blur" src={src} loop muted playsInline />
       <video ref={ref} className="slide-video-main" src={src} loop muted playsInline />
     </div>
   );
@@ -725,10 +709,10 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
         ) : null
       )}
 
-      {/* Vidéos letterbox */}
+      {/* Vidéos letterbox — seule la vidéo active est montée en DOM */}
       {promoTexts.map((slide, i) =>
-        slide.bgVideo ? (
-          <SlideVideo key={`vid-${i}`} src={slide.bgVideo} isActive={activeSeq === i} playing={isPlaying} />
+        slide.bgVideo && activeSeq === i ? (
+          <SlideVideo key={`vid-${i}`} src={slide.bgVideo} isActive={true} playing={isPlaying} />
         ) : null
       )}
 
