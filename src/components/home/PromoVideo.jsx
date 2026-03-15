@@ -809,7 +809,6 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
       <div className="scene" dir={isRTL ? 'rtl' : 'ltr'}>
         {promoTexts.map((textObj, index) => {
           if (activeSeq !== index) return null;
-          if (index === 0 && currentTime < 4) return null;
           const base = ANIM_CLASSES[index % ANIM_CLASSES.length];
           const cls  = getAnimClass(base, textObj.time);
           const isLast = index === promoTexts.length - 1;
