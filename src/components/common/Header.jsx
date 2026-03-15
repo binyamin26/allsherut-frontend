@@ -277,7 +277,7 @@ const Header = () => {
         <div className="mobile-drawer-header">
           <div className="mobile-drawer-logo">
             <div className="logo-icon">
-              <img src="/images/logo-homesherut2.jpg" alt="AllSherut" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <img src="/images/logo-homesherut2.png" alt="AllSherut" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
             <span className="logo-main">AllSherut</span>
           </div>
