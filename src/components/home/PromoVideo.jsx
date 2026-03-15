@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 
 const promoTranslations = {
   fr: [
-    { main: "Vous proposez des services et cherchez à développer votre clientèle ?", bgImage: "/artisan.jpg", time: 7 },
+    { main: "Vous proposez des services et cherchez à développer votre clientèle ?", bgImage: "/artisan.jpg", time: 4 },
     { main: "AllSherut vous aide à développer votre activité.", bgImage: "/aide.jpg", time: 4 },
     { main: "Inscription simple et rapide en ligne.", bgVideo: "/arshama.mp4", time: 5 },
     { main: "Plus de 20 catégories de services réunies sur une seule plateforme.", isMarquee: true, time: 7 },
@@ -13,7 +13,7 @@ const promoTranslations = {
     { main: "Rejoignez AllSherut dès aujourd'hui et augmentez votre visibilité.", bgImage: "/itstarfou.jpg", time: 5 },
   ],
   en: [
-    { main: "Do you offer services and want to grow your client base?", bgImage: "/artisan.jpg", time: 7 },
+    { main: "Do you offer services and want to grow your client base?", bgImage: "/artisan.jpg", time: 4 },
     { main: "AllSherut helps you grow your business.", bgImage: "/aide.jpg", time: 4 },
     { main: "Simple and fast online registration.", bgVideo: "/arshama.mp4", time: 5 },
     { main: "Over 20 service categories on a single platform.", isMarquee: true, time: 7 },
@@ -24,7 +24,7 @@ const promoTranslations = {
     { main: "Join AllSherut today and boost your visibility.", bgImage: "/itstarfou.jpg", time: 5 },
   ],
   ru: [
-    { main: "Предлагаете услуги и хотите расширить клиентскую базу?", bgImage: "/artisan.jpg", time: 7 },
+    { main: "Предлагаете услуги и хотите расширить клиентскую базу?", bgImage: "/artisan.jpg", time: 4 },
     { main: "AllSherut поможет развить ваш бизнес.", bgImage: "/aide.jpg", time: 4 },
     { main: "Простая и быстрая онлайн-регистрация.", bgVideo: "/arshama.mp4", time: 5 },
     { main: "Более 20 категорий услуг на одной платформе.", isMarquee: true, time: 7 },
@@ -35,7 +35,7 @@ const promoTranslations = {
     { main: "Присоединяйтесь к AllSherut и увеличьте видимость.", bgImage: "/itstarfou.jpg", time: 5 },
   ],
   he: [
-    { main: "אתה מציע שירותים ורוצה להגדיל את בסיס הלקוחות שלך?", bgImage: "/artisan.jpg", time: 7 },
+    { main: "אתה מציע שירותים ורוצה להגדיל את בסיס הלקוחות שלך?", bgImage: "/artisan.jpg", time: 4 },
     { main: "AllSherut עוזר לך לפתח את העסק שלך.", bgImage: "/aide.jpg", time: 4 },
     { main: "הרשמה פשוטה ומהירה באינטרנט.", bgVideo: "/arshama.mp4", time: 5 },
     { main: "מעל 20 קטגוריות שירות בפלטפורמה אחת.", isMarquee: true, time: 7 },
@@ -367,40 +367,35 @@ const styles = `
     12%  { opacity:1; transform:translateX(5px);   filter:blur(0); }
     18%  { transform:translateX(-1px); }
     23%  { transform:translateX(0); }
-      93%  { opacity:1; transform:translateX(0);    filter:blur(0); }
-  100% { opacity:0; transform:translateX(8px);  filter:blur(14px); }
+    100% { opacity:1; transform:translateX(0);     filter:blur(0); }
   }
   @keyframes txtRight {
     0%   { opacity:0; transform:translateX(60px);  filter:blur(10px); }
     12%  { opacity:1; transform:translateX(-5px);  filter:blur(0); }
     18%  { transform:translateX(1px); }
     23%  { transform:translateX(0); }
-      93%  { opacity:1; transform:translateX(0);    filter:blur(0); }
-  100% { opacity:0; transform:translateX(-8px); filter:blur(14px); }
+    100% { opacity:1; transform:translateX(0);     filter:blur(0); }
   }
   @keyframes txtUp {
     0%   { opacity:0; transform:translateY(40px);  filter:blur(10px); }
     12%  { opacity:1; transform:translateY(-4px);  filter:blur(0); }
     18%  { transform:translateY(1px); }
     23%  { transform:translateY(0); }
-      93%  { opacity:1; transform:translateY(0);    filter:blur(0); }
-  100% { opacity:0; transform:translateY(-6px); filter:blur(14px); }
+    100% { opacity:1; transform:translateY(0);     filter:blur(0); }
   }
   @keyframes txtZoom {
     0%   { opacity:0; transform:scale(1.3);   filter:blur(14px); }
     12%  { opacity:1; transform:scale(0.98);  filter:blur(0); }
     18%  { transform:scale(1.01); }
     23%  { transform:scale(1); }
-93%  { opacity:1; transform:scale(1);         filter:blur(0); }
-  100% { opacity:0; transform:scale(1.04);      filter:blur(14px);}
+    100% { opacity:1; transform:scale(1);     filter:blur(0); }
   }
   @keyframes txtDown {
     0%   { opacity:0; transform:translateY(-40px) scale(0.95); filter:blur(10px); }
     12%  { opacity:1; transform:translateY(3px) scale(1.01);   filter:blur(0); }
     18%  { transform:translateY(-1px) scale(1); }
     23%  { transform:translateY(0) scale(1); }
-      93%  { opacity:1; transform:translateY(0) scale(1); filter:blur(0); }
-  100% { opacity:0; transform:translateY(6px);        filter:blur(14px);}
+    100% { opacity:1; transform:translateY(0) scale(1);        filter:blur(0); }
   }
 
   @keyframes logoAppear {
