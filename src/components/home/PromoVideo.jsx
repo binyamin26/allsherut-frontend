@@ -648,25 +648,16 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
     requestRef.current = requestAnimationFrame(animate);
   };
 
-  // Tentative d'autoplay dès le montage (fonctionne sur desktop)
-  useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.play().then(() => {
-        setStarted(true);
-      }).catch(() => {
-        // Bloqué par le navigateur (iOS/Safari) → l'overlay tap prend le relais
-      });
-    }
-  }, []);
-
   useEffect(() => {
     if (!started) return;
+    if (audioRef.current) audioRef.current.play().catch(() => {});
     startTimeRef.current = null;
     requestRef.current = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(requestRef.current);
   }, [started]);
 
   const handleStart = () => {
+    if (audioRef.current) audioRef.current.play().catch(() => {});
     setStarted(true);
   };
 
