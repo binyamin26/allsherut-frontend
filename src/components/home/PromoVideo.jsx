@@ -482,43 +482,73 @@ const styles = `
     gap: 8px;
   }
   .text-promo-btn {
-    width: 34px;
-    height: 34px;
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
-    background: rgba(0, 0, 0, 0.5);
-    border: 1px solid rgba(255,255,255,0.25);
-    color: #fff;
+    background: linear-gradient(135deg, rgba(30,58,120,0.75) 0%, rgba(14,165,233,0.45) 100%);
+    border: 1px solid rgba(56,189,248,0.45);
+    color: #e0f2fe;
     font-size: 15px !important;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    transition: background 0.2s, transform 0.1s;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: background 0.25s, transform 0.15s, box-shadow 0.25s, border-color 0.25s;
     outline: none;
     padding: 0;
     line-height: 1;
+    box-shadow: 0 2px 12px rgba(14,165,233,0.25), inset 0 1px 0 rgba(255,255,255,0.12);
   }
   .text-promo-btn:hover {
-    background: rgba(0,0,0,0.7);
-    transform: scale(1.08);
+    background: linear-gradient(135deg, rgba(30,64,175,0.9) 0%, rgba(14,165,233,0.7) 100%);
+    border-color: rgba(56,189,248,0.8);
+    box-shadow: 0 4px 20px rgba(14,165,233,0.45), inset 0 1px 0 rgba(255,255,255,0.18);
+    transform: scale(1.1);
   }
   .text-promo-btn:active {
-    transform: scale(0.95);
+    transform: scale(0.93);
+    box-shadow: 0 1px 6px rgba(14,165,233,0.2);
+  }
+  .text-promo-btn svg {
+    width: 16px;
+    height: 16px;
+    display: block;
+    filter: drop-shadow(0 0 4px rgba(56,189,248,0.6));
   }
 `;
 
-const SlideVideo = ({ src, isActive }) => {
+const SlideVideo = ({ src, isActive, playing }) => {
   const ref = useRef(null);
+  const blurRef = useRef(null);
+
   useEffect(() => {
     if (!ref.current) return;
-    if (isActive) { ref.current.currentTime = 0; ref.current.play().catch(() => {}); }
-    else ref.current.pause();
+    if (isActive) {
+      ref.current.currentTime = 0;
+      if (playing) ref.current.play().catch(() => {});
+      if (blurRef.current) { blurRef.current.currentTime = 0; if (playing) blurRef.current.play().catch(() => {}); }
+    } else {
+      ref.current.pause();
+      if (blurRef.current) blurRef.current.pause();
+    }
   }, [isActive]);
+
+  useEffect(() => {
+    if (!ref.current || !isActive) return;
+    if (playing) {
+      ref.current.play().catch(() => {});
+      if (blurRef.current) blurRef.current.play().catch(() => {});
+    } else {
+      ref.current.pause();
+      if (blurRef.current) blurRef.current.pause();
+    }
+  }, [playing]);
+
   return (
     <div className={`slide-video-wrap ${isActive ? 'visible' : 'hidden'}`}>
-      <video className="slide-video-blur" src={src} autoPlay loop muted playsInline />
+      <video ref={blurRef} className="slide-video-blur" src={src} loop muted playsInline />
       <video ref={ref} className="slide-video-main" src={src} loop muted playsInline />
     </div>
   );
@@ -648,7 +678,7 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
       {/* Vidéos letterbox */}
       {promoTexts.map((slide, i) =>
         slide.bgVideo ? (
-          <SlideVideo key={`vid-${i}`} src={slide.bgVideo} isActive={activeSeq === i} />
+          <SlideVideo key={`vid-${i}`} src={slide.bgVideo} isActive={activeSeq === i} playing={isPlaying} />
         ) : null
       )}
 
@@ -679,10 +709,31 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
       {started && (
         <div className="promo-controls">
           <button className="text-promo-btn" onClick={handlePlayPause} title={isPlaying ? 'Pause' : 'Play'}>
-            {isPlaying ? '⏸' : '▶'}
+            {isPlaying ? (
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <rect x="5" y="4" width="4" height="16" rx="1.5"/>
+                <rect x="15" y="4" width="4" height="16" rx="1.5"/>
+              </svg>
+            ) : (
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M6 4.75a.75.75 0 0 0-1.2.6v13.3a.75.75 0 0 0 1.2.6l10.4-6.65a.75.75 0 0 0 0-1.2L6 4.75z"/>
+              </svg>
+            )}
           </button>
           <button className="text-promo-btn" onClick={handleMute} title={isMuted ? 'Activer le son' : 'Couper le son'}>
-            {isMuted ? '🔇' : '🔊'}
+            {isMuted ? (
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M13 4.07a.75.75 0 0 0-1.2-.6L7.08 7H4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h3.08l4.72 3.53A.75.75 0 0 0 13 19.93V4.07z"/>
+                <line x1="17" y1="9" x2="22" y2="15" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                <line x1="22" y1="9" x2="17" y2="15" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+              </svg>
+            ) : (
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M13 4.07a.75.75 0 0 0-1.2-.6L7.08 7H4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h3.08l4.72 3.53A.75.75 0 0 0 13 19.93V4.07z"/>
+                <path d="M17.5 8.5a5.5 5.5 0 0 1 0 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
+                <path d="M20 6a9 9 0 0 1 0 12" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
+              </svg>
+            )}
           </button>
         </div>
       )}
@@ -738,4 +789,4 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
   );
 };
 
-export default PromoVideoVertical;// rebuild Sun Mar 15 2026 - add play/pause/mute controls, fix mobile size
+export default PromoVideoVertical;// rebuild Sun Mar 15 2026 - redesign controls SVG, pause video on play/pause
