@@ -56,7 +56,7 @@ const MarqueeItem = ({ src }) => {
       src={src}
       className="marquee-media"
       alt="service"
-      loading="eager"
+      loading="lazy"
       onError={(e) => {
         e.target.onerror = null;
         e.target.src = `https://placehold.co/200x200/dbeafe/2563eb?text=AllSherut`;
@@ -267,7 +267,7 @@ const styles = `
     direction:ltr;
   }
   .marquee-layer.visible { opacity:0.88; }
-  .marquee-row { display:flex; gap:20px; width:max-content; will-change:transform; backface-visibility:hidden; }
+  .marquee-row { display:flex; gap:20px; width:max-content; backface-visibility:hidden; }
   .scroll-left  { animation:scroll 40s linear infinite; }
   .scroll-right { animation:scrollReverse 40s linear infinite; }
   @keyframes scroll        { 0%{transform:translateX(0)}    100%{transform:translateX(-50%)} }
@@ -356,39 +356,39 @@ const styles = `
   .impact-shrink-long { animation: txtDown  8s cubic-bezier(0.16,1,0.3,1) forwards; }
 
   @keyframes txtLeft {
-    0%   { opacity:0; transform:translateX(-60px); filter:blur(10px); }
-    12%  { opacity:1; transform:translateX(5px);   filter:blur(0); }
+    0%   { opacity:0; transform:translateX(-60px); }
+    12%  { opacity:1; transform:translateX(5px); }
     18%  { transform:translateX(-1px); }
     23%  { transform:translateX(0); }
-    100% { opacity:1; transform:translateX(0);     filter:blur(0); }
+    100% { opacity:1; transform:translateX(0); }
   }
   @keyframes txtRight {
-    0%   { opacity:0; transform:translateX(60px);  filter:blur(10px); }
-    12%  { opacity:1; transform:translateX(-5px);  filter:blur(0); }
+    0%   { opacity:0; transform:translateX(60px); }
+    12%  { opacity:1; transform:translateX(-5px); }
     18%  { transform:translateX(1px); }
     23%  { transform:translateX(0); }
-    100% { opacity:1; transform:translateX(0);     filter:blur(0); }
+    100% { opacity:1; transform:translateX(0); }
   }
   @keyframes txtUp {
-    0%   { opacity:0; transform:translateY(40px);  filter:blur(10px); }
-    12%  { opacity:1; transform:translateY(-4px);  filter:blur(0); }
+    0%   { opacity:0; transform:translateY(40px); }
+    12%  { opacity:1; transform:translateY(-4px); }
     18%  { transform:translateY(1px); }
     23%  { transform:translateY(0); }
-    100% { opacity:1; transform:translateY(0);     filter:blur(0); }
+    100% { opacity:1; transform:translateY(0); }
   }
   @keyframes txtZoom {
-    0%   { opacity:0; transform:scale(1.3);   filter:blur(14px); }
-    12%  { opacity:1; transform:scale(0.98);  filter:blur(0); }
+    0%   { opacity:0; transform:scale(1.3); }
+    12%  { opacity:1; transform:scale(0.98); }
     18%  { transform:scale(1.01); }
     23%  { transform:scale(1); }
-    100% { opacity:1; transform:scale(1);     filter:blur(0); }
+    100% { opacity:1; transform:scale(1); }
   }
   @keyframes txtDown {
-    0%   { opacity:0; transform:translateY(-40px) scale(0.95); filter:blur(10px); }
-    12%  { opacity:1; transform:translateY(3px) scale(1.01);   filter:blur(0); }
+    0%   { opacity:0; transform:translateY(-40px) scale(0.95); }
+    12%  { opacity:1; transform:translateY(3px) scale(1.01); }
     18%  { transform:translateY(-1px) scale(1); }
     23%  { transform:translateY(0) scale(1); }
-    100% { opacity:1; transform:translateY(0) scale(1);        filter:blur(0); }
+    100% { opacity:1; transform:translateY(0) scale(1); }
   }
 
   @keyframes logoAppear {
@@ -600,6 +600,7 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
   const startTimeRef   = useRef(null);
   const currentTimeRef = useRef(0);
   const pausedAtRef    = useRef(0);
+  const lastUpdateRef  = useRef(0);
 
   const promoTexts = promoTranslations[promoLang];
   const isRTL      = promoLang === 'he';
@@ -628,7 +629,11 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
     if (!startTimeRef.current) startTimeRef.current = ts - pausedAtRef.current * 1000;
     const elapsed = ((ts - startTimeRef.current) / 1000) % duration;
     currentTimeRef.current = elapsed;
-    setCurrentTime(elapsed);
+    // Throttle state updates to ~4x/sec to avoid 60 re-renders/sec on iOS
+    if (ts - lastUpdateRef.current > 250) {
+      lastUpdateRef.current = ts;
+      setCurrentTime(elapsed);
+    }
     requestRef.current = requestAnimationFrame(animate);
   };
 
@@ -724,18 +729,20 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
         <div className="pulse-circle pc-3"></div>
       </div>
 
-      {/* Marquee */}
-      <div className={`marquee-layer ${isMarqueeActive ? 'visible' : ''}`}>
-        <div className="marquee-row scroll-left">
-          {marqueeListTop.map((src,i) => <MarqueeItem key={`t-${i}`} src={src}/>)}
+      {/* Marquee — only mounted when the marquee slide is active to avoid iOS memory crash */}
+      {isMarqueeActive && (
+        <div className="marquee-layer visible">
+          <div className="marquee-row scroll-left">
+            {marqueeListTop.map((src,i) => <MarqueeItem key={`t-${i}`} src={src}/>)}
+          </div>
+          <div className="marquee-row scroll-right">
+            {marqueeListMiddle.map((src,i) => <MarqueeItem key={`m-${i}`} src={src}/>)}
+          </div>
+          <div className="marquee-row scroll-left">
+            {marqueeListBottom.map((src,i) => <MarqueeItem key={`b-${i}`} src={src}/>)}
+          </div>
         </div>
-        <div className="marquee-row scroll-right">
-          {marqueeListMiddle.map((src,i) => <MarqueeItem key={`m-${i}`} src={src}/>)}
-        </div>
-        <div className="marquee-row scroll-left">
-          {marqueeListBottom.map((src,i) => <MarqueeItem key={`b-${i}`} src={src}/>)}
-        </div>
-      </div>
+      )}
 
       <audio ref={audioRef} loop src={audioSrc} />
 
@@ -835,4 +842,4 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
   );
 };
 
-export default PromoVideoVertical;// rebuild Sun Mar 15 2026 - add 4-lang selector (fr/en/ru/he), redesign controls SVG
+export default PromoVideoVertical;// rebuild Sun Mar 15 2026 - iOS crash fix: lazy marquee, remove blur filters, throttle RAF, remove will-change
