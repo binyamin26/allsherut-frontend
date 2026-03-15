@@ -29,7 +29,7 @@ const promoTexts = [
   {
     main: "Mettez à jour vos informations à tout moment.",
     bgVideo: "/idkounpratim.mp4",
-    time: 6 
+    time: 6
   },
   {
     main: "Les clients évaluent votre travail. Les avis renforcent votre crédibilité.",
@@ -42,7 +42,7 @@ const promoTexts = [
     time: 4
   },
   {
-    main: "Rejoignez AllSherut dès aujourd’hui et augmentez votre visibilité.",
+    main: "Rejoignez AllSherut dès aujourd'hui et augmentez votre visibilité.",
     bgImage: "/itstarfou.jpg",
     time: 5
   }
@@ -79,7 +79,7 @@ const styles = `
     position: relative;
     width: 100%;
     aspect-ratio: 9/16;
-    max-width: 480px;
+    max-width: 420px;
     margin: 0 auto;
     background: linear-gradient(180deg, #060c1f 0%, #0d1b3e 50%, #060c1f 100%);
     display: flex;
@@ -89,6 +89,14 @@ const styles = `
     font-family: 'Heebo', sans-serif;
     direction: ltr;
     container-type: inline-size;
+    border-radius: 16px;
+  }
+
+  @media (max-width: 520px) {
+    .promo-container {
+      max-width: 85vw;
+      border-radius: 12px;
+    }
   }
 
   /* ── IMAGE DE FOND ── */
@@ -385,7 +393,7 @@ const styles = `
     18%  { transform:scale(1.01); }
     23%  { transform:scale(1); }
 93%  { opacity:1; transform:scale(1);         filter:blur(0); }
-  100% { opacity:0; transform:scale(1.04);      filter:blur(14px);} 
+  100% { opacity:0; transform:scale(1.04);      filter:blur(14px);}
   }
   @keyframes txtDown {
     0%   { opacity:0; transform:translateY(-40px) scale(0.95); filter:blur(10px); }
@@ -394,21 +402,6 @@ const styles = `
     23%  { transform:translateY(0) scale(1); }
       93%  { opacity:1; transform:translateY(0) scale(1); filter:blur(0); }
   100% { opacity:0; transform:translateY(6px);        filter:blur(14px);}
-  }
-
-@media (max-width: 520px) {
-    .promo-container {
-      position: fixed !important;
-      top: 0 !important;
-      left: 0 !important;
-      width: 100vw !important;
-      max-width: 100vw !important;
-      height: 100svh !important;
-      aspect-ratio: unset !important;
-      margin: 0 !important;
-      border-radius: 0 !important;
-      z-index: 1001 !important;
-    }
   }
 
   @keyframes logoAppear {
@@ -478,6 +471,42 @@ const styles = `
     border-radius: 0 2px 0 0;
     box-shadow: 0 0 8px rgba(56,189,248,0.6);
   }
+
+  /* ── BOUTONS DE CONTRÔLE ── */
+  .promo-controls {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 150;
+    display: flex;
+    gap: 8px;
+  }
+  .text-promo-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: #fff;
+    font-size: 15px !important;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    transition: background 0.2s, transform 0.1s;
+    outline: none;
+    padding: 0;
+    line-height: 1;
+  }
+  .text-promo-btn:hover {
+    background: rgba(0,0,0,0.7);
+    transform: scale(1.08);
+  }
+  .text-promo-btn:active {
+    transform: scale(0.95);
+  }
 `;
 
 const SlideVideo = ({ src, isActive }) => {
@@ -508,17 +537,14 @@ const particles = [
 
 const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique.mp3", services = [] }) => {
   const [currentTime, setCurrentTime] = useState(0);
-  const [isMobile, setIsMobile]       = useState(window.innerWidth <= 520);
   const [started, setStarted]         = useState(false);
-  const audioRef     = useRef(null);
-  const requestRef   = useRef(null);
-  const startTimeRef = useRef(null);
-
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth <= 520);
-    window.addEventListener('resize', check);
-    return () => window.removeEventListener('resize', check);
-  }, []);
+  const [isPlaying, setIsPlaying]     = useState(true);
+  const [isMuted, setIsMuted]         = useState(false);
+  const audioRef       = useRef(null);
+  const requestRef     = useRef(null);
+  const startTimeRef   = useRef(null);
+  const currentTimeRef = useRef(0);
+  const pausedAtRef    = useRef(0);
 
   const defaultMedia = [
     '/images/babysite.png','/images/nikayon.jpg','/images/jardinage.jpg',
@@ -536,27 +562,45 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
   const duration = promoTexts.reduce((a, c) => a + c.time, 0);
 
   const animate = (ts) => {
-    if (!startTimeRef.current) startTimeRef.current = ts;
-    setCurrentTime(((ts - startTimeRef.current) / 1000) % duration);
+    if (!startTimeRef.current) startTimeRef.current = ts - pausedAtRef.current * 1000;
+    const elapsed = ((ts - startTimeRef.current) / 1000) % duration;
+    currentTimeRef.current = elapsed;
+    setCurrentTime(elapsed);
     requestRef.current = requestAnimationFrame(animate);
   };
 
   useEffect(() => {
     if (!started) return;
     if (audioRef.current) audioRef.current.play().catch(() => {});
+    startTimeRef.current = null;
     requestRef.current = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(requestRef.current);
   }, [started]);
 
-  const containerRef = useRef(null);
-
   const handleStart = () => {
     setStarted(true);
-    // Fullscreen natif (Android Chrome, etc.)
-    const el = containerRef.current;
-    if (el) {
-      const req = el.requestFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen;
-      if (req) req.call(el).catch(() => {});
+  };
+
+  const handlePlayPause = (e) => {
+    e.stopPropagation();
+    if (isPlaying) {
+      pausedAtRef.current = currentTimeRef.current;
+      cancelAnimationFrame(requestRef.current);
+      audioRef.current?.pause();
+      setIsPlaying(false);
+    } else {
+      startTimeRef.current = null;
+      requestRef.current = requestAnimationFrame(animate);
+      audioRef.current?.play().catch(() => {});
+      setIsPlaying(true);
+    }
+  };
+
+  const handleMute = (e) => {
+    e.stopPropagation();
+    if (audioRef.current) {
+      audioRef.current.muted = !audioRef.current.muted;
+      setIsMuted(audioRef.current.muted);
     }
   };
 
@@ -571,16 +615,8 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
   const hasVideo        = !!activeSlide?.bgVideo;
   const showIdleLayer   = !hasImage && !hasVideo && !isMarqueeActive;
 
-  const mobileStyle = isMobile ? {
-    position: 'fixed', top: 0, left: 0,
-    width: '100vw', height: '100svh',
-    maxWidth: '100vw', aspectRatio: 'unset',
-    margin: 0, borderRadius: 0,
-    zIndex: started ? 9999 : 1001,
-  } : {};
-
   return (
-    <div ref={containerRef} className="promo-container" style={mobileStyle}>
+    <div className="promo-container">
       <style>{styles}</style>
 
       {/* Ambient background */}
@@ -639,6 +675,18 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
 
       <audio ref={audioRef} loop src={audioSrc} />
 
+      {/* Boutons play/pause + mute — visibles après démarrage */}
+      {started && (
+        <div className="promo-controls">
+          <button className="text-promo-btn" onClick={handlePlayPause} title={isPlaying ? 'Pause' : 'Play'}>
+            {isPlaying ? '⏸' : '▶'}
+          </button>
+          <button className="text-promo-btn" onClick={handleMute} title={isMuted ? 'Activer le son' : 'Couper le son'}>
+            {isMuted ? '🔇' : '🔊'}
+          </button>
+        </div>
+      )}
+
       {/* Texte EN BAS */}
       <div className="scene">
         {promoTexts.map((textObj, index) => {
@@ -690,4 +738,4 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
   );
 };
 
-export default PromoVideoVertical;// rebuild Tue Mar 11 2026 - marquee GPU smooth
+export default PromoVideoVertical;// rebuild Sun Mar 15 2026 - add play/pause/mute controls, fix mobile size
