@@ -291,14 +291,7 @@ const HomePage = () => {
                 services={services}
                 onRegisterClick={() => openAuthModal('register')}
               />
-              {/* Placeholder mobile : pousse le contenu sous la vidéo fixed */}
-              <div style={{ display: 'none' }} className="promo-mobile-spacer" />
             </div>
-            <style>{`
-              @media (max-width: 520px) {
-                .promo-mobile-spacer { display: block !important; height: 100svh; width: 1px; }
-              }
-            `}</style>
 
             {/* ... le reste du code après ... */}
           </div>
