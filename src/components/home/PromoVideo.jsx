@@ -610,7 +610,7 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
   const [started, setStarted]         = useState(false);
   const [isPlaying, setIsPlaying]     = useState(true);
   const [isMuted, setIsMuted]         = useState(false);
-  const [promoLang, setPromoLang]     = useState('fr');
+  const [promoLang, setPromoLang]     = useState('he');
   const audioRef       = useRef(null);
   const requestRef     = useRef(null);
   const startTimeRef   = useRef(null);
@@ -648,9 +648,19 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
     requestRef.current = requestAnimationFrame(animate);
   };
 
+  // Tentative d'autoplay dès le montage (fonctionne sur desktop)
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.play().then(() => {
+        setStarted(true);
+      }).catch(() => {
+        // Bloqué par le navigateur (iOS/Safari) → l'overlay tap prend le relais
+      });
+    }
+  }, []);
+
   useEffect(() => {
     if (!started) return;
-    if (audioRef.current) audioRef.current.play().catch(() => {});
     startTimeRef.current = null;
     requestRef.current = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(requestRef.current);
