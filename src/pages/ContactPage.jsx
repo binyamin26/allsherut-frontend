@@ -36,7 +36,6 @@ const ContactPage = () => {
     t('contact.reasons.payment'),
     t('contact.reasons.report'),
     t('contact.reasons.suggestion'),
-    t('contact.reasons.premium'),
     t('contact.reasons.other')
   ];
 
@@ -267,12 +266,14 @@ const ContactPage = () => {
                 <div className="input-group">
                   <label className="auth-form-label">{t('contact.form.subject')} *</label>
                  <CustomDropdown
+  name="subject"
   options={contactReasons}
   value={formData.subject}
   onChange={handleChange}
   placeholder={t('contact.form.subjectPlaceholder')}
   disabled={loading}
   error={errors.subject}
+  searchable={false}
 />
                   {errors.subject && <span className="error-text">{errors.subject}</span>}
                 </div>
