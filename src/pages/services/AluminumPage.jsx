@@ -154,9 +154,9 @@ const AluminumPage = () => {
                 <div className="error-text">{error}</div>
               ) : (
                 <div className="results-count">
-                  <strong>{resultsCount}</strong> אנשי מקצוע נמצאו
-                  {locationFilter.neighborhood && <span> ב{locationFilter.neighborhood}</span>}
-                  {!locationFilter.neighborhood && locationFilter.city && <span> ב{locationFilter.city}</span>}
+                  <strong>{resultsCount}</strong> {t('services.aluminum.found')}
+                  {locationFilter.neighborhood && <span> {t('common.in')} {locationFilter.neighborhood}</span>}
+                  {!locationFilter.neighborhood && locationFilter.city && <span> {t('common.in')} {locationFilter.city}</span>}
                 </div>
               )}
             </div>
@@ -165,14 +165,14 @@ const AluminumPage = () => {
           {loading ? (
             <div className="providers-loading">
               <div className="loading-spinner"></div>
-              <p>טוען אנשי מקצוע...</p>
+              <p>{t('services.aluminum.loading')}</p>
             </div>
           ) : error ? (
             <div className="error-state">
-              <h3>שגיאה בטעינת הנתונים</h3>
+              <h3>{t('common.dataLoadError')}</h3>
               <p>{error}</p>
               <button onClick={loadProviders} className="retry-btn">
-                נסה שוב
+                {t('common.tryAgain')}
               </button>
             </div>
           ) : providers.length > 0 ? (
@@ -187,14 +187,14 @@ const AluminumPage = () => {
             </div>
           ) : (
             <div className="no-results">
-              <h3>לא נמצאו אנשי מקצוע</h3>
-              <p>נסה לשנות את הפילטרים או את האזור</p>
+              <h3>{t('services.aluminum.noResults')}</h3>
+              <p>{t('common.tryChangeFilters')}</p>
               {(locationFilter.city || locationFilter.neighborhood) && (
-                <button 
+                <button
                   onClick={() => setLocationFilter({ city: '', neighborhood: '', fullLocation: '' })}
                   className="expand-search-btn"
                 >
-                  חפש בכל הארץ
+                  {t('common.searchAllCountry')}
                 </button>
               )}
             </div>
