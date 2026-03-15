@@ -1,52 +1,51 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-const promoTexts = [
-  {
-    main: "Vous proposez des services et cherchez à développer votre clientèle ?",
-    bgImage: "/artisan.jpg",
-    time: 7
-  },
-  {
-    main: "AllSherut vous aide à développer votre activité.",
-    bgImage: "/aide.jpg",
-    time: 4
-  },
-  {
-    main: "Inscription simple et rapide en ligne.",
-    bgVideo: "/arshama.mp4",
-    time: 5
-  },
-  {
-    main: "Plus de 20 catégories de services réunies sur une seule plateforme.",
-    isMarquee: true,
-    time: 7
-  },
-  {
-    main: "Accédez facilement à votre espace personnel.",
-    bgVideo: "/dashboard.mp4",
-    time: 5
-  },
-  {
-    main: "Mettez à jour vos informations à tout moment.",
-    bgVideo: "/idkounpratim.mp4",
-    time: 6
-  },
-  {
-    main: "Les clients évaluent votre travail. Les avis renforcent votre crédibilité.",
-    bgImage: "/avis.jpg",
-    time: 5
-  },
-  {
-    main: "Offre de lancement: inscription gratuite.",
-    bgImage: "/gratos.jpg",
-    time: 4
-  },
-  {
-    main: "Rejoignez AllSherut dès aujourd'hui et augmentez votre visibilité.",
-    bgImage: "/itstarfou.jpg",
-    time: 5
-  }
-];
+const promoTranslations = {
+  fr: [
+    { main: "Vous proposez des services et cherchez à développer votre clientèle ?", bgImage: "/artisan.jpg", time: 7 },
+    { main: "AllSherut vous aide à développer votre activité.", bgImage: "/aide.jpg", time: 4 },
+    { main: "Inscription simple et rapide en ligne.", bgVideo: "/arshama.mp4", time: 5 },
+    { main: "Plus de 20 catégories de services réunies sur une seule plateforme.", isMarquee: true, time: 7 },
+    { main: "Accédez facilement à votre espace personnel.", bgVideo: "/dashboard.mp4", time: 5 },
+    { main: "Mettez à jour vos informations à tout moment.", bgVideo: "/idkounpratim.mp4", time: 6 },
+    { main: "Les clients évaluent votre travail. Les avis renforcent votre crédibilité.", bgImage: "/avis.jpg", time: 5 },
+    { main: "Offre de lancement\u00a0: inscription gratuite.", bgImage: "/gratos.jpg", time: 4 },
+    { main: "Rejoignez AllSherut dès aujourd'hui et augmentez votre visibilité.", bgImage: "/itstarfou.jpg", time: 5 },
+  ],
+  en: [
+    { main: "Do you offer services and want to grow your client base?", bgImage: "/artisan.jpg", time: 7 },
+    { main: "AllSherut helps you grow your business.", bgImage: "/aide.jpg", time: 4 },
+    { main: "Simple and fast online registration.", bgVideo: "/arshama.mp4", time: 5 },
+    { main: "Over 20 service categories on a single platform.", isMarquee: true, time: 7 },
+    { main: "Easily access your personal dashboard.", bgVideo: "/dashboard.mp4", time: 5 },
+    { main: "Update your information at any time.", bgVideo: "/idkounpratim.mp4", time: 6 },
+    { main: "Clients rate your work. Reviews build your credibility.", bgImage: "/avis.jpg", time: 5 },
+    { main: "Launch offer: free registration.", bgImage: "/gratos.jpg", time: 4 },
+    { main: "Join AllSherut today and boost your visibility.", bgImage: "/itstarfou.jpg", time: 5 },
+  ],
+  ru: [
+    { main: "Предлагаете услуги и хотите расширить клиентскую базу?", bgImage: "/artisan.jpg", time: 7 },
+    { main: "AllSherut поможет развить ваш бизнес.", bgImage: "/aide.jpg", time: 4 },
+    { main: "Простая и быстрая онлайн-регистрация.", bgVideo: "/arshama.mp4", time: 5 },
+    { main: "Более 20 категорий услуг на одной платформе.", isMarquee: true, time: 7 },
+    { main: "Лёгкий доступ к личному кабинету.", bgVideo: "/dashboard.mp4", time: 5 },
+    { main: "Обновляйте информацию в любое время.", bgVideo: "/idkounpratim.mp4", time: 6 },
+    { main: "Клиенты оценивают вашу работу. Отзывы укрепляют доверие.", bgImage: "/avis.jpg", time: 5 },
+    { main: "Стартовое предложение: бесплатная регистрация.", bgImage: "/gratos.jpg", time: 4 },
+    { main: "Присоединяйтесь к AllSherut и увеличьте видимость.", bgImage: "/itstarfou.jpg", time: 5 },
+  ],
+  he: [
+    { main: "אתה מציע שירותים ורוצה להגדיל את בסיס הלקוחות שלך?", bgImage: "/artisan.jpg", time: 7 },
+    { main: "AllSherut עוזר לך לפתח את העסק שלך.", bgImage: "/aide.jpg", time: 4 },
+    { main: "הרשמה פשוטה ומהירה באינטרנט.", bgVideo: "/arshama.mp4", time: 5 },
+    { main: "מעל 20 קטגוריות שירות בפלטפורמה אחת.", isMarquee: true, time: 7 },
+    { main: "גש בקלות לאזור האישי שלך.", bgVideo: "/dashboard.mp4", time: 5 },
+    { main: "עדכן את המידע שלך בכל עת.", bgVideo: "/idkounpratim.mp4", time: 6 },
+    { main: "לקוחות מעריכים את עבודתך. ביקורות מחזקות את האמינות שלך.", bgImage: "/avis.jpg", time: 5 },
+    { main: "מבצע השקה: הרשמה חינם.", bgImage: "/gratos.jpg", time: 4 },
+    { main: "הצטרף ל-AllSherut היום והגדל את הנראות שלך.", bgImage: "/itstarfou.jpg", time: 5 },
+  ],
+};
 
 const ANIM_CLASSES = ['impact-left', 'impact-right', 'impact-top', 'impact-zoom', 'impact-shrink'];
 
@@ -460,6 +459,49 @@ const styles = `
     z-index: 1;
   }
 
+  /* ── SÉLECTEUR DE LANGUE ── */
+  .text-promo-lang {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 150;
+    display: flex;
+    gap: 5px;
+  }
+  .text-promo-lang-btn {
+    height: 28px;
+    padding: 0 9px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(15,30,80,0.6) 0%, rgba(14,165,233,0.25) 100%);
+    border: 1px solid rgba(56,189,248,0.28);
+    color: rgba(255,255,255,0.55);
+    font-size: 11px !important;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.22s ease;
+    outline: none;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-family: 'Heebo', sans-serif;
+  }
+  .text-promo-lang-btn:hover {
+    background: linear-gradient(135deg, rgba(30,58,150,0.75) 0%, rgba(14,165,233,0.5) 100%);
+    border-color: rgba(56,189,248,0.55);
+    color: rgba(255,255,255,0.85);
+    transform: scale(1.06);
+  }
+  .text-promo-lang-btn.text-promo-lang-active {
+    background: linear-gradient(135deg, rgba(30,64,175,0.92) 0%, rgba(14,165,233,0.72) 100%);
+    border-color: rgba(56,189,248,0.9);
+    color: #e0f2fe;
+    box-shadow: 0 2px 12px rgba(14,165,233,0.4), inset 0 1px 0 rgba(255,255,255,0.15);
+  }
+
   /* ── BARRE DE PROGRESSION ── */
   .progress-bar {
     position: absolute;
@@ -565,16 +607,23 @@ const particles = [
   { size: 2, left: '60%', dur: 17, delay: -7,  color: 'rgba(255,255,255,0.5)' },
 ];
 
+const LANG_LABELS = { fr: 'FR', en: 'EN', ru: 'RU', he: 'HE' };
+const LANG_ORDER  = ['fr', 'en', 'ru', 'he'];
+
 const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique.mp3", services = [] }) => {
   const [currentTime, setCurrentTime] = useState(0);
   const [started, setStarted]         = useState(false);
   const [isPlaying, setIsPlaying]     = useState(true);
   const [isMuted, setIsMuted]         = useState(false);
+  const [promoLang, setPromoLang]     = useState('fr');
   const audioRef       = useRef(null);
   const requestRef     = useRef(null);
   const startTimeRef   = useRef(null);
   const currentTimeRef = useRef(0);
   const pausedAtRef    = useRef(0);
+
+  const promoTexts = promoTranslations[promoLang];
+  const isRTL      = promoLang === 'he';
 
   const defaultMedia = [
     '/images/babysite.png','/images/nikayon.jpg','/images/jardinage.jpg',
@@ -590,6 +639,20 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
   const marqueeListBottom = [...reversed,...reversed,...reversed];
 
   const duration = promoTexts.reduce((a, c) => a + c.time, 0);
+
+  const handleLangChange = (e, lang) => {
+    e.stopPropagation();
+    if (lang === promoLang) return;
+    cancelAnimationFrame(requestRef.current);
+    startTimeRef.current = null;
+    pausedAtRef.current  = 0;
+    currentTimeRef.current = 0;
+    setCurrentTime(0);
+    setPromoLang(lang);
+    if (started && isPlaying) {
+      requestRef.current = requestAnimationFrame(animate);
+    }
+  };
 
   const animate = (ts) => {
     if (!startTimeRef.current) startTimeRef.current = ts - pausedAtRef.current * 1000;
@@ -705,6 +768,19 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
 
       <audio ref={audioRef} loop src={audioSrc} />
 
+      {/* Sélecteur de langue — visible dès le début */}
+      <div className="text-promo-lang">
+        {LANG_ORDER.map(lang => (
+          <button
+            key={lang}
+            className={`text-promo-lang-btn${promoLang === lang ? ' text-promo-lang-active' : ''}`}
+            onClick={(e) => handleLangChange(e, lang)}
+          >
+            {LANG_LABELS[lang]}
+          </button>
+        ))}
+      </div>
+
       {/* Boutons play/pause + mute — visibles après démarrage */}
       {started && (
         <div className="promo-controls">
@@ -739,7 +815,7 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
       )}
 
       {/* Texte EN BAS */}
-      <div className="scene">
+      <div className="scene" dir={isRTL ? 'rtl' : 'ltr'}>
         {promoTexts.map((textObj, index) => {
           if (activeSeq !== index) return null;
           if (index === 0 && currentTime < 4) return null;
@@ -747,10 +823,10 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
           const cls  = getAnimClass(base, textObj.time);
           const isLast = index === promoTexts.length - 1;
           return (
-            <div key={`${index}-${activeSeq}`}>
+            <div key={`${index}-${activeSeq}-${promoLang}`}>
               <div className="glow-line active" style={isLast ? {margin:'0 auto'} : {}}></div>
               <div className={`text-card ${cls}`}>
-                <div className="text-main" style={isLast ? {textAlign:'center', margin:'0 auto'} : {}}>
+                <div className="text-main" style={isLast ? {textAlign:'center', margin:'0 auto'} : isRTL ? {textAlign:'right'} : {}}>
                   {(() => {
                     const words = textObj.main.split(' ');
                     const half  = Math.ceil(words.length / 2);
@@ -789,4 +865,4 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
   );
 };
 
-export default PromoVideoVertical;// rebuild Sun Mar 15 2026 - redesign controls SVG, pause video on play/pause
+export default PromoVideoVertical;// rebuild Sun Mar 15 2026 - add 4-lang selector (fr/en/ru/he), redesign controls SVG
