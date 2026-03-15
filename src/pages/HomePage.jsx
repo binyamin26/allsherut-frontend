@@ -267,6 +267,18 @@ const HomePage = () => {
               <p className="hero-description animate-fade-in-up delay-400" style={{ marginBottom: '0.5rem' }}>
                 {t('homepage.hero.description2')}
               </p>
+              {/* Points clés — mobile uniquement */}
+              <div className="md:hidden animate-fade-in-up delay-400" style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '1rem', alignItems: 'flex-end' }}>
+                {['פרופיל מקצועי', 'הגדלת קהל יעד', 'תמיכה מהירה'].map((item) => (
+                  <div key={item} style={{ display: 'flex', alignItems: 'center', gap: '8px', direction: 'rtl' }}>
+                    <span style={{ color: '#2563eb', fontWeight: 700, fontSize: '14px' }}>{item}</span>
+                    <span style={{ width: '20px', height: '20px', borderRadius: '50%', background: 'linear-gradient(135deg, #2563eb, #38bdf8)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    </span>
+                  </div>
+                ))}
+              </div>
+
               {!isAuthenticated && (
                 <button
                   className="btn btn-primary hero-register-btn text-custom animate-fade-in-up delay-500"
