@@ -642,16 +642,7 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
 
   const handleLangChange = (e, lang) => {
     e.stopPropagation();
-    if (lang === promoLang) return;
-    cancelAnimationFrame(requestRef.current);
-    startTimeRef.current = null;
-    pausedAtRef.current  = 0;
-    currentTimeRef.current = 0;
-    setCurrentTime(0);
     setPromoLang(lang);
-    if (started && isPlaying) {
-      requestRef.current = requestAnimationFrame(animate);
-    }
   };
 
   const animate = (ts) => {
@@ -823,7 +814,7 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
           const cls  = getAnimClass(base, textObj.time);
           const isLast = index === promoTexts.length - 1;
           return (
-            <div key={`${index}-${activeSeq}-${promoLang}`}>
+            <div key={`${index}-${activeSeq}`}>
               <div className="glow-line active" style={isLast ? {margin:'0 auto'} : {}}></div>
               <div className={`text-card ${cls}`}>
                 <div className="text-main" style={isLast ? {textAlign:'center', margin:'0 auto'} : isRTL ? {textAlign:'right'} : {}}>
