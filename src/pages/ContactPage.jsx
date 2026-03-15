@@ -121,15 +121,17 @@ const ContactPage = () => {
         setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
         showSuccessAndRedirect();
       } else {
-        setMessage({ 
-          type: 'error', 
-          text: data.message || t('contact.errors.sendError')
+        setMessage({
+          type: 'error',
+          text: response.status >= 500
+            ? t('contact.errors.sendError')
+            : t('contact.errors.sendError')
         });
       }
     } catch (error) {
       console.error('Error sending message:', error);
-      setMessage({ 
-        type: 'error', 
+      setMessage({
+        type: 'error',
         text: t('contact.errors.connectionError')
       });
     } finally {
