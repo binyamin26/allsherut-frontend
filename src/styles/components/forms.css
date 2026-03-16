@@ -280,6 +280,10 @@ textarea,
   background: linear-gradient(135deg, var(--accent-25) 0%, var(--neutral-25) 100%);
 }
 
+.form-section.optional .input-group:last-child {
+  margin-bottom: var(--space-3);
+}
+
 .form-section.optional h4::after {
   content: "◦";
   background: linear-gradient(135deg, var(--accent-400) 0%, var(--accent-500) 100%);

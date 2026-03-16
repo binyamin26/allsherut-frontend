@@ -241,7 +241,7 @@ const HomeOrganizationForm = ({ serviceDetails, errors, handleServiceDetailsChan
       <div className="form-section optional">
         <h4>{t('serviceForm.common.optionalFields')}</h4>
 
-        <div className="input-group" style={{ marginBottom: 'var(--space-3)' }}>
+        <div className="input-group">
           <label>{t('serviceForm.homeOrg.hourlyRate')}</label>
           <input
             type="text"
