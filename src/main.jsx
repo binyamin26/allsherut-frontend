@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import './i18n' // must be before App
 import App from './App.jsx'
 import './index.css'
 

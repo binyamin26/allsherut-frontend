@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { LanguageProvider } from './context/LanguageContext';
@@ -116,7 +116,6 @@ const ProtectedRoute = ({ children }) => {
 
 function App() {
   return (
-    <Suspense fallback={<div dir="rtl" style={{ minHeight: '100vh' }} />}>
     <LanguageProvider>
       <AuthProvider>
         <Router>
@@ -202,8 +201,7 @@ function App() {
           </div>
         </Router>
       </AuthProvider>
-    </LanguageProvider>
-    </Suspense>
+    </LanguageProvider> 
   );
 }
 
