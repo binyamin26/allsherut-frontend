@@ -188,9 +188,9 @@ const EventEntertainmentForm = ({ serviceDetails, errors, handleServiceDetailsCh
                       <div style={{marginRight: '30px', marginTop: '8px'}}>
                         <div className="checkbox-group" data-field="inflatable_game_types">
                         {[
-  { value: 'מתנפחים', label: t('filters.event.bouncyHouses') },
-  { value: 'ג\'ימבורי', label: t('filters.event.gymboree') },
-  { value: 'עמדות משחק', label: t('filters.event.gameStations') }
+  { value: 'מתנפחים', label: t('filters.events.bouncyHouses') },
+  { value: 'ג\'ימבורי', label: t('filters.events.gymboree') },
+  { value: 'עמדות משחק', label: t('filters.events.gameStations') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
@@ -233,9 +233,9 @@ const EventEntertainmentForm = ({ serviceDetails, errors, handleServiceDetailsCh
                       <div style={{marginRight: '30px', marginTop: '8px'}}>
                         <div className="checkbox-group" data-field="effect_machine_types">
                         {[
-  { value: 'מכונת עשן', label: t('filters.event.smokeMachine') },
-  { value: 'מכונת שלג', label: t('filters.event.snowMachine') },
-  { value: 'מכונת בועות', label: t('filters.event.bubbleMachine') }
+  { value: 'מכונת עשן', label: t('filters.events.smokeMachine') },
+  { value: 'מכונת שלג', label: t('filters.events.snowMachine') },
+  { value: 'מכונת בועות', label: t('filters.events.bubbleMachine') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
