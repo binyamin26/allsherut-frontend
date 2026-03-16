@@ -143,8 +143,8 @@ const EventEntertainmentForm = ({ serviceDetails, errors, handleServiceDetailsCh
   { value: 'מכונת גלידה אמריקאית', label: t('filters.events.softServe') },
   { value: 'מכונת מילקשייק', label: t('filters.events.milkshake') },
   { value: 'מסחטת מיצים טריים', label: t('filters.events.juicer') },
-  { value: 'מכונת נקניקיות', label: t('filters.events.hotDog') },
-  { value: 'מחבת קרפים', label: t('filters.events.crepeMaker') },
+  { value: 'מכונת נקניקיות', label: t('filters.events.hotdog') },
+  { value: 'מחבת קרפים', label: t('filters.events.crepe') },
   { value: 'מזרקת שוקולד', label: t('filters.events.chocolateFountain') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
