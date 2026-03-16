@@ -936,7 +936,6 @@ case 'home_organization':
     newErrors['serviceDetails.age'] = 'גיל מינימלי: 18 שנים';
   }
   if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = 'שנות ניסיון נדרשות';
-  if (!serviceDetails.hourlyRate) newErrors['serviceDetails.hourlyRate'] = 'תעריף שעתי נדרש';
   if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
     newErrors['serviceDetails.availability_days'] = 'יש לבחור ימי זמינות';
   }

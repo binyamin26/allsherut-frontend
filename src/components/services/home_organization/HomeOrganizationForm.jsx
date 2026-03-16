@@ -46,23 +46,6 @@ const HomeOrganizationForm = ({ serviceDetails, errors, handleServiceDetailsChan
         </div>
 
         <div className="input-group">
-      <label className="auth-form-label required">{t('serviceForm.homeOrg.hourlyRate')}</label>
-<input
- type="text"
-autoComplete="off"
-  value={serviceDetails.hourlyRate || ''}
-onChange={(e) => {
-  const numericValue = e.target.value.replace(/\D/g, '');
-  handleServiceDetailsChange('hourlyRate', numericValue);  // ← 'hourlyRate' ici !
-}}
-  className={`standard-input ${errors['serviceDetails.hourlyRate'] ? 'error' : ''}`}
-  data-field="hourlyRate"
-  min="0"
-/>
-          {errors['serviceDetails.hourlyRate'] && <span className="error-text">{errors['serviceDetails.hourlyRate']}</span>}
-        </div>
-
-        <div className="input-group">
           <label className="auth-form-label required">{t('serviceForm.common.availabilityDays')}</label>
           <div className="checkbox-group" data-field="availability_days">
            {[
@@ -252,6 +235,26 @@ onChange={(e) => {
           </div>
 
           {errors['serviceDetails.work_types'] && <span className="error-text">{errors['serviceDetails.work_types']}</span>}
+        </div>
+      </div>
+
+      <div className="form-section optional">
+        <h4>{t('serviceForm.common.optionalFields')}</h4>
+
+        <div className="input-group" style={{ marginBottom: 'var(--space-3)' }}>
+          <label>{t('serviceForm.homeOrg.hourlyRate')}</label>
+          <input
+            type="text"
+            autoComplete="off"
+            value={serviceDetails.hourlyRate || ''}
+            onChange={(e) => {
+              const numericValue = e.target.value.replace(/\D/g, '');
+              handleServiceDetailsChange('hourlyRate', numericValue);
+            }}
+            className="standard-input"
+            data-field="hourlyRate"
+            min="0"
+          />
         </div>
       </div>
     </div>
