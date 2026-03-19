@@ -8,6 +8,7 @@ import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import Header from "./components/common/Header";
 import Footer from "./components/common/Footer";
 import ScrollToTop from "./components/common/ScrollToTop";
+import ServiceTitleFitter from "./components/common/ServiceTitleFitter";
 
 // Import du Widget d'Accessibilité
 import AccessibilityWidget from "./components/common/AccessibilityWidget";
@@ -120,6 +121,7 @@ function App() {
       <AuthProvider>
         <Router>
           <ScrollToTop />
+          <ServiceTitleFitter />
           <div className="app-container">
             <Header />
             
