@@ -22,11 +22,14 @@ const ServiceTitleFitter = () => {
 
       let fontSize = parseFloat(style.fontSize);
 
+      const parent = el.parentElement;
+
       // Shrink 0.5px at a time until the text fits (vertically or horizontally)
       while (
         fontSize > minFontSize &&
         (el.scrollHeight > lineHeight * maxLines + 4 ||
-          el.scrollWidth > el.offsetWidth + 2)
+          el.scrollWidth > el.offsetWidth + 2 ||
+          (parent && el.offsetWidth > parent.offsetWidth))
       ) {
         fontSize -= 0.5;
         el.style.fontSize = `${fontSize}px`;

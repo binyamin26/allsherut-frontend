@@ -76,6 +76,9 @@
   margin: 0;
   line-height: 1.2;
   text-wrap: balance;
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* ====================================
