@@ -41,7 +41,7 @@ const ServiceTitleFitter = () => {
     };
 
     // Small delay so the DOM has time to paint after route change
-    const timer = setTimeout(runFit, 80);
+    const timer = setTimeout(runFit, 200);
     window.addEventListener('resize', runFit);
 
     return () => {
