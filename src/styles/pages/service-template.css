@@ -1112,7 +1112,7 @@ LOCATION SELECTOR - VERSION PLEINE LARGEUR
 
   /* Taille du titre sur mobile — le JS (ServiceTitleFitter) réduit encore si > 2 lignes */
   .service-title {
-    font-size: clamp(1rem, 4.5vw, 1.5rem) !important;
+    font-size: clamp(1rem, 4.5vw, 1.5rem);
     line-height: 1.3;
     padding: 0 var(--space-4);
   }

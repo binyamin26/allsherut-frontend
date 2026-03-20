@@ -18,14 +18,15 @@ const ServiceTitleFitter = () => {
       const lineHeight =
         parseFloat(style.lineHeight) || parseFloat(style.fontSize) * 1.3;
       const maxLines = 2;
-      const minFontSize = 13; // px — never go below this
+      const minFontSize = 11; // px — never go below this
 
       let fontSize = parseFloat(style.fontSize);
 
-      // Shrink 0.5px at a time until the text fits within maxLines
+      // Shrink 0.5px at a time until the text fits (vertically or horizontally)
       while (
-        el.scrollHeight > lineHeight * maxLines + 4 &&
-        fontSize > minFontSize
+        fontSize > minFontSize &&
+        (el.scrollHeight > lineHeight * maxLines + 4 ||
+          el.scrollWidth > el.offsetWidth + 2)
       ) {
         fontSize -= 0.5;
         el.style.fontSize = `${fontSize}px`;
