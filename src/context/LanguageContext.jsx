@@ -9476,11 +9476,11 @@ const translations = {
 'services.babysitting.noResults': 'Aucun baby-sitter trouvé',
 
 'services.cleaning.pageTitle': 'Services de ménage professionnels',
-'services.cleaning.searching': 'Recherche de femmes de ménage...',
-'services.cleaning.loading': 'Chargement des femmes de ménage...',
-'services.cleaning.loadError': 'Erreur de chargement des femmes de ménage',
-'services.cleaning.found': 'femmes de ménage trouvées',
-'services.cleaning.noResults': 'Aucune femme de ménage trouvée',
+'services.cleaning.searching': 'Recherche de profils ménage...',
+'services.cleaning.loading': 'Chargement des profils ménage...',
+'services.cleaning.loadError': 'Erreur de chargement des profils ménage',
+'services.cleaning.found': 'profils ménage trouvés',
+'services.cleaning.noResults': 'Aucun profil ménage trouvé',
 
 'services.gardening.pageTitle': 'Services de jardinage professionnels',
 'services.gardening.searching': 'Recherche de jardiniers...',
