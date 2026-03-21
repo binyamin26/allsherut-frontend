@@ -1,7 +1,7 @@
 // searchableServices.js - Multilingual (HE/EN/FR/RU)
 const searchableServices = [
   // 1. BABYSITTING
-  { label: 'שמרטפות', labelEn: 'Babysitting', labelFr: 'Babysitting', labelRu: 'Няня', href: '/services/babysitting', type: 'service' },
+  { label: 'טיפול בילדים', labelEn: 'Childcare', labelFr: 'Garde d\'enfants', labelRu: 'Уход за детьми', href: '/services/babysitting', type: 'service' },
   { label: 'שמרטפות מזדמנת', labelEn: 'Occasional babysitting', labelFr: 'Garde occasionnelle', labelRu: 'Разовый присмотр', href: '/services/babysitting', type: 'specialty' },
   { label: 'שמרטפות קבועה בבית הלקוח', labelEn: 'Regular babysitting at home', labelFr: 'Garde régulière au domicile', labelRu: 'Постоянный присмотр на дому', href: '/services/babysitting', type: 'specialty' },
   { label: 'הוצאה מהגן / מבית-הספר', labelEn: 'Pickup from kindergarten/school', labelFr: 'Sortie école/maternelle', labelRu: 'Забор из сада/школы', href: '/services/babysitting', type: 'specialty' },

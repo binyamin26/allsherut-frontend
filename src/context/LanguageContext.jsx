@@ -51,8 +51,8 @@ const translations = {
 'serviceForm.plumbing.fixtureInstallation': 'תיקון והתקנת אביזרי אינסטלציה',
     
     // Services
-    'services.babysitting': 'בייביסיטר',
-    'services.babysitting.desc': 'שמרטפות מיומנות ואמינות לילדיכם',
+    'services.babysitting': 'טיפול בילדים',
+    'services.babysitting.desc': 'מטפלות ילדים אמינות ומנוסות עבור ילדיכם',
     'services.cleaning': 'ניקיון',
     'services.cleaning.desc': 'שירותי ניקיון מקצועיים לבית נקי',
     'services.gardening': 'גינון',
@@ -2662,8 +2662,8 @@ const translations = {
 'dashboard.gallery.count': 'photos',
     
     // Services
-    'services.babysitting': 'Babysitting',
-    'services.babysitting.desc': 'Skilled and reliable babysitters for your children',
+    'services.babysitting': 'Childcare',
+    'services.babysitting.desc': 'Reliable and experienced childcare providers for your children',
     'services.cleaning': 'Cleaning',
     'services.cleaning.desc': 'Professional cleaning services for a clean home',
     'services.gardening': 'Gardening',
@@ -5285,8 +5285,8 @@ const translations = {
 'serviceForm.plumbing.fixtureInstallation': 'Установка и ремонт сантехники',
 
     // Services
-    'services.babysitting': 'Няня',
-    'services.babysitting.desc': 'Опытные и надежные няни для ваших детей',
+    'services.babysitting': 'Уход за детьми',
+    'services.babysitting.desc': 'Надежные и опытные воспитатели для ваших детей',
     'services.cleaning': 'Уборка',
     'services.cleaning.desc': 'Профессиональные услуги уборки для чистого дома',
     'services.gardening': 'Садоводство',
@@ -7879,8 +7879,8 @@ const translations = {
 'serviceForm.plumbing.fixtureInstallation': 'Installation et réparation d\'équipements',
     
     // Services
-    'services.babysitting': 'Baby-sitting',
-    'services.babysitting.desc': 'Baby-sitters expérimentées et fiables pour vos enfants',
+    'services.babysitting': 'Garde d\'enfants',
+    'services.babysitting.desc': 'Des gardes d\'enfants fiables et expérimentées pour vos enfants',
     'services.cleaning': 'Ménage',
     'services.cleaning.desc': 'Services de ménage professionnels pour une maison propre',
     'services.gardening': 'Jardinage',
