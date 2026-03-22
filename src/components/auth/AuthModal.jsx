@@ -137,7 +137,7 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
   const { login, register, loading, error, clearError, apiCall } = useAuth();
 
 
- const API_BASE = '/api';
+  const API_BASE = '/api';
 
 const services = [
   { key: 'property_management', name: t('services.property_management'), image: '/images/nihoul-dirot.jpg', gradient: 'property_management-gradient' },
@@ -310,10 +310,10 @@ if (authForm) {
 
   const validatePasswordStrength = (password) => {
     const requirements = [];
-    if (password.length < 8) requirements.push('8 תווים לפחות');
-    if (!/[a-z]/.test(password)) requirements.push('אות קטנה');
-    if (!/[A-Z]/.test(password)) requirements.push('אות גדולה');
-    if (!/[0-9]/.test(password)) requirements.push('ספרה');
+    if (password.length < 8) requirements.push(t('auth.validation.min8chars'));
+    if (!/[a-z]/.test(password)) requirements.push(t('auth.validation.lowercase'));
+    if (!/[A-Z]/.test(password)) requirements.push(t('auth.validation.uppercase'));
+    if (!/[0-9]/.test(password)) requirements.push(t('auth.validation.digit'));
     return requirements;
   };
 

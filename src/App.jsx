@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
-import { LanguageProvider } from './context/LanguageContext';
+import { LanguageProvider, useLanguage } from './context/LanguageContext';
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 
 // Layout components
@@ -60,41 +60,42 @@ import ProviderDetailPage from './pages/ProviderDetailPage';
 // Composant de protection des routes
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, user } = useAuth();
+  const { t } = useLanguage();
 
   // Si pas connecté, affiche un message d'erreur
   if (!isAuthenticated) {
     return (
-      <div style={{ 
-        minHeight: '100vh', 
-        display: 'flex', 
-        alignItems: 'center', 
+      <div style={{
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'column',
         gap: '20px',
         textAlign: 'center',
         padding: '20px'
       }}>
-        <h2 style={{ 
-          fontSize: '2rem', 
+        <h2 style={{
+          fontSize: '2rem',
           color: '#dc2626',
-          margin: 0 
+          margin: 0
         }}>
-          גישה נדחתה
+          {t('auth.accessDenied')}
         </h2>
-        <p style={{ 
-          fontSize: '1.2rem', 
+        <p style={{
+          fontSize: '1.2rem',
           color: '#6b7280',
-          margin: 0 
+          margin: 0
         }}>
-          עליך להתחבר כדי לגשת לעמוד זה
+          {t('auth.loginRequired')}
         </p>
-        <div style={{ 
-          display: 'flex', 
+        <div style={{
+          display: 'flex',
           gap: '15px',
           marginTop: '20px'
         }}>
-          <a 
-            href="/" 
+          <a
+            href="/"
             style={{
               padding: '12px 24px',
               background: 'linear-gradient(135deg, #3b82f6 0%, #10b981 100%)',
@@ -104,7 +105,7 @@ const ProtectedRoute = ({ children }) => {
               fontWeight: '600'
             }}
           >
-            חזור לדף הבית
+            {t('notFound.backHome')}
           </a>
         </div>
       </div>

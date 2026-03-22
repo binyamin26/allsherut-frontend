@@ -244,7 +244,7 @@ export const serviceFiltersConfig = {
       specializations: {
         label: 'התמחויות',
         type: 'checkbox',
-       options: [ ,'הכשרה גנן סוג א', 'הכשרה גנן סוג ב', 'אילני אגרונום', 'גוזם מומחה'],
+       options: ['הכשרה גנן סוג א', 'הכשרה גנן סוג ב', 'אילני אגרונום', 'גוזם מומחה'],
         dbField: 'availability->>"$.specializations"'
       },
       additionalServices: {
@@ -620,8 +620,8 @@ export const validateServiceFilters = (serviceType, filters) => {
     ...config.optional
   };
   
-  return Object.keys(filters).every(key => 
-    allFilterKeys.hasOwnProperty(key)
+  return Object.keys(filters).every(key =>
+    Object.prototype.hasOwnProperty.call(allFilterKeys, key)
   );
 };
 

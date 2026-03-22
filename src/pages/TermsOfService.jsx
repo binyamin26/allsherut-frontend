@@ -75,7 +75,7 @@ const TermsOfService = () => {
   <li>השימוש בפלטפורמה מותר מגיל 15 ומעלה</li>
   <li>משתמשים מתחת לגיל 18 נדרשים לאישור הורה או אפוטרופוס חוקי, בהתאם לחוק עבודת הנוער, תש״ג–1953</li>
   <li>מסירת מידע אמיתי, מדויק ומלא בעת ההרשמה</li>
-  <li>כתובת דוא"ל תקפה לצורך אימות חשבון</li>
+  <li>כתובת דוא&quot;ל תקפה לצורך אימות חשבון</li>
   <li>אחריות מלאה על שמירת פרטי הזדהות (סיסמה)</li>
 </ul>
 
@@ -218,7 +218,7 @@ const TermsOfService = () => {
                 <div className="process-step">
                   <div className="step-number">2</div>
                   <div className="step-content">
-                    <strong>אימות דוא"ל</strong>
+                    <strong>אימות דוא&quot;ל</strong>
                     <p>שליחת קוד אימות בן 6 סרות למייל</p>
                   </div>
                 </div>
@@ -233,7 +233,7 @@ const TermsOfService = () => {
 
               <h3 className="subsection-title">כללי פרסום ביקורות:</h3>
               <ul className="terms-list">
-                <li><strong>אימות חובה</strong> - כל ביקורת דורשת אימות דוא"ל עם קוד בן 6 ספרות</li>
+                <li><strong>אימות חובה</strong> - כל ביקורת דורשת אימות דוא&quot;ל עם קוד בן 6 ספרות</li>
                 <li><strong>פרסום מיידי</strong> - ביקורות מתפרסמות באופן מיידי לאחר אימות</li>
                 <li><strong>ביקורת אחת לנותן שירות</strong> - כל כתובת מייל יכולה לפרסם ביקורת אחת בלבד לכל נותן שירות</li>
                 <li><strong>תוקף קוד אימות</strong> - 15 דקות בלבד</li>
@@ -445,7 +445,7 @@ const TermsOfService = () => {
             </li>
             <li style={{ counterIncrement: 'item', position: 'relative' }}>
               <strong style={{ position: 'absolute', right: '-30px' }}>3.</strong>
-              <strong>דווחו ל-AllSherut</strong> בדוא"ל: incidents@AllSherut.co.il
+              <strong>דווחו ל-AllSherut</strong> בדוא&quot;ל: incidents@AllSherut.co.il
             </li>
             <li style={{ counterIncrement: 'item', position: 'relative' }}>
               <strong style={{ position: 'absolute', right: '-30px' }}>4.</strong>
@@ -461,7 +461,7 @@ const TermsOfService = () => {
             <li>AllSherut שומרת לעצמה את הזכות לסרב לכל תביעה או דרישה</li>
             <li>אנו רשאים להסיר משתמשים מהפלטפורמה ללא הודעה מוקדמת</li>
             <li>אנו לא מחויבים לבצע בדיקות רקע או אימות זהות</li>
-            <li>כל מידע בפלטפורמה מסופק "כמות שהוא" (AS-IS) ללא ערבויות</li>
+            <li>כל מידע בפלטפורמה מסופק &quot;כמות שהוא&quot; (AS-IS) ללא ערבויות</li>
           </ul>
 
           <h3 className="subsection-title">ויתור על תביעות:</h3>
@@ -778,13 +778,13 @@ const TermsOfService = () => {
                 הודעות והסכמות דיגיטליות
               </h2>
               <p className="section-text">
-                כל פעולה, הודעה, או הסכמה שבוצעה דרך האתר, הדוא"ל או מערכת הפלטפורמה תיחשב כהודעה בכתב לפי כל דין. שליחת הודעות דוא"ל או מילוי טפסים באתר AllSherut מהווה ראיה להסכמה מדעת מצד המשתמש.
+                כל פעולה, הודעה, או הסכמה שבוצעה דרך האתר, הדוא&quot;ל או מערכת הפלטפורמה תיחשב כהודעה בכתב לפי כל דין. שליחת הודעות דוא&quot;ל או מילוי טפסים באתר AllSherut מהווה ראיה להסכמה מדעת מצד המשתמש.
               </p>
 
               <div className="info-box">
                 <AlertCircle size={20} />
                 <div>
-                  <strong>חשוב לדעת:</strong> הודעות שנשלחו על ידי AllSherut לכתובת הדוא"ל שנמסרה בעת ההרשמה ייחשבו כהודעות שהתקבלו כדין בתוך 72 שעות ממועד שליחתן.
+                  <strong>חשוב לדעת:</strong> הודעות שנשלחו על ידי AllSherut לכתובת הדוא&quot;ל שנמסרה בעת ההרשמה ייחשבו כהודעות שהתקבלו כדין בתוך 72 שעות ממועד שליחתן.
                 </div>
               </div>
             </div>
@@ -801,7 +801,7 @@ const TermsOfService = () => {
                 לשאלות, הבהרות או דיווח על הפרות תנאי השימוש, ניתן ליצור קשר עמנו בדרכים הבאות:
               </p>
               <div className="contact-info">
-                <p><strong>דוא"ל:</strong> legal@AllSherut.co.il</p>
+                <p><strong>דוא&quot;ל:</strong> legal@AllSherut.co.il</p>
                 <p><strong>טלפון:</strong> 03-1234567</p>
                 <p><strong>כתובת:</strong> רחוב הדוגמה 123, תל אביב</p>
               </div>

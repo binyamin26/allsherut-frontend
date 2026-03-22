@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Filter, ChevronDown, X, Search, CheckCircle } from 'lucide-react';
 import { getServiceFilters, validateServiceFilters } from '../../pages/services/serviceFiltersConfig';
+import { useLanguage } from '../../context/LanguageContext';
 
 const AdvancedFilters = ({ 
   serviceType, 
@@ -8,6 +9,7 @@ const AdvancedFilters = ({
   initialFilters = {},
   className = '' 
 }) => {
+  const { t } = useLanguage();
   const [isExpanded, setIsExpanded] = useState(false);
   const [activeFilters, setActiveFilters] = useState(initialFilters);
   const [filterConfig, setFilterConfig] = useState({ required: {}, optional: {} });
@@ -183,7 +185,7 @@ const AdvancedFilters = ({
             <div className="dual-range-inputs">
               <input
                 type="number"
-                placeholder={`מינימום ${unit || ''}`}
+                placeholder={`${t('filters.minimum')} ${unit || ''}`}
                 value={currentValue?.min || ''}
                 onChange={(e) => handleFilterChange(filterKey, { 
                   ...currentValue, 
@@ -196,7 +198,7 @@ const AdvancedFilters = ({
               <span className="range-separator">-</span>
               <input
                 type="number"
-                placeholder={`מקסימום ${unit || ''}`}
+                placeholder={`${t('filters.maximum')} ${unit || ''}`}
                 value={currentValue?.max || ''}
                 onChange={(e) => handleFilterChange(filterKey, { 
                   ...currentValue, 
@@ -258,7 +260,7 @@ const AdvancedFilters = ({
           onClick={() => setIsExpanded(!isExpanded)}
         >
           <Filter size={18} className="filters-toggle-icon" />
-          <span className="filters-toggle-text">חיפוש מתקדם</span>
+          <span className="filters-toggle-text">{t('filters.advancedFilters')}</span>
           {activeFiltersCount > 0 && (
             <span className="filters-count-badge">{activeFiltersCount}</span>
           )}
@@ -274,7 +276,7 @@ const AdvancedFilters = ({
             className="filters-reset-btn"
           >
             <X size={16} />
-            <span>נקה הכל</span>
+            <span>{t('filters.clearAll')}</span>
           </button>
         )}
       </div>
@@ -284,7 +286,7 @@ const AdvancedFilters = ({
         <div className="filters-inner">
           {/* Header mobile */}
           <div className="filters-mobile-header" style={{ display: 'none' }}>
-            <h3 className="mobile-filters-title">סינון מתקדם</h3>
+            <h3 className="mobile-filters-title">{t('filters.advancedFilters')}</h3>
             <button 
               onClick={handleMobileClose} 
               className="mobile-filters-close"
@@ -296,7 +298,7 @@ const AdvancedFilters = ({
           {/* Filtres requis du service */}
           {(filterConfig.required && Object.keys(filterConfig.required).length > 0) && (
             <div className="filters-section">
-              <h4 className="filters-section-title">מאפיינים נדרשים</h4>
+              <h4 className="filters-section-title">{t('filters.requiredFeatures')}</h4>
               <div className="filters-grid">
                 {Object.entries(filterConfig.required).map(([filterKey, config]) =>
                   renderFilter(filterKey, config, true)
@@ -308,7 +310,7 @@ const AdvancedFilters = ({
           {/* Filtres optionnels du service */}
           {(filterConfig.optional && Object.keys(filterConfig.optional).length > 0) && (
             <div className="filters-section">
-              <h4 className="filters-section-title">מאפיינים נוספים</h4>
+              <h4 className="filters-section-title">{t('filters.optionalFeatures')}</h4>
               <div className="filters-grid">
                 {Object.entries(filterConfig.optional).map(([filterKey, config]) =>
                   renderFilter(filterKey, config, false)
@@ -329,10 +331,10 @@ const AdvancedFilters = ({
               }}>
                 <Filter size={48} style={{ margin: '0 auto 1rem', opacity: 0.3 }} />
                 <h3 style={{ margin: '0 0 0.5rem 0', fontSize: '1.125rem' }}>
-                  אין מסננים זמינים
+                  {t('filters.noFilters')}
                 </h3>
                 <p style={{ margin: 0, fontSize: '0.875rem' }}>
-                  מסננים מתקדמים יהיו זמינים בקרוב עבור שירות זה
+                  {t('filters.noFiltersSoon')}
                 </p>
               </div>
             </div>
@@ -343,7 +345,7 @@ const AdvancedFilters = ({
             <div className="filter-actions-left">
               {activeFiltersCount > 0 && (
                 <span className="filter-count">
-                  {activeFiltersCount} מסננים פעילים
+                  {t('filters.activeFilters', { count: activeFiltersCount })}
                 </span>
               )}
             </div>
@@ -355,7 +357,7 @@ const AdvancedFilters = ({
                 disabled={activeFiltersCount === 0}
               >
                 <X size={16} />
-                איפוס מסננים
+                {t('filters.resetFilters')}
               </button>
               
               <button 
@@ -363,9 +365,9 @@ const AdvancedFilters = ({
                 className="filter-btn filter-btn-apply"
               >
                 <Search size={16} />
-                {activeFiltersCount > 0 
-                  ? `חפש עם מסננים (${activeFiltersCount})`
-                  : 'חפש'
+                {activeFiltersCount > 0
+                  ? t('filters.searchWithFilters', { count: activeFiltersCount })
+                  : t('filters.search')
                 }
               </button>
             </div>

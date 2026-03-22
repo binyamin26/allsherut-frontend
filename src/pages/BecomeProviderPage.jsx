@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { 
   TrendingUp, 
   Star, 
@@ -27,6 +27,7 @@ const BecomeProviderPage = () => {
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [selectedService, setSelectedService] = useState('');
   const { isAuthenticated, user } = useAuth();
+  const navigate = useNavigate();
 
   const services = [
     {
@@ -429,8 +430,8 @@ const BecomeProviderPage = () => {
                   ))}
                 </div>
                 <p>
-                  "בתוך 3 חודשים הפכתי ללקוחה קבועה של 8 משפחות. 
-                  AllSherut שינה לי את החיים!"
+                  &quot;בתוך 3 חודשים הפכתי ללקוחה קבועה של 8 משפחות.
+                  AllSherut שינה לי את החיים!&quot;
                 </p>
                 <div className="story-stats">
                   <span>₪4,200 בחודש</span>
@@ -457,8 +458,8 @@ const BecomeProviderPage = () => {
                   ))}
                 </div>
                 <p>
-                  "כגנן מקצועי, מצאתי כאן לקוחות איכות שמעריכים 
-                  את העבודה שלי ומשלמים הוגן."
+                  &quot;כגנן מקצועי, מצאתי כאן לקוחות איכות שמעריכים
+                  את העבודה שלי ומשלמים הוגן.&quot;
                 </p>
                 <div className="story-stats">
                   <span>₪3,800 בחודש</span>
@@ -485,8 +486,8 @@ const BecomeProviderPage = () => {
                   ))}
                 </div>
                 <p>
-                  "הפלטפורמה הכי מקצועית שעבדתי איתה. 
-                  לקוחות רציניים ותשלומים מהירים."
+                  &quot;הפלטפורמה הכי מקצועית שעבדתי איתה.
+                  לקוחות רציניים ותשלומים מהירים.&quot;
                 </p>
                 <div className="story-stats">
                   <span>₪2,900 בחודש</span>

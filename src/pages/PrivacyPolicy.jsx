@@ -38,7 +38,7 @@ const PrivacyPolicy = () => {
               <h3 className="subsection-title">מידע שנאסף מלקוחות:</h3>
               <div className="data-category">
                 <ul className="privacy-list">
-                  <li><strong>פרטים אישיים בסיסיים:</strong> שם מלא, כתובת דוא"ל</li>
+                  <li><strong>פרטים אישיים בסיסיים:</strong> שם מלא, כתובת דוא&quot;ל</li>
                   <li><strong>היסטוריית חיפושים:</strong> שירותים שחיפשתם, מיקומים שאינטרסים אתכם</li>
                   <li><strong>ביקורות שפרסמתם:</strong> תוכן הביקורות, דירוגים וזמן פרסום</li>
                   <li><strong>נתוני שימוש:</strong> כיצד אתם משתמשים באתר, דפים שבקרתם, זמני שימוש</li>
@@ -48,7 +48,7 @@ const PrivacyPolicy = () => {
               <h3 className="subsection-title">מידע שנאסף מנותני שירות (ספקים):</h3>
               <div className="data-category highlight">
                 <ul className="privacy-list">
-                  <li><strong>מידע אישי מלא:</strong> שם פרטי, משפחה, כתובת דוא"ל, מספר טלפון</li>
+                  <li><strong>מידע אישי מלא:</strong> שם פרטי, משפחה, כתובת דוא&quot;ל, מספר טלפון</li>
                   <li><strong>מידע מקצועי:</strong> תיאור שירותים, מחירים, ניסיון מקצועי</li>
                   <li><strong>מסמכי הסמכה:</strong> תעודות, אישורי רישוי ומקצועיות (במידה ורלוונטי)</li>
                   <li><strong>אזורי פעילות:</strong> ערים, שכונות ורדיוס פעילות</li>
@@ -150,11 +150,11 @@ const PrivacyPolicy = () => {
             <div className="section-content">
               <h2 className="section-title">
                 <Mail size={24} />
-                אימות דוא"ל לביקורות
+                אימות דוא&quot;ל לביקורות
               </h2>
 
               <p className="section-text">
-                במסגרת מערכת הביקורות שלנו, אנו דורשים אימות כתובת דוא"ל לפני פרסום כל ביקורת. הנה כיצד זה עובד:
+                במסגרת מערכת הביקורות שלנו, אנו דורשים אימות כתובת דוא&quot;ל לפני פרסום כל ביקורת. הנה כיצד זה עובד:
               </p>
 
               <div className="process-timeline">
@@ -162,7 +162,7 @@ const PrivacyPolicy = () => {
                   <div className="timeline-marker">1</div>
                   <div className="timeline-content">
                     <h4>כתיבת ביקורת</h4>
-                    <p>משתמש כותב ביקורת ומזין כתובת דוא"ל</p>
+                    <p>משתמש כותב ביקורת ומזין כתובת דוא&quot;ל</p>
                   </div>
                 </div>
 
@@ -203,7 +203,7 @@ const PrivacyPolicy = () => {
               <div className="security-box">
                 <Lock size={20} />
                 <div>
-                  <strong>אבטחת מייל:</strong> כתובות דוא"ל שנשלחו לצורך אימות לא נמכרות ולא משותפות עם צדדים שלישיים. הן משמשות אך ורק לאימות הביקורת.
+                  <strong>אבטחת מייל:</strong> כתובות דוא&quot;ל שנשלחו לצורך אימות לא נמכרות ולא משותפות עם צדדים שלישיים. הן משמשות אך ורק לאימות הביקורת.
                 </div>
               </div>
             </div>
@@ -249,7 +249,7 @@ const PrivacyPolicy = () => {
                   מערכת Tranzila מעבדת את התשלומים עבור מנויי נותני השירות. 
                   <strong> אנו לא שומרים פרטי כרטיס אשראי </strong> - כל המידע הפיננסי מנוהל ישירות על ידי Tranzila בהתאם לתקני אבטחת PCI DSS.
                 </p>
-                <p className="small-text">מידע משותף: שם, כתובת דוא"ל, סכום תשלום</p>
+                <p className="small-text">מידע משותף: שם, כתובת דוא&quot;ל, סכום תשלום</p>
               </div>
 
               <h3 className="subsection-title">חובות חוקיות:</h3>
@@ -429,7 +429,7 @@ const PrivacyPolicy = () => {
                 <div className="right-card">
                   <div className="right-icon">🗑️</div>
                   <h4>זכות המחיקה</h4>
-                  <p>לבקש מחיקת המידע האישי שלכם ("הזכות להישכח")</p>
+                  <p>לבקש מחיקת המידע האישי שלכם (&quot;הזכות להישכח&quot;)</p>
                 </div>
 
                 <div className="right-card">
@@ -602,7 +602,7 @@ const PrivacyPolicy = () => {
                     <Mail size={28} />
                   </div>
                   <div className="method-content">
-                    <h4>דוא"ל</h4>
+                    <h4>דוא&quot;ל</h4>
                     <p><strong>פרטיות ו-GDPR:</strong> privacy@allsherut.com</p>
                     <p><strong>תמיכה כללית:</strong> support@allsherut.com</p>
                   </div>
@@ -642,7 +642,7 @@ const PrivacyPolicy = () => {
               <h3 className="subsection-title">כיצד נודיע לכם:</h3>
               <ul className="privacy-list">
                 <li><strong>שינויים קטנים:</strong> עדכון התאריך בראש המסמך</li>
-                <li><strong>שינויים מהותיים:</strong> שליחת הודעת דוא"ל לכל המשתמשים הרשומים</li>
+                <li><strong>שינויים מהותיים:</strong> שליחת הודעת דוא&quot;ל לכל המשתמשים הרשומים</li>
                 <li><strong>שינויים משמעותיים:</strong> הצגת הודעה בולטת באתר + דרישת הסכמה מפורשת</li>
               </ul>
 

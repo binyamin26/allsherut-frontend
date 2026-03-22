@@ -358,15 +358,15 @@ const BillingPage = () => {
               <div className="billing-summary">
                 <div className="summary-stats">
                   <div className="stat-item">
-                    <span className="stat-label">סה"כ מנויים:</span>
+                    <span className="stat-label">סה&quot;כ מנויים:</span>
                     <span className="stat-value">{billingHistory.summary.totalSubscriptions}</span>
                   </div>
                   <div className="stat-item">
-                    <span className="stat-label">סה"כ תשלומים:</span>
+                    <span className="stat-label">סה&quot;כ תשלומים:</span>
                     <span className="stat-value">{billingHistory.summary.totalTransactions}</span>
                   </div>
                   <div className="stat-item">
-                    <span className="stat-label">סה"כ שולם:</span>
+                    <span className="stat-label">סה&quot;כ שולם:</span>
                     <span className="stat-value">₪{billingHistory.summary.totalPaid}</span>
                   </div>
                 </div>
