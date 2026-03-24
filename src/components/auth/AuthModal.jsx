@@ -690,7 +690,7 @@ case 'gardening':
   if (!serviceDetails.services || serviceDetails.services.length === 0) newErrors['serviceDetails.services'] = 'יש לבחור סוגי שירותים';
   if (!serviceDetails.seasons || serviceDetails.seasons.length === 0) newErrors['serviceDetails.seasons'] = 'יש לבחור עונות זמינות';
   if (!serviceDetails.equipment || serviceDetails.equipment.length === 0) newErrors['serviceDetails.equipment'] = 'יש לציין ציוד בבעלותך';
-  if (!serviceDetails.rate) newErrors['serviceDetails.rate'] = 'תעריף נדרש';
+  // rate is optional
   if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
     newErrors['serviceDetails.availability_days'] = 'יש לבחור ימי זמינות';
   }
@@ -718,7 +718,7 @@ case 'petcare':
         if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = 'שנות ניסיון נדרשות';
         if (!serviceDetails.subjects || serviceDetails.subjects.length === 0) newErrors['serviceDetails.subjects'] = 'יש לבחור מקצועות';
         if (!serviceDetails.levels || serviceDetails.levels.length === 0) newErrors['serviceDetails.levels'] = 'יש לבחור רמות לימוד';
-        if (!serviceDetails.qualifications) newErrors['serviceDetails.qualifications'] = 'השכלה/הסמכות נדרשות';
+        // qualifications is optional
         if (!serviceDetails.teachingMode) newErrors['serviceDetails.teachingMode'] = 'אופן הוראה נדרש';
         if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
   newErrors['serviceDetails.availability_days'] = 'יש לבחור ימי זמינות';

@@ -275,7 +275,7 @@ const { t, currentLanguage } = useLanguage();
 
                 {/* SPÉCIALISATIONS */}
                 <div className="input-group">
-                    <label className="auth-form-label required">{t('filters.tutoring.specializations')}</label>
+                    <label className="auth-form-label">{t('filters.tutoring.specializations')}</label>
                     <div className="checkbox-group" data-field="specializations">
                         {config.specializations.map(spec => (
                             <label key={spec.value} className="checkbox-item">
@@ -308,7 +308,7 @@ const { t, currentLanguage } = useLanguage();
 
                 {/* QUALIFICATIONS */}
                 <div className="input-group">
-                    <label className="auth-form-label required">{t('serviceForm.tutoring.qualifications')}</label>
+                    <label className="auth-form-label">{t('serviceForm.tutoring.qualifications')}</label>
                     <input
                         type="text"
                         autoComplete="off"

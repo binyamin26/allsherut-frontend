@@ -80,7 +80,7 @@ const GardeningForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
         </div>
 
           <div className="input-group">
-         <label className="auth-form-label required">{t('serviceForm.gardening.rate')}</label>
+         <label className="auth-form-label">{t('serviceForm.gardening.rate')}</label>
 <input
   type="text"
    inputMode="numeric"
