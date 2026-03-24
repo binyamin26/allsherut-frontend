@@ -79,21 +79,6 @@ const GardeningForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
           {errors['serviceDetails.services'] && <span className="error-text">{errors['serviceDetails.services']}</span>}
         </div>
 
-          <div className="input-group">
-         <label className="auth-form-label">{t('serviceForm.gardening.rate')}</label>
-<input
-  type="text"
-   inputMode="numeric"
-   autoComplete="off"
-  value={serviceDetails.rate || ''}
-  onChange={(e) => handleServiceDetailsChange('rate', e.target.value)}
-  placeholder={t('serviceForm.gardening.ratePlaceholder')}
-  className={`standard-input ${errors['serviceDetails.rate'] ? 'error' : ''}`}
-  data-field="rate"
-/>
-          {errors['serviceDetails.rate'] && <span className="error-text">{errors['serviceDetails.rate']}</span>}
-        </div>
-
         <div className="input-group">
          <label className="auth-form-label required">{t('serviceForm.gardening.seasons')}</label>
 <div className="checkbox-group" data-field="seasons">
@@ -196,7 +181,20 @@ const GardeningForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
 
       <div className="form-section optional">
       <h4>{t('serviceForm.common.optionalFields')}</h4>
-        
+
+        <div className="input-group">
+          <label>{t('serviceForm.gardening.rate')}</label>
+          <input
+            type="text"
+            inputMode="numeric"
+            autoComplete="off"
+            value={serviceDetails.rate || ''}
+            onChange={(e) => handleServiceDetailsChange('rate', e.target.value)}
+            placeholder={t('serviceForm.gardening.ratePlaceholder')}
+            className="standard-input"
+          />
+        </div>
+
         <div className="input-group">
         <label>{t('serviceForm.gardening.specializations')}</label>
 <div className="checkbox-group">

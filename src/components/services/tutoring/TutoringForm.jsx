@@ -273,23 +273,6 @@ const { t, currentLanguage } = useLanguage();
                     {errors['serviceDetails.teachingMode'] && <span className="error-text">{errors['serviceDetails.teachingMode']}</span>}
                 </div>
 
-                {/* SPÉCIALISATIONS */}
-                <div className="input-group">
-                    <label className="auth-form-label">{t('filters.tutoring.specializations')}</label>
-                    <div className="checkbox-group" data-field="specializations">
-                        {config.specializations.map(spec => (
-                            <label key={spec.value} className="checkbox-item">
-                                <input
-                                    type="checkbox"
-                                    checked={serviceDetails.specializations?.includes(spec.value) || false}
-                                    onChange={(e) => handleSpecializationChange(spec.value, e.target.checked)}
-                                />
-                                {t(spec.key)}
-                            </label>
-                        ))}
-                    </div>
-                </div>
-
                 {/* TARIF HORAIRE */}
                 <div className="input-group">
                     <label className="auth-form-label required">{t('serviceForm.tutoring.hourlyRate')}</label>
@@ -305,20 +288,39 @@ const { t, currentLanguage } = useLanguage();
                         className="standard-input"
                     />
                 </div>
+            </div>
+
+            <div className="form-section optional">
+                <h4>{t('serviceForm.common.optionalFields')}</h4>
+
+                {/* SPÉCIALISATIONS */}
+                <div className="input-group">
+                    <label>{t('filters.tutoring.specializations')}</label>
+                    <div className="checkbox-group" data-field="specializations">
+                        {config.specializations.map(spec => (
+                            <label key={spec.value} className="checkbox-item">
+                                <input
+                                    type="checkbox"
+                                    checked={serviceDetails.specializations?.includes(spec.value) || false}
+                                    onChange={(e) => handleSpecializationChange(spec.value, e.target.checked)}
+                                />
+                                {t(spec.key)}
+                            </label>
+                        ))}
+                    </div>
+                </div>
 
                 {/* QUALIFICATIONS */}
                 <div className="input-group">
-                    <label className="auth-form-label">{t('serviceForm.tutoring.qualifications')}</label>
+                    <label>{t('serviceForm.tutoring.qualifications')}</label>
                     <input
                         type="text"
                         autoComplete="off"
                         value={serviceDetails.qualifications || ''}
                         onChange={(e) => handleServiceDetailsChange('qualifications', e.target.value)}
                         placeholder={t('serviceForm.tutoring.qualificationsPlaceholder')}
-                        className={`standard-input ${errors['serviceDetails.qualifications'] ? 'error' : ''}`}
-                        data-field="qualifications"
+                        className="standard-input"
                     />
-                    {errors['serviceDetails.qualifications'] && <span className="error-text">{errors['serviceDetails.qualifications']}</span>}
                 </div>
             </div>
         </div>
