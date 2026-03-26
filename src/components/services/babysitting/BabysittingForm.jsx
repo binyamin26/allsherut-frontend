@@ -237,28 +237,27 @@ const BabysittingForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
           {errors['serviceDetails.languages'] && <span className="error-text">{errors['serviceDetails.languages']}</span>}
         </div>
 
-        {/* ✅ HOURLY RATE */}
+      </div>
+
+      <div className="form-section optional">
+        <h4>{t('serviceForm.common.optionalFields')}</h4>
+
         <div className="input-group">
-          <label className="auth-form-label required">{t('serviceForm.babysitting.hourlyRate')}</label>
+          <label>{t('serviceForm.babysitting.hourlyRate')}</label>
           <input
             ref={hourlyRateRef}
             type="text"
-             inputMode="numeric"
+            inputMode="numeric"
             name={`babysitter-rate-new-${Math.random()}`}
             autoComplete="off"
             data-lpignore="true"
             data-form-type="other"
             onChange={(e) => handleServiceDetailsChange('hourlyRate', e.target.value)}
             placeholder={t('serviceForm.babysitting.hourlyRatePlaceholder')}
-            className={`standard-input ${errors['serviceDetails.hourlyRate'] ? 'error' : ''}`}
+            className="standard-input"
             data-field="hourlyRate"
           />
-          {errors['serviceDetails.hourlyRate'] && <span className="error-text">{errors['serviceDetails.hourlyRate']}</span>}
         </div>
-      </div>
-
-      <div className="form-section optional">
-        <h4>{t('serviceForm.common.optionalFields')}</h4>
         
         <div className="input-group">
           <label>{t('serviceForm.babysitting.certifications')}</label>

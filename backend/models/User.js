@@ -1028,7 +1028,6 @@ static async updateServiceProviderWithDetails(connection, providerId, serviceTyp
       if (!serviceDetails.languages || serviceDetails.languages.length === 0) {
         errors.push({ field: 'languages', message: 'יש לבחור לפחות שפה אחת' });
       }
-      if (!serviceDetails.hourlyRate) errors.push({ field: 'hourlyRate', message: 'תעריף שעתי נדרש' });
       break;
 
     case 'cleaning':
@@ -1039,7 +1038,6 @@ static async updateServiceProviderWithDetails(connection, providerId, serviceTyp
       if (!serviceDetails.frequency || serviceDetails.frequency.length === 0) {
         errors.push({ field: 'frequency', message: 'יש לבחור תדירות' });
       }
- if (!serviceDetails.hourlyRate) errors.push({ field: 'hourlyRate', message: 'תעריף נדרש' });;
       break;
 
     case 'gardening':
@@ -1052,7 +1050,6 @@ static async updateServiceProviderWithDetails(connection, providerId, serviceTyp
       if (!serviceDetails.equipment || serviceDetails.equipment.length === 0) {
         errors.push({ field: 'equipment', message: 'יש לציין ציוד' });
       }
-      if (!serviceDetails.rate) errors.push({ field: 'rate', message: 'תעריף נדרש' });
       break;
 
     case 'petcare':

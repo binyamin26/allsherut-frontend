@@ -651,7 +651,6 @@ console.log('🔍 serviceDetails object:', serviceDetails);
         if (!serviceDetails.babysitting_types || serviceDetails.babysitting_types.length === 0) newErrors['serviceDetails.babysitting_types'] = 'יש לבחור סוגי שמרטפות';
         if (serviceDetails.can_travel_alone === undefined) newErrors['serviceDetails.can_travel_alone'] = 'יש לציין אם יכול להגיע ולחזור לבד';
         if (!serviceDetails.languages || serviceDetails.languages.length === 0) newErrors['serviceDetails.languages'] = 'יש לבחור לפחות שפה אחת';
-        if (!serviceDetails.hourlyRate) newErrors['serviceDetails.hourlyRate'] = 'תעריף שעתי נדרש';
         break;
 
 case 'cleaning':
@@ -672,10 +671,6 @@ case 'cleaning':
     console.log('⚠️ Ajout erreur frequency');
     newErrors['serviceDetails.frequency'] = 'יש לבחור תדירות';
   }
- if (!serviceDetails.hourlyRate) {
-  console.log('⚠️ Ajout erreur hourlyRate');
-  newErrors['serviceDetails.hourlyRate'] = 'תעריף נדרש';
-}
 if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
   newErrors['serviceDetails.availability_days'] = 'יש לבחור ימי זמינות';
 }

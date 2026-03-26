@@ -62,24 +62,6 @@ const CleaningForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
           {errors['serviceDetails.experience'] && <span className="error-text">{errors['serviceDetails.experience']}</span>}
         </div>
 
-      <div className="input-group">
-          <label className="auth-form-label required">{t('serviceForm.cleaning.hourlyRate')}</label>
-<input
- type="text"
- autoComplete="off"
- inputMode="numeric"
-  value={serviceDetails.hourlyRate || ''}
-onChange={(e) => {
-  const numericValue = e.target.value.replace(/\D/g, '');
-  handleServiceDetailsChange('hourlyRate', numericValue);  // ← 'hourlyRate' ici !
-}}
-  className={`standard-input ${errors['serviceDetails.hourlyRate'] ? 'error' : ''}`}
-  data-field="hourlyRate"
-  min="0"
-  placeholder={t('serviceForm.cleaning.hourlyRatePlaceholder')}
-/>
-          {errors['serviceDetails.hourlyRate'] && <span className="error-text">{errors['serviceDetails.hourlyRate']}</span>}
-        </div>
 
         <div className="input-group">
      <label className="auth-form-label required">{t('serviceForm.cleaning.cleaningCategories')}</label>
@@ -288,6 +270,27 @@ onChange={(e) => {
     </div>
   </div>
 </div>
+      </div>
+
+      <div className="form-section optional">
+        <h4>{t('serviceForm.common.optionalFields')}</h4>
+
+        <div className="input-group">
+          <label>{t('serviceForm.cleaning.hourlyRate')}</label>
+          <input
+            type="text"
+            autoComplete="off"
+            inputMode="numeric"
+            value={serviceDetails.hourlyRate || ''}
+            onChange={(e) => {
+              const numericValue = e.target.value.replace(/\D/g, '');
+              handleServiceDetailsChange('hourlyRate', numericValue);
+            }}
+            className="standard-input"
+            data-field="hourlyRate"
+            placeholder={t('serviceForm.cleaning.hourlyRatePlaceholder')}
+          />
+        </div>
       </div>
     </div>
   );
