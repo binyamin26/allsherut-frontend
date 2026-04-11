@@ -82,19 +82,13 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
           width: '80px', height: '80px', borderRadius: '50%',
           background: 'linear-gradient(145deg, #e8eef5 0%, #d1dbe8 100%)',
           alignItems: 'center', justifyContent: 'center',
+          flexShrink: 0,
           boxShadow: 'inset 0 2px 8px rgba(0,0,0,0.08)'
         }}>
-          <svg width="50" height="50" viewBox="0 0 100 100" fill="none">
-            <defs>
-              <linearGradient id="avatarGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#a0aec0"/><stop offset="100%" stopColor="#718096"/>
-              </linearGradient>
-              <clipPath id="circleClip2"><circle cx="50" cy="50" r="48"/></clipPath>
-            </defs>
-            <g clipPath="url(#circleClip2)">
-              <circle cx="50" cy="38" r="18" fill="url(#avatarGradient2)"/>
-              <ellipse cx="50" cy="85" rx="32" ry="28" fill="url(#avatarGradient2)"/>
-            </g>
+          <svg width="80" height="80" viewBox="0 0 100 100" fill="none">
+            <circle cx="50" cy="50" r="50" fill="#d1dbe8"/>
+            <circle cx="50" cy="38" r="18" fill="#8a9ab5"/>
+            <ellipse cx="50" cy="85" rx="32" ry="28" fill="#8a9ab5"/>
           </svg>
         </div>
       </div>

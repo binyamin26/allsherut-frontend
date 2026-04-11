@@ -166,6 +166,9 @@ app.use('/api/reviews',
 // Gestion utilisateurs
 app.use('/api/users', require('./routes/users'));
 
+// Recrutement (offres d'emploi)
+app.use('/api/recruitment', require('./routes/recruitment'));
+
 // Upload avec rate limiting spécifique
 const uploadLimiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 heure

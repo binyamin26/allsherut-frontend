@@ -330,10 +330,9 @@ textarea,
   transform: translateY(-1px);
 }
 
-.checkbox-item input[type="checkbox"] {
+.checkbox-item input[type="checkbox"],
+.checkbox-item input[type="radio"] {
   margin: 0;
-  transform: scale(1.2);
-  accent-color: var(--primary-500);
   /* order supprimé pour RTL correct - checkbox à droite du texte */
 }
 

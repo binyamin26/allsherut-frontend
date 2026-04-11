@@ -1,0 +1,1064 @@
+/* ====================================
+   RECRUITMENT PAGE - HOMESHERUT
+   ==================================== */
+
+/* ====================================
+   PAGE WRAPPER
+   ==================================== */
+.recruitment-page {
+  min-height: 100vh;
+  background: var(--neutral-25);
+}
+
+/* ====================================
+   BREADCRUMB
+   ==================================== */
+.recruitment-breadcrumb {
+  padding: 0.75rem 1.5rem;
+  font-size: var(--text-sm);
+  color: var(--neutral-500);
+  background: white;
+  border-bottom: 1px solid var(--neutral-200);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.recruitment-breadcrumb a {
+  color: var(--accent-400);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.recruitment-breadcrumb a:hover {
+  color: var(--primary-600);
+  text-decoration: underline;
+}
+
+.recruitment-breadcrumb span {
+  color: var(--neutral-400);
+}
+
+.recruitment-breadcrumb .breadcrumb-current {
+  color: var(--neutral-700);
+  font-weight: 500;
+}
+
+/* ====================================
+   HERO BANNER
+   ==================================== */
+.recruitment-hero {
+  background: linear-gradient(135deg, #1A5490 0%, #0F2A44 60%, #1e3a5f 100%);
+  padding: 2.5rem 1.5rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.recruitment-hero::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(47, 128, 237, 0.2) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.recruitment-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -30px;
+  left: -30px;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(47, 128, 237, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.recruitment-hero-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  text-align: center !important;
+}
+
+.recruitment-hero-inner * {
+  text-align: center !important;
+}
+
+.recruitment-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(47, 128, 237, 0.25);
+  border: 1px solid rgba(47, 128, 237, 0.4);
+  color: #93c5fd;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  padding: 0.3rem 0.9rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 0.9rem;
+  letter-spacing: 0.03em;
+}
+
+.recruitment-hero-title {
+  font-size: clamp(1.3rem, 3vw, 1.9rem);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0 0 0.3rem;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+}
+
+/* Nom du service — classe avec "text-" pour survivre à l'AccessibilityWidget */
+.text-recruitment-service {
+  display: block;
+  font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.15;
+  margin: 0 0 0.75rem;
+  background: linear-gradient(90deg, #ffffff 0%, #93c5fd 60%, #60a5fa 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.recruitment-hero-subtitle {
+  font-size: var(--text-base);
+  color: rgba(255, 255, 255, 0.65);
+  margin: 0 0 1.2rem;
+}
+
+.recruitment-hero-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-full);
+}
+
+/* ====================================
+   CONTENT AREA
+   ==================================== */
+.recruitment-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 1.5rem 3rem;
+}
+
+/* ====================================
+   LOADING STATE
+   ==================================== */
+.recruitment-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  gap: 1rem;
+  color: var(--neutral-500);
+}
+
+.recruitment-loading p {
+  font-size: var(--text-base);
+  color: var(--neutral-500);
+  margin: 0;
+}
+
+/* ====================================
+   ERROR STATE
+   ==================================== */
+.recruitment-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  text-align: center;
+  background: #fef2f2;
+  border: 1px solid #fca5a5;
+  border-radius: var(--radius-xl);
+  gap: 1rem;
+}
+
+.recruitment-error p {
+  color: #991b1b;
+  font-size: var(--text-base);
+  margin: 0;
+}
+
+.recruitment-retry-btn {
+  padding: 0.5rem 1.5rem;
+  background: var(--accent-400);
+  color: white;
+  border: none;
+  border-radius: var(--radius-lg);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.recruitment-retry-btn:hover {
+  background: var(--primary-500);
+  transform: translateY(-1px);
+}
+
+/* ====================================
+   EMPTY STATE
+   ==================================== */
+.recruitment-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  text-align: center;
+  background: white;
+  border: 2px dashed var(--neutral-200);
+  border-radius: var(--radius-2xl);
+  gap: 0.75rem;
+}
+
+.recruitment-empty-icon {
+  font-size: 3rem;
+  line-height: 1;
+  opacity: 0.5;
+}
+
+.recruitment-empty p {
+  font-size: var(--text-lg);
+  color: var(--neutral-500);
+  margin: 0;
+}
+
+/* ====================================
+   JOB LISTINGS LIST & ROWS
+   ==================================== */
+
+
+.rfilter-select {
+  background: white;
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.9rem;
+  color: #374151;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.15s;
+  min-width: 120px;
+}
+.rfilter-select:focus {
+  border-color: #1A5490;
+}
+
+.rfilter-search-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  color: #6b7280;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+.rfilter-search-btn:hover {
+  border-color: #1A5490;
+  color: #1A5490;
+}
+
+/* ====================================
+   JOB LISTINGS LIST
+   ==================================== */
+.job-listings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* ====================================
+   JOB LISTING ROW
+   ==================================== */
+.job-listing-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #f3f4f6;
+  transition: background 0.12s;
+}
+.job-listing-row:last-child {
+  border-bottom: none;
+}
+.job-listing-row:hover {
+  background: #f9fafb;
+}
+
+.job-listing-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.job-listing-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0F2A44;
+  margin: 0 0 0.25rem;
+}
+
+.job-listing-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+  font-size: 0.88rem;
+  color: #374151;
+  margin-bottom: 0.2rem;
+}
+
+.job-meta-salary {
+  font-weight: 700;
+  color: #0F2A44;
+}
+.job-meta-pay {
+  font-weight: 400;
+  color: #6b7280;
+}
+.job-meta-sep {
+  color: #9ca3af;
+  margin: 0 0.1rem;
+}
+.job-meta-location {
+  color: #374151;
+}
+
+.job-listing-schedule {
+  font-size: 0.83rem;
+  color: #6b7280;
+  margin-bottom: 0.25rem;
+}
+
+.job-listing-publisher {
+  font-size: 0.83rem;
+  color: #6b7280;
+}
+.job-listing-publisher strong {
+  color: #374151;
+}
+
+/* Bouton "Voir l'offre" — desktop seulement */
+.job-listing-action {
+  flex-shrink: 0;
+}
+
+.job-voir-btn {
+  display: inline-flex;
+  align-items: center;
+  background: #1A5490;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1.1rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+.job-voir-btn:hover {
+  background: #0F2A44;
+}
+
+/* ====================================
+   JOB LISTING CARD — OVERRIDES
+   ==================================== */
+
+/* Badge type de contrat coloré */
+.job-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.job-badge-full_time {
+  background: #dcfce7;
+  color: #166534;
+  border: 1px solid #86efac;
+}
+
+.job-badge-part_time {
+  background: #fef9c3;
+  color: #854d0e;
+  border: 1px solid #fde047;
+}
+
+.job-badge-one_time {
+  background: #ede9fe;
+  color: #5b21b6;
+  border: 1px solid #c4b5fd;
+}
+
+/* Salaire mis en avant */
+.job-salary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--primary-700);
+  background: var(--primary-50);
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--primary-200);
+}
+
+.job-salary-type {
+  font-weight: 400;
+  color: var(--neutral-500);
+  font-size: var(--text-xs);
+}
+
+/* Ligne disponibilité */
+.job-availability {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.4rem;
+}
+
+.job-day-chip {
+  font-size: var(--text-xs);
+  background: var(--neutral-100);
+  color: var(--neutral-600);
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--neutral-200);
+}
+
+/* Tag recrutement sur la carte */
+.job-recruit-tag {
+  position: absolute;
+  top: 10px;
+  inset-inline-end: 10px;
+  background: linear-gradient(135deg, var(--primary-500) 0%, var(--accent-400) 100%);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ====================================
+   RESPONSIVE
+   ==================================== */
+@media (max-width: 768px) {
+  .recruitment-hero {
+    padding: 1.75rem 1rem 1.5rem;
+  }
+
+  .recruitment-hero-title {
+    font-size: 1.5rem;
+  }
+
+  .recruitment-content {
+    padding: 1rem 1rem 2rem;
+  }
+
+  .recruitment-breadcrumb {
+    padding: 0.6rem 1rem;
+  }
+
+
+  /* Sur mobile : cards avec ombre légère, sans bouton "Voir l'offre" */
+  .job-listings-list {
+    gap: 0.6rem;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+  }
+
+  .job-listing-row {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 0.9rem 1rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .job-listing-row:hover {
+    background: white;
+  }
+
+  /* Cacher le bouton "Voir l'offre" sur mobile */
+  .job-listing-action {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .recruitment-hero-title {
+    font-size: 1.3rem;
+  }
+
+  .recruitment-hero-subtitle {
+    font-size: var(--text-base);
+  }
+}
+
+/* ====================================
+   RECRUITMENT LISTING DETAIL PAGE v2
+   ==================================== */
+
+.rdp-page {
+  min-height: 100vh;
+  background: #f8fafc;
+  padding-bottom: 2rem;
+}
+
+/* ── Hero wrap ── */
+.rdp-hero-wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.5rem 1.5rem 0;
+}
+
+.rdp-hero-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+  padding: 2rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 4px solid #1A5490;
+}
+
+.rdp-hero-body {
+  width: 100%;
+  text-align: center;
+}
+
+.rdp-hero-title {
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 800;
+  color: #0F2A44;
+  margin: 0;
+  line-height: 1.25;
+}
+
+.rdp-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.35rem 0.9rem;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.rdp-badge-exp {
+  background: #fef9c3;
+  color: #854d0e;
+  border: 1px solid #fde047;
+}
+
+.rdp-badge-full_time {
+  background: #dcfce7;
+  color: #166534;
+  border: 1px solid #86efac;
+}
+
+.rdp-badge-part_time {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fcd34d;
+}
+
+.rdp-badge-one_time {
+  background: #ede9fe;
+  color: #5b21b6;
+  border: 1px solid #c4b5fd;
+}
+
+/* ── Layout 2 colonnes ── */
+.rdp-layout {
+  max-width: 1100px;
+  margin: 1.5rem auto 0;
+  padding: 0 1.5rem 3rem;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+/* ── Colonne gauche ── */
+.rdp-col-main {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.rdp-section {
+  background: white;
+  border-radius: 14px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+}
+
+.rdp-section-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0F2A44;
+  margin: 0 0 1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 2px solid #f1f5f9;
+}
+
+.rdp-desc {
+  font-size: 0.95rem;
+  color: #374151;
+  line-height: 1.75;
+  white-space: pre-wrap;
+  margin: 0;
+}
+
+/* ── Grille de détails du poste ── */
+.rdp-details-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.rdp-detail-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.rdp-detail-row:last-child {
+  border-bottom: none;
+}
+
+.rdp-detail-row-chips {
+  align-items: flex-start;
+}
+
+.rdp-detail-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+  width: 1.5rem;
+  text-align: center;
+}
+
+.rdp-detail-label {
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-weight: 500;
+  min-width: 120px;
+  flex-shrink: 0;
+}
+
+.rdp-detail-val {
+  font-size: 0.9rem;
+  color: #111827;
+  font-weight: 600;
+}
+
+.rdp-detail-sub {
+  font-weight: 400;
+  color: #6b7280;
+}
+
+.rdp-detail-check {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #16a34a;
+}
+
+.rdp-detail-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.rdp-req-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.rdp-req-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 100px;
+  padding: 0.35rem 0.9rem;
+  font-size: 0.875rem;
+  color: #374151;
+}
+
+/* ── Colonne droite (sticky) ── */
+.rdp-col-side {
+  position: sticky;
+  top: 90px;
+}
+
+.rdp-recruiter-card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.75rem 1.5rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.rdp-rec-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1A5490, #2F80ED);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  flex-shrink: 0;
+}
+
+.rdp-rec-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* class contains "text-" → survit à l'AccessibilityWidget */
+.text-rdp-av {
+  font-size: 2rem !important;
+  font-weight: 700;
+  color: white;
+}
+
+.rdp-rec-info {
+  width: 100%;
+  margin-bottom: 1.25rem;
+}
+
+.rdp-rec-name {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #111827;
+  margin: 0 0 0.25rem;
+}
+
+.rdp-rec-service {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin: 0 0 0.2rem;
+}
+
+.rdp-rec-since {
+  font-size: 0.82rem;
+  color: #9ca3af;
+  margin: 0;
+}
+
+.rdp-rec-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  width: 100%;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 1.25rem;
+}
+
+.rdp-rec-btn-wa,
+.rdp-rec-btn-call {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+.rdp-rec-btn-wa   { background: #128C4A; color: white; }
+.rdp-rec-btn-call { background: #1A5490; color: white; }
+
+.rdp-rec-btn-wa:hover,
+.rdp-rec-btn-call:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+/* ── Offres similaires ── */
+.rdp-sim-section {
+  background: white;
+  border-top: 1px solid #f1f5f9;
+  margin-top: 0.5rem;
+  padding: 2.5rem 0;
+}
+
+.rdp-sim-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.rdp-sim-heading {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #0F2A44;
+  margin: 0 0 1.5rem;
+}
+
+.rdp-sim-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.rdp-sim-card {
+  background: white;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 1.25rem;
+  cursor: pointer;
+  transition: box-shadow 0.15s, transform 0.15s, border-color 0.15s;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.rdp-sim-card:hover {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+  border-color: #bfdbfe;
+}
+
+.rdp-sim-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1A5490, #2F80ED);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+  flex-shrink: 0;
+}
+
+.rdp-sim-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.rdp-sim-avatar span {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: white;
+}
+
+.rdp-sim-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0F2A44;
+  margin: 0;
+}
+
+.rdp-sim-salary {
+  font-size: 0.875rem;
+  color: #374151;
+}
+
+.rdp-sim-pay {
+  color: #6b7280;
+  font-weight: 400;
+}
+
+.rdp-sim-loc {
+  font-size: 0.82rem;
+  color: #6b7280;
+}
+
+.rdp-sim-exp {
+  font-size: 0.75rem;
+  background: #fef9c3;
+  color: #854d0e;
+  border: 1px solid #fde047;
+  border-radius: 100px;
+  padding: 0.15rem 0.55rem;
+  font-weight: 600;
+  width: fit-content;
+  margin-top: 0.2rem;
+}
+
+.rdp-sim-action {
+  margin-top: auto;
+  padding-top: 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1A5490;
+}
+
+/* ── Sticky bar mobile ── */
+.rdp-sticky-bar {
+  display: none;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .rdp-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .rdp-col-side {
+    position: static;
+    order: -1; /* recruiter card avant le contenu sur mobile */
+  }
+
+  .rdp-recruiter-card {
+    flex-direction: row;
+    text-align: start;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem;
+  }
+
+  .rdp-rec-avatar {
+    margin-bottom: 0;
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+  }
+
+  .rdp-rec-info {
+    margin-bottom: 0;
+    text-align: start;
+  }
+
+  .rdp-rec-btns {
+    display: none; /* remplacé par la sticky bar */
+  }
+
+  .rdp-sim-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .rdp-hero-card {
+    padding: 1.5rem;
+  }
+
+  .rdp-sticky-bar {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 0.75rem 1rem;
+    background: white;
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.12);
+    gap: 0.75rem;
+  }
+
+  .rdp-sticky-wa,
+  .rdp-sticky-call {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.85rem;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .rdp-sticky-wa   { background: #128C4A; color: white; }
+  .rdp-sticky-call { background: #1A5490; color: white; }
+
+  /* espace pour la sticky bar */
+  .rdp-page {
+    padding-bottom: 7rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .rdp-hero-wrap,
+  .rdp-layout {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .rdp-hero-card {
+    padding: 1.25rem;
+  }
+
+  .rdp-sim-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rdp-sim-inner {
+    padding: 0 1rem;
+  }
+
+  .rdp-recruiter-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .rdp-rec-info {
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  /* label plus court sur très petits écrans */
+  .rdp-detail-label {
+    min-width: 90px;
+  }
+
+  .rdp-hero-card {
+    padding: 1rem;
+  }
+}

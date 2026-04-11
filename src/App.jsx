@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import RecruitmentServicePage from './pages/recruitment/RecruitmentServicePage';
+import RecruitmentListingDetailPage from './pages/recruitment/RecruitmentListingDetailPage';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { LanguageProvider, useLanguage } from './context/LanguageContext';
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
@@ -159,6 +161,10 @@ function App() {
 <Route path="/services/glass-works" element={<GlassWorksPage />} />
 <Route path="/services/locksmith" element={<LocksmithPage />} />
 
+
+                {/* Pages recrutement */}
+                <Route path="/recruitment/listing/:id" element={<RecruitmentListingDetailPage />} />
+                <Route path="/recruitment/:service" element={<RecruitmentServicePage />} />
 
                 {/* Pages d'authentification */}
                 <Route path="/forgot-password" element={<ForgotPasswordPage />} />

@@ -70,13 +70,33 @@ const newPasswordValidator = body('newPassword').custom((value) => {
 // CLOUDINARY CONFIG
 // ============================================
 const cloudinary = require('cloudinary').v2;
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET
-});
+const cloudinaryConfigured = !!(
+  process.env.CLOUDINARY_CLOUD_NAME &&
+  process.env.CLOUDINARY_API_KEY &&
+  process.env.CLOUDINARY_API_SECRET
+);
+
+if (cloudinaryConfigured) {
+  cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+  });
+}
 
 const uploadToCloudinary = (fileBuffer, userId, serviceType) => {
+  // Fallback local si Cloudinary non configuré
+  if (!cloudinaryConfigured) {
+    const fs = require('fs');
+    const path = require('path');
+    const uploadsDir = path.join(__dirname, '../uploads');
+    if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir, { recursive: true });
+    const filename = `profile-${userId}-${serviceType}-${Date.now()}.jpg`;
+    fs.writeFileSync(path.join(uploadsDir, filename), fileBuffer);
+    console.log('📁 Image sauvegardée localement (Cloudinary non configuré):', filename);
+    return Promise.resolve({ secure_url: `/uploads/${filename}` });
+  }
+
   return new Promise((resolve, reject) => {
     const folder = 'homesherut/profiles';
     const publicId = `profile-${userId}-${serviceType}-${Date.now()}`;
@@ -220,8 +240,11 @@ router.post('/register',
     }),
 body('phone').custom((value, { req }) => {
   // Pour tous (clients et providers): phone optionnel mais si fourni, doit être valide
-  if (value && !value.match(/^05\d{8}$/)) {
-    throw new Error(MESSAGES.ERROR.VALIDATION.INVALID_PHONE);
+  if (value) {
+    const cleaned = value.replace(/[\s\-.()/]/g, '');
+    if (!cleaned.match(/^05\d{8}$/)) {
+      throw new Error(MESSAGES.ERROR.VALIDATION.INVALID_PHONE);
+    }
   }
   return true;
 })
@@ -266,7 +289,8 @@ body('phone').custom((value, { req }) => {
         password,
         role,
         serviceType,
-         tranziliaToken: req.body.tranziliaToken || null
+        seekingType: ['clients', 'recruitment'].includes(req.body.seekingType) ? req.body.seekingType : 'clients',
+        tranziliaToken: req.body.tranziliaToken || null
       };
 
       let user;
@@ -416,11 +440,19 @@ return res.status(400).json({
         });
       }
 
-      // ✅ Gestion erreur email déjà utilisé pour CE service  
+      // ✅ Gestion erreur email déjà utilisé pour CE service
       if (error.message === 'EMAIL_ALREADY_USED_FOR_SERVICE') {
         return res.status(409).json({
           error: 'EMAIL_ALREADY_USED_FOR_SERVICE',
           message: 'כתובת האימייל הזו כבר רשומה לשירות זה'
+        });
+      }
+
+      // ✅ Gestion erreur service déjà enregistré pour ce compte
+      if (error.message === 'אתה כבר רשום לשירות זה') {
+        return res.status(409).json({
+          error: 'SERVICE_ALREADY_REGISTERED',
+          message: 'אתה כבר רשום לשירות זה'
         });
       }
 
@@ -822,7 +854,7 @@ if (providerProfile && providerProfile.profileImage) {
 router.put('/me', authenticateToken, [
   body('firstName').optional().trim().isLength({ min: 2 }).withMessage('שם פרטי נדרש'),
   body('lastName').optional().trim().isLength({ min: 2 }).withMessage('שם משפחה נדרש'),
-  body('phone').optional().matches(/^05\d{8}$/).withMessage(MESSAGES.ERROR.VALIDATION.INVALID_PHONE)
+  body('phone').optional().customSanitizer(v => v?.replace(/[\s\-(). /]/g, '')).matches(/^05\d{8}$/).withMessage(MESSAGES.ERROR.VALIDATION.INVALID_PHONE)
 ], async (req, res) => {
   try {
     const validationErrors = validationResult(req);

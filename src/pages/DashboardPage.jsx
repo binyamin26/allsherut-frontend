@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { 
   User, 
   Star, 
@@ -34,7 +34,11 @@ import {
   Save,
   Trash2,
   Camera,
-   LayoutGrid
+   LayoutGrid,
+   Briefcase,
+   Loader,
+   Search,
+   ChevronRight
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import LoadingSpinner from '../components/common/LoadingSpinner';
@@ -45,7 +49,17 @@ import DeleteAccountModal from '../components/modals/DeleteAccountModal';
 // import CancelSubscriptionModal from '../components/modals/CancelSubscriptionModal';
 import ServiceDetailsEditor from '../components/dashboard/ServiceDetailsEditor';
 import DeleteServiceModal from '../components/modals/DeleteServiceModal';
+import DeleteListingModal from '../components/modals/DeleteListingModal';
 import { useLanguage } from '../context/LanguageContext';
+import RecruitmentForm from '../components/recruitment/RecruitmentForm';
+import CustomDropdown from '../components/common/CustomDropdown';
+
+const ALL_SERVICE_KEYS = [
+  'babysitting','cleaning','gardening','petcare','tutoring','eldercare','laundry',
+  'property_management','electrician','plumbing','air_conditioning','gas_technician',
+  'drywall','carpentry','home_organization','event_entertainment','private_chef',
+  'painting','waterproofing','contractor','aluminum','glass_works','locksmith'
+];
 
 // Définition des icônes de services
 const serviceIcons = {
@@ -103,14 +117,28 @@ const userData = useMemo(() => {
 }, [user]);
 
   
+  const [searchParams] = useSearchParams();
   const [loading, setLoading] = useState(false);
-  const [activeTab, setActiveTab] = useState('overview');
+  const [activeTab, setActiveTab] = useState(() => searchParams.get('tab') || 'overview');
   const [activeService, setActiveService] = useState(null);
   const [stats, setStats] = useState({});
   const [recentActivity, setRecentActivity] = useState([]);
 
   const [myReviews, setMyReviews] = useState([]);
   const [reviewsLoading, setReviewsLoading] = useState(false);
+
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
+
+  // Recrutement
+  const [myListings, setMyListings] = useState([]);
+  const [recruitmentLoading, setRecruitmentLoading] = useState(false);
+  const [recruitmentSaving, setRecruitmentSaving] = useState(false);
+  const [recruitmentDeleting, setRecruitmentDeleting] = useState(false);
+  const [editingListing, setEditingListing] = useState(null); // null = no edit, {} = create new, {...} = edit existing
+  const [listingServiceType, setListingServiceType] = useState('');
+  const [recruitmentDetails, setRecruitmentDetails] = useState({});
+  const [recruitmentErrors, setRecruitmentErrors] = useState({});
+  const [recruitmentMsg, setRecruitmentMsg] = useState({ type: '', text: '' });
   const [responseModal, setResponseModal] = useState({
     isOpen: false,
     reviewData: null
@@ -120,6 +148,16 @@ const userData = useMemo(() => {
     isOpen: false,
     serviceType: null
   });
+
+  // Suppression d'une offre de recrutement
+  const [deleteListingModal, setDeleteListingModal] = useState({ isOpen: false, id: null });
+
+  // Ajout d'un nouveau service
+  const [addServiceModal, setAddServiceModal] = useState(false);
+  const [addServiceType, setAddServiceType] = useState('');
+  const [addServiceSeeking, setAddServiceSeeking] = useState('clients');
+  const [addServiceLoading, setAddServiceLoading] = useState(false);
+  const [addServiceMsg, setAddServiceMsg] = useState({ type: '', text: '' });
 
   const [passwordData, setPasswordData] = useState({
     currentPassword: '',
@@ -286,6 +324,84 @@ const loadMyReviews = async () => {
     }
   };
 
+  const loadMyListings = async () => {
+    if (user?.role !== 'provider') return;
+    setRecruitmentLoading(true);
+    try {
+      const token = localStorage.getItem('homesherut_token');
+      const res = await fetch('/api/recruitment/my/listings', {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      const data = await res.json();
+      if (data.success) setMyListings(data.data?.listings || []);
+    } catch (err) {
+      console.error('loadMyListings error:', err);
+    } finally {
+      setRecruitmentLoading(false);
+    }
+  };
+
+  const handleSaveListing = async () => {
+    const rd = recruitmentDetails;
+    const errs = {};
+    if (!rd.contract_type) errs['recruitment.contract_type'] = 'יש לבחור סוג חוזה';
+    if (!rd.salary?.trim()) errs['recruitment.salary'] = 'שכר מוצע נדרש';
+    if (!rd.payment_type) errs['recruitment.payment_type'] = 'יש לבחור סוג תשלום';
+    if (!rd.availability_days?.length) errs['recruitment.availability_days'] = 'יש לבחור ימי עבודה';
+    if (!rd.availability_hours?.length) errs['recruitment.availability_hours'] = 'יש לבחור שעות עבודה';
+    if (!rd.experience_required) errs['recruitment.experience_required'] = 'יש לבחור ניסיון';
+    if (!rd.description?.trim()) errs['recruitment.description'] = 'תיאור המשרה נדרש';
+    if (Object.keys(errs).length > 0) { setRecruitmentErrors(errs); return; }
+    setRecruitmentErrors({});
+    setRecruitmentSaving(true);
+    try {
+      const token = localStorage.getItem('homesherut_token');
+      const isEdit = editingListing?.id;
+      const url = isEdit ? `/api/recruitment/${editingListing.id}` : '/api/recruitment';
+      const method = isEdit ? 'PUT' : 'POST';
+      const serviceType = listingServiceType || activeService || userData?.serviceType || user?.service_type;
+      const res = await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ ...rd, service_type: serviceType }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setRecruitmentMsg({ type: 'success', text: t('recruitment.dashboard.saveSuccess') });
+        setEditingListing(null);
+        setRecruitmentDetails({});
+        loadMyListings();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        setRecruitmentMsg({ type: 'error', text: data.message || 'שגיאה' });
+      }
+    } catch (err) {
+      setRecruitmentMsg({ type: 'error', text: 'שגיאה בשמירה' });
+    } finally {
+      setRecruitmentSaving(false);
+    }
+  };
+
+  const handleDeleteListing = async (id) => {
+    setRecruitmentDeleting(true);
+    try {
+      const token = localStorage.getItem('homesherut_token');
+      const res = await fetch(`/api/recruitment/${id}`, {
+        method: 'DELETE',
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      const data = await res.json();
+      if (data.success) {
+        setRecruitmentMsg({ type: 'success', text: t('recruitment.dashboard.deleteSuccess') });
+        loadMyListings();
+      }
+    } catch (err) {
+      setRecruitmentMsg({ type: 'error', text: 'שגיאה במחיקה' });
+    } finally {
+      setRecruitmentDeleting(false);
+    }
+  };
+
   const handleOpenResponseModal = (reviewData) => {
   setResponseModal({
     isOpen: true,
@@ -312,8 +428,17 @@ const loadMyReviews = async () => {
   };
 
   useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 640);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
     if (activeTab === 'my-reviews' && user?.role === 'provider') {
       loadMyReviews();
+    }
+    if (activeTab === 'recruitment' && user?.role === 'provider') {
+      loadMyListings();
     }
  }, [activeTab, user, activeService]);
 
@@ -852,6 +977,42 @@ const handleDeleteService = async (serviceType) => {
   }
 };
 
+const handleAddService = async () => {
+  if (!addServiceType) {
+    setAddServiceMsg({ type: 'error', text: t('dashboard.addService.selectService') });
+    return;
+  }
+  setAddServiceLoading(true);
+  setAddServiceMsg({ type: '', text: '' });
+  try {
+    const token = localStorage.getItem('homesherut_token');
+    const res = await fetch('/api/services/add', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+      body: JSON.stringify({ serviceType: addServiceType, seekingType: addServiceSeeking }),
+    });
+    const data = await res.json();
+    if (data.success) {
+      setAddServiceMsg({ type: 'success', text: t('dashboard.addService.success') });
+      await switchService(addServiceType);
+      setActiveService(addServiceType);
+      localStorage.setItem('activeService', addServiceType);
+      setTimeout(() => {
+        setAddServiceModal(false);
+        setAddServiceType('');
+        setAddServiceSeeking('clients');
+        setAddServiceMsg({ type: '', text: '' });
+      }, 1200);
+    } else {
+      setAddServiceMsg({ type: 'error', text: data.message || 'שגיאה' });
+    }
+  } catch {
+    setAddServiceMsg({ type: 'error', text: 'שגיאה בהוספת השירות' });
+  } finally {
+    setAddServiceLoading(false);
+  }
+};
+
 /* PAIEMENT DÉSACTIVÉ - RÉACTIVER QUAND SITE PAYANT
 const handleCancelSubscription = async (serviceType) => {
   try {
@@ -1004,64 +1165,86 @@ const galleryImages = (() => {
         */}
 
         <div className="dashboard-tabs">
+  {/* Mobile uniquement : barre de services séparée */}
   {userData?.role === 'provider' && userData?.services?.length > 1 && (
-    <div className="service-tabs" style={{ display: 'flex', gap: '0.5rem', marginBottom: '1rem', padding: '1rem', background: '#f8f9fa', borderRadius: '8px' }}>
+    <div className="service-tabs-mobile">
       {userData.services.map(service => (
         <button
           key={service}
           className={`service-tab-btn ${activeService === service ? 'active' : ''}`}
-    onClick={() => {
-  localStorage.setItem('activeService', service);
-  setActiveService(service);
-}}
-          style={{
-            padding: '0.5rem 1rem',
-            borderRadius: '6px',
-            border: 'none',
-            background: activeService === service ? '#0F2A44' : 'white',
-            color: activeService === service ? 'white' : '#666',
-            cursor: 'pointer',
-            fontWeight: '600'
+          onClick={() => {
+            localStorage.setItem('activeService', service);
+            setActiveService(service);
           }}
         >
-         {getServiceName(service)}
+          {getServiceName(service)}
         </button>
       ))}
     </div>
   )}
-       <button 
-            className={`tab-btn ${activeTab === 'overview' ? 'active' : ''}`}
-            onClick={() => setActiveTab('overview')}
-          >
-            <BarChart3 size={18} />
-            {t('dashboard.tabs.profile')}
-          </button>
-          
-          {userData?.role === 'provider' && (
-            <button 
-              className={`tab-btn ${activeTab === 'my-reviews' ? 'active' : ''}`}
-              onClick={() => setActiveTab('my-reviews')}
+          <div className="tabs-nav-row">
+            {/* Desktop uniquement : services intégrés dans la rangée des onglets */}
+            {userData?.role === 'provider' && userData?.services?.length > 1 && (
+              <div className="service-tabs-desktop">
+                {userData.services.map(service => (
+                  <button
+                    key={service}
+                    className={`tab-btn service-tab-btn ${activeService === service ? 'active' : ''}`}
+                    onClick={() => {
+                      localStorage.setItem('activeService', service);
+                      setActiveService(service);
+                    }}
+                  >
+                    {getServiceName(service)}
+                  </button>
+                ))}
+                <div className="tabs-separator" />
+              </div>
+            )}
+            <button
+              className={`tab-btn ${activeTab === 'overview' ? 'active' : ''}`}
+              onClick={() => setActiveTab('overview')}
             >
-              <Star size={18} />
-              {t('dashboard.tabs.reviews')}
+              <BarChart3 size={18} />
+              {t('dashboard.tabs.profile')}
             </button>
-          )}
-          
-        <button 
-            className={`tab-btn ${activeTab === 'settings' ? 'active' : ''}`}
-            onClick={() => setActiveTab('settings')}
-          >
-            <Settings size={18} />
-            {t('dashboard.tabs.security')}
-          </button>
 
-     <button 
-            className={`tab-btn ${activeTab === 'account-management' ? 'active' : ''}`}
-            onClick={() => setActiveTab('account-management')}
-          >
-            <Trash2 size={18} />
-            {t('dashboard.tabs.accountManagement')}
-          </button>
+            {userData?.role === 'provider' && (
+              <button
+                className={`tab-btn ${activeTab === 'my-reviews' ? 'active' : ''}`}
+                onClick={() => setActiveTab('my-reviews')}
+              >
+                <Star size={18} />
+                {t('dashboard.tabs.reviews')}
+              </button>
+            )}
+
+            {userData?.role === 'provider' && (
+              <button
+                className={`tab-btn ${activeTab === 'recruitment' ? 'active' : ''}`}
+                onClick={() => setActiveTab('recruitment')}
+              >
+                <Briefcase size={18} />
+                {t('dashboard.tabs.recruitment')}
+              </button>
+            )}
+
+            <button
+              className={`tab-btn ${activeTab === 'settings' ? 'active' : ''}`}
+              onClick={() => setActiveTab('settings')}
+            >
+              <Settings size={18} />
+              {t('dashboard.tabs.security')}
+            </button>
+
+            <button
+              className={`tab-btn ${activeTab === 'account-management' ? 'active' : ''}`}
+              onClick={() => setActiveTab('account-management')}
+            >
+              <Trash2 size={18} />
+              {t('dashboard.tabs.accountManagement')}
+            </button>
+          </div>
         </div>
 
         <div className="dashboard-content">
@@ -1182,9 +1365,18 @@ const galleryImages = (() => {
             </>
           ) : (
             !isSubscriptionExpired && (
-              <button onClick={handleEditToggle} className="btn btn-secondary">
-                <Edit size={18} />{t('dashboard.editProfile')}
-              </button>
+              <>
+                <button onClick={handleEditToggle} className="btn btn-secondary">
+                  <Edit size={18} />{t('dashboard.editProfile')}
+                </button>
+                <button
+                  onClick={() => { setAddServiceModal(true); setAddServiceMsg({ type: '', text: '' }); setAddServiceType(''); setAddServiceSeeking('clients'); }}
+                  className="btn btn-secondary"
+                  style={{ borderColor: '#2F80ED', color: '#2F80ED' }}
+                >
+                  {t('dashboard.addService.btn')}
+                </button>
+              </>
             )
           )}
         </div>
@@ -1639,6 +1831,300 @@ const galleryImages = (() => {
             </div>
           )}
 
+          {activeTab === 'recruitment' && userData?.role === 'provider' && (
+            <div className="overview-section">
+              {/* En-tête avec bouton Créer */}
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem', flexWrap: 'wrap', gap: '0.75rem' }}>
+                <h3 className="section-subtitle" style={{ margin: 0 }}>{t('recruitment.dashboard.title')}</h3>
+                {!editingListing && (
+                  <button
+                    onClick={() => { setEditingListing({}); setRecruitmentDetails({}); setRecruitmentErrors({}); setListingServiceType(activeService || user?.services?.[0] || ''); }}
+                    style={{
+                      display: 'flex', alignItems: 'center', gap: '6px',
+                      padding: '0.55rem 1.2rem', borderRadius: '8px',
+                      background: 'linear-gradient(135deg, #0F2A44, #2F80ED)',
+                      color: '#fff', border: 'none', cursor: 'pointer',
+                      fontWeight: 600, fontSize: '0.9rem',
+                    }}
+                  >
+                    <Plus size={15} />
+                    {t('recruitment.dashboard.createNew')}
+                  </button>
+                )}
+              </div>
+
+              {/* Message succès/erreur */}
+              {recruitmentMsg.text && (
+                <div style={{
+                  padding: '0.75rem 1rem', marginBottom: '1rem', borderRadius: '8px',
+                  background: recruitmentMsg.type === 'success' ? '#f0fdf4' : '#fef2f2',
+                  color: recruitmentMsg.type === 'success' ? '#166534' : '#991b1b',
+                  border: `1px solid ${recruitmentMsg.type === 'success' ? '#86efac' : '#fca5a5'}`,
+                  display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                }}>
+                  <span>{recruitmentMsg.text}</span>
+                  <button onClick={() => setRecruitmentMsg({ type: '', text: '' })}
+                    style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '1.1rem', lineHeight: 1 }}>×</button>
+                </div>
+              )}
+
+              {recruitmentLoading ? (
+                <div style={{ textAlign: 'center', padding: '2rem', color: '#6b7280' }}>{t('recruitment.loading')}</div>
+              ) : (
+                <>
+                  {/* État vide */}
+                  {myListings.length === 0 && !editingListing && (
+                    <div style={{
+                      textAlign: 'center', padding: '3rem 2rem',
+                      background: '#f9fafb', borderRadius: '14px',
+                      border: '2px dashed #e5e7eb', marginBottom: '1.5rem',
+                    }}>
+                      <div style={{ fontSize: '2.5rem', marginBottom: '0.75rem' }}>💼</div>
+                      <p style={{ color: '#6b7280', marginBottom: '1.25rem', fontSize: '0.95rem' }}>
+                        {t('recruitment.dashboard.activateDesc')}
+                      </p>
+                      <button
+                        onClick={() => { setEditingListing({}); setRecruitmentDetails({}); setRecruitmentErrors({}); setListingServiceType(activeService || user?.services?.[0] || ''); }}
+                        style={{
+                          display: 'inline-flex', alignItems: 'center', gap: '6px',
+                          padding: '0.6rem 1.5rem', borderRadius: '8px',
+                          background: 'linear-gradient(135deg, #0F2A44, #2F80ED)',
+                          color: '#fff', border: 'none', cursor: 'pointer',
+                          fontWeight: 600,
+                        }}
+                      >
+                        <Plus size={15} />
+                        {t('recruitment.dashboard.createNew')}
+                      </button>
+                    </div>
+                  )}
+
+                  {/* Liste des offres */}
+                  {myListings.length > 0 && !editingListing && (() => {
+                    const PAYMENT_MAP = { hourly: 'recruitment.card.hourly', daily: 'recruitment.card.daily', monthly: 'recruitment.card.monthly' };
+                    const EXP_MAP = { beginner: 'recruitment.card.expBeginner', '1_year': 'recruitment.card.exp1year', '2_years': 'recruitment.card.exp2years', '3_plus_years': 'recruitment.card.exp3plus' };
+                    const dayOrder = ['sunday','monday','tuesday','wednesday','thursday','friday'];
+
+                    const handleEditClick = (listing) => {
+                      setEditingListing(listing);
+                      setListingServiceType(listing.service_type);
+                      setRecruitmentDetails({
+                        contract_type: listing.contract_type,
+                        salary: listing.salary,
+                        payment_type: listing.payment_type,
+                        availability_days: listing.availability_days || [],
+                        availability_hours: listing.availability_hours || [],
+                        experience_required: listing.experience_required,
+                        languages_required: listing.languages_required || [],
+                        driving_license: listing.driving_license,
+                        description: listing.description,
+                        location_city: listing.location_city || '',
+                        location_area: listing.location_area || '',
+                      });
+                      setRecruitmentErrors({});
+                    };
+
+                    if (isMobile) {
+                      // ── MOBILE : cartes séparées ──
+                      return (
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '1.5rem' }}>
+                          {myListings.map(listing => {
+                            const rawDaysM = listing.availability_days || [];
+                            const daysDisplay = rawDaysM.includes('all_week')
+                              ? t('days.allWeek')
+                              : (() => {
+                                  const s = [...rawDaysM].sort((a, b) => dayOrder.indexOf(a) - dayOrder.indexOf(b));
+                                  return s.length === 0 ? '' : s.length === 1
+                                    ? t(`recruitment.day.short.${s[0]}`, s[0])
+                                    : `${t(`recruitment.day.short.${s[0]}`, s[0])} — ${t(`recruitment.day.short.${s[s.length - 1]}`, s[s.length - 1])}`;
+                                })();
+                            const hoursDisplay = (listing.availability_hours || []).includes('all')
+                              ? t('recruitment.hour.all')
+                              : (listing.availability_hours || []).map(h => t(`recruitment.hour.${h}`, h)).join(' / ');
+
+                            return (
+                              <div key={listing.id} style={{
+                                background: 'white', border: '1px solid #e5e7eb',
+                                borderRadius: '12px', padding: '1rem',
+                              }}>
+                                <div style={{ fontWeight: 700, fontSize: '1.05rem', color: '#0F2A44', marginBottom: '0.35rem' }}>
+                                  {t(`services.${listing.service_type}`, listing.service_type)}
+                                </div>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.95rem', marginBottom: '0.2rem' }}>
+                                  <span style={{ fontWeight: 700, color: '#0F2A44' }}>{listing.salary} {t(PAYMENT_MAP[listing.payment_type] || '')}</span>
+                                  <span style={{ color: '#9ca3af' }}>:</span>
+                                  <span style={{ color: '#374151' }}>{t(EXP_MAP[listing.experience_required] || '')}</span>
+                                </div>
+                                {(daysDisplay || hoursDisplay) && (
+                                  <div style={{ fontSize: '0.82rem', color: '#6b7280', marginBottom: '0.85rem' }}>
+                                    {t('recruitment.daysTitle')} : {daysDisplay}{daysDisplay && hoursDisplay ? ' / ' : ''}{hoursDisplay}
+                                  </div>
+                                )}
+                                <div style={{ display: 'flex', gap: '0.5rem' }}>
+                                  <button
+                                    onClick={() => handleEditClick(listing)}
+                                    style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px', padding: '0.5rem 0.4rem', borderRadius: '8px', background: 'transparent', color: '#1A5490', border: '1.5px solid #1A5490', cursor: 'pointer', fontSize: '0.82rem', fontWeight: 600 }}
+                                  >
+                                    <Edit size={13} />{t('recruitment.dashboard.edit')}
+                                  </button>
+                                  <button
+                                    onClick={() => setDeleteListingModal({ isOpen: true, id: listing.id })}
+                                    disabled={recruitmentDeleting}
+                                    style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px', padding: '0.5rem 0.4rem', borderRadius: '8px', background: 'transparent', color: '#ef4444', border: '1.5px solid #ef4444', cursor: 'pointer', fontSize: '0.82rem', fontWeight: 600 }}
+                                  >
+                                    <Trash2 size={13} />{recruitmentDeleting ? '...' : t('recruitment.dashboard.delete')}
+                                  </button>
+                                  <button
+                                    onClick={() => navigate(`/recruitment/${listing.service_type}`)}
+                                    style={{ flex: 1.4, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px', padding: '0.5rem 0.4rem', borderRadius: '8px', background: '#0F2A44', color: 'white', border: 'none', cursor: 'pointer', fontSize: '0.82rem', fontWeight: 600 }}
+                                  >
+                                    <Search size={13} />{t('recruitment.dashboard.view')}<ChevronRight size={13} />
+                                  </button>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      );
+                    }
+
+                    // ── DESKTOP : lignes plates ──
+                    return (
+                      <div style={{ border: '1px solid #e5e7eb', borderRadius: '12px', overflow: 'hidden', marginBottom: '1.5rem', background: 'white' }}>
+                        {myListings.map((listing, index) => {
+                          const rawDaysD = listing.availability_days || [];
+                          const daysDisplay = rawDaysD.includes('all_week')
+                            ? t('days.allWeek')
+                            : (() => {
+                                const s = [...rawDaysD].sort((a, b) => dayOrder.indexOf(a) - dayOrder.indexOf(b));
+                                return s.length === 0 ? '' : s.length === 1
+                                  ? t(`recruitment.day.short.${s[0]}`, s[0])
+                                  : `${t(`recruitment.day.short.${s[0]}`, s[0])} — ${t(`recruitment.day.short.${s[s.length - 1]}`, s[s.length - 1])}`;
+                              })();
+                          const hoursDisplay = (listing.availability_hours || []).includes('all')
+                            ? t('recruitment.hour.all')
+                            : (listing.availability_hours || []).map(h => t(`recruitment.hour.${h}`, h)).join(' / ');
+
+                          return (
+                            <div key={listing.id} style={{
+                              display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                              padding: '1rem 1.25rem',
+                              borderBottom: index < myListings.length - 1 ? '1px solid #f0f0f0' : 'none',
+                              borderLeft: '4px solid #1A5490',
+                              gap: '1rem',
+                            }}>
+                              <div style={{ flex: 1, minWidth: 0 }}>
+                                <div style={{ fontWeight: 700, fontSize: '1rem', color: '#111827', marginBottom: '0.25rem' }}>
+                                  {t(`services.${listing.service_type}`, listing.service_type)}
+                                </div>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.9rem', color: '#374151', flexWrap: 'wrap' }}>
+                                  <span style={{ fontWeight: 600 }}>{listing.salary} {t(PAYMENT_MAP[listing.payment_type] || '')}</span>
+                                  <span style={{ color: '#d1d5db' }}>·</span>
+                                  <span>{t(EXP_MAP[listing.experience_required] || '')}</span>
+                                </div>
+                                {(daysDisplay || hoursDisplay) && (
+                                  <div style={{ fontSize: '0.82rem', color: '#6b7280', marginTop: '0.2rem' }}>
+                                    {t('recruitment.daysTitle')} : {daysDisplay}{daysDisplay && hoursDisplay ? ' / ' : ''}{hoursDisplay}
+                                  </div>
+                                )}
+                              </div>
+                              <div style={{ display: 'flex', gap: '0.5rem', flexShrink: 0 }}>
+                                <button
+                                  onClick={() => handleEditClick(listing)}
+                                  style={{ display: 'flex', alignItems: 'center', gap: '5px', padding: '0.45rem 0.9rem', borderRadius: '8px', background: 'transparent', color: '#1A5490', border: '1.5px solid #1A5490', cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600 }}
+                                >
+                                  <Edit size={14} />{t('recruitment.dashboard.edit')}
+                                </button>
+                                <button
+                                  onClick={() => setDeleteListingModal({ isOpen: true, id: listing.id })}
+                                  disabled={recruitmentDeleting}
+                                  style={{ display: 'flex', alignItems: 'center', gap: '5px', padding: '0.45rem 0.9rem', borderRadius: '8px', background: '#0F2A44', color: 'white', border: 'none', cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600 }}
+                                >
+                                  <Trash2 size={14} />
+                                  {recruitmentDeleting ? t('recruitment.dashboard.deleting') : t('recruitment.dashboard.delete')}
+                                </button>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    );
+                  })()}
+
+                  {/* Formulaire création/édition */}
+                  {editingListing !== null && (
+                    <div style={{ border: '1px solid #e5e7eb', borderRadius: '12px', padding: '1rem' }}>
+
+                      {/* Sélecteur de service — affiché uniquement en mode création */}
+                      {!editingListing?.id && user?.services?.length > 1 && (
+                        <div style={{ marginBottom: '1.25rem', padding: '0.75rem 1rem', background: '#f8fafc', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
+                          <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: '#374151', marginBottom: '0.4rem' }}>
+                            {t('recruitment.forService')} *
+                          </label>
+                          <CustomDropdown
+                            name="listingServiceType"
+                            options={ALL_SERVICE_KEYS.map(k => ({ value: k, label: t(`services.${k}`, k) }))}
+                            value={listingServiceType}
+                            onChange={e => setListingServiceType(e.target.value)}
+                            placeholder={t('recruitment.selectService')}
+                          />
+                        </div>
+                      )}
+
+                      <RecruitmentForm
+                        details={recruitmentDetails}
+                        errors={recruitmentErrors}
+                        onChange={(field, value) => {
+                          setRecruitmentDetails(prev => ({ ...prev, [field]: value }));
+                          const key = `recruitment.${field}`;
+                          if (recruitmentErrors[key]) setRecruitmentErrors(prev => ({ ...prev, [key]: '' }));
+                        }}
+                      />
+                      {recruitmentMsg.text && !recruitmentSaving && (
+                        <div style={{
+                          marginTop: '0.75rem', padding: '0.6rem 0.9rem',
+                          borderRadius: '8px', fontSize: '0.88rem',
+                          background: recruitmentMsg.type === 'success' ? '#f0fdf4' : '#fef2f2',
+                          color: recruitmentMsg.type === 'success' ? '#166534' : '#991b1b',
+                          border: `1px solid ${recruitmentMsg.type === 'success' ? '#86efac' : '#fca5a5'}`,
+                        }}>
+                          {recruitmentMsg.text}
+                        </div>
+                      )}
+                      <div style={{ display: 'flex', gap: '0.75rem', marginTop: '0.75rem', justifyContent: 'flex-end' }}>
+                        <button
+                          onClick={() => { setEditingListing(null); setRecruitmentDetails({}); setRecruitmentErrors({}); setRecruitmentMsg({ type: '', text: '' }); }}
+                          style={{
+                            padding: '0.6rem 1.2rem', borderRadius: '8px',
+                            background: '#f3f4f6', color: '#374151',
+                            border: 'none', cursor: 'pointer',
+                          }}
+                        >
+                          {t('auth.back')}
+                        </button>
+                        <button
+                          onClick={handleSaveListing}
+                          disabled={recruitmentSaving}
+                          style={{
+                            display: 'flex', alignItems: 'center', gap: '6px',
+                            padding: '0.6rem 1.5rem', borderRadius: '8px',
+                            background: 'linear-gradient(135deg, #0F2A44, #2F80ED)',
+                            color: '#fff', border: 'none', cursor: 'pointer',
+                          }}
+                        >
+                          {recruitmentSaving
+                            ? <><Loader size={14} className="animate-spin" />{t('recruitment.dashboard.saving')}</>
+                            : <><Save size={14} />{t('recruitment.dashboard.save')}</>
+                          }
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
+          )}
+
           {activeTab === 'settings' && (
            <div className="settings-section">
               <h3 className="section-subtitle">{t('dashboard.security.title')}</h3>
@@ -1955,6 +2441,99 @@ placeholder={t('dashboard.security.newPasswordPlaceholder')}
   serviceName={cancelSubscriptionModal.serviceType}
 />
 */}
+
+ {/* Modal — Suppression offre recrutement */}
+        <DeleteListingModal
+          isOpen={deleteListingModal.isOpen}
+          onClose={() => setDeleteListingModal({ isOpen: false, id: null })}
+          onConfirm={() => handleDeleteListing(deleteListingModal.id)}
+        />
+
+ {/* Modal — Ajouter un nouveau service */}
+        {addServiceModal && (
+          <div style={{
+            position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)',
+            zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem'
+          }} onClick={() => setAddServiceModal(false)}>
+            <div style={{
+              background: 'white', borderRadius: '16px', padding: '2rem',
+              width: '100%', maxWidth: '440px', boxShadow: '0 20px 60px rgba(0,0,0,0.2)'
+            }} onClick={e => e.stopPropagation()}>
+              <h3 style={{ margin: '0 0 1.5rem', color: '#0F2A44', fontSize: '1.15rem', fontWeight: 700 }}>
+                {t('dashboard.addService.title')}
+              </h3>
+
+              {/* Sélecteur de service */}
+              <div style={{ marginBottom: '1.25rem' }}>
+                <label style={{ display: 'block', fontWeight: 600, marginBottom: '0.5rem', fontSize: '0.9rem', color: '#374151' }}>
+                  {t('dashboard.addService.selectService')} *
+                </label>
+                <CustomDropdown
+                  name="addServiceType"
+                  options={ALL_SERVICE_KEYS.map(k => ({ value: k, label: t(`services.${k}`, k) }))}
+                  value={addServiceType}
+                  onChange={e => setAddServiceType(e.target.value)}
+                  placeholder={t('dashboard.addService.selectService')}
+                  searchable={true}
+                />
+              </div>
+
+              {/* Type de recherche */}
+              <div style={{ marginBottom: '1.5rem' }}>
+                <label style={{ display: 'block', fontWeight: 600, marginBottom: '0.5rem', fontSize: '0.9rem', color: '#374151' }}>
+                  {t('dashboard.addService.seekingType')}
+                </label>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  {[
+                    { value: 'clients', label: t('dashboard.addService.seekingClients') },
+                    { value: 'recruitment', label: t('dashboard.addService.seekingRecruitment') },
+                  ].map(opt => (
+                    <label key={opt.value} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', fontSize: '0.9rem' }}>
+                      <input type="radio" name="addServiceSeeking"
+                        checked={addServiceSeeking === opt.value}
+                        onChange={() => setAddServiceSeeking(opt.value)} />
+                      {opt.label}
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              {/* Message */}
+              {addServiceMsg.text && (
+                <div style={{
+                  padding: '0.6rem 0.9rem', borderRadius: '8px', marginBottom: '1rem', fontSize: '0.88rem',
+                  background: addServiceMsg.type === 'success' ? '#f0fdf4' : '#fef2f2',
+                  color: addServiceMsg.type === 'success' ? '#166534' : '#991b1b',
+                  border: `1px solid ${addServiceMsg.type === 'success' ? '#86efac' : '#fca5a5'}`,
+                }}>
+                  {addServiceMsg.text}
+                </div>
+              )}
+
+              {/* Actions */}
+              <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'flex-end' }}>
+                <button
+                  onClick={() => setAddServiceModal(false)}
+                  style={{ padding: '0.6rem 1.2rem', borderRadius: '8px', background: '#f3f4f6', color: '#374151', border: 'none', cursor: 'pointer' }}
+                >
+                  {t('auth.back')}
+                </button>
+                <button
+                  onClick={handleAddService}
+                  disabled={addServiceLoading || !addServiceType}
+                  style={{
+                    padding: '0.6rem 1.5rem', borderRadius: '8px',
+                    background: addServiceLoading || !addServiceType ? '#9ca3af' : 'linear-gradient(135deg, #0F2A44, #2F80ED)',
+                    color: '#fff', border: 'none', cursor: addServiceLoading || !addServiceType ? 'not-allowed' : 'pointer',
+                    fontWeight: 600,
+                  }}
+                >
+                  {addServiceLoading ? '...' : t('dashboard.addService.confirm')}
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
 
  {/* 🆕 NOUVEAU MODAL - Suppression service spécifique */}
         <DeleteServiceModal

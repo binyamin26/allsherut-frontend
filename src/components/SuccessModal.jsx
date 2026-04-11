@@ -3,7 +3,7 @@ import { CheckCircle, Star, Gift, Users, Calendar, Phone } from 'lucide-react';
 import './SuccessModal.css';
 import { useLanguage } from './../context/LanguageContext';
 
-const SuccessModal = ({ isOpen, onClose, userRole, userName, serviceType, isPremium = false }) => {
+const SuccessModal = ({ isOpen, onClose, userRole, userName, serviceType, seekingType = 'clients', isPremium = false }) => {
   const [showConfetti, setShowConfetti] = useState(false);
   const { t } = useLanguage();
 
@@ -21,20 +21,49 @@ const SuccessModal = ({ isOpen, onClose, userRole, userName, serviceType, isPrem
 
   if (!isOpen) return null;
 
-  // Message uniquement pour les prestataires (les clients ne s'inscrivent jamais)
+  const serviceLabel = t(`services.${serviceType}`, serviceType);
+  const replace = (key) => t(key).replace('{userName}', userName).replace('{serviceType}', serviceLabel);
+
   const getWelcomeMessage = () => {
-  return {
-    title: t('success.title'),
- subtitle: t('success.subtitle').replace('{userName}', userName).replace('{serviceType}', t(`services.${serviceType}`)),
-    benefits: [
-      // { icon: <Gift size={20} />, text: t('success.benefits.freeMonth') },
-      { icon: <Star size={20} />, text: t('success.benefits.professionalProfile') },
-      { icon: <Users size={20} />, text: t('success.benefits.localExposure') },
-      { icon: <Phone size={20} />, text: t('success.benefits.directContact') },
-      { icon: <CheckCircle size={20} />, text: t('success.benefits.ratingSystem') }
-    ]
+    if (seekingType === 'recruitment') {
+      return {
+        title: t('success.recruitment.title'),
+        subtitle: replace('success.recruitment.subtitle'),
+        benefits: [
+          { icon: <Star size={20} />,        text: t('success.recruitment.benefit1') },
+          { icon: <Phone size={20} />,        text: t('success.recruitment.benefit2') },
+          { icon: <CheckCircle size={20} />,  text: t('success.recruitment.benefit3') },
+          { icon: <Calendar size={20} />,     text: t('success.recruitment.benefit4') },
+        ],
+        profileReady: t('success.recruitment.profileReady'),
+      };
+    }
+    if (seekingType === 'both') {
+      return {
+        title: t('success.both.title'),
+        subtitle: replace('success.both.subtitle'),
+        benefits: [
+          { icon: <Star size={20} />,        text: t('success.both.benefit1') },
+          { icon: <Users size={20} />,        text: t('success.both.benefit2') },
+          { icon: <Phone size={20} />,        text: t('success.both.benefit3') },
+          { icon: <Calendar size={20} />,     text: t('success.both.benefit4') },
+        ],
+        profileReady: t('success.both.profileReady'),
+      };
+    }
+    // seekingType === 'clients' (default)
+    return {
+      title: t('success.title'),
+      subtitle: replace('success.subtitle'),
+      benefits: [
+        { icon: <Star size={20} />,        text: t('success.benefits.professionalProfile') },
+        { icon: <Users size={20} />,        text: t('success.benefits.localExposure') },
+        { icon: <Phone size={20} />,        text: t('success.benefits.directContact') },
+        { icon: <CheckCircle size={20} />,  text: t('success.benefits.ratingSystem') },
+      ],
+      profileReady: t('success.profileReady'),
+    };
   };
-};
 
   const welcomeData = getWelcomeMessage();
 
@@ -64,8 +93,8 @@ const SuccessModal = ({ isOpen, onClose, userRole, userName, serviceType, isPrem
           </div>
 
           <div className="success-next-steps">
-         <h4>{t('success.nextSteps')}</h4>
-            <p>{t('success.profileReady')}</p>
+            <h4>{t('success.nextSteps')}</h4>
+            <p>{welcomeData.profileReady}</p>
           </div>
 
           <div className="auto-close-timer">

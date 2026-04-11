@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { X, Mail, Lock, User, Phone, Eye, EyeOff, Loader, Upload, CheckCircle, AlertCircle, Zap,
-  Wrench, Sparkles  } from 'lucide-react';
+  Wrench, Sparkles, Users, Briefcase, Layers } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { getAllCities, getNeighborhoodsByCity } from '../../data/israelLocations.js';
 import SuccessModal from '../SuccessModal';
 import imageCompression from 'browser-image-compression';
 import ServiceDetailsForm from '../services/ServiceDetailsForm';
+import RecruitmentForm from '../recruitment/RecruitmentForm';
 import { useLanguage } from '../../context/LanguageContext';
 import CustomDropdown from '../common/CustomDropdown';
 
@@ -74,10 +75,12 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
     confirmPassword: '',
     role: 'provider',
     serviceType: '',
+    seekingType: 'clients',
     profileImage: null,
     profileImagePreview: null,
     workingAreas: [],
     serviceDetails: {},
+    recruitmentDetails: {},
     // tranziliaToken: null,
     // acceptAutoRenewal: false,
     // cardNumber: '',
@@ -100,6 +103,8 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
   const [cities, setCities] = useState([]);
   const [selectedCity, setSelectedCity] = useState('');
   const [availableNeighborhoods, setAvailableNeighborhoods] = useState([]);
+  const [locationMode, setLocationMode] = useState(''); // 'israel' | 'ezor' | 'city' | 'neighborhood'
+  const [selectedEzor, setSelectedEzor] = useState('');
   
   const [tutoringSubcategories, setTutoringSubcategories] = useState([]);
   const [loadingSubcategories, setLoadingSubcategories] = useState(false);
@@ -177,10 +182,12 @@ const services = [
         confirmPassword: '',
         role: 'provider',
         serviceType: '',
+        seekingType: 'clients',
         profileImage: null,
         profileImagePreview: null,
         workingAreas: [],
-        serviceDetails: {}
+        serviceDetails: {},
+        recruitmentDetails: {},
       });
       setErrors({});
       setFieldValidation({
@@ -193,6 +200,8 @@ const services = [
       setShowConfirmPassword(false);
       setSelectedCity('');
       setAvailableNeighborhoods([]);
+      setLocationMode('');
+      setSelectedEzor('');
       setTutoringSubcategories([]);
       setImageError('');
     }
@@ -636,6 +645,11 @@ if (!formData.workingAreas || formData.workingAreas.length === 0) {
 console.log('🔍 AVANT SWITCH - serviceType:', formData.serviceType);
 console.log('🔍 serviceDetails object:', serviceDetails);
 
+    // Si recrutement seul → pas besoin de valider les détails de service
+    if (formData.seekingType === 'recruitment') {
+      setErrors(newErrors);
+      return Object.keys(newErrors).length === 0;
+    }
 
     switch (formData.serviceType) {
       case 'babysitting':
@@ -1341,6 +1355,15 @@ setErrors(newErrors);
     }
   };
 
+  const handleRecruitmentDetailsChange = (field, value) => {
+    setFormData(prev => ({
+      ...prev,
+      recruitmentDetails: { ...prev.recruitmentDetails, [field]: value }
+    }));
+    const key = `recruitment.${field}`;
+    if (errors[key]) setErrors(prev => ({ ...prev, [key]: '' }));
+  };
+
   const handleServiceChange = (serviceType) => {
     setFormData(prev => ({
       ...prev,
@@ -1500,8 +1523,12 @@ const handleStep2Submit = (e) => {
         console.log('❌ Validation échouée - arrêt');
         return;
       }
-      
-     handleFinalSubmit();
+
+      if (formData.seekingType !== 'clients') {
+        setStep(3);
+        return;
+      }
+      handleFinalSubmit();
     }, 50);
     
     return;
@@ -1517,13 +1544,38 @@ if (!isValid) {
     return;
   }
   
-  // Soumettre directement sans passer par l'étape paiement
+  // Si recrutement → step 3
+  if (formData.seekingType !== 'clients') {
+    setStep(3);
+    return;
+  }
+
   handleFinalSubmit();
 };
 
+  const validateStep3 = () => {
+    const newErrors = {};
+    const rd = formData.recruitmentDetails;
+    if (!rd.contract_type) newErrors['recruitment.contract_type'] = t('recruitment.error.contract_type');
+    if (!rd.salary?.trim()) newErrors['recruitment.salary'] = t('recruitment.error.salary');
+    if (!rd.payment_type) newErrors['recruitment.payment_type'] = t('recruitment.error.payment_type');
+    if (!rd.availability_days || rd.availability_days.length === 0) newErrors['recruitment.availability_days'] = t('recruitment.error.availability_days');
+    if (!rd.availability_hours || rd.availability_hours.length === 0) newErrors['recruitment.availability_hours'] = t('recruitment.error.availability_hours');
+    if (!rd.experience_required) newErrors['recruitment.experience_required'] = t('recruitment.error.experience_required');
+    if (!rd.description?.trim()) newErrors['recruitment.description'] = t('recruitment.error.description');
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleStep3Submit = async (e) => {
     e.preventDefault();
-    
+    if (!validateStep3()) {
+      setTimeout(() => {
+        const firstError = document.querySelector('.auth-form .error-text');
+        if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 50);
+      return;
+    }
     handleFinalSubmit();
   };
 
@@ -1540,11 +1592,12 @@ if (!isValid) {
       
       registrationFormData.append('name', formData.name);
       registrationFormData.append('email', formData.email);
-      registrationFormData.append('phone', formData.phone);
+      registrationFormData.append('phone', formData.phone.replace(/[\s\-(). /]/g, ''));
       registrationFormData.append('password', formData.password);
       registrationFormData.append('role', 'provider');
       console.log('serviceType:', formData.serviceType);
       registrationFormData.append('serviceType', formData.serviceType);
+      registrationFormData.append('seekingType', formData.seekingType);
       
       if (formData.profileImage) {
         registrationFormData.append('profileImage', formData.profileImage);
@@ -1566,14 +1619,34 @@ if (!isValid) {
       result = await register(registrationFormData, true);
     }
 
+    if (!result?.success) {
+      setError(result?.message || t('auth.errors.serverError'));
+      return;
+    }
+
     if (result.success) {
       if (mode === 'register') {
         localStorage.setItem('activeService', formData.serviceType);
-        
+
+        // Si recrutement → créer le job listing
+        if (formData.seekingType !== 'clients' && Object.keys(formData.recruitmentDetails).length > 0) {
+          try {
+            const token = result.data?.token || localStorage.getItem('homesherut_token');
+            await fetch('/api/recruitment', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+              body: JSON.stringify({ ...formData.recruitmentDetails, service_type: formData.serviceType }),
+            });
+          } catch (err) {
+            console.error('Erreur création job listing:', err);
+          }
+        }
+
         setSuccessData({
           userRole: 'provider',
           userName: formData.name,
           serviceType: formData.serviceType,
+          seekingType: formData.seekingType,
           isPremium: result.data?.user?.isPremium || false
         });
         setShowSuccess(true);
@@ -1588,6 +1661,7 @@ if (!isValid) {
 
   } catch (error) {
     console.error('Auth error:', error);
+    setError(error?.message || t('auth.errors.serverError'));
   } finally {
     setIsSubmitting(false);
   }
@@ -1621,160 +1695,227 @@ if (!isValid) {
   };
 
 const renderWorkingAreasSection = () => {
-    if (mode !== 'register' || step !== 2) return null;
+  if (mode !== 'register' || step !== 2) return null;
 
-    return (
-      <div className="input-group">
-     <label className="auth-form-label required">{t('auth.workingAreas')}</label>
-        
-        {/* Option כל ישראל */}
-        <div style={{ marginBottom: '1rem' }}>
-          <label className="checkbox-item" style={{ fontWeight: '600', fontSize: '1.1rem' }}>
+  const handleLocationModeChange = (newMode) => {
+    setLocationMode(newMode);
+    setSelectedEzor('');
+    setSelectedCity('');
+    setAvailableNeighborhoods([]);
+    if (errors.workingAreas) setErrors(prev => ({ ...prev, workingAreas: '' }));
+
+    if (newMode === 'israel') {
+      setFormData(prev => ({ ...prev, workingAreas: [{ city: 'ישראל', neighborhood: 'כל ישראל' }] }));
+    } else {
+      setFormData(prev => ({ ...prev, workingAreas: [] }));
+    }
+  };
+
+  const locationModes = [
+    { value: 'israel',       label: 'כל ישראל' },
+    { value: 'ezor',         label: 'לפי אזור' },
+    { value: 'city',         label: 'לפי עיר' },
+    { value: 'neighborhood', label: 'לפי שכונה' },
+  ];
+
+  const ezorim = ['מרכז', 'שרון', 'שפלה', 'ירושלים', 'צפון', 'חיפה', 'דרום', 'יהודה ושומרון'];
+
+  return (
+    <div className="input-group">
+      <label className="auth-form-label required">{t('auth.workingAreas')}</label>
+
+      {/* שלב 1: בחירת רמה */}
+      <div className="location-mode-selector">
+        {locationModes.map(({ value, label }) => (
+          <label key={value} className={`location-mode-option${locationMode === value ? ' selected' : ''}`}>
             <input
-              type="checkbox"
-              checked={formData.workingAreas?.some(area => area.neighborhood === 'כל ישראל')}
-              onChange={(e) => {
-                if (e.target.checked) {
-                  setFormData(prev => ({
-                    ...prev,
-                    workingAreas: [{ city: 'ישראל', neighborhood: 'כל ישראל' }]
-                  }));
-                  setSelectedCity('');
-                } else {
-                  setFormData(prev => ({ ...prev, workingAreas: [] }));
-                }
-                if (errors.workingAreas) {
-                  setErrors(prev => ({ ...prev, workingAreas: '' }));
-                }
-              }}
+              type="radio"
+              name="locationMode"
+              value={value}
+              checked={locationMode === value}
+              onChange={() => handleLocationModeChange(value)}
             />
-            {t('auth.allIsrael')}
+            <span>{label}</span>
           </label>
-        </div>
+        ))}
+      </div>
 
-        {/* Si כל ישראל n'est PAS sélectionné */}
-        {!formData.workingAreas?.some(area => area.neighborhood === 'כל ישראל') && (
-          <>
-          <div className="city-selector">
-  <CustomDropdown
-    name="city"
-    options={cities}
-    value={selectedCity}
-    onChange={(e) => setSelectedCity(e.target.value)}
-    placeholder={t('auth.selectCity')}
-    error={errors.workingAreas}
-  />
-</div>
-
-            {selectedCity && (
-              <>
-                {/* Option כל העיר */}
-                <div style={{ marginTop: '0.5rem', marginBottom: '0.5rem', padding: '0.75rem', backgroundColor: '#f0fdf4', borderRadius: '6px', border: '1px solid #22c55e' }}>
-                  <label className="checkbox-item" style={{ fontWeight: '600' }}>
-                    <input
-                      type="checkbox"
-                      checked={formData.workingAreas?.some(
-                        area => area.city === selectedCity && area.neighborhood === 'כל העיר'
-                      )}
-                      onChange={(e) => {
-                        if (e.target.checked) {
-                          const otherCityAreas = formData.workingAreas?.filter(area => area.city !== selectedCity) || [];
-                          setFormData(prev => ({
-                            ...prev,
-                            workingAreas: [...otherCityAreas, { city: selectedCity, neighborhood: 'כל העיר' }]
-                          }));
-                        } else {
-                          const newAreas = formData.workingAreas?.filter(
-                            area => !(area.city === selectedCity && area.neighborhood === 'כל העיר')
-                          ) || [];
-                          setFormData(prev => ({ ...prev, workingAreas: newAreas }));
-                        }
-                        if (errors.workingAreas) {
-                          setErrors(prev => ({ ...prev, workingAreas: '' }));
-                        }
-                      }}
-                    />
-                  🏙️ {t('auth.allCity', { city: selectedCity })}
-                  </label>
-                </div>
-
-                {/* Quartiers - seulement si כל העיר n'est PAS coché */}
-              {!formData.workingAreas?.some(area => area.city === selectedCity && area.neighborhood === 'כל העיר') && (
-  <>
-    {availableNeighborhoods.length > 0 ? (
-      <div className="neighborhoods-selection">
-      <h5>{t('auth.selectNeighborhoods', { city: selectedCity })}</h5>
-        <div className="checkbox-group">
-          {availableNeighborhoods.map(neighborhood => (
-            <label key={neighborhood} className="checkbox-item">
+      {/* Cas 1: לפי אזור */}
+      {locationMode === 'ezor' && (
+        <div className="ezor-grid">
+          {ezorim.map(ezor => (
+            <label key={ezor} className={`ezor-option${selectedEzor === ezor ? ' selected' : ''}`}>
               <input
-                type="checkbox"
-                checked={formData.workingAreas.some(
-                  area => area.city === selectedCity && area.neighborhood === neighborhood
-                )}
-                onChange={() => handleWorkingAreasChange(neighborhood)}
+                type="radio"
+                name="ezor"
+                value={ezor}
+                checked={selectedEzor === ezor}
+                onChange={() => {
+                  setSelectedEzor(ezor);
+                  setFormData(prev => ({ ...prev, workingAreas: [{ city: ezor, neighborhood: 'כל האזור' }] }));
+                  if (errors.workingAreas) setErrors(prev => ({ ...prev, workingAreas: '' }));
+                }}
               />
-              {neighborhood}
+              {ezor}
             </label>
           ))}
         </div>
-      </div>
-    ) : (
-      <div style={{ 
-        marginTop: '0.5rem', 
-        padding: '0.75rem', 
-        backgroundColor: '#fef3c7', 
-        borderRadius: '6px',
-        fontSize: '0.9rem',
-        color: '#92400e'
-      }}>
-     ℹ️ {t('auth.noNeighborhoods', { city: selectedCity })}
-      </div>
-    )}
-  </>
-)}
-              </>
-            )}
-          </>
-        )}
+      )}
 
-        {formData.workingAreas.length > 0 && (
-          <div className="selected-areas">
-           <h5>{t('auth.selectedAreas')} ({formData.workingAreas.length})</h5>
-            <div className="selected-areas-list">
-              {formData.workingAreas.map((area, index) => (
-                <span key={index} className="area-tag">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      if (area.neighborhood === 'כל ישראל') {
-                        setFormData(prev => ({ ...prev, workingAreas: [] }));
-                      } else if (area.neighborhood === 'כל העיר') {
-                        const newAreas = formData.workingAreas.filter(
-                          a => !(a.city === area.city && a.neighborhood === 'כל העיר')
-                        );
-                        setFormData(prev => ({ ...prev, workingAreas: newAreas }));
-                      } else {
-                        handleWorkingAreasChange(area.neighborhood);
-                      }
-                    }}
-                    aria-label="הסר אזור"
-                  >
-                    ×
-                  </button>
-                 {area.neighborhood === 'כל ישראל' ? `🇮🇱 ${t('auth.allIsrael')}` : 
- area.neighborhood === 'כל העיר' ? `🏙️ ${t('auth.allCityShort', { city: area.city })}` :
- `${area.city} - ${area.neighborhood}`}
-                </span>
-              ))}
+      {/* Cas 2: לפי עיר */}
+      {locationMode === 'city' && (
+        <div className="city-selector">
+          <CustomDropdown
+            name="city"
+            options={cities}
+            value={selectedCity}
+            onChange={(e) => {
+              const city = e.target.value;
+              setSelectedCity(city);
+              if (city) {
+                const other = formData.workingAreas.filter(a => a.city !== city);
+                setFormData(prev => ({ ...prev, workingAreas: [...other, { city, neighborhood: 'כל העיר' }] }));
+              } else {
+                setFormData(prev => ({ ...prev, workingAreas: [] }));
+              }
+              if (errors.workingAreas) setErrors(prev => ({ ...prev, workingAreas: '' }));
+            }}
+            placeholder={t('auth.selectCity')}
+            error={errors.workingAreas}
+          />
+          {selectedCity && (
+            <div style={{ marginTop: '0.75rem', padding: '0.75rem', backgroundColor: '#f0fdf4', borderRadius: '8px', border: '1px solid #22c55e' }}>
+              <label className="checkbox-item" style={{ fontWeight: '600' }}>
+                <input
+                  type="checkbox"
+                  checked={formData.workingAreas?.some(a => a.city === selectedCity && a.neighborhood === 'כל העיר')}
+                  onChange={(e) => {
+                    if (e.target.checked) {
+                      const other = formData.workingAreas.filter(a => a.city !== selectedCity);
+                      setFormData(prev => ({ ...prev, workingAreas: [...other, { city: selectedCity, neighborhood: 'כל העיר' }] }));
+                    } else {
+                      setFormData(prev => ({ ...prev, workingAreas: formData.workingAreas.filter(a => !(a.city === selectedCity && a.neighborhood === 'כל העיר')) }));
+                    }
+                    if (errors.workingAreas) setErrors(prev => ({ ...prev, workingAreas: '' }));
+                  }}
+                />
+                🏙️ {t('auth.allCity', { city: selectedCity })}
+              </label>
             </div>
-          </div>
-        )}
+          )}
+        </div>
+      )}
 
-        {errors.workingAreas && <span className="error-text">{errors.workingAreas}</span>}
-      </div>
-    );
-  };
+      {/* Cas 3: לפי שכונה */}
+      {locationMode === 'neighborhood' && (
+        <div>
+          <div className="city-selector">
+            <CustomDropdown
+              name="city"
+              options={cities}
+              value={selectedCity}
+              onChange={(e) => {
+                setSelectedCity(e.target.value);
+                setFormData(prev => ({ ...prev, workingAreas: prev.workingAreas.filter(a => a.city !== e.target.value) }));
+                if (errors.workingAreas) setErrors(prev => ({ ...prev, workingAreas: '' }));
+              }}
+              placeholder={t('auth.selectCity')}
+              error={errors.workingAreas}
+            />
+          </div>
+
+          {selectedCity && (
+            <>
+              <div style={{ marginTop: '0.5rem', marginBottom: '0.5rem', padding: '0.75rem', backgroundColor: '#f0fdf4', borderRadius: '8px', border: '1px solid #22c55e' }}>
+                <label className="checkbox-item" style={{ fontWeight: '600' }}>
+                  <input
+                    type="checkbox"
+                    checked={formData.workingAreas?.some(a => a.city === selectedCity && a.neighborhood === 'כל השכונות')}
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        const other = formData.workingAreas.filter(a => a.city !== selectedCity);
+                        setFormData(prev => ({ ...prev, workingAreas: [...other, { city: selectedCity, neighborhood: 'כל השכונות' }] }));
+                      } else {
+                        setFormData(prev => ({ ...prev, workingAreas: formData.workingAreas.filter(a => !(a.city === selectedCity && a.neighborhood === 'כל השכונות')) }));
+                      }
+                      if (errors.workingAreas) setErrors(prev => ({ ...prev, workingAreas: '' }));
+                    }}
+                  />
+                  🏘️ כל השכונות ב{selectedCity}
+                </label>
+              </div>
+
+              {!formData.workingAreas?.some(a => a.city === selectedCity && a.neighborhood === 'כל השכונות') && (
+                <>
+                  {availableNeighborhoods.length > 0 ? (
+                    <div className="neighborhoods-selection">
+                      <h5>{t('auth.selectNeighborhoods', { city: selectedCity })}</h5>
+                      <div className="checkbox-group">
+                        {availableNeighborhoods.map(neighborhood => (
+                          <label key={neighborhood} className="checkbox-item">
+                            <input
+                              type="checkbox"
+                              checked={formData.workingAreas.some(a => a.city === selectedCity && a.neighborhood === neighborhood)}
+                              onChange={() => handleWorkingAreasChange(neighborhood)}
+                            />
+                            {neighborhood}
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <div style={{ marginTop: '0.5rem', padding: '0.75rem', backgroundColor: '#fef3c7', borderRadius: '6px', fontSize: '0.9rem', color: '#92400e' }}>
+                      ℹ️ {t('auth.noNeighborhoods', { city: selectedCity })}
+                    </div>
+                  )}
+                </>
+              )}
+            </>
+          )}
+        </div>
+      )}
+
+      {/* תגיות אזורים שנבחרו */}
+      {formData.workingAreas.length > 0 && (
+        <div className="selected-areas">
+          <h5>{t('auth.selectedAreas')} ({formData.workingAreas.length})</h5>
+          <div className="selected-areas-list">
+            {formData.workingAreas.map((area, index) => (
+              <span key={index} className="area-tag">
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (area.neighborhood === 'כל ישראל') {
+                      setFormData(prev => ({ ...prev, workingAreas: [] }));
+                      setLocationMode('');
+                    } else if (area.neighborhood === 'כל האזור') {
+                      setFormData(prev => ({ ...prev, workingAreas: [] }));
+                      setSelectedEzor('');
+                    } else if (area.neighborhood === 'כל העיר' || area.neighborhood === 'כל השכונות') {
+                      setFormData(prev => ({ ...prev, workingAreas: prev.workingAreas.filter((_, i) => i !== index) }));
+                    } else {
+                      handleWorkingAreasChange(area.neighborhood);
+                    }
+                  }}
+                  aria-label="הסר אזור"
+                >
+                  ×
+                </button>
+                {area.neighborhood === 'כל ישראל'   ? t('auth.allIsrael') :
+                 area.neighborhood === 'כל האזור'   ? `כל אזור ${area.city}` :
+                 area.neighborhood === 'כל העיר'    ? t('auth.allCityShort', { city: area.city }) :
+                 area.neighborhood === 'כל השכונות' ? `כל שכונות ${area.city}` :
+                 `${area.city} - ${area.neighborhood}`}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {errors.workingAreas && <span className="error-text">{errors.workingAreas}</span>}
+    </div>
+  );
+};
 
   if (!isOpen) return null;
 
@@ -1827,6 +1968,34 @@ const renderWorkingAreasSection = () => {
                 {errors.serviceType && <span className="error-text">{errors.serviceType}</span>}
               </div>
 
+              {/* Seeking type — visible after service is chosen */}
+              {formData.serviceType && (
+                <div className="input-group">
+                  <label className="auth-form-label required">{t('seekingType.title')}</label>
+                  <div className="seeking-type-options">
+                    {[
+                      { value: 'clients',     label: t('seekingType.clients'),     desc: t('seekingType.clientsDesc'),     Icon: Users },
+                      { value: 'recruitment', label: t('seekingType.recruitment'), desc: t('seekingType.recruitmentDesc'), Icon: Briefcase },
+                    ].map(({ value, label, desc, Icon }) => (
+                      <button
+                        key={value}
+                        type="button"
+                        className={`seeking-type-btn ${formData.seekingType === value ? 'active' : ''}`}
+                        onClick={() => setFormData(prev => ({ ...prev, seekingType: value }))}
+                      >
+                        <div className="seeking-type-icon-wrap">
+                          <Icon size={20} className="seeking-type-icon" />
+                        </div>
+                        <div className="seeking-type-body">
+                          <span className="seeking-type-label">{label}</span>
+                          <span className="seeking-type-desc">{desc}</span>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {error && (
                 <div className="error-message">
                   <AlertCircle size={20} />
@@ -1834,8 +2003,8 @@ const renderWorkingAreasSection = () => {
                 </div>
               )}
 
-              <button 
-                type="submit" 
+              <button
+                type="submit"
                 className="btn btn-primary btn-block"
                 disabled={loading}
               >
@@ -2100,13 +2269,15 @@ const renderWorkingAreasSection = () => {
   {imageError && <span className="error-text">{imageError}</span>}
 </div>
 
-             <ServiceDetailsForm 
-  serviceType={formData.serviceType}
-  serviceDetails={formData.serviceDetails}
-  errors={errors}
-  handleServiceDetailsChange={handleServiceDetailsChange}
-  handleExclusiveCheckbox={handleExclusiveCheckbox}
-/>
+             {formData.seekingType !== 'recruitment' && (
+               <ServiceDetailsForm
+                 serviceType={formData.serviceType}
+                 serviceDetails={formData.serviceDetails}
+                 errors={errors}
+                 handleServiceDetailsChange={handleServiceDetailsChange}
+                 handleExclusiveCheckbox={handleExclusiveCheckbox}
+               />
+             )}
 
               <div className="step-navigation">
                 <button 
@@ -2137,6 +2308,8 @@ const renderWorkingAreasSection = () => {
     <Loader className="animate-spin" size={18} />
     {t('auth.checkingEmail')}
   </>
+) : formData.seekingType !== 'clients' ? (
+  t('auth.continue')
 ) : (
   t('auth.completeRegistration')
 )}
@@ -2145,87 +2318,25 @@ const renderWorkingAreasSection = () => {
             </form>
           )}
 
-          {/* PAIEMENT DÉSACTIVÉ - RÉACTIVER QUAND SITE PAYANT
-
-          {mode === 'register' && step === 3 && (
-            <form onSubmit={handleStep3Submit} className="auth-form">
-              <div className="trial-notice">
-               <h3>{t('auth.trialTitle')}</h3>
-<p>{t('auth.trialDescription')}</p>
-              </div>
-              
-              <div className="payment-form-temp">
-                <div className="input-group">
-                <label>{t('auth.cardNumber')}</label>
-                  <input 
-                    type="text" 
-                    placeholder="0000 0000 0000 0000"
-                    maxLength="19"
-                    className="standard-input"
-                    value={formData.cardNumber}
-                    onChange={(e) => {
-                      const value = e.target.value;
-                      setFormData(prev => ({ 
-                        ...prev, 
-                        cardNumber: value,
-                        tranziliaToken: value ? 'mock_token_' + Date.now() : null
-                      }));
-                    }}
-                  />
-                </div>
-
-                <div className="input-row">
-                  <div className="input-group">
-                   <label>{t('auth.cardExpiry')}</label>
-                    <input 
-                      type="text" 
-                      placeholder="MM/YY" 
-                      maxLength="5" 
-                      className="standard-input"
-                      value={formData.cardExpiry}
-                      onChange={(e) => setFormData(prev => ({ ...prev, cardExpiry: e.target.value }))}
-                    />
-                  </div>
-                  <div className="input-group">
-                    <label>CVV</label>
-                    <input 
-                      type="text" 
-                      placeholder="123" 
-                      maxLength="3" 
-                      className="standard-input"
-                      value={formData.cardCvv}
-                      onChange={(e) => setFormData(prev => ({ ...prev, cardCvv: e.target.value }))}
-                    />
-                  </div>
-                </div>
-                
-              <p className="dev-note">⚠️ {t('auth.devNote')}</p>
-              </div>
-
-              <div className="checkbox-group" style={{ marginTop: '20px' }}>
-                <label className="checkbox-item auto-renewal-checkbox">
-                  <input
-                    type="checkbox"
-                    checked={formData.acceptAutoRenewal || false}
-                    onChange={(e) => setFormData(prev => ({ ...prev, acceptAutoRenewal: e.target.checked }))}
-                    required
-                  />
-                  <span>{t('auth.autoRenewalConsent')}</span>
-                </label>
-              </div>
-              {errors.acceptAutoRenewal && <span className="error-text">{errors.acceptAutoRenewal}</span>}
-
+          {mode === 'register' && step === 3 && formData.seekingType !== 'clients' && (
+            <form onSubmit={handleStep3Submit} className="auth-form" autoComplete="off">
+              <RecruitmentForm
+                details={formData.recruitmentDetails}
+                errors={errors}
+                onChange={handleRecruitmentDetailsChange}
+              />
               <div className="step-navigation">
                 <button type="button" onClick={() => setStep(2)} className="btn btn-primary btn-secondary-style">
                   {t('auth.back')}
                 </button>
-                <button type="submit" disabled={!formData.acceptAutoRenewal || isSubmitting} className="btn btn-primary">
-                 {isSubmitting ? t('auth.processing') : t('auth.completeRegistration')}
+                <button type="submit" disabled={isSubmitting} className="btn btn-primary">
+                  {isSubmitting ? (
+                    <><Loader className="animate-spin" size={18} /> {t('auth.registering')}</>
+                  ) : t('auth.completeRegistration')}
                 </button>
               </div>
             </form>
           )}
-              */}
         </div>
       </div>
 
@@ -2235,11 +2346,16 @@ const renderWorkingAreasSection = () => {
           onClose={() => {
             setShowSuccess(false);
             onClose();
-            navigate('/dashboard');
+            if (successData.seekingType === 'recruitment') {
+              navigate('/dashboard?tab=recruitment');
+            } else {
+              navigate('/dashboard');
+            }
           }}
           userRole={successData.userRole}
           userName={successData.userName}
           serviceType={successData.serviceType}
+          seekingType={successData.seekingType}
           isPremium={successData.isPremium}
         />
       )}

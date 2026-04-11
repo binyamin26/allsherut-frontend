@@ -37,65 +37,77 @@ class User {
         const emailExists = await User.emailExists(userData.email);
      // Vérifier si l'email existe
 if (userData.role === 'provider') {
-  // Pour providers : vérifier si email + service existe déjà
+  const existingUser = await User.findByEmail(userData.email);
+
+  // Vérifier le mot de passe si le compte existe déjà
+  if (existingUser) {
+    const [userWithPassword] = await connection.execute(
+      'SELECT password FROM users WHERE id = ?',
+      [existingUser.id]
+    );
+    const isValidPassword = await bcrypt.compare(userData.password, userWithPassword[0].password);
+    if (!isValidPassword) {
+      throw new Error('INVALID_PASSWORD_FOR_EXISTING_ACCOUNT');
+    }
+
+    const newFirstName = (userData.firstName || userData.first_name || '').trim().toLowerCase();
+    const newLastName = (userData.lastName || userData.last_name || '').trim().toLowerCase();
+    const existingFirstName = (existingUser.first_name || '').trim().toLowerCase();
+    const existingLastName = (existingUser.last_name || '').trim().toLowerCase();
+    if (newFirstName !== existingFirstName || newLastName !== existingLastName) {
+      throw new Error('NAME_MISMATCH_FOR_EXISTING_ACCOUNT');
+    }
+  }
+
+  // Vérifier si email + service existe déjà
   const hasService = await User.hasService(userData.email, userData.serviceType);
   if (hasService) {
-    throw new Error('אתה כבר רשום לשירות זה');
+    // Le service existe déjà — mettre à jour le seeking_type si nécessaire
+    const newSeeking = userData.seekingType || 'clients';
+    if (newSeeking !== 'clients') {
+      await connection.execute(`
+        UPDATE service_providers
+        SET seeking_type = ?,
+        updated_at = NOW()
+        WHERE user_id = ? AND service_type = ?
+      `, [newSeeking, existingUser.id, userData.serviceType]);
+    }
+    // Retourner l'utilisateur tel quel
+    const [users] = await connection.execute(
+      'SELECT * FROM users WHERE id = ? AND is_active = TRUE',
+      [existingUser.id]
+    );
+    return new User(users[0]);
   }
-  
 
-    
-// Si email existe mais pas ce service : vérifier le mot de passe d'abord
-const existingUser = await User.findByEmail(userData.email);
-if (existingUser) {
-  // ✅ VÉRIFIER LE MOT DE PASSE AVANT D'AJOUTER UN SERVICE
-  const [userWithPassword] = await connection.execute(
-    'SELECT password FROM users WHERE id = ?',
-    [existingUser.id]
-  );
-  
-const isValidPassword = await bcrypt.compare(userData.password, userWithPassword[0].password);
-  if (!isValidPassword) {
-    throw new Error('INVALID_PASSWORD_FOR_EXISTING_ACCOUNT');
+  // Si email existe mais pas ce service : ajouter le service
+  if (existingUser) {
+    await connection.execute(
+      'UPDATE users SET service_type = ?, phone = COALESCE(?, phone), updated_at = NOW() WHERE id = ?',
+      [userData.serviceType, userData.phone, existingUser.id]
+    );
+
+    await connection.execute(`
+      INSERT INTO service_providers (
+        user_id, service_type, title, experience_years,
+        location_city, is_active, seeking_type, created_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())
+    `, [
+      existingUser.id,
+      userData.serviceType,
+      `ספק ${userData.serviceType} מקצועי`,
+      0,
+      null,
+      true,
+      userData.seekingType || 'clients',
+    ]);
+
+    const [users] = await connection.execute(
+      'SELECT * FROM users WHERE id = ? AND is_active = TRUE',
+      [existingUser.id]
+    );
+    return new User(users[0]);
   }
-
-  // Vérifier que le nom correspond aussi
-  const newFirstName = (userData.firstName || userData.first_name || '').trim().toLowerCase();
-  const newLastName = (userData.lastName || userData.last_name || '').trim().toLowerCase();
-  const existingFirstName = (existingUser.first_name || '').trim().toLowerCase();
-  const existingLastName = (existingUser.last_name || '').trim().toLowerCase();
-
-  if (newFirstName !== existingFirstName || newLastName !== existingLastName) {
-    throw new Error('NAME_MISMATCH_FOR_EXISTING_ACCOUNT');
-  }
-// Mettre à jour le service_type ET le téléphone dans users
-  await connection.execute(
-    'UPDATE users SET service_type = ?, phone = COALESCE(?, phone), updated_at = NOW() WHERE id = ?',
-    [userData.serviceType, userData.phone, existingUser.id]
-  );
-
-  // Ajouter juste le nouveau service
-  await connection.execute(`
-    INSERT INTO service_providers (
-      user_id, service_type, title, experience_years, 
-      location_city, is_active, created_at
-    ) VALUES (?, ?, ?, ?, ?, ?, NOW())
-  `, [
-    existingUser.id,
-    userData.serviceType,
-    `ספק ${userData.serviceType} מקצועי`,
-    0,
-    null,
-    true
-  ]);
-  
-  // Retourner l'utilisateur existant
-  const [users] = await connection.execute(
-    'SELECT * FROM users WHERE id = ? AND is_active = TRUE',
-    [existingUser.id]
-  );
-  return new User(users[0]);
-}
 } else {
   // Pour clients : vérification normale
   const emailExists = await User.emailExists(userData.email);
@@ -162,16 +174,17 @@ if (userData.role === 'provider') {
         if (userData.role === 'provider') {
           await connection.execute(`
             INSERT INTO service_providers (
-              user_id, service_type, title, experience_years, 
-              location_city, is_active, created_at
-            ) VALUES (?, ?, ?, ?, ?, ?, NOW())
+              user_id, service_type, title, experience_years,
+              location_city, is_active, seeking_type, created_at
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())
           `, [
             userId,
             userData.serviceType || userData.service_type,
             `ספק ${userData.serviceType || userData.service_type} מקצועי`,
             0,
             null,
-            true
+            true,
+            userData.seekingType || 'clients',
           ]);
         }
 

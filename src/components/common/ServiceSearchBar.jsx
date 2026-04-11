@@ -42,6 +42,7 @@ const ServiceSearchBar = ({ style }) => {
   const [results, setResults] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 480);
   const wrapperRef = useRef(null);
   const navigate = useNavigate();
   const { t, currentLanguage } = useLanguage();
@@ -71,6 +72,12 @@ const ServiceSearchBar = ({ style }) => {
   const allSearchableItems = useMemo(() => {
     return [...searchableServices, ...filterConfigItems];
   }, [filterConfigItems]);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 480);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -174,7 +181,7 @@ const ServiceSearchBar = ({ style }) => {
         <input
           type="text"
           className="service-search-input"
-          placeholder={t('search.placeholder')}
+          placeholder={isMobile ? t('search.placeholderShort') : t('search.placeholder')}
           value={query}
           onChange={handleChange}
           onKeyDown={handleKeyDown}

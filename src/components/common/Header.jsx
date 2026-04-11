@@ -10,6 +10,7 @@ const Header = () => {
   const [showAuthModal, setShowAuthModal] = useState(false)
   const [authModalMode, setAuthModalMode] = useState('login')
   const [showMobileServices, setShowMobileServices] = useState(false)
+  const [showMobileRecruitment, setShowMobileRecruitment] = useState(false)
   const { user, isAuthenticated, logout } = useAuth()
   const navigate = useNavigate()
   const [showLangDropdown, setShowLangDropdown] = useState(false)
@@ -185,6 +186,45 @@ const Header = () => {
     </div>
   </div>
   
+  <div className="services-dropdown">
+    <div className="services-dropdown-trigger nav-link">
+      {t('nav.recruitment')}
+      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+        <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+      </svg>
+    </div>
+    <div className="services-dropdown-menu">
+      {services.map((service, index) => {
+        const recruitHref = service.href.replace('/services/', '/recruitment/');
+        return (
+          <Link
+            key={index}
+            to={recruitHref}
+            className="services-dropdown-item"
+            style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '12px' }}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            {currentLanguage === 'he' ? (
+              <>
+                <div style={{ flexShrink: 0 }}>{service.icon}</div>
+                <div style={{ flexGrow: 1, textAlign: 'right' }}>
+                  <h4>{t(service.nameKey)}</h4>
+                </div>
+              </>
+            ) : (
+              <>
+                <div style={{ flexGrow: 1, textAlign: 'left' }}>
+                  <h4>{t(service.nameKey)}</h4>
+                </div>
+                <div style={{ flexShrink: 0 }}>{service.icon}</div>
+              </>
+            )}
+          </Link>
+        );
+      })}
+    </div>
+  </div>
+
   <Link to="/contact" className="nav-link">{t('nav.contact')}</Link>
 </nav>
 
@@ -321,6 +361,39 @@ const Header = () => {
                       <span className="text-mobile-service">{t(service.nameKey)}</span>
                     </Link>
                   ))}
+                </div>
+              )}
+            </div>
+
+            {/* Recruitment accordion */}
+            <div>
+              <button
+                className="mobile-drawer-link mobile-drawer-services-toggle"
+                onClick={() => setShowMobileRecruitment(!showMobileRecruitment)}
+              >
+                <div className="drawer-link-left">
+                  <Users className="w-5 h-5" />
+                  <span>{t('nav.recruitment')}</span>
+                </div>
+                <ChevronDown className={`mobile-drawer-chevron ${showMobileRecruitment ? 'open' : ''}`} />
+              </button>
+
+              {showMobileRecruitment && (
+                <div className="mobile-drawer-services-grid">
+                  {services.map((service, index) => {
+                    const recruitHref = service.href.replace('/services/', '/recruitment/');
+                    return (
+                      <Link
+                        key={index}
+                        to={recruitHref}
+                        className="mobile-drawer-service-item"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        <div className="mobile-service-icon">{service.icon}</div>
+                        <span className="text-mobile-service">{t(service.nameKey)}</span>
+                      </Link>
+                    );
+                  })}
                 </div>
               )}
             </div>

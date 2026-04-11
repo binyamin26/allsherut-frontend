@@ -6,7 +6,8 @@ const { MESSAGES, DEV_LOGS, getServiceLabel } = require('../constants/messages')
 const ResponseHelper = require('../utils/responseHelper');
 const ServiceSubcategory = require('../models/ServiceSubcategory');
 const { authenticateToken } = require('../middleware/authMiddleware');
-const User = require('../models/User')
+const User = require('../models/User');
+const { query } = require('../config/database');
 
 // =============================================
 // CONFIGURATION DES SERVICES HOMESHERUT
@@ -822,6 +823,59 @@ router.get('/:serviceId/subcategories', async (req, res) => {
     
     const { errorResponse, statusCode } = ErrorHandler.serverError(error);
     res.status(statusCode).json(errorResponse);
+  }
+});
+
+// ============================================
+// AJOUT D'UN NOUVEAU SERVICE À UN COMPTE EXISTANT
+// ============================================
+
+/**
+ * POST /api/services/add
+ * Ajouter un nouveau domaine de service à un prestataire existant
+ */
+router.post('/add', authenticateToken, async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const { serviceType, seekingType } = req.body;
+
+    if (!serviceType) {
+      return res.status(400).json({ success: false, message: 'סוג שירות נדרש' });
+    }
+
+    if (req.user.role !== 'provider') {
+      return res.status(403).json({ success: false, message: 'רק ספקי שירות יכולים להוסיף שירותים' });
+    }
+
+    // Vérifier si ce service existe déjà pour cet utilisateur
+    const existing = await query(
+      'SELECT id FROM service_providers WHERE user_id = ? AND service_type = ? LIMIT 1',
+      [userId, serviceType]
+    );
+
+    if (existing && existing.length > 0) {
+      return res.status(409).json({ success: false, message: 'שירות זה כבר קיים בחשבונך' });
+    }
+
+    // Insérer le nouveau service
+    await query(
+      `INSERT INTO service_providers (user_id, service_type, seeking_type, is_active, created_at)
+       VALUES (?, ?, ?, TRUE, NOW())`,
+      [userId, serviceType, ['clients', 'recruitment'].includes(seekingType) ? seekingType : 'clients']
+    );
+
+    // Retourner l'utilisateur mis à jour
+    const updatedUser = await User.findById(userId);
+
+    return res.status(201).json({
+      success: true,
+      message: 'השירות נוסף בהצלחה',
+      data: { user: updatedUser, newService: serviceType }
+    });
+
+  } catch (error) {
+    console.error('[POST /services/add] Erreur:', error);
+    return res.status(500).json({ success: false, message: 'שגיאה בהוספת השירות' });
   }
 });
 
