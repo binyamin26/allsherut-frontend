@@ -5,7 +5,7 @@ import FilterBar from '../../components/filters/FilterBar';
 import ReviewModal from '../../components/modals/ReviewModal';
 import apiService from '../../services/api';
 import ProviderCard from '../../components/cards/ProviderCard';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
 
 const PropertyManagementPage = () => {
@@ -23,7 +23,6 @@ const PropertyManagementPage = () => {
   const [loading, setLoading] = useState(false);
   const [resultsCount, setResultsCount] = useState(0);
   const [error, setError] = useState(null);
-  const isFirstLoad = useRef(true);
 
   // État pour modal d'avis
   const [reviewModal, setReviewModal] = useState({
@@ -76,16 +75,9 @@ const PropertyManagementPage = () => {
 
   // Charger les prestataires au montage et quand les filtres changent
   useEffect(() => {
-    if (isFirstLoad.current) {
-      isFirstLoad.current = false;
-      loadProviders();
-      return;
-    }
-
     const timer = setTimeout(() => {
       loadProviders();
-    }, 500);
-
+    }, 300);
     return () => clearTimeout(timer);
   }, [activeFilters, locationFilter]);
 
