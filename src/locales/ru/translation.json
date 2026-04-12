@@ -1567,6 +1567,7 @@
   "review.errors.commentRequired": "Требуется отзыв",
   "review.errors.createError": "Ошибка создания отзыва",
   "common.back": "Назад",
+  "common.next": "Далее",
   "common.close": "Закрыть",
   "serviceForm.common.requiredFields": "Обязательные поля",
   "serviceForm.common.age": "Возраст",

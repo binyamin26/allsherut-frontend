@@ -1551,6 +1551,7 @@
   "review.errors.commentRequired": "חוות דעת נדרשת",
   "review.errors.createError": "שגיאה ביצירת הביקורת",
   "common.back": "חזור",
+  "common.next": "הבא",
   "common.close": "סגור",
   "serviceForm.common.requiredFields": "שדות חובה",
   "serviceForm.common.age": "גיל",

@@ -1582,6 +1582,7 @@
   "review.errors.commentRequired": "Review is required",
   "review.errors.createError": "Error creating review",
   "common.back": "Back",
+  "common.next": "Next",
   "common.close": "Close",
   "serviceForm.common.requiredFields": "Required Fields",
   "serviceForm.common.age": "Age",
