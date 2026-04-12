@@ -297,34 +297,48 @@ const cronService = require('./services/cronService');
 // DÉMARRAGE DU SERVEUR
 // =============================================
 const runMigrations = async () => {
-  const fs = require('fs');
-  const path = require('path');
   const mysql = require('mysql2/promise');
-  const migrationsDir = path.join(__dirname, 'migrations');
-  const files = [
-    'add_recruitment.sql',
-    'add_location_to_listings.sql',
-    'fix_experience_enum.sql',
-    'fix_service_type_varchar.sql',
-  ];
   const conn = await mysql.createConnection({
     host: process.env.DB_HOST,
     port: parseInt(process.env.DB_PORT) || 3306,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    multipleStatements: true,
     ssl: { rejectUnauthorized: false },
   });
-  for (const file of files) {
-    const filePath = path.join(migrationsDir, file);
-    if (!fs.existsSync(filePath)) { console.log(`⚠️  Not found: ${file}`); continue; }
+
+  const steps = [
+    ['seeking_type column', `ALTER TABLE service_providers ADD COLUMN seeking_type ENUM('clients','recruitment','both') DEFAULT 'clients'`],
+    ['job_listings table', `CREATE TABLE IF NOT EXISTS job_listings (
+      id INT PRIMARY KEY AUTO_INCREMENT,
+      provider_id INT NOT NULL,
+      service_type VARCHAR(50) NOT NULL,
+      contract_type ENUM('full_time','part_time','one_time') NOT NULL,
+      salary VARCHAR(100) NOT NULL,
+      payment_type ENUM('hourly','daily','monthly') NOT NULL,
+      availability_days JSON,
+      availability_hours JSON,
+      experience_required VARCHAR(20) NOT NULL DEFAULT 'beginner',
+      languages_required JSON,
+      driving_license BOOLEAN DEFAULT FALSE,
+      description TEXT NOT NULL,
+      is_active BOOLEAN DEFAULT TRUE,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+      FOREIGN KEY (provider_id) REFERENCES service_providers(id) ON DELETE CASCADE
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`],
+    ['location_city column', `ALTER TABLE job_listings ADD COLUMN location_city VARCHAR(100) NULL`],
+    ['location_area column', `ALTER TABLE job_listings ADD COLUMN location_area VARCHAR(100) NULL`],
+    ['fix experience_required', `ALTER TABLE job_listings MODIFY COLUMN experience_required VARCHAR(20) NOT NULL DEFAULT 'beginner'`],
+    ['fix service_type', `ALTER TABLE service_providers MODIFY COLUMN service_type VARCHAR(50) NOT NULL`],
+  ];
+
+  for (const [label, sql] of steps) {
     try {
-      const sql = fs.readFileSync(filePath, 'utf8').replace(/^\s*USE\s+\S+;\s*/im, '');
       await conn.query(sql);
-      console.log(`✅ Migration OK: ${file}`);
+      console.log(`✅ Migration OK: ${label}`);
     } catch (err) {
-      console.log(`⚠️  Migration skip (${file}): ${err.message.split('\n')[0]}`);
+      console.log(`⚠️  Migration skip (${label}): ${err.message.split('\n')[0]}`);
     }
   }
   await conn.end();
