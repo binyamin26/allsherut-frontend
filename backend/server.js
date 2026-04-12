@@ -299,7 +299,7 @@ const cronService = require('./services/cronService');
 const runMigrations = async () => {
   const fs = require('fs');
   const path = require('path');
-  const { pool } = require('./config/database');
+  const mysql = require('mysql2/promise');
   const migrationsDir = path.join(__dirname, 'migrations');
   const files = [
     'add_recruitment.sql',
@@ -307,17 +307,27 @@ const runMigrations = async () => {
     'fix_experience_enum.sql',
     'fix_service_type_varchar.sql',
   ];
+  const conn = await mysql.createConnection({
+    host: process.env.DB_HOST,
+    port: parseInt(process.env.DB_PORT) || 3306,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    multipleStatements: true,
+    ssl: { rejectUnauthorized: false },
+  });
   for (const file of files) {
     const filePath = path.join(migrationsDir, file);
-    if (!fs.existsSync(filePath)) continue;
+    if (!fs.existsSync(filePath)) { console.log(`⚠️  Not found: ${file}`); continue; }
     try {
       const sql = fs.readFileSync(filePath, 'utf8');
-      await pool.query(sql);
+      await conn.query(sql);
       console.log(`✅ Migration OK: ${file}`);
     } catch (err) {
       console.log(`⚠️  Migration skip (${file}): ${err.message.split('\n')[0]}`);
     }
   }
+  await conn.end();
 };
 
 const startServer = async () => {
