@@ -296,15 +296,41 @@ const cronService = require('./services/cronService');
 // =============================================
 // DÉMARRAGE DU SERVEUR
 // =============================================
+const runMigrations = async () => {
+  const fs = require('fs');
+  const path = require('path');
+  const { pool } = require('./config/database');
+  const migrationsDir = path.join(__dirname, 'migrations');
+  const files = [
+    'add_recruitment.sql',
+    'add_location_to_listings.sql',
+    'fix_experience_enum.sql',
+    'fix_service_type_varchar.sql',
+  ];
+  for (const file of files) {
+    const filePath = path.join(migrationsDir, file);
+    if (!fs.existsSync(filePath)) continue;
+    try {
+      const sql = fs.readFileSync(filePath, 'utf8');
+      await pool.query(sql);
+      console.log(`✅ Migration OK: ${file}`);
+    } catch (err) {
+      console.log(`⚠️  Migration skip (${file}): ${err.message.split('\n')[0]}`);
+    }
+  }
+};
+
 const startServer = async () => {
   try {
     console.log('🔄 בדיקת חיבור למסד נתונים...');
     const dbConnected = await testConnection();
-    
+
     if (!dbConnected) {
       console.error('❌ שגיאה: לא ניתן להתחבר למסד הנתונים');
       process.exit(1);
     }
+
+    await runMigrations();
 
     const PORT = process.env.PORT || 10000;
 
