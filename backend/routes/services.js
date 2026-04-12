@@ -7,7 +7,7 @@ const ResponseHelper = require('../utils/responseHelper');
 const ServiceSubcategory = require('../models/ServiceSubcategory');
 const { authenticateToken } = require('../middleware/authMiddleware');
 const User = require('../models/User');
-const { query } = require('../config/database');
+const { query, transaction } = require('../config/database');
 
 // =============================================
 // CONFIGURATION DES SERVICES HOMESHERUT
@@ -837,7 +837,7 @@ router.get('/:serviceId/subcategories', async (req, res) => {
 router.post('/add', authenticateToken, async (req, res) => {
   try {
     const userId = req.user.id;
-    const { serviceType, seekingType } = req.body;
+    const { serviceType, seekingType, serviceDetails } = req.body;
 
     if (!serviceType) {
       return res.status(400).json({ success: false, message: 'סוג שירות נדרש' });
@@ -857,12 +857,22 @@ router.post('/add', authenticateToken, async (req, res) => {
       return res.status(409).json({ success: false, message: 'שירות זה כבר קיים בחשבונך' });
     }
 
-    // Insérer le nouveau service
-    await query(
-      `INSERT INTO service_providers (user_id, service_type, seeking_type, is_active, created_at)
-       VALUES (?, ?, ?, TRUE, NOW())`,
-      [userId, serviceType, ['clients', 'recruitment'].includes(seekingType) ? seekingType : 'clients']
-    );
+    const validSeekingType = ['clients', 'recruitment'].includes(seekingType) ? seekingType : 'clients';
+
+    await transaction(async (connection) => {
+      // Insérer le nouveau service
+      const [insertResult] = await connection.execute(
+        `INSERT INTO service_providers (user_id, service_type, seeking_type, is_active, created_at)
+         VALUES (?, ?, ?, TRUE, NOW())`,
+        [userId, serviceType, validSeekingType]
+      );
+
+      // Si des détails de service sont fournis, les sauvegarder immédiatement
+      if (serviceDetails && typeof serviceDetails === 'object' && Object.keys(serviceDetails).length > 0) {
+        const newProviderId = insertResult.insertId;
+        await User.updateServiceProviderWithDetails(connection, newProviderId, serviceType, serviceDetails);
+      }
+    });
 
     // Retourner l'utilisateur mis à jour
     const updatedUser = await User.findById(userId);

@@ -154,8 +154,10 @@ const userData = useMemo(() => {
 
   // Ajout d'un nouveau service
   const [addServiceModal, setAddServiceModal] = useState(false);
+  const [addServiceStep, setAddServiceStep] = useState(1);
   const [addServiceType, setAddServiceType] = useState('');
   const [addServiceSeeking, setAddServiceSeeking] = useState('clients');
+  const [addServiceDetails, setAddServiceDetails] = useState({});
   const [addServiceLoading, setAddServiceLoading] = useState(false);
   const [addServiceMsg, setAddServiceMsg] = useState({ type: '', text: '' });
 
@@ -977,6 +979,30 @@ const handleDeleteService = async (serviceType) => {
   }
 };
 
+const handleAddServiceFieldChange = (field, value) => {
+  setAddServiceDetails(prev => ({ ...prev, [field]: value }));
+};
+
+const handleAddServiceArrayChange = (field, value, checked) => {
+  setAddServiceDetails(prev => {
+    const current = prev[field] || [];
+    if (checked) {
+      return { ...prev, [field]: current.includes(value) ? current : [...current, value] };
+    } else {
+      return { ...prev, [field]: current.filter(v => v !== value) };
+    }
+  });
+};
+
+const resetAddServiceModal = () => {
+  setAddServiceModal(false);
+  setAddServiceStep(1);
+  setAddServiceType('');
+  setAddServiceSeeking('clients');
+  setAddServiceDetails({});
+  setAddServiceMsg({ type: '', text: '' });
+};
+
 const handleAddService = async () => {
   if (!addServiceType) {
     setAddServiceMsg({ type: 'error', text: t('dashboard.addService.selectService') });
@@ -989,7 +1015,11 @@ const handleAddService = async () => {
     const res = await fetch('/api/services/add', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-      body: JSON.stringify({ serviceType: addServiceType, seekingType: addServiceSeeking }),
+      body: JSON.stringify({
+        serviceType: addServiceType,
+        seekingType: addServiceSeeking,
+        serviceDetails: addServiceDetails,
+      }),
     });
     const data = await res.json();
     if (data.success) {
@@ -997,12 +1027,7 @@ const handleAddService = async () => {
       await switchService(addServiceType);
       setActiveService(addServiceType);
       localStorage.setItem('activeService', addServiceType);
-      setTimeout(() => {
-        setAddServiceModal(false);
-        setAddServiceType('');
-        setAddServiceSeeking('clients');
-        setAddServiceMsg({ type: '', text: '' });
-      }, 1200);
+      setTimeout(() => resetAddServiceModal(), 1200);
     } else {
       setAddServiceMsg({ type: 'error', text: data.message || 'שגיאה' });
     }
@@ -1370,7 +1395,7 @@ const galleryImages = (() => {
                   <Edit size={18} />{t('dashboard.editProfile')}
                 </button>
                 <button
-                  onClick={() => { setAddServiceModal(true); setAddServiceMsg({ type: '', text: '' }); setAddServiceType(''); setAddServiceSeeking('clients'); }}
+                  onClick={() => { setAddServiceModal(true); setAddServiceStep(1); setAddServiceMsg({ type: '', text: '' }); setAddServiceType(''); setAddServiceSeeking('clients'); setAddServiceDetails({}); }}
                   className="btn btn-secondary"
                   style={{ borderColor: '#2F80ED', color: '#2F80ED' }}
                 >
@@ -2454,83 +2479,153 @@ placeholder={t('dashboard.security.newPasswordPlaceholder')}
           <div style={{
             position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)',
             zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem'
-          }} onClick={() => setAddServiceModal(false)}>
+          }} onClick={resetAddServiceModal}>
             <div style={{
               background: 'white', borderRadius: '16px', padding: '2rem',
-              width: '100%', maxWidth: '440px', boxShadow: '0 20px 60px rgba(0,0,0,0.2)'
+              width: '100%', maxWidth: addServiceStep === 2 ? '600px' : '440px',
+              boxShadow: '0 20px 60px rgba(0,0,0,0.2)',
+              maxHeight: '90vh', overflowY: 'auto'
             }} onClick={e => e.stopPropagation()}>
-              <h3 style={{ margin: '0 0 1.5rem', color: '#0F2A44', fontSize: '1.15rem', fontWeight: 700 }}>
-                {t('dashboard.addService.title')}
-              </h3>
 
-              {/* Sélecteur de service */}
-              <div style={{ marginBottom: '1.25rem' }}>
-                <label style={{ display: 'block', fontWeight: 600, marginBottom: '0.5rem', fontSize: '0.9rem', color: '#374151' }}>
-                  {t('dashboard.addService.selectService')} *
-                </label>
-                <CustomDropdown
-                  name="addServiceType"
-                  options={ALL_SERVICE_KEYS.map(k => ({ value: k, label: t(`services.${k}`, k) }))}
-                  value={addServiceType}
-                  onChange={e => setAddServiceType(e.target.value)}
-                  placeholder={t('dashboard.addService.selectService')}
-                  searchable={true}
-                />
+              {/* Header avec indicateur d'étape */}
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.5rem' }}>
+                <h3 style={{ margin: 0, color: '#0F2A44', fontSize: '1.15rem', fontWeight: 700 }}>
+                  {t('dashboard.addService.title')}
+                </h3>
+                <span style={{ fontSize: '0.8rem', color: '#9ca3af', fontWeight: 500 }}>
+                  {addServiceStep} / 2
+                </span>
               </div>
 
-              {/* Type de recherche */}
-              <div style={{ marginBottom: '1.5rem' }}>
-                <label style={{ display: 'block', fontWeight: 600, marginBottom: '0.5rem', fontSize: '0.9rem', color: '#374151' }}>
-                  {t('dashboard.addService.seekingType')}
-                </label>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                  {[
-                    { value: 'clients', label: t('dashboard.addService.seekingClients') },
-                    { value: 'recruitment', label: t('dashboard.addService.seekingRecruitment') },
-                  ].map(opt => (
-                    <label key={opt.value} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', fontSize: '0.9rem' }}>
-                      <input type="radio" name="addServiceSeeking"
-                        checked={addServiceSeeking === opt.value}
-                        onChange={() => setAddServiceSeeking(opt.value)} />
-                      {opt.label}
+              {/* ÉTAPE 1 — Sélection du service et du type */}
+              {addServiceStep === 1 && (
+                <>
+                  {/* Sélecteur de service */}
+                  <div style={{ marginBottom: '1.25rem' }}>
+                    <label style={{ display: 'block', fontWeight: 600, marginBottom: '0.5rem', fontSize: '0.9rem', color: '#374151' }}>
+                      {t('dashboard.addService.selectService')} *
                     </label>
-                  ))}
-                </div>
-              </div>
+                    <CustomDropdown
+                      name="addServiceType"
+                      options={ALL_SERVICE_KEYS.map(k => ({ value: k, label: t(`services.${k}`, k) }))}
+                      value={addServiceType}
+                      onChange={e => { setAddServiceType(e.target.value); setAddServiceDetails({}); }}
+                      placeholder={t('dashboard.addService.selectService')}
+                      searchable={true}
+                    />
+                  </div>
 
-              {/* Message */}
-              {addServiceMsg.text && (
+                  {/* Type de recherche */}
+                  <div style={{ marginBottom: '1.5rem' }}>
+                    <label style={{ display: 'block', fontWeight: 600, marginBottom: '0.5rem', fontSize: '0.9rem', color: '#374151' }}>
+                      {t('dashboard.addService.seekingType')}
+                    </label>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                      {[
+                        { value: 'clients', label: t('dashboard.addService.seekingClients') },
+                        { value: 'recruitment', label: t('dashboard.addService.seekingRecruitment') },
+                      ].map(opt => (
+                        <label key={opt.value} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', fontSize: '0.9rem' }}>
+                          <input type="radio" name="addServiceSeeking"
+                            checked={addServiceSeeking === opt.value}
+                            onChange={() => setAddServiceSeeking(opt.value)} />
+                          {opt.label}
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Actions étape 1 */}
+                  <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'flex-end' }}>
+                    <button
+                      onClick={resetAddServiceModal}
+                      style={{ padding: '0.6rem 1.2rem', borderRadius: '8px', background: '#f3f4f6', color: '#374151', border: 'none', cursor: 'pointer' }}
+                    >
+                      {t('auth.back')}
+                    </button>
+                    <button
+                      onClick={() => {
+                        if (!addServiceType) {
+                          setAddServiceMsg({ type: 'error', text: t('dashboard.addService.selectService') });
+                          return;
+                        }
+                        setAddServiceMsg({ type: '', text: '' });
+                        setAddServiceStep(2);
+                      }}
+                      disabled={!addServiceType}
+                      style={{
+                        padding: '0.6rem 1.5rem', borderRadius: '8px',
+                        background: !addServiceType ? '#9ca3af' : 'linear-gradient(135deg, #0F2A44, #2F80ED)',
+                        color: '#fff', border: 'none', cursor: !addServiceType ? 'not-allowed' : 'pointer',
+                        fontWeight: 600,
+                      }}
+                    >
+                      {t('common.next') || 'הבא'}
+                    </button>
+                  </div>
+                </>
+              )}
+
+              {/* ÉTAPE 2 — Détails du service (cases à cocher) */}
+              {addServiceStep === 2 && (
+                <>
+                  <div style={{ marginBottom: '1rem', padding: '0.6rem 0.9rem', background: '#f0f9ff', borderRadius: '8px', border: '1px solid #bae6fd', fontSize: '0.88rem', color: '#0369a1' }}>
+                    {t(`services.${addServiceType}`, addServiceType)}
+                  </div>
+
+                  <ServiceDetailsEditor
+                    serviceType={addServiceType}
+                    serviceDetails={addServiceDetails}
+                    isEditMode={true}
+                    onFieldChange={handleAddServiceFieldChange}
+                    onArrayChange={handleAddServiceArrayChange}
+                  />
+
+                  {/* Message */}
+                  {addServiceMsg.text && (
+                    <div style={{
+                      padding: '0.6rem 0.9rem', borderRadius: '8px', margin: '1rem 0', fontSize: '0.88rem',
+                      background: addServiceMsg.type === 'success' ? '#f0fdf4' : '#fef2f2',
+                      color: addServiceMsg.type === 'success' ? '#166534' : '#991b1b',
+                      border: `1px solid ${addServiceMsg.type === 'success' ? '#86efac' : '#fca5a5'}`,
+                    }}>
+                      {addServiceMsg.text}
+                    </div>
+                  )}
+
+                  {/* Actions étape 2 */}
+                  <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'flex-end', marginTop: '1.5rem' }}>
+                    <button
+                      onClick={() => { setAddServiceStep(1); setAddServiceMsg({ type: '', text: '' }); }}
+                      style={{ padding: '0.6rem 1.2rem', borderRadius: '8px', background: '#f3f4f6', color: '#374151', border: 'none', cursor: 'pointer' }}
+                    >
+                      {t('auth.back')}
+                    </button>
+                    <button
+                      onClick={handleAddService}
+                      disabled={addServiceLoading}
+                      style={{
+                        padding: '0.6rem 1.5rem', borderRadius: '8px',
+                        background: addServiceLoading ? '#9ca3af' : 'linear-gradient(135deg, #0F2A44, #2F80ED)',
+                        color: '#fff', border: 'none', cursor: addServiceLoading ? 'not-allowed' : 'pointer',
+                        fontWeight: 600,
+                      }}
+                    >
+                      {addServiceLoading ? '...' : t('dashboard.addService.confirm')}
+                    </button>
+                  </div>
+                </>
+              )}
+
+              {/* Message étape 1 */}
+              {addServiceStep === 1 && addServiceMsg.text && (
                 <div style={{
-                  padding: '0.6rem 0.9rem', borderRadius: '8px', marginBottom: '1rem', fontSize: '0.88rem',
-                  background: addServiceMsg.type === 'success' ? '#f0fdf4' : '#fef2f2',
-                  color: addServiceMsg.type === 'success' ? '#166534' : '#991b1b',
-                  border: `1px solid ${addServiceMsg.type === 'success' ? '#86efac' : '#fca5a5'}`,
+                  padding: '0.6rem 0.9rem', borderRadius: '8px', marginTop: '0.75rem', fontSize: '0.88rem',
+                  background: '#fef2f2', color: '#991b1b', border: '1px solid #fca5a5',
                 }}>
                   {addServiceMsg.text}
                 </div>
               )}
-
-              {/* Actions */}
-              <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'flex-end' }}>
-                <button
-                  onClick={() => setAddServiceModal(false)}
-                  style={{ padding: '0.6rem 1.2rem', borderRadius: '8px', background: '#f3f4f6', color: '#374151', border: 'none', cursor: 'pointer' }}
-                >
-                  {t('auth.back')}
-                </button>
-                <button
-                  onClick={handleAddService}
-                  disabled={addServiceLoading || !addServiceType}
-                  style={{
-                    padding: '0.6rem 1.5rem', borderRadius: '8px',
-                    background: addServiceLoading || !addServiceType ? '#9ca3af' : 'linear-gradient(135deg, #0F2A44, #2F80ED)',
-                    color: '#fff', border: 'none', cursor: addServiceLoading || !addServiceType ? 'not-allowed' : 'pointer',
-                    fontWeight: 600,
-                  }}
-                >
-                  {addServiceLoading ? '...' : t('dashboard.addService.confirm')}
-                </button>
-              </div>
             </div>
           </div>
         )}
