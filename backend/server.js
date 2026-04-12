@@ -320,7 +320,7 @@ const runMigrations = async () => {
     const filePath = path.join(migrationsDir, file);
     if (!fs.existsSync(filePath)) { console.log(`⚠️  Not found: ${file}`); continue; }
     try {
-      const sql = fs.readFileSync(filePath, 'utf8');
+      const sql = fs.readFileSync(filePath, 'utf8').replace(/^\s*USE\s+\S+;\s*/im, '');
       await conn.query(sql);
       console.log(`✅ Migration OK: ${file}`);
     } catch (err) {
