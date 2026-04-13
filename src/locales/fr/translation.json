@@ -440,6 +440,8 @@
   "filters.cleaning.roofCleaning": "Nettoyage toiture",
   "filters.cleaning.carCleaning": "Nettoyage voiture à domicile",
   "filters.cleaning.solarPanels": "Nettoyage panneaux solaires",
+  "filters.cleaning.ironingAtHome": "Repassage à domicile",
+  "filters.cleaning.laundryFolding": "Plier le linge",
   "filters.cleaning.oneTime": "Ponctuel",
   "filters.cleaning.weekly": "Hebdomadaire",
   "filters.cleaning.biweekly": "Bi-hebdomadaire",

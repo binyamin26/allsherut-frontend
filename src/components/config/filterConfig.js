@@ -129,7 +129,9 @@ export const FILTER_CONFIG = {
     ],
     additionalServices: [
       { value: 'ניקוי רכב בבית הלקוח', key: 'filters.cleaning.carCleaning' },
-      { value: 'ניקוי פאנלים סולאריים', key: 'filters.cleaning.solarPanels' }
+      { value: 'ניקוי פאנלים סולאריים', key: 'filters.cleaning.solarPanels' },
+      { value: 'גיהוץ בבית הלקוח', key: 'filters.cleaning.ironingAtHome' },
+      { value: 'קיפול כביסה', key: 'filters.cleaning.laundryFolding' }
     ],
     frequency: [
       { value: 'חד פעמי', key: 'filters.cleaning.oneTime' },
@@ -355,7 +357,6 @@ laundry: {
       pickupService: 'filters.laundry.pickupService'
     },
     types: [
-      { value: 'גיהוץ בבית הלקוח', key: 'filters.laundry.ironingAtHome' },
       { value: 'איסוף והחזרת כביסה (שירות משלוחים)', key: 'filters.laundry.pickupDelivery' },
       { value: 'ניקוי יבש / שירות מכבסה', key: 'filters.laundry.dryCleaning' },
       { value: 'כביסת מצעים, מגבות, וילונות', key: 'filters.laundry.linens' },  // ← corrigé (était beddingTowels)

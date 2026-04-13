@@ -33,6 +33,8 @@ const searchableServices = [
   { label: 'ניקיון גגות רעפים', labelEn: 'Tile roof cleaning', labelFr: 'Nettoyage toits tuiles', labelRu: 'Чистка черепичных крыш', href: '/services/cleaning', type: 'specialty' },
   { label: 'ניקוי רכב בבית הלקוח', labelEn: 'Mobile car cleaning', labelFr: 'Nettoyage auto à domicile', labelRu: 'Мойка авто на дому', href: '/services/cleaning', type: 'specialty' },
   { label: 'ניקוי פאנלים סולאריים', labelEn: 'Solar panel cleaning', labelFr: 'Nettoyage panneaux solaires', labelRu: 'Чистка солнечных панелей', href: '/services/cleaning', type: 'specialty' },
+  { label: 'גיהוץ בבית הלקוח', labelEn: 'Ironing at home', labelFr: 'Repassage à domicile', labelRu: 'Глажка на дому', href: '/services/cleaning', type: 'specialty' },
+  { label: 'קיפול כביסה', labelEn: 'Laundry folding', labelFr: 'Plier le linge', labelRu: 'Складывание белья', href: '/services/cleaning', type: 'specialty' },
 
   // 3. GARDENING
   { label: 'גינון', labelEn: 'Gardening', labelFr: 'Jardinage', labelRu: 'Садоводство', href: '/services/gardening', type: 'service' },
@@ -154,7 +156,6 @@ const searchableServices = [
 
   // 7. LAUNDRY
   { label: 'כביסה וגיהוץ', labelEn: 'Laundry and Ironing', labelFr: 'Blanchisserie et repassage', labelRu: 'Стирка и глажка', href: '/services/laundry', type: 'service' },
-  { label: 'גיהוץ בבית הלקוח', labelEn: 'Ironing at client home', labelFr: 'Repassage à domicile', labelRu: 'Глажка на дому', href: '/services/laundry', type: 'specialty' },
   { label: 'איסוף והחזרת כביסה (שירות משלוחים)', labelEn: 'Laundry pickup and delivery', labelFr: 'Collecte et livraison linge', labelRu: 'Забор и доставка белья', href: '/services/laundry', type: 'specialty' },
   { label: 'ניקוי יבש / שירות מכבסה', labelEn: 'Dry cleaning / Laundry service', labelFr: 'Nettoyage à sec / Pressing', labelRu: 'Химчистка / Прачечная', href: '/services/laundry', type: 'specialty' },
   { label: 'כביסת מצעים, מגבות, וילונות', labelEn: 'Bedding, towels, curtains washing', labelFr: 'Lavage draps, serviettes, rideaux', labelRu: 'Стирка постельного, полотенец, штор', href: '/services/laundry', type: 'specialty' },

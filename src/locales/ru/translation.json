@@ -440,6 +440,8 @@
   "filters.cleaning.roofCleaning": "Чистка крыши",
   "filters.cleaning.carCleaning": "Мойка авто на дому",
   "filters.cleaning.solarPanels": "Чистка солнечных панелей",
+  "filters.cleaning.ironingAtHome": "Глажка на дому",
+  "filters.cleaning.laundryFolding": "Складывание белья",
   "filters.cleaning.oneTime": "Разовая",
   "filters.cleaning.weekly": "Еженедельно",
   "filters.cleaning.biweekly": "Раз в две недели",

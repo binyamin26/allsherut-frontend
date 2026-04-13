@@ -435,6 +435,8 @@
   "filters.cleaning.roofCleaning": "Roof cleaning",
   "filters.cleaning.carCleaning": "Car cleaning at home",
   "filters.cleaning.solarPanels": "Solar panel cleaning",
+  "filters.cleaning.ironingAtHome": "Ironing at home",
+  "filters.cleaning.laundryFolding": "Laundry folding",
   "filters.cleaning.oneTime": "One-time",
   "filters.cleaning.weekly": "Weekly",
   "filters.cleaning.biweekly": "Bi-weekly",

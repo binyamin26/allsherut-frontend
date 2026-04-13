@@ -50,7 +50,6 @@ const LaundryForm = ({ serviceDetails, errors, handleServiceDetailsChange, handl
          <label className="auth-form-label required">{t('serviceForm.laundry.serviceTypes')}</label>
 <div className="checkbox-group" data-field="laundryTypes">
   {[
-    { value: 'גיהוץ בבית הלקוח', label: t('filters.laundry.ironingAtHome') },
     { value: 'איסוף והחזרת כביסה (שירות משלוחים)', label: t('filters.laundry.pickupDelivery') },
     { value: 'ניקוי יבש / שירות מכבסה', label: t('filters.laundry.dryCleaning') },
     { value: 'כביסת מצעים, מגבות, וילונות', label: t('filters.laundry.linens') },

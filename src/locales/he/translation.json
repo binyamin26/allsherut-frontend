@@ -440,6 +440,8 @@
   "filters.cleaning.roofCleaning": "ניקיון גגות רעפים",
   "filters.cleaning.carCleaning": "ניקוי רכב בבית הלקוח",
   "filters.cleaning.solarPanels": "ניקוי פאנלים סולאריים",
+  "filters.cleaning.ironingAtHome": "גיהוץ בבית הלקוח",
+  "filters.cleaning.laundryFolding": "קיפול כביסה",
   "filters.cleaning.oneTime": "חד פעמי",
   "filters.cleaning.weekly": "שבועי",
   "filters.cleaning.biweekly": "דו שבועי",

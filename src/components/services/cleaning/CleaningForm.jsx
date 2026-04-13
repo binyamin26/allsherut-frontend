@@ -177,7 +177,9 @@ const CleaningForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
 <div className="checkbox-group">
   {[
     { value: 'ניקוי רכב בבית הלקוח', label: t('filters.cleaning.carCleaning') },
-    { value: 'ניקוי פאנלים סולאריים', label: t('filters.cleaning.solarPanels') }
+    { value: 'ניקוי פאנלים סולאריים', label: t('filters.cleaning.solarPanels') },
+    { value: 'גיהוץ בבית הלקוח', label: t('filters.cleaning.ironingAtHome') },
+    { value: 'קיפול כביסה', label: t('filters.cleaning.laundryFolding') }
   ].map(type => (
     <label key={type.value} className="checkbox-item">
       <input

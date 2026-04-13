@@ -133,6 +133,8 @@ const translationMappings = {
   cleaningAdditional: {
     'ניקוי רכב בבית הלקוח': 'filters.cleaning.carCleaning',
     'ניקוי פאנלים סולאריים': 'filters.cleaning.solarPanels',
+    'גיהוץ בבית הלקוח': 'filters.cleaning.ironingAtHome',
+    'קיפול כביסה': 'filters.cleaning.laundryFolding',
   },
   cleaningFrequency: {
     'חד פעמי': 'filters.cleaning.oneTime',
@@ -263,7 +265,6 @@ const translationMappings = {
   // LAUNDRY
   // ═══════════════════════════════════════════════════════════════
   laundryServices: {
-    'גיהוץ בבית הלקוח': 'filters.laundry.ironingAtHome',
     'איסוף והחזרת כביסה (שירות משלוחים)': 'filters.laundry.pickupDelivery',
     'ניקוי יבש / שירות מכבסה': 'filters.laundry.dryCleaning',
     'כביסת מצעים, מגבות, וילונות': 'filters.laundry.linens',
