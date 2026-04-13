@@ -99,8 +99,14 @@ const serviceFieldsConfig = {
         type: 'checkbox',
         options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
       },
-      { name: 'experienceYears', label: 'serviceFields.cleaning.experienceYears', type: 'number' },
-      { name: 'hourlyRate', label: 'serviceFields.cleaning.hourlyRate', type: 'number' }
+      { name: 'experience', label: 'serviceFields.cleaning.experienceYears', type: 'number' },
+      { name: 'hourlyRate', label: 'serviceFields.cleaning.hourlyRate', type: 'number' },
+      {
+        name: 'materialsProvided',
+        label: 'serviceFields.cleaning.materialsProvided',
+        type: 'select',
+        options: ['yes', 'no', 'partial']
+      }
     ]
   },
 
@@ -149,16 +155,28 @@ const serviceFieldsConfig = {
         type: 'checkbox',
         options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
       },
-      { name: 'experienceYears', label: 'serviceFields.gardening.experienceYears', type: 'number' },
-      { name: 'hourlyRate', label: 'serviceFields.gardening.hourlyRate', type: 'number' }
+      { name: 'experience', label: 'serviceFields.gardening.experienceYears', type: 'number' },
+      { name: 'rate', label: 'serviceFields.gardening.hourlyRate', type: 'number' }
     ]
   },
 
   petcare: {
     fields: [
       { name: 'age', label: 'serviceForm.common.age', type: 'number' },
-      { 
-        name: 'animalTypes', 
+      {
+        name: 'availability_days',
+        label: 'serviceFields.petcare.availability_days',
+        type: 'checkbox',
+        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת']
+      },
+      {
+        name: 'availability_hours',
+        label: 'serviceFields.petcare.availability_hours',
+        type: 'checkbox',
+        options: ['בוקר', 'צהריים', 'אחר הצהריים', 'ערב', 'לילה']
+      },
+      {
+        name: 'animalTypes',
         label: 'serviceFields.petcare.animalTypes', 
         type: 'checkbox',
         options: ['כלבים', 'חתולים', 'ציפורים', 'מכרסמים קטנים', 'דגים', 'זוחלים']
@@ -214,58 +232,100 @@ const serviceFieldsConfig = {
   tutoring: {
     fields: [
       { name: 'age', label: 'serviceForm.common.age', type: 'number' },
-      { 
-        name: 'subjects', 
-        label: 'serviceFields.tutoring.subjects', 
+      { name: 'experience', label: 'serviceFields.tutoring.experienceYears', type: 'number' },
+      {
+        name: 'availability_days',
+        label: 'serviceFields.tutoring.availability_days',
+        type: 'checkbox',
+        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת']
+      },
+      {
+        name: 'availability_hours',
+        label: 'serviceFields.tutoring.availability_hours',
+        type: 'checkbox',
+        options: ['בוקר', 'צהריים', 'אחר הצהריים', 'ערב', 'לילה']
+      },
+      {
+        name: 'subjects',
+        label: 'serviceFields.tutoring.subjects',
         type: 'checkbox',
         options: ['מתמטיקה', 'אנגלית', 'עברית', 'פיזיקה', 'כימיה', 'ביולוגיה', 'היסטוריה', 'ספורט', 'מוזיקה', 'אומנות']
       },
-      { 
-        name: 'levels', 
-        label: 'serviceFields.tutoring.levels', 
+      {
+        name: 'levels',
+        label: 'serviceFields.tutoring.levels',
         type: 'checkbox',
         options: ['יסודי', 'חטיבת ביניים', 'תיכון', 'בגרות', 'מכינה', 'אקדמי', 'מבוגרים']
       },
-      { name: 'qualifications', label: 'serviceFields.tutoring.qualifications', type: 'text' },
-      { 
-        name: 'teachingMode', 
-        label: 'serviceFields.tutoring.teachingMode', 
+      {
+        name: 'teachingMode',
+        label: 'serviceFields.tutoring.teachingMode',
         type: 'select',
         options: ['פרונטלי בלבד', 'אונליין בלבד', 'שניהם']
       },
-      { name: 'experienceYears', label: 'serviceFields.tutoring.experienceYears', type: 'number' },
-      { name: 'hourlyRate', label: 'serviceFields.tutoring.hourlyRate', type: 'number' }
+      { name: 'hourlyRate', label: 'serviceFields.tutoring.hourlyRate', type: 'number' },
+      {
+        name: 'specializations',
+        label: 'serviceFields.tutoring.specializations',
+        type: 'checkbox',
+        options: ['הכנה לבחינות', 'הפרעות למידה']
+      },
+      { name: 'qualifications', label: 'serviceFields.tutoring.qualifications', type: 'text' }
     ]
   },
 
- eldercare: {
+  eldercare: {
     fields: [
       { name: 'age', label: 'serviceForm.common.age', type: 'number' },
-      { 
-        name: 'careTypes', 
-        label: 'serviceFields.eldercare.careTypes', 
+      {
+        name: 'careTypes',
+        label: 'serviceFields.eldercare.careTypes',
         type: 'checkbox',
-        options: ['ליווי ותמיכה', 'עזרה בניקיון הבית', 'בישול והכנת אוכל', 'קניות ומשימות', 'מתן תרופות', 'ליווי לרופאים']
+        options: ['companionship', 'houseCleaning', 'cooking', 'shopping', 'medication', 'doctorVisits']
       },
       { name: 'certification', label: 'serviceFields.eldercare.certification', type: 'text' },
-    { 
-        name: 'availability_hours', 
-        label: 'serviceFields.eldercare.availability', 
+      {
+        name: 'availability_days',
+        label: 'serviceFields.eldercare.availability_days',
+        type: 'checkbox',
+        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת']
+      },
+      {
+        name: 'availability_hours',
+        label: 'serviceFields.eldercare.availability',
         type: 'checkbox',
         options: ['בוקר', 'צהריים', 'אחר הצהריים', 'ערב', 'לילה', '24/7']
       },
       { name: 'experience', label: 'serviceFields.eldercare.experience', type: 'number' },
-      { 
-        name: 'specialConditions', 
-        label: 'serviceFields.eldercare.specialConditions', 
-        type: 'checkbox',
-        options: ['אלצהיימר', 'פרקינסון', 'סוכרת', 'בעיות ניידות', 'דמנציה']
-      },
-      { 
-        name: 'languages', 
-        label: 'serviceFields.eldercare.languages', 
+      {
+        name: 'languages',
+        label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
         options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+      },
+      {
+        name: 'administrativeHelp',
+        label: 'serviceFields.eldercare.administrativeHelp',
+        type: 'select',
+        options: ['not_specified', 'yes', 'no']
+      },
+      {
+        name: 'medicalAccompaniment',
+        label: 'serviceFields.eldercare.medicalAccompaniment',
+        type: 'select',
+        options: ['not_specified', 'yes', 'no']
+      },
+      {
+        name: 'vehicleForOutings',
+        label: 'serviceFields.eldercare.vehicleForOutings',
+        type: 'select',
+        options: ['not_specified', 'yes', 'no']
+      },
+      {
+        name: 'specialConditions',
+        label: 'serviceFields.eldercare.specialConditions',
+        type: 'checkbox',
+        options: ['alzheimer', 'parkinson', 'diabetes', 'mobility', 'dementia']
       }
     ]
   },
@@ -314,9 +374,22 @@ const serviceFieldsConfig = {
   property_management: {
     fields: [
       { name: 'age', label: 'serviceForm.common.age', type: 'number' },
-      { 
-        name: 'management_type', 
-        label: 'serviceFields.property_management.management_type', 
+      { name: 'experience', label: 'serviceFields.property_management.experienceYears', type: 'number' },
+      {
+        name: 'availability_days',
+        label: 'serviceFields.property_management.availability_days',
+        type: 'checkbox',
+        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע']
+      },
+      {
+        name: 'availability_hours',
+        label: 'serviceFields.property_management.availability_hours',
+        type: 'checkbox',
+        options: ['בוקר', 'צהריים', 'אחר הצהריים', 'ערב', 'הכל']
+      },
+      {
+        name: 'management_type',
+        label: 'serviceFields.property_management.management_type',
         type: 'checkbox',
         options: [
           'חיפוש ובדיקת שוכרים מתאימים',
@@ -331,8 +404,7 @@ const serviceFieldsConfig = {
           'בדיקה תקופתית של הנכס',
           'תיקונים כלליים (חשמל, אינסטלציה, מזגן וכו׳)'
         ]
-      },
-      { name: 'experienceYears', label: 'serviceFields.property_management.experienceYears', type: 'number' }
+      }
     ]
   },
 
