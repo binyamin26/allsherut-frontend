@@ -179,12 +179,13 @@ const fieldToMultipleCategories = {
                'glassWorkTypes', 'locksmithWorkTypes'],
 };
 
-const ServiceDetailsEditor = ({ 
-  serviceType, 
-  serviceDetails, 
-  isEditMode, 
-  onFieldChange, 
-  onArrayChange 
+const ServiceDetailsEditor = ({
+  serviceType,
+  serviceDetails,
+  isEditMode,
+  onFieldChange,
+  onArrayChange,
+  excludeFields = []
 }) => {
   const { t, currentLanguage } = useLanguage();
   const { apiCall } = useAuth();
@@ -554,9 +555,9 @@ if (field.type === 'select') {
     <div className="info-section">
       <h3 className="section-title">{t('dashboard.serviceDetails')}</h3>
       <div className="service-specific-grid">
-        {config.fields.map(field => (
-          <div 
-            key={field.name} 
+        {config.fields.filter(field => !excludeFields.includes(field.name)).map(field => (
+          <div
+            key={field.name}
             className={`professional-item ${field.type === 'json-array' || field.type === 'checkbox' || (serviceType === 'tutoring' && field.name === 'subjects') ? 'full-width' : ''}`}
           >
             <label>{t(field.label)}:</label>

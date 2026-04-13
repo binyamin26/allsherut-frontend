@@ -2550,6 +2550,11 @@ placeholder={t('dashboard.security.newPasswordPlaceholder')}
                           return;
                         }
                         setAddServiceMsg({ type: '', text: '' });
+                        // Pré-remplir l'âge depuis le profil existant du prestataire
+                        const existingAge = userData?.serviceDetails?.age;
+                        if (existingAge) {
+                          setAddServiceDetails(prev => ({ ...prev, age: existingAge }));
+                        }
                         setAddServiceStep(2);
                       }}
                       disabled={!addServiceType}
@@ -2579,6 +2584,7 @@ placeholder={t('dashboard.security.newPasswordPlaceholder')}
                     isEditMode={true}
                     onFieldChange={handleAddServiceFieldChange}
                     onArrayChange={handleAddServiceArrayChange}
+                    excludeFields={['age']}
                   />
 
                   {/* Message */}
