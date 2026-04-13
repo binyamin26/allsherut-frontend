@@ -250,9 +250,22 @@ const normalizeValue = (val) => {
 
 const translateFieldValue = (fieldName, value) => {
   if (!value) return t('dashboard.notSpecified');
-  
+
+  // ✅ Vérifier si le champ a un keyPrefix (traduction directe par clé i18n)
+  if (config) {
+    const fieldConfig = config.fields.find(f => f.name === fieldName);
+    if (fieldConfig?.keyPrefix) {
+      return t(fieldConfig.keyPrefix + value);
+    }
+    // Vérifier si les options sont des objets avec labelKey
+    if (fieldConfig?.options) {
+      const optObj = fieldConfig.options.find(opt => typeof opt === 'object' && opt.value === value);
+      if (optObj?.labelKey) return t(optObj.labelKey);
+    }
+  }
+
   const normalizedValue = normalizeValue(value);
-  
+
   // ✅ FONCTION HELPER : Vérifier si une option match (exact OU partiel)
   const optionMatches = (optValue, searchValue) => {
     const normalizedOpt = normalizeValue(optValue);
@@ -471,6 +484,9 @@ if (field.type === 'select') {
           onChange={(e) => onFieldChange(field.name, e.target.value)}
           placeholder={t('common.select')}
           options={field.options.map((opt) => {
+            if (typeof opt === 'object' && opt.labelKey) {
+              return { value: opt.value, label: t(opt.labelKey) };
+            }
             const optValue = typeof opt === 'string' ? opt : opt.value;
             const optLabel = typeof opt === 'string' ? opt : opt.label;
             const translatedLabel = translateFieldValue(field.name, optLabel);

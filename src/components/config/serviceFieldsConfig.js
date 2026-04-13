@@ -281,6 +281,7 @@ const serviceFieldsConfig = {
         name: 'careTypes',
         label: 'serviceFields.eldercare.careTypes',
         type: 'checkbox',
+        keyPrefix: 'serviceForm.eldercare.careTypes.',
         options: ['companionship', 'houseCleaning', 'cooking', 'shopping', 'medication', 'doctorVisits']
       },
       { name: 'certification', label: 'serviceFields.eldercare.certification', type: 'text' },
@@ -307,24 +308,37 @@ const serviceFieldsConfig = {
         name: 'administrativeHelp',
         label: 'serviceFields.eldercare.administrativeHelp',
         type: 'select',
-        options: ['not_specified', 'yes', 'no']
+        options: [
+          { value: 'not_specified', labelKey: 'filters.noMatter' },
+          { value: 'yes', labelKey: 'common.yes' },
+          { value: 'no', labelKey: 'common.no' }
+        ]
       },
       {
         name: 'medicalAccompaniment',
         label: 'serviceFields.eldercare.medicalAccompaniment',
         type: 'select',
-        options: ['not_specified', 'yes', 'no']
+        options: [
+          { value: 'not_specified', labelKey: 'filters.noMatter' },
+          { value: 'yes', labelKey: 'common.yes' },
+          { value: 'no', labelKey: 'common.no' }
+        ]
       },
       {
         name: 'vehicleForOutings',
         label: 'serviceFields.eldercare.vehicleForOutings',
         type: 'select',
-        options: ['not_specified', 'yes', 'no']
+        options: [
+          { value: 'not_specified', labelKey: 'filters.noMatter' },
+          { value: 'yes', labelKey: 'common.yes' },
+          { value: 'no', labelKey: 'common.no' }
+        ]
       },
       {
         name: 'specialConditions',
         label: 'serviceFields.eldercare.specialConditions',
         type: 'checkbox',
+        keyPrefix: 'serviceForm.eldercare.conditions.',
         options: ['alzheimer', 'parkinson', 'diabetes', 'mobility', 'dementia']
       }
     ]
