@@ -108,6 +108,8 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
   
   const [tutoringSubcategories, setTutoringSubcategories] = useState([]);
   const [loadingSubcategories, setLoadingSubcategories] = useState(false);
+  const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
+  const modalRef = useRef(null);
 
   // Fonction pour gérer les checkboxes "Tout" vs options spécifiques
   const handleExclusiveCheckbox = (field, value, allValue, allOptions) => {
@@ -169,6 +171,30 @@ const services = [
   { key: 'glass_works', name: t('services.glass_works'), image: '/images/verre.png', gradient: 'glass_works-gradient' },
   { key: 'locksmith', name: t('services.locksmith'), image: '/images/serrure.png', gradient: 'locksmith-gradient' }
 ];
+
+  // ── Détection clavier mobile via visualViewport ──────────────────────
+  useEffect(() => {
+    if (!isOpen) return;
+    const viewport = window.visualViewport;
+    if (!viewport) return;
+
+    const onResize = () => {
+      const keyboardOpen = viewport.height < window.screen.height * 0.75;
+      setIsKeyboardOpen(keyboardOpen);
+    };
+
+    viewport.addEventListener('resize', onResize);
+    return () => viewport.removeEventListener('resize', onResize);
+  }, [isOpen]);
+
+  // ── Auto-scroll vers le champ focalisé ───────────────────────────────
+  const handleFocusCapture = (e) => {
+    const target = e.target;
+    if (!['INPUT', 'SELECT', 'TEXTAREA'].includes(target.tagName)) return;
+    setTimeout(() => {
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 350); // attendre que le clavier soit ouvert
+  };
 
   useEffect(() => {
     if (isOpen) {
@@ -1922,20 +1948,25 @@ const renderWorkingAreasSection = () => {
   return (
     <>
       <div className="modal-overlay" onClick={onClose}>
-        <div className="modal-content auth-modal" onClick={(e) => e.stopPropagation()}>
+        <div
+          ref={modalRef}
+          className={`modal-content auth-modal${isKeyboardOpen ? ' keyboard-open' : ''}`}
+          onClick={(e) => e.stopPropagation()}
+          onFocusCapture={handleFocusCapture}
+        >
           <button className="modal-close" onClick={onClose}>
             <X size={24} />
           </button>
 
           <div className="modal-header">
-          <h2>{mode === 'login' ? t('auth.modal.loginTitle') : t('auth.modal.registerTitle')}</h2>
-<p className="modal-subtitle">
-  {mode === 'login' 
-    ? t('auth.modal.loginSubtitle') 
-    : step === 2 
-      ? t('auth.modal.step2Subtitle')
-      : ''}
-</p>
+            <h2>{mode === 'login' ? t('auth.modal.loginTitle') : t('auth.modal.registerTitle')}</h2>
+            <p className="modal-subtitle">
+              {mode === 'login'
+                ? t('auth.modal.loginSubtitle')
+                : step === 2
+                  ? t('auth.modal.step2Subtitle')
+                  : ''}
+            </p>
           </div>
 
           {mode === 'register' && step === 1 && (

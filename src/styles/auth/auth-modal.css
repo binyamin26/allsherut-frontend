@@ -1957,3 +1957,69 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+/* ============================================================
+   MOBILE PRO — Full-screen + Header compressible + Auto-scroll
+   ============================================================ */
+
+@media (max-width: 640px) {
+
+  /* 1. Full-screen modal sur mobile */
+  .modal-content.auth-modal {
+    width: 100vw;
+    max-width: 100vw;
+    height: 100dvh;          /* dvh = tient compte du clavier */
+    max-height: 100dvh;
+    border-radius: 0 !important;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Le formulaire prend tout l'espace restant et scrolle */
+  .auth-modal .auth-form {
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    /* 4. Padding en bas pour que le dernier champ reste visible au-dessus du clavier */
+    padding-bottom: max(env(safe-area-inset-bottom), 140px);
+  }
+
+  /* Bouton de fermeture repositionné */
+  .auth-modal .modal-close {
+    top: 12px;
+    left: 12px;
+    right: auto;
+    z-index: 10;
+  }
+
+  /* 2. Header compressible quand le clavier est ouvert */
+  .auth-modal .modal-header {
+    transition: padding 0.25s ease, gap 0.25s ease;
+    flex-shrink: 0;
+  }
+
+  .auth-modal .modal-header h2 {
+    transition: font-size 0.25s ease;
+  }
+
+  .auth-modal .modal-subtitle {
+    transition: opacity 0.2s ease, max-height 0.25s ease, margin 0.2s ease;
+    overflow: hidden;
+  }
+
+  /* État compressé : clavier ouvert */
+  .auth-modal.keyboard-open .modal-header {
+    padding: 12px var(--space-6) 10px;
+  }
+
+  .auth-modal.keyboard-open .modal-header h2 {
+    font-size: 1rem;
+  }
+
+  .auth-modal.keyboard-open .modal-subtitle {
+    opacity: 0;
+    max-height: 0;
+    margin: 0;
+  }
+}
