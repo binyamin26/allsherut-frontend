@@ -867,10 +867,37 @@ router.post('/add', authenticateToken, async (req, res) => {
         [userId, serviceType, validSeekingType]
       );
 
+      const newProviderId = insertResult.insertId;
+
       // Si des détails de service sont fournis, les sauvegarder immédiatement
       if (serviceDetails && typeof serviceDetails === 'object' && Object.keys(serviceDetails).length > 0) {
-        const newProviderId = insertResult.insertId;
         await User.updateServiceProviderWithDetails(connection, newProviderId, serviceType, serviceDetails);
+        // Marquer le profil comme complété
+        await connection.execute(
+          'UPDATE service_providers SET profile_completed = 1 WHERE id = ?',
+          [newProviderId]
+        );
+      }
+
+      // Copier les zones de travail du service existant pour que le prestataire apparaisse dans les recherches
+      const [existingAreas] = await connection.execute(
+        `SELECT pwa.city, pwa.neighborhood
+         FROM provider_working_areas pwa
+         JOIN service_providers sp ON pwa.provider_id = sp.id
+         WHERE sp.user_id = ? AND sp.id != ?
+         LIMIT 20`,
+        [userId, newProviderId]
+      );
+
+      if (existingAreas && existingAreas.length > 0) {
+        for (const area of existingAreas) {
+          await connection.execute(
+            `INSERT IGNORE INTO provider_working_areas (provider_id, city, neighborhood, created_at)
+             VALUES (?, ?, ?, NOW())`,
+            [newProviderId, area.city, area.neighborhood]
+          );
+        }
+        console.log(`✅ ${existingAreas.length} zones de travail copiées vers le nouveau service`);
       }
     });
 

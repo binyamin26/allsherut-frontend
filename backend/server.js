@@ -331,6 +331,13 @@ const runMigrations = async () => {
     ['location_area column', `ALTER TABLE job_listings ADD COLUMN location_area VARCHAR(100) NULL`],
     ['fix experience_required', `ALTER TABLE job_listings MODIFY COLUMN experience_required VARCHAR(20) NOT NULL DEFAULT 'beginner'`],
     ['fix service_type', `ALTER TABLE service_providers MODIFY COLUMN service_type VARCHAR(50) NOT NULL`],
+    ['service_details column', `ALTER TABLE service_providers ADD COLUMN service_details JSON NULL`],
+    ['profile_image sp column', `ALTER TABLE service_providers ADD COLUMN profile_image VARCHAR(255) NULL`],
+    ['availability_days sp column', `ALTER TABLE service_providers ADD COLUMN availability_days JSON NULL`],
+    ['availability_hours sp column', `ALTER TABLE service_providers ADD COLUMN availability_hours JSON NULL`],
+    ['babysitting_types sp column', `ALTER TABLE service_providers ADD COLUMN babysitting_types JSON NULL`],
+    ['can_travel_alone sp column', `ALTER TABLE service_providers ADD COLUMN can_travel_alone TINYINT(1) DEFAULT 0`],
+    ['profile_completed sp column', `ALTER TABLE service_providers ADD COLUMN profile_completed BOOLEAN DEFAULT FALSE`],
   ];
 
   for (const [label, sql] of steps) {
