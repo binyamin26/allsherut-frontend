@@ -224,11 +224,13 @@ const handleContact = () => {
         {/* === CHAMPS COMPACTS D'ABORD === */}
         
         {/* Taux horaire */}
-        {['babysitting', 'cleaning', 'gardening', 'tutoring'].includes(provider.serviceType) &&
-         (parseFloat(provider.hourlyRate) > 0 || parseFloat(details.hourlyRate) > 0 || parseFloat(details.rate) > 0) && (
+        {['babysitting', 'cleaning', 'gardening', 'tutoring'].includes(provider.serviceType) && (
           <div className="detail-item">
             <strong>{t('provider.details.hourlyRate')}:</strong>
-            <span className="price-highlight">₪{parseFloat(provider.hourlyRate) > 0 ? provider.hourlyRate : (parseFloat(details.hourlyRate) > 0 ? details.hourlyRate : details.rate)}/שעה</span>
+            {parseFloat(provider.hourlyRate) > 0 || parseFloat(details.hourlyRate) > 0 || parseFloat(details.rate) > 0
+              ? <span className="price-highlight">₪{parseFloat(provider.hourlyRate) > 0 ? provider.hourlyRate : (parseFloat(details.hourlyRate) > 0 ? details.hourlyRate : details.rate)}/שעה</span>
+              : <span>{t('dashboard.notSpecified')}</span>
+            }
           </div>
         )}
         
@@ -618,12 +620,13 @@ const handleContact = () => {
                 <span>{details.age} {t('provider.details.years')}</span>
               </div>
             )}
-            {parseFloat(details.hourlyRate) > 0 && (
-              <div className="detail-item">
-                <strong>{t('provider.details.hourlyRate')}:</strong>
-                <span className="price-highlight">₪{details.hourlyRate}/שעה</span>
-              </div>
-            )}
+            <div className="detail-item">
+              <strong>{t('provider.details.hourlyRate')}:</strong>
+              {parseFloat(details.hourlyRate) > 0
+                ? <span className="price-highlight">₪{details.hourlyRate}/שעה</span>
+                : <span>{t('dashboard.notSpecified')}</span>
+              }
+            </div>
             {details.work_types?.includes('סידור כללי') && details.general_organization_types && details.general_organization_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🏠 {t('provider.details.generalOrganization')}:</strong>
