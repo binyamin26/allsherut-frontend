@@ -1232,6 +1232,7 @@ router.put('/update-full-profile',
   [
     body('firstName').optional().trim().isLength({ min: 2 }).withMessage('שם פרטי נדרש'),
     body('lastName').optional().trim().isLength({ min: 2 }).withMessage('שם משפחה נדרש'),
+    body('email').optional().isEmail().toLowerCase().withMessage(MESSAGES.ERROR.VALIDATION.INVALID_EMAIL),
     body('phone').optional().custom((value) => {
       if (value && !value.match(/^05\d{8}$/)) {
         throw new Error(MESSAGES.ERROR.VALIDATION.INVALID_PHONE);
@@ -1264,10 +1265,22 @@ body('hourlyRate').optional({ nullable: true, checkFalsy: true }).isFloat({ min:
         return res.forbidden('insufficient');
       }
 
+      // Vérifier unicité du nouvel email
+      if (req.body.email && req.body.email !== user.email) {
+        const existing = await query(
+          'SELECT id FROM users WHERE email = ? AND id != ? AND is_active = 1',
+          [req.body.email.toLowerCase().trim(), user.id]
+        );
+        if (existing && existing.length > 0) {
+          return res.status(409).json({ success: false, message: 'כתובת האימייל כבר בשימוש' });
+        }
+      }
+
       // Préparer les données de mise à jour
       const updateData = {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
+        email: req.body.email,
         phone: req.body.phone,
         description: req.body.description,
         experienceYears: req.body.experienceYears,
