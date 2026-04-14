@@ -1904,7 +1904,7 @@ const renderWorkingAreasSection = () => {
                           setShowNeighborhoodSuggestions(false);
                         }
                       }}
-                      placeholder={t('auth.typeNeighborhood') || 'הקלד שם שכונה...'}
+                      placeholder={t('auth.typeNeighborhood', 'הקלד שם שכונה...')}
                       className="standard-input"
                       autoComplete="off"
                     />
