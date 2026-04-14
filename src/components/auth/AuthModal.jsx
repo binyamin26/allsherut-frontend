@@ -188,8 +188,9 @@ const services = [
     return () => viewport.removeEventListener('resize', onResize);
   }, [isOpen]);
 
-  // ── Auto-scroll vers le champ focalisé ───────────────────────────────
+  // ── Auto-scroll vers le champ focalisé (mobile uniquement) ──────────
   const handleFocusCapture = (e) => {
+    if (window.innerWidth >= 768) return; // desktop : pas de scroll auto
     const target = e.target;
     if (!['INPUT', 'SELECT', 'TEXTAREA'].includes(target.tagName)) return;
     setTimeout(() => {
