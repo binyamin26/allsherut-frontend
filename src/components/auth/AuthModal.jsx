@@ -2314,21 +2314,28 @@ const renderWorkingAreasSection = () => {
                />
              )}
 
+              {(error || submitError) && (
+                <div className="error-message">
+                  <AlertCircle size={20} />
+                  <span>{submitError || error}</span>
+                </div>
+              )}
+
               <div className="step-navigation">
-                <button 
-                  type="button" 
+                <button
+                  type="button"
                   className="btn btn-primary btn-secondary-style"
                   onClick={() => setStep(1)}
                 >
                 {t('auth.back')}
                 </button>
 
-                <button 
-                  type="submit" 
+                <button
+                  type="submit"
                   className="btn btn-primary"
                   disabled={
-                    loading || 
-                    isSubmitting || 
+                    loading ||
+                    isSubmitting ||
                     fieldValidation.email.status === 'checking' ||
                     fieldValidation.email.status === 'invalid'
                   }
