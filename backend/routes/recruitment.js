@@ -217,13 +217,17 @@ router.post('/', authenticateToken, async (req, res) => {
       [providerId]
     );
 
-    // Si pas de ville fournie, récupérer depuis provider_working_areas
+    // Si pas de ville fournie, récupérer depuis provider_working_areas (par user_id pour couvrir tous les services)
     let finalCity = location_city || null;
     let finalArea = location_area || null;
     if (!finalCity) {
       const areas = await query(
-        `SELECT city, neighborhood FROM provider_working_areas WHERE provider_id = ? AND city != 'ישראל' LIMIT 1`,
-        [providerId]
+        `SELECT pwa.city, pwa.neighborhood
+         FROM provider_working_areas pwa
+         JOIN service_providers sp ON sp.id = pwa.provider_id
+         WHERE sp.user_id = ? AND pwa.city != 'ישראל'
+         LIMIT 1`,
+        [userId]
       );
       if (areas && areas.length > 0) {
         finalCity = areas[0].city;
@@ -296,22 +300,21 @@ router.put('/:id', authenticateToken, async (req, res) => {
       location_area,
     } = req.body;
 
-    // Si pas de ville fournie, récupérer depuis provider_working_areas
+    // Si pas de ville fournie, récupérer depuis provider_working_areas (par user_id)
     let finalCityPut = location_city || null;
     let finalAreaPut = location_area || null;
     if (!finalCityPut) {
-      const listing = await query(
-        `SELECT jl.provider_id FROM job_listings jl WHERE jl.id = ?`, [listingId]
+      const areas = await query(
+        `SELECT pwa.city, pwa.neighborhood
+         FROM provider_working_areas pwa
+         JOIN service_providers sp ON sp.id = pwa.provider_id
+         WHERE sp.user_id = ? AND pwa.city != 'ישראל'
+         LIMIT 1`,
+        [userId]
       );
-      if (listing && listing.length > 0) {
-        const areas = await query(
-          `SELECT city, neighborhood FROM provider_working_areas WHERE provider_id = ? AND city != 'ישראל' LIMIT 1`,
-          [listing[0].provider_id]
-        );
-        if (areas && areas.length > 0) {
-          finalCityPut = areas[0].city;
-          if (!finalAreaPut) finalAreaPut = areas[0].neighborhood || null;
-        }
+      if (areas && areas.length > 0) {
+        finalCityPut = areas[0].city;
+        if (!finalAreaPut) finalAreaPut = areas[0].neighborhood || null;
       }
     }
 
