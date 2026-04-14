@@ -1650,7 +1650,9 @@ if (!isValid) {
     }
 
     if (!result?.success) {
-      setSubmitError(result?.message || t('auth.errors.serverError'));
+      console.error('❌ Registration error:', result);
+      const firstFieldError = result?.errors?.[0]?.message;
+      setSubmitError(firstFieldError || result?.message || t('auth.errors.serverError'));
       return;
     }
 
