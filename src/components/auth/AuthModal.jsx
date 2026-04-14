@@ -766,9 +766,11 @@ if (!serviceDetails.availability_hours || serviceDetails.availability_hours.leng
 
      case 'eldercare':
         if (!serviceDetails.careTypes || serviceDetails.careTypes.length === 0) newErrors['serviceDetails.careTypes'] = 'יש לבחור סוגי טיפול';
-        if (!serviceDetails.certification) newErrors['serviceDetails.certification'] = 'הכשרה/הסמכה נדרשת';
+        if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) newErrors['serviceDetails.availability_days'] = 'יש לבחור ימי זמינות';
         if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) newErrors['serviceDetails.availability_hours'] = 'יש לבחור זמינות';
         if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = 'ניסיון עם קשישים נדרש';
+        if (!serviceDetails.age) newErrors['serviceDetails.age'] = 'גיל נדרש';
+        if (!serviceDetails.languages || serviceDetails.languages.length === 0) newErrors['serviceDetails.languages'] = 'יש לבחור לפחות שפה אחת';
         break;
         
 case 'electrician':
