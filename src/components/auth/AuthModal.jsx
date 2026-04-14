@@ -110,6 +110,8 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
   const [tutoringSubcategories, setTutoringSubcategories] = useState([]);
   const [loadingSubcategories, setLoadingSubcategories] = useState(false);
   const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
+  const [neighborhoodInput, setNeighborhoodInput] = useState('');
+  const [showNeighborhoodSuggestions, setShowNeighborhoodSuggestions] = useState(false);
   const modalRef = useRef(null);
 
   // Fonction pour gérer les checkboxes "Tout" vs options spécifiques
@@ -1879,29 +1881,76 @@ const renderWorkingAreasSection = () => {
               </div>
 
               {!formData.workingAreas?.some(a => a.city === selectedCity && a.neighborhood === 'כל השכונות') && (
-                <>
-                  {availableNeighborhoods.length > 0 ? (
-                    <div className="neighborhoods-selection">
-                      <h5>{t('auth.selectNeighborhoods', { city: selectedCity })}</h5>
-                      <div className="checkbox-group">
-                        {availableNeighborhoods.map(neighborhood => (
-                          <label key={neighborhood} className="checkbox-item">
-                            <input
-                              type="checkbox"
-                              checked={formData.workingAreas.some(a => a.city === selectedCity && a.neighborhood === neighborhood)}
-                              onChange={() => handleWorkingAreasChange(neighborhood)}
-                            />
-                            {neighborhood}
-                          </label>
+                <div style={{ marginTop: '0.5rem', position: 'relative' }}>
+                  <div style={{ display: 'flex', gap: '0.5rem' }}>
+                    <input
+                      type="text"
+                      value={neighborhoodInput}
+                      onChange={(e) => {
+                        setNeighborhoodInput(e.target.value);
+                        setShowNeighborhoodSuggestions(true);
+                      }}
+                      onFocus={() => setShowNeighborhoodSuggestions(true)}
+                      onBlur={() => setTimeout(() => setShowNeighborhoodSuggestions(false), 150)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault();
+                          const val = neighborhoodInput.trim();
+                          if (val && !formData.workingAreas.some(a => a.city === selectedCity && a.neighborhood === val)) {
+                            setFormData(prev => ({ ...prev, workingAreas: [...prev.workingAreas, { city: selectedCity, neighborhood: val }] }));
+                            if (errors.workingAreas) setErrors(prev => ({ ...prev, workingAreas: '' }));
+                          }
+                          setNeighborhoodInput('');
+                          setShowNeighborhoodSuggestions(false);
+                        }
+                      }}
+                      placeholder={t('auth.typeNeighborhood') || 'הקלד שם שכונה...'}
+                      className="standard-input"
+                      autoComplete="off"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const val = neighborhoodInput.trim();
+                        if (val && !formData.workingAreas.some(a => a.city === selectedCity && a.neighborhood === val)) {
+                          setFormData(prev => ({ ...prev, workingAreas: [...prev.workingAreas, { city: selectedCity, neighborhood: val }] }));
+                          if (errors.workingAreas) setErrors(prev => ({ ...prev, workingAreas: '' }));
+                        }
+                        setNeighborhoodInput('');
+                        setShowNeighborhoodSuggestions(false);
+                      }}
+                      className="btn btn-primary"
+                      style={{ whiteSpace: 'nowrap', padding: '0.5rem 1rem' }}
+                    >+</button>
+                  </div>
+
+                  {showNeighborhoodSuggestions && (() => {
+                    const filtered = availableNeighborhoods.filter(n =>
+                      n.toLowerCase().includes(neighborhoodInput.toLowerCase()) &&
+                      !formData.workingAreas.some(a => a.city === selectedCity && a.neighborhood === n)
+                    );
+                    return filtered.length > 0 ? (
+                      <div style={{ position: 'absolute', top: '100%', right: 0, left: 0, zIndex: 100, backgroundColor: '#fff', border: '1px solid #d1d5db', borderRadius: '6px', maxHeight: '180px', overflowY: 'auto', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
+                        {filtered.map(n => (
+                          <div
+                            key={n}
+                            onMouseDown={() => {
+                              setFormData(prev => ({ ...prev, workingAreas: [...prev.workingAreas, { city: selectedCity, neighborhood: n }] }));
+                              if (errors.workingAreas) setErrors(prev => ({ ...prev, workingAreas: '' }));
+                              setNeighborhoodInput('');
+                              setShowNeighborhoodSuggestions(false);
+                            }}
+                            style={{ padding: '0.5rem 0.75rem', cursor: 'pointer', fontSize: '0.9rem' }}
+                            onMouseEnter={e => e.currentTarget.style.backgroundColor = '#f3f4f6'}
+                            onMouseLeave={e => e.currentTarget.style.backgroundColor = ''}
+                          >
+                            {n}
+                          </div>
                         ))}
                       </div>
-                    </div>
-                  ) : (
-                    <div style={{ marginTop: '0.5rem', padding: '0.75rem', backgroundColor: '#fef3c7', borderRadius: '6px', fontSize: '0.9rem', color: '#92400e' }}>
-                      ℹ️ {t('auth.noNeighborhoods', { city: selectedCity })}
-                    </div>
-                  )}
-                </>
+                    ) : null;
+                  })()}
+                </div>
               )}
             </>
           )}
