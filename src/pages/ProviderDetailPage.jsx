@@ -242,11 +242,11 @@ const handleContact = () => {
           </div>
         )}
 
-        {/* Titre/spécialisation */}
-        {provider.title && (
+        {/* Spécialisation = nom du service traduit */}
+        {provider.serviceType && (
           <div className="detail-item">
-           <strong>{t('provider.details.specialization')}:</strong>
-            <span>{provider.title}</span>
+            <strong>{t('provider.details.specialization')}:</strong>
+            <span>{t(`services.${provider.serviceType}`, provider.serviceType)}</span>
           </div>
         )}
 
