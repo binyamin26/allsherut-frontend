@@ -217,6 +217,20 @@ router.post('/', authenticateToken, async (req, res) => {
       [providerId]
     );
 
+    // Si pas de ville fournie, récupérer depuis provider_working_areas
+    let finalCity = location_city || null;
+    let finalArea = location_area || null;
+    if (!finalCity) {
+      const areas = await query(
+        `SELECT city, neighborhood FROM provider_working_areas WHERE provider_id = ? AND city != 'ישראל' LIMIT 1`,
+        [providerId]
+      );
+      if (areas && areas.length > 0) {
+        finalCity = areas[0].city;
+        if (!finalArea) finalArea = areas[0].neighborhood || null;
+      }
+    }
+
     const result = await query(
       `INSERT INTO job_listings
         (provider_id, service_type, contract_type, salary, payment_type,
@@ -235,8 +249,8 @@ router.post('/', authenticateToken, async (req, res) => {
         JSON.stringify(languages_required || []),
         driving_license ? 1 : 0,
         description,
-        location_city || null,
-        location_area || null,
+        finalCity,
+        finalArea,
       ]
     );
 
@@ -282,6 +296,25 @@ router.put('/:id', authenticateToken, async (req, res) => {
       location_area,
     } = req.body;
 
+    // Si pas de ville fournie, récupérer depuis provider_working_areas
+    let finalCityPut = location_city || null;
+    let finalAreaPut = location_area || null;
+    if (!finalCityPut) {
+      const listing = await query(
+        `SELECT jl.provider_id FROM job_listings jl WHERE jl.id = ?`, [listingId]
+      );
+      if (listing && listing.length > 0) {
+        const areas = await query(
+          `SELECT city, neighborhood FROM provider_working_areas WHERE provider_id = ? AND city != 'ישראל' LIMIT 1`,
+          [listing[0].provider_id]
+        );
+        if (areas && areas.length > 0) {
+          finalCityPut = areas[0].city;
+          if (!finalAreaPut) finalAreaPut = areas[0].neighborhood || null;
+        }
+      }
+    }
+
     await query(
       `UPDATE job_listings SET
         contract_type = ?,
@@ -307,8 +340,8 @@ router.put('/:id', authenticateToken, async (req, res) => {
         JSON.stringify(languages_required || []),
         driving_license ? 1 : 0,
         description,
-        location_city || null,
-        location_area || null,
+        finalCityPut,
+        finalAreaPut,
         listingId,
       ]
     );
