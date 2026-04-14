@@ -40,12 +40,6 @@ const validatePasswordComplexity = (password) => {
     errors.push('הסיסמה חייבת להכיל לפחות ספרה אחת');
   }
   
-  // Vérification mots de passe communs
-  const commonPasswords = ['password', '123456', 'password123', 'admin', 'qwerty', '12345678'];
-  if (commonPasswords.some(common => password.toLowerCase().includes(common.toLowerCase()))) {
-    errors.push(MESSAGES.ERROR.VALIDATION.COMMON_PASSWORD);
-  }
-  
   return errors;
 };
 
