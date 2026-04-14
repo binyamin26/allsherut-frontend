@@ -90,6 +90,7 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errors, setErrors] = useState({});
+  const [error, setError] = useState('');
   const [fieldValidation, setFieldValidation] = useState({
     email: { status: 'idle', message: '' },
     phone: { status: 'idle', message: '' },
@@ -1607,6 +1608,7 @@ if (!isValid) {
 
  const handleFinalSubmit = async () => {
   setIsSubmitting(true);
+  setError('');
 
   try {
     let result;
