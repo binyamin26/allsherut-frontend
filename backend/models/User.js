@@ -160,8 +160,8 @@ if (userData.role === 'provider') {
         `, [
           userData.email.toLowerCase().trim(),
           hashedPassword,
-          userData.firstName || userData.first_name,
-          userData.lastName || userData.last_name,
+          userData.firstName || userData.first_name || null,
+          (userData.lastName ?? userData.last_name) ?? null,
           userData.phone || null,
           userData.role,
           userData.serviceType || userData.service_type || null,
