@@ -614,9 +614,7 @@ try {
       errors.push({ field: 'firstName', message: 'שם פרטי נדרש' });
     }
 
-    if (!lastName || !lastName.trim()) {
-      errors.push({ field: 'lastName', message: 'שם משפחה נדרש' });
-    }
+    // last name is optional (single-name users allowed)
 
     // Téléphone (optionnel mais si fourni, doit être valide)
     if (userData.phone && !/^05\d{8}$/.test(userData.phone)) {
