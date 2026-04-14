@@ -77,6 +77,7 @@ export const FILTER_CONFIG = {
     ],
     religiousLevels: [
       { value: '', key: 'filters.noMatter' },
+      { value: 'לא משנה', key: 'filters.noMatter' },
       { value: 'חילוני', key: 'filters.religious.secular' },
       { value: 'מסורתי', key: 'filters.religious.traditional' },
       { value: 'דתי', key: 'filters.religious.religious' },
