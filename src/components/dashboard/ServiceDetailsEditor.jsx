@@ -415,7 +415,7 @@ const translateTutoringSubject = (subjectNameHe) => {
       }
       
       if (field.type === 'number') {
-        return <span>{value || 0}</span>;
+        return <span>{value && value > 0 ? value : t('dashboard.notSpecified')}</span>;
       }
 
       if (field.type === 'boolean-select') {
