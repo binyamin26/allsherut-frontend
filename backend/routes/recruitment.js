@@ -221,6 +221,7 @@ router.post('/', authenticateToken, async (req, res) => {
     let finalCity = location_city || null;
     let finalArea = location_area || null;
     if (!finalCity) {
+      // D'abord chercher une ville spécifique (pas "כל ישראל")
       const areas = await query(
         `SELECT pwa.city, pwa.neighborhood
          FROM provider_working_areas pwa
@@ -232,6 +233,20 @@ router.post('/', authenticateToken, async (req, res) => {
       if (areas && areas.length > 0) {
         finalCity = areas[0].city;
         if (!finalArea) finalArea = areas[0].neighborhood || null;
+      } else {
+        // Fallback : "כל ישראל"
+        const allIsrael = await query(
+          `SELECT pwa.city, pwa.neighborhood
+           FROM provider_working_areas pwa
+           JOIN service_providers sp ON sp.id = pwa.provider_id
+           WHERE sp.user_id = ?
+           LIMIT 1`,
+          [userId]
+        );
+        if (allIsrael && allIsrael.length > 0) {
+          // Si city = 'ישראל', utiliser le neighborhood ('כל ישראל') comme city
+          finalCity = allIsrael[0].city === 'ישראל' ? allIsrael[0].neighborhood : allIsrael[0].city;
+        }
       }
     }
 
@@ -315,6 +330,18 @@ router.put('/:id', authenticateToken, async (req, res) => {
       if (areas && areas.length > 0) {
         finalCityPut = areas[0].city;
         if (!finalAreaPut) finalAreaPut = areas[0].neighborhood || null;
+      } else {
+        const allIsrael = await query(
+          `SELECT pwa.city, pwa.neighborhood
+           FROM provider_working_areas pwa
+           JOIN service_providers sp ON sp.id = pwa.provider_id
+           WHERE sp.user_id = ?
+           LIMIT 1`,
+          [userId]
+        );
+        if (allIsrael && allIsrael.length > 0) {
+          finalCityPut = allIsrael[0].city === 'ישראל' ? allIsrael[0].neighborhood : allIsrael[0].city;
+        }
       }
     }
 
