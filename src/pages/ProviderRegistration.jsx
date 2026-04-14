@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './ProviderRegistration.css';
 import { useAuth } from '../context/AuthContext';
+import { getAllCities, getNeighborhoodsByCity } from '../data/israelLocations';
 
 // Import tous les formulaires de services
 import BabysittingForm from '../components/services/babysitting/BabysittingForm';
@@ -34,6 +35,15 @@ const ProviderRegistration = () => {
   const { setUser } = useAuth();
   const [currentStep, setCurrentStep] = useState(1);
   const [errors, setErrors] = useState({});
+
+  // Autocomplete ville
+  const [cityInput, setCityInput] = useState('');
+  const [showCitySuggestions, setShowCitySuggestions] = useState(false);
+  const allCities = getAllCities();
+
+  // Autocomplete quartier
+  const [neighborhoodInput, setNeighborhoodInput] = useState('');
+  const [showNeighborhoodSuggestions, setShowNeighborhoodSuggestions] = useState(false);
 
   // État du formulaire
   const [formData, setFormData] = useState({
@@ -493,28 +503,101 @@ const meResponse = await axios.get(
             <div className="form-step">
               <h2>כתובת</h2>
               
-              <div className="input-group">
+              {/* Ville avec autocomplete */}
+              <div className="input-group" style={{ position: 'relative' }}>
                 <label>עיר *</label>
                 <input
                   type="text"
                   name="city"
-                  value={formData.city}
-                  onChange={handleChange}
+                  value={cityInput}
+                  onChange={(e) => {
+                    setCityInput(e.target.value);
+                    setFormData(prev => ({ ...prev, city: e.target.value, neighborhood: '', }));
+                    setNeighborhoodInput('');
+                    setShowCitySuggestions(true);
+                    if (errors.city) setErrors(prev => ({ ...prev, city: '' }));
+                  }}
+                  onFocus={() => setShowCitySuggestions(true)}
+                  onBlur={() => setTimeout(() => setShowCitySuggestions(false), 150)}
+                  placeholder="הקלד שם עיר..."
+                  autoComplete="off"
                   className={errors.city ? 'error' : ''}
                 />
                 {errors.city && <span className="error-text">{errors.city}</span>}
+                {showCitySuggestions && (() => {
+                  const filtered = allCities.filter(c =>
+                    c.includes(cityInput) && cityInput.length > 0
+                  );
+                  return filtered.length > 0 ? (
+                    <div style={{ position: 'absolute', top: '100%', right: 0, left: 0, zIndex: 100, backgroundColor: '#fff', border: '1px solid #d1d5db', borderRadius: '6px', maxHeight: '180px', overflowY: 'auto', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
+                      {filtered.map(c => (
+                        <div
+                          key={c}
+                          onMouseDown={() => {
+                            setCityInput(c);
+                            setFormData(prev => ({ ...prev, city: c, neighborhood: '' }));
+                            setNeighborhoodInput('');
+                            setShowCitySuggestions(false);
+                            if (errors.city) setErrors(prev => ({ ...prev, city: '' }));
+                          }}
+                          style={{ padding: '0.5rem 0.75rem', cursor: 'pointer', fontSize: '0.9rem' }}
+                          onMouseEnter={e => e.currentTarget.style.backgroundColor = '#f3f4f6'}
+                          onMouseLeave={e => e.currentTarget.style.backgroundColor = ''}
+                        >
+                          {c}
+                        </div>
+                      ))}
+                    </div>
+                  ) : null;
+                })()}
               </div>
 
-              <div className="input-group">
+              {/* Quartier avec autocomplete */}
+              <div className="input-group" style={{ position: 'relative' }}>
                 <label>שכונה *</label>
                 <input
                   type="text"
                   name="neighborhood"
-                  value={formData.neighborhood}
-                  onChange={handleChange}
+                  value={neighborhoodInput}
+                  onChange={(e) => {
+                    setNeighborhoodInput(e.target.value);
+                    setFormData(prev => ({ ...prev, neighborhood: e.target.value }));
+                    setShowNeighborhoodSuggestions(true);
+                    if (errors.neighborhood) setErrors(prev => ({ ...prev, neighborhood: '' }));
+                  }}
+                  onFocus={() => setShowNeighborhoodSuggestions(true)}
+                  onBlur={() => setTimeout(() => setShowNeighborhoodSuggestions(false), 150)}
+                  placeholder="הקלד שם שכונה..."
+                  autoComplete="off"
                   className={errors.neighborhood ? 'error' : ''}
                 />
                 {errors.neighborhood && <span className="error-text">{errors.neighborhood}</span>}
+                {showNeighborhoodSuggestions && (() => {
+                  const neighborhoods = getNeighborhoodsByCity(formData.city);
+                  const filtered = neighborhoods.filter(n =>
+                    n.includes(neighborhoodInput) && neighborhoodInput.length > 0
+                  );
+                  return filtered.length > 0 ? (
+                    <div style={{ position: 'absolute', top: '100%', right: 0, left: 0, zIndex: 100, backgroundColor: '#fff', border: '1px solid #d1d5db', borderRadius: '6px', maxHeight: '180px', overflowY: 'auto', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
+                      {filtered.map(n => (
+                        <div
+                          key={n}
+                          onMouseDown={() => {
+                            setNeighborhoodInput(n);
+                            setFormData(prev => ({ ...prev, neighborhood: n }));
+                            setShowNeighborhoodSuggestions(false);
+                            if (errors.neighborhood) setErrors(prev => ({ ...prev, neighborhood: '' }));
+                          }}
+                          style={{ padding: '0.5rem 0.75rem', cursor: 'pointer', fontSize: '0.9rem' }}
+                          onMouseEnter={e => e.currentTarget.style.backgroundColor = '#f3f4f6'}
+                          onMouseLeave={e => e.currentTarget.style.backgroundColor = ''}
+                        >
+                          {n}
+                        </div>
+                      ))}
+                    </div>
+                  ) : null;
+                })()}
               </div>
 
               <div className="input-group">
