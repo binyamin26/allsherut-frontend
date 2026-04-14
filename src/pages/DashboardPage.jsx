@@ -664,8 +664,10 @@ const cleanProfileData = (data) => {
   
   // ✅ Nettoyer les champs numériques dans serviceDetails
   if (cleaned.serviceDetails) {
+    const numericKeys = ['hourlyRate', 'hourly_rate', 'rate', 'experience', 'experience_years', 'experienceYears', 'age'];
     Object.keys(cleaned.serviceDetails).forEach(key => {
-      if (key.includes('Years') || key.includes('Rate') || key === 'rate' || key === 'hourlyRate' || key === 'experience' || key === 'age') {
+      const isNumeric = numericKeys.includes(key) || key.includes('Rate') || key.includes('Years');
+      if (isNumeric) {
         if (cleaned.serviceDetails[key] === '' || cleaned.serviceDetails[key] === undefined) {
           cleaned.serviceDetails[key] = null;
         } else if (cleaned.serviceDetails[key] !== null) {
@@ -673,6 +675,10 @@ const cleanProfileData = (data) => {
         }
       }
     });
+    // Supprimer les champs de tarif redondants pour éviter les conflits backend
+    // hourlyRate est la source de vérité — hourly_rate et rate sont des alias stales
+    delete cleaned.serviceDetails.hourly_rate;
+    delete cleaned.serviceDetails.rate;
   }
   
   return cleaned;
@@ -687,28 +693,36 @@ const handleSaveProfile = async () => {
     
     cleanedData.activeServiceType = activeService || userData?.serviceType;
     
-    // ✅ AJOUTER : Synchroniser les valeurs de serviceDetails vers le niveau root
+    // ✅ Synchroniser les valeurs de serviceDetails vers le niveau root
     if (cleanedData.serviceDetails) {
-      // Tarif horaire
+      // Tarif horaire — hourlyRate est la seule source de vérité
       if (cleanedData.serviceDetails.hourlyRate !== undefined) {
-        cleanedData.hourlyRate = cleanedData.serviceDetails.hourlyRate;
-      } else if (cleanedData.serviceDetails.hourly_rate !== undefined) {
-        cleanedData.hourlyRate = cleanedData.serviceDetails.hourly_rate;
-      } else if (cleanedData.serviceDetails.rate !== undefined) {
-        cleanedData.hourlyRate = cleanedData.serviceDetails.rate;
+        cleanedData.hourlyRate = cleanedData.serviceDetails.hourlyRate !== null
+          ? parseFloat(cleanedData.serviceDetails.hourlyRate) || 0
+          : null;
       }
-      
-      // Années d'expérience  
+
+      // Années d'expérience
       if (cleanedData.serviceDetails.experience !== undefined) {
-        cleanedData.experienceYears = cleanedData.serviceDetails.experience;
+        cleanedData.experienceYears = cleanedData.serviceDetails.experience !== null
+          ? parseInt(cleanedData.serviceDetails.experience) || 0
+          : null;
       } else if (cleanedData.serviceDetails.experience_years !== undefined) {
-        cleanedData.experienceYears = cleanedData.serviceDetails.experience_years;
+        cleanedData.experienceYears = cleanedData.serviceDetails.experience_years !== null
+          ? parseInt(cleanedData.serviceDetails.experience_years) || 0
+          : null;
       }
-      
+
       // Description
       if (cleanedData.serviceDetails.description !== undefined) {
         cleanedData.description = cleanedData.serviceDetails.description;
       }
+
+      // Supprimer les alias stales (déjà fait dans cleanProfileData, double sécurité)
+      delete cleanedData.serviceDetails.hourly_rate;
+      delete cleanedData.serviceDetails.rate;
+      delete cleanedData.serviceDetails.experience_years;
+      delete cleanedData.serviceDetails.experienceYears;
     }
     
     console.log('📤 Données envoyées:', cleanedData);

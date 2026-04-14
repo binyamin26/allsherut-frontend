@@ -442,8 +442,8 @@ const translateTutoringSubject = (subjectNameHe) => {
       return (
         <input
           type="number"
-          value={value || ''}
-          onChange={(e) => onFieldChange(field.name, e.target.value)}
+          value={value !== null && value !== undefined && value !== false ? value : ''}
+          onChange={(e) => onFieldChange(field.name, e.target.value === '' ? '' : Number(e.target.value))}
           className="form-input inline-edit"
           min="0"
         />
