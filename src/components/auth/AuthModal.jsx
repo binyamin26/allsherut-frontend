@@ -90,7 +90,7 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errors, setErrors] = useState({});
-  const [error, setError] = useState('');
+  const [submitError, setSubmitError] = useState('');
   const [fieldValidation, setFieldValidation] = useState({
     email: { status: 'idle', message: '' },
     phone: { status: 'idle', message: '' },
@@ -1608,7 +1608,7 @@ if (!isValid) {
 
  const handleFinalSubmit = async () => {
   setIsSubmitting(true);
-  setError('');
+  setSubmitError('');
 
   try {
     let result;
@@ -1648,7 +1648,7 @@ if (!isValid) {
     }
 
     if (!result?.success) {
-      setError(result?.message || t('auth.errors.serverError'));
+      setSubmitError(result?.message || t('auth.errors.serverError'));
       return;
     }
 
@@ -1689,7 +1689,7 @@ if (!isValid) {
 
   } catch (error) {
     console.error('Auth error:', error);
-    setError(error?.message || t('auth.errors.serverError'));
+    setSubmitError(error?.message || t('auth.errors.serverError'));
   } finally {
     setIsSubmitting(false);
   }
@@ -2029,10 +2029,10 @@ const renderWorkingAreasSection = () => {
                 </div>
               )}
 
-              {error && (
+              {(error || submitError) && (
                 <div className="error-message">
                   <AlertCircle size={20} />
-                  <span>{error}</span>
+                  <span>{submitError || error}</span>
                 </div>
               )}
 
@@ -2109,15 +2109,15 @@ const renderWorkingAreasSection = () => {
                 </Link>
               </div>
 
-              {error && (
+              {(error || submitError) && (
                 <div className="error-message">
                   <AlertCircle size={20} />
-                  <span>{error}</span>
+                  <span>{submitError || error}</span>
                 </div>
               )}
 
-              <button 
-                type="submit" 
+              <button
+                type="submit"
                 className="btn btn-primary btn-block"
                 disabled={loading}
               >
