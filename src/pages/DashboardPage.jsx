@@ -1026,24 +1026,46 @@ const handleAddService = async () => {
   setAddServiceMsg({ type: '', text: '' });
   try {
     const token = localStorage.getItem('homesherut_token');
-    const res = await fetch('/api/services/add', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-      body: JSON.stringify({
-        serviceType: addServiceType,
-        seekingType: addServiceSeeking,
-        serviceDetails: addServiceDetails,
-      }),
-    });
-    const data = await res.json();
-    if (data.success) {
-      setAddServiceMsg({ type: 'success', text: t('dashboard.addService.success') });
-      await switchService(addServiceType);
-      setActiveService(addServiceType);
-      localStorage.setItem('activeService', addServiceType);
-      setTimeout(() => resetAddServiceModal(), 1200);
+
+    if (addServiceSeeking === 'recruitment') {
+      // Soumettre l'offre de recrutement
+      const res = await fetch('/api/recruitment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ ...addServiceDetails, service_type: addServiceType }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setAddServiceMsg({ type: 'success', text: t('dashboard.addService.success') });
+        loadMyListings();
+        setTimeout(() => {
+          resetAddServiceModal();
+          setActiveTab('recruitment');
+        }, 1200);
+      } else {
+        setAddServiceMsg({ type: 'error', text: data.message || 'שגיאה' });
+      }
     } else {
-      setAddServiceMsg({ type: 'error', text: data.message || 'שגיאה' });
+      // Soumettre le service (chercher des clients)
+      const res = await fetch('/api/services/add', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({
+          serviceType: addServiceType,
+          seekingType: addServiceSeeking,
+          serviceDetails: addServiceDetails,
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setAddServiceMsg({ type: 'success', text: t('dashboard.addService.success') });
+        await switchService(addServiceType);
+        setActiveService(addServiceType);
+        localStorage.setItem('activeService', addServiceType);
+        setTimeout(() => resetAddServiceModal(), 1200);
+      } else {
+        setAddServiceMsg({ type: 'error', text: data.message || 'שגיאה' });
+      }
     }
   } catch {
     setAddServiceMsg({ type: 'error', text: 'שגיאה בהוספת השירות' });
@@ -2592,14 +2614,22 @@ placeholder={t('dashboard.security.newPasswordPlaceholder')}
                     {t(`services.${addServiceType}`, addServiceType)}
                   </div>
 
-                  <ServiceDetailsEditor
-                    serviceType={addServiceType}
-                    serviceDetails={addServiceDetails}
-                    isEditMode={true}
-                    onFieldChange={handleAddServiceFieldChange}
-                    onArrayChange={handleAddServiceArrayChange}
-                    excludeFields={['age']}
-                  />
+                  {addServiceSeeking === 'recruitment' ? (
+                    <RecruitmentForm
+                      details={addServiceDetails}
+                      errors={recruitmentErrors}
+                      onChange={(field, val) => setAddServiceDetails(prev => ({ ...prev, [field]: val }))}
+                    />
+                  ) : (
+                    <ServiceDetailsEditor
+                      serviceType={addServiceType}
+                      serviceDetails={addServiceDetails}
+                      isEditMode={true}
+                      onFieldChange={handleAddServiceFieldChange}
+                      onArrayChange={handleAddServiceArrayChange}
+                      excludeFields={['age']}
+                    />
+                  )}
 
                   {/* Message */}
                   {addServiceMsg.text && (
