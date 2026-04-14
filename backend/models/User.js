@@ -854,14 +854,20 @@ static async updateServiceProviderWithDetails(connection, providerId, serviceTyp
       'certifications'
     ];
     
-    // Champs de base communs
+    // Champs de base communs (uniquement les colonnes garanties dans le schéma)
     const baseFields = {
       description: details.description || `ספק ${serviceType} מקצועי`,
       experience_years: details.experience || details.experienceYears || 0,
       hourly_rate: details.hourlyRate || details.rate || 0,
-      service_details: JSON.stringify(details),
-      profile_image: profileImagePath ? profileImagePath.replace(/\\/g, '/') : null
     };
+
+    // profile_image : seulement si une image est fournie (colonne optionnelle en prod)
+    if (profileImagePath) {
+      baseFields.profile_image = profileImagePath.replace(/\\/g, '/');
+    }
+
+    // service_details : colonne JSON ajoutée via migration — incluse conditionnellement
+    baseFields.service_details = JSON.stringify(details);
 
     // ✅ AUTOMATIQUE : Pour chaque colonne JSON, convertir en JSON
     jsonColumns.forEach(col => {
