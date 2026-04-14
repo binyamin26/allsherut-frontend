@@ -13,6 +13,16 @@ import {
   ChevronLeft, Send, AlertCircle
 } from 'lucide-react';
 
+const DAY_ORDER = ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת', 'כל השבוע'];
+const sortDays = (days) => {
+  if (!Array.isArray(days)) return days;
+  return [...days].sort((a, b) => {
+    const ia = DAY_ORDER.indexOf(a);
+    const ib = DAY_ORDER.indexOf(b);
+    return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib);
+  });
+};
+
 const ProviderDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -395,7 +405,7 @@ const handleContact = () => {
         {(details.availableDays || details.availability_days) && (details.availableDays?.length > 0 || details.availability_days?.length > 0) && (
           <div className="detail-item">
            <strong>{t('provider.details.availableDays')}:</strong>
-        <span>{translateAndJoin(details.availableDays || details.availability_days, 'days', t)}</span>
+        <span>{translateAndJoin(sortDays(details.availableDays || details.availability_days), 'days', t)}</span>
           </div>
         )}
 
