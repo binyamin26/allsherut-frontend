@@ -2110,8 +2110,8 @@ const galleryImages = (() => {
                   {editingListing !== null && (
                     <div style={{ border: '1px solid #e5e7eb', borderRadius: '12px', padding: '1rem' }}>
 
-                      {/* Sélecteur de service — affiché uniquement en mode création */}
-                      {!editingListing?.id && user?.services?.length > 1 && (
+                      {/* Sélecteur de service — affiché en mode création */}
+                      {!editingListing?.id && (
                         <div style={{ marginBottom: '1.25rem', padding: '0.75rem 1rem', background: '#f8fafc', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
                           <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: '#374151', marginBottom: '0.4rem' }}>
                             {t('recruitment.forService')} *
