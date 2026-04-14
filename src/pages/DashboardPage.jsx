@@ -1470,7 +1470,18 @@ const galleryImages = (() => {
           </div>
           <div className="contact-details">
             <label>{t('dashboard.email')}:</label>
-            <span>{userData?.email}</span>
+            {isEditMode ? (
+              <input
+                type="email"
+                value={editFormData.email}
+                onChange={(e) => handleEditInputChange('email', e.target.value)}
+                className="form-input inline-edit"
+                placeholder="exemple@email.com"
+                autoComplete="off"
+              />
+            ) : (
+              <span>{userData?.email}</span>
+            )}
           </div>
         </div>
         
