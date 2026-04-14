@@ -1947,7 +1947,7 @@ const renderWorkingAreasSection = () => {
 
   return (
     <>
-      <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-overlay">
         <div
           ref={modalRef}
           className={`modal-content auth-modal${isKeyboardOpen ? ' keyboard-open' : ''}`}

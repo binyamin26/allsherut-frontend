@@ -70,20 +70,6 @@ const EldercareForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
           {errors['serviceDetails.careTypes'] && <span className="error-text">{errors['serviceDetails.careTypes']}</span>}
         </div>
 
-        <div className="input-group">
-          <label className="auth-form-label required">{t('serviceForm.eldercare.certification')}</label>
-          <input
-            type="text"
-             inputMode="numeric"
-            value={serviceDetails.certification || ''}
-            onChange={(e) => handleServiceDetailsChange('certification', e.target.value)}
-            placeholder={t('serviceForm.eldercare.certificationPlaceholder')}
-            className={`standard-input ${errors['serviceDetails.certification'] ? 'error' : ''}`}
-            data-field="certification"
-          />
-          {errors['serviceDetails.certification'] && <span className="error-text">{errors['serviceDetails.certification']}</span>}
-        </div>
-
         {/* JOURS DE DISPONIBILITÉ */}
 <div className="input-group">
   <label className="auth-form-label required">{t('serviceForm.common.availabilityDays')}</label>
@@ -192,58 +178,39 @@ const EldercareForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
           </div>
         </div>
 
-        {/* עזרה אדמיניסטרטיבית */}
-<div className="input-group">
-  <label className="auth-form-label required">{t('filters.eldercare.administrativeHelp')}</label>
-  <CustomDropdown
-  name="administrativeHelp"
-  value={serviceDetails.administrativeHelp || 'not_specified'}
-  onChange={(e) => handleServiceDetailsChange('administrativeHelp', e.target.value)}
-  placeholder={t('filters.noMatter')}
-  options={[
-    { value: 'not_specified', label: t('filters.noMatter') },
-    { value: 'yes', label: t('common.yes') },
-    { value: 'no', label: t('common.no') }
-  ]}
-/>
-</div>
-
-{/* ליווי רפואי */}
-<div className="input-group">
-  <label className="auth-form-label required">{t('filters.eldercare.medicalAccompaniment')}</label>
-<CustomDropdown
-  name="medicalAccompaniment"
-  value={serviceDetails.medicalAccompaniment || 'not_specified'}
-  onChange={(e) => handleServiceDetailsChange('medicalAccompaniment', e.target.value)}
-  placeholder={t('filters.noMatter')}
-  options={[
-    { value: 'not_specified', label: t('filters.noMatter') },
-    { value: 'yes', label: t('common.yes') },
-    { value: 'no', label: t('common.no') }
-  ]}
-/>
-</div>
-
-{/* רכב לטיולים */}
-<div className="input-group">
-  <label className="auth-form-label required">{t('filters.eldercare.vehicleForOutings')}</label>
-  <CustomDropdown
-  name="vehicleForOutings"
-  value={serviceDetails.vehicleForOutings || 'not_specified'}
-  onChange={(e) => handleServiceDetailsChange('vehicleForOutings', e.target.value)}
-  placeholder={t('filters.noMatter')}
-  options={[
-    { value: 'not_specified', label: t('filters.noMatter') },
-    { value: 'yes', label: t('common.yes') },
-    { value: 'no', label: t('common.no') }
-  ]}
-/>
-</div>
       </div>
 
       <div className="form-section optional">
         <h4>{t('serviceForm.common.optionalFields')}</h4>
-        
+
+        {/* Certification → optionnel */}
+        <div className="input-group">
+          <label>{t('serviceForm.eldercare.certification')}</label>
+          <input
+            type="text"
+            value={serviceDetails.certification || ''}
+            onChange={(e) => handleServiceDetailsChange('certification', e.target.value)}
+            placeholder={t('serviceForm.eldercare.certificationPlaceholder')}
+            className="standard-input"
+          />
+        </div>
+
+        {/* Véhicule pour sorties → optionnel */}
+        <div className="input-group">
+          <label>{t('filters.eldercare.vehicleForOutings')}</label>
+          <CustomDropdown
+            name="vehicleForOutings"
+            value={serviceDetails.vehicleForOutings || 'not_specified'}
+            onChange={(e) => handleServiceDetailsChange('vehicleForOutings', e.target.value)}
+            placeholder={t('filters.noMatter')}
+            options={[
+              { value: 'not_specified', label: t('filters.noMatter') },
+              { value: 'yes', label: t('common.yes') },
+              { value: 'no', label: t('common.no') }
+            ]}
+          />
+        </div>
+
         <div className="input-group">
           <label>{t('serviceForm.eldercare.specialConditions')}</label>
           <div className="checkbox-group">
