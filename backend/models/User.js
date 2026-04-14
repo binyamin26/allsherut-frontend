@@ -1087,9 +1087,6 @@ static async updateServiceProviderWithDetails(connection, providerId, serviceTyp
       if (!serviceDetails.levels || serviceDetails.levels.length === 0) {
         errors.push({ field: 'levels', message: 'יש לבחור רמות לימוד' });
       }
-      if (!serviceDetails.qualifications) {
-        errors.push({ field: 'qualifications', message: 'השכלה/הסמכות נדרשות' });
-      }
       if (!serviceDetails.teachingMode) {
         errors.push({ field: 'teachingMode', message: 'אופן הוראה נדרש' });
       }
