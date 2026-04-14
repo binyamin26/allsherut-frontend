@@ -346,14 +346,21 @@ const loadMyReviews = async () => {
   const handleSaveListing = async () => {
     const rd = recruitmentDetails;
     const errs = {};
-    if (!rd.contract_type) errs['recruitment.contract_type'] = 'יש לבחור סוג חוזה';
-    if (!rd.salary?.trim()) errs['recruitment.salary'] = 'שכר מוצע נדרש';
-    if (!rd.payment_type) errs['recruitment.payment_type'] = 'יש לבחור סוג תשלום';
-    if (!rd.availability_days?.length) errs['recruitment.availability_days'] = 'יש לבחור ימי עבודה';
-    if (!rd.availability_hours?.length) errs['recruitment.availability_hours'] = 'יש לבחור שעות עבודה';
-    if (!rd.experience_required) errs['recruitment.experience_required'] = 'יש לבחור ניסיון';
-    if (!rd.description?.trim()) errs['recruitment.description'] = 'תיאור המשרה נדרש';
-    if (Object.keys(errs).length > 0) { setRecruitmentErrors(errs); return; }
+    if (!rd.contract_type) errs['recruitment.contract_type'] = t('recruitment.error.contract_type');
+    if (!rd.salary?.trim()) errs['recruitment.salary'] = t('recruitment.error.salary');
+    if (!rd.payment_type) errs['recruitment.payment_type'] = t('recruitment.error.payment_type');
+    if (!rd.availability_days?.length) errs['recruitment.availability_days'] = t('recruitment.error.availability_days');
+    if (!rd.availability_hours?.length) errs['recruitment.availability_hours'] = t('recruitment.error.availability_hours');
+    if (!rd.experience_required) errs['recruitment.experience_required'] = t('recruitment.error.experience_required');
+    if (!rd.description?.trim()) errs['recruitment.description'] = t('recruitment.error.description');
+    if (Object.keys(errs).length > 0) {
+      setRecruitmentErrors(errs);
+      setTimeout(() => {
+        const firstError = document.querySelector('.error-text');
+        if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 80);
+      return;
+    }
     setRecruitmentErrors({});
     setRecruitmentSaving(true);
     try {
