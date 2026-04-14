@@ -1944,19 +1944,6 @@ const galleryImages = (() => {
                       <p style={{ color: '#6b7280', marginBottom: '1.25rem', fontSize: '0.95rem' }}>
                         {t('recruitment.dashboard.activateDesc')}
                       </p>
-                      <button
-                        onClick={() => { setEditingListing({}); setRecruitmentDetails({}); setRecruitmentErrors({}); setListingServiceType(activeService || user?.services?.[0] || ''); }}
-                        style={{
-                          display: 'inline-flex', alignItems: 'center', gap: '6px',
-                          padding: '0.6rem 1.5rem', borderRadius: '8px',
-                          background: 'linear-gradient(135deg, #0F2A44, #2F80ED)',
-                          color: '#fff', border: 'none', cursor: 'pointer',
-                          fontWeight: 600,
-                        }}
-                      >
-                        <Plus size={15} />
-                        {t('recruitment.dashboard.createNew')}
-                      </button>
                     </div>
                   )}
 
