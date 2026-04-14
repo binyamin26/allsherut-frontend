@@ -1099,14 +1099,20 @@ static async updateServiceProviderWithDetails(connection, providerId, serviceTyp
       if (!serviceDetails.careTypes || serviceDetails.careTypes.length === 0) {
         errors.push({ field: 'careTypes', message: 'יש לבחור סוגי טיפול' });
       }
-      if (!serviceDetails.certification) {
-        errors.push({ field: 'certification', message: 'הכשרה/הסמכה נדרשת' });
+      if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
+        errors.push({ field: 'availability_days', message: 'יש לבחור ימי זמינות' });
       }
       if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
         errors.push({ field: 'availability_hours', message: 'יש לבחור זמינות' });
       }
       if (!serviceDetails.experience) {
         errors.push({ field: 'experience', message: 'ניסיון עם קשישים נדרש' });
+      }
+      if (!serviceDetails.age) {
+        errors.push({ field: 'age', message: 'גיל נדרש' });
+      }
+      if (!serviceDetails.languages || serviceDetails.languages.length === 0) {
+        errors.push({ field: 'languages', message: 'יש לבחור לפחות שפה אחת' });
       }
       break;
 
