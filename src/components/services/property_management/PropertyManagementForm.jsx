@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
 
-const PropertyManagementForm = ({ serviceDetails, errors, handleServiceDetailsChange }) => {
+const PropertyManagementForm = ({ serviceDetails, errors, handleServiceDetailsChange, handleExclusiveCheckbox }) => {
     const { t } = useLanguage();
     
    const longTermManagement = [
@@ -129,19 +129,13 @@ const shortTermManagement = [
       { value: 'רביעי', label: t('days.wednesday') },
       { value: 'חמישי', label: t('days.thursday') },
       { value: 'שישי', label: t('days.friday') },
-      { value: 'שבת', label: t('days.saturday') }
+      { value: 'כל השבוע', label: t('days.allWeek') }
     ].map(day => (
       <label key={day.value} className="checkbox-item">
         <input
           type="checkbox"
           checked={serviceDetails.availability_days?.includes(day.value) || false}
-          onChange={(e) => {
-            const current = serviceDetails.availability_days || [];
-            const newDays = e.target.checked 
-              ? [...current, day.value]
-              : current.filter(d => d !== day.value);
-            handleServiceDetailsChange('availability_days', newDays);
-          }}
+          onChange={() => handleExclusiveCheckbox('availability_days', day.value, 'כל השבוע', ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי'])}
         />
         {day.label}
       </label>
