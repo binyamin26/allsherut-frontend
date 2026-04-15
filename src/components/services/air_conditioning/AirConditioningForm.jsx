@@ -171,7 +171,7 @@ const AirConditioningForm = ({ serviceDetails, errors, handleServiceDetailsChang
   { value: 'תיקון מיזוג מרכזי', key: 'filters.ac.centralRepair' },
   { value: 'תיקון מזגן אינוורטר', key: 'filters.ac.inverterRepair' },
   { value: 'תיקון מזגן VRF', key: 'filters.ac.vrfRepair' },
-  { value: 'ניקוי פילטרים', key: 'filters.ac.filterCleaning' },
+  { value: 'ניקוי יסודי', key: 'filters.ac.filterCleaning' },
   { value: 'תיקון צ\'ילרים', key: 'filters.ac.chillerRepair' },
   { value: 'טכנאי חדרי קירור', key: 'filters.ac.coldRoomTech' },
   { value: 'מילוי גז', key: 'filters.ac.gasRefill' }

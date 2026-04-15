@@ -260,7 +260,7 @@ const searchableServices = [
   { label: 'תיקון מיזוג מרכזי', labelEn: 'Central AC Repair', labelFr: 'Réparation clim centrale', labelRu: 'Ремонт центрального кондиционера', href: '/services/air_conditioning', type: 'specialty' },
   { label: 'תיקון מזגן אינוורטר', labelEn: 'Inverter AC Repair', labelFr: 'Réparation clim inverter', labelRu: 'Ремонт инверторного кондиционера', href: '/services/air_conditioning', type: 'specialty' },
   { label: 'תיקון מזגן VRF', labelEn: 'VRF AC Repair', labelFr: 'Réparation clim VRF', labelRu: 'Ремонт VRF кондиционера', href: '/services/air_conditioning', type: 'specialty' },
-  { label: 'ניקוי פילטרים', labelEn: 'Filter Cleaning', labelFr: 'Nettoyage filtres', labelRu: 'Очистка фильтров', href: '/services/air_conditioning', type: 'specialty' },
+  { label: 'ניקוי יסודי', labelEn: 'Deep Cleaning', labelFr: 'Nettoyage en profondeur', labelRu: 'Глубокая чистка', href: '/services/air_conditioning', type: 'specialty' },
   { label: "תיקון צ'ילרים", labelEn: 'Chiller Repair', labelFr: 'Réparation refroidisseurs', labelRu: 'Ремонт чиллеров', href: '/services/air_conditioning', type: 'specialty' },
   { label: 'טכנאי חדרי קירור', labelEn: 'Cold Room Technician', labelFr: 'Technicien chambre froide', labelRu: 'Техник холодильных камер', href: '/services/air_conditioning', type: 'specialty' },
   { label: 'פירוק והרכבת מזגן', labelEn: 'AC Disassembly/Reassembly', labelFr: 'Démontage/remontage clim', labelRu: 'Демонтаж/сборка кондиционера', href: '/services/air_conditioning', type: 'specialty' },

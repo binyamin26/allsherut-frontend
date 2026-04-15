@@ -182,6 +182,10 @@ const userData = useMemo(() => {
   const [hasDeletionScheduled, setHasDeletionScheduled] = useState(false);
   const [deletionDate, setDeletionDate] = useState(null);
 
+  const [isEditingName, setIsEditingName] = useState(false);
+  const [nameFormData, setNameFormData] = useState({ firstName: '', lastName: '' });
+  const [nameEditLoading, setNameEditLoading] = useState(false);
+
   const [isEditMode, setIsEditMode] = useState(false);
   const [editFormData, setEditFormData] = useState({
     firstName: '',
@@ -617,6 +621,28 @@ const response = await changePassword(
       ...prev,
       [field]: value
     }));
+  };
+
+  const handleSaveNameOnly = async () => {
+    if (!nameFormData.firstName.trim() || !nameFormData.lastName.trim()) return;
+    setNameEditLoading(true);
+    setMessage(null);
+    try {
+      const result = await updateProfile({
+        firstName: nameFormData.firstName.trim(),
+        lastName: nameFormData.lastName.trim()
+      });
+      if (result.success) {
+        setMessage({ type: 'success', text: t('dashboard.messages.profileUpdated') });
+        setIsEditingName(false);
+      } else {
+        setMessage({ type: 'error', text: result.message || t('dashboard.messages.profileUpdateError') });
+      }
+    } catch {
+      setMessage({ type: 'error', text: t('dashboard.messages.profileUpdateError') });
+    } finally {
+      setNameEditLoading(false);
+    }
   };
 
   const handleWorkingAreasChange = (neighborhood) => {
@@ -1409,7 +1435,26 @@ const galleryImages = (() => {
 
       {/* CENTRE - Nom + bouton éditer */}
       <div className="provider-center-info">
-        <h2 className="provider-name">{userData?.firstName} {userData?.lastName}</h2>
+        {isEditMode ? (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', marginBottom: '0.25rem' }}>
+            <input
+              type="text"
+              value={editFormData.firstName}
+              onChange={(e) => handleEditInputChange('firstName', e.target.value)}
+              className="form-input inline-edit"
+              placeholder="שם פרטי"
+            />
+            <input
+              type="text"
+              value={editFormData.lastName}
+              onChange={(e) => handleEditInputChange('lastName', e.target.value)}
+              className="form-input inline-edit"
+              placeholder="שם משפחה"
+            />
+          </div>
+        ) : (
+          <h2 className="provider-name">{userData?.firstName} {userData?.lastName}</h2>
+        )}
         <span className="service-name-label">{getServiceName(activeService || userData?.serviceType)}</span>
         {userData?.verified && (
           <div className="verified-badge">
@@ -2193,11 +2238,91 @@ const galleryImages = (() => {
 
           {activeTab === 'settings' && (
            <div className="settings-section">
+              {/* Carte "Informations personnelles" - visible pour tous les rôles */}
+              <div className="settings-card" style={{ marginBottom: '1.5rem' }}>
+                <div className="settings-card-header">
+                  <User size={24} />
+                  <h4>פרטים אישיים</h4>
+                </div>
+                <div className="settings-content">
+                  {isEditingName ? (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                      <div className="form-group">
+                        <label>שם פרטי</label>
+                        <input
+                          type="text"
+                          value={nameFormData.firstName}
+                          onChange={(e) => setNameFormData(prev => ({ ...prev, firstName: e.target.value }))}
+                          className="form-input"
+                          placeholder="שם פרטי"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label>שם משפחה</label>
+                        <input
+                          type="text"
+                          value={nameFormData.lastName}
+                          onChange={(e) => setNameFormData(prev => ({ ...prev, lastName: e.target.value }))}
+                          className="form-input"
+                          placeholder="שם משפחה"
+                        />
+                      </div>
+                      <div style={{ display: 'flex', gap: '0.75rem' }}>
+                        <button
+                          type="button"
+                          onClick={handleSaveNameOnly}
+                          disabled={nameEditLoading || !nameFormData.firstName.trim() || !nameFormData.lastName.trim()}
+                          className="btn btn-primary"
+                        >
+                          {nameEditLoading ? <><LoadingSpinner size="small" />{t('dashboard.saving')}</> : <><Save size={16} />{t('dashboard.saveChanges')}</>}
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setIsEditingName(false)}
+                          disabled={nameEditLoading}
+                          className="btn btn-secondary"
+                        >
+                          <X size={16} />{t('common.cancel')}
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem' }}>
+                      <div>
+                        <p style={{ margin: 0, fontWeight: 600, fontSize: '1.05rem' }}>
+                          {userData?.firstName} {userData?.lastName}
+                        </p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setNameFormData({ firstName: userData?.firstName || '', lastName: userData?.lastName || '' });
+                          setIsEditingName(true);
+                          setMessage(null);
+                        }}
+                        className="btn btn-secondary"
+                        style={{ flexShrink: 0 }}
+                      >
+                        <Edit size={16} />שנה שם
+                      </button>
+                    </div>
+                  )}
+                  {message && isEditingName === false && (
+                    <div className={`message ${message.type}`} style={{ marginTop: '0.75rem' }}>
+                      <div className="message-content">
+                        {message.type === 'success' ? <CheckCircle size={20} /> : <AlertCircle size={20} />}
+                        <span>{message.text}</span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+
               <h3 className="section-subtitle">{t('dashboard.security.title')}</h3>
               <p className="section-description">
                 {t('dashboard.security.description')}
               </p>
-              
+
               <div className="settings-card">
                <div className="settings-card-header">
                   <Lock size={24} />
