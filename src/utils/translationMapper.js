@@ -609,6 +609,8 @@ const translationMappings = {
     'בד"ץ רבני צפת': 'filters.chef.badatzTzfat',
     'כשרות הרב לנדא': 'filters.chef.rabbiLanda',
     'כשרות הרב רובין': 'filters.chef.rabbiRubin',
+    'רבנות מהדרין': 'filters.chef.rabbinateMethadrin',
+    'רבנות': 'filters.chef.rabbinate',
     'אחר': 'filters.chef.otherKosher',
   },
 

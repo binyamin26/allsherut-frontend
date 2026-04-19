@@ -806,7 +806,9 @@ laundry: {
       { value: 'בד"ץ מקווה ישראל', key: 'filters.chef.badatzMikveh' },
       { value: 'בד"ץ רבני צפת', key: 'filters.chef.badatzTzfat' },
       { value: 'כשרות הרב לנדא', key: 'filters.chef.rabbiLanda' },
-      { value: 'כשרות הרב רובין', key: 'filters.chef.rabbiRubin' }
+      { value: 'כשרות הרב רובין', key: 'filters.chef.rabbiRubin' },
+      { value: 'רבנות מהדרין', key: 'filters.chef.rabbinateMethadrin' },
+      { value: 'רבנות', key: 'filters.chef.rabbinate' }
     ]
   },
 

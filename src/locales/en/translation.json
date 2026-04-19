@@ -854,6 +854,8 @@
   "filters.chef.corporateEvent": "Corporate Event",
   "filters.chef.privateParty": "Private Party",
   "filters.chef.familyParty": "Family Celebration",
+  "filters.chef.rabbinateMethadrin": "Mehadrin Rabbinate",
+  "filters.chef.rabbinate": "Rabbinate",
   "filters.chef.otherKosher": "Other",
   "filters.chef.otherKosherPlaceholder": "Kashrut name",
   "filters.events.workTypes": "Work types",

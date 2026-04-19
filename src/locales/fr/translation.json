@@ -883,6 +883,8 @@
   "filters.chef.corporateEvent": "Événement entreprise",
   "filters.chef.privateParty": "Soirée privée",
   "filters.chef.familyParty": "Fête familiale",
+  "filters.chef.rabbinateMethadrin": "Rabbinat Méhadrin",
+  "filters.chef.rabbinate": "Rabbinat",
   "filters.chef.otherKosher": "Autre",
   "filters.chef.otherKosherPlaceholder": "Nom de la cacheroute",
   "filters.events.workTypes": "Types de travaux",
