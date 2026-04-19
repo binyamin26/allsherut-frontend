@@ -761,7 +761,7 @@ laundry: {
       kosherTypes: 'filters.chef.kosherTypes'
     },
     providerTypes: [
-      { value: 'טרייטר', key: 'filters.chef.caterer' },
+      { value: 'קייטרינג', key: 'filters.chef.caterer' },
       { value: 'שף פרטי', key: 'filters.chef.homeChef' }
     ],
     eventTypes: [
@@ -779,6 +779,7 @@ laundry: {
       { value: 'חגיגה משפחתית', key: 'filters.chef.familyParty' }
     ],
     workTypes: [
+      { value: 'סוג האירוע', key: 'filters.chef.eventType' },
       { value: 'סוג המטבח', key: 'filters.chef.cuisineType' },
       { value: 'כשרות', key: 'filters.chef.kashrut' }
     ],

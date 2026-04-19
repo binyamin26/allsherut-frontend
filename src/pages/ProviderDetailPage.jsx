@@ -713,6 +713,18 @@ const handleContact = () => {
                 <span>{details.age} {t('provider.details.years')}</span>
               </div>
             )}
+            {details.provider_type && details.provider_type.length > 0 && (
+              <div className="detail-item">
+                <strong>{t('provider.details.providerType')}:</strong>
+                <span>{translateAndJoin(details.provider_type, 'chefProviderType', t)}</span>
+              </div>
+            )}
+            {details.work_types?.includes('סוג האירוע') && details.event_types && details.event_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🎉 {t('provider.details.eventTypes')}:</strong>
+                <span>{translateAndJoin(details.event_types, 'chefEventType', t)}</span>
+              </div>
+            )}
             {details.work_types?.includes('סוג המטבח') && details.cuisine_types && details.cuisine_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🍳 {t('provider.details.cuisineTypes')}:</strong>
@@ -722,7 +734,10 @@ const handleContact = () => {
             {details.work_types?.includes('כשרות') && details.kosher_types && details.kosher_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>✡️ {t('provider.details.kosherTypes')}:</strong>
-<span>{translateAndJoin(details.kosher_types, 'chefKosher', t)}</span>
+                <span>{translateAndJoin(details.kosher_types, 'chefKosher', t)}</span>
+                {details.kosher_types.includes('אחר') && details.kosher_other && (
+                  <span> ({details.kosher_other})</span>
+                )}
               </div>
             )}
           </>

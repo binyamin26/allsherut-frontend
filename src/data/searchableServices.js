@@ -396,7 +396,7 @@ const searchableServices = [
 
   // 17. PRIVATE CHEF / TRAITEUR
   { label: 'שף פרטי', labelEn: 'Private Chef', labelFr: 'Chef à domicile', labelRu: 'Частный повар', href: '/services/private_chef', type: 'service' },
-  { label: 'טרייטר', labelEn: 'Caterer', labelFr: 'Traiteur', labelRu: 'Кейтеринг', href: '/services/private_chef', type: 'service' },
+  { label: 'קייטרינג', labelEn: 'Caterer', labelFr: 'Traiteur', labelRu: 'Кейтеринг', href: '/services/private_chef', type: 'service' },
   { label: 'קייטרינג', labelEn: 'Catering', labelFr: 'Traiteur / Catering', labelRu: 'Кейтеринг', href: '/services/private_chef', type: 'service' },
   { label: 'חתונה', labelEn: 'Wedding', labelFr: 'Mariage', labelRu: 'Свадьба', href: '/services/private_chef', type: 'specialty' },
   { label: 'בר מצווה', labelEn: 'Bar Mitzvah', labelFr: 'Bar Mitsva', labelRu: 'Бар-мицва', href: '/services/private_chef', type: 'specialty' },

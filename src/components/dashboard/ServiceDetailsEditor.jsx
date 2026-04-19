@@ -107,6 +107,8 @@ const fieldToCategoryMapping = {
   painting_work_types: 'paintingWorkTypes',
   
  // PRIVATE CHEF
+  provider_type: 'chefProviderType',
+  event_types: 'chefEventType',
   cuisineTypes: 'chefCuisine',
   cuisine_types: 'chefCuisine',
   kosherTypes: 'chefKosher',

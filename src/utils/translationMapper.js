@@ -567,6 +567,24 @@ const translationMappings = {
   // ═══════════════════════════════════════════════════════════════
   // PRIVATE CHEF
   // ═══════════════════════════════════════════════════════════════
+  chefProviderType: {
+    'קייטרינג': 'filters.chef.caterer',
+    'שף פרטי': 'filters.chef.homeChef',
+  },
+  chefEventType: {
+    'חתונה': 'filters.chef.wedding',
+    'בר מצווה': 'filters.chef.barMitsva',
+    'בת מצווה': 'filters.chef.batMitsva',
+    'ברית מילה': 'filters.chef.britMila',
+    'פדיון הבן': 'filters.chef.pidyonHaben',
+    'שבע ברכות': 'filters.chef.shevaBrahot',
+    'יום הולדת / יום שנה': 'filters.chef.anniversary',
+    'קידוש': 'filters.chef.kiddouch',
+    'שבת חתן': 'filters.chef.shabbatHatan',
+    'אירוע עסקי': 'filters.chef.corporateEvent',
+    'מסיבה פרטית': 'filters.chef.privateParty',
+    'חגיגה משפחתית': 'filters.chef.familyParty',
+  },
   chefCuisine: {
     'פיצות': 'filters.chef.pizza',
     'סושי': 'filters.chef.sushi',
@@ -591,6 +609,7 @@ const translationMappings = {
     'בד"ץ רבני צפת': 'filters.chef.badatzTzfat',
     'כשרות הרב לנדא': 'filters.chef.rabbiLanda',
     'כשרות הרב רובין': 'filters.chef.rabbiRubin',
+    'אחר': 'filters.chef.otherKosher',
   },
 
   // ═══════════════════════════════════════════════════════════════

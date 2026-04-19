@@ -97,7 +97,7 @@ const PrivateChefForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
           <label className="auth-form-label required">{t('serviceForm.chef.providerType')}</label>
           <div className="checkbox-group" data-field="provider_type">
             {[
-              { value: 'טרייטר', label: t('filters.chef.caterer') },
+              { value: 'קייטרינג', label: t('filters.chef.caterer') },
               { value: 'שף פרטי', label: t('filters.chef.homeChef') }
             ].map(type => (
               <label key={type.value} className="checkbox-item">
@@ -278,6 +278,31 @@ const PrivateChefForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
     {type.label}
   </label>
 ))}
+                  <label className="checkbox-item">
+                    <input
+                      type="checkbox"
+                      checked={serviceDetails.kosher_types?.includes('אחר') || false}
+                      onChange={(e) => {
+                        const current = serviceDetails.kosher_types || [];
+                        const newTypes = e.target.checked
+                          ? [...current, 'אחר']
+                          : current.filter(v => v !== 'אחר');
+                        handleServiceDetailsChange('kosher_types', newTypes);
+                        if (!e.target.checked) handleServiceDetailsChange('kosher_other', '');
+                      }}
+                    />
+                    {t('filters.chef.otherKosher')}
+                  </label>
+                  {serviceDetails.kosher_types?.includes('אחר') && (
+                    <input
+                      type="text"
+                      className="standard-input"
+                      style={{ marginTop: '8px' }}
+                      placeholder={t('filters.chef.otherKosherPlaceholder')}
+                      value={serviceDetails.kosher_other || ''}
+                      onChange={(e) => handleServiceDetailsChange('kosher_other', e.target.value)}
+                    />
+                  )}
                 </div>
                 {errors['serviceDetails.kosher_types'] && <span className="error-text">{errors['serviceDetails.kosher_types']}</span>}
               </div>

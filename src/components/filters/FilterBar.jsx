@@ -1893,6 +1893,27 @@ const PrivateChefFilters = ({ filters, handleFilterChange, handleCheckboxChange,
                   {t(opt.key)}
                 </label>
               ))}
+              <label className="checkbox-option">
+                <input
+                  type="checkbox"
+                  checked={filters.kosher_types?.includes('אחר') || false}
+                  onChange={(e) => {
+                    handleCheckboxChange('kosher_types', 'אחר', e.target.checked);
+                    if (!e.target.checked) handleFilterChange('kosher_other', '');
+                  }}
+                />
+                {t('filters.chef.otherKosher')}
+              </label>
+              {filters.kosher_types?.includes('אחר') && (
+                <input
+                  type="text"
+                  className="standard-input"
+                  style={{ marginTop: '8px', width: '100%' }}
+                  placeholder={t('filters.chef.otherKosherPlaceholder')}
+                  value={filters.kosher_other || ''}
+                  onChange={(e) => handleFilterChange('kosher_other', e.target.value)}
+                />
+              )}
             </div>
           )}
         </div>

@@ -806,49 +806,58 @@ const serviceFieldsConfig = {
     fields: [
       { name: 'age', label: 'serviceFields.private_chef.age', type: 'number' },
       { name: 'experience', label: 'serviceFields.private_chef.experience', type: 'number' },
-      { 
-        name: 'availability_days', 
-        label: 'serviceFields.private_chef.availability_days', 
+      {
+        name: 'provider_type',
+        label: 'serviceFields.private_chef.provider_type',
+        type: 'checkbox',
+        options: ['קייטרינג', 'שף פרטי']
+      },
+      {
+        name: 'availability_days',
+        label: 'serviceFields.private_chef.availability_days',
         type: 'checkbox',
         options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע']
       },
-      { 
-        name: 'availability_hours', 
-        label: 'serviceFields.private_chef.availability_hours', 
+      {
+        name: 'availability_hours',
+        label: 'serviceFields.private_chef.availability_hours',
         type: 'checkbox',
         options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
       },
-      { 
-        name: 'work_types', 
-        label: 'serviceFields.private_chef.work_types', 
+      {
+        name: 'work_types',
+        label: 'serviceFields.private_chef.work_types',
         type: 'checkbox',
-        options: ['סוג המטבח', 'כשרות']
+        options: ['סוג האירוע', 'סוג המטבח', 'כשרות']
       },
-      { 
-        name: 'cuisine_types', 
-        label: 'serviceFields.private_chef.cuisine_types', 
+      {
+        name: 'event_types',
+        label: 'serviceFields.private_chef.event_types',
+        type: 'checkbox',
+        options: [
+          'חתונה', 'בר מצווה', 'בת מצווה', 'ברית מילה', 'פדיון הבן',
+          'שבע ברכות', 'יום הולדת / יום שנה', 'קידוש', 'שבת חתן',
+          'אירוע עסקי', 'מסיבה פרטית', 'חגיגה משפחתית'
+        ]
+      },
+      {
+        name: 'cuisine_types',
+        label: 'serviceFields.private_chef.cuisine_types',
         type: 'checkbox',
         options: ['פיצות', 'סושי', 'סלטים', 'אסייתי', 'פסטות', 'בשרי', 'טבעוני / צמחוני', 'לא גלוטן', 'קינוחים']
       },
-      { 
-        name: 'kosher_types', 
-        label: 'serviceFields.private_chef.kosher_types', 
+      {
+        name: 'kosher_types',
+        label: 'serviceFields.private_chef.kosher_types',
         type: 'checkbox',
         options: [
-          'בד"ץ העדה החרדית',
-          'בד"ץ בית יוסף',
-          'בד"ץ יורה דעה (ר׳ שלמה מחפוד)',
-          'בד"ץ מחזיקי הדת – בעלז',
-          'בד"ץ שארית ישראל',
-          'בד"ץ נתיבות כשרות',
-          'בד"ץ חוג חתם סופר בני ברק',
-          'בד"ץ חוג חתם סופר פ״ת',
-          'בד"ץ מקווה ישראל',
-          'בד"ץ רבני צפת',
-          'כשרות הרב לנדא',
-          'כשרות הרב רובין'
+          'בד"ץ העדה החרדית', 'בד"ץ בית יוסף', 'בד"ץ יורה דעה (ר׳ שלמה מחפוד)',
+          'בד"ץ מחזיקי הדת – בעלז', 'בד"ץ שארית ישראל', 'בד"ץ נתיבות כשרות',
+          'בד"ץ חוג חתם סופר בני ברק', 'בד"ץ חוג חתם סופר פ״ת', 'בד"ץ מקווה ישראל',
+          'בד"ץ רבני צפת', 'כשרות הרב לנדא', 'כשרות הרב רובין', 'אחר'
         ]
-      }
+      },
+      { name: 'kosher_other', label: 'serviceFields.private_chef.kosher_other', type: 'text' }
     ]
   },
 
