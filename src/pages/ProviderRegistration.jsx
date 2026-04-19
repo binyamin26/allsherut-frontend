@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './ProviderRegistration.css';
 import { useAuth } from '../context/AuthContext';
+import { useLanguage } from '../context/LanguageContext';
 import { getAllCities, getNeighborhoodsByCity } from '../data/israelLocations';
 import CustomDropdown from '../components/common/CustomDropdown';
 
@@ -34,6 +35,7 @@ import LocksmithForm from '../components/services/locksmith/LocksmithForm';
 const ProviderRegistration = () => {
   const navigate = useNavigate();
   const { setUser } = useAuth();
+  const { t } = useLanguage();
   const [currentStep, setCurrentStep] = useState(1);
   const [errors, setErrors] = useState({});
 
@@ -188,28 +190,28 @@ const ProviderRegistration = () => {
   // Validation de l'étape 1
   const validateStep1 = () => {
     const newErrors = {};
-    
-    if (!formData.firstName.trim()) newErrors.firstName = 'שם פרטי חובה';
-    if (!formData.lastName.trim()) newErrors.lastName = 'שם משפחה חובה';
+
+    if (!formData.firstName.trim()) newErrors.firstName = t('auth.validation.firstNameRequired');
+    if (!formData.lastName.trim()) newErrors.lastName = t('auth.validation.lastNameRequired');
     if (!formData.email.trim()) {
-      newErrors.email = 'אימייל חובה';
+      newErrors.email = t('auth.validation.emailRequired');
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'אימייל לא תקין';
+      newErrors.email = t('auth.validation.emailInvalid');
     }
     if (!formData.password) {
-      newErrors.password = 'סיסמה חובה';
+      newErrors.password = t('auth.validation.passwordRequired');
     } else if (formData.password.length < 6) {
-      newErrors.password = 'הסיסמה חייבת להכיל לפחות 6 תווים';
+      newErrors.password = t('auth.validation.passwordTooShort');
     }
     if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = 'הסיסמאות לא תואמות';
+      newErrors.confirmPassword = t('auth.validation.passwordMismatch');
     }
     if (!formData.phone.trim()) {
-      newErrors.phone = 'מספר טלפון חובה';
+      newErrors.phone = t('auth.validation.phoneRequired');
     } else if (!/^05\d{8}$/.test(formData.phone.replace(/[-\s]/g, ''))) {
-      newErrors.phone = 'מספר טלפון לא תקין';
+      newErrors.phone = t('auth.validation.phoneInvalid');
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -217,11 +219,11 @@ const ProviderRegistration = () => {
   // Validation de l'étape 2
   const validateStep2 = () => {
     const newErrors = {};
-    
-    if (!formData.city.trim()) newErrors.city = 'עיר חובה';
-    if (!formData.neighborhood.trim()) newErrors.neighborhood = 'שכונה חובה';
-    if (!formData.street.trim()) newErrors.street = 'רחוב חובה';
-    
+
+    if (!formData.city.trim()) newErrors.city = t('auth.validation.cityRequired');
+    if (!formData.neighborhood.trim()) newErrors.neighborhood = t('auth.validation.neighborhoodRequired');
+    if (!formData.street.trim()) newErrors.street = t('auth.validation.streetRequired');
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -229,11 +231,11 @@ const ProviderRegistration = () => {
   // Validation de l'étape 3
   const validateStep3 = () => {
     const newErrors = {};
-    
+
     if (!formData.serviceType) {
-      newErrors.serviceType = 'יש לבחור סוג שירות';
+      newErrors.serviceType = t('auth.validation.serviceRequired');
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -241,10 +243,10 @@ const ProviderRegistration = () => {
   // Validation de l'étape 4 (détails du service)
   const validateStep4 = () => {
     const newErrors = {};
-    
+
     // Validation spécifique selon le type de service
     // Tu peux ajouter ici des validations personnalisées
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -252,11 +254,11 @@ const ProviderRegistration = () => {
   // Validation de l'étape 5
   const validateStep5 = () => {
     const newErrors = {};
-    
+
     if (!formData.termsAccepted) {
-      newErrors.termsAccepted = 'יש לאשר את התנאים';
+      newErrors.termsAccepted = t('auth.validation.termsRequired');
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };

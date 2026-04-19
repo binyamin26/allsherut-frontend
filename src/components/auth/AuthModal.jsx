@@ -42,8 +42,8 @@ const scrollToFirstError = (errors, currentStep = 1) => {
       default:
         if (firstErrorField.startsWith('serviceDetails.')) {
           const fieldName = firstErrorField.replace('serviceDetails.', '');
-          targetElement = document.querySelector(`[data-field="${fieldName}"]`) || 
-                         document.querySelector('.service-details-form input, .service-details-form select');
+          targetElement = document.querySelector(`[data-field="${fieldName}"]`) ||
+                         document.querySelector('.service-details-form');
         }
     }
   }
@@ -684,565 +684,565 @@ console.log('🔍 serviceDetails object:', serviceDetails);
     switch (formData.serviceType) {
       case 'babysitting':
         if (!serviceDetails.age) {
-          newErrors['serviceDetails.age'] = 'גיל נדרש';
+          newErrors['serviceDetails.age'] = t('validation.ageRequired');
         } else if (parseInt(serviceDetails.age) < 15) {
-          newErrors['serviceDetails.age'] = 'גיל מינימלי: 15 שנים';
+          newErrors['serviceDetails.age'] = t('validation.ageMin15');
         }
-        if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = 'שנות ניסיון נדרשות';
-        if (!serviceDetails.ageGroups || serviceDetails.ageGroups.length === 0) newErrors['serviceDetails.ageGroups'] = 'יש לבחור קבוצות גיל';
-        if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) newErrors['serviceDetails.availability_days'] = 'יש לבחור ימי זמינות';
-        if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) newErrors['serviceDetails.availability_hours'] = 'יש לבחור שעות זמינות';
-        if (!serviceDetails.babysitting_types || serviceDetails.babysitting_types.length === 0) newErrors['serviceDetails.babysitting_types'] = 'יש לבחור סוגי שמרטפות';
-        if (serviceDetails.can_travel_alone === undefined) newErrors['serviceDetails.can_travel_alone'] = 'יש לציין אם יכול להגיע ולחזור לבד';
-        if (!serviceDetails.languages || serviceDetails.languages.length === 0) newErrors['serviceDetails.languages'] = 'יש לבחור לפחות שפה אחת';
+        if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
+        if (!serviceDetails.ageGroups || serviceDetails.ageGroups.length === 0) newErrors['serviceDetails.ageGroups'] = t('validation.selectAtLeastOne');
+        if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
+        if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
+        if (!serviceDetails.babysitting_types || serviceDetails.babysitting_types.length === 0) newErrors['serviceDetails.babysitting_types'] = t('validation.selectAtLeastOne');
+        if (serviceDetails.can_travel_alone === undefined) newErrors['serviceDetails.can_travel_alone'] = t('validation.canTravelAloneRequired');
+        if (!serviceDetails.languages || serviceDetails.languages.length === 0) newErrors['serviceDetails.languages'] = t('validation.selectAtLeastOne');
         break;
 
 case 'cleaning':
   console.log('✅ DANS CASE CLEANING');
   console.log('legalStatus:', serviceDetails.legalStatus);
   console.log('cleaningTypes:', serviceDetails.cleaningTypes);
-  
+
   if (!serviceDetails.legalStatus) {
     console.log('⚠️ Ajout erreur legalStatus');
-    newErrors['serviceDetails.legalStatus'] = 'סטטוס משפטי נדרש';
+    newErrors['serviceDetails.legalStatus'] = t('validation.legalStatusRequired');
   }
-  if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = 'שנות ניסיון נדרשות';
+  if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
   if (!serviceDetails.cleaningTypes || serviceDetails.cleaningTypes.length === 0) {
     console.log('⚠️ Ajout erreur cleaningTypes');
-    newErrors['serviceDetails.cleaningTypes'] = 'יש לבחור קטגוריות ניקיון';
+    newErrors['serviceDetails.cleaningTypes'] = t('validation.selectAtLeastOne');
   }
   if (!serviceDetails.frequency || serviceDetails.frequency.length === 0) {
     console.log('⚠️ Ajout erreur frequency');
-    newErrors['serviceDetails.frequency'] = 'יש לבחור תדירות';
+    newErrors['serviceDetails.frequency'] = t('validation.selectAtLeastOne');
   }
 if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
-  newErrors['serviceDetails.availability_days'] = 'יש לבחור ימי זמינות';
+  newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
 }
 if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
-  newErrors['serviceDetails.availability_hours'] = 'יש לבחור שעות זמינות';
+  newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
 }
 
   console.log('📋 newErrors après cleaning:', newErrors);
   break;
 case 'gardening':
-  if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = 'שנות ניסיון נדרשות';
-  if (!serviceDetails.services || serviceDetails.services.length === 0) newErrors['serviceDetails.services'] = 'יש לבחור סוגי שירותים';
-  if (!serviceDetails.seasons || serviceDetails.seasons.length === 0) newErrors['serviceDetails.seasons'] = 'יש לבחור עונות זמינות';
-  if (!serviceDetails.equipment || serviceDetails.equipment.length === 0) newErrors['serviceDetails.equipment'] = 'יש לציין ציוד בבעלותך';
+  if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
+  if (!serviceDetails.services || serviceDetails.services.length === 0) newErrors['serviceDetails.services'] = t('validation.selectAtLeastOne');
+  if (!serviceDetails.seasons || serviceDetails.seasons.length === 0) newErrors['serviceDetails.seasons'] = t('validation.selectAtLeastOne');
+  if (!serviceDetails.equipment || serviceDetails.equipment.length === 0) newErrors['serviceDetails.equipment'] = t('validation.selectAtLeastOne');
   // rate is optional
   if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
-    newErrors['serviceDetails.availability_days'] = 'יש לבחור ימי זמינות';
+    newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
   }
   if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
-    newErrors['serviceDetails.availability_hours'] = 'יש לבחור שעות זמינות';
+    newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
   }
   break;
 
 case 'petcare':
-  if (!serviceDetails.animalTypes || serviceDetails.animalTypes.length === 0) newErrors['serviceDetails.animalTypes'] = 'יש לבחור סוגי חיות';
+  if (!serviceDetails.animalTypes || serviceDetails.animalTypes.length === 0) newErrors['serviceDetails.animalTypes'] = t('validation.selectAtLeastOne');
   if (serviceDetails.animalTypes?.includes('כלבים') && (!serviceDetails.dogSizes || serviceDetails.dogSizes.length === 0)) {
-    newErrors['serviceDetails.dogSizes'] = 'יש לבחור גדלי כלבים';
+    newErrors['serviceDetails.dogSizes'] = t('validation.selectAtLeastOne');
   }
-  if (!serviceDetails.location) newErrors['serviceDetails.location'] = 'יש לבחור מקום השמירה';
-  if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = 'ניסיון עם חיות נדרש';
+  if (!serviceDetails.location) newErrors['serviceDetails.location'] = t('validation.locationRequired');
+  if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
   if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
-    newErrors['serviceDetails.availability_days'] = 'יש לבחור ימי זמינות';
+    newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
   }
   if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
-    newErrors['serviceDetails.availability_hours'] = 'יש לבחור שעות זמינות';
+    newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
   }
   break;
 
    case 'tutoring':
-        if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = 'שנות ניסיון נדרשות';
-        if (!serviceDetails.subjects || serviceDetails.subjects.length === 0) newErrors['serviceDetails.subjects'] = 'יש לבחור מקצועות';
-        if (!serviceDetails.levels || serviceDetails.levels.length === 0) newErrors['serviceDetails.levels'] = 'יש לבחור רמות לימוד';
+        if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
+        if (!serviceDetails.subjects || serviceDetails.subjects.length === 0) newErrors['serviceDetails.subjects'] = t('validation.selectAtLeastOne');
+        if (!serviceDetails.levels || serviceDetails.levels.length === 0) newErrors['serviceDetails.levels'] = t('validation.selectAtLeastOne');
         // qualifications is optional
-        if (!serviceDetails.teachingMode) newErrors['serviceDetails.teachingMode'] = 'אופן הוראה נדרש';
+        if (!serviceDetails.teachingMode) newErrors['serviceDetails.teachingMode'] = t('validation.teachingModeRequired');
         if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
-  newErrors['serviceDetails.availability_days'] = 'יש לבחור ימי זמינות';
+  newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
 }
 if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
-  newErrors['serviceDetails.availability_hours'] = 'יש לבחור שעות זמינות';
+  newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
 }
         break;
 
      case 'eldercare':
-        if (!serviceDetails.careTypes || serviceDetails.careTypes.length === 0) newErrors['serviceDetails.careTypes'] = 'יש לבחור סוגי טיפול';
-        if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) newErrors['serviceDetails.availability_days'] = 'יש לבחור ימי זמינות';
-        if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) newErrors['serviceDetails.availability_hours'] = 'יש לבחור זמינות';
-        if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = 'ניסיון עם קשישים נדרש';
-        if (!serviceDetails.age) newErrors['serviceDetails.age'] = 'גיל נדרש';
-        if (!serviceDetails.languages || serviceDetails.languages.length === 0) newErrors['serviceDetails.languages'] = 'יש לבחור לפחות שפה אחת';
+        if (!serviceDetails.careTypes || serviceDetails.careTypes.length === 0) newErrors['serviceDetails.careTypes'] = t('validation.selectAtLeastOne');
+        if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
+        if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
+        if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
+        if (!serviceDetails.age) newErrors['serviceDetails.age'] = t('validation.ageRequired');
+        if (!serviceDetails.languages || serviceDetails.languages.length === 0) newErrors['serviceDetails.languages'] = t('validation.selectAtLeastOne');
         break;
-        
+
 case 'electrician':
   if (!serviceDetails.age) {
-    newErrors['serviceDetails.age'] = 'גיל נדרש';
+    newErrors['serviceDetails.age'] = t('validation.ageRequired');
   } else if (parseInt(serviceDetails.age) < 18) {
-    newErrors['serviceDetails.age'] = 'גיל מינימלי: 18 שנים';
+    newErrors['serviceDetails.age'] = t('validation.ageMin18');
   }
-  if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = 'שנות ניסיון נדרשות';
+  if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
   if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
-    newErrors['serviceDetails.availability_days'] = 'יש לבחור ימי זמינות';
+    newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
   }
   if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
-    newErrors['serviceDetails.availability_hours'] = 'יש לבחור שעות זמינות';
+    newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
   }
   if (!serviceDetails.work_types || serviceDetails.work_types.length === 0) {
-    newErrors['serviceDetails.work_types'] = 'יש לבחור לפחות סוג עבודה אחד';
+    newErrors['serviceDetails.work_types'] = t('validation.workTypesRequired');
   }
   if (serviceDetails.work_types?.includes('תיקונים') && (!serviceDetails.repair_types || serviceDetails.repair_types.length === 0)) {
-    newErrors['serviceDetails.repair_types'] = 'יש לבחור לפחות סוג תיקון אחד';
+    newErrors['serviceDetails.repair_types'] = t('validation.selectAtLeastOne');
   }
   if (serviceDetails.work_types?.includes('התקנות') && (!serviceDetails.installation_types || serviceDetails.installation_types.length === 0)) {
-    newErrors['serviceDetails.installation_types'] = 'יש לבחור לפחות סוג התקנה אחד';
+    newErrors['serviceDetails.installation_types'] = t('validation.selectAtLeastOne');
   }
   if (serviceDetails.work_types?.includes('עבודות חשמל גדולות') && (!serviceDetails.large_work_types || serviceDetails.large_work_types.length === 0)) {
-    newErrors['serviceDetails.large_work_types'] = 'יש לבחור לפחות סוג עבודה גדולה אחד';
+    newErrors['serviceDetails.large_work_types'] = t('validation.selectAtLeastOne');
   }
   break;
 
 case 'plumbing':
   if (!serviceDetails.age) {
-    newErrors['serviceDetails.age'] = 'גיל נדרש';
+    newErrors['serviceDetails.age'] = t('validation.ageRequired');
   } else if (parseInt(serviceDetails.age) < 18) {
-    newErrors['serviceDetails.age'] = 'גיל מינימלי: 18 שנים';
+    newErrors['serviceDetails.age'] = t('validation.ageMin18');
   }
-  if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = 'שנות ניסיון נדרשות';
+  if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
   if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
-    newErrors['serviceDetails.availability_days'] = 'יש לבחור ימי זמינות';
+    newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
   }
   if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
-    newErrors['serviceDetails.availability_hours'] = 'יש לבחור שעות זמינות';
+    newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
   }
   if (!serviceDetails.work_types || serviceDetails.work_types.length === 0) {
-    newErrors['serviceDetails.work_types'] = 'יש לבחור לפחות סוג עבודה אחד';
+    newErrors['serviceDetails.work_types'] = t('validation.workTypesRequired');
   }
   if (serviceDetails.work_types?.includes('סתימות') && (!serviceDetails.blockage_types || serviceDetails.blockage_types.length === 0)) {
-    newErrors['serviceDetails.blockage_types'] = 'יש לבחור לפחות סוג סתימה אחד';
+    newErrors['serviceDetails.blockage_types'] = t('validation.selectAtLeastOne');
   }
   if (serviceDetails.work_types?.includes('תיקון צנרת') && (!serviceDetails.pipe_repair_types || serviceDetails.pipe_repair_types.length === 0)) {
-    newErrors['serviceDetails.pipe_repair_types'] = 'יש לבחור לפחות סוג תיקון צנרת אחד';
+    newErrors['serviceDetails.pipe_repair_types'] = t('validation.selectAtLeastOne');
   }
   if (serviceDetails.work_types?.includes('עבודות גדולות') && (!serviceDetails.large_work_types || serviceDetails.large_work_types.length === 0)) {
-    newErrors['serviceDetails.large_work_types'] = 'יש לבחור לפחות סוג עבודה גדולה אחד';
+    newErrors['serviceDetails.large_work_types'] = t('validation.selectAtLeastOne');
   }
   if (serviceDetails.work_types?.includes('תיקון והתקנת אביזרי אינסטלציה') && (!serviceDetails.fixture_types || serviceDetails.fixture_types.length === 0)) {
-    newErrors['serviceDetails.fixture_types'] = 'יש לבחור לפחות סוג אביזר אחד';
+    newErrors['serviceDetails.fixture_types'] = t('validation.selectAtLeastOne');
   }
   break
 
 case 'laundry':
-  if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = 'שנות ניסיון נדרשות';
-  if (!serviceDetails.laundryTypes || serviceDetails.laundryTypes.length === 0) newErrors['serviceDetails.laundryTypes'] = 'יש לבחור סוגי שירותים';
+  if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
+  if (!serviceDetails.laundryTypes || serviceDetails.laundryTypes.length === 0) newErrors['serviceDetails.laundryTypes'] = t('validation.selectAtLeastOne');
   if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
-    newErrors['serviceDetails.availability_days'] = 'יש לבחור ימי זמינות';
+    newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
   }
   if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
-    newErrors['serviceDetails.availability_hours'] = 'יש לבחור שעות זמינות';
+    newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
   }
   break;
 
    case 'property_management':
-        if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = 'שנות ניסיון נדרשות';
+        if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
         if (!serviceDetails.management_type || serviceDetails.management_type.length === 0) {
-          newErrors['serviceDetails.management_type'] = 'יש לבחור לפחות סוג ניהול אחד';
+          newErrors['serviceDetails.management_type'] = t('validation.selectAtLeastOne');
           if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
-  newErrors['serviceDetails.availability_days'] = 'יש לבחור ימי זמינות';
+  newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
 }
 if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
-  newErrors['serviceDetails.availability_hours'] = 'יש לבחור שעות זמינות';
+  newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
 }
         }
         break;
 
         case 'air_conditioning':
         if (!serviceDetails.age) {
-          newErrors['serviceDetails.age'] = 'גיל נדרש';
+          newErrors['serviceDetails.age'] = t('validation.ageRequired');
         } else if (parseInt(serviceDetails.age) < 18) {
-          newErrors['serviceDetails.age'] = 'גיל מינימלי: 18 שנים';
+          newErrors['serviceDetails.age'] = t('validation.ageMin18');
         }
-        if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = 'שנות ניסיון נדרשות';
+        if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
         if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
-          newErrors['serviceDetails.availability_days'] = 'יש לבחור ימי זמינות';
+          newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
         }
         if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
-          newErrors['serviceDetails.availability_hours'] = 'יש לבחור שעות זמינות';
+          newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
         }
         if (!serviceDetails.work_types || serviceDetails.work_types.length === 0) {
-          newErrors['serviceDetails.work_types'] = 'יש לבחור לפחות סוג עבודה אחד';
+          newErrors['serviceDetails.work_types'] = t('validation.workTypesRequired');
         }
         if (serviceDetails.work_types?.includes('התקנת מזגנים') && (!serviceDetails.installation_types || serviceDetails.installation_types.length === 0)) {
-          newErrors['serviceDetails.installation_types'] = 'יש לבחור לפחות סוג התקנה אחד';
+          newErrors['serviceDetails.installation_types'] = t('validation.selectAtLeastOne');
         }
         if (serviceDetails.work_types?.includes('תיקון מזגנים') && (!serviceDetails.repair_types || serviceDetails.repair_types.length === 0)) {
-          newErrors['serviceDetails.repair_types'] = 'יש לבחור לפחות סוג תיקון אחד';
+          newErrors['serviceDetails.repair_types'] = t('validation.selectAtLeastOne');
         }
         if (serviceDetails.work_types?.includes('פירוק והרכבת מזגנים') && (!serviceDetails.disassembly_types || serviceDetails.disassembly_types.length === 0)) {
-          newErrors['serviceDetails.disassembly_types'] = 'יש לבחור לפחות סוג פירוק/הרכבה אחד';
+          newErrors['serviceDetails.disassembly_types'] = t('validation.selectAtLeastOne');
         }
         break;
-        
+
        case 'gas_technician':
         if (!serviceDetails.age) {
-          newErrors['serviceDetails.age'] = 'גיל נדרש';
+          newErrors['serviceDetails.age'] = t('validation.ageRequired');
         } else if (parseInt(serviceDetails.age) < 18) {
-          newErrors['serviceDetails.age'] = 'גיל מינימלי: 18 שנים';
+          newErrors['serviceDetails.age'] = t('validation.ageMin18');
         }
-        if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = 'שנות ניסיון נדרשות';
+        if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
         if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
-          newErrors['serviceDetails.availability_days'] = 'יש לבחור ימי זמינות';
+          newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
         }
         if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
-          newErrors['serviceDetails.availability_hours'] = 'יש לבחור שעות זמינות';
+          newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
         }
         if (!serviceDetails.work_types || serviceDetails.work_types.length === 0) {
-          newErrors['serviceDetails.work_types'] = 'יש לבחור לפחות סוג עבודה אחד';
+          newErrors['serviceDetails.work_types'] = t('validation.workTypesRequired');
         }
         if (serviceDetails.work_types?.includes('התקנת צנרת גז בבית') && (!serviceDetails.installation_types || serviceDetails.installation_types.length === 0)) {
-          newErrors['serviceDetails.installation_types'] = 'יש לבחור לפחות סוג התקנה אחד';
+          newErrors['serviceDetails.installation_types'] = t('validation.selectAtLeastOne');
         }
         if (serviceDetails.work_types?.includes('תיקוני גז בבית') && (!serviceDetails.repair_types || serviceDetails.repair_types.length === 0)) {
-          newErrors['serviceDetails.repair_types'] = 'יש לבחור לפחות סוג תיקון אחד';
+          newErrors['serviceDetails.repair_types'] = t('validation.selectAtLeastOne');
         }
       break;
-        
+
      case 'drywall':
   if (!serviceDetails.age) {
-    newErrors['serviceDetails.age'] = 'גיל נדרש';
+    newErrors['serviceDetails.age'] = t('validation.ageRequired');
   } else if (parseInt(serviceDetails.age) < 18) {
-    newErrors['serviceDetails.age'] = 'גיל מינימלי: 18 שנים';
+    newErrors['serviceDetails.age'] = t('validation.ageMin18');
   }
-  if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = 'שנות ניסיון נדרשות';
+  if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
   if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
-    newErrors['serviceDetails.availability_days'] = 'יש לבחור ימי זמינות';
+    newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
   }
   if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
-    newErrors['serviceDetails.availability_hours'] = 'יש לבחור שעות זמינות';
+    newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
   }
   if (!serviceDetails.work_types || serviceDetails.work_types.length === 0) {
-    newErrors['serviceDetails.work_types'] = 'יש לבחור לפחות סוג עבודה אחד';
+    newErrors['serviceDetails.work_types'] = t('validation.workTypesRequired');
   }
   if (serviceDetails.work_types?.includes('עיצובים בגבס') && (!serviceDetails.design_types || serviceDetails.design_types.length === 0)) {
-    newErrors['serviceDetails.design_types'] = 'יש לבחור לפחות סוג עיצוב אחד';
+    newErrors['serviceDetails.design_types'] = t('validation.selectAtLeastOne');
   }
   if (serviceDetails.work_types?.includes('עבודות גבס') && (!serviceDetails.construction_types || serviceDetails.construction_types.length === 0)) {
-    newErrors['serviceDetails.construction_types'] = 'יש לבחור לפחות סוג בנייה אחד';
+    newErrors['serviceDetails.construction_types'] = t('validation.selectAtLeastOne');
   }
   break;
 
 case 'carpentry':
   if (!serviceDetails.age) {
-    newErrors['serviceDetails.age'] = 'גיל נדרש';
+    newErrors['serviceDetails.age'] = t('validation.ageRequired');
   } else if (parseInt(serviceDetails.age) < 18) {
-    newErrors['serviceDetails.age'] = 'גיל מינימלי: 18 שנים';
+    newErrors['serviceDetails.age'] = t('validation.ageMin18');
   }
-  if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = 'שנות ניסיון נדרשות';
+  if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
   if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
-    newErrors['serviceDetails.availability_days'] = 'יש לבחור ימי זמינות';
+    newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
   }
   if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
-    newErrors['serviceDetails.availability_hours'] = 'יש לבחור שעות זמינות';
+    newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
   }
   if (!serviceDetails.work_types || serviceDetails.work_types.length === 0) {
-    newErrors['serviceDetails.work_types'] = 'יש לבחור לפחות סוג עבודה אחד';
+    newErrors['serviceDetails.work_types'] = t('validation.workTypesRequired');
   }
   if (serviceDetails.work_types?.includes('בניית רהיטים') && (!serviceDetails.furniture_building_types || serviceDetails.furniture_building_types.length === 0)) {
-    newErrors['serviceDetails.furniture_building_types'] = 'יש לבחור לפחות סוג בנייה אחד';
+    newErrors['serviceDetails.furniture_building_types'] = t('validation.selectAtLeastOne');
   }
   if (serviceDetails.work_types?.includes('תיקון רהיטים') && (!serviceDetails.furniture_repair_types || serviceDetails.furniture_repair_types.length === 0)) {
-    newErrors['serviceDetails.furniture_repair_types'] = 'יש לבחור לפחות סוג תיקון אחד';
+    newErrors['serviceDetails.furniture_repair_types'] = t('validation.selectAtLeastOne');
   }
   if (serviceDetails.work_types?.includes('עבודות נגרות אחרות') && (!serviceDetails.other_carpentry_types || serviceDetails.other_carpentry_types.length === 0)) {
-    newErrors['serviceDetails.other_carpentry_types'] = 'יש לבחור לפחות סוג עבודה אחד';
+    newErrors['serviceDetails.other_carpentry_types'] = t('validation.selectAtLeastOne');
   }
   if (serviceDetails.work_types?.includes('נגרות חוץ')) {
   if (serviceDetails.outdoor_carpentry_types?.includes('פרגולות') && (!serviceDetails.pergola_types || serviceDetails.pergola_types.length === 0)) {
-    newErrors['serviceDetails.pergola_types'] = 'יש לבחור לפחות סוג פרגולה אחד';
+    newErrors['serviceDetails.pergola_types'] = t('validation.selectAtLeastOne');
   }
   if (serviceDetails.outdoor_carpentry_types?.includes('דקים') && (!serviceDetails.deck_types || serviceDetails.deck_types.length === 0)) {
-    newErrors['serviceDetails.deck_types'] = 'יש לבחור לפחות סוג דק אחד';
+    newErrors['serviceDetails.deck_types'] = t('validation.selectAtLeastOne');
   }
   if (serviceDetails.outdoor_carpentry_types?.includes('גדרות ומחיצות עץ') && (!serviceDetails.fence_types || serviceDetails.fence_types.length === 0)) {
-    newErrors['serviceDetails.fence_types'] = 'יש לבחור לפחות סוג גדר אחד';
+    newErrors['serviceDetails.fence_types'] = t('validation.selectAtLeastOne');
   }
 }
  break;
 
 case 'home_organization':
   if (!serviceDetails.age) {
-    newErrors['serviceDetails.age'] = 'גיל נדרש';
+    newErrors['serviceDetails.age'] = t('validation.ageRequired');
   } else if (parseInt(serviceDetails.age) < 18) {
-    newErrors['serviceDetails.age'] = 'גיל מינימלי: 18 שנים';
+    newErrors['serviceDetails.age'] = t('validation.ageMin18');
   }
-  if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = 'שנות ניסיון נדרשות';
+  if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
   if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
-    newErrors['serviceDetails.availability_days'] = 'יש לבחור ימי זמינות';
+    newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
   }
   if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
-    newErrors['serviceDetails.availability_hours'] = 'יש לבחור שעות זמינות';
+    newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
   }
   if (!serviceDetails.work_types || serviceDetails.work_types.length === 0) {
-    newErrors['serviceDetails.work_types'] = 'יש לבחור לפחות סוג עבודה אחד';
+    newErrors['serviceDetails.work_types'] = t('validation.workTypesRequired');
   }
   if (serviceDetails.work_types?.includes('סידור כללי') && (!serviceDetails.general_organization_types || serviceDetails.general_organization_types.length === 0)) {
-    newErrors['serviceDetails.general_organization_types'] = 'יש לבחור לפחות סוג סידור אחד';
+    newErrors['serviceDetails.general_organization_types'] = t('validation.selectAtLeastOne');
   }
   if (serviceDetails.work_types?.includes('סידור + מיון') && (!serviceDetails.sorting_types || serviceDetails.sorting_types.length === 0)) {
-    newErrors['serviceDetails.sorting_types'] = 'יש לבחור לפחות סוג מיון אחד';
+    newErrors['serviceDetails.sorting_types'] = t('validation.selectAtLeastOne');
   }
   if (serviceDetails.work_types?.includes('ארגון מקצועי') && (!serviceDetails.professional_organization_types || serviceDetails.professional_organization_types.length === 0)) {
-    newErrors['serviceDetails.professional_organization_types'] = 'יש לבחור לפחות סוג ארגון אחד';
+    newErrors['serviceDetails.professional_organization_types'] = t('validation.selectAtLeastOne');
   }
   break;
 
   case 'event_entertainment':
   if (!serviceDetails.age) {
-    newErrors['serviceDetails.age'] = 'גיל נדרש';
+    newErrors['serviceDetails.age'] = t('validation.ageRequired');
   } else if (parseInt(serviceDetails.age) < 18) {
-    newErrors['serviceDetails.age'] = 'גיל מינימלי: 18 שנים';
+    newErrors['serviceDetails.age'] = t('validation.ageMin18');
   }
-  if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = 'שנות ניסיון נדרשות';
+  if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
   if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
-    newErrors['serviceDetails.availability_days'] = 'יש לבחור ימי זמינות';
+    newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
   }
   if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
-    newErrors['serviceDetails.availability_hours'] = 'יש לבחור שעות זמינות';
+    newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
   }
   if (!serviceDetails.work_types || serviceDetails.work_types.length === 0) {
-    newErrors['serviceDetails.work_types'] = 'יש לבחור לפחות סוג עבודה אחד';
+    newErrors['serviceDetails.work_types'] = t('validation.workTypesRequired');
   }
-  
+
   // Validation השכרת ציוד לאירועים
   if (serviceDetails.work_types?.includes('השכרת ציוד לאירועים') && (!serviceDetails.equipment_rental_types || serviceDetails.equipment_rental_types.length === 0)) {
-    newErrors['serviceDetails.equipment_rental_types'] = 'יש לבחור לפחות סוג ציוד אחד';
+    newErrors['serviceDetails.equipment_rental_types'] = t('validation.selectAtLeastOne');
   }
   if (serviceDetails.equipment_rental_types?.includes('🍿 מכונות מזון') && (!serviceDetails.food_machine_types || serviceDetails.food_machine_types.length === 0)) {
-    newErrors['serviceDetails.food_machine_types'] = 'יש לבחור לפחות סוג מכונה אחד';
+    newErrors['serviceDetails.food_machine_types'] = t('validation.selectAtLeastOne');
   }
   if (serviceDetails.equipment_rental_types?.includes('🎪 השכרת מתנפחים ומשחקים') && (!serviceDetails.inflatable_game_types || serviceDetails.inflatable_game_types.length === 0)) {
-    newErrors['serviceDetails.inflatable_game_types'] = 'יש לבחור לפחות סוג משחק אחד';
+    newErrors['serviceDetails.inflatable_game_types'] = t('validation.selectAtLeastOne');
   }
   if (serviceDetails.equipment_rental_types?.includes('💨 מכונות אפקטים להשכרה') && (!serviceDetails.effect_machine_types || serviceDetails.effect_machine_types.length === 0)) {
-    newErrors['serviceDetails.effect_machine_types'] = 'יש לבחור לפחות סוג מכונה אחד';
+    newErrors['serviceDetails.effect_machine_types'] = t('validation.selectAtLeastOne');
   }
-  
+
   // Validation סוגי ההפעלה
   if (serviceDetails.work_types?.includes('סוגי ההפעלה') && (!serviceDetails.entertainment_types || serviceDetails.entertainment_types.length === 0)) {
-    newErrors['serviceDetails.entertainment_types'] = 'יש לבחור לפחות סוג הפעלה אחד';
+    newErrors['serviceDetails.entertainment_types'] = t('validation.selectAtLeastOne');
   }
-  
+
   // Validation אחר
   if (serviceDetails.work_types?.includes('אחר') && (!serviceDetails.other_types || serviceDetails.other_types.length === 0)) {
-    newErrors['serviceDetails.other_types'] = 'יש לבחור לפחות סוג שירות אחד';
+    newErrors['serviceDetails.other_types'] = t('validation.selectAtLeastOne');
   }
   break;
 
 case 'private_chef':
     if (!serviceDetails.age) {
-      newErrors['serviceDetails.age'] = 'גיל נדרש';
+      newErrors['serviceDetails.age'] = t('validation.ageRequired');
     } else if (parseInt(serviceDetails.age) < 18) {
-      newErrors['serviceDetails.age'] = 'גיל מינימלי: 18 שנים';
+      newErrors['serviceDetails.age'] = t('validation.ageMin18');
     }
-    if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = 'שנות ניסיון נדרשות';
+    if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
     if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
-      newErrors['serviceDetails.availability_days'] = 'יש לבחור ימי זמינות';
+      newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
     }
     if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
-      newErrors['serviceDetails.availability_hours'] = 'יש לבחור שעות זמינות';
+      newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
     }
     if (!serviceDetails.work_types || serviceDetails.work_types.length === 0) {
-      newErrors['serviceDetails.work_types'] = 'יש לבחור לפחות סוג עבודה אחד';
+      newErrors['serviceDetails.work_types'] = t('validation.workTypesRequired');
     }
     if (serviceDetails.work_types?.includes('סוג המטבח') && (!serviceDetails.cuisine_types || serviceDetails.cuisine_types.length === 0)) {
-      newErrors['serviceDetails.cuisine_types'] = 'יש לבחור לפחות סוג מטבח אחד';
+      newErrors['serviceDetails.cuisine_types'] = t('validation.selectAtLeastOne');
     }
     if (serviceDetails.work_types?.includes('כשרות') && (!serviceDetails.kosher_types || serviceDetails.kosher_types.length === 0)) {
-      newErrors['serviceDetails.kosher_types'] = 'יש לבחור לפחות סוג כשרות אחד';
+      newErrors['serviceDetails.kosher_types'] = t('validation.selectAtLeastOne');
     }
     break;
 
 case 'painting':
   if (!serviceDetails.age) {
-    newErrors['serviceDetails.age'] = 'גיל נדרש';
+    newErrors['serviceDetails.age'] = t('validation.ageRequired');
   } else if (parseInt(serviceDetails.age) < 18) {
-    newErrors['serviceDetails.age'] = 'גיל מינימלי: 18 שנים';
+    newErrors['serviceDetails.age'] = t('validation.ageMin18');
   }
-  if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = 'שנות ניסיון נדרשות';
+  if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
   if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
-    newErrors['serviceDetails.availability_days'] = 'יש לבחור ימי זמינות';
+    newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
   }
   if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
-    newErrors['serviceDetails.availability_hours'] = 'יש לבחור שעות זמינות';
+    newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
   }
   if (!serviceDetails.work_types || serviceDetails.work_types.length === 0) {
-    newErrors['serviceDetails.work_types'] = 'יש לבחור לפחות סוג עבודה אחד';
+    newErrors['serviceDetails.work_types'] = t('validation.workTypesRequired');
   }
   break;
 
  case 'waterproofing':
   if (!serviceDetails.age) {
-    newErrors['serviceDetails.age'] = 'גיל נדרש';
+    newErrors['serviceDetails.age'] = t('validation.ageRequired');
   } else if (parseInt(serviceDetails.age) < 18) {
-    newErrors['serviceDetails.age'] = 'גיל מינימלי: 18 שנים';
+    newErrors['serviceDetails.age'] = t('validation.ageMin18');
   }
-  if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = 'שנות ניסיון נדרשות';
+  if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
   if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
-    newErrors['serviceDetails.availability_days'] = 'יש לבחור ימי זמינות';
+    newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
   }
   if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
-    newErrors['serviceDetails.availability_hours'] = 'יש לבחור שעות זמינות';
+    newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
   }
   if (!serviceDetails.work_types || serviceDetails.work_types.length === 0) {
-    newErrors['serviceDetails.work_types'] = 'יש לבחור לפחות סוג עבודה אחד';
+    newErrors['serviceDetails.work_types'] = t('validation.workTypesRequired');
   }
   if (serviceDetails.work_types?.includes('roofWaterproofing') && (!serviceDetails.roof_waterproofing_types || serviceDetails.roof_waterproofing_types.length === 0)) {
-    newErrors['serviceDetails.roof_waterproofing_types'] = 'יש לבחור לפחות סוג איטום גג אחד';
+    newErrors['serviceDetails.roof_waterproofing_types'] = t('validation.selectAtLeastOne');
   }
   if (serviceDetails.work_types?.includes('wallWaterproofing') && (!serviceDetails.wall_waterproofing_types || serviceDetails.wall_waterproofing_types.length === 0)) {
-    newErrors['serviceDetails.wall_waterproofing_types'] = 'יש לבחור לפחות סוג איטום קיר אחד';
+    newErrors['serviceDetails.wall_waterproofing_types'] = t('validation.selectAtLeastOne');
   }
   if (serviceDetails.work_types?.includes('balconyWaterproofing') && (!serviceDetails.balcony_waterproofing_types || serviceDetails.balcony_waterproofing_types.length === 0)) {
-    newErrors['serviceDetails.balcony_waterproofing_types'] = 'יש לבחור לפחות סוג איטום מרפסת אחד';
+    newErrors['serviceDetails.balcony_waterproofing_types'] = t('validation.selectAtLeastOne');
   }
   if (serviceDetails.work_types?.includes('wetRoomWaterproofing') && (!serviceDetails.wet_room_waterproofing_types || serviceDetails.wet_room_waterproofing_types.length === 0)) {
-    newErrors['serviceDetails.wet_room_waterproofing_types'] = 'יש לבחור לפחות סוג איטום חדר רטוב אחד';
+    newErrors['serviceDetails.wet_room_waterproofing_types'] = t('validation.selectAtLeastOne');
   }
   if (serviceDetails.work_types?.includes('undergroundWaterproofing') && (!serviceDetails.underground_waterproofing_types || serviceDetails.underground_waterproofing_types.length === 0)) {
-    newErrors['serviceDetails.underground_waterproofing_types'] = 'יש לבחור לפחות סוג איטום תת-קרקעי אחד';
+    newErrors['serviceDetails.underground_waterproofing_types'] = t('validation.selectAtLeastOne');
   }
   if (serviceDetails.work_types?.includes('inspectionEquipment') && (!serviceDetails.inspection_equipment_types || serviceDetails.inspection_equipment_types.length === 0)) {
-    newErrors['serviceDetails.inspection_equipment_types'] = 'יש לבחור לפחות סוג בדיקה אחד';
+    newErrors['serviceDetails.inspection_equipment_types'] = t('validation.selectAtLeastOne');
   }
   break;
 
 case 'contractor':
   if (!serviceDetails.age) {
-    newErrors['serviceDetails.age'] = 'גיל נדרש';
+    newErrors['serviceDetails.age'] = t('validation.ageRequired');
   } else if (parseInt(serviceDetails.age) < 18) {
-    newErrors['serviceDetails.age'] = 'גיל מינימלי: 18 שנים';
+    newErrors['serviceDetails.age'] = t('validation.ageMin18');
   }
-  if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = 'שנות ניסיון נדרשות';
+  if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
   if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
-    newErrors['serviceDetails.availability_days'] = 'יש לבחור ימי זמינות';
+    newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
   }
   if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
-    newErrors['serviceDetails.availability_hours'] = 'יש לבחור שעות זמינות';
+    newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
   }
   if (!serviceDetails.work_types || serviceDetails.work_types.length === 0) {
-    newErrors['serviceDetails.work_types'] = 'יש לבחור לפחות סוג עבודה אחד';
+    newErrors['serviceDetails.work_types'] = t('validation.workTypesRequired');
   }
   if (serviceDetails.work_types?.includes('עבודות שלד') && (!serviceDetails.structure_work_types || serviceDetails.structure_work_types.length === 0)) {
-    newErrors['serviceDetails.structure_work_types'] = 'יש לבחור לפחות סוג עבודת שלד אחד';
+    newErrors['serviceDetails.structure_work_types'] = t('validation.selectAtLeastOne');
   }
   if (serviceDetails.work_types?.includes('שיפוצים כלליים') && (!serviceDetails.general_renovation_types || serviceDetails.general_renovation_types.length === 0)) {
-    newErrors['serviceDetails.general_renovation_types'] = 'יש לבחור לפחות סוג שיפוץ אחד';
+    newErrors['serviceDetails.general_renovation_types'] = t('validation.selectAtLeastOne');
   }
   if (serviceDetails.work_types?.includes('חשמל ואינסטלציה') && (!serviceDetails.electric_plumbing_types || serviceDetails.electric_plumbing_types.length === 0)) {
-    newErrors['serviceDetails.electric_plumbing_types'] = 'יש לבחור לפחות סוג עבודה אחד';
+    newErrors['serviceDetails.electric_plumbing_types'] = t('validation.selectAtLeastOne');
   }
   if (serviceDetails.work_types?.includes('עבודות חוץ') && (!serviceDetails.exterior_work_types || serviceDetails.exterior_work_types.length === 0)) {
-    newErrors['serviceDetails.exterior_work_types'] = 'יש לבחור לפחות סוג עבודת חוץ אחד';
+    newErrors['serviceDetails.exterior_work_types'] = t('validation.selectAtLeastOne');
   }
   if (serviceDetails.work_types?.includes('שיקום ותיקון חוץ') && (!serviceDetails.facade_repair_types || serviceDetails.facade_repair_types.length === 0)) {
-    newErrors['serviceDetails.facade_repair_types'] = 'יש לבחור לפחות סוג שיקום אחד';
+    newErrors['serviceDetails.facade_repair_types'] = t('validation.selectAtLeastOne');
   }
  break;
 
 case 'aluminum':
   if (!serviceDetails.age) {
-    newErrors['serviceDetails.age'] = 'גיל נדרש';
+    newErrors['serviceDetails.age'] = t('validation.ageRequired');
   } else if (parseInt(serviceDetails.age) < 18) {
-    newErrors['serviceDetails.age'] = 'גיל מינימלי: 18 שנים';
+    newErrors['serviceDetails.age'] = t('validation.ageMin18');
   }
-  if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = 'שנות ניסיון נדרשות';
+  if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
   if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
-    newErrors['serviceDetails.availability_days'] = 'יש לבחור ימי זמינות';
+    newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
   }
   if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
-    newErrors['serviceDetails.availability_hours'] = 'יש לבחור שעות זמינות';
+    newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
   }
   if (!serviceDetails.work_types || serviceDetails.work_types.length === 0) {
-    newErrors['serviceDetails.work_types'] = 'יש לבחור לפחות סוג עבודה אחד';
+    newErrors['serviceDetails.work_types'] = t('validation.workTypesRequired');
   }
   if (serviceDetails.work_types?.includes('חלונות ודלתות') && (!serviceDetails.windows_doors_types || serviceDetails.windows_doors_types.length === 0)) {
-    newErrors['serviceDetails.windows_doors_types'] = 'יש לבחור לפחות סוג אחד';
+    newErrors['serviceDetails.windows_doors_types'] = t('validation.selectAtLeastOne');
   }
   if (serviceDetails.work_types?.includes('פרגולות ואלומיניום חוץ') && (!serviceDetails.pergolas_outdoor_types || serviceDetails.pergolas_outdoor_types.length === 0)) {
-    newErrors['serviceDetails.pergolas_outdoor_types'] = 'יש לבחור לפחות סוג אחד';
+    newErrors['serviceDetails.pergolas_outdoor_types'] = t('validation.selectAtLeastOne');
   }
   if (serviceDetails.work_types?.includes('תיקונים ושירות') && (!serviceDetails.repairs_service_types || serviceDetails.repairs_service_types.length === 0)) {
-    newErrors['serviceDetails.repairs_service_types'] = 'יש לבחור לפחות סוג אחד';
+    newErrors['serviceDetails.repairs_service_types'] = t('validation.selectAtLeastOne');
   }
   if (serviceDetails.work_types?.includes('חיפויי אלומיניום') && (!serviceDetails.cladding_types || serviceDetails.cladding_types.length === 0)) {
-  newErrors['serviceDetails.cladding_types'] = 'יש לבחור לפחות סוג חיפוי אחד';
+  newErrors['serviceDetails.cladding_types'] = t('validation.selectAtLeastOne');
 }
   break;
 
 case 'glass_works':
   if (!serviceDetails.age) {
-    newErrors['serviceDetails.age'] = 'גיל נדרש';
+    newErrors['serviceDetails.age'] = t('validation.ageRequired');
   } else if (parseInt(serviceDetails.age) < 18) {
-    newErrors['serviceDetails.age'] = 'גיל מינימלי: 18 שנים';
+    newErrors['serviceDetails.age'] = t('validation.ageMin18');
   }
-  if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = 'שנות ניסיון נדרשות';
+  if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
   if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
-    newErrors['serviceDetails.availability_days'] = 'יש לבחור ימי זמינות';
+    newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
   }
   if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
-    newErrors['serviceDetails.availability_hours'] = 'יש לבחור שעות זמינות';
+    newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
   }
   if (!serviceDetails.work_types || serviceDetails.work_types.length === 0) {
-    newErrors['serviceDetails.work_types'] = 'יש לבחור לפחות סוג עבודה אחד';
+    newErrors['serviceDetails.work_types'] = t('validation.workTypesRequired');
   }
   if (serviceDetails.work_types?.includes('זכוכית למקלחונים') && (!serviceDetails.shower_glass_types || serviceDetails.shower_glass_types.length === 0)) {
-    newErrors['serviceDetails.shower_glass_types'] = 'יש לבחור לפחות סוג זכוכית מקלחון אחד';
+    newErrors['serviceDetails.shower_glass_types'] = t('validation.selectAtLeastOne');
   }
   if (serviceDetails.work_types?.includes('זכוכית לחלונות ודלתות') && (!serviceDetails.windows_doors_glass_types || serviceDetails.windows_doors_glass_types.length === 0)) {
-    newErrors['serviceDetails.windows_doors_glass_types'] = 'יש לבחור לפחות סוג זכוכית אחד';
+    newErrors['serviceDetails.windows_doors_glass_types'] = t('validation.selectAtLeastOne');
   }
   if (serviceDetails.work_types?.includes('זכוכית למטבח ובית') && (!serviceDetails.kitchen_home_glass_types || serviceDetails.kitchen_home_glass_types.length === 0)) {
-    newErrors['serviceDetails.kitchen_home_glass_types'] = 'יש לבחור לפחות סוג זכוכית אחד';
+    newErrors['serviceDetails.kitchen_home_glass_types'] = t('validation.selectAtLeastOne');
   }
   if (serviceDetails.work_types?.includes('זכוכית מיוחדת ובטיחות') && (!serviceDetails.special_safety_glass_types || serviceDetails.special_safety_glass_types.length === 0)) {
-    newErrors['serviceDetails.special_safety_glass_types'] = 'יש לבחור לפחות סוג זכוכית אחד';
+    newErrors['serviceDetails.special_safety_glass_types'] = t('validation.selectAtLeastOne');
   }
   if (serviceDetails.work_types?.includes('שירותי תיקון והתאמה אישית') && (!serviceDetails.repair_custom_types || serviceDetails.repair_custom_types.length === 0)) {
-    newErrors['serviceDetails.repair_custom_types'] = 'יש לבחור לפחות סוג תיקון אחד';
+    newErrors['serviceDetails.repair_custom_types'] = t('validation.selectAtLeastOne');
   }
   break;
 
  case 'locksmith':
   if (!serviceDetails.age) {
-    newErrors['serviceDetails.age'] = 'גיל נדרש';
+    newErrors['serviceDetails.age'] = t('validation.ageRequired');
   } else if (parseInt(serviceDetails.age) < 18) {
-    newErrors['serviceDetails.age'] = 'גיל מינימלי: 18 שנים';
+    newErrors['serviceDetails.age'] = t('validation.ageMin18');
   }
-  if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = 'שנות ניסיון נדרשות';
+  if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
   if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
-    newErrors['serviceDetails.availability_days'] = 'יש לבחור ימי זמינות';
+    newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
   }
   if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
-    newErrors['serviceDetails.availability_hours'] = 'יש לבחור שעות זמינות';
+    newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
   }
   if (!serviceDetails.work_types || serviceDetails.work_types.length === 0) {
-    newErrors['serviceDetails.work_types'] = 'יש לבחור לפחות סוג עבודה אחד';
+    newErrors['serviceDetails.work_types'] = t('validation.workTypesRequired');
   }
   if (serviceDetails.work_types?.includes('החלפת מנעולים') && (!serviceDetails.lock_replacement_types || serviceDetails.lock_replacement_types.length === 0)) {
-    newErrors['serviceDetails.lock_replacement_types'] = 'יש לבחור לפחות סוג החלפה אחד';
+    newErrors['serviceDetails.lock_replacement_types'] = t('validation.selectAtLeastOne');
   }
   if (serviceDetails.work_types?.includes('פתיחת דלתות') && (!serviceDetails.door_opening_types || serviceDetails.door_opening_types.length === 0)) {
-    newErrors['serviceDetails.door_opening_types'] = 'יש לבחור לפחות סוג פתיחה אחד';
+    newErrors['serviceDetails.door_opening_types'] = t('validation.selectAtLeastOne');
   }
   if (serviceDetails.work_types?.includes('התקנת מערכות נעילה') && (!serviceDetails.lock_system_installation_types || serviceDetails.lock_system_installation_types.length === 0)) {
-    newErrors['serviceDetails.lock_system_installation_types'] = 'יש לבחור לפחות סוג התקנה אחד';
+    newErrors['serviceDetails.lock_system_installation_types'] = t('validation.selectAtLeastOne');
   }
   if (serviceDetails.work_types?.includes('תיקון מנעולים ודלתות') && (!serviceDetails.lock_door_repair_types || serviceDetails.lock_door_repair_types.length === 0)) {
-    newErrors['serviceDetails.lock_door_repair_types'] = 'יש לבחור לפחות סוג תיקון אחד';
+    newErrors['serviceDetails.lock_door_repair_types'] = t('validation.selectAtLeastOne');
   }
   if (serviceDetails.work_types?.includes('שירותי ביטחון') && (!serviceDetails.security_services_types || serviceDetails.security_services_types.length === 0)) {
-    newErrors['serviceDetails.security_services_types'] = 'יש לבחור לפחות סוג שירות אחד';
+    newErrors['serviceDetails.security_services_types'] = t('validation.selectAtLeastOne');
   }
   break;
 
