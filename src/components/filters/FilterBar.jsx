@@ -1791,12 +1791,58 @@ const PaintingFilters = ({ filters, handleFilterChange, handleCheckboxChange, ha
 const PrivateChefFilters = ({ filters, handleFilterChange, handleCheckboxChange, handleExclusiveCheckbox }) => {
   const { t } = useLanguage();
   const config = FILTER_CONFIG.private_chef;
-  
+  const hasProviderType = filters.provider_type?.length > 0;
+
   return (
     <div className="service-panel">
+
+      {/* Type de prestataire */}
+      <div className="filter-section">
+        <h4>{t(config.sectionTitles.providerType)}</h4>
+        {config.providerTypes.map(opt => (
+          <label key={opt.value} className="checkbox-option">
+            <input
+              type="checkbox"
+              checked={filters.provider_type?.includes(opt.value) || false}
+              onChange={(e) => handleCheckboxChange('provider_type', opt.value, e.target.checked)}
+            />
+            {t(opt.key)}
+          </label>
+        ))}
+      </div>
+
+      {/* Sections révélées quand un type de prestataire est coché */}
+      {hasProviderType && (
       <div className="filter-section">
         <h4>{t(config.sectionTitles.workTypes)}</h4>
-        
+
+        {/* Type d'événement */}
+        <div style={{ marginBottom: '15px' }}>
+          <label className="checkbox-option" style={{ fontWeight: '600' }}>
+            <input
+              type="checkbox"
+              checked={filters.work_types?.includes('סוג האירוע') || false}
+              onChange={(e) => handleCheckboxChange('work_types', 'סוג האירוע', e.target.checked)}
+            />
+            {t(config.sectionTitles.eventType)}
+          </label>
+
+          {filters.work_types?.includes('סוג האירוע') && (
+            <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
+              {config.eventTypes.map(opt => (
+                <label key={opt.value} className="checkbox-option">
+                  <input
+                    type="checkbox"
+                    checked={filters.event_types?.includes(opt.value) || false}
+                    onChange={(e) => handleCheckboxChange('event_types', opt.value, e.target.checked)}
+                  />
+                  {t(opt.key)}
+                </label>
+              ))}
+            </div>
+          )}
+        </div>
+
         {/* סוג המטבח */}
         <div style={{ marginBottom: '15px' }}>
           <label className="checkbox-option" style={{ fontWeight: '600' }}>
@@ -1807,7 +1853,7 @@ const PrivateChefFilters = ({ filters, handleFilterChange, handleCheckboxChange,
             />
             {t('filters.chef.cuisineType')}
           </label>
-          
+
           {filters.work_types?.includes('סוג המטבח') && (
             <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
               {config.cuisineTypes.map(opt => (
@@ -1834,7 +1880,7 @@ const PrivateChefFilters = ({ filters, handleFilterChange, handleCheckboxChange,
             />
             {t('filters.chef.kashrut')}
           </label>
-          
+
           {filters.work_types?.includes('כשרות') && (
             <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
               {config.kosherTypes.map(opt => (
@@ -1851,6 +1897,7 @@ const PrivateChefFilters = ({ filters, handleFilterChange, handleCheckboxChange,
           )}
         </div>
       </div>
+      )}
 
       <AvailabilityDaysSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} includeSaturday={true} />
       <AvailabilityHoursSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} />

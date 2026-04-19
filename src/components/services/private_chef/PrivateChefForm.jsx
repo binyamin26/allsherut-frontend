@@ -92,9 +92,93 @@ const PrivateChefForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
   {errors['serviceDetails.availability_hours'] && <span className="error-text">{errors['serviceDetails.availability_hours']}</span>}
 </div>
 
+        {/* Type de prestataire */}
+        <div className="input-group">
+          <label className="auth-form-label required">{t('serviceForm.chef.providerType')}</label>
+          <div className="checkbox-group" data-field="provider_type">
+            {[
+              { value: 'טרייטר', label: t('filters.chef.caterer') },
+              { value: 'שף פרטי', label: t('filters.chef.homeChef') }
+            ].map(type => (
+              <label key={type.value} className="checkbox-item">
+                <input
+                  type="checkbox"
+                  checked={serviceDetails.provider_type?.includes(type.value) || false}
+                  onChange={(e) => {
+                    const current = serviceDetails.provider_type || [];
+                    const newTypes = e.target.checked
+                      ? [...current, type.value]
+                      : current.filter(v => v !== type.value);
+                    handleServiceDetailsChange('provider_type', newTypes);
+                  }}
+                />
+                {type.label}
+              </label>
+            ))}
+          </div>
+          {errors['serviceDetails.provider_type'] && <span className="error-text">{errors['serviceDetails.provider_type']}</span>}
+        </div>
+
+        {/* Sections révélées quand un type de prestataire est sélectionné */}
+        {serviceDetails.provider_type?.length > 0 && (
         <div className="input-group">
           <label className="auth-form-label required">{t('serviceForm.common.workTypes')}</label>
-          
+
+          {/* Type d'événement */}
+          <div style={{marginBottom: '20px'}}>
+            <label className="checkbox-item" style={{fontWeight: 'bold'}}>
+              <input
+                type="checkbox"
+                checked={serviceDetails.work_types?.includes('סוג האירוע') || false}
+                onChange={(e) => {
+                  const current = serviceDetails.work_types || [];
+                  const newTypes = e.target.checked
+                    ? [...current, 'סוג האירוע']
+                    : current.filter(v => v !== 'סוג האירוע');
+                  handleServiceDetailsChange('work_types', newTypes);
+                }}
+              />
+              {t('filters.chef.eventType')}
+            </label>
+
+            {serviceDetails.work_types?.includes('סוג האירוע') && (
+              <div style={{marginRight: '30px', marginTop: '10px'}}>
+                <div className="checkbox-group" data-field="event_types">
+                  {[
+                    { value: 'חתונה', label: t('filters.chef.wedding') },
+                    { value: 'בר מצווה', label: t('filters.chef.barMitsva') },
+                    { value: 'בת מצווה', label: t('filters.chef.batMitsva') },
+                    { value: 'ברית מילה', label: t('filters.chef.britMila') },
+                    { value: 'פדיון הבן', label: t('filters.chef.pidyonHaben') },
+                    { value: 'שבע ברכות', label: t('filters.chef.shevaBrahot') },
+                    { value: 'יום הולדת / יום שנה', label: t('filters.chef.anniversary') },
+                    { value: 'קידוש', label: t('filters.chef.kiddouch') },
+                    { value: 'שבת חתן', label: t('filters.chef.shabbatHatan') },
+                    { value: 'אירוע עסקי', label: t('filters.chef.corporateEvent') },
+                    { value: 'מסיבה פרטית', label: t('filters.chef.privateParty') },
+                    { value: 'חגיגה משפחתית', label: t('filters.chef.familyParty') }
+                  ].map(type => (
+                    <label key={type.value} className="checkbox-item">
+                      <input
+                        type="checkbox"
+                        checked={serviceDetails.event_types?.includes(type.value) || false}
+                        onChange={(e) => {
+                          const current = serviceDetails.event_types || [];
+                          const newTypes = e.target.checked
+                            ? [...current, type.value]
+                            : current.filter(v => v !== type.value);
+                          handleServiceDetailsChange('event_types', newTypes);
+                        }}
+                      />
+                      {type.label}
+                    </label>
+                  ))}
+                </div>
+                {errors['serviceDetails.event_types'] && <span className="error-text">{errors['serviceDetails.event_types']}</span>}
+              </div>
+            )}
+          </div>
+
           <div style={{marginBottom: '20px'}}>
             <label className="checkbox-item" style={{fontWeight: 'bold'}}>
               <input
@@ -102,15 +186,15 @@ const PrivateChefForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
                 checked={serviceDetails.work_types?.includes('סוג המטבח') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
-                  const newTypes = e.target.checked 
+                  const newTypes = e.target.checked
                     ? [...current, 'סוג המטבח']
-                    : current.filter(t => t !== 'סוג המטבח');
+                    : current.filter(v => v !== 'סוג המטבח');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
             {t('serviceForm.chef.cuisineTypes')}
             </label>
-            
+
             {serviceDetails.work_types?.includes('סוג המטבח') && (
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="cuisine_types">
@@ -131,9 +215,9 @@ const PrivateChefForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
       checked={serviceDetails.cuisine_types?.includes(type.value) || false}
       onChange={(e) => {
         const current = serviceDetails.cuisine_types || [];
-        const newTypes = e.target.checked 
+        const newTypes = e.target.checked
           ? [...current, type.value]
-          : current.filter(t => t !== type.value);
+          : current.filter(v => v !== type.value);
         handleServiceDetailsChange('cuisine_types', newTypes);
       }}
     />
@@ -153,15 +237,15 @@ const PrivateChefForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
                 checked={serviceDetails.work_types?.includes('כשרות') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
-                  const newTypes = e.target.checked 
+                  const newTypes = e.target.checked
                     ? [...current, 'כשרות']
-                    : current.filter(t => t !== 'כשרות');
+                    : current.filter(v => v !== 'כשרות');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
               {t('serviceForm.chef.kosher')}
             </label>
-            
+
             {serviceDetails.work_types?.includes('כשרות') && (
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="kosher_types">
@@ -185,9 +269,9 @@ const PrivateChefForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
       checked={serviceDetails.kosher_types?.includes(type.value) || false}
       onChange={(e) => {
         const current = serviceDetails.kosher_types || [];
-        const newTypes = e.target.checked 
+        const newTypes = e.target.checked
           ? [...current, type.value]
-          : current.filter(t => t !== type.value);
+          : current.filter(v => v !== type.value);
         handleServiceDetailsChange('kosher_types', newTypes);
       }}
     />
@@ -202,6 +286,7 @@ const PrivateChefForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
 
           {errors['serviceDetails.work_types'] && <span className="error-text">{errors['serviceDetails.work_types']}</span>}
         </div>
+        )}
       </div>
     </div>
   );

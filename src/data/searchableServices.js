@@ -394,9 +394,17 @@ const searchableServices = [
   { label: 'בלוני קשת', labelEn: 'Balloon arch', labelFr: 'Arche ballons', labelRu: 'Арка из шаров', href: '/services/event_entertainment', type: 'specialty' },
   { label: 'צילום מגנטים', labelEn: 'Photo magnets', labelFr: 'Photos magnets', labelRu: 'Фотомагниты', href: '/services/event_entertainment', type: 'specialty' },
 
-  // 17. PRIVATE CHEF
-  { label: 'שף פרטי', labelEn: 'Private Chef', labelFr: 'Chef privé', labelRu: 'Частный повар', href: '/services/private_chef', type: 'service' },
-  { label: 'קייטרינג', labelEn: 'Catering', labelFr: 'Traiteur', labelRu: 'Кейтеринг', href: '/services/private_chef', type: 'service' },
+  // 17. PRIVATE CHEF / TRAITEUR
+  { label: 'שף פרטי', labelEn: 'Private Chef', labelFr: 'Chef à domicile', labelRu: 'Частный повар', href: '/services/private_chef', type: 'service' },
+  { label: 'טרייטר', labelEn: 'Caterer', labelFr: 'Traiteur', labelRu: 'Кейтеринг', href: '/services/private_chef', type: 'service' },
+  { label: 'קייטרינג', labelEn: 'Catering', labelFr: 'Traiteur / Catering', labelRu: 'Кейтеринг', href: '/services/private_chef', type: 'service' },
+  { label: 'חתונה', labelEn: 'Wedding', labelFr: 'Mariage', labelRu: 'Свадьба', href: '/services/private_chef', type: 'specialty' },
+  { label: 'בר מצווה', labelEn: 'Bar Mitzvah', labelFr: 'Bar Mitsva', labelRu: 'Бар-мицва', href: '/services/private_chef', type: 'specialty' },
+  { label: 'בת מצווה', labelEn: 'Bat Mitzvah', labelFr: 'Bat Mitsva', labelRu: 'Бат-мицва', href: '/services/private_chef', type: 'specialty' },
+  { label: 'ברית מילה', labelEn: 'Brit Milah', labelFr: 'Brit Mila', labelRu: 'Брит-мила', href: '/services/private_chef', type: 'specialty' },
+  { label: 'שבע ברכות', labelEn: 'Sheva Brachot', labelFr: 'Sheva Brahot', labelRu: 'Шева-брахот', href: '/services/private_chef', type: 'specialty' },
+  { label: 'קידוש', labelEn: 'Kiddush', labelFr: 'Kiddouch', labelRu: 'Кидуш', href: '/services/private_chef', type: 'specialty' },
+  { label: 'אירוע עסקי', labelEn: 'Corporate Event', labelFr: 'Événement entreprise', labelRu: 'Корпоративное мероприятие', href: '/services/private_chef', type: 'specialty' },
   { label: 'פיצות', labelEn: 'Pizza', labelFr: 'Pizzas', labelRu: 'Пицца', href: '/services/private_chef', type: 'specialty' },
   { label: 'סושי', labelEn: 'Sushi', labelFr: 'Sushi', labelRu: 'Суши', href: '/services/private_chef', type: 'specialty' },
   { label: 'סלטים', labelEn: 'Salads', labelFr: 'Salades', labelRu: 'Салаты', href: '/services/private_chef', type: 'specialty' },

@@ -754,10 +754,30 @@ laundry: {
   // ═══════════════════════════════════════════════════════════════
   private_chef: {
     sectionTitles: {
+      providerType: 'filters.chef.providerType',
+      eventType: 'filters.chef.eventType',
       workTypes: 'filters.chef.workTypes',
       cuisineTypes: 'filters.chef.cuisineType',
       kosherTypes: 'filters.chef.kosherTypes'
     },
+    providerTypes: [
+      { value: 'טרייטר', key: 'filters.chef.caterer' },
+      { value: 'שף פרטי', key: 'filters.chef.homeChef' }
+    ],
+    eventTypes: [
+      { value: 'חתונה', key: 'filters.chef.wedding' },
+      { value: 'בר מצווה', key: 'filters.chef.barMitsva' },
+      { value: 'בת מצווה', key: 'filters.chef.batMitsva' },
+      { value: 'ברית מילה', key: 'filters.chef.britMila' },
+      { value: 'פדיון הבן', key: 'filters.chef.pidyonHaben' },
+      { value: 'שבע ברכות', key: 'filters.chef.shevaBrahot' },
+      { value: 'יום הולדת / יום שנה', key: 'filters.chef.anniversary' },
+      { value: 'קידוש', key: 'filters.chef.kiddouch' },
+      { value: 'שבת חתן', key: 'filters.chef.shabbatHatan' },
+      { value: 'אירוע עסקי', key: 'filters.chef.corporateEvent' },
+      { value: 'מסיבה פרטית', key: 'filters.chef.privateParty' },
+      { value: 'חגיגה משפחתית', key: 'filters.chef.familyParty' }
+    ],
     workTypes: [
       { value: 'סוג המטבח', key: 'filters.chef.cuisineType' },
       { value: 'כשרות', key: 'filters.chef.kashrut' }
