@@ -89,7 +89,7 @@ const serviceImages = {
   carpentry: '/images/menuisier.png',
   home_organization: '/images/rangement.jpg',
   event_entertainment: '/images/fetes1.jpg',
-  private_chef: '/images/pizza.png',
+  private_chef: '/images/traiteur.jpg',
   painting: '/images/peinture.jpg',
   waterproofing: '/images/itoum.jpg',
   contractor: '/images/kablan.png',

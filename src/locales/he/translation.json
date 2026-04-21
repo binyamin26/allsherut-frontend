@@ -859,6 +859,7 @@
   "filters.chef.corporateEvent": "אירוע עסקי",
   "filters.chef.privateParty": "מסיבה פרטית",
   "filters.chef.familyParty": "חגיגה משפחתית",
+  "filters.chef.engagement": "אירוסין",
   "filters.chef.rabbinateMethadrin": "רבנות מהדרין",
   "filters.chef.rabbinate": "רבנות",
   "filters.chef.otherKosher": "אחר",

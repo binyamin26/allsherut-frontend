@@ -220,7 +220,7 @@ onChange={(e) => {
         </div>
 
         <div className="input-group">
-         <label className="auth-form-label required">{t('serviceForm.petcare.facilities')}</label>
+         <label>{t('serviceForm.petcare.facilities')}</label>
 <div className="checkbox-group">
   {[
     { value: 'גינה מגודרת', label: t('filters.petcare.fencedGarden') },

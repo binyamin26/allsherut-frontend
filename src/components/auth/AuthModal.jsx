@@ -166,7 +166,7 @@ const services = [
   { key: 'carpentry', name: t('services.carpentry'), image: '/images/menuisier.png', gradient: 'carpentry-gradient' },
   { key: 'home_organization', name: t('services.home_organization'), image: '/images/rangement.jpg', gradient: 'home_organization-gradient' },
   { key: 'event_entertainment', name: t('services.event_entertainment'), image: '/images/fetes1.jpg', gradient: 'event_entertainment-gradient' },
-  { key: 'private_chef', name: t('services.private_chef'), image: '/images/pizza.png', gradient: 'private_chef-gradient' },
+  { key: 'private_chef', name: t('services.private_chef'), image: '/images/traiteur.jpg', gradient: 'private_chef-gradient' },
   { key: 'painting', name: t('services.painting'), image: '/images/peinture.jpg', gradient: 'painting-gradient' },
   { key: 'waterproofing', name: t('services.waterproofing'), image: '/images/itoum.jpg', gradient: 'waterproofing-gradient' },
   { key: 'contractor', name: t('services.contractor'), image: '/images/kablan.png', gradient: 'contractor-gradient' },

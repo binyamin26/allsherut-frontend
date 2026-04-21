@@ -584,6 +584,7 @@ const translationMappings = {
     'אירוע עסקי': 'filters.chef.corporateEvent',
     'מסיבה פרטית': 'filters.chef.privateParty',
     'חגיגה משפחתית': 'filters.chef.familyParty',
+    'אירוסין': 'filters.chef.engagement',
   },
   chefCuisine: {
     'פיצות': 'filters.chef.pizza',

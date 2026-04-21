@@ -267,9 +267,14 @@ const { t, currentLanguage } = useLanguage();
                     {errors['serviceDetails.teachingMode'] && <span className="error-text">{errors['serviceDetails.teachingMode']}</span>}
                 </div>
 
+            </div>
+
+            <div className="form-section optional">
+                <h4>{t('serviceForm.common.optionalFields')}</h4>
+
                 {/* TARIF HORAIRE */}
                 <div className="input-group">
-                    <label className="auth-form-label">{t('serviceForm.tutoring.hourlyRate')}</label>
+                    <label>{t('serviceForm.tutoring.hourlyRate')}</label>
                     <input
                         type="text"
                         inputMode="numeric"
@@ -282,10 +287,6 @@ const { t, currentLanguage } = useLanguage();
                         className="standard-input"
                     />
                 </div>
-            </div>
-
-            <div className="form-section optional">
-                <h4>{t('serviceForm.common.optionalFields')}</h4>
 
                 {/* SPÉCIALISATIONS */}
                 <div className="input-group">

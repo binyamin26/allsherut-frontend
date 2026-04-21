@@ -192,7 +192,7 @@ const HomePage = () => {
     {
       id: 'private_chef',
       name: t('services.private_chef'),
-      image: '/images/pizza.png',
+      image: '/images/traiteur.jpg',
       description: t('services.private_chef.desc'),
       color: 'from-amber-500 to-yellow-600',
       href: '/services/private-chef'
