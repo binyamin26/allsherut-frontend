@@ -72,7 +72,7 @@ static async getByServiceId(serviceId) {
         },
         cooking: { 
           title: 'קולינריה', 
-          items: subcategories.filter(s => s.display_order >= 70 && s.display_order <= 73) 
+          items: subcategories.filter(s => s.display_order >= 70 && s.display_order <= 74)
         },
         personal: { 
           title: 'פיתוח אישי ומיומנויות', 
