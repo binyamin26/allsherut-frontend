@@ -860,6 +860,7 @@
   "filters.chef.privateParty": "Частная вечеринка",
   "filters.chef.familyParty": "Семейное торжество",
   "filters.chef.engagement": "Помолвка",
+  "filters.chef.shabbatMeals": "Трапезы Шаббата",
   "filters.chef.rabbinateMethadrin": "Раввинат Мехадрин",
   "filters.chef.rabbinate": "Раввинат",
   "filters.chef.otherKosher": "Другое",

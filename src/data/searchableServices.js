@@ -404,6 +404,7 @@ const searchableServices = [
   { label: 'ברית מילה', labelEn: 'Brit Milah', labelFr: 'Brit Mila', labelRu: 'Брит-мила', href: '/services/private_chef', type: 'specialty' },
   { label: 'שבע ברכות', labelEn: 'Sheva Brachot', labelFr: 'Sheva Brahot', labelRu: 'Шева-брахот', href: '/services/private_chef', type: 'specialty' },
   { label: 'קידוש', labelEn: 'Kiddush', labelFr: 'Kiddouch', labelRu: 'Кидуш', href: '/services/private_chef', type: 'specialty' },
+  { label: 'סעודות שבת', labelEn: 'Shabbat Meals', labelFr: 'Repas de Chabbat', labelRu: 'Трапезы Шаббата', href: '/services/private_chef', type: 'specialty' },
   { label: 'אירוע עסקי', labelEn: 'Corporate Event', labelFr: 'Événement entreprise', labelRu: 'Корпоративное мероприятие', href: '/services/private_chef', type: 'specialty' },
   { label: 'פיצות', labelEn: 'Pizza', labelFr: 'Pizzas', labelRu: 'Пицца', href: '/services/private_chef', type: 'specialty' },
   { label: 'סושי', labelEn: 'Sushi', labelFr: 'Sushi', labelRu: 'Суши', href: '/services/private_chef', type: 'specialty' },

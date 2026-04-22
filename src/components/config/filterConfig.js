@@ -777,7 +777,8 @@ laundry: {
       { value: 'אירוע עסקי', key: 'filters.chef.corporateEvent' },
       { value: 'מסיבה פרטית', key: 'filters.chef.privateParty' },
       { value: 'חגיגה משפחתית', key: 'filters.chef.familyParty' },
-      { value: 'אירוסין', key: 'filters.chef.engagement' }
+      { value: 'אירוסין', key: 'filters.chef.engagement' },
+      { value: 'סעודות שבת', key: 'filters.chef.shabbatMeals' }
     ],
     workTypes: [
       { value: 'סוג האירוע', key: 'filters.chef.eventType' },
