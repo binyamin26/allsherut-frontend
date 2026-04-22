@@ -217,7 +217,7 @@ const { t, currentLanguage } = useLanguage();
                                     onChange={(e) => handleSubjectChange(subcat.name_he, e.target.checked)}
                                 />
                                 <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                    <span>{subcat.icon}</span>
+                                    <span style={{ fontSize: '0.7rem', fontWeight: 'bold', opacity: 0.7 }}>{subcat.icon}</span>
                                     <span>{subcat[`name_${currentLanguage}`] || subcat.name_he}</span>
                                 </span>
                             </label>
