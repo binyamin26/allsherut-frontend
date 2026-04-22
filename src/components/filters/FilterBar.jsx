@@ -1226,10 +1226,10 @@ const { t, currentLanguage } = useLanguage();
       art: { title: t('filters.tutoring.art'), items: subcategories.filter(s => s.display_order >= 10 && s.display_order <= 16) },
       dance: { title: t('filters.tutoring.dance'), items: subcategories.filter(s => s.display_order >= 20 && s.display_order <= 24) },
       theater: { title: t('filters.tutoring.theater'), items: subcategories.filter(s => s.display_order >= 30 && s.display_order <= 33) },
-      languages: { title: t('filters.tutoring.languages'), items: subcategories.filter(s => s.display_order >= 40 && s.display_order <= 46) },
+      languages: { title: t('filters.tutoring.languages'), items: subcategories.filter(s => s.display_order >= 40 && s.display_order <= 47) },
       crafts: { title: t('filters.tutoring.crafts'), items: subcategories.filter(s => s.display_order >= 50 && s.display_order <= 54) },
       tech: { title: t('filters.tutoring.tech'), items: subcategories.filter(s => s.display_order >= 60 && s.display_order <= 64) },
-      cooking: { title: t('filters.tutoring.cooking'), items: subcategories.filter(s => s.display_order >= 70 && s.display_order <= 73) },
+      cooking: { title: t('filters.tutoring.cooking'), items: subcategories.filter(s => s.display_order >= 70 && s.display_order <= 74) },
       personal: { title: t('filters.tutoring.personal'), items: subcategories.filter(s => s.display_order >= 80 && s.display_order <= 84) },
       sports: { title: t('filters.tutoring.sports'), items: subcategories.filter(s => s.display_order >= 90 && s.display_order <= 119) }
     };
