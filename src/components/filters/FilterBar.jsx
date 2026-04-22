@@ -1271,7 +1271,7 @@ const { t, currentLanguage } = useLanguage();
                     onChange={(e) => handleCheckboxChange('subjects', subcat.name_he, e.target.checked)}
                   />
                   <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <span style={{ fontSize: '0.55rem', fontWeight: 'bold', opacity: 0.7, letterSpacing: '0.03em' }}>{subcat.icon}</span>
+                    <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.58rem', fontWeight: 'bold', background: '#e5e7eb', borderRadius: '3px', padding: '1px 3px', minWidth: '1.6em', color: '#374151', letterSpacing: '0.04em' }}>{subcat.icon}</span>
 <span>{subcat[`name_${currentLanguage}`] || subcat.name_he}</span>
                   </span>
                 </label>
