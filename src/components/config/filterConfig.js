@@ -794,7 +794,10 @@ laundry: {
       { value: 'בשרי', key: 'filters.chef.meat' },
       { value: 'טבעוני / צמחוני', key: 'filters.chef.vegan' },
       { value: 'לא גלוטן', key: 'filters.chef.glutenFree' },
-      { value: 'קינוחים', key: 'filters.chef.desserts' }
+      { value: 'קינוחים', key: 'filters.chef.desserts' },
+      { value: 'סלטי שבת', key: 'filters.chef.shabbatSalads' },
+      { value: 'חלבי', key: 'filters.chef.halavi' },
+      { value: 'מגשי פירות', key: 'filters.chef.fruitPlatters' }
     ],
     kosherTypes: [
     { value: 'בד"ץ העדה החרדית', key: 'filters.chef.badatzEdaChareidis' },  // ← était badatzEdaCharedit

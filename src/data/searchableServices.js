@@ -414,7 +414,10 @@ const searchableServices = [
   { label: 'בשרי', labelEn: 'Meat', labelFr: 'Viande', labelRu: 'Мясо', href: '/services/private_chef', type: 'specialty' },
   { label: 'טבעוני / צמחוני', labelEn: 'Vegan/Vegetarian', labelFr: 'Végétalien/Végétarien', labelRu: 'Веганская/Вегетарианская', href: '/services/private_chef', type: 'specialty' },
   { label: 'לא גלוטן', labelEn: 'Gluten-free', labelFr: 'Sans gluten', labelRu: 'Без глютена', href: '/services/private_chef', type: 'specialty' },
-  { label: 'קינוחים', labelEn: 'Desserts', labelFr: 'Desserts', labelRu: 'Десерты', href: '/services/private_chef', type: 'specialty' },
+  { label: 'קינוחים', labelEn: 'Pâtisserie', labelFr: 'Pâtisserie', labelRu: 'Птиссери', href: '/services/private_chef', type: 'specialty' },
+  { label: 'סלטי שבת', labelEn: 'Shabbat Salads', labelFr: 'Salade de Chabbat', labelRu: 'Салаты Шаббата', href: '/services/private_chef', type: 'specialty' },
+  { label: 'חלבי', labelEn: 'Halavi (Dairy)', labelFr: 'Halavi (Laitier)', labelRu: 'Халави (Молочное)', href: '/services/private_chef', type: 'specialty' },
+  { label: 'מגשי פירות', labelEn: 'Fruit Platters', labelFr: 'Plateaux de fruits', labelRu: 'Фруктовые тарелки', href: '/services/private_chef', type: 'specialty' },
 
   // 18. PAINTING
   { label: 'צביעה', labelEn: 'Painting', labelFr: 'Peinture', labelRu: 'Покраска', href: '/services/painting', type: 'service' },
