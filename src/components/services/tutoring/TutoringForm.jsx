@@ -232,24 +232,6 @@ const { t, currentLanguage } = useLanguage();
                     {errors['serviceDetails.subjects'] && <span className="error-text">{errors['serviceDetails.subjects']}</span>}
                 </div>
 
-                {/* NIVEAUX */}
-                <div className="input-group">
-                    <label className="auth-form-label required">{t('serviceForm.tutoring.levelsLabel')}</label>
-                    <div className="checkbox-group" data-field="levels">
-                        {config.levels.map(level => (
-                            <label key={level.value} className="checkbox-item">
-                                <input
-                                    type="checkbox"
-                                    checked={serviceDetails.levels?.includes(level.value) || false}
-                                    onChange={(e) => handleLevelChange(level.value, e.target.checked)}
-                                />
-                                {t(level.key)}
-                            </label>
-                        ))}
-                    </div>
-                    {errors['serviceDetails.levels'] && <span className="error-text">{errors['serviceDetails.levels']}</span>}
-                </div>
-
                 {/* MODE D'ENSEIGNEMENT */}
                 <div className="input-group">
                     <label className="auth-form-label required">{t('serviceForm.tutoring.teachingMode')}</label>
@@ -271,6 +253,23 @@ const { t, currentLanguage } = useLanguage();
 
             <div className="form-section optional">
                 <h4>{t('serviceForm.common.optionalFields')}</h4>
+
+                {/* NIVEAUX */}
+                <div className="input-group">
+                    <label className="auth-form-label">{t('serviceForm.tutoring.levelsLabel')}</label>
+                    <div className="checkbox-group" data-field="levels">
+                        {config.levels.map(level => (
+                            <label key={level.value} className="checkbox-item">
+                                <input
+                                    type="checkbox"
+                                    checked={serviceDetails.levels?.includes(level.value) || false}
+                                    onChange={(e) => handleLevelChange(level.value, e.target.checked)}
+                                />
+                                {t(level.key)}
+                            </label>
+                        ))}
+                    </div>
+                </div>
 
                 {/* TARIF HORAIRE */}
                 <div className="input-group">

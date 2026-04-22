@@ -756,7 +756,7 @@ case 'petcare':
    case 'tutoring':
         if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
         if (!serviceDetails.subjects || serviceDetails.subjects.length === 0) newErrors['serviceDetails.subjects'] = t('validation.selectAtLeastOne');
-        if (!serviceDetails.levels || serviceDetails.levels.length === 0) newErrors['serviceDetails.levels'] = t('validation.selectAtLeastOne');
+        // levels is optional
         // qualifications is optional
         if (!serviceDetails.teachingMode) newErrors['serviceDetails.teachingMode'] = t('validation.teachingModeRequired');
         if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
