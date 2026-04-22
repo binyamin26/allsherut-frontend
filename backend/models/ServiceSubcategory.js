@@ -60,7 +60,7 @@ static async getByServiceId(serviceId) {
         },
         languages: { 
           title: 'שפות ותרבויות', 
-          items: subcategories.filter(s => s.display_order >= 40 && s.display_order <= 46) 
+          items: subcategories.filter(s => s.display_order >= 40 && s.display_order <= 47)
         },
         crafts: { 
           title: 'יצירה ועבודות יד', 
