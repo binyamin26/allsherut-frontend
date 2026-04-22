@@ -797,7 +797,8 @@ laundry: {
       { value: 'קינוחים', key: 'filters.chef.desserts' },
       { value: 'סלטי שבת', key: 'filters.chef.shabbatSalads' },
       { value: 'חלבי', key: 'filters.chef.halavi' },
-      { value: 'מגשי פירות', key: 'filters.chef.fruitPlatters' }
+      { value: 'מגשי פירות', key: 'filters.chef.fruitPlatters' },
+      { value: 'חלות שבת', key: 'filters.chef.shabbatChallah' }
     ],
     kosherTypes: [
     { value: 'בד"ץ העדה החרדית', key: 'filters.chef.badatzEdaChareidis' },  // ← était badatzEdaCharedit

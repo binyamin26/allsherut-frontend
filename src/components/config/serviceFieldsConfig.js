@@ -844,7 +844,7 @@ const serviceFieldsConfig = {
         name: 'cuisine_types',
         label: 'serviceFields.private_chef.cuisine_types',
         type: 'checkbox',
-        options: ['פיצות', 'סושי', 'סלטים', 'אסייתי', 'פסטות', 'בשרי', 'טבעוני / צמחוני', 'לא גלוטן', 'קינוחים', 'סלטי שבת', 'חלבי', 'מגשי פירות']
+        options: ['פיצות', 'סושי', 'סלטים', 'אסייתי', 'פסטות', 'בשרי', 'טבעוני / צמחוני', 'לא גלוטן', 'קינוחים', 'סלטי שבת', 'חלבי', 'מגשי פירות', 'חלות שבת']
       },
       {
         name: 'kosher_types',
