@@ -419,6 +419,8 @@ const searchableServices = [
   { label: 'חלבי', labelEn: 'Halavi (Dairy)', labelFr: 'Halavi (Laitier)', labelRu: 'Халави (Молочное)', href: '/services/private_chef', type: 'specialty' },
   { label: 'מגשי פירות', labelEn: 'Fruit Platters', labelFr: 'Plateaux de fruits', labelRu: 'Фруктовые тарелки', href: '/services/private_chef', type: 'specialty' },
   { label: 'חלות שבת', labelEn: 'Shabbat Challah', labelFr: 'Hallotes de Chabbat', labelRu: 'Халы Шаббата', href: '/services/private_chef', type: 'specialty' },
+  { label: 'שוקולדים', labelEn: 'Chocolates', labelFr: 'Chocolats', labelRu: 'Шоколад', href: '/services/private_chef', type: 'specialty' },
+  { label: 'מקרון', labelEn: 'Macarons', labelFr: 'Macarons', labelRu: 'Макарон', href: '/services/private_chef', type: 'specialty' },
 
   // 18. PAINTING
   { label: 'צביעה', labelEn: 'Painting', labelFr: 'Peinture', labelRu: 'Покраска', href: '/services/painting', type: 'service' },
