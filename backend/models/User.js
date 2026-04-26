@@ -1611,9 +1611,9 @@ async updateFullProfile(profileData) {
         userUpdateFields.push('first_name = ?');
         userUpdateValues.push(profileData.firstName);
       }
-      if (profileData.lastName) {
+      if (profileData.lastName !== undefined) {
         userUpdateFields.push('last_name = ?');
-        userUpdateValues.push(profileData.lastName);
+        userUpdateValues.push(profileData.lastName || null);
       }
       if (profileData.email) {
         userUpdateFields.push('email = ?');
@@ -1749,7 +1749,7 @@ providerUpdateValues.push(JSON.stringify(updatedDetails));
 
       // 4. Mettre à jour l'instance actuelle
       if (profileData.firstName) this.first_name = profileData.firstName;
-      if (profileData.lastName) this.last_name = profileData.lastName;
+      if (profileData.lastName !== undefined) this.last_name = profileData.lastName || null;
       if (profileData.email) this.email = profileData.email.toLowerCase().trim();
       if (profileData.phone !== undefined) this.phone = profileData.phone;
 

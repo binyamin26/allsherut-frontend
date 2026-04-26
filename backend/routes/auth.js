@@ -1231,7 +1231,7 @@ router.put('/update-full-profile',
   authenticateToken,
   [
     body('firstName').optional().trim().isLength({ min: 2 }).withMessage('שם פרטי נדרש'),
-    body('lastName').optional().trim().isLength({ min: 2 }).withMessage('שם משפחה נדרש'),
+    body('lastName').optional({ checkFalsy: true }).trim().isLength({ min: 2 }).withMessage('שם משפחה נדרש'),
     body('email').optional().isEmail().toLowerCase().withMessage(MESSAGES.ERROR.VALIDATION.INVALID_EMAIL),
     body('phone').optional().custom((value) => {
       if (value && !value.match(/^05\d{8}$/)) {
