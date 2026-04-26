@@ -252,6 +252,14 @@ const HomePage = () => {
       description: t('services.moving.desc'),
       color: 'from-blue-500 to-indigo-600',
       href: '/services/moving'
+    },
+    {
+      id: 'photographer',
+      name: t('services.photographer'),
+      image: '/images/photographe.jpg',
+      description: t('services.photographer.desc'),
+      color: 'from-purple-500 to-violet-600',
+      href: '/services/photographer'
     }
   ];
 
