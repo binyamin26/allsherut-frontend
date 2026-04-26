@@ -625,7 +625,7 @@ const response = await changePassword(
   };
 
   const handleSaveNameOnly = async () => {
-    if (!nameFormData.firstName.trim() || !nameFormData.lastName.trim()) return;
+    if (!nameFormData.firstName.trim()) return;
     setNameEditLoading(true);
     setMessage(null);
     try {
@@ -2272,7 +2272,7 @@ const galleryImages = (() => {
                         <button
                           type="button"
                           onClick={handleSaveNameOnly}
-                          disabled={nameEditLoading || !nameFormData.firstName.trim() || !nameFormData.lastName.trim()}
+                          disabled={nameEditLoading || !nameFormData.firstName.trim()}
                           className="btn btn-primary"
                         >
                           {nameEditLoading ? <><LoadingSpinner size="small" />{t('dashboard.saving')}</> : <><Save size={16} />{t('dashboard.saveChanges')}</>}
