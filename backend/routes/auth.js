@@ -225,7 +225,7 @@ router.post('/register',
     // Validation conditionnelle pour providers
     body('serviceType').custom((value, { req }) => {
       if (req.body.role === 'provider') {
-     const availableServices = ['babysitting', 'cleaning', 'gardening', 'petcare', 'tutoring', 'eldercare', 'laundry', 'property_management', 'electrician', 'plumbing', 'air_conditioning', 'gas_technician', 'drywall', 'carpentry', 'home_organization', 'event_entertainment', 'private_chef', 'painting', 'waterproofing', 'contractor','aluminum','glass_works', 'locksmith']; // Ajout du service 'contractor'
+     const availableServices = ['babysitting', 'cleaning', 'gardening', 'petcare', 'tutoring', 'eldercare', 'laundry', 'property_management', 'electrician', 'plumbing', 'air_conditioning', 'gas_technician', 'drywall', 'carpentry', 'home_organization', 'event_entertainment', 'private_chef', 'painting', 'waterproofing', 'contractor', 'aluminum', 'glass_works', 'locksmith', 'moving', 'photographer'];
         if (!value || !availableServices.includes(value)) {
           throw new Error('סוג שירות נדרש לספקים');
         }
@@ -1175,10 +1175,10 @@ router.post('/check-identity', async (req, res) => {
     if (phone) {
       const cleanPhone = phone.replace(/[\s-]/g, '');
       const [phoneResults] = await query(
-        `SELECT CONCAT(first_name, ' ', last_name) as full_name FROM users 
-WHERE phone = ? 
+        `SELECT CONCAT(first_name, ' ', last_name) as full_name FROM users
+WHERE phone = ?
 AND LOWER(TRIM(CONCAT(first_name, ' ', last_name))) != ?
-         AND deleted_at IS NULL
+         AND is_active = TRUE
          LIMIT 1`,
         [cleanPhone, normalizedName]
       );
@@ -1195,10 +1195,10 @@ AND LOWER(TRIM(CONCAT(first_name, ' ', last_name))) != ?
     // Vérifier si l'email existe avec un nom différent
     if (email) {
      const [emailResults] = await query(
-  `SELECT CONCAT(first_name, ' ', last_name) as full_name FROM users 
-   WHERE email = ? 
+  `SELECT CONCAT(first_name, ' ', last_name) as full_name FROM users
+   WHERE email = ?
    AND LOWER(TRIM(CONCAT(first_name, ' ', last_name))) != ?
-         AND deleted_at IS NULL
+         AND is_active = TRUE
          LIMIT 1`,
         [email.toLowerCase().trim(), normalizedName]
       );
