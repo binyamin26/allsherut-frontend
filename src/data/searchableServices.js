@@ -573,6 +573,26 @@ const searchableServices = [
   { label: 'מנעולים חכמים', labelEn: 'Smart locks', labelFr: 'Serrures intelligentes', labelRu: 'Умные замки', href: '/services/locksmith', type: 'specialty' },
   { label: 'קודן / מערכת כניסה ללא מפתח', labelEn: 'Keypad / keyless entry system', labelFr: 'Digicode / système entrée sans clé', labelRu: 'Кодовый замок / система без ключа', href: '/services/locksmith', type: 'specialty' },
   { label: 'מערכות שליטה מרחוק (באפליקציה)', labelEn: 'Remote control systems (app)', labelFr: 'Systèmes contrôle distance (app)', labelRu: 'Системы дистанционного управления (приложение)', href: '/services/locksmith', type: 'specialty' },
+
+  // 24. MOVING
+  { label: 'הובלות', labelEn: 'Moving', labelFr: 'Déménagement', labelRu: 'Переезд', href: '/services/moving', type: 'service' },
+  { label: 'חברת הובלה', labelEn: 'Moving company', labelFr: 'Société de déménagement', labelRu: 'Компания по переезду', href: '/services/moving', type: 'specialty' },
+  { label: 'הובלת דירה', labelEn: 'Apartment moving', labelFr: 'Déménagement appartement', labelRu: 'Переезд квартиры', href: '/services/moving', type: 'specialty' },
+  { label: 'הובלת משרד', labelEn: 'Office moving', labelFr: 'Déménagement bureau', labelRu: 'Переезд офиса', href: '/services/moving', type: 'specialty' },
+  { label: 'פינוי דירה', labelEn: 'Apartment clearance', labelFr: 'Vidage appartement', labelRu: 'Выезд из квартиры', href: '/services/moving', type: 'specialty' },
+  { label: 'עבודה עברית', labelEn: 'Israeli workers (Avoda Ivrit)', labelFr: 'Employés israéliens (עבודה עברית)', labelRu: 'Израильские работники', href: '/services/moving', type: 'specialty' },
+  { label: 'דיסמנטל', labelEn: 'Furniture disassembly', labelFr: 'Démontage meubles', labelRu: 'Разборка мебели', href: '/services/moving', type: 'specialty' },
+  { label: 'הרכבת רהיטים', labelEn: 'Furniture assembly', labelFr: 'Montage meubles', labelRu: 'Сборка мебели', href: '/services/moving', type: 'specialty' },
+
+  // 25. PHOTOGRAPHER
+  { label: 'צלם', labelEn: 'Photographer', labelFr: 'Photographe', labelRu: 'Фотограф', href: '/services/photographer', type: 'service' },
+  { label: 'צלם אירועים', labelEn: 'Event photographer', labelFr: 'Photographe événements', labelRu: 'Фотограф на мероприятия', href: '/services/photographer', type: 'specialty' },
+  { label: 'צלם חתונות', labelEn: 'Wedding photographer', labelFr: 'Photographe mariage', labelRu: 'Свадебный фотограф', href: '/services/photographer', type: 'specialty' },
+  { label: 'צלם בר מצווה', labelEn: 'Bar Mitzvah photographer', labelFr: 'Photographe bar mitsva', labelRu: 'Фотограф бар-мицва', href: '/services/photographer', type: 'specialty' },
+  { label: 'צלם בת מצווה', labelEn: 'Bat Mitzvah photographer', labelFr: 'Photographe bat mitsva', labelRu: 'Фотограф бат-мицва', href: '/services/photographer', type: 'specialty' },
+  { label: 'שוטינג פוטו', labelEn: 'Photo shoot', labelFr: 'Shooting photo', labelRu: 'Фотосессия', href: '/services/photographer', type: 'specialty' },
+  { label: 'צלם תספורת', labelEn: 'Haircut photographer', labelFr: 'Photographe coupe de cheveux', labelRu: 'Фотограф стрижка', href: '/services/photographer', type: 'specialty' },
+  { label: 'אירוסין', labelEn: 'Engagement', labelFr: 'Fiançailles', labelRu: 'Помолвка', href: '/services/photographer', type: 'specialty' },
 ];
 
 export default searchableServices;

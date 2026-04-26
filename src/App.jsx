@@ -55,6 +55,8 @@ import ContractorPage from './pages/services/ContractorPage';
 import AluminumPage from './pages/services/AluminumPage';
 import GlassWorksPage from './pages/services/GlassWorksPage';
 import LocksmithPage from './pages/services/LocksmithPage';
+import MovingPage from './pages/services/MovingPage';
+import PhotographerPage from './pages/services/PhotographerPage';
 
 // Page de détails provider
 import ProviderDetailPage from './pages/ProviderDetailPage';
@@ -160,6 +162,8 @@ function App() {
 <Route path="/services/aluminum" element={<AluminumPage />} />
 <Route path="/services/glass-works" element={<GlassWorksPage />} />
 <Route path="/services/locksmith" element={<LocksmithPage />} />
+<Route path="/services/moving" element={<MovingPage />} />
+<Route path="/services/photographer" element={<PhotographerPage />} />
 
 
                 {/* Pages recrutement */}

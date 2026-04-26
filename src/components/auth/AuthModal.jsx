@@ -172,7 +172,9 @@ const services = [
   { key: 'contractor', name: t('services.contractor'), image: '/images/kablan.png', gradient: 'contractor-gradient' },
   { key: 'aluminum', name: t('services.aluminum'), image: '/images/aluminium.png', gradient: 'aluminum-gradient' },
   { key: 'glass_works', name: t('services.glass_works'), image: '/images/verre.png', gradient: 'glass_works-gradient' },
-  { key: 'locksmith', name: t('services.locksmith'), image: '/images/serrure.png', gradient: 'locksmith-gradient' }
+  { key: 'locksmith', name: t('services.locksmith'), image: '/images/serrure.png', gradient: 'locksmith-gradient' },
+  { key: 'moving', name: t('services.moving'), image: '/images/demenagement.png', gradient: 'moving-gradient' },
+  { key: 'photographer', name: t('services.photographer'), image: '/images/photographe.png', gradient: 'photographer-gradient' }
 ];
 
   // ── Détection clavier mobile via visualViewport ──────────────────────

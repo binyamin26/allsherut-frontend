@@ -861,6 +861,62 @@ const serviceFieldsConfig = {
     ]
   },
 
+  photographer: {
+    fields: [
+      { name: 'age', label: 'serviceFields.photographer.age', type: 'number' },
+      { name: 'experience', label: 'serviceFields.photographer.experience', type: 'number' },
+      {
+        name: 'availability_days',
+        label: 'serviceFields.photographer.availability_days',
+        type: 'checkbox',
+        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע']
+      },
+      {
+        name: 'availability_hours',
+        label: 'serviceFields.photographer.availability_hours',
+        type: 'checkbox',
+        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+      },
+      {
+        name: 'work_types',
+        label: 'serviceFields.photographer.work_types',
+        type: 'checkbox',
+        options: ['סוג האירוע']
+      },
+      {
+        name: 'event_types',
+        label: 'serviceFields.photographer.event_types',
+        type: 'checkbox',
+        options: ['בר מצווה', 'בת מצווה', 'חתונה', 'אירוסין', 'תספורת', 'שוטינג פוטו', 'אירועים פרטיים']
+      }
+    ]
+  },
+
+  moving: {
+    fields: [
+      { name: 'age', label: 'serviceFields.moving.age', type: 'number' },
+      { name: 'experience', label: 'serviceFields.moving.experience', type: 'number' },
+      {
+        name: 'availability_days',
+        label: 'serviceFields.moving.availability_days',
+        type: 'checkbox',
+        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע']
+      },
+      {
+        name: 'availability_hours',
+        label: 'serviceFields.moving.availability_hours',
+        type: 'checkbox',
+        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+      },
+      {
+        name: 'avoda_ivrit',
+        label: 'serviceFields.moving.avoda_ivrit',
+        type: 'checkbox',
+        options: ['עבודה עברית']
+      }
+    ]
+  },
+
   painting: {
     fields: [
       { name: 'age', label: 'serviceFields.painting.age', type: 'number' },

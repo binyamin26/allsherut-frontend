@@ -244,6 +244,14 @@ const HomePage = () => {
       description: t('services.locksmith.desc'),
       color: 'from-amber-500 to-yellow-600',
       href: '/services/locksmith'
+    },
+    {
+      id: 'moving',
+      name: t('services.moving'),
+      image: '/images/demenagement.jpg',
+      description: t('services.moving.desc'),
+      color: 'from-blue-500 to-indigo-600',
+      href: '/services/moving'
     }
   ];
 

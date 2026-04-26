@@ -95,7 +95,8 @@ const serviceImages = {
   contractor: '/images/kablan.png',
   aluminum: '/images/aluminium.png',
   glass_works: '/images/verre.png',
-  locksmith: '/images/serrure.png'
+  locksmith: '/images/serrure.png',
+  moving: '/images/demenagement.jpg'
 };
 
 const DashboardPage = () => {

@@ -1153,6 +1153,40 @@ locksmith: {
       { value: 'שירות מסגרות מסחרי', key: 'filters.locksmith.commercialLocksmith' }
     ]
   },
+
+  // ═══════════════════════════════════════════════════════════════
+  // MOVING
+  // ═══════════════════════════════════════════════════════════════
+  moving: {
+    sectionTitles: {
+      avodaIvrit: 'filters.moving.avodaIvrit'
+    },
+    avodaIvrit: [
+      { value: 'עבודה עברית', key: 'filters.moving.avodaIvritLabel' }
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PHOTOGRAPHER
+  // ═══════════════════════════════════════════════════════════════
+  photographer: {
+    sectionTitles: {
+      workTypes: 'filters.photographer.workTypes',
+      eventTypes: 'filters.photographer.eventTypesSection'
+    },
+    workTypes: [
+      { value: 'סוג האירוע', key: 'filters.photographer.eventTypes' }
+    ],
+    eventTypes: [
+      { value: 'בר מצווה', key: 'filters.photographer.barMitsva' },
+      { value: 'בת מצווה', key: 'filters.photographer.batMitsva' },
+      { value: 'חתונה', key: 'filters.photographer.wedding' },
+      { value: 'אירוסין', key: 'filters.photographer.engagement' },
+      { value: 'תספורת', key: 'filters.photographer.haircut' },
+      { value: 'שוטינג פוטו', key: 'filters.photographer.photoShoot' },
+      { value: 'אירועים פרטיים', key: 'filters.photographer.privateEvents' }
+    ]
+  },
 };
 
 // Fonction helper pour récupérer les traductions

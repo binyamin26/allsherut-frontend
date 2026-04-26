@@ -52,7 +52,9 @@ const Footer = () => {
         { nameKey: 'services.aluminum', path: '/services/aluminum' },
         { nameKey: 'services.glass_works', path: '/services/glass-works' },
         { nameKey: 'services.contractor', path: '/services/contractor' },
-        { nameKey: 'services.locksmith', path: '/services/locksmith' }
+        { nameKey: 'services.locksmith', path: '/services/locksmith' },
+        { nameKey: 'services.moving', path: '/services/moving' },
+        { nameKey: 'services.photographer', path: '/services/photographer' }
       ]
     },
     {

@@ -24,6 +24,8 @@ import ContractorForm from './contractor/ContractorForm';
 import AluminumForm from './aluminum/AluminumForm';
 import GlassWorksForm from './glass_works/GlassWorksForm';
 import LocksmithForm from './locksmith/LocksmithForm';
+import MovingForm from './moving/MovingForm';
+import PhotographerForm from './photographer/PhotographerForm';
 
 const ServiceDetailsForm = ({ 
   serviceType, 
@@ -57,7 +59,9 @@ const ServiceDetailsForm = ({
     contractor: ContractorForm,
     aluminum: AluminumForm,
     glass_works: GlassWorksForm,
-    locksmith: LocksmithForm
+    locksmith: LocksmithForm,
+    moving: MovingForm,
+    photographer: PhotographerForm
   };
 
   // Récupérer le bon composant

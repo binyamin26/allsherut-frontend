@@ -88,7 +88,8 @@ const ProviderDetailPage = () => {
     contractor: '/images/logo kablan.png',
     aluminum: '/images/logo aluminium.png',
     glass_works: '/images/logo verre.png',
-    locksmith: '/images/logo serrure.png'
+    locksmith: '/images/logo serrure.png',
+    moving: '/images/logo demenagement.jpg'
   };
   return icons[serviceType] || '/images/logo-default.png';
 };
