@@ -837,14 +837,30 @@ const ServicePanel = ({ serviceType, filters, onChange }) => {
       
     case 'locksmith':
       return (
-        <LocksmithFilters 
+        <LocksmithFilters
           filters={filters}
           handleFilterChange={handleFilterChange}
           handleCheckboxChange={handleCheckboxChange}
           handleExclusiveCheckbox={handleExclusiveCheckbox}
         />
       );
-      
+
+    case 'moving':
+      return (
+        <MovingFilters
+          filters={filters}
+          handleCheckboxChange={handleCheckboxChange}
+        />
+      );
+
+    case 'photographer':
+      return (
+        <PhotographerFilters
+          filters={filters}
+          handleCheckboxChange={handleCheckboxChange}
+        />
+      );
+
     default:
       return (
         <div className="service-panel">
@@ -2850,6 +2866,42 @@ const WaterproofingFilters = ({ filters, handleFilterChange, handleCheckboxChang
       <AvailabilityDaysSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} />
       <AvailabilityHoursSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} />
       <AgeRangeSection filters={filters} onFilterChange={handleFilterChange} />
+    </div>
+  );
+};
+
+// MOVING
+const MovingFilters = ({ filters, handleCheckboxChange }) => {
+  const { t } = useLanguage();
+  const config = FILTER_CONFIG.moving;
+
+  return (
+    <div className="service-panel">
+      <CheckboxSection
+        title={t(config.sectionTitles.avodaIvrit)}
+        options={config.avodaIvrit.map(o => ({ value: o.value, label: t(o.key) }))}
+        filterKey="avoda_ivrit"
+        filters={filters}
+        onCheckboxChange={handleCheckboxChange}
+      />
+    </div>
+  );
+};
+
+// PHOTOGRAPHER
+const PhotographerFilters = ({ filters, handleCheckboxChange }) => {
+  const { t } = useLanguage();
+  const config = FILTER_CONFIG.photographer;
+
+  return (
+    <div className="service-panel">
+      <CheckboxSection
+        title={t(config.sectionTitles.eventTypes)}
+        options={config.eventTypes.map(o => ({ value: o.value, label: t(o.key) }))}
+        filterKey="event_types"
+        filters={filters}
+        onCheckboxChange={handleCheckboxChange}
+      />
     </div>
   );
 };
