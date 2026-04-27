@@ -849,7 +849,9 @@ const ServicePanel = ({ serviceType, filters, onChange }) => {
       return (
         <MovingFilters
           filters={filters}
+          handleFilterChange={handleFilterChange}
           handleCheckboxChange={handleCheckboxChange}
+          handleExclusiveCheckbox={handleExclusiveCheckbox}
         />
       );
 
@@ -857,7 +859,9 @@ const ServicePanel = ({ serviceType, filters, onChange }) => {
       return (
         <PhotographerFilters
           filters={filters}
+          handleFilterChange={handleFilterChange}
           handleCheckboxChange={handleCheckboxChange}
+          handleExclusiveCheckbox={handleExclusiveCheckbox}
         />
       );
 
@@ -2871,12 +2875,24 @@ const WaterproofingFilters = ({ filters, handleFilterChange, handleCheckboxChang
 };
 
 // MOVING
-const MovingFilters = ({ filters, handleCheckboxChange }) => {
+const MovingFilters = ({ filters, handleFilterChange, handleCheckboxChange, handleExclusiveCheckbox }) => {
   const { t } = useLanguage();
   const config = FILTER_CONFIG.moving;
 
   return (
     <div className="service-panel">
+      <AgeRangeSection filters={filters} onFilterChange={handleFilterChange} />
+
+      <AvailabilityDaysSection
+        filters={filters}
+        onExclusiveCheckbox={handleExclusiveCheckbox}
+      />
+
+      <AvailabilityHoursSection
+        filters={filters}
+        onExclusiveCheckbox={handleExclusiveCheckbox}
+      />
+
       <CheckboxSection
         title={t(config.sectionTitles.avodaIvrit)}
         options={config.avodaIvrit.map(o => ({ value: o.value, label: t(o.key) }))}
@@ -2889,12 +2905,24 @@ const MovingFilters = ({ filters, handleCheckboxChange }) => {
 };
 
 // PHOTOGRAPHER
-const PhotographerFilters = ({ filters, handleCheckboxChange }) => {
+const PhotographerFilters = ({ filters, handleFilterChange, handleCheckboxChange, handleExclusiveCheckbox }) => {
   const { t } = useLanguage();
   const config = FILTER_CONFIG.photographer;
 
   return (
     <div className="service-panel">
+      <AgeRangeSection filters={filters} onFilterChange={handleFilterChange} />
+
+      <AvailabilityDaysSection
+        filters={filters}
+        onExclusiveCheckbox={handleExclusiveCheckbox}
+      />
+
+      <AvailabilityHoursSection
+        filters={filters}
+        onExclusiveCheckbox={handleExclusiveCheckbox}
+      />
+
       <CheckboxSection
         title={t(config.sectionTitles.eventTypes)}
         options={config.eventTypes.map(o => ({ value: o.value, label: t(o.key) }))}
