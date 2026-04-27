@@ -1575,8 +1575,35 @@ case 'contractor':
     errors.push({ field: 'advanced_systems_types', message: 'יש לבחור לפחות סוג מערכת אחד' });
   }
   break;
+
+  case 'moving':
+    if (!serviceDetails.age) errors.push({ field: 'age', message: 'גיל נדרש' });
+    else if (parseInt(serviceDetails.age) < 18) errors.push({ field: 'age', message: 'גיל מינימלי: 18 שנים' });
+    if (!serviceDetails.experience) errors.push({ field: 'experience', message: 'שנות ניסיון נדרשות' });
+    if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
+      errors.push({ field: 'availability_days', message: 'יש לבחור ימי זמינות' });
+    }
+    if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
+      errors.push({ field: 'availability_hours', message: 'יש לבחור שעות זמינות' });
+    }
+    break;
+
+  case 'photographer':
+    if (!serviceDetails.age) errors.push({ field: 'age', message: 'גיל נדרש' });
+    else if (parseInt(serviceDetails.age) < 18) errors.push({ field: 'age', message: 'גיל מינימלי: 18 שנים' });
+    if (!serviceDetails.experience) errors.push({ field: 'experience', message: 'שנות ניסיון נדרשות' });
+    if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
+      errors.push({ field: 'availability_days', message: 'יש לבחור ימי זמינות' });
+    }
+    if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
+      errors.push({ field: 'availability_hours', message: 'יש לבחור שעות זמינות' });
+    }
+    if (!serviceDetails.work_types || serviceDetails.work_types.length === 0) {
+      errors.push({ field: 'work_types', message: 'יש לבחור לפחות סוג עבודה אחד' });
+    }
+    break;
   }
-  
+
   return errors;
 }
 

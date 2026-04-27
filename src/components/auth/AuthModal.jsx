@@ -1248,6 +1248,28 @@ case 'glass_works':
   }
   break;
 
+  case 'moving':
+    if (!serviceDetails.age) newErrors['serviceDetails.age'] = t('validation.ageRequired');
+    else if (parseInt(serviceDetails.age) < 18) newErrors['serviceDetails.age'] = t('validation.ageMin18');
+    if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
+    if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0)
+      newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
+    if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0)
+      newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
+    break;
+
+  case 'photographer':
+    if (!serviceDetails.age) newErrors['serviceDetails.age'] = t('validation.ageRequired');
+    else if (parseInt(serviceDetails.age) < 18) newErrors['serviceDetails.age'] = t('validation.ageMin18');
+    if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
+    if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0)
+      newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
+    if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0)
+      newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
+    if (!serviceDetails.work_types || serviceDetails.work_types.length === 0)
+      newErrors['serviceDetails.work_types'] = t('validation.workTypesRequired');
+    break;
+
     }
 
 // Juste avant setErrors(newErrors);
