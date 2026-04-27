@@ -304,9 +304,10 @@ if (role === 'provider' && userData.tranziliaToken) {
           const workingAreas = JSON.parse(req.body.workingAreas || '[]');
 
           // Validation Step 2
+          console.log('🔍 STEP2 DATA:', JSON.stringify({ serviceType, workingAreas, serviceDetails }));
           const step2Errors = User.validateProviderStep2(serviceType, serviceDetails, workingAreas);
           if (step2Errors.length > 0) {
-            
+            console.log('❌ STEP2 errors:', JSON.stringify(step2Errors));
             return res.validationError(step2Errors);
           }
 
