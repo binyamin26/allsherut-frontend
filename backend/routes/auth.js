@@ -244,9 +244,7 @@ body('phone').optional()
       // ✅ VALIDATION UNIFIÉE
       const validationErrors = validationResult(req);
       if (!validationErrors.isEmpty()) {
-       
-      
-        
+        console.log('❌ REGISTER validation errors:', JSON.stringify(validationErrors.array()));
         return res.validationError(
           validationErrors.array().map(err => ({
             field: err.path,
