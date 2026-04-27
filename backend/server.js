@@ -428,7 +428,7 @@ cronService.start();
       console.log('   ✅ Email notifications to providers');
       console.log('   ❌ Admin moderation disabled');
       
-      console.log('\n✨ Ready for requests!\n');
+      console.log('\n✨ Ready for requests! VERSION: 2026-04-27-v2\n');
     });
 
   } catch (error) {
