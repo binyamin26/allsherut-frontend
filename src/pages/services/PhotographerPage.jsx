@@ -91,7 +91,7 @@ const PhotographerPage = () => {
             <div className="container">
               <div className="service-title-section">
                 <div className="service-hero-icon">
-                  <img src="/images/logo%20photographe.jpg" alt="Photographe" />
+                  <img src="/images/logo-photographe.jpg" alt="Photographe" />
                 </div>
                 <h1 className="service-title">{t('services.photographer.pageTitle')}</h1>
               </div>
