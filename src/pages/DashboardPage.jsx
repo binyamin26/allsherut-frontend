@@ -54,33 +54,6 @@ import { useLanguage } from '../context/LanguageContext';
 import RecruitmentForm from '../components/recruitment/RecruitmentForm';
 import CustomDropdown from '../components/common/CustomDropdown';
 
-const SERVICE_LOGOS = {
-  babysitting: '/images/logo bébé.png',
-  cleaning: '/images/logo nikayon.png',
-  gardening: '/images/logo jardinage.png',
-  petcare: '/images/logo chien.png',
-  tutoring: '/images/logo cours particulier.png',
-  eldercare: '/images/logo itoum.png',
-  laundry: '/images/logo kvissa.png',
-  property_management: '/images/logo nihoul dirot.png',
-  electrician: '/images/logo electricien.png',
-  plumbing: '/images/logo plomberie.png',
-  air_conditioning: '/images/logo clim.png',
-  gas_technician: '/images/logo gaz.png',
-  drywall: '/images/logo placo.png',
-  carpentry: '/images/logo menuisier.png',
-  home_organization: '/images/logo rangement.png',
-  event_entertainment: '/images/logo event.png',
-  private_chef: '/images/logo chef.png',
-  painting: '/images/logo peinture.png',
-  contractor: '/images/logo kablan.png',
-  aluminum: '/images/logo aluminium.png',
-  glass_works: '/images/logo verre.png',
-  locksmith: '/images/logo serrure.png',
-  moving: '/images/logo demenagement.jpg',
-  photographer: '/images/logo photographe.jpg',
-};
-
 const ALL_SERVICE_KEYS = [
   'babysitting','cleaning','gardening','petcare','tutoring','eldercare','laundry',
   'property_management','electrician','plumbing','air_conditioning','gas_technician',
@@ -123,7 +96,8 @@ const serviceImages = {
   aluminum: '/images/aluminium.png',
   glass_works: '/images/verre.png',
   locksmith: '/images/serrure.png',
-  moving: '/images/demenagement.jpg'
+  moving: '/images/demenagement.jpg',
+  photographer: '/images/logo photographe.jpg'
 };
 
 const DashboardPage = () => {
@@ -1393,12 +1367,6 @@ const galleryImages = (() => {
                 : `https://homesherut-backend.onrender.com/${userData.providerProfile.profile_image.replace(/^\/+/, '')}`
             }
             alt={userData.firstName}
-          />
-        ) : SERVICE_LOGOS[userData?.serviceType] ? (
-          <img
-            src={SERVICE_LOGOS[userData?.serviceType]}
-            alt={userData?.serviceType}
-            style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '10px' }}
           />
         ) : (
           <User size={60} />
