@@ -232,16 +232,7 @@ router.post('/register',
       }
       return true;
     }),
-body('phone').custom((value, { req }) => {
-  // Pour tous (clients et providers): phone optionnel mais si fourni, doit être valide
-  if (value) {
-    const cleaned = value.replace(/[\s\-.()/]/g, '');
-    if (!cleaned.match(/^05\d{8}$/)) {
-      throw new Error(MESSAGES.ERROR.VALIDATION.INVALID_PHONE);
-    }
-  }
-  return true;
-})
+body('phone').optional()
 
   ],
   async (req, res) => {
@@ -848,7 +839,7 @@ if (providerProfile && providerProfile.profileImage) {
 router.put('/me', authenticateToken, [
   body('firstName').optional().trim().isLength({ min: 2 }).withMessage('שם פרטי נדרש'),
   body('lastName').optional().trim().isLength({ min: 2 }).withMessage('שם משפחה נדרש'),
-  body('phone').optional().customSanitizer(v => v?.replace(/[\s\-(). /]/g, '')).matches(/^05\d{8}$/).withMessage(MESSAGES.ERROR.VALIDATION.INVALID_PHONE)
+  body('phone').optional()
 ], async (req, res) => {
   try {
     const validationErrors = validationResult(req);
@@ -1233,12 +1224,7 @@ router.put('/update-full-profile',
     body('firstName').optional().trim().isLength({ min: 2 }).withMessage('שם פרטי נדרש'),
     body('lastName').optional({ checkFalsy: true }).trim().isLength({ min: 2 }).withMessage('שם משפחה נדרש'),
     body('email').optional().isEmail().toLowerCase().withMessage(MESSAGES.ERROR.VALIDATION.INVALID_EMAIL),
-    body('phone').optional().custom((value) => {
-      if (value && !value.match(/^05\d{8}$/)) {
-        throw new Error(MESSAGES.ERROR.VALIDATION.INVALID_PHONE);
-      }
-      return true;
-    }),
+    body('phone').optional(),
 body('experienceYears').optional({ nullable: true, checkFalsy: true }).isInt({ min: 0 }).withMessage('ניסיון חייב להיות מספר חיובי'),
 body('hourlyRate').optional({ nullable: true, checkFalsy: true }).isFloat({ min: 0 }).withMessage('תעריף חייב להיות מספר חיובי')
   ],

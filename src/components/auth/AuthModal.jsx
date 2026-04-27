@@ -344,9 +344,7 @@ if (authForm) {
   };
 
   const validatePhone = (phone) => {
-    if (!phone) return true;
-    const phoneRegex = /^0(5[0-9]|[2-4]|[8-9])[0-9]{7,8}$/;
-    return phoneRegex.test(phone.replace(/[\s-]/g, ''));
+    return true;
   };
 
   const validatePasswordStrength = (password) => {

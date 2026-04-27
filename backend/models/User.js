@@ -616,10 +616,7 @@ try {
 
     // last name is optional (single-name users allowed)
 
-    // Téléphone (optionnel mais si fourni, doit être valide)
-    if (userData.phone && !/^05\d{8}$/.test(userData.phone)) {
-      errors.push({ field: 'phone', message: 'מספר טלפון לא תקין (05xxxxxxxx)' });
-    }
+    // Téléphone accepté sans restriction de format
 
     // Rôle
     if (!userData.role || !['client', 'provider'].includes(userData.role)) {
