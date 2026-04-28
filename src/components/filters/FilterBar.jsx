@@ -2924,9 +2924,25 @@ const PhotographerFilters = ({ filters, handleFilterChange, handleCheckboxChange
       />
 
       <CheckboxSection
+        title={t(config.sectionTitles.workTypes)}
+        options={config.workTypes.map(o => ({ value: o.value, label: t(o.key) }))}
+        filterKey="work_types"
+        filters={filters}
+        onCheckboxChange={handleCheckboxChange}
+      />
+
+      <CheckboxSection
         title={t(config.sectionTitles.eventTypes)}
         options={config.eventTypes.map(o => ({ value: o.value, label: t(o.key) }))}
         filterKey="event_types"
+        filters={filters}
+        onCheckboxChange={handleCheckboxChange}
+      />
+
+      <CheckboxSection
+        title={t(config.sectionTitles.languages)}
+        options={config.languages.map(o => ({ value: o.value, label: t(o.key) }))}
+        filterKey="languages"
         filters={filters}
         onCheckboxChange={handleCheckboxChange}
       />
