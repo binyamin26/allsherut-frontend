@@ -452,7 +452,8 @@ laundry: {
       { value: 'הגברת לחץ מים', key: 'filters.plumbing.pressureBoost' },
       { value: 'תיקון צנרת בגינה', key: 'filters.plumbing.gardenPipes' },
       { value: 'תיקוני צנרת אחרים', key: 'filters.plumbing.otherPipeRepairs' },
-      { value: 'תיקון צנרת ביוב ללא הרס', key: 'filters.plumbing.sewerNonDestructive' }
+      { value: 'תיקון צנרת ביוב ללא הרס', key: 'filters.plumbing.sewerNonDestructive' },
+      { value: 'איתור נזילות', key: 'filters.plumbing.leakDetection' }
     ],
     largeWorkTypes: [
       { value: 'החלפת צנרת בבית', key: 'filters.plumbing.homePipeReplacement' },
@@ -480,7 +481,9 @@ laundry: {
       { value: 'התקנת בידה', key: 'filters.plumbing.bidet' },
       { value: 'אסלה תלויה', key: 'filters.plumbing.wallMountedToilet' },
       { value: 'אל חוזר לשעון מים', key: 'filters.plumbing.checkValve' },
-      { value: 'התקנת מערכות מים תת כיוריות', key: 'filters.plumbing.underSinkSystems' }
+      { value: 'התקנת מערכות מים תת כיוריות', key: 'filters.plumbing.underSinkSystems' },
+      { value: 'התקנת דוד שמש', key: 'filters.plumbing.solarHeaterInstall' },
+      { value: 'תיקון דוד שמש', key: 'filters.plumbing.solarHeaterRepair' }
     ]
   },
 

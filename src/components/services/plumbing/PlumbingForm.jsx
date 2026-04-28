@@ -166,7 +166,8 @@ const PlumbingForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
   { value: 'הגברת לחץ מים', label: t('filters.plumbing.pressureBoost') },
   { value: 'תיקון צנרת בגינה', label: t('filters.plumbing.gardenPipes') },
   { value: 'תיקוני צנרת אחרים', label: t('filters.plumbing.otherPipeRepairs') },
-  { value: 'תיקון צנרת ביוב ללא הרס', label: t('filters.plumbing.sewerNonDestructive') }
+  { value: 'תיקון צנרת ביוב ללא הרס', label: t('filters.plumbing.sewerNonDestructive') },
+  { value: 'איתור נזילות', label: t('filters.plumbing.leakDetection') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
@@ -274,7 +275,9 @@ const PlumbingForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
   { value: 'התקנת בידה', label: t('filters.plumbing.bidet') },
   { value: 'אסלה תלויה', label: t('filters.plumbing.wallMountedToilet') },
   { value: 'אל חוזר לשעון מים', label: t('filters.plumbing.checkValve') },
-  { value: 'התקנת מערכות מים תת כיוריות', label: t('filters.plumbing.underSinkSystems') }
+  { value: 'התקנת מערכות מים תת כיוריות', label: t('filters.plumbing.underSinkSystems') },
+  { value: 'התקנת דוד שמש', label: t('filters.plumbing.solarHeaterInstall') },
+  { value: 'תיקון דוד שמש', label: t('filters.plumbing.solarHeaterRepair') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
