@@ -136,6 +136,7 @@ const searchableServices = [
   { label: 'טניס', labelEn: 'Tennis', labelFr: 'Tennis', labelRu: 'Теннис', href: '/services/tutoring', type: 'specialty' },
   { label: 'שחייה', labelEn: 'Swimming', labelFr: 'Natation', labelRu: 'Плавание', href: '/services/tutoring', type: 'specialty' },
   { label: 'אמנויות לחימה', labelEn: 'Martial arts', labelFr: 'Arts martiaux', labelRu: 'Боевые искусства', href: '/services/tutoring', type: 'specialty' },
+  { label: 'אגרוף', labelEn: 'Boxing', labelFr: 'Boxe', labelRu: 'Бокс', href: '/services/tutoring', type: 'specialty' },
   { label: 'התעמלות', labelEn: 'Gymnastics', labelFr: 'Gymnastique', labelRu: 'Гимнастика', href: '/services/tutoring', type: 'specialty' },
   { label: 'כושר אישי', labelEn: 'Personal fitness', labelFr: 'Fitness personnel', labelRu: 'Персональный фитнес', href: '/services/tutoring', type: 'specialty' },
 
