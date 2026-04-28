@@ -166,6 +166,11 @@ const PhotographerForm = ({ serviceDetails, errors, handleServiceDetailsChange, 
           {errors['serviceDetails.work_types'] && <span className="error-text">{errors['serviceDetails.work_types']}</span>}
         </div>
 
+      </div>
+
+      <div className="form-section optional">
+        <h4>{t('serviceForm.common.optionalFields')}</h4>
+
         <div className="input-group">
           <label className="auth-form-label">{t('serviceForm.photographer.languages')}</label>
           <div className="checkbox-group" data-field="languages">
