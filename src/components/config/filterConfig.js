@@ -1177,7 +1177,9 @@ locksmith: {
     },
     workTypes: [
       { value: 'סוג האירוע', key: 'filters.photographer.eventTypes' },
-      { value: 'אלבום צילום', key: 'filters.photographer.photoAlbum' }
+      { value: 'אלבום צילום', key: 'filters.photographer.photoAlbum' },
+      { value: 'מגנט', key: 'filters.photographer.magnet' },
+      { value: 'קמרמן', key: 'filters.photographer.cameraman' }
     ],
     eventTypes: [
       { value: 'בר מצווה', key: 'filters.photographer.barMitsva' },

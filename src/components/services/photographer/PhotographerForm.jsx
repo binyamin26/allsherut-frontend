@@ -199,6 +199,31 @@ const PhotographerForm = ({ serviceDetails, errors, handleServiceDetailsChange, 
             ))}
           </div>
         </div>
+
+        <div className="input-group">
+          <label className="auth-form-label">{t('serviceForm.photographer.additionalServices')}</label>
+          <div className="checkbox-group" data-field="work_types_optional">
+            {[
+              { value: 'מגנט', label: t('filters.photographer.magnet') },
+              { value: 'קמרמן', label: t('filters.photographer.cameraman') }
+            ].map(item => (
+              <label key={item.value} className="checkbox-item">
+                <input
+                  type="checkbox"
+                  checked={serviceDetails.work_types?.includes(item.value) || false}
+                  onChange={(e) => {
+                    const current = serviceDetails.work_types || [];
+                    const newTypes = e.target.checked
+                      ? [...current, item.value]
+                      : current.filter(v => v !== item.value);
+                    handleServiceDetailsChange('work_types', newTypes);
+                  }}
+                />
+                {item.label}
+              </label>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
