@@ -121,6 +121,28 @@ case 'can_travel_alone':
   params.push(canTravelValue);
   console.log(`[buildAdvancedFilters] Condition can_travel_alone ajoutée:`, canTravelValue);
   break;
+
+case 'event_types': {
+  const eventTypesArray = value.split(',').map(v => v.trim());
+  if (eventTypesArray.length > 0) {
+    const placeholders = eventTypesArray.map(() => '?').join(',');
+    conditions.push(`JSON_OVERLAPS(sp.service_details->'$.event_types', JSON_ARRAY(${placeholders}))`);
+    params.push(...eventTypesArray);
+    console.log(`[buildAdvancedFilters] Condition event_types ajoutée:`, eventTypesArray);
+  }
+  break;
+}
+
+case 'work_types': {
+  const workTypesArray = value.split(',').map(v => v.trim());
+  if (workTypesArray.length > 0) {
+    const placeholders = workTypesArray.map(() => '?').join(',');
+    conditions.push(`JSON_OVERLAPS(sp.service_details->'$.work_types', JSON_ARRAY(${placeholders}))`);
+    params.push(...workTypesArray);
+    console.log(`[buildAdvancedFilters] Condition work_types ajoutée:`, workTypesArray);
+  }
+  break;
+}
 case 'minAge':
   if (!isNaN(parseInt(value))) {
     conditions.push(`sp.service_details->>'$.age' >= ?`);

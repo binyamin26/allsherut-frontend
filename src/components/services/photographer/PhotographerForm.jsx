@@ -122,7 +122,8 @@ const PhotographerForm = ({ serviceDetails, errors, handleServiceDetailsChange, 
                     { value: 'אירוסין', label: t('filters.photographer.engagement') },
                     { value: 'תספורת', label: t('filters.photographer.haircut') },
                     { value: 'שוטינג פוטו', label: t('filters.photographer.photoShoot') },
-                    { value: 'אירועים פרטיים', label: t('filters.photographer.privateEvents') }
+                    { value: 'אירועים פרטיים', label: t('filters.photographer.privateEvents') },
+                    { value: 'ברית מילה', label: t('filters.photographer.britMila') }
                   ].map(type => (
                     <label key={type.value} className="checkbox-item">
                       <input
@@ -145,7 +146,53 @@ const PhotographerForm = ({ serviceDetails, errors, handleServiceDetailsChange, 
             )}
           </div>
 
+          <div style={{ marginBottom: '10px' }}>
+            <label className="checkbox-item" style={{ fontWeight: 'bold' }}>
+              <input
+                type="checkbox"
+                checked={serviceDetails.work_types?.includes('אלבום צילום') || false}
+                onChange={(e) => {
+                  const current = serviceDetails.work_types || [];
+                  const newTypes = e.target.checked
+                    ? [...current, 'אלבום צילום']
+                    : current.filter(v => v !== 'אלבום צילום');
+                  handleServiceDetailsChange('work_types', newTypes);
+                }}
+              />
+              {t('serviceForm.photographer.photoAlbum')}
+            </label>
+          </div>
+
           {errors['serviceDetails.work_types'] && <span className="error-text">{errors['serviceDetails.work_types']}</span>}
+        </div>
+
+        <div className="input-group">
+          <label className="auth-form-label">{t('serviceForm.photographer.languages')}</label>
+          <div className="checkbox-group" data-field="languages">
+            {[
+              { value: 'צרפתית', label: t('filters.photographer.languageFrench') },
+              { value: 'רוסית', label: t('filters.photographer.languageRussian') },
+              { value: 'ספרדית', label: t('filters.photographer.languageSpanish') },
+              { value: 'עברית', label: t('filters.photographer.languageHebrew') },
+              { value: 'אנגלית', label: t('filters.photographer.languageEnglish') },
+              { value: 'ערבית', label: t('filters.photographer.languageArabic') }
+            ].map(lang => (
+              <label key={lang.value} className="checkbox-item">
+                <input
+                  type="checkbox"
+                  checked={serviceDetails.languages?.includes(lang.value) || false}
+                  onChange={(e) => {
+                    const current = serviceDetails.languages || [];
+                    const newLangs = e.target.checked
+                      ? [...current, lang.value]
+                      : current.filter(v => v !== lang.value);
+                    handleServiceDetailsChange('languages', newLangs);
+                  }}
+                />
+                {lang.label}
+              </label>
+            ))}
+          </div>
         </div>
       </div>
     </div>

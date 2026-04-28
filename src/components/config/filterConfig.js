@@ -1172,10 +1172,12 @@ locksmith: {
   photographer: {
     sectionTitles: {
       workTypes: 'filters.photographer.workTypes',
-      eventTypes: 'filters.photographer.eventTypesSection'
+      eventTypes: 'filters.photographer.eventTypesSection',
+      languages: 'filters.photographer.languagesSection'
     },
     workTypes: [
-      { value: 'סוג האירוע', key: 'filters.photographer.eventTypes' }
+      { value: 'סוג האירוע', key: 'filters.photographer.eventTypes' },
+      { value: 'אלבום צילום', key: 'filters.photographer.photoAlbum' }
     ],
     eventTypes: [
       { value: 'בר מצווה', key: 'filters.photographer.barMitsva' },
@@ -1184,7 +1186,16 @@ locksmith: {
       { value: 'אירוסין', key: 'filters.photographer.engagement' },
       { value: 'תספורת', key: 'filters.photographer.haircut' },
       { value: 'שוטינג פוטו', key: 'filters.photographer.photoShoot' },
-      { value: 'אירועים פרטיים', key: 'filters.photographer.privateEvents' }
+      { value: 'אירועים פרטיים', key: 'filters.photographer.privateEvents' },
+      { value: 'ברית מילה', key: 'filters.photographer.britMila' }
+    ],
+    languages: [
+      { value: 'צרפתית', key: 'filters.photographer.languageFrench' },
+      { value: 'רוסית', key: 'filters.photographer.languageRussian' },
+      { value: 'ספרדית', key: 'filters.photographer.languageSpanish' },
+      { value: 'עברית', key: 'filters.photographer.languageHebrew' },
+      { value: 'אנגלית', key: 'filters.photographer.languageEnglish' },
+      { value: 'ערבית', key: 'filters.photographer.languageArabic' }
     ]
   },
 };

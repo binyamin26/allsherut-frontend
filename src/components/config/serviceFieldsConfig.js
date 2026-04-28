@@ -958,47 +958,47 @@ const serviceFieldsConfig = {
         type: 'checkbox',
         options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
       },
-      { 
-        name: 'work_types', 
-        label: 'serviceFields.waterproofing.work_types', 
+      {
+        name: 'work_types',
+        label: 'serviceFields.waterproofing.work_types',
         type: 'checkbox',
-        options: ['איטום גגות', 'איטום קירות חיצוניים', 'איטום מרפסות', 'איטום חדרים רטובים', 'איטום תת-קרקעי', 'בדיקות, אבחון וציוד']
+        options: ['roofWaterproofing', 'wallWaterproofing', 'balconyWaterproofing', 'wetRoomWaterproofing', 'undergroundWaterproofing', 'inspectionEquipment']
       },
-      { 
-        name: 'roof_waterproofing_types', 
-        label: 'serviceFields.waterproofing.roof_waterproofing_types', 
+      {
+        name: 'roof_waterproofing_types',
+        label: 'serviceFields.waterproofing.roof_waterproofing_types',
         type: 'checkbox',
-        options: ['איטום גג ביריעות ביטומניות', 'איטום גג בזפת חמה', 'איטום גג עם פוליאוריטן', 'איטום גג רעפים', 'תחזוקת גגות – ניקיון, תיקונים קלים']
+        options: ['bituminousSheets', 'hotAsphalt', 'polyurethane', 'tileRoof', 'maintenance']
       },
-      { 
-        name: 'wall_waterproofing_types', 
-        label: 'serviceFields.waterproofing.wall_waterproofing_types', 
+      {
+        name: 'wall_waterproofing_types',
+        label: 'serviceFields.waterproofing.wall_waterproofing_types',
         type: 'checkbox',
-        options: ['איטום קירות מפני חדירת מים', 'שיקום קירות חוץ', 'איטום סדקים בקירות', 'טיפול ברטיבות חיצונית']
+        options: ['waterPenetration', 'exteriorRestoration', 'crackSealing', 'dampnessTreatment']
       },
-      { 
-        name: 'balcony_waterproofing_types', 
-        label: 'serviceFields.waterproofing.balcony_waterproofing_types', 
+      {
+        name: 'balcony_waterproofing_types',
+        label: 'serviceFields.waterproofing.balcony_waterproofing_types',
         type: 'checkbox',
-        options: ['איטום מרפסת לפני ריצוף', 'איטום מרפסת קיימת (תיקון נזילות)', 'ריצוף + איטום מרפסת']
+        options: ['beforeTiling', 'leakRepair', 'tilingAndSealing']
       },
-      { 
-        name: 'wet_room_waterproofing_types', 
-        label: 'serviceFields.waterproofing.wet_room_waterproofing_types', 
+      {
+        name: 'wet_room_waterproofing_types',
+        label: 'serviceFields.waterproofing.wet_room_waterproofing_types',
         type: 'checkbox',
-        options: ['איטום חדר אמבטיה', 'איטום מקלחת', 'איטום שירותים', 'איטום לפני שיפוץ']
+        options: ['bathroom', 'shower', 'toilet', 'beforeRenovation']
       },
-      { 
-        name: 'underground_waterproofing_types', 
-        label: 'serviceFields.waterproofing.underground_waterproofing_types', 
+      {
+        name: 'underground_waterproofing_types',
+        label: 'serviceFields.waterproofing.underground_waterproofing_types',
         type: 'checkbox',
-        options: ['איטום מרתפים', 'איטום יסודות בניין', 'איטום קירות בחדרים תת-קרקעיים']
+        options: ['basements', 'foundations', 'undergroundWalls']
       },
-      { 
-        name: 'inspection_equipment_types', 
-        label: 'serviceFields.waterproofing.inspection_equipment_types', 
+      {
+        name: 'inspection_equipment_types',
+        label: 'serviceFields.waterproofing.inspection_equipment_types',
         type: 'checkbox',
-        options: ['איתור נזילות', 'בדיקות רטיבות', 'צילום תרמי לאיתור נזילות']
+        options: ['leakDetection', 'moistureTests', 'thermalImaging']
       }
     ]
   },
