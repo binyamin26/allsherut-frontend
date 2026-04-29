@@ -225,13 +225,13 @@ const ServiceDetailsEditor = ({
       music: { title: t('filters.tutoring.music'), items: tutoringSubcategories.filter(s => s.display_order >= 1 && s.display_order <= 7) },
       art: { title: t('filters.tutoring.art'), items: tutoringSubcategories.filter(s => s.display_order >= 10 && s.display_order <= 16) },
       dance: { title: t('filters.tutoring.dance'), items: tutoringSubcategories.filter(s => s.display_order >= 20 && s.display_order <= 24) },
-      theater: { title: t('filters.tutoring.theater'), items: tutoringSubcategories.filter(s => s.display_order >= 30 && s.display_order <= 33) },
+      theater: { title: t('filters.tutoring.theater'), items: tutoringSubcategories.filter(s => s.display_order >= 25 && s.display_order <= 29) },
       languages: { title: t('filters.tutoring.languages'), items: tutoringSubcategories.filter(s => s.display_order >= 40 && s.display_order <= 46) },
       crafts: { title: t('filters.tutoring.crafts'), items: tutoringSubcategories.filter(s => s.display_order >= 50 && s.display_order <= 54) },
       tech: { title: t('filters.tutoring.tech'), items: tutoringSubcategories.filter(s => s.display_order >= 60 && s.display_order <= 64) },
       cooking: { title: t('filters.tutoring.cooking'), items: tutoringSubcategories.filter(s => s.display_order >= 70 && s.display_order <= 73) },
       personal: { title: t('filters.tutoring.personal'), items: tutoringSubcategories.filter(s => s.display_order >= 80 && s.display_order <= 84) },
-      sports: { title: t('filters.tutoring.sports'), items: tutoringSubcategories.filter(s => (s.display_order >= 34 && s.display_order <= 43) || (s.display_order >= 90 && s.display_order <= 109)) }
+      sports: { title: t('filters.tutoring.sports'), items: tutoringSubcategories.filter(s => (s.display_order >= 30 && s.display_order <= 43) || (s.display_order >= 90 && s.display_order <= 109)) }
     };
   }, [tutoringSubcategories, t]);
   

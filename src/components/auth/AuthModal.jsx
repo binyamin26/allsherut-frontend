@@ -1813,22 +1813,29 @@ const renderWorkingAreasSection = () => {
       {/* Cas 1: לפי אזור */}
       {locationMode === 'ezor' && (
         <div className="ezor-grid">
-          {ezorim.map(ezor => (
-            <label key={ezor} className={`ezor-option${selectedEzor === ezor ? ' selected' : ''}`}>
-              <input
-                type="radio"
-                name="ezor"
-                value={ezor}
-                checked={selectedEzor === ezor}
-                onChange={() => {
-                  setSelectedEzor(ezor);
-                  setFormData(prev => ({ ...prev, workingAreas: [{ city: ezor, neighborhood: 'כל האזור' }] }));
-                  if (errors.workingAreas) setErrors(prev => ({ ...prev, workingAreas: '' }));
-                }}
-              />
-              {ezor}
-            </label>
-          ))}
+          {ezorim.map(ezor => {
+            const isChecked = formData.workingAreas.some(a => a.city === ezor && a.neighborhood === 'כל האזור');
+            return (
+              <label key={ezor} className={`ezor-option${isChecked ? ' selected' : ''}`}>
+                <input
+                  type="checkbox"
+                  value={ezor}
+                  checked={isChecked}
+                  onChange={() => {
+                    setFormData(prev => {
+                      const alreadySelected = prev.workingAreas.some(a => a.city === ezor && a.neighborhood === 'כל האזור');
+                      if (alreadySelected) {
+                        return { ...prev, workingAreas: prev.workingAreas.filter(a => !(a.city === ezor && a.neighborhood === 'כל האזור')) };
+                      }
+                      return { ...prev, workingAreas: [...prev.workingAreas, { city: ezor, neighborhood: 'כל האזור' }] };
+                    });
+                    if (errors.workingAreas) setErrors(prev => ({ ...prev, workingAreas: '' }));
+                  }}
+                />
+                {ezor}
+              </label>
+            );
+          })}
         </div>
       )}
 
