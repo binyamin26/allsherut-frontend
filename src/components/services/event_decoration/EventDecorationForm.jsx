@@ -47,28 +47,6 @@ const EventDecorationForm = ({ serviceDetails, errors, handleServiceDetailsChang
         </div>
 
         <div className="input-group">
-          <label className="auth-form-label required">{t('serviceForm.event_decoration.decorationTypes')}</label>
-          <div className="checkbox-group" data-field="decoration_types">
-            {[
-              { value: 'קשתות ועיצוב בלונים', label: t('serviceForm.event_decoration.archBalloon') },
-              { value: 'עיצוב שולחנות', label: t('serviceForm.event_decoration.tableDeco') },
-              { value: 'עיצוב אולמות', label: t('serviceForm.event_decoration.hallDeco') },
-              { value: 'קירות צילום ופינות צילום', label: t('serviceForm.event_decoration.photoWall') }
-            ].map(type => (
-              <label key={type.value} className="checkbox-item">
-                <input
-                  type="checkbox"
-                  checked={serviceDetails.decoration_types?.includes(type.value) || false}
-                  onChange={() => handleExclusiveCheckbox('decoration_types', type.value, null, [])}
-                />
-                {type.label}
-              </label>
-            ))}
-          </div>
-          {errors['serviceDetails.decoration_types'] && <span className="error-text">{errors['serviceDetails.decoration_types']}</span>}
-        </div>
-
-        <div className="input-group">
           <label className="auth-form-label required">{t('serviceForm.common.availabilityDays')}</label>
           <div className="checkbox-group" data-field="availability_days">
             {[
@@ -113,6 +91,28 @@ const EventDecorationForm = ({ serviceDetails, errors, handleServiceDetailsChang
             ))}
           </div>
           {errors['serviceDetails.availability_hours'] && <span className="error-text">{errors['serviceDetails.availability_hours']}</span>}
+        </div>
+
+        <div className="input-group">
+          <label className="auth-form-label required">{t('serviceForm.event_decoration.decorationTypes')}</label>
+          <div className="checkbox-group" data-field="decoration_types">
+            {[
+              { value: 'קשתות ועיצוב בלונים', label: t('serviceForm.event_decoration.archBalloon') },
+              { value: 'עיצוב שולחנות', label: t('serviceForm.event_decoration.tableDeco') },
+              { value: 'עיצוב אולמות', label: t('serviceForm.event_decoration.hallDeco') },
+              { value: 'קירות צילום ופינות צילום', label: t('serviceForm.event_decoration.photoWall') }
+            ].map(type => (
+              <label key={type.value} className="checkbox-item">
+                <input
+                  type="checkbox"
+                  checked={serviceDetails.decoration_types?.includes(type.value) || false}
+                  onChange={() => handleExclusiveCheckbox('decoration_types', type.value, null, [])}
+                />
+                {type.label}
+              </label>
+            ))}
+          </div>
+          {errors['serviceDetails.decoration_types'] && <span className="error-text">{errors['serviceDetails.decoration_types']}</span>}
         </div>
       </div>
     </div>

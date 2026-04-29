@@ -865,6 +865,16 @@ const ServicePanel = ({ serviceType, filters, onChange }) => {
         />
       );
 
+    case 'event_decoration':
+      return (
+        <EventDecorationFilters
+          filters={filters}
+          handleFilterChange={handleFilterChange}
+          handleCheckboxChange={handleCheckboxChange}
+          handleExclusiveCheckbox={handleExclusiveCheckbox}
+        />
+      );
+
     default:
       return (
         <div className="service-panel">
@@ -2943,6 +2953,36 @@ const PhotographerFilters = ({ filters, handleFilterChange, handleCheckboxChange
         title={t(config.sectionTitles.languages)}
         options={config.languages.map(o => ({ value: o.value, label: t(o.key) }))}
         filterKey="languages"
+        filters={filters}
+        onCheckboxChange={handleCheckboxChange}
+      />
+    </div>
+  );
+};
+
+// EVENT DECORATION
+const EventDecorationFilters = ({ filters, handleFilterChange, handleCheckboxChange, handleExclusiveCheckbox }) => {
+  const { t } = useLanguage();
+  const config = FILTER_CONFIG.event_decoration;
+
+  return (
+    <div className="service-panel">
+      <AgeRangeSection filters={filters} onFilterChange={handleFilterChange} />
+
+      <AvailabilityDaysSection
+        filters={filters}
+        onExclusiveCheckbox={handleExclusiveCheckbox}
+      />
+
+      <AvailabilityHoursSection
+        filters={filters}
+        onExclusiveCheckbox={handleExclusiveCheckbox}
+      />
+
+      <CheckboxSection
+        title={t(config.sectionTitles.decorationTypes)}
+        options={config.decorationTypes.map(o => ({ value: o.value, label: t(o.key) }))}
+        filterKey="decoration_types"
         filters={filters}
         onCheckboxChange={handleCheckboxChange}
       />

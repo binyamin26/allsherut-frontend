@@ -143,6 +143,17 @@ case 'work_types': {
   }
   break;
 }
+case 'decoration_types': {
+  const decorationTypesArray = value.split(',').map(v => v.trim());
+  if (decorationTypesArray.length > 0) {
+    const placeholders = decorationTypesArray.map(() => '?').join(',');
+    conditions.push(`JSON_OVERLAPS(sp.service_details->'$.decoration_types', JSON_ARRAY(${placeholders}))`);
+    params.push(...decorationTypesArray);
+    console.log(`[buildAdvancedFilters] Condition decoration_types ajoutée:`, decorationTypesArray);
+  }
+  break;
+}
+
 case 'minAge':
   if (!isNaN(parseInt(value))) {
     conditions.push(`sp.service_details->>'$.age' >= ?`);
@@ -485,9 +496,12 @@ sp.profile_image as provider_profile_image,
     sp.average_rating,
     sp.profile_images,
     sp.availability,
+    sp.availability_days,
+    sp.availability_hours,
+    sp.service_details,
     sp.languages,
-    sp.certifications,        
-    sp.view_count,            
+    sp.certifications,
+    sp.view_count,
     sp.contact_count,
     sp.created_at as profile_created_at,
     sp.updated_at as profile_updated_at,
@@ -539,22 +553,41 @@ sp.profile_image as provider_profile_image,
       let certifications = null;
       let profileImages = null;
 
+      let availabilityDays = null;
+      let availabilityHours = null;
+      let serviceDetails = null;
+
       try {
         availability = provider.availability;
         if (typeof provider.availability === 'string') {
           availability = JSON.parse(provider.availability);
         }
-        
+
+        availabilityDays = provider.availability_days;
+        if (typeof provider.availability_days === 'string') {
+          availabilityDays = JSON.parse(provider.availability_days);
+        }
+
+        availabilityHours = provider.availability_hours;
+        if (typeof provider.availability_hours === 'string') {
+          availabilityHours = JSON.parse(provider.availability_hours);
+        }
+
+        serviceDetails = provider.service_details;
+        if (typeof provider.service_details === 'string') {
+          serviceDetails = JSON.parse(provider.service_details);
+        }
+
         languages = provider.languages;
         if (typeof provider.languages === 'string') {
           languages = JSON.parse(provider.languages);
         }
-        
+
         certifications = provider.certifications;
         if (typeof provider.certifications === 'string') {
           certifications = JSON.parse(provider.certifications);
         }
-        
+
         profileImages = provider.profile_images;
         if (typeof provider.profile_images === 'string') {
           profileImages = JSON.parse(provider.profile_images);
@@ -649,10 +682,12 @@ profileImages: profileImages || [],
         
         // Données JSON
         availability: availability,
+        availability_days: availabilityDays,
+        availability_hours: availabilityHours,
         languages: languages,
         certifications: certifications,
         specialties: null,
-        service_details: null,
+        service_details: serviceDetails,
         
         // Métadonnées
         joinedAt: provider.created_at,

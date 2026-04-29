@@ -7,6 +7,51 @@ import React, { useState, useEffect } from 'react';
 import ProviderCard from '../../components/cards/ProviderCard';
 import { useLanguage } from '../../context/LanguageContext';
 
+const DecorationProviderDetails = ({ provider, t }) => {
+  const details = provider.service_details || {};
+  const age = details.age;
+  const decorationTypes = details.decoration_types || [];
+  const days = provider.availability_days || [];
+  const hours = provider.availability_hours || [];
+
+  if (!age && decorationTypes.length === 0 && days.length === 0 && hours.length === 0) return null;
+
+  return (
+    <div className="decoration-provider-details">
+      {age && (
+        <div className="decoration-detail-row">
+          <span className="decoration-detail-label">{t('serviceFields.event_decoration.age')}:</span>
+          <span className="decoration-detail-value">{age}</span>
+        </div>
+      )}
+      {days.length > 0 && (
+        <div className="decoration-detail-row">
+          <span className="decoration-detail-label">{t('serviceFields.event_decoration.availability_days')}:</span>
+          <div className="decoration-tags">
+            {days.map(d => <span key={d} className="decoration-tag">{d}</span>)}
+          </div>
+        </div>
+      )}
+      {hours.length > 0 && (
+        <div className="decoration-detail-row">
+          <span className="decoration-detail-label">{t('serviceFields.event_decoration.availability_hours')}:</span>
+          <div className="decoration-tags">
+            {hours.map(h => <span key={h} className="decoration-tag">{h}</span>)}
+          </div>
+        </div>
+      )}
+      {decorationTypes.length > 0 && (
+        <div className="decoration-detail-row">
+          <span className="decoration-detail-label">{t('serviceFields.event_decoration.decoration_types')}:</span>
+          <div className="decoration-tags">
+            {decorationTypes.map(d => <span key={d} className="decoration-tag decoration-tag-type">{d}</span>)}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
 const EventDecorationPage = () => {
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();
@@ -106,7 +151,10 @@ const EventDecorationPage = () => {
           ) : providers.length > 0 ? (
             <div className="providers-grid">
               {providers.map(provider => (
-                <ProviderCard key={provider.id} provider={provider} onOpenReviewModal={(id, name) => setReviewModal({ isOpen: true, providerId: id, providerName: name })} />
+                <div key={provider.id} className="provider-card-wrapper">
+                  <ProviderCard provider={provider} onOpenReviewModal={(id, name) => setReviewModal({ isOpen: true, providerId: id, providerName: name })} />
+                  <DecorationProviderDetails provider={provider} t={t} />
+                </div>
               ))}
             </div>
           ) : (

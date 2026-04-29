@@ -1216,7 +1216,10 @@ locksmith: {
   // ═══════════════════════════════════════════════════════════════
   event_decoration: {
     sectionTitles: {
-      decorationTypes: 'filters.event_decoration.decorationTypes'
+      decorationTypes: 'filters.event_decoration.decorationTypes',
+      availabilityDays: 'filters.common.availabilityDays',
+      availabilityHours: 'filters.common.availabilityHours',
+      age: 'filters.common.age'
     },
     decorationTypes: [
       { value: 'קשתות ועיצוב בלונים', key: 'filters.event_decoration.archBalloon' },
