@@ -231,7 +231,7 @@ const ServiceDetailsEditor = ({
       tech: { title: t('filters.tutoring.tech'), items: tutoringSubcategories.filter(s => s.display_order >= 60 && s.display_order <= 64) },
       cooking: { title: t('filters.tutoring.cooking'), items: tutoringSubcategories.filter(s => s.display_order >= 70 && s.display_order <= 73) },
       personal: { title: t('filters.tutoring.personal'), items: tutoringSubcategories.filter(s => s.display_order >= 80 && s.display_order <= 84) },
-      sports: { title: t('filters.tutoring.sports'), items: tutoringSubcategories.filter(s => s.display_order >= 90 && s.display_order <= 109) }
+      sports: { title: t('filters.tutoring.sports'), items: tutoringSubcategories.filter(s => (s.display_order >= 34 && s.display_order <= 43) || (s.display_order >= 90 && s.display_order <= 109)) }
     };
   }, [tutoringSubcategories, t]);
   
