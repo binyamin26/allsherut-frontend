@@ -264,7 +264,7 @@ const HomePage = () => {
     {
       id: 'event_decoration',
       name: t('services.event_decoration'),
-      image: '/images/fetes1.jpg',
+      image: '/images/deco.jpg',
       description: t('services.event_decoration.desc'),
       color: 'from-pink-500 to-fuchsia-600',
       href: '/services/event-decoration'
