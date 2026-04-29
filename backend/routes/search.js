@@ -310,7 +310,7 @@ router.get('/providers', async (req, res) => {
 
     // Validation du service si fourni
     if (service) {
-const validServices = ['babysitting', 'cleaning', 'gardening', 'petcare', 'tutoring', 'eldercare', 'laundry', 'property_management', 'electrician', 'plumbing','air_conditioning', 'gas_technician','drywall', 'carpentry', 'home_organization', 'event_entertainment', 'private_chef', 'painting', 'waterproofing', 'contractor','aluminum','glass_works', 'locksmith', 'moving', 'photographer'];
+const validServices = ['babysitting', 'cleaning', 'gardening', 'petcare', 'tutoring', 'eldercare', 'laundry', 'property_management', 'electrician', 'plumbing','air_conditioning', 'gas_technician','drywall', 'carpentry', 'home_organization', 'event_entertainment', 'private_chef', 'painting', 'waterproofing', 'contractor','aluminum','glass_works', 'locksmith', 'moving', 'photographer', 'event_decoration'];
       if (!validServices.includes(service)) {
         const { errorResponse, statusCode } = ErrorHandler.validationError([{
           field: 'service',

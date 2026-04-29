@@ -892,6 +892,31 @@ const serviceFieldsConfig = {
     ]
   },
 
+  event_decoration: {
+    fields: [
+      { name: 'age', label: 'serviceFields.event_decoration.age', type: 'number' },
+      { name: 'experience', label: 'serviceFields.event_decoration.experience', type: 'number' },
+      {
+        name: 'decoration_types',
+        label: 'serviceFields.event_decoration.decoration_types',
+        type: 'checkbox',
+        options: ['קשתות ועיצוב בלונים', 'עיצוב שולחנות', 'עיצוב אולמות', 'קירות צילום ופינות צילום']
+      },
+      {
+        name: 'availability_days',
+        label: 'serviceFields.event_decoration.availability_days',
+        type: 'checkbox',
+        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע']
+      },
+      {
+        name: 'availability_hours',
+        label: 'serviceFields.event_decoration.availability_hours',
+        type: 'checkbox',
+        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+      }
+    ]
+  },
+
   moving: {
     fields: [
       { name: 'age', label: 'serviceFields.moving.age', type: 'number' },

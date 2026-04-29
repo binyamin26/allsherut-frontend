@@ -57,6 +57,7 @@ import GlassWorksPage from './pages/services/GlassWorksPage';
 import LocksmithPage from './pages/services/LocksmithPage';
 import MovingPage from './pages/services/MovingPage';
 import PhotographerPage from './pages/services/PhotographerPage';
+import EventDecorationPage from './pages/services/EventDecorationPage';
 
 // Page de détails provider
 import ProviderDetailPage from './pages/ProviderDetailPage';
@@ -164,6 +165,7 @@ function App() {
 <Route path="/services/locksmith" element={<LocksmithPage />} />
 <Route path="/services/moving" element={<MovingPage />} />
 <Route path="/services/photographer" element={<PhotographerPage />} />
+<Route path="/services/event-decoration" element={<EventDecorationPage />} />
 
 
                 {/* Pages recrutement */}

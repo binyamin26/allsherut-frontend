@@ -395,6 +395,14 @@ const searchableServices = [
   { label: 'בלוני קשת', labelEn: 'Balloon arch', labelFr: 'Arche ballons', labelRu: 'Арка из шаров', href: '/services/event_entertainment', type: 'specialty' },
   { label: 'צילום מגנטים', labelEn: 'Photo magnets', labelFr: 'Photos magnets', labelRu: 'Фотомагниты', href: '/services/event_entertainment', type: 'specialty' },
 
+  // 16b. EVENT DECORATION
+  { label: 'עיצוב אירועים', labelEn: 'Event Decoration', labelFr: "Décoration d'événements", labelRu: 'Оформление мероприятий', href: '/services/event-decoration', type: 'service' },
+  { label: 'מעצב אירועים', labelEn: 'Event Decorator', labelFr: 'Décorateur événementiel', labelRu: 'Декоратор мероприятий', href: '/services/event-decoration', type: 'service' },
+  { label: 'קשתות ועיצוב בלונים', labelEn: 'Balloon arches & decoration', labelFr: 'Arches et décoration de ballons', labelRu: 'Арки и оформление шарами', href: '/services/event-decoration', type: 'specialty' },
+  { label: 'עיצוב שולחנות', labelEn: 'Table decoration', labelFr: 'Décoration de tables', labelRu: 'Оформление столов', href: '/services/event-decoration', type: 'specialty' },
+  { label: 'עיצוב אולמות', labelEn: 'Hall decoration', labelFr: 'Décoration de salles', labelRu: 'Оформление залов', href: '/services/event-decoration', type: 'specialty' },
+  { label: 'קירות צילום ופינות צילום', labelEn: 'Photo walls & photo corners', labelFr: 'Murs photo et coins photo', labelRu: 'Фотозоны и фотоугол', href: '/services/event-decoration', type: 'specialty' },
+
   // 17. PRIVATE CHEF / TRAITEUR
   { label: 'שף פרטי', labelEn: 'Private Chef', labelFr: 'Chef à domicile', labelRu: 'Частный повар', href: '/services/private-chef', type: 'service' },
   { label: 'קייטרינג', labelEn: 'Caterer', labelFr: 'Traiteur', labelRu: 'Кейтеринг', href: '/services/private-chef', type: 'service' },

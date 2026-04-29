@@ -58,7 +58,8 @@ const ALL_SERVICE_KEYS = [
   'babysitting','cleaning','gardening','petcare','tutoring','eldercare','laundry',
   'property_management','electrician','plumbing','air_conditioning','gas_technician',
   'drywall','carpentry','home_organization','event_entertainment','private_chef',
-  'painting','waterproofing','contractor','aluminum','glass_works','locksmith'
+  'painting','waterproofing','contractor','aluminum','glass_works','locksmith',
+  'moving','photographer','event_decoration'
 ];
 
 // Définition des icônes de services
@@ -97,7 +98,8 @@ const serviceImages = {
   glass_works: '/images/verre.png',
   locksmith: '/images/serrure.png',
   moving: '/images/demenagement.jpg',
-  photographer: '/images/logo photographe.jpg'
+  photographer: '/images/logo photographe.jpg',
+  event_decoration: '/images/fetes1.jpg'
 };
 
 const DashboardPage = () => {
@@ -1188,7 +1190,10 @@ const getServiceName = (serviceType) => {
       contractor: 'services.contractor',
       aluminum: 'services.aluminum',
       glass_works: 'services.glass_works',
-      locksmith: 'services.locksmith'
+      locksmith: 'services.locksmith',
+      moving: 'services.moving',
+      photographer: 'services.photographer',
+      event_decoration: 'services.event_decoration'
     };
     return t(serviceKeys[serviceType], serviceType);
   };

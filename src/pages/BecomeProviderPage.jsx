@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { 
-  TrendingUp, 
-  Star, 
-  Clock, 
+import {
+  TrendingUp,
+  Star,
+  Clock,
   Shield,
   DollarSign,
   Users,
@@ -18,7 +18,8 @@ import {
   User,
   Heart,
   Calendar,
-  Phone
+  Phone,
+  Wand2
 } from 'lucide-react';
 import AuthModal from '../components/auth/AuthModal';
 import { useAuth } from '../context/AuthContext';
@@ -101,6 +102,18 @@ const BecomeProviderPage = () => {
       payingCustomer: 'המשפחות משלמות',
       benefits: ['עבודה משמעותית', 'שכר יציב', 'קשר אנושי', 'הערכה רבה'],
       color: 'from-purple-500 to-violet-600'
+    },
+    {
+      key: 'event_decoration',
+      name: 'עיצוב אירועים',
+      icon: Wand2,
+      description: 'קשתות, עיצוב שולחנות ואולמות',
+      avgIncome: '₪80-200/אירוע',
+      demand: 'בינוני-גבוה',
+      flexibility: 'סופ״ש ואירועים',
+      payingCustomer: 'המשפחות משלמות',
+      benefits: ['שכר גבוה לאירוע', 'עבודה יצירתית', 'ביקוש עונתי', 'הערכה רבה'],
+      color: 'from-pink-500 to-fuchsia-600'
     }
   ];
 

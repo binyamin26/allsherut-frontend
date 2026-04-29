@@ -5,7 +5,7 @@ import {
   BookOpen, Home, ArrowLeft, CheckCircle, TrendingUp, Award, Smile,
   Sparkles, TreePine, Shirt, Building2, Zap, Wrench, Wind, Flame,
   Layers, Hammer, PartyPopper, ChefHat, Paintbrush, Droplets, HardHat,
-  Box, Square, Key, ChevronLeft, ChevronRight
+  Box, Square, Key, ChevronLeft, ChevronRight, Wand2
 } from 'lucide-react';
 import AuthModal from '../components/auth/AuthModal';
 import { useAuth } from '../context/AuthContext';
@@ -260,6 +260,14 @@ const HomePage = () => {
       description: t('services.photographer.desc'),
       color: 'from-purple-500 to-violet-600',
       href: '/services/photographer'
+    },
+    {
+      id: 'event_decoration',
+      name: t('services.event_decoration'),
+      image: '/images/fetes1.jpg',
+      description: t('services.event_decoration.desc'),
+      color: 'from-pink-500 to-fuchsia-600',
+      href: '/services/event-decoration'
     }
   ];
 

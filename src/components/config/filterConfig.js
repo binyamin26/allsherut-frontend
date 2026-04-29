@@ -1203,6 +1203,21 @@ locksmith: {
       { value: 'ערבית', key: 'filters.photographer.languageArabic' }
     ]
   },
+
+  // ═══════════════════════════════════════════════════════════════
+  // EVENT DECORATION
+  // ═══════════════════════════════════════════════════════════════
+  event_decoration: {
+    sectionTitles: {
+      decorationTypes: 'filters.event_decoration.decorationTypes'
+    },
+    decorationTypes: [
+      { value: 'קשתות ועיצוב בלונים', key: 'filters.event_decoration.archBalloon' },
+      { value: 'עיצוב שולחנות', key: 'filters.event_decoration.tableDeco' },
+      { value: 'עיצוב אולמות', key: 'filters.event_decoration.hallDeco' },
+      { value: 'קירות צילום ופינות צילום', key: 'filters.event_decoration.photoWall' }
+    ]
+  },
 };
 
 // Fonction helper pour récupérer les traductions

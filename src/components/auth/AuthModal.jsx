@@ -174,7 +174,8 @@ const services = [
   { key: 'glass_works', name: t('services.glass_works'), image: '/images/verre.png', gradient: 'glass_works-gradient' },
   { key: 'locksmith', name: t('services.locksmith'), image: '/images/serrure.png', gradient: 'locksmith-gradient' },
   { key: 'moving', name: t('services.moving'), image: '/images/demenagement.jpg', gradient: 'moving-gradient' },
-  { key: 'photographer', name: t('services.photographer'), image: '/images/photographe.jpg', gradient: 'photographer-gradient' }
+  { key: 'photographer', name: t('services.photographer'), image: '/images/photographe.jpg', gradient: 'photographer-gradient' },
+  { key: 'event_decoration', name: t('services.event_decoration'), image: '/images/fetes1.jpg', gradient: 'event_decoration-gradient' }
 ];
 
   // ── Détection clavier mobile via visualViewport ──────────────────────
@@ -1266,6 +1267,18 @@ case 'glass_works':
       newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
     if (!serviceDetails.work_types || serviceDetails.work_types.length === 0)
       newErrors['serviceDetails.work_types'] = t('validation.workTypesRequired');
+    break;
+
+  case 'event_decoration':
+    if (!serviceDetails.age) newErrors['serviceDetails.age'] = t('validation.ageRequired');
+    else if (parseInt(serviceDetails.age) < 18) newErrors['serviceDetails.age'] = t('validation.ageMin18');
+    if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
+    if (!serviceDetails.decoration_types || serviceDetails.decoration_types.length === 0)
+      newErrors['serviceDetails.decoration_types'] = t('validation.selectAtLeastOne');
+    if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0)
+      newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
+    if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0)
+      newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
     break;
 
     }
