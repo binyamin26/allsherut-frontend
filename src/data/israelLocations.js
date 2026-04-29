@@ -69,6 +69,7 @@ export const israelCities = [
   { name: "פרדסיה", area: "השרון", nameVariants: ["פרדסיה"] },
   { name: "תל מונד", area: "השרון", nameVariants: ["תל מונד"] },
   { name: "חדרה", area: "השרון", nameVariants: ["חדרה"] },
+  { name: "חריש", area: "השרון", nameVariants: ["חריש"] },
   { name: "פרדס חנה כרכור", area: "השרון", nameVariants: ["פרדס חנה כרכור", "פרדס חנה-כרכור"] },
   { name: "בנימינה גבעת עדה", area: "השרון", nameVariants: ["בנימינה גבעת עדה", "בנימינה-גבעת עדה"] },
   { name: "זכרון יעקב", area: "השרון", nameVariants: ["זכרון יעקב"] },
@@ -1575,6 +1576,15 @@ export const israelNeighborhoods = {
     "גני תקוה",
     "הפרדס",
     "שכונת הוותיקים"
+  ],
+
+  "חריש": [
+    "שכונה א",
+    "שכונה ב",
+    "שכונה ג",
+    "שכונה ד",
+    "שכונה ה",
+    "המרכז"
   ],
 
   "חדרה": [
