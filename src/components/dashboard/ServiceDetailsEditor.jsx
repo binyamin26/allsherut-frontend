@@ -282,15 +282,15 @@ const translateFieldValue = (fieldName, value) => {
   const optionMatches = (optValue, searchValue) => {
     const normalizedOpt = normalizeValue(optValue);
     const normalizedSearch = normalizeValue(searchValue);
-    
+
     // Match exact
     if (normalizedOpt === normalizedSearch) return true;
-    
-    // Match partiel : l'option COMMENCE par la valeur cherchée
-    // Ex: "בינוני / 10-25 ק״ג" match "בינוני"
-    if (normalizedOpt.startsWith(normalizedSearch + ' ')) return true;
+
+    // Match partiel uniquement quand séparateur "/" présent
+    // Ex: "בינוני / 10-25 ק״ג" match "בינוני" — mais PAS "קוסם ילדים" match "קוסם"
+    if (normalizedOpt.startsWith(normalizedSearch + ' /')) return true;
     if (normalizedOpt.startsWith(normalizedSearch + '/')) return true;
-    
+
     return false;
   };
   
