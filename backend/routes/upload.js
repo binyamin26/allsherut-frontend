@@ -110,7 +110,7 @@ router.post('/profile-image', authenticateToken, upload.single('profileImage'), 
       return res.notFound('user');
     }
 
-    const serviceType = req.body.serviceType || req.user.service_type;
+    let serviceType = req.body.serviceType || req.user.service_type;
 
     // ✅ Upload vers Cloudinary (pas sur disque)
     const cloudinaryResult = await uploadToCloudinary(req.file.buffer, req.user.id, serviceType);
@@ -122,6 +122,15 @@ router.post('/profile-image', authenticateToken, upload.single('profileImage'), 
 
     // Supprimer l'ancienne image de Cloudinary si elle existe
     if (user.role === 'provider') {
+      // Si serviceType manquant, le récupérer depuis la DB
+      if (!serviceType) {
+        const rows = await query(
+          'SELECT service_type FROM service_providers WHERE user_id = ? LIMIT 1',
+          [req.user.id]
+        );
+        if (rows[0]) serviceType = rows[0].service_type;
+      }
+
       const oldResult = await query(
         'SELECT profile_image FROM service_providers WHERE user_id = ? AND service_type = ?',
         [req.user.id, serviceType]
@@ -130,10 +139,19 @@ router.post('/profile-image', authenticateToken, upload.single('profileImage'), 
         await deleteFromCloudinary(oldResult[0].profile_image);
       }
 
-      await query(
+      const updateResult = await query(
         'UPDATE service_providers SET profile_image = ? WHERE user_id = ? AND service_type = ?',
         [imageUrl, req.user.id, serviceType]
       );
+
+      // Fallback : si service_type ne correspond pas, mettre à jour sans filtre service_type
+      if (updateResult.affectedRows === 0) {
+        console.warn(`⚠️ Upload: service_type "${serviceType}" non trouvé pour user ${req.user.id}, fallback sans service_type`);
+        await query(
+          'UPDATE service_providers SET profile_image = ? WHERE user_id = ?',
+          [imageUrl, req.user.id]
+        );
+      }
     } else {
       const oldResult = await query(
         'SELECT profile_image FROM users WHERE id = ?',
