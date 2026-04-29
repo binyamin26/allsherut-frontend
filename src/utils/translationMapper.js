@@ -653,6 +653,7 @@ const translationMappings = {
   },
   eventEntertainment: {
     'קוסם ילדים': 'filters.events.magician',
+    'קוסם': 'filters.events.magicianGeneral',
     'ליצן ילדים': 'filters.events.clown',
     'בלוני צורות': 'filters.events.balloonArt',
     'הפרחת בלונים / ניפוח בלונים במקום': 'filters.events.balloonInflation',

@@ -285,6 +285,7 @@ const EventEntertainmentForm = ({ serviceDetails, errors, handleServiceDetailsCh
                 <div className="checkbox-group" data-field="entertainment_types">
              {[
   { value: 'קוסם ילדים', label: t('filters.event.magician') },
+  { value: 'קוסם', label: t('filters.event.magicianGeneral') },
   { value: 'ליצן ילדים', label: t('filters.event.clown') },
   { value: 'בלוני צורות', label: t('filters.event.balloonArtist') },
   { value: 'הפרחת בלונים / ניפוח בלונים במקום', label: t('filters.event.balloonRelease') },

@@ -384,6 +384,7 @@ const searchableServices = [
   { label: 'מכונת שלג', labelEn: 'Snow machine', labelFr: 'Machine neige', labelRu: 'Снег-машина', href: '/services/event_entertainment', type: 'specialty' },
   { label: 'מכונת בועות', labelEn: 'Bubble machine', labelFr: 'Machine bulles', labelRu: 'Машина для мыльных пузырей', href: '/services/event_entertainment', type: 'specialty' },
   { label: 'קוסם ילדים', labelEn: 'Kids magician', labelFr: 'Magicien enfants', labelRu: 'Детский фокусник', href: '/services/event_entertainment', type: 'specialty' },
+  { label: 'קוסם', labelEn: 'Magician', labelFr: 'Magicien', labelRu: 'Фокусник', href: '/services/event_entertainment', type: 'specialty' },
   { label: 'ליצן ילדים', labelEn: 'Kids clown', labelFr: 'Clown enfants', labelRu: 'Детский клоун', href: '/services/event_entertainment', type: 'specialty' },
   { label: 'בלוני צורות', labelEn: 'Balloon shapes', labelFr: 'Ballons sculptés', labelRu: 'Фигуры из шаров', href: '/services/event_entertainment', type: 'specialty' },
   { label: 'הפרחת בלונים / ניפוח בלונים במקום', labelEn: 'Balloon inflation on-site', labelFr: 'Gonflage ballons sur place', labelRu: 'Надувание шаров на месте', href: '/services/event_entertainment', type: 'specialty' },

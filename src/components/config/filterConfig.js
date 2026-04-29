@@ -868,6 +868,7 @@ laundry: {
     ],
     entertainmentTypes: [
       { value: 'קוסם ילדים', key: 'filters.events.magician' },
+      { value: 'קוסם', key: 'filters.events.magicianGeneral' },
       { value: 'ליצן ילדים', key: 'filters.events.clown' },
       { value: 'בלוני צורות', key: 'filters.events.balloonArt' },
       { value: 'הפרחת בלונים / ניפוח בלונים במקום', key: 'filters.events.balloonInflation' },
