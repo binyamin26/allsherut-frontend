@@ -395,7 +395,13 @@ laundry: {
       { value: 'תיקון צ\'ילרים', key: 'filters.ac.chillerRepair' },
       { value: 'טכנאי חדרי קירור', key: 'filters.ac.coldRoomTech' },
       { value: 'מילוי גז', key: 'filters.ac.gasRefill' },
-      { value: 'תיקון קצר', key: 'filters.electrician.shortCircuitRepair' }
+      { value: 'תיקון קצר', key: 'filters.electrician.shortCircuitRepair' },
+      { value: 'תיקון טיימר', key: 'filters.electrician.timerRepair' },
+      { value: 'תיקון לוח חשמל', key: 'filters.electrician.panelRepair' },
+      { value: 'החלפת שקעים', key: 'filters.electrician.outletReplacement' },
+      { value: 'תיקון\\החלפת ספוטים', key: 'filters.electrician.spotlightRepair' },
+      { value: 'תיקונים אחרים', key: 'filters.electrician.otherRepairs' },
+      { value: 'החלפת אוטומט חדר מדרגות', key: 'filters.electrician.stairwaySwitch' }
     ],
     installationTypes: [
       { value: 'התקנת מאוורר תקרה', key: 'filters.electrician.ceilingFan' },
