@@ -1226,6 +1226,11 @@ const { t, currentLanguage } = useLanguage();
   const [subcategories, setSubcategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [openGroups, setOpenGroups] = useState({});
+
+  const toggleGroup = (key) => {
+    setOpenGroups(prev => ({ ...prev, [key]: !prev[key] }));
+  };
 
   useEffect(() => {
     const loadSubcategories = async () => {
@@ -1288,28 +1293,39 @@ const { t, currentLanguage } = useLanguage();
 
   return (
     <div className="service-panel">
-      {Object.entries(groupedSubcategories).map(([key, group]) => (
-        group.items.length > 0 && (
-          <div key={key} className="filter-section" style={{ marginBottom: '1.5rem' }}>
-            <h4>{group.title}</h4>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '0.5rem' }}>
-              {group.items.map(subcat => (
-                <label key={subcat.id} className="checkbox-option">
-                  <input
-                    type="checkbox"
-                    checked={filters.subjects?.includes(subcat.name_he) || false}
-                    onChange={(e) => handleCheckboxChange('subjects', subcat.name_he, e.target.checked)}
-                  />
-                  <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.58rem', fontWeight: 'bold', background: '#e5e7eb', borderRadius: '3px', padding: '1px 3px', minWidth: '1.6em', color: '#374151', letterSpacing: '0.04em' }}>{subcat.icon}</span>
-<span>{subcat[`name_${currentLanguage}`] || subcat.name_he}</span>
-                  </span>
-                </label>
-              ))}
-            </div>
+      {Object.entries(groupedSubcategories).map(([key, group]) => {
+        if (!group.items.length) return null;
+        const isOpen = !!openGroups[key];
+        const selectedCount = group.items.filter(s => filters.subjects?.includes(s.name_he)).length;
+        return (
+          <div key={key} className="filter-section" style={{ marginBottom: '0.5rem', border: '1px solid #e5e7eb', borderRadius: '8px', overflow: 'hidden' }}>
+            <button
+              onClick={() => toggleGroup(key)}
+              style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.65rem 0.9rem', background: isOpen ? '#f1f5f9' : '#fff', border: 'none', cursor: 'pointer', fontWeight: 600, fontSize: '0.9rem', color: '#1e293b' }}
+            >
+              <span>{group.title}{selectedCount > 0 && <span style={{ marginInlineStart: '0.5rem', background: '#6366f1', color: '#fff', borderRadius: '999px', fontSize: '0.7rem', padding: '0 6px', fontWeight: 700 }}>{selectedCount}</span>}</span>
+              <ChevronDown size={16} style={{ transition: 'transform 0.2s', transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)', color: '#6366f1' }} />
+            </button>
+            {isOpen && (
+              <div style={{ padding: '0.75rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '0.4rem', background: '#fafafa' }}>
+                {group.items.map(subcat => (
+                  <label key={subcat.id} className="checkbox-option">
+                    <input
+                      type="checkbox"
+                      checked={filters.subjects?.includes(subcat.name_he) || false}
+                      onChange={(e) => handleCheckboxChange('subjects', subcat.name_he, e.target.checked)}
+                    />
+                    <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.58rem', fontWeight: 'bold', background: '#e5e7eb', borderRadius: '3px', padding: '1px 3px', minWidth: '1.6em', color: '#374151', letterSpacing: '0.04em' }}>{subcat.icon}</span>
+                      <span>{subcat[`name_${currentLanguage}`] || subcat.name_he}</span>
+                    </span>
+                  </label>
+                ))}
+              </div>
+            )}
           </div>
-        )
-      ))}
+        );
+      })}
 
       <CheckboxSection 
         title={t(config.sectionTitles.levels)}
