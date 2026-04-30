@@ -99,7 +99,7 @@ const serviceImages = {
   locksmith: '/images/serrure.png',
   moving: '/images/demenagement.jpg',
   photographer: '/images/logo photographe.jpg',
-  event_decoration: '/images/deco.jpg'
+  event_decoration: '/images/logo deco.jpg'
 };
 
 const DashboardPage = () => {
