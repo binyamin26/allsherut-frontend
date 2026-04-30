@@ -910,6 +910,16 @@ const translationMappings = {
     'בדיקה תקופתית של הנכס': 'filters.property.periodicInspection',
     'תיקונים כלליים (חשמל, אינסטלציה, מזגן וכו׳)': 'filters.property.generalRepairs',
   },
+
+  // ═══════════════════════════════════════════════════════════════
+  // EVENT DECORATION
+  // ═══════════════════════════════════════════════════════════════
+  decorationTypes: {
+    'קשתות ועיצוב בלונים': 'filters.event_decoration.archBalloon',
+    'עיצוב שולחנות': 'filters.event_decoration.tableDeco',
+    'עיצוב אולמות': 'filters.event_decoration.hallDeco',
+    'קירות צילום ופינות צילום': 'filters.event_decoration.photoWall',
+  },
 };
 
 /**

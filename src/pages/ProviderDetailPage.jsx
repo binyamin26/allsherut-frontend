@@ -1316,6 +1316,36 @@ const handleContact = () => {
           </>
         )}
 
+        {/* === EVENT DECORATION === */}
+        {provider.serviceType === 'event_decoration' && (
+          <>
+            {details.age && (
+              <div className="detail-item">
+                <strong>{t('serviceFields.event_decoration.age')}:</strong>
+                <span>{details.age} {t('provider.details.years')}</span>
+              </div>
+            )}
+            {details.decoration_types && details.decoration_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>{t('serviceFields.event_decoration.decoration_types')}:</strong>
+                <span>{translateAndJoin(details.decoration_types, 'decorationTypes', t)}</span>
+              </div>
+            )}
+            {details.availability_days && details.availability_days.length > 0 && (
+              <div className="detail-item">
+                <strong>{t('serviceFields.event_decoration.availability_days')}:</strong>
+                <span>{translateAndJoin(details.availability_days, 'days', t)}</span>
+              </div>
+            )}
+            {details.availability_hours && details.availability_hours.length > 0 && (
+              <div className="detail-item">
+                <strong>{t('serviceFields.event_decoration.availability_hours')}:</strong>
+                <span>{translateAndJoin(details.availability_hours, 'hours', t)}</span>
+              </div>
+            )}
+          </>
+        )}
+
         {/* Services additionnels (tous services) */}
         {details.additionalServices && details.additionalServices.length > 0 && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
