@@ -1979,12 +1979,16 @@ async getProviderProfileForService(serviceType) {
     // 3. Parser les données JSON
     const parseJsonSafe = (value) => {
       if (!value || value === '' || value === 'null') return [];
-      try {
-        return JSON.parse(value);
-      } catch (e) {
-        console.log('⚠️ Erreur parsing JSON:', value);
-        return [];
+      if (typeof value === 'object') return Array.isArray(value) ? value : [];
+      if (typeof value === 'string') {
+        try {
+          const parsed = JSON.parse(value);
+          return Array.isArray(parsed) ? parsed : [];
+        } catch (e) {
+          return [];
+        }
       }
+      return [];
     };
 
  const parseJsonObject = (value) => {
