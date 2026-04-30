@@ -631,7 +631,7 @@ try {
   'laundry', 'property_management', 'electrician', 'plumbing', 'air_conditioning',
   'gas_technician', 'drywall', 'carpentry', 'home_organization', 'event_entertainment',
   'private_chef', 'painting', 'waterproofing', 'contractor', 'aluminum',
-  'glass_works', 'locksmith', 'moving', 'photographer'
+  'glass_works', 'locksmith', 'moving', 'photographer', 'event_decoration'
 ];
       
       if (!serviceType || !validServices.includes(serviceType)) {
@@ -1594,6 +1594,21 @@ case 'contractor':
     }
     if (!serviceDetails.work_types || serviceDetails.work_types.length === 0) {
       errors.push({ field: 'work_types', message: 'יש לבחור לפחות סוג עבודה אחד' });
+    }
+    break;
+
+  case 'event_decoration':
+    if (!serviceDetails.age) errors.push({ field: 'age', message: 'גיל נדרש' });
+    else if (parseInt(serviceDetails.age) < 18) errors.push({ field: 'age', message: 'גיל מינימלי: 18 שנים' });
+    if (!serviceDetails.experience) errors.push({ field: 'experience', message: 'שנות ניסיון נדרשות' });
+    if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
+      errors.push({ field: 'availability_days', message: 'יש לבחור ימי זמינות' });
+    }
+    if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
+      errors.push({ field: 'availability_hours', message: 'יש לבחור שעות זמינות' });
+    }
+    if (!serviceDetails.decoration_types || serviceDetails.decoration_types.length === 0) {
+      errors.push({ field: 'decoration_types', message: 'יש לבחור לפחות סוג עיצוב אחד' });
     }
     break;
   }
