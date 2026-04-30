@@ -881,7 +881,7 @@ router.post('/add', authenticateToken, async (req, res) => {
 
       // Copier les zones de travail du service existant pour que le prestataire apparaisse dans les recherches
       const [existingAreas] = await connection.execute(
-        `SELECT pwa.city, pwa.neighborhood
+        `SELECT DISTINCT pwa.city, pwa.neighborhood
          FROM provider_working_areas pwa
          JOIN service_providers sp ON pwa.provider_id = sp.id
          WHERE sp.user_id = ? AND sp.id != ?

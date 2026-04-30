@@ -470,7 +470,7 @@ u.profile_image as user_profile_image,
 
     // Récupération des zones de travail avec le BON provider_id
     const workingAreasQuery = `
-      SELECT 
+      SELECT DISTINCT
         pwa.city,
         pwa.neighborhood
       FROM provider_working_areas pwa
