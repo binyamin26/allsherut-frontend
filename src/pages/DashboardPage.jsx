@@ -2761,7 +2761,7 @@ placeholder={t('dashboard.security.newPasswordPlaceholder')}
                       isEditMode={true}
                       onFieldChange={handleAddServiceFieldChange}
                       onArrayChange={handleAddServiceArrayChange}
-                      excludeFields={['age']}
+                      excludeFields={[]}
                     />
                   )}
 

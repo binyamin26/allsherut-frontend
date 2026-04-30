@@ -938,6 +938,24 @@ const serviceFieldsConfig = {
         label: 'serviceFields.moving.avoda_ivrit',
         type: 'checkbox',
         options: ['עבודה עברית']
+      },
+      {
+        name: 'packing_materials',
+        label: 'serviceFields.moving.packing_materials',
+        type: 'checkbox',
+        options: ['כן']
+      },
+      {
+        name: 'crane_services',
+        label: 'serviceFields.moving.crane_services',
+        type: 'checkbox',
+        options: ['כן']
+      },
+      {
+        name: 'cardboard_supply',
+        label: 'serviceFields.moving.cardboard_supply',
+        type: 'checkbox',
+        options: ['כן']
       }
     ]
   },

@@ -1346,6 +1346,42 @@ const handleContact = () => {
           </>
         )}
 
+        {/* === MOVING === */}
+        {provider.serviceType === 'moving' && (
+          <>
+            {details.age && (
+              <div className="detail-item">
+                <strong>{t('provider.details.age')}:</strong>
+                <span>{details.age} {t('provider.details.years')}</span>
+              </div>
+            )}
+            {(details.avoda_ivrit === 'עבודה עברית' || (Array.isArray(details.avoda_ivrit) && details.avoda_ivrit.includes('עבודה עברית'))) && (
+              <div className="detail-item">
+                <strong>{t('provider.details.avodaIvrit')}:</strong>
+                <span>{t('common.yes')}</span>
+              </div>
+            )}
+            {(details.packing_materials === 'כן' || (Array.isArray(details.packing_materials) && details.packing_materials.includes('כן'))) && (
+              <div className="detail-item">
+                <strong>{t('provider.details.packingMaterials')}:</strong>
+                <span>{t('common.yes')}</span>
+              </div>
+            )}
+            {(details.crane_services === 'כן' || (Array.isArray(details.crane_services) && details.crane_services.includes('כן'))) && (
+              <div className="detail-item">
+                <strong>{t('provider.details.craneServices')}:</strong>
+                <span>{t('common.yes')}</span>
+              </div>
+            )}
+            {(details.cardboard_supply === 'כן' || (Array.isArray(details.cardboard_supply) && details.cardboard_supply.includes('כן'))) && (
+              <div className="detail-item">
+                <strong>{t('provider.details.cardboardSupply')}:</strong>
+                <span>{t('common.yes')}</span>
+              </div>
+            )}
+          </>
+        )}
+
         {/* Services additionnels (tous services) */}
         {details.additionalServices && details.additionalServices.length > 0 && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
