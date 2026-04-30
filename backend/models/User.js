@@ -807,8 +807,9 @@ static async hasService(email, serviceType) {
         );
         console.log('✅ Détails service enregistrés');
 
-        // 4. Insérer les zones de travail
+        // 4. Insérer les zones de travail (supprimer d'abord pour éviter les doublons)
         if (workingAreas && workingAreas.length > 0) {
+          await connection.execute('DELETE FROM provider_working_areas WHERE provider_id = ?', [providerId]);
           await User.insertWorkingAreas(connection, providerId, workingAreas);
           console.log('✅ Zones de travail enregistrées:', workingAreas.length);
         }
@@ -1832,7 +1833,7 @@ async getFullProviderProfile() {
 
     // 2. Récupérer les zones de travail
     const workingAreas = await query(
-      'SELECT city, neighborhood FROM provider_working_areas WHERE provider_id = ?',
+      'SELECT DISTINCT city, neighborhood FROM provider_working_areas WHERE provider_id = ?',
       [profile.id]
     );
     console.log('✅ Zones de travail récupérées:', workingAreas.length);
@@ -1970,7 +1971,7 @@ async getProviderProfileForService(serviceType) {
 
     // 2. Récupérer les zones de travail
     const workingAreas = await query(
-      'SELECT city, neighborhood FROM provider_working_areas WHERE provider_id = ?',
+      'SELECT DISTINCT city, neighborhood FROM provider_working_areas WHERE provider_id = ?',
       [profile.id]
     );
     console.log('✅ Zones de travail récupérées:', workingAreas.length);
