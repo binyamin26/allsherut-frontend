@@ -550,7 +550,7 @@ const AgeRangeSection = ({ filters, onFilterChange }) => {
       <div className="dual-range-inputs">
         <input
           type="number"
-          placeholder={t('filters.minimum')}
+          placeholder="min"
           value={filters.minAge || ''}
           onChange={(e) => onFilterChange('minAge', e.target.value)}
           className="dual-range-input"
@@ -560,7 +560,7 @@ const AgeRangeSection = ({ filters, onFilterChange }) => {
         <span className="range-separator">-</span>
         <input
           type="number"
-          placeholder={t('filters.maximum')}
+          placeholder="max"
           value={filters.maxAge || ''}
           onChange={(e) => onFilterChange('maxAge', e.target.value)}
           className="dual-range-input"
