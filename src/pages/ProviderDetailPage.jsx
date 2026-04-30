@@ -89,7 +89,8 @@ const ProviderDetailPage = () => {
     aluminum: '/images/logo aluminium.png',
     glass_works: '/images/logo verre.png',
     locksmith: '/images/logo serrure.png',
-    moving: '/images/logo demenagement.jpg'  /* à placer dans public/images/ */
+    moving: '/images/logo demenagement.jpg',
+    event_decoration: '/images/logo deco.jpg'
   };
   return icons[serviceType] || '/images/logo-default.png';
 };

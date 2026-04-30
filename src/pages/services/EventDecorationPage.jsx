@@ -151,10 +151,11 @@ const EventDecorationPage = () => {
           ) : providers.length > 0 ? (
             <div className="providers-grid">
               {providers.map(provider => (
-                <div key={provider.id} className="provider-card-wrapper">
-                  <ProviderCard provider={provider} onOpenReviewModal={(id, name) => setReviewModal({ isOpen: true, providerId: id, providerName: name })} />
-                  <DecorationProviderDetails provider={provider} t={t} />
-                </div>
+                <ProviderCard
+                  key={provider.id}
+                  provider={provider}
+                  onOpenReviewModal={(id, name) => setReviewModal({ isOpen: true, providerId: id, providerName: name })}
+                />
               ))}
             </div>
           ) : (
