@@ -232,7 +232,7 @@ const ServiceDetailsEditor = ({
       languages:{ title: t('filters.tutoring.languages'),        items: tutoringSubcategories.filter(s => inRange(s, 44, 54)) },
       tech:     { title: t('filters.tutoring.tech'),             items: tutoringSubcategories.filter(s => inRange(s, 60, 64)) },
       cooking:  { title: t('filters.tutoring.cooking'),          items: tutoringSubcategories.filter(s => inRange(s, 70, 73)) },
-      personal: { title: t('filters.tutoring.personal'),         items: tutoringSubcategories.filter(s => inRange(s, 75, 84)) },
+      personal: { title: t('filters.tutoring.personal'),         items: tutoringSubcategories.filter(s => inRange(s, 75, 89)) },
     };
 
     // Safety net: any subcategory not caught by a range appears here
