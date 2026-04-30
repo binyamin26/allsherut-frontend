@@ -771,6 +771,137 @@
 }
 
 /* ====================================
+   TUTORING ACCORDION
+   ==================================== */
+.tutor-accordion-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.tutor-accordion-item {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+  transition: box-shadow 0.2s ease;
+  border: 1.5px solid #e8eaf0;
+}
+
+.tutor-accordion-item:hover {
+  box-shadow: 0 3px 10px rgba(99,102,241,0.12);
+  border-color: #c7d2fe;
+}
+
+.tutor-accordion-item.is-open {
+  border-color: #a5b4fc;
+  box-shadow: 0 4px 16px rgba(99,102,241,0.15);
+}
+
+.tutor-accordion-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: #ffffff;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: #1e293b;
+  transition: background 0.18s ease;
+  text-align: right;
+}
+
+.tutor-accordion-btn:hover {
+  background: #f5f3ff;
+}
+
+.tutor-accordion-item.is-open .tutor-accordion-btn {
+  background: linear-gradient(135deg, #ede9fe 0%, #e0e7ff 100%);
+  color: #4338ca;
+}
+
+.tutor-accordion-btn-left {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.tutor-accordion-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  background: #6366f1;
+  color: #fff;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.tutor-accordion-chevron {
+  color: #818cf8;
+  transition: transform 0.22s cubic-bezier(0.4,0,0.2,1);
+  flex-shrink: 0;
+}
+
+.tutor-accordion-item.is-open .tutor-accordion-chevron {
+  transform: rotate(180deg);
+  color: #4f46e5;
+}
+
+.tutor-accordion-body {
+  padding: 0.85rem 1rem;
+  background: #fafbff;
+  border-top: 1px solid #e0e7ff;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 0.3rem 0.5rem;
+}
+
+.tutor-checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.82rem;
+  color: #374151;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.tutor-checkbox-item:hover {
+  background: #ede9fe;
+  color: #4338ca;
+}
+
+.tutor-checkbox-item input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: #6366f1;
+  flex-shrink: 0;
+}
+
+.tutor-icon-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  background: #e0e7ff;
+  border-radius: 5px;
+  font-size: 0.72rem;
+  flex-shrink: 0;
+}
+
+/* ====================================
    RANGE FILTER - INPUTS NUMBER
    ==================================== */
 .range-filter {
