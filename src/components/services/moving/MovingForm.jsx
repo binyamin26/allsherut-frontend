@@ -108,6 +108,55 @@ const MovingForm = ({ serviceDetails, errors, handleServiceDetailsChange, handle
           </div>
         </div>
       </div>
+
+      <div className="form-section optional">
+        <h4>{t('serviceForm.common.optionalFields')}</h4>
+
+        <div className="input-group">
+          <div className="checkbox-group" data-field="packing_materials">
+            <label className="checkbox-item" style={{ fontWeight: 'bold' }}>
+              <input
+                type="checkbox"
+                checked={serviceDetails.packing_materials === 'כן'}
+                onChange={(e) =>
+                  handleServiceDetailsChange('packing_materials', e.target.checked ? 'כן' : '')
+                }
+              />
+              {t('serviceForm.moving.packingMaterials')}
+            </label>
+          </div>
+        </div>
+
+        <div className="input-group">
+          <div className="checkbox-group" data-field="crane_services">
+            <label className="checkbox-item" style={{ fontWeight: 'bold' }}>
+              <input
+                type="checkbox"
+                checked={serviceDetails.crane_services === 'כן'}
+                onChange={(e) =>
+                  handleServiceDetailsChange('crane_services', e.target.checked ? 'כן' : '')
+                }
+              />
+              {t('serviceForm.moving.craneServices')}
+            </label>
+          </div>
+        </div>
+
+        <div className="input-group">
+          <div className="checkbox-group" data-field="cardboard_supply">
+            <label className="checkbox-item" style={{ fontWeight: 'bold' }}>
+              <input
+                type="checkbox"
+                checked={serviceDetails.cardboard_supply === 'כן'}
+                onChange={(e) =>
+                  handleServiceDetailsChange('cardboard_supply', e.target.checked ? 'כן' : '')
+                }
+              />
+              {t('serviceForm.moving.cardboardSupply')}
+            </label>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

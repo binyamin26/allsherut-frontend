@@ -1609,16 +1609,13 @@ const galleryImages = (() => {
             <>
               <div className="form-group" style={{ marginBottom: '1rem' }}>
                <label>{t('dashboard.selectCity')}</label>
-                <select 
-                  value={selectedCity} 
+                <CustomDropdown
+                  name="city"
+                  options={cities}
+                  value={selectedCity}
                   onChange={(e) => setSelectedCity(e.target.value)}
-                  className="form-input"
-                >
-                  <option value="">בחר עיר</option>
-                  {cities.map(city => (
-                    <option key={city} value={city}>{city}</option>
-                  ))}
-                </select>
+                  placeholder="בחר עיר"
+                />
               </div>
 
               {selectedCity && (
