@@ -48,6 +48,7 @@ import DeleteAccountModal from '../components/modals/DeleteAccountModal';
 // PAIEMENT DÉSACTIVÉ - RÉACTIVER QUAND SITE PAYANT
 // import CancelSubscriptionModal from '../components/modals/CancelSubscriptionModal';
 import ServiceDetailsEditor from '../components/dashboard/ServiceDetailsEditor';
+import ServiceDetailsForm from '../components/services/ServiceDetailsForm';
 import DeleteServiceModal from '../components/modals/DeleteServiceModal';
 import DeleteListingModal from '../components/modals/DeleteListingModal';
 import { useLanguage } from '../context/LanguageContext';
@@ -1042,6 +1043,19 @@ const handleAddServiceArrayChange = (field, value, checked) => {
     } else {
       return { ...prev, [field]: current.filter(v => v !== value) };
     }
+  });
+};
+
+const handleAddServiceExclusiveCheckbox = (field, value, allValue, allOptions) => {
+  setAddServiceDetails(prev => {
+    const current = prev[field] || [];
+    if (value === allValue) {
+      return { ...prev, [field]: current.includes(allValue) ? [] : [allValue] };
+    }
+    const newValues = current.includes(value)
+      ? current.filter(v => v !== value)
+      : [...current.filter(v => v !== allValue), value];
+    return { ...prev, [field]: newValues };
   });
 };
 
@@ -2755,13 +2769,12 @@ placeholder={t('dashboard.security.newPasswordPlaceholder')}
                       onChange={(field, val) => setAddServiceDetails(prev => ({ ...prev, [field]: val }))}
                     />
                   ) : (
-                    <ServiceDetailsEditor
+                    <ServiceDetailsForm
                       serviceType={addServiceType}
                       serviceDetails={addServiceDetails}
-                      isEditMode={true}
-                      onFieldChange={handleAddServiceFieldChange}
-                      onArrayChange={handleAddServiceArrayChange}
-                      excludeFields={[]}
+                      errors={{}}
+                      handleServiceDetailsChange={handleAddServiceFieldChange}
+                      handleExclusiveCheckbox={handleAddServiceExclusiveCheckbox}
                     />
                   )}
 
