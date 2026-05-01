@@ -1044,7 +1044,7 @@ const handleContact = () => {
                 return (
                   <div key={group.key} className="detail-item" style={{ gridColumn: '1 / -1' }}>
                     <strong>{group.emoji} {group.label}:</strong>
-                    <span>{selected.map((s, i) => <span key={i}><span style={{ direction: 'rtl', unicodeBidi: 'isolate', display: 'inline-block' }}>{cleanName(s)}</span>{i < selected.length - 1 ? ', ' : ''}</span>)}</span>
+                    <span>{selected.map((s, i) => <span key={i}><span style={{ direction: 'ltr', unicodeBidi: 'bidi-override', display: 'inline-block' }}>{cleanName(s)}</span>{i < selected.length - 1 ? ', ' : ''}</span>)}</span>
                   </div>
                 );
               }).filter(Boolean);
@@ -1053,7 +1053,7 @@ const handleContact = () => {
                 elements.push(
                   <div key="other" className="detail-item" style={{ gridColumn: '1 / -1' }}>
                     <strong>📖 {t('filters.tutoring.other')}:</strong>
-                    <span>{others.map((s, i) => <span key={i}><span style={{ direction: 'rtl', unicodeBidi: 'isolate', display: 'inline-block' }}>{cleanName(s)}</span>{i < others.length - 1 ? ', ' : ''}</span>)}</span>
+                    <span>{others.map((s, i) => <span key={i}><span style={{ direction: 'ltr', unicodeBidi: 'bidi-override', display: 'inline-block' }}>{cleanName(s)}</span>{i < others.length - 1 ? ', ' : ''}</span>)}</span>
                   </div>
                 );
               }
@@ -1061,7 +1061,7 @@ const handleContact = () => {
             })() : (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>📚 {t('serviceForm.tutoring.subjectsLabel')}:</strong>
-                <span>{details.subjects.map((s, i) => <span key={i}><bdi>{s.replace(/‏/g, '')}</bdi>{i < details.subjects.length - 1 ? ', ' : ''}</span>)}</span>
+                <span>{details.subjects.map((s, i) => <span key={i}><span style={{ direction: 'ltr', unicodeBidi: 'bidi-override', display: 'inline-block' }}>{s.replace(/‏/g, '')}</span>{i < details.subjects.length - 1 ? ', ' : ''}</span>)}</span>
               </div>
             )}
           </>
