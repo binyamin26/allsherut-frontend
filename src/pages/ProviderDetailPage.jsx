@@ -26,7 +26,7 @@ const sortDays = (days) => {
 const ProviderDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { user, isAuthenticated } = useAuth();
+  const { user, isAuthenticated, apiCall } = useAuth();
   const { t } = useLanguage();
   
  // Fonction détection hébreu
@@ -44,7 +44,7 @@ const ProviderDetailPage = () => {
   const [error, setError] = useState(null);
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [showContactModal, setShowContactModal] = useState(false);
-  
+  const [tutoringSubcats, setTutoringSubcats] = useState([]);
 
   // État pour ReviewModal
   const [reviewModal, setReviewModal] = useState({
@@ -114,6 +114,22 @@ const ProviderDetailPage = () => {
       loadProviderData();
     }
   }, [id]);
+
+  // Charger les sous-catégories de cours (uniquement pour tutoring)
+  useEffect(() => {
+    if (provider?.serviceType !== 'tutoring') return;
+    const load = async () => {
+      try {
+        const response = await apiCall('/services/5/subcategories', 'GET');
+        if (response.success && response.data.subcategories) {
+          setTutoringSubcats(response.data.subcategories);
+        }
+      } catch (err) {
+        console.error('Error loading tutoring subcategories:', err);
+      }
+    };
+    load();
+  }, [provider?.serviceType, apiCall]);
 
  const loadProviderData = async () => {
   console.log('🔍 Provider ID:', id);
@@ -997,140 +1013,55 @@ const handleContact = () => {
           </>
         )}
 
-    {/* TUTORING - Subjects groupés par catégorie */}
+    {/* TUTORING - Subjects dynamically grouped from DB */}
         {provider.serviceType === 'tutoring' && details.subjects && details.subjects.length > 0 && (
           <>
-            {/* Musique */}
-            {(() => {
-              const musicSubjects = ['פסנתר', 'גיטרה', 'כינור / ויולה / צ׳לו', 'תופים / כלי הקשה', 'חליל, קלרינט, סקסופון, חצוצרה', 'נבל', 'פיתוח קול / שירה'];
-              const selected = details.subjects.filter(s => musicSubjects.includes(s));
-              return selected.length > 0 && (
-                <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                  <strong>🎵 {t('filters.tutoring.music')}:</strong>
-                  <span>{selected.map((s, i) => <span key={i}><bdi>{s}</bdi>{i < selected.length - 1 ? ', ' : ''}</span>)}</span>
-                </div>
-              );
-            })()}
-            
-            {/* Art */}
-            {(() => {
-              const artSubjects = ['ציור (שמן, אקריליק, צבעי מים)', 'רישום', 'פיסול', 'צילום', 'גרפיקה / עיצוב חזותי', 'קליגרפיה', 'קרמיקה / פסיפס'];
-              const selected = details.subjects.filter(s => artSubjects.includes(s));
-              return selected.length > 0 && (
-                <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                  <strong>🎨 {t('filters.tutoring.art')}:</strong>
-                  <span>{selected.map((s, i) => <span key={i}><bdi>{s}</bdi>{i < selected.length - 1 ? ', ' : ''}</span>)}</span>
-                </div>
-              );
-            })()}
-            
-            {/* Danse */}
-            {(() => {
-              const danceSubjects = ['בלט קלאסי', 'מחול מודרני / עכשווי', 'מחול עממי', 'ג׳אז / היפ הופ', 'ריקודים סלוניים'];
-              const selected = details.subjects.filter(s => danceSubjects.includes(s));
-              return selected.length > 0 && (
-                <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                  <strong>💃 {t('filters.tutoring.dance')}:</strong>
-                  <span>{selected.map((s, i) => <span key={i}><bdi>{s}</bdi>{i < selected.length - 1 ? ', ' : ''}</span>)}</span>
-                </div>
-              );
-            })()}
-            
-            {/* Théâtre */}
-            {(() => {
-              const theaterSubjects = ['משחק', 'אילתור / מִים', 'מחזות זמר', 'דיבור בפני קהל / דקלום'];
-              const selected = details.subjects.filter(s => theaterSubjects.includes(s));
-              return selected.length > 0 && (
-                <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                  <strong>🎭 {t('filters.tutoring.theater')}:</strong>
-                  <span>{selected.map((s, i) => <span key={i}><bdi>{s}</bdi>{i < selected.length - 1 ? ', ' : ''}</span>)}</span>
-                </div>
-              );
-            })()}
-            
-            {/* Langues */}
-            {(() => {
-              const languageSubjects = ['אנגלית', 'צרפתית', 'ספרדית', 'רוסית', 'ערבית', 'סדנאות שיחה', 'ספרות ותרבות'];
-              const selected = details.subjects.filter(s => languageSubjects.includes(s));
-              return selected.length > 0 && (
-                <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                  <strong>🌍 {t('filters.tutoring.languages')}:</strong>
-                  <span>{selected.map((s, i) => <span key={i}><bdi>{s}</bdi>{i < selected.length - 1 ? ', ' : ''}</span>)}</span>
-                </div>
-              );
-            })()}
-            
-            {/* Artisanat */}
-            {(() => {
-              const craftsSubjects = ['תפירה / סריגה / קרושה', 'רקמה', 'תכשיטנות', 'עץ / נגרות', 'יצירה חופשית'];
-              const selected = details.subjects.filter(s => craftsSubjects.includes(s));
-              return selected.length > 0 && (
-                <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                  <strong>✂️ {t('filters.tutoring.crafts')}:</strong>
-                  <span>{selected.map((s, i) => <span key={i}><bdi>{s}</bdi>{i < selected.length - 1 ? ', ' : ''}</span>)}</span>
-                </div>
-              );
-            })()}
-            
-            {/* Tech */}
-            {(() => {
-              const techSubjects = ['מחשבים / קידוד', 'רובוטיקה', 'הדפסה תלת־ממדית', 'אלקטרוניקה בסיסית', 'ניסויים מדעיים לילדים'];
-              const selected = details.subjects.filter(s => techSubjects.includes(s));
-              return selected.length > 0 && (
-                <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                  <strong>💻 {t('filters.tutoring.tech')}:</strong>
-                  <span>{selected.map((s, i) => <span key={i}><bdi>{s}</bdi>{i < selected.length - 1 ? ', ' : ''}</span>)}</span>
-                </div>
-              );
-            })()}
-            
-            {/* Cuisine */}
-            {(() => {
-              const cookingSubjects = ['בישול', 'אפייה', 'קונדיטוריה', 'עיצוב עוגות'];
-              const selected = details.subjects.filter(s => cookingSubjects.includes(s));
-              return selected.length > 0 && (
-                <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                  <strong>👨‍🍳 {t('filters.tutoring.cooking')}:</strong>
-                  <span>{selected.map((s, i) => <span key={i}><bdi>{s}</bdi>{i < selected.length - 1 ? ', ' : ''}</span>)}</span>
-                </div>
-              );
-            })()}
-            
-            {/* Développement personnel */}
-            {(() => {
-              const personalSubjects = ['דיבור מול קהל', 'מנהיגות / העצמה אישית', 'מיינדפולנס / מדיטציה', 'ארגון וניהול זמן', 'טכניקות למידה'];
-              const selected = details.subjects.filter(s => personalSubjects.includes(s));
-              return selected.length > 0 && (
-                <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                  <strong>🧘 {t('filters.tutoring.personal')}:</strong>
-                  <span>{selected.map((s, i) => <span key={i}><bdi>{s}</bdi>{i < selected.length - 1 ? ', ' : ''}</span>)}</span>
-                </div>
-              );
-            })()}
-            
-            {/* Sports */}
-            {(() => {
-              const sportsSubjects = ['כדורגל', 'כדורסל', 'כדורעף', 'טניס', 'טניס שולחן', 'סקווש / בדמינטון', 'שחייה', 'אתלטיקה', 'התעמלות קרקע / מכשירים', 'רכיבה על אופניים', 'ג׳ודו', 'קראטה', 'טאקוונדו', 'אייקידו', 'היאבקות', 'אומנויות לחימה משולבות', 'קרב מגע', 'קפוארה', 'טיפוס קירות', 'סקייטבורד / גלגיליות'];
-              const selected = details.subjects.filter(s => sportsSubjects.includes(s));
-              return selected.length > 0 && (
-                <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                  <strong>⚽ {t('filters.tutoring.sports')}:</strong>
-                  <span>{selected.map((s, i) => <span key={i}><bdi>{s}</bdi>{i < selected.length - 1 ? ', ' : ''}</span>)}</span>
-                </div>
-              );
-            })()}
-            
-            {/* Matières académiques */}
-            {(() => {
-              const academicSubjects = ['מתמטיקה', 'פיזיקה', 'כימיה', 'ביולוגיה', 'מדעי המחשב', 'סטטיסטיקה והסתברות', 'גיאומטריה', 'היסטוריה', 'גיאוגרפיה', 'אזרחות', 'כלכלה', 'פסיכולוגיה', 'סוציולוגיה', 'פילוסופיה', 'עברית / ספרות', 'תנ״ך', 'ערבית', 'לשון עברית'];
-              const selected = details.subjects.filter(s => academicSubjects.includes(s));
-              return selected.length > 0 && (
-                <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                  <strong>📚 {t('filters.tutoring.academicSubjects')}:</strong>
-                  <span>{selected.map((s, i) => <span key={i}><bdi>{s}</bdi>{i < selected.length - 1 ? ', ' : ''}</span>)}</span>
-                </div>
-              );
-            })()}
+            {tutoringSubcats.length > 0 ? (() => {
+              const cleanName = (name) => (name || '').replace(/‏/g, '');
+              const groups = [
+                { key: 'music',    emoji: '🎵', label: t('filters.tutoring.music'),           min: 1,   max: 7   },
+                { key: 'art',      emoji: '🎨', label: t('filters.tutoring.art'),             min: 10,  max: 16  },
+                { key: 'dance',    emoji: '💃', label: t('filters.tutoring.dance'),           min: 20,  max: 24  },
+                { key: 'theater',  emoji: '🎭', label: t('filters.tutoring.theater'),         min: 30,  max: 33  },
+                { key: 'languages',emoji: '🌍', label: t('filters.tutoring.languages'),       min: 40,  max: 47  },
+                { key: 'crafts',   emoji: '✂️', label: t('filters.tutoring.crafts'),          min: 50,  max: 54  },
+                { key: 'tech',     emoji: '💻', label: t('filters.tutoring.tech'),            min: 60,  max: 64  },
+                { key: 'cooking',  emoji: '👨‍🍳', label: t('filters.tutoring.cooking'),         min: 70,  max: 74  },
+                { key: 'personal', emoji: '🧘', label: t('filters.tutoring.personal'),        min: 80,  max: 89  },
+                { key: 'sports',   emoji: '⚽', label: t('filters.tutoring.sports'),          min: 90,  max: 119 },
+                { key: 'academic', emoji: '📚', label: t('filters.tutoring.academicSubjects'),min: 200, max: 223 },
+              ];
+              const categorized = new Set();
+              const elements = groups.map(group => {
+                const groupSubcats = tutoringSubcats.filter(s => s.display_order >= group.min && s.display_order <= group.max);
+                const selected = details.subjects.filter(subj =>
+                  groupSubcats.some(s => cleanName(s.name_he) === cleanName(subj))
+                );
+                if (!selected.length) return null;
+                selected.forEach(s => categorized.add(s));
+                return (
+                  <div key={group.key} className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                    <strong>{group.emoji} {group.label}:</strong>
+                    <span>{selected.map((s, i) => <span key={i}><bdi>{cleanName(s)}</bdi>{i < selected.length - 1 ? ', ' : ''}</span>)}</span>
+                  </div>
+                );
+              }).filter(Boolean);
+              const others = details.subjects.filter(s => !categorized.has(s));
+              if (others.length) {
+                elements.push(
+                  <div key="other" className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                    <strong>📖 {t('filters.tutoring.other') || 'אחר'}:</strong>
+                    <span>{others.map((s, i) => <span key={i}><bdi>{cleanName(s)}</bdi>{i < others.length - 1 ? ', ' : ''}</span>)}</span>
+                  </div>
+                );
+              }
+              return <>{elements}</>;
+            })() : (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>📚 {t('serviceForm.tutoring.subjectsLabel')}:</strong>
+                <span>{details.subjects.map((s, i) => <span key={i}><bdi>{s.replace(/‏/g, '')}</bdi>{i < details.subjects.length - 1 ? ', ' : ''}</span>)}</span>
+              </div>
+            )}
           </>
         )}
 
