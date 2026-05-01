@@ -286,6 +286,16 @@ const handleContact = () => {
           </div>
         )}
 
+        {/* Types de travaux — affiché pour tous les services sauf painting (qui l'a déjà dans sa section) */}
+        {details.work_types && details.work_types.length > 0 && provider.serviceType !== 'painting' && (
+          <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+            <strong>🔧 {t('serviceForm.common.workTypes')}:</strong>
+            <span>{details.work_types.map((w, i) => (
+              <span key={i}><bdi>{w}</bdi>{i < details.work_types.length - 1 ? ', ' : ''}</span>
+            ))}</span>
+          </div>
+        )}
+
         {/* === BABYSITTING - CHAMPS COMPACTS === */}
         {provider.serviceType === 'babysitting' && (
           <>
