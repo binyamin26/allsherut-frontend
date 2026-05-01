@@ -1007,7 +1007,7 @@ const handleContact = () => {
               return selected.length > 0 && (
                 <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                   <strong>🎵 {t('filters.tutoring.music')}:</strong>
-                  <span>{selected.join(', ')}</span>
+                  <span>{selected.map((s, i) => <span key={i}><bdi>{s}</bdi>{i < selected.length - 1 ? ', ' : ''}</span>)}</span>
                 </div>
               );
             })()}
@@ -1019,7 +1019,7 @@ const handleContact = () => {
               return selected.length > 0 && (
                 <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                   <strong>🎨 {t('filters.tutoring.art')}:</strong>
-                  <span>{selected.join(', ')}</span>
+                  <span>{selected.map((s, i) => <span key={i}><bdi>{s}</bdi>{i < selected.length - 1 ? ', ' : ''}</span>)}</span>
                 </div>
               );
             })()}
@@ -1031,7 +1031,7 @@ const handleContact = () => {
               return selected.length > 0 && (
                 <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                   <strong>💃 {t('filters.tutoring.dance')}:</strong>
-                  <span>{selected.join(', ')}</span>
+                  <span>{selected.map((s, i) => <span key={i}><bdi>{s}</bdi>{i < selected.length - 1 ? ', ' : ''}</span>)}</span>
                 </div>
               );
             })()}
@@ -1043,7 +1043,7 @@ const handleContact = () => {
               return selected.length > 0 && (
                 <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                   <strong>🎭 {t('filters.tutoring.theater')}:</strong>
-                  <span>{selected.join(', ')}</span>
+                  <span>{selected.map((s, i) => <span key={i}><bdi>{s}</bdi>{i < selected.length - 1 ? ', ' : ''}</span>)}</span>
                 </div>
               );
             })()}
@@ -1055,7 +1055,7 @@ const handleContact = () => {
               return selected.length > 0 && (
                 <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                   <strong>🌍 {t('filters.tutoring.languages')}:</strong>
-                  <span>{selected.join(', ')}</span>
+                  <span>{selected.map((s, i) => <span key={i}><bdi>{s}</bdi>{i < selected.length - 1 ? ', ' : ''}</span>)}</span>
                 </div>
               );
             })()}
@@ -1067,7 +1067,7 @@ const handleContact = () => {
               return selected.length > 0 && (
                 <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                   <strong>✂️ {t('filters.tutoring.crafts')}:</strong>
-                  <span>{selected.join(', ')}</span>
+                  <span>{selected.map((s, i) => <span key={i}><bdi>{s}</bdi>{i < selected.length - 1 ? ', ' : ''}</span>)}</span>
                 </div>
               );
             })()}
@@ -1079,7 +1079,7 @@ const handleContact = () => {
               return selected.length > 0 && (
                 <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                   <strong>💻 {t('filters.tutoring.tech')}:</strong>
-                  <span>{selected.join(', ')}</span>
+                  <span>{selected.map((s, i) => <span key={i}><bdi>{s}</bdi>{i < selected.length - 1 ? ', ' : ''}</span>)}</span>
                 </div>
               );
             })()}
@@ -1091,7 +1091,7 @@ const handleContact = () => {
               return selected.length > 0 && (
                 <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                   <strong>👨‍🍳 {t('filters.tutoring.cooking')}:</strong>
-                  <span>{selected.join(', ')}</span>
+                  <span>{selected.map((s, i) => <span key={i}><bdi>{s}</bdi>{i < selected.length - 1 ? ', ' : ''}</span>)}</span>
                 </div>
               );
             })()}
@@ -1103,7 +1103,7 @@ const handleContact = () => {
               return selected.length > 0 && (
                 <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                   <strong>🧘 {t('filters.tutoring.personal')}:</strong>
-                  <span>{selected.join(', ')}</span>
+                  <span>{selected.map((s, i) => <span key={i}><bdi>{s}</bdi>{i < selected.length - 1 ? ', ' : ''}</span>)}</span>
                 </div>
               );
             })()}
@@ -1115,7 +1115,7 @@ const handleContact = () => {
               return selected.length > 0 && (
                 <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                   <strong>⚽ {t('filters.tutoring.sports')}:</strong>
-                  <span>{selected.join(', ')}</span>
+                  <span>{selected.map((s, i) => <span key={i}><bdi>{s}</bdi>{i < selected.length - 1 ? ', ' : ''}</span>)}</span>
                 </div>
               );
             })()}
@@ -1127,7 +1127,7 @@ const handleContact = () => {
               return selected.length > 0 && (
                 <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                   <strong>📚 {t('filters.tutoring.academicSubjects')}:</strong>
-                  <span>{selected.join(', ')}</span>
+                  <span>{selected.map((s, i) => <span key={i}><bdi>{s}</bdi>{i < selected.length - 1 ? ', ' : ''}</span>)}</span>
                 </div>
               );
             })()}

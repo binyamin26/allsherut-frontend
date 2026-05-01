@@ -363,7 +363,7 @@ const translateTutoringSubject = (subjectNameHe) => {
       return (
         <div className="tags-list">
           {Array.isArray(value) && value.length > 0 
-            ? value.join(', ')
+            ? value.map((s, i) => <span key={i}><bdi>{s}</bdi>{i < value.length - 1 ? ', ' : ''}</span>)
             : <span>{t('dashboard.notSpecified')}</span>
           }
         </div>
