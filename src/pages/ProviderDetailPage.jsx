@@ -552,19 +552,19 @@ const handleContact = () => {
                 <span>{details.age} {t('provider.details.years')}</span>
               </div>
             )}
-            {details.work_types?.includes('התקנת מזגנים') && details.installation_types && details.installation_types.length > 0 && (
+            {details.installation_types && details.installation_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>❄️ {t('provider.details.acInstallation')}:</strong>
              <span>{translateAndJoin(details.installation_types, 'acInstallation', t)}</span>
               </div>
             )}
-            {details.work_types?.includes('תיקון מזגנים') && details.repair_types && details.repair_types.length > 0 && (
+            {details.repair_types && details.repair_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🔧 {t('provider.details.acRepair')}:</strong>
              <span>{translateAndJoin(details.repair_types, 'acRepair', t)}</span>
               </div>
             )}
-            {details.work_types?.includes('פירוק והרכבת מזגנים') && details.disassembly_types && details.disassembly_types.length > 0 && (
+            {details.disassembly_types && details.disassembly_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🔄 {t('provider.details.acDisassembly')}:</strong>
              <span>{translateAndJoin(details.disassembly_types, 'acDisassembly', t)}</span>
@@ -582,13 +582,13 @@ const handleContact = () => {
                 <span>{details.age} {t('provider.details.years')}</span>
               </div>
             )}
-            {details.work_types?.includes('עיצובים בגבס') && details.design_types && details.design_types.length > 0 && (
+            {details.design_types && details.design_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🎨 {t('provider.details.drywallDesigns')}:</strong>
              <span>{translateAndJoin(details.design_types, 'drywallDesign', t)}</span>
               </div>
             )}
-            {details.work_types?.includes('עבודות גבס') && details.construction_types && details.construction_types.length > 0 && (
+            {details.construction_types && details.construction_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🏗️ {t('provider.details.drywallConstruction')}:</strong>
                <span>{translateAndJoin(details.construction_types, 'drywallConstruction', t)}</span>
@@ -606,27 +606,25 @@ const handleContact = () => {
                 <span>{details.age} {t('provider.details.years')}</span>
               </div>
             )}
-            {details.work_types?.includes('בניית רהיטים') && details.furniture_building_types && details.furniture_building_types.length > 0 && (
+            {details.furniture_building_types && details.furniture_building_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🪑 {t('provider.details.furnitureBuilding')}:</strong>
                <span>{translateAndJoin(details.furniture_building_types, 'carpentryFurnitureBuilding', t)}</span>
               </div>
             )}
-            {details.work_types?.includes('תיקון רהיטים') && details.furniture_repair_types && details.furniture_repair_types.length > 0 && (
+            {details.furniture_repair_types && details.furniture_repair_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🔧 {t('provider.details.furnitureRepair')}:</strong>
                <span>{translateAndJoin(details.furniture_repair_types, 'carpentryFurnitureRepair', t)}</span>
               </div>
             )}
-            {details.work_types?.includes('עבודות נגרות אחרות') && details.other_carpentry_types && details.other_carpentry_types.length > 0 && (
+            {details.other_carpentry_types && details.other_carpentry_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🪵 {t('provider.details.otherCarpentry')}:</strong>
                <span>{translateAndJoin(details.other_carpentry_types, 'carpentryOther', t)}</span>
               </div>
             )}
-            {details.work_types?.includes('נגרות חוץ') && (
-              <>
-                {details.pergola_types && details.pergola_types.length > 0 && (
+            {details.pergola_types && details.pergola_types.length > 0 && (
                   <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                     <strong>🏕️ {t('provider.details.pergolas')}:</strong>
                     <span>{translateAndJoin(details.pergola_types, 'carpentryPergolas', t)}</span>
@@ -644,8 +642,6 @@ const handleContact = () => {
                  <span>{translateAndJoin(details.fence_types, 'carpentryFences', t)}</span>
                   </div>
                 )}
-              </>
-            )}
           </>
         )}
 
@@ -665,19 +661,19 @@ const handleContact = () => {
                 : <span>{t('dashboard.notSpecified')}</span>
               }
             </div>
-            {details.work_types?.includes('סידור כללי') && details.general_organization_types && details.general_organization_types.length > 0 && (
+            {details.general_organization_types && details.general_organization_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🏠 {t('provider.details.generalOrganization')}:</strong>
               <span>{translateAndJoin(details.general_organization_types, 'homeOrgGeneral', t)}</span>
               </div>
             )}
-            {details.work_types?.includes('סידור + מיון') && details.sorting_types && details.sorting_types.length > 0 && (
+            {details.sorting_types && details.sorting_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>📦 {t('provider.details.sortingOrganization')}:</strong>
               <span>{translateAndJoin(details.sorting_types, 'homeOrgSorting', t)}</span>
               </div>
             )}
-            {details.work_types?.includes('ארגון מקצועי') && details.professional_organization_types && details.professional_organization_types.length > 0 && (
+            {details.professional_organization_types && details.professional_organization_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>✨ {t('provider.details.professionalOrganization')}:</strong>
                <span>{translateAndJoin(details.professional_organization_types, 'homeOrgProfessional', t)}</span>
@@ -695,9 +691,7 @@ const handleContact = () => {
                 <span>{details.age} {t('provider.details.years')}</span>
               </div>
             )}
-            {details.work_types?.includes('השכרת ציוד לאירועים') && (
-              <>
-                {details.food_machine_types && details.food_machine_types.length > 0 && (
+            {details.food_machine_types && details.food_machine_types.length > 0 && (
                   <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                     <strong>🍿 {t('provider.details.foodMachines')}:</strong>
                 <span>{translateAndJoin(details.food_machine_types, 'eventFoodMachines', t)}</span>
@@ -715,15 +709,13 @@ const handleContact = () => {
 <span>{translateAndJoin(details.effect_machine_types, 'eventEffectMachines', t)}</span>
                   </div>
                 )}
-              </>
-            )}
-            {details.work_types?.includes('סוגי ההפעלה') && details.entertainment_types && details.entertainment_types.length > 0 && (
+            {details.entertainment_types && details.entertainment_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🎭 {t('provider.details.entertainmentTypes')}:</strong>
                <span>{translateAndJoin(details.entertainment_types, 'eventEntertainment', t)}</span>
               </div>
             )}
-            {details.work_types?.includes('אחר') && details.other_types && details.other_types.length > 0 && (
+            {details.other_types && details.other_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🎉 {t('provider.details.otherEventServices')}:</strong>
               <span>{translateAndJoin(details.other_types, 'eventOther', t)}</span>
@@ -747,19 +739,19 @@ const handleContact = () => {
                 <span>{translateAndJoin(details.provider_type, 'chefProviderType', t)}</span>
               </div>
             )}
-            {details.work_types?.includes('סוג האירוע') && details.event_types && details.event_types.length > 0 && (
+            {details.event_types && details.event_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🎉 {t('provider.details.eventTypes')}:</strong>
                 <span>{translateAndJoin(details.event_types, 'chefEventType', t)}</span>
               </div>
             )}
-            {details.work_types?.includes('סוג המטבח') && details.cuisine_types && details.cuisine_types.length > 0 && (
+            {details.cuisine_types && details.cuisine_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🍳 {t('provider.details.cuisineTypes')}:</strong>
               <span>{translateAndJoin(details.cuisine_types, 'chefCuisine', t)}</span>
               </div>
             )}
-            {details.work_types?.includes('כשרות') && details.kosher_types && details.kosher_types.length > 0 && (
+            {details.kosher_types && details.kosher_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>✡️ {t('provider.details.kosherTypes')}:</strong>
                 <span>{translateAndJoin(details.kosher_types, 'chefKosher', t)}</span>
@@ -798,31 +790,31 @@ const handleContact = () => {
                 <span>{details.age} {t('provider.details.years')}</span>
               </div>
             )}
-            {details.work_types?.includes('עבודות שלד') && details.structure_work_types && details.structure_work_types.length > 0 && (
+            {details.structure_work_types && details.structure_work_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🏗️ {t('provider.details.structureWork')}:</strong>
                <span>{translateAndJoin(details.structure_work_types, 'contractorStructure', t)}</span>
               </div>
             )}
-            {details.work_types?.includes('שיפוצים כלליים') && details.general_renovation_types && details.general_renovation_types.length > 0 && (
+            {details.general_renovation_types && details.general_renovation_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🔨 {t('provider.details.generalRenovation')}:</strong>
                <span>{translateAndJoin(details.general_renovation_types, 'contractorRenovation', t)}</span>
               </div>
             )}
-            {details.work_types?.includes('חשמל ואינסטלציה') && details.electric_plumbing_types && details.electric_plumbing_types.length > 0 && (
+            {details.electric_plumbing_types && details.electric_plumbing_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>⚡ {t('provider.details.electricPlumbing')}:</strong>
 <span>{translateAndJoin(details.electric_plumbing_types, 'contractorElectricPlumbing', t)}</span>
               </div>
             )}
-            {details.work_types?.includes('עבודות חוץ') && details.exterior_work_types && details.exterior_work_types.length > 0 && (
+            {details.exterior_work_types && details.exterior_work_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🌳 {t('provider.details.exteriorWork')}:</strong>
                <span>{translateAndJoin(details.exterior_work_types, 'contractorExterior', t)}</span>
               </div>
             )}
-            {details.work_types?.includes('שיקום ותיקון חוץ') && details.facade_repair_types && details.facade_repair_types.length > 0 && (
+            {details.facade_repair_types && details.facade_repair_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🧱 {t('provider.details.facadeRepair')}:</strong>
                 <span>{translateAndJoin(details.facade_repair_types, 'contractorFacade', t)}</span>
@@ -840,37 +832,37 @@ const handleContact = () => {
                 <span>{details.age} {t('provider.details.years')}</span>
               </div>
             )}
-            {details.work_types?.includes('roofWaterproofing') && details.roof_waterproofing_types && details.roof_waterproofing_types.length > 0 && (
+            {details.roof_waterproofing_types && details.roof_waterproofing_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🏠 {t('provider.details.roofWaterproofing')}:</strong>
                <span>{translateAndJoin(details.roof_waterproofing_types, 'waterproofingRoof', t)}</span>
               </div>
             )}
-            {details.work_types?.includes('wallWaterproofing') && details.wall_waterproofing_types && details.wall_waterproofing_types.length > 0 && (
+            {details.wall_waterproofing_types && details.wall_waterproofing_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🧱 {t('provider.details.wallWaterproofing')}:</strong>
                <span>{translateAndJoin(details.wall_waterproofing_types, 'waterproofingWall', t)}</span>
               </div>
             )}
-            {details.work_types?.includes('balconyWaterproofing') && details.balcony_waterproofing_types && details.balcony_waterproofing_types.length > 0 && (
+            {details.balcony_waterproofing_types && details.balcony_waterproofing_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🌿 {t('provider.details.balconyWaterproofing')}:</strong>
                <span>{translateAndJoin(details.balcony_waterproofing_types, 'waterproofingBalcony', t)}</span>
               </div>
             )}
-            {details.work_types?.includes('wetRoomWaterproofing') && details.wet_room_waterproofing_types && details.wet_room_waterproofing_types.length > 0 && (
+            {details.wet_room_waterproofing_types && details.wet_room_waterproofing_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🚿 {t('provider.details.wetRoomWaterproofing')}:</strong>
               <span>{translateAndJoin(details.wet_room_waterproofing_types, 'waterproofingWetRoom', t)}</span>
               </div>
             )}
-            {details.work_types?.includes('undergroundWaterproofing') && details.underground_waterproofing_types && details.underground_waterproofing_types.length > 0 && (
+            {details.underground_waterproofing_types && details.underground_waterproofing_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>⬇️ {t('provider.details.undergroundWaterproofing')}:</strong>
                <span>{translateAndJoin(details.underground_waterproofing_types, 'waterproofingUnderground', t)}</span>
               </div>
             )}
-            {details.work_types?.includes('inspectionEquipment') && details.inspection_equipment_types && details.inspection_equipment_types.length > 0 && (
+            {details.inspection_equipment_types && details.inspection_equipment_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🔍 {t('provider.details.inspectionEquipment')}:</strong>
                <span>{translateAndJoin(details.inspection_equipment_types, 'waterproofingInspection', t)}</span>
@@ -888,25 +880,25 @@ const handleContact = () => {
                 <span>{details.age} {t('provider.details.years')}</span>
               </div>
             )}
-            {details.work_types?.includes('חלונות ודלתות') && details.windows_doors_types && details.windows_doors_types.length > 0 && (
+            {details.windows_doors_types && details.windows_doors_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🪟 {t('provider.details.aluminumWindowsDoors')}:</strong>
                <span>{translateAndJoin(details.windows_doors_types, 'aluminumWindowsDoors', t)}</span>
               </div>
             )}
-            {details.work_types?.includes('פרגולות ואלומיניום חוץ') && details.pergolas_outdoor_types && details.pergolas_outdoor_types.length > 0 && (
+            {details.pergolas_outdoor_types && details.pergolas_outdoor_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🏕️ {t('provider.details.aluminumPergolas')}:</strong>
                 <span>{translateAndJoin(details.pergolas_outdoor_types, 'aluminumPergolas', t)}</span>
               </div>
             )}
-            {details.work_types?.includes('תיקונים ושירות') && details.repairs_service_types && details.repairs_service_types.length > 0 && (
+            {details.repairs_service_types && details.repairs_service_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🔧 {t('provider.details.aluminumRepairs')}:</strong>
                <span>{translateAndJoin(details.repairs_service_types, 'aluminumRepairs', t)}</span>
               </div>
             )}
-            {details.work_types?.includes('חיפויי אלומיניום') && details.cladding_types && details.cladding_types.length > 0 && (
+            {details.cladding_types && details.cladding_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🏗️ {t('provider.details.aluminumCladding')}:</strong>
                 <span>{translateAndJoin(details.cladding_types, 'aluminumCladding', t)}</span>
@@ -924,31 +916,31 @@ const handleContact = () => {
                 <span>{details.age} {t('provider.details.years')}</span>
               </div>
             )}
-            {details.work_types?.includes('זכוכית למקלחונים') && details.shower_glass_types && details.shower_glass_types.length > 0 && (
+            {details.shower_glass_types && details.shower_glass_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🚿 {t('provider.details.showerGlass')}:</strong>
                 <span>{translateAndJoin(details.shower_glass_types, 'glassShower', t)}</span>
               </div>
             )}
-            {details.work_types?.includes('זכוכית לחלונות ודלתות') && details.windows_doors_glass_types && details.windows_doors_glass_types.length > 0 && (
+            {details.windows_doors_glass_types && details.windows_doors_glass_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🪟 {t('provider.details.windowsDoorsGlass')}:</strong>
                <span>{translateAndJoin(details.windows_doors_glass_types, 'glassWindowsDoors', t)}</span>
               </div>
             )}
-            {details.work_types?.includes('זכוכית למטבח ובית') && details.kitchen_home_glass_types && details.kitchen_home_glass_types.length > 0 && (
+            {details.kitchen_home_glass_types && details.kitchen_home_glass_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🏠 {t('provider.details.kitchenHomeGlass')}:</strong>
                <span>{translateAndJoin(details.kitchen_home_glass_types, 'glassKitchenHome', t)}</span>
               </div>
             )}
-            {details.work_types?.includes('זכוכית מיוחדת ובטיחות') && details.special_safety_glass_types && details.special_safety_glass_types.length > 0 && (
+            {details.special_safety_glass_types && details.special_safety_glass_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🛡️ {t('provider.details.specialSafetyGlass')}:</strong>
                <span>{translateAndJoin(details.special_safety_glass_types, 'glassSpecialSafety', t)}</span>
               </div>
             )}
-            {details.work_types?.includes('שירותי תיקון והתאמה אישית') && details.repair_custom_types && details.repair_custom_types.length > 0 && (
+            {details.repair_custom_types && details.repair_custom_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🔧 {t('provider.details.glassRepairCustom')}:</strong>
                <span>{translateAndJoin(details.repair_custom_types, 'glassRepairCustom', t)}</span>
@@ -966,31 +958,31 @@ const handleContact = () => {
                 <span>{details.age} {t('provider.details.years')}</span>
               </div>
             )}
-            {details.work_types?.includes('החלפת מנעולים') && details.lock_replacement_types && details.lock_replacement_types.length > 0 && (
+            {details.lock_replacement_types && details.lock_replacement_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🔐 {t('provider.details.lockReplacement')}:</strong>
                <span>{translateAndJoin(details.lock_replacement_types, 'locksmithLockReplacement', t)}</span>
               </div>
             )}
-            {details.work_types?.includes('פתיחת דלתות') && details.door_opening_types && details.door_opening_types.length > 0 && (
+            {details.door_opening_types && details.door_opening_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🚪 {t('provider.details.doorOpening')}:</strong>
                 <span>{translateAndJoin(details.door_opening_types, 'locksmithDoorOpening', t)}</span>
               </div>
             )}
-            {details.work_types?.includes('התקנת מערכות נעילה') && details.lock_system_installation_types && details.lock_system_installation_types.length > 0 && (
+            {details.lock_system_installation_types && details.lock_system_installation_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>⚙️ {t('provider.details.lockSystemInstallation')}:</strong>
                 <span>{translateAndJoin(details.lock_system_installation_types, 'locksmithSystems', t)}</span>
               </div>
             )}
-            {details.work_types?.includes('תיקון מנעולים ודלתות') && details.lock_door_repair_types && details.lock_door_repair_types.length > 0 && (
+            {details.lock_door_repair_types && details.lock_door_repair_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🔧 {t('provider.details.lockDoorRepair')}:</strong>
                 <span>{translateAndJoin(details.lock_door_repair_types, 'locksmithRepairs', t)}</span>
               </div>
             )}
-            {details.work_types?.includes('שירותי ביטחון') && details.security_services_types && details.security_services_types.length > 0 && (
+            {details.security_services_types && details.security_services_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🛡️ {t('provider.details.securityServices')}:</strong>
                 <span>{translateAndJoin(details.security_services_types, 'locksmithSecurity', t)}</span>
@@ -1008,13 +1000,13 @@ const handleContact = () => {
                 <span>{details.age} {t('provider.details.years')}</span>
               </div>
             )}
-            {details.work_types?.includes('התקנת צנרת גז בבית') && details.installation_types && details.installation_types.length > 0 && (
+            {details.installation_types && details.installation_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🔥 {t('provider.details.gasInstallation')}:</strong>
                <span>{translateAndJoin(details.installation_types, 'gasInstallation', t)}</span>
               </div>
             )}
-            {details.work_types?.includes('תיקוני גז בבית') && details.repair_types && details.repair_types.length > 0 && (
+            {details.repair_types && details.repair_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🔧 {t('provider.details.gasRepairs')}:</strong>
               <span>{translateAndJoin(details.repair_types, 'gasRepair', t)}</span>
@@ -1183,7 +1175,7 @@ const handleContact = () => {
         {provider.serviceType === 'electrician' && (
           <>
             {/* Réparations */}
-            {details.work_types?.includes('תיקונים') && details.repair_types && details.repair_types.length > 0 && (
+            {details.repair_types && details.repair_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🔧 {t('provider.details.electricianRepairs')}:</strong>
                <span>{translateAndJoin(details.repair_types, 'electricianRepairs', t)}</span>
@@ -1191,7 +1183,7 @@ const handleContact = () => {
             )}
             
             {/* Installations */}
-            {details.work_types?.includes('התקנות') && details.installation_types && details.installation_types.length > 0 && (
+            {details.installation_types && details.installation_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>⚡ {t('provider.details.electricianInstallations')}:</strong>
              <span>{translateAndJoin(details.installation_types, 'electricianInstallations', t)}</span>
@@ -1199,7 +1191,7 @@ const handleContact = () => {
             )}
             
             {/* Gros travaux */}
-            {details.work_types?.includes('עבודות חשמל גדולות') && details.large_work_types && details.large_work_types.length > 0 && (
+            {details.large_work_types && details.large_work_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🏗️ {t('provider.details.electricianLargeWork')}:</strong>
             <span>{translateAndJoin(details.large_work_types, 'electricianLargeWork', t)}</span>
@@ -1224,7 +1216,7 @@ const handleContact = () => {
         {provider.serviceType === 'plumbing' && (
           <>
             {/* Bouchons/Blocages */}
-            {details.work_types?.includes('סתימות') && details.blockage_types && details.blockage_types.length > 0 && (
+            {details.blockage_types && details.blockage_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🚿 {t('provider.details.plumbingBlockages')}:</strong>
           <span>{translateAndJoin(details.blockage_types, 'plumbingBlockages', t)}</span>
@@ -1232,7 +1224,7 @@ const handleContact = () => {
             )}
             
             {/* Réparation tuyauterie */}
-            {details.work_types?.includes('תיקון צנרת') && details.pipe_repair_types && details.pipe_repair_types.length > 0 && (
+            {details.pipe_repair_types && details.pipe_repair_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🔧 {t('provider.details.plumbingPipeRepair')}:</strong>
              <span>{translateAndJoin(details.pipe_repair_types, 'plumbingPipeRepair', t)}</span>
@@ -1240,7 +1232,7 @@ const handleContact = () => {
             )}
             
             {/* Gros travaux */}
-            {details.work_types?.includes('עבודות גדולות') && details.large_work_types && details.large_work_types.length > 0 && (
+            {details.large_work_types && details.large_work_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🏗️ {t('provider.details.plumbingLargeWork')}:</strong>
             <span>{translateAndJoin(details.large_work_types, 'plumbingLargeWork', t)}</span>
@@ -1248,7 +1240,7 @@ const handleContact = () => {
             )}
             
             {/* Équipements sanitaires */}
-            {details.work_types?.includes('תיקון והתקנת אביזרי אינסטלציה') && details.fixture_types && details.fixture_types.length > 0 && (
+            {details.fixture_types && details.fixture_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🚽 {t('provider.details.plumbingFixtures')}:</strong>
            <span>{translateAndJoin(details.fixture_types, 'plumbingFixtures', t)}</span>
