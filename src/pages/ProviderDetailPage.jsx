@@ -1044,7 +1044,7 @@ const handleContact = () => {
                 return (
                   <div key={group.key} className="detail-item" style={{ gridColumn: '1 / -1' }}>
                     <strong>{group.emoji} {group.label}:</strong>
-                    <span>{selected.map((s, i) => <span key={i}><bdi>{cleanName(s)}</bdi>{i < selected.length - 1 ? ', ' : ''}</span>)}</span>
+                    <span>{selected.map((s, i) => <span key={i}><span style={{ direction: 'rtl', unicodeBidi: 'isolate', display: 'inline-block' }}>{cleanName(s)}</span>{i < selected.length - 1 ? ', ' : ''}</span>)}</span>
                   </div>
                 );
               }).filter(Boolean);
@@ -1052,8 +1052,8 @@ const handleContact = () => {
               if (others.length) {
                 elements.push(
                   <div key="other" className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                    <strong>📖 {t('filters.tutoring.other') || 'אחר'}:</strong>
-                    <span>{others.map((s, i) => <span key={i}><bdi>{cleanName(s)}</bdi>{i < others.length - 1 ? ', ' : ''}</span>)}</span>
+                    <strong>📖 {t('filters.tutoring.other')}:</strong>
+                    <span>{others.map((s, i) => <span key={i}><span style={{ direction: 'rtl', unicodeBidi: 'isolate', display: 'inline-block' }}>{cleanName(s)}</span>{i < others.length - 1 ? ', ' : ''}</span>)}</span>
                   </div>
                 );
               }

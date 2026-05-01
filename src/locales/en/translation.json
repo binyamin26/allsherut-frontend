@@ -568,6 +568,7 @@
   "filters.tutoring.hasQualifications": "Has qualifications",
   "filters.tutoring.noQualifications": "Not specified",
   "filters.tutoring.qualifications": "Qualifications",
+  "filters.tutoring.other": "Other",
   "filters.laundry.serviceTypes": "Service types",
   "filters.laundry.availableDays": "Available days",
   "filters.laundry.availableHours": "Available hours",

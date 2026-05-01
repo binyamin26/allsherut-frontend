@@ -573,6 +573,7 @@
   "filters.tutoring.hasQualifications": "Diplômes/Certifications",
   "filters.tutoring.noQualifications": "Non spécifié",
   "filters.tutoring.qualifications": "Diplômes et certifications",
+  "filters.tutoring.other": "Autre",
   "filters.laundry.serviceTypes": "Types de services",
   "filters.laundry.availableDays": "Jours disponibles",
   "filters.laundry.availableHours": "Heures disponibles",

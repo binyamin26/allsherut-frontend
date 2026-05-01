@@ -573,6 +573,7 @@
   "filters.tutoring.hasQualifications": "Есть квалификация",
   "filters.tutoring.noQualifications": "Не указано",
   "filters.tutoring.qualifications": "Дипломы и сертификаты",
+  "filters.tutoring.other": "Другое",
   "filters.laundry.serviceTypes": "Виды услуг",
   "filters.laundry.availableDays": "Доступные дни",
   "filters.laundry.availableHours": "Доступные часы",

@@ -573,6 +573,7 @@
   "filters.tutoring.hasQualifications": "יש השכלה/הסמכות",
   "filters.tutoring.noQualifications": "לא צוין",
   "filters.tutoring.qualifications": "השכלה והסמכות",
+  "filters.tutoring.other": "אחר",
   "filters.laundry.serviceTypes": "סוגי שירותים",
   "filters.laundry.availableDays": "זמינות - ימים",
   "filters.laundry.availableHours": "זמינות - שעות",
