@@ -1319,7 +1319,7 @@ const { t, currentLanguage } = useLanguage();
                         onChange={(e) => handleCheckboxChange('subjects', subcat.name_he, e.target.checked)}
                       />
                       <span className="tutor-icon-chip">{subcat.icon}</span>
-                      <bdi>{(subcat[`name_${currentLanguage}`] || subcat.name_he).replace(/‏/g, '')}</bdi>
+                      <span style={{ direction: 'rtl', unicodeBidi: 'isolate', display: 'inline-block' }}>{(subcat[`name_${currentLanguage}`] || subcat.name_he).replace(/‏/g, '')}</span>
                     </label>
                   ))}
                 </div>

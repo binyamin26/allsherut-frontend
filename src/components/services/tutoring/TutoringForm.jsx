@@ -218,7 +218,7 @@ const { t, currentLanguage } = useLanguage();
                                 />
                                 <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                                     <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.58rem', fontWeight: 'bold', background: '#e5e7eb', borderRadius: '3px', padding: '1px 3px', minWidth: '1.6em', color: '#374151', letterSpacing: '0.04em' }}>{subcat.icon}</span>
-                                    <bdi>{(subcat[`name_${currentLanguage}`] || subcat.name_he).replace(/‏/g, '')}</bdi>
+                                    <span style={{ direction: 'rtl', unicodeBidi: 'isolate', display: 'inline-block' }}>{(subcat[`name_${currentLanguage}`] || subcat.name_he).replace(/‏/g, '')}</span>
                                 </span>
                             </label>
                         ))}
