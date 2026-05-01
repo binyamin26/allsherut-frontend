@@ -393,7 +393,7 @@ const translateTutoringSubject = (subjectNameHe) => {
                     />
                     <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
                       <span>{subcat.icon}</span>
-                      <span>{subcat[`name_${currentLanguage}`] || subcat.name_he}</span>
+                      <bdi>{subcat[`name_${currentLanguage}`] || subcat.name_he}</bdi>
                     </span>
                   </label>
                 ))}
