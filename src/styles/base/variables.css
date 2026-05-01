@@ -170,7 +170,12 @@
   --sidebar-border-position: left;
 }
 
-[dir="ltr"] * {
+[dir="ltr"] *:not(bdi) {
   direction: ltr;
   text-align: left;
+}
+
+[dir="ltr"] bdi {
+  unicode-bidi: isolate;
+  direction: rtl;
 }
