@@ -58,6 +58,7 @@ import LocksmithPage from './pages/services/LocksmithPage';
 import MovingPage from './pages/services/MovingPage';
 import PhotographerPage from './pages/services/PhotographerPage';
 import EventDecorationPage from './pages/services/EventDecorationPage';
+import PestControlPage from './pages/services/PestControlPage';
 
 // Page de détails provider
 import ProviderDetailPage from './pages/ProviderDetailPage';
@@ -166,6 +167,7 @@ function App() {
 <Route path="/services/moving" element={<MovingPage />} />
 <Route path="/services/photographer" element={<PhotographerPage />} />
 <Route path="/services/event-decoration" element={<EventDecorationPage />} />
+<Route path="/services/pest-control" element={<PestControlPage />} />
 
 
                 {/* Pages recrutement */}

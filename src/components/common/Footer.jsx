@@ -27,7 +27,8 @@ const Footer = () => {
         { nameKey: 'services.petcare', path: '/services/petcare' },
         { nameKey: 'services.laundry', path: '/services/laundry' },
         { nameKey: 'services.property_management', path: '/services/property-management' },
-        { nameKey: 'services.home_organization', path: '/services/home-organization' }
+        { nameKey: 'services.home_organization', path: '/services/home-organization' },
+        { nameKey: 'services.pest_control', path: '/services/pest-control' }
       ]
     },
     {

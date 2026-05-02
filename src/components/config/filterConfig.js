@@ -1228,6 +1228,47 @@ locksmith: {
       { value: 'קירות צילום ופינות צילום', key: 'filters.event_decoration.photoWall' }
     ]
   },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PEST CONTROL
+  // ═══════════════════════════════════════════════════════════════
+  pest_control: {
+    sectionTitles: {
+      pestTypes: 'serviceForm.pest_control.pestTypes',
+      insects: 'serviceForm.pest_control.insects',
+      rodents: 'serviceForm.pest_control.rodents',
+      birdsAnimals: 'serviceForm.pest_control.birdsAnimals',
+      certification: 'serviceForm.pest_control.certification',
+      certified: 'serviceForm.pest_control.certified',
+      workAtHeight: 'serviceForm.pest_control.workAtHeight'
+    },
+    insects: [
+      { value: 'הדברת תיקנים', key: 'filters.pest_control.cockroaches' },
+      { value: 'הדברת נמלים', key: 'filters.pest_control.ants' },
+      { value: 'הדברת פשפשים', key: 'filters.pest_control.bedbugs' },
+      { value: 'הדברת פרעושים', key: 'filters.pest_control.fleas' },
+      { value: 'הדברת יתושים', key: 'filters.pest_control.mosquitoes' }
+    ],
+    rodents: [
+      { value: 'הדברת חולדות', key: 'filters.pest_control.rats' },
+      { value: 'הדברת עכברים', key: 'filters.pest_control.mice' }
+    ],
+    birdsAnimals: [
+      { value: 'הרחקת יונים', key: 'filters.pest_control.pigeons' },
+      { value: 'הרחקת עטלפים', key: 'filters.pest_control.bats' },
+      { value: 'הרחקת נחשים', key: 'filters.pest_control.snakes' }
+    ],
+    certifiedOptions: [
+      { value: '', key: 'filters.noMatter' },
+      { value: 'yes', key: 'common.yes' },
+      { value: 'no', key: 'common.no' }
+    ],
+    workAtHeightOptions: [
+      { value: '', key: 'filters.noMatter' },
+      { value: 'yes', key: 'common.yes' },
+      { value: 'no', key: 'common.no' }
+    ]
+  }
 };
 
 // Fonction helper pour récupérer les traductions

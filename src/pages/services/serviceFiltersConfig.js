@@ -590,6 +590,64 @@ optional: {
     dbField: 'experience_years'
   }
 }
+  },
+
+  pest_control: {
+    required: {
+      pestTypes: {
+        label: 'סוגי מזיקים',
+        type: 'checkbox-categorized',
+        categories: {
+          'חרקים': [
+            'הדברת תיקנים',
+            'הדברת נמלים',
+            'הדברת פשפשים',
+            'הדברת פרעושים',
+            'הדברת יתושים'
+          ],
+          '🐭 מכרסמים': [
+            'הדברת חולדות',
+            'הדברת עכברים'
+          ],
+          '🐦 יונים ובעלי חיים': [
+            'הרחקת יונים',
+            'הרחקת עטלפים',
+            'הרחקת נחשים'
+          ]
+        },
+        dbField: 'availability->>"$.pestTypes"'
+      },
+      certified: {
+        label: 'הסמכה - מדביר מוסמך',
+        type: 'select',
+        options: [
+          { value: '', label: 'לא משנה' },
+          { value: 'yes', label: '✔️ מוסמך' },
+          { value: 'no', label: '❌ לא מוסמך' }
+        ],
+        dbField: 'availability->>"$.certified"'
+      },
+      worksAtHeight: {
+        label: 'עבודה בגובה',
+        type: 'select',
+        options: [
+          { value: '', label: 'לא משנה' },
+          { value: 'yes', label: 'כן' },
+          { value: 'no', label: 'לא' }
+        ],
+        dbField: 'availability->>"$.worksAtHeight"'
+      }
+    },
+    optional: {
+      experienceYears: {
+        label: 'שנות ניסיון',
+        type: 'range',
+        min: 0,
+        max: 30,
+        unit: 'שנים',
+        dbField: 'experience_years'
+      }
+    }
   }
 };
 

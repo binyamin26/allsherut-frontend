@@ -875,6 +875,15 @@ const ServicePanel = ({ serviceType, filters, onChange }) => {
         />
       );
 
+    case 'pest_control':
+      return (
+        <PestControlFilters
+          filters={filters}
+          handleFilterChange={handleFilterChange}
+          handleCheckboxChange={handleCheckboxChange}
+        />
+      );
+
     default:
       return (
         <div className="service-panel">
@@ -3003,6 +3012,79 @@ const EventDecorationFilters = ({ filters, handleFilterChange, handleCheckboxCha
         filterKey="decoration_types"
         filters={filters}
         onCheckboxChange={handleCheckboxChange}
+      />
+    </div>
+  );
+};
+
+const PestControlFilters = ({ filters, handleFilterChange, handleCheckboxChange }) => {
+  const { t } = useLanguage();
+  const config = FILTER_CONFIG.pest_control;
+
+  return (
+    <div className="service-panel">
+      <div className="filter-category-section">
+        <h4 className="filter-category-title">{t(config.sectionTitles.insects)}</h4>
+        <div className="checkbox-grid">
+          {config.insects.map(o => (
+            <label key={o.value} className="checkbox-option">
+              <input
+                type="checkbox"
+                checked={filters.pestTypes?.includes(o.value) || false}
+                onChange={(e) => handleCheckboxChange('pestTypes', o.value, e.target.checked)}
+              />
+              {t(o.key)}
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <div className="filter-category-section">
+        <h4 className="filter-category-title">{t(config.sectionTitles.rodents)}</h4>
+        <div className="checkbox-grid">
+          {config.rodents.map(o => (
+            <label key={o.value} className="checkbox-option">
+              <input
+                type="checkbox"
+                checked={filters.pestTypes?.includes(o.value) || false}
+                onChange={(e) => handleCheckboxChange('pestTypes', o.value, e.target.checked)}
+              />
+              {t(o.key)}
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <div className="filter-category-section">
+        <h4 className="filter-category-title">{t(config.sectionTitles.birdsAnimals)}</h4>
+        <div className="checkbox-grid">
+          {config.birdsAnimals.map(o => (
+            <label key={o.value} className="checkbox-option">
+              <input
+                type="checkbox"
+                checked={filters.pestTypes?.includes(o.value) || false}
+                onChange={(e) => handleCheckboxChange('pestTypes', o.value, e.target.checked)}
+              />
+              {t(o.key)}
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <SelectSection
+        title={t(config.sectionTitles.certified)}
+        options={config.certifiedOptions.map(o => ({ value: o.value, label: t(o.key) }))}
+        filterKey="certified"
+        filters={filters}
+        onFilterChange={handleFilterChange}
+      />
+
+      <SelectSection
+        title={t(config.sectionTitles.workAtHeight)}
+        options={config.workAtHeightOptions.map(o => ({ value: o.value, label: t(o.key) }))}
+        filterKey="worksAtHeight"
+        filters={filters}
+        onFilterChange={handleFilterChange}
       />
     </div>
   );

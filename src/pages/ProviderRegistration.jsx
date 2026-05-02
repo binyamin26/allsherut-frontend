@@ -31,6 +31,7 @@ import ContractorForm from '../components/services/contractor/ContractorForm';
 import AluminumForm from '../components/services/aluminum/AluminumForm';
 import GlassWorksForm from '../components/services/glass_works/GlassWorksForm';
 import LocksmithForm from '../components/services/locksmith/LocksmithForm';
+import PestControlForm from '../components/services/pest_control/PestControlForm';
 
 const ProviderRegistration = () => {
   const navigate = useNavigate();
@@ -92,7 +93,8 @@ const ProviderRegistration = () => {
     contractor: 'קבלן',
     aluminum: 'עבודות אלומיניום',
     glass_works: 'עבודות זכוכית',
-    locksmith: 'מסגרות'
+    locksmith: 'מסגרות',
+    pest_control: 'הדברה, ריסוס והרחקת מזיקים'
   };
 
   // Mapping des formulaires
@@ -119,7 +121,8 @@ const ProviderRegistration = () => {
     contractor: ContractorForm,
     aluminum: AluminumForm,
     glass_works: GlassWorksForm,
-    locksmith: LocksmithForm
+    locksmith: LocksmithForm,
+    pest_control: PestControlForm
   };
 
   // Gestion des changements dans les champs normaux

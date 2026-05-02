@@ -631,7 +631,7 @@ try {
   'laundry', 'property_management', 'electrician', 'plumbing', 'air_conditioning',
   'gas_technician', 'drywall', 'carpentry', 'home_organization', 'event_entertainment',
   'private_chef', 'painting', 'waterproofing', 'contractor', 'aluminum',
-  'glass_works', 'locksmith', 'moving', 'photographer', 'event_decoration'
+  'glass_works', 'locksmith', 'moving', 'photographer', 'event_decoration', 'pest_control'
 ];
       
       if (!serviceType || !validServices.includes(serviceType)) {

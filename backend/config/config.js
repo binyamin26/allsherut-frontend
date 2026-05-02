@@ -70,7 +70,7 @@ const config = {
   },
 
 services: {
-  available: ['babysitting', 'cleaning', 'gardening', 'petcare', 'tutoring', 'eldercare', 'laundry', 'property_management', 'electrician', 'plumbing', 'air_conditioning', 'gas_technician', 'drywall', 'carpentry', 'home_organization', 'event_entertainment', 'private_chef', 'painting', 'waterproofing', 'contractor', 'aluminum', 'glass_works', 'locksmith', 'moving', 'photographer', 'event_decoration']
+  available: ['babysitting', 'cleaning', 'gardening', 'petcare', 'tutoring', 'eldercare', 'laundry', 'property_management', 'electrician', 'plumbing', 'air_conditioning', 'gas_technician', 'drywall', 'carpentry', 'home_organization', 'event_entertainment', 'private_chef', 'painting', 'waterproofing', 'contractor', 'aluminum', 'glass_works', 'locksmith', 'moving', 'photographer', 'event_decoration', 'pest_control']
 },
 
   // ✅ CORRIGÉ : Configuration email avec les bonnes variables de .env

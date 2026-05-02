@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Menu, X, Home, Users, Heart, BookOpen, UserCheck, Sparkles, Baby, LogOut, Shirt, Zap, Wrench, Wind, Flame, Package, Layers, Hammer, PartyPopper, ChefHat, Paintbrush, Droplets, HardHat, Frame, Square, Key, Leaf, PawPrint, ChevronDown, Phone, Truck, Camera, Wand2 } from 'lucide-react'
+import { Menu, X, Home, Users, Heart, BookOpen, UserCheck, Sparkles, Baby, LogOut, Shirt, Zap, Wrench, Wind, Flame, Package, Layers, Hammer, PartyPopper, ChefHat, Paintbrush, Droplets, HardHat, Frame, Square, Key, Leaf, PawPrint, ChevronDown, Phone, Truck, Camera, Wand2, Bug } from 'lucide-react'
 import { useAuth } from '../../context/AuthContext'
 import AuthModal from '../auth/AuthModal'
 import { useLanguage } from '../../context/LanguageContext'
@@ -63,7 +63,8 @@ const Header = () => {
     { icon: <Key className="w-5 h-5" />, nameKey: 'services.locksmith', descKey: 'services.locksmith.desc', href: '/services/locksmith' },
     { icon: <Truck className="w-5 h-5" />, nameKey: 'services.moving', descKey: 'services.moving.desc', href: '/services/moving' },
     { icon: <Camera className="w-5 h-5" />, nameKey: 'services.photographer', descKey: 'services.photographer.desc', href: '/services/photographer' },
-    { icon: <Wand2 className="w-5 h-5" />, nameKey: 'services.event_decoration', descKey: 'services.event_decoration.desc', href: '/services/event-decoration' }
+    { icon: <Wand2 className="w-5 h-5" />, nameKey: 'services.event_decoration', descKey: 'services.event_decoration.desc', href: '/services/event-decoration' },
+    { icon: <Bug className="w-5 h-5" />, nameKey: 'services.pest_control', descKey: 'services.pest_control.desc', href: '/services/pest-control' }
   ]
 
   const handleLogout = async () => {

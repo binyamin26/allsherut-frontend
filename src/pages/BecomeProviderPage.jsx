@@ -114,6 +114,18 @@ const BecomeProviderPage = () => {
       payingCustomer: 'המשפחות משלמות',
       benefits: ['שכר גבוה לאירוע', 'עבודה יצירתית', 'ביקוש עונתי', 'הערכה רבה'],
       color: 'from-pink-500 to-fuchsia-600'
+    },
+    {
+      key: 'pest_control',
+      name: 'הדברה, ריסוס והרחקת מזיקים',
+      icon: Heart,
+      description: 'הדברת חרקים, מכרסמים והרחקת בעלי חיים',
+      avgIncome: '₪200-800/טיפול',
+      demand: 'גבוה',
+      flexibility: 'ימי חול',
+      payingCustomer: 'אתה משלם (חודש חינם)',
+      benefits: ['שכר גבוה לביקור', 'ביקוש קבוע', 'עבודה עצמאית', 'חודש חינם'],
+      color: 'from-lime-500 to-green-600'
     }
   ];
 

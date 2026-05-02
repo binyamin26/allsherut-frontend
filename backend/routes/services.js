@@ -194,6 +194,32 @@ const SERVICES_CONFIG = {
       'זמינות קבועה'
     ],
     popularCities: ['תל אביב', 'פתח תקווה', 'ראשון לציון', 'חיפה', 'נתניה']
+  },
+
+  pest_control: {
+    key: 'pest_control',
+    name: getServiceLabel('pest_control'),
+    description: 'שירותי הדברה, ריסוס והרחקת מזיקים מקצועיים',
+    icon: 'bug',
+    category: 'household',
+    priceRange: { min: 200, max: 800, currency: 'ILS' },
+    demand: 'גבוה',
+    payingModel: 'provider_pays',
+    freeMonth: true,
+    features: [
+      'שכר גבוה לביקור',
+      'ביקוש קבוע כל השנה',
+      'עבודה עצמאית',
+      'חודש חינם לספקים חדשים',
+      'טיפול במגוון מזיקים'
+    ],
+    requirements: [
+      'ניסיון בהדברה מקצועית',
+      'ציוד הדברה מתאים',
+      'הכרת חומרי ריסוס וטיפול',
+      'זמינות ללקוחות'
+    ],
+    popularCities: ['תל אביב', 'ירושלים', 'חיפה', 'ראשון לציון', 'פתח תקווה']
   }
 };
 
@@ -955,7 +981,7 @@ router.delete('/:serviceType', authenticateToken, async (req, res) => {
       'electrician', 'plumbing', 'air_conditioning', 'gas_technician', 'drywall',
       'carpentry', 'home_organization', 'event_entertainment', 'private_chef',
       'painting', 'waterproofing', 'contractor', 'aluminum', 'glass_works',
-      'locksmith', 'property_management', 'laundry', 'moving', 'photographer', 'event_decoration'
+      'locksmith', 'property_management', 'laundry', 'moving', 'photographer', 'event_decoration', 'pest_control'
     ];
     
     if (!validServices.includes(serviceType)) {
