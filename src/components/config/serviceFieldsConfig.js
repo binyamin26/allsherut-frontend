@@ -1262,6 +1262,12 @@ const serviceFieldsConfig = {
 
   pest_control: {
     fields: [
+      {
+        name: 'availability_hours',
+        label: 'serviceFields.electrician.availability_hours',
+        type: 'checkbox',
+        options: ['בוקר', 'צהריים', 'ערב', '24/7']
+      },
       { name: 'age', label: 'serviceForm.common.age', type: 'number' },
       { name: 'experience', label: 'serviceForm.common.experience', type: 'number' },
       {

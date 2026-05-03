@@ -11,6 +11,42 @@ const PestControlForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
       <div className="form-section">
         <h4>{t('serviceForm.common.requiredFields')}</h4>
 
+        {/* AVAILABILITY HOURS */}
+        <div className="input-group">
+          <label className="auth-form-label required">{t('serviceFields.electrician.availability_hours')}</label>
+          <div className="checkbox-group">
+            {[
+              { value: 'בוקר',   label: t('hours.morning') },
+              { value: 'צהריים', label: t('hours.noon') },
+              { value: 'ערב',    label: t('hours.evening') },
+              { value: '24/7',   label: t('hours.twentyFourSeven') }
+            ].map(option => (
+              <label key={option.value} className="checkbox-item">
+                <input
+                  type="checkbox"
+                  checked={(serviceDetails.availability_hours || []).includes(option.value)}
+                  onChange={(e) => {
+                    const current = serviceDetails.availability_hours || [];
+                    let updated;
+                    if (e.target.checked) {
+                      if (option.value === '24/7') {
+                        updated = ['24/7'];
+                      } else {
+                        updated = [...current.filter(v => v !== '24/7'), option.value];
+                      }
+                    } else {
+                      updated = current.filter(v => v !== option.value);
+                    }
+                    handleServiceDetailsChange('availability_hours', updated);
+                  }}
+                />
+                {option.label}
+              </label>
+            ))}
+          </div>
+          {errors['serviceDetails.availability_hours'] && <span className="error-text">{errors['serviceDetails.availability_hours']}</span>}
+        </div>
+
         {/* AGE */}
         <div className="input-group">
           <label className="auth-form-label required">{t('serviceForm.common.age')}</label>
