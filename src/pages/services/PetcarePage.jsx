@@ -117,19 +117,15 @@ useEffect(() => {
     <div className="service-page petcare-page">
       <section className="service-header">
         <div className="container">
-  <section className="service-header">
-  <div className="container">
-    <div className="service-title-section">
-      <div className="service-hero-icon">
-        <img 
-          src="/images/logo chien.png" /* Vérifie le nom */
-          alt="Animaux" 
-        />
-      </div>
-      <h1 className="service-title">{t('services.petcare.pageTitle')}</h1>
-    </div>
-  </div>
-</section>      
+          <div className="service-title-section">
+            <div className="service-hero-icon">
+              <img
+                src="/images/logo chien.png"
+                alt="Animaux"
+              />
+            </div>
+            <h1 className="service-title">{t('services.petcare.pageTitle')}</h1>
+          </div>
         </div>
       </section>
 

@@ -112,19 +112,15 @@ const CarpentryPage = () => {
     <div className="service-page carpentry-page">
       <section className="service-header">
         <div className="container">
- <section className="service-header">
-  <div className="container">
-    <div className="service-title-section">
-      <div className="service-hero-icon">
-        <img 
-          src="/images/logo menuisier.png" 
-          alt="Menuiserie" 
-        />
-      </div>
-      <h1 className="service-title">{t('services.carpentry.pageTitle')}</h1>
-    </div>
-  </div>
-</section>
+          <div className="service-title-section">
+            <div className="service-hero-icon">
+              <img
+                src="/images/logo menuisier.png"
+                alt="Menuiserie"
+              />
+            </div>
+            <h1 className="service-title">{t('services.carpentry.pageTitle')}</h1>
+          </div>
         </div>
       </section>
 

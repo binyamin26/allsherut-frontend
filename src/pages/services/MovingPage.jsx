@@ -103,16 +103,12 @@ const MovingPage = () => {
     <div className="service-page moving-page">
       <section className="service-header">
         <div className="container">
-          <section className="service-header">
-            <div className="container">
-              <div className="service-title-section">
-                <div className="service-hero-icon">
-                  <img src="/images/logo demenagement.jpg" alt="Déménagement" />
-                </div>
-                <h1 className="service-title">{t('services.moving.pageTitle')}</h1>
-              </div>
+          <div className="service-title-section">
+            <div className="service-hero-icon">
+              <img src="/images/logo demenagement.jpg" alt="Déménagement" />
             </div>
-          </section>
+            <h1 className="service-title">{t('services.moving.pageTitle')}</h1>
+          </div>
         </div>
       </section>
 

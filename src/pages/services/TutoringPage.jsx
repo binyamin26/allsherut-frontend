@@ -129,19 +129,15 @@ useEffect(() => {
     <div className="service-page tutoring-page">
       <section className="service-header">
         <div className="container">
- <section className="service-header">
-  <div className="container">
-    <div className="service-title-section">
-      <div className="service-hero-icon">
-        <img 
-          src="/images/logo cours particulier.png" 
-          alt="Soutien scolaire" 
-        />
-      </div>
-      <h1 className="service-title">{t('services.tutoring.pageTitle')}</h1>
-    </div>
-  </div>
-</section>
+          <div className="service-title-section">
+            <div className="service-hero-icon">
+              <img
+                src="/images/logo cours particulier.png"
+                alt="Soutien scolaire"
+              />
+            </div>
+            <h1 className="service-title">{t('services.tutoring.pageTitle')}</h1>
+          </div>
         </div>
       </section>
 

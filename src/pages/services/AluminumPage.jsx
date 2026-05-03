@@ -112,19 +112,15 @@ const AluminumPage = () => {
     <div className="service-page aluminum-page">
       <section className="service-header">
         <div className="container">
- <section className="service-header">
-  <div className="container">
-    <div className="service-title-section">
-      <div className="service-hero-icon">
-        <img 
-          src="/images/logo aluminium.png" 
-          alt="Aluminium" 
-        />
-      </div>
-      <h1 className="service-title">{t('services.aluminum.pageTitle')}</h1>
-    </div>
-  </div>
-</section>
+          <div className="service-title-section">
+            <div className="service-hero-icon">
+              <img
+                src="/images/logo aluminium.png"
+                alt="Aluminium"
+              />
+            </div>
+            <h1 className="service-title">{t('services.aluminum.pageTitle')}</h1>
+          </div>
         </div>
       </section>
 

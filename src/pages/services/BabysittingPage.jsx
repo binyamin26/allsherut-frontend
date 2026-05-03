@@ -119,23 +119,17 @@ const response = await apiService.searchProviders(cleanParams);
 
   return (
     <div className="service-page babysitting-page">
-      {/* Header Simple */}
       <section className="service-header">
         <div className="container">
-{/* Header Corrigé */}
-<section className="service-header">
-  <div className="container">
-    <div className="service-title-section">
-      <div className="service-hero-icon">
-        <img 
-          src="/images/logo bébé.png" 
-          alt="baby-sitting" 
-        />
-      </div>
-      <h1 className="service-title">{t('services.babysitting.pageTitle')}</h1>
-    </div>
-  </div>
-</section>
+          <div className="service-title-section">
+            <div className="service-hero-icon">
+              <img
+                src="/images/logo bébé.png"
+                alt="baby-sitting"
+              />
+            </div>
+            <h1 className="service-title">{t('services.babysitting.pageTitle')}</h1>
+          </div>
         </div>
       </section>
 

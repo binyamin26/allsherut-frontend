@@ -112,19 +112,15 @@ const EventEntertainmentPage = () => {
     <div className="service-page event-entertainment-page">
       <section className="service-header">
         <div className="container">
-<section className="service-header">
-  <div className="container">
-    <div className="service-title-section">
-      <div className="service-hero-icon">
-        <img 
-          src="/images/logo event.png" 
-          alt="Événementiel" 
-        />
-      </div>
-      <h1 className="service-title">{t('services.event_entertainment.pageTitle')}</h1>
-    </div>
-  </div>
-</section>
+          <div className="service-title-section">
+            <div className="service-hero-icon">
+              <img
+                src="/images/logo event.png"
+                alt="Événementiel"
+              />
+            </div>
+            <h1 className="service-title">{t('services.event_entertainment.pageTitle')}</h1>
+          </div>
         </div>
       </section>
 

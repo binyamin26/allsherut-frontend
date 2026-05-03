@@ -112,19 +112,15 @@ const GlassWorksPage = () => {
     <div className="service-page glass-works-page">
       <section className="service-header">
         <div className="container">
-  <section className="service-header">
-  <div className="container">
-    <div className="service-title-section">
-      <div className="service-hero-icon">
-        <img 
-          src="/images/logo verre.png" 
-          alt="Vitrerie" 
-        />
-      </div>
-      <h1 className="service-title">{t('services.glass_works.pageTitle')}</h1>
-    </div>
-  </div>
-</section>
+          <div className="service-title-section">
+            <div className="service-hero-icon">
+              <img
+                src="/images/logo verre.png"
+                alt="Vitrerie"
+              />
+            </div>
+            <h1 className="service-title">{t('services.glass_works.pageTitle')}</h1>
+          </div>
         </div>
       </section>
 

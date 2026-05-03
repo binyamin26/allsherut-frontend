@@ -112,19 +112,15 @@ const PaintingPage = () => {
     <div className="service-page painting-page">
       <section className="service-header">
         <div className="container">
- <section className="service-header">
-  <div className="container">
-    <div className="service-title-section">
-      <div className="service-hero-icon">
-        <img 
-          src="/images/logo peinture.png" 
-          alt="Peinture" 
-        />
-      </div>
-      <h1 className="service-title">{t('services.painting.pageTitle')}</h1>
-    </div>
-  </div>
-</section>  
+          <div className="service-title-section">
+            <div className="service-hero-icon">
+              <img
+                src="/images/logo peinture.png"
+                alt="Peinture"
+              />
+            </div>
+            <h1 className="service-title">{t('services.painting.pageTitle')}</h1>
+          </div>
         </div>
       </section>
 

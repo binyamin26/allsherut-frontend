@@ -119,19 +119,15 @@ const PropertyManagementPage = () => {
     <div className="service-page property-management-page">
       <section className="service-header">
         <div className="container">
- <section className="service-header">
-  <div className="container">
-    <div className="service-title-section">
-      <div className="service-hero-icon">
-        <img 
-          src="/images/logo nihoul dirot.png" 
-          alt="Gestion Immobilière" 
-        />
-      </div>
-      <h1 className="service-title">{t('services.property_management.pageTitle')}</h1>
-    </div>
-  </div>
-</section>
+          <div className="service-title-section">
+            <div className="service-hero-icon">
+              <img
+                src="/images/logo nihoul dirot.png"
+                alt="Gestion Immobilière"
+              />
+            </div>
+            <h1 className="service-title">{t('services.property_management.pageTitle')}</h1>
+          </div>
         </div>
       </section>
 

@@ -98,16 +98,12 @@ const EventDecorationPage = () => {
     <div className="service-page event-decoration-page">
       <section className="service-header">
         <div className="container">
-          <section className="service-header">
-            <div className="container">
-              <div className="service-title-section">
-                <div className="service-hero-icon">
-                  <img src="/images/logo deco.jpg" alt="Event Decoration" />
-                </div>
-                <h1 className="service-title">{t('services.event_decoration.pageTitle')}</h1>
-              </div>
+          <div className="service-title-section">
+            <div className="service-hero-icon">
+              <img src="/images/logo deco.jpg" alt="Event Decoration" />
             </div>
-          </section>
+            <h1 className="service-title">{t('services.event_decoration.pageTitle')}</h1>
+          </div>
         </div>
       </section>
 

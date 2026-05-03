@@ -113,19 +113,15 @@ const AirConditioningPage = () => {
     <div className="service-page air-conditioning-page">
       <section className="service-header">
         <div className="container">
-   <section className="service-header">
-  <div className="container">
-    <div className="service-title-section">
-      <div className="service-hero-icon">
-        <img 
-          src="/images/logo clim.png" 
-          alt="Climatisation" 
-        />
-      </div>
-      <h1 className="service-title">{t('services.air_conditioning.pageTitle')}</h1>
-    </div>
-  </div>
-</section>
+          <div className="service-title-section">
+            <div className="service-hero-icon">
+              <img
+                src="/images/logo clim.png"
+                alt="Climatisation"
+              />
+            </div>
+            <h1 className="service-title">{t('services.air_conditioning.pageTitle')}</h1>
+          </div>
         </div>
       </section>
 

@@ -112,19 +112,15 @@ const WaterproofingPage = () => {
     <div className="service-page waterproofing-page">
       <section className="service-header">
         <div className="container">
-  <section className="service-header">
-  <div className="container">
-    <div className="service-title-section">
-      <div className="service-hero-icon">
-        <img 
-          src="/images/logo itoum.png" 
-          alt="Étanchéité" 
-        />
-      </div>
-      <h1 className="service-title">{t('services.waterproofing.pageTitle')}</h1>
-    </div>
-  </div>
-</section>
+          <div className="service-title-section">
+            <div className="service-hero-icon">
+              <img
+                src="/images/logo itoum.png"
+                alt="Étanchéité"
+              />
+            </div>
+            <h1 className="service-title">{t('services.waterproofing.pageTitle')}</h1>
+          </div>
         </div>
       </section>
 

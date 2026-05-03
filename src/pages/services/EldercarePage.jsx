@@ -125,19 +125,15 @@ useEffect(() => {
     <div className="service-page eldercare-page">
       <section className="service-header">
         <div className="container">
-<section className="service-header">
-  <div className="container">
-    <div className="service-title-section">
-      <div className="service-hero-icon">
-        <img 
-          src="/images/logo kachich.png" 
-          alt="Aide aux aînés" 
-        />
-      </div>
-      <h1 className="service-title">{t('services.eldercare.pageTitle')}</h1>
-    </div>
-  </div>
-</section>
+          <div className="service-title-section">
+            <div className="service-hero-icon">
+              <img
+                src="/images/logo kachich.png"
+                alt="Aide aux aînés"
+              />
+            </div>
+            <h1 className="service-title">{t('services.eldercare.pageTitle')}</h1>
+          </div>
         </div>
       </section>
 

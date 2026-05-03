@@ -114,19 +114,15 @@ const LocksmithPage = () => {
     <div className="service-page locksmith-page">
       <section className="service-header">
         <div className="container">
- <section className="service-header">
-  <div className="container">
-    <div className="service-title-section">
-      <div className="service-hero-icon">
-        <img 
-          src="/images/logo serrure.png" 
-          alt="Serrurier" 
-        />
-      </div>
-      <h1 className="service-title">{t('services.locksmith.pageTitle')}</h1>
-    </div>
-  </div>
-</section>
+          <div className="service-title-section">
+            <div className="service-hero-icon">
+              <img
+                src="/images/logo serrure.png"
+                alt="Serrurier"
+              />
+            </div>
+            <h1 className="service-title">{t('services.locksmith.pageTitle')}</h1>
+          </div>
         </div>
       </section>
 

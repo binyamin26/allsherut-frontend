@@ -112,19 +112,15 @@ const HomeOrganizationPage = () => {
     <div className="service-page home-organization-page">
       <section className="service-header">
         <div className="container">
- <section className="service-header">
-  <div className="container">
-    <div className="service-title-section">
-      <div className="service-hero-icon">
-        <img 
-          src="/images/logo rangement.png" 
-          alt="Rangement" 
-        />
-      </div>
-      <h1 className="service-title">{t('services.home_organization.pageTitle')}</h1>
-    </div>
-  </div>
-</section>
+          <div className="service-title-section">
+            <div className="service-hero-icon">
+              <img
+                src="/images/logo rangement.png"
+                alt="Rangement"
+              />
+            </div>
+            <h1 className="service-title">{t('services.home_organization.pageTitle')}</h1>
+          </div>
         </div>
       </section>
 

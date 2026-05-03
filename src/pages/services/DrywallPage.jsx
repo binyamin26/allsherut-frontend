@@ -113,19 +113,15 @@ const DrywallPage = () => {
     <div className="service-page drywall-page">
       <section className="service-header">
         <div className="container">
- <section className="service-header">
-  <div className="container">
-    <div className="service-title-section">
-      <div className="service-hero-icon">
-        <img 
-          src="/images/logo placo.png" 
-          alt="Plâtre" 
-        />
-      </div>
-      <h1 className="service-title">{t('services.drywall.pageTitle')}</h1>
-    </div>
-  </div>
-</section>
+          <div className="service-title-section">
+            <div className="service-hero-icon">
+              <img
+                src="/images/logo placo.png"
+                alt="Plâtre"
+              />
+            </div>
+            <h1 className="service-title">{t('services.drywall.pageTitle')}</h1>
+          </div>
         </div>
       </section>
 
