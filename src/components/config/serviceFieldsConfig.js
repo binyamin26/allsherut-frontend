@@ -1251,11 +1251,38 @@ const serviceFieldsConfig = {
         type: 'checkbox',
         options: ['תיקון מנעול תקוע', 'תיקון ציר דלת', 'שיוף דלת שלא נסגרת', 'החלפת ידית דלת']
       },
-      { 
-        name: 'security_services_types', 
-        label: 'serviceFields.locksmith.security_services_types', 
+      {
+        name: 'security_services_types',
+        label: 'serviceFields.locksmith.security_services_types',
         type: 'checkbox',
         options: ['שדרוג מערכת ביטחון', 'התקנת דלת ביטחון', 'בדיקת פגיעות דלת', 'שירות מסגרות מסחרי']
+      }
+    ]
+  },
+
+  pest_control: {
+    fields: [
+      { name: 'age', label: 'serviceForm.common.age', type: 'number' },
+      { name: 'experience', label: 'serviceForm.common.experience', type: 'number' },
+      {
+        name: 'pestTypes',
+        label: 'serviceForm.pest_control.pestTypes',
+        type: 'checkbox',
+        options: [
+          'הדברת תיקנים', 'הדברת נמלים', 'הדברת פשפשים', 'הדברת פרעושים', 'הדברת יתושים',
+          'הדברת חולדות', 'הדברת עכברים',
+          'הרחקת יונים', 'הרחקת עטלפים', 'הרחקת נחשים'
+        ]
+      },
+      {
+        name: 'certified',
+        label: 'serviceForm.pest_control.certification',
+        type: 'boolean-select'
+      },
+      {
+        name: 'worksAtHeight',
+        label: 'serviceForm.pest_control.workAtHeight',
+        type: 'boolean-select'
       }
     ]
   }
