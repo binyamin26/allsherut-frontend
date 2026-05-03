@@ -517,7 +517,8 @@ if (field.type === 'select') {
         'availableHours': 'הכל'
       };
       
-      const selectAllOption = selectAllOptions[field.name];
+      const selectAllOption = selectAllOptions[field.name]
+        || (field.options?.includes('24/7') ? '24/7' : null);
       const hasSelectAll = selectAllOption && field.options.includes(selectAllOption);
       
       const handleCheckboxChange = (option, checked) => {
