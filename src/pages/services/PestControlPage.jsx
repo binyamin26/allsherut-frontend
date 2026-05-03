@@ -101,7 +101,7 @@ const PestControlPage = () => {
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo pest_control.png"
+                src="/images/logo desinctisation.jpg"
                 alt="הדברה"
               />
             </div>
