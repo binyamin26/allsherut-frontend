@@ -101,7 +101,7 @@ const serviceImages = {
   moving: '/images/demenagement.jpg',
   photographer: '/images/logo photographe.jpg',
   event_decoration: '/images/logo deco.jpg',
-  pest_control: null
+  pest_control: '/images/logo desinctisation.jpg'
 };
 
 const DashboardPage = () => {

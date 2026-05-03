@@ -90,7 +90,8 @@ const ProviderDetailPage = () => {
     glass_works: '/images/logo verre.png',
     locksmith: '/images/logo serrure.png',
     moving: '/images/logo demenagement.jpg',
-    event_decoration: '/images/logo deco.jpg'
+    event_decoration: '/images/logo deco.jpg',
+    pest_control: '/images/logo desinctisation.jpg'
   };
   return icons[serviceType] || '/images/logo-default.png';
 };
