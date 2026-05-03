@@ -921,12 +921,7 @@ const handleGalleryImageUpload = async (e) => {
     return;
   }
 
- if (file.size > 2 * 1024 * 1024) {
- setGalleryError(t('dashboard.gallery.errorSize'));
-  return;
-}
-setGalleryError('');
-
+  setGalleryError('');
   setGalleryUploading(true);
   try {
     const imageCompression = (await import('browser-image-compression')).default;
