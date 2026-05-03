@@ -602,17 +602,21 @@ sp.profile_image as provider_profile_image,
         profileImages = null;
       }
 
+      const svcFirstName = serviceDetails?.service_first_name || provider.first_name;
+      const svcLastName = serviceDetails?.service_last_name ?? provider.last_name;
+      const svcFullName = `${svcFirstName} ${svcLastName}`.trim();
+
       return {
         // IDs
         id: provider.id,
         user_id: provider.id,
         providerId: provider.provider_id,
-        
+
         // Noms (avec tous les alias)
-        name: provider.full_name,
-        full_name: provider.full_name,
-        first_name: provider.first_name,
-        last_name: provider.last_name,
+        name: svcFullName,
+        full_name: svcFullName,
+        first_name: svcFirstName,
+        last_name: svcLastName,
         
         // Contact
         email: provider.email,

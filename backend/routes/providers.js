@@ -497,13 +497,16 @@ u.profile_image as user_profile_image,
       .catch(err => console.error(DEV_LOGS.DATABASE.QUERY_ERROR, 'View count update failed:', err.message));
 
     // Construction de la réponse complète
+    const serviceFirstName = serviceDetailsFromJson?.service_first_name || providerData.first_name;
+    const serviceLastName = serviceDetailsFromJson?.service_last_name ?? providerData.last_name;
+
     const formattedProvider = {
       // Informations de base
       id: providerData.id,
       userId: providerData.user_id,
-      name: `${providerData.first_name} ${providerData.last_name}`,
-      firstName: providerData.first_name,
-      lastName: providerData.last_name,
+      name: `${serviceFirstName} ${serviceLastName}`.trim(),
+      firstName: serviceFirstName,
+      lastName: serviceLastName,
       email: providerData.email,
       phone: providerData.phone,
       verified: providerData.verification_status === 'verified',

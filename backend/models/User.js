@@ -1515,13 +1515,16 @@ async updateFullProfile(profileData) {
       const userUpdateFields = [];
       const userUpdateValues = [];
 
-      if (profileData.firstName) {
-        userUpdateFields.push('first_name = ?');
-        userUpdateValues.push(profileData.firstName);
-      }
-      if (profileData.lastName !== undefined) {
-        userUpdateFields.push('last_name = ?');
-        userUpdateValues.push(profileData.lastName || '');
+      // Nom : si activeServiceType fourni → stocké dans service_details (par service), sinon table users (global)
+      if (!profileData.activeServiceType) {
+        if (profileData.firstName) {
+          userUpdateFields.push('first_name = ?');
+          userUpdateValues.push(profileData.firstName);
+        }
+        if (profileData.lastName !== undefined) {
+          userUpdateFields.push('last_name = ?');
+          userUpdateValues.push(profileData.lastName || '');
+        }
       }
       if (profileData.email) {
         userUpdateFields.push('email = ?');
@@ -1616,7 +1619,10 @@ const updatedDetails = {
   experience_years: profileData.experienceYears !== undefined ? parseInt(profileData.experienceYears) || 0 : currentDetails.experience_years,
   hourly_rate: profileData.hourlyRate !== undefined ? parseFloat(profileData.hourlyRate).toFixed(2) : currentDetails.hourly_rate,
   hourlyRate: profileData.hourlyRate !== undefined ? profileData.hourlyRate.toString() : currentDetails.hourlyRate,
-  description: profileData.description !== undefined ? profileData.description : currentDetails.description
+  description: profileData.description !== undefined ? profileData.description : currentDetails.description,
+  // Nom par service : stocké ici pour éviter d'écraser le nom des autres services
+  ...(profileData.firstName !== undefined ? { service_first_name: profileData.firstName } : {}),
+  ...(profileData.lastName !== undefined ? { service_last_name: profileData.lastName || '' } : {})
 };
 
 providerUpdateFields.push('service_details = ?');

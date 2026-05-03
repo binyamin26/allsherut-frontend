@@ -605,8 +605,8 @@ const response = await changePassword(
   const handleEditToggle = () => {
     if (!isEditMode) {
       setEditFormData({
-        firstName: userData?.firstName || '',
-        lastName: userData?.lastName || '',
+        firstName: user?.providerProfile?.serviceDetails?.service_first_name || userData?.firstName || '',
+        lastName: user?.providerProfile?.serviceDetails?.service_last_name ?? userData?.lastName ?? '',
         phone: userData?.phone || '',
         email: userData?.email || '',
         description: userData?.serviceDetails?.description || '',
@@ -636,7 +636,8 @@ const response = await changePassword(
     try {
       const result = await updateProfile({
         firstName: nameFormData.firstName.trim(),
-        lastName: nameFormData.lastName.trim()
+        lastName: nameFormData.lastName.trim(),
+        activeServiceType: activeService || userData?.serviceType
       });
       if (result.success) {
         setMessage({ type: 'success', text: t('dashboard.messages.profileUpdated') });
@@ -2305,13 +2306,17 @@ const galleryImages = (() => {
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem' }}>
                       <div>
                         <p style={{ margin: 0, fontWeight: 600, fontSize: '1.05rem' }}>
-                          {userData?.firstName} {userData?.lastName}
+                          {user?.providerProfile?.serviceDetails?.service_first_name || userData?.firstName}{' '}
+                          {user?.providerProfile?.serviceDetails?.service_last_name ?? userData?.lastName}
                         </p>
                       </div>
                       <button
                         type="button"
                         onClick={() => {
-                          setNameFormData({ firstName: userData?.firstName || '', lastName: userData?.lastName || '' });
+                          setNameFormData({
+                            firstName: user?.providerProfile?.serviceDetails?.service_first_name || userData?.firstName || '',
+                            lastName: user?.providerProfile?.serviceDetails?.service_last_name ?? userData?.lastName ?? ''
+                          });
                           setIsEditingName(true);
                           setMessage(null);
                         }}
