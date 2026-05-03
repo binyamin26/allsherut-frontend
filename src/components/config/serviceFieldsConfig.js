@@ -61,9 +61,8 @@ const serviceFieldsConfig = {
 
   cleaning: {
     fields: [
-      { name: 'age', label: 'serviceForm.common.age', type: 'number' },
-      { 
-        name: 'legalStatus', 
+      {
+        name: 'legalStatus',
         label: 'serviceFields.cleaning.legalStatus', 
         type: 'select',
         options: ['חברה', 'עצמאי']
@@ -88,15 +87,9 @@ const serviceFieldsConfig = {
         type: 'select',
         options: ['חד פעמי', 'שבועי', 'דו-שבועי', 'חודשי']
       },
-      { 
-        name: 'availability_days',
-        label: 'serviceFields.cleaning.availability_days', 
-        type: 'checkbox',
-        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע']
-      },
-      { 
+      {
         name: 'availability_hours',
-        label: 'serviceFields.cleaning.availability_hours', 
+        label: 'serviceFields.cleaning.availability_hours',
         type: 'checkbox',
         options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
       },
@@ -113,9 +106,8 @@ const serviceFieldsConfig = {
 
   gardening: {
     fields: [
-      { name: 'age', label: 'serviceForm.common.age', type: 'number' },
-      { 
-        name: 'services', 
+      {
+        name: 'services',
         label: 'serviceFields.gardening.services', 
         type: 'checkbox',
         options: ['גיזום עצים ושיחים', 'עיצוב גינה', 'שתילת צמחים', 'השקיה', 'דישון', 'ניכוש עשבים', 'תחזוקה כללית']
@@ -144,15 +136,9 @@ const serviceFieldsConfig = {
         type: 'checkbox',
         options: ['פינוי פסולת גינה', 'ייעוץ עיצוב נוף']
       },
-      { 
-        name: 'availability_days',
-        label: 'serviceFields.gardening.availability_days', 
-        type: 'checkbox',
-        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע']
-      },
-      { 
+      {
         name: 'availability_hours',
-        label: 'serviceFields.gardening.availability_hours', 
+        label: 'serviceFields.gardening.availability_hours',
         type: 'checkbox',
         options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
       },
@@ -348,7 +334,6 @@ const serviceFieldsConfig = {
 
  laundry: {
     fields: [
-      { name: 'age', label: 'serviceForm.common.age', type: 'number' },
       { name: 'experience', label: 'serviceFields.laundry.experienceYears', type: 'number' },
       { 
         name: 'laundryTypes', 
@@ -361,15 +346,9 @@ const serviceFieldsConfig = {
           'כביסה תעשייתית (מלונות, מסעדות)'
         ]
       },
-    { 
-      name: 'availability_days', 
-      label: 'serviceFields.laundry.availableDays',  // ← garde l'ancien label
-      type: 'checkbox',
-      options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע']
-    },
-    { 
-      name: 'availability_hours', 
-      label: 'serviceFields.laundry.availableHours',  // ← garde l'ancien label
+    {
+      name: 'availability_hours',
+      label: 'serviceFields.laundry.availableHours',
       type: 'checkbox',
       options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
     },
@@ -387,14 +366,7 @@ const serviceFieldsConfig = {
   
   property_management: {
     fields: [
-      { name: 'age', label: 'serviceForm.common.age', type: 'number' },
       { name: 'experience', label: 'serviceFields.property_management.experienceYears', type: 'number' },
-      {
-        name: 'availability_days',
-        label: 'serviceFields.property_management.availability_days',
-        type: 'checkbox',
-        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע']
-      },
       {
         name: 'availability_hours',
         label: 'serviceFields.property_management.availability_hours',
@@ -424,17 +396,10 @@ const serviceFieldsConfig = {
 
   electrician: {
     fields: [
-      { name: 'age', label: 'serviceFields.electrician.age', type: 'number' },
       { name: 'experience', label: 'serviceFields.electrician.experience', type: 'number' },
-      { 
-        name: 'availability_days', 
-        label: 'serviceFields.electrician.availability_days', 
-        type: 'checkbox',
-        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע']
-      },
-      { 
-        name: 'availability_hours', 
-        label: 'serviceFields.electrician.availability_hours', 
+      {
+        name: 'availability_hours',
+        label: 'serviceFields.electrician.availability_hours',
         type: 'checkbox',
         options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
       },
@@ -467,17 +432,10 @@ const serviceFieldsConfig = {
 
   plumbing: {
     fields: [
-      { name: 'age', label: 'serviceFields.plumbing.age', type: 'number' },
       { name: 'experience', label: 'serviceFields.plumbing.experience', type: 'number' },
-      { 
-        name: 'availability_days', 
-        label: 'serviceFields.plumbing.availability_days', 
-        type: 'checkbox',
-        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע']
-      },
-      { 
-        name: 'availability_hours', 
-        label: 'serviceFields.plumbing.availability_hours', 
+      {
+        name: 'availability_hours',
+        label: 'serviceFields.plumbing.availability_hours',
         type: 'checkbox',
         options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
       },
@@ -516,17 +474,10 @@ const serviceFieldsConfig = {
 
   air_conditioning: {
     fields: [
-      { name: 'age', label: 'serviceFields.air_conditioning.age', type: 'number' },
       { name: 'experience', label: 'serviceFields.air_conditioning.experience', type: 'number' },
-      { 
-        name: 'availability_days', 
-        label: 'serviceFields.air_conditioning.availability_days', 
-        type: 'checkbox',
-        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע']
-      },
-      { 
-        name: 'availability_hours', 
-        label: 'serviceFields.air_conditioning.availability_hours', 
+      {
+        name: 'availability_hours',
+        label: 'serviceFields.air_conditioning.availability_hours',
         type: 'checkbox',
         options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
       },
@@ -559,17 +510,10 @@ const serviceFieldsConfig = {
 
   gas_technician: {
     fields: [
-      { name: 'age', label: 'serviceFields.gas_technician.age', type: 'number' },
       { name: 'experience', label: 'serviceFields.gas_technician.experience', type: 'number' },
-      { 
-        name: 'availability_days', 
-        label: 'serviceFields.gas_technician.availability_days', 
-        type: 'checkbox',
-        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע']
-      },
-      { 
-        name: 'availability_hours', 
-        label: 'serviceFields.gas_technician.availability_hours', 
+      {
+        name: 'availability_hours',
+        label: 'serviceFields.gas_technician.availability_hours',
         type: 'checkbox',
         options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
       },
@@ -596,17 +540,10 @@ const serviceFieldsConfig = {
 
   drywall: {
     fields: [
-      { name: 'age', label: 'serviceFields.drywall.age', type: 'number' },
       { name: 'experience', label: 'serviceFields.drywall.experience', type: 'number' },
-      { 
-        name: 'availability_days', 
-        label: 'serviceFields.drywall.availability_days', 
-        type: 'checkbox',
-        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע']
-      },
-      { 
-        name: 'availability_hours', 
-        label: 'serviceFields.drywall.availability_hours', 
+      {
+        name: 'availability_hours',
+        label: 'serviceFields.drywall.availability_hours',
         type: 'checkbox',
         options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
       },
@@ -633,17 +570,10 @@ const serviceFieldsConfig = {
 
   carpentry: {
     fields: [
-      { name: 'age', label: 'serviceFields.carpentry.age', type: 'number' },
       { name: 'experience', label: 'serviceFields.carpentry.experience', type: 'number' },
-      { 
-        name: 'availability_days', 
-        label: 'serviceFields.carpentry.availability_days', 
-        type: 'checkbox',
-        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע']
-      },
-      { 
-        name: 'availability_hours', 
-        label: 'serviceFields.carpentry.availability_hours', 
+      {
+        name: 'availability_hours',
+        label: 'serviceFields.carpentry.availability_hours',
         type: 'checkbox',
         options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
       },
@@ -700,17 +630,10 @@ const serviceFieldsConfig = {
 
   home_organization: {
     fields: [
-      { name: 'age', label: 'serviceFields.home_organization.age', type: 'number' },
       { name: 'experience', label: 'serviceFields.home_organization.experience', type: 'number' },
-      { 
-        name: 'availability_days', 
-        label: 'serviceFields.home_organization.availability_days', 
-        type: 'checkbox',
-        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע']
-      },
-      { 
-        name: 'availability_hours', 
-        label: 'serviceFields.home_organization.availability_hours', 
+      {
+        name: 'availability_hours',
+        label: 'serviceFields.home_organization.availability_hours',
         type: 'checkbox',
         options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
       },
@@ -804,19 +727,12 @@ const serviceFieldsConfig = {
 
   private_chef: {
     fields: [
-      { name: 'age', label: 'serviceFields.private_chef.age', type: 'number' },
       { name: 'experience', label: 'serviceFields.private_chef.experience', type: 'number' },
       {
         name: 'provider_type',
         label: 'serviceFields.private_chef.provider_type',
         type: 'checkbox',
         options: ['קייטרינג', 'שף פרטי']
-      },
-      {
-        name: 'availability_days',
-        label: 'serviceFields.private_chef.availability_days',
-        type: 'checkbox',
-        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע']
       },
       {
         name: 'availability_hours',
@@ -863,14 +779,7 @@ const serviceFieldsConfig = {
 
   photographer: {
     fields: [
-      { name: 'age', label: 'serviceFields.photographer.age', type: 'number' },
       { name: 'experience', label: 'serviceFields.photographer.experience', type: 'number' },
-      {
-        name: 'availability_days',
-        label: 'serviceFields.photographer.availability_days',
-        type: 'checkbox',
-        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע']
-      },
       {
         name: 'availability_hours',
         label: 'serviceFields.photographer.availability_hours',
@@ -894,19 +803,12 @@ const serviceFieldsConfig = {
 
   event_decoration: {
     fields: [
-      { name: 'age', label: 'serviceFields.event_decoration.age', type: 'number' },
       { name: 'experience', label: 'serviceFields.event_decoration.experience', type: 'number' },
       {
         name: 'decoration_types',
         label: 'serviceFields.event_decoration.decoration_types',
         type: 'checkbox',
         options: ['קשתות ועיצוב בלונים', 'עיצוב שולחנות', 'עיצוב אולמות', 'קירות צילום ופינות צילום']
-      },
-      {
-        name: 'availability_days',
-        label: 'serviceFields.event_decoration.availability_days',
-        type: 'checkbox',
-        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע']
       },
       {
         name: 'availability_hours',
@@ -919,14 +821,7 @@ const serviceFieldsConfig = {
 
   moving: {
     fields: [
-      { name: 'age', label: 'serviceFields.moving.age', type: 'number' },
       { name: 'experience', label: 'serviceFields.moving.experience', type: 'number' },
-      {
-        name: 'availability_days',
-        label: 'serviceFields.moving.availability_days',
-        type: 'checkbox',
-        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע']
-      },
       {
         name: 'availability_hours',
         label: 'serviceFields.moving.availability_hours',
@@ -962,17 +857,10 @@ const serviceFieldsConfig = {
 
   painting: {
     fields: [
-      { name: 'age', label: 'serviceFields.painting.age', type: 'number' },
       { name: 'experience', label: 'serviceFields.painting.experience', type: 'number' },
-      { 
-        name: 'availability_days', 
-        label: 'serviceFields.painting.availability_days', 
-        type: 'checkbox',
-        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע']
-      },
-      { 
-        name: 'availability_hours', 
-        label: 'serviceFields.painting.availability_hours', 
+      {
+        name: 'availability_hours',
+        label: 'serviceFields.painting.availability_hours',
         type: 'checkbox',
         options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
       },
@@ -987,17 +875,10 @@ const serviceFieldsConfig = {
 
   waterproofing: {
     fields: [
-      { name: 'age', label: 'serviceFields.waterproofing.age', type: 'number' },
       { name: 'experience', label: 'serviceFields.waterproofing.experience', type: 'number' },
-      { 
-        name: 'availability_days', 
-        label: 'serviceFields.waterproofing.availability_days', 
-        type: 'checkbox',
-        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע']
-      },
-      { 
-        name: 'availability_hours', 
-        label: 'serviceFields.waterproofing.availability_hours', 
+      {
+        name: 'availability_hours',
+        label: 'serviceFields.waterproofing.availability_hours',
         type: 'checkbox',
         options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
       },
@@ -1048,17 +929,10 @@ const serviceFieldsConfig = {
 
   contractor: {
     fields: [
-      { name: 'age', label: 'serviceFields.contractor.age', type: 'number' },
       { name: 'experience', label: 'serviceFields.contractor.experience', type: 'number' },
-      { 
-        name: 'availability_days', 
-        label: 'serviceFields.contractor.availability_days', 
-        type: 'checkbox',
-        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע']
-      },
-      { 
-        name: 'availability_hours', 
-        label: 'serviceFields.contractor.availability_hours', 
+      {
+        name: 'availability_hours',
+        label: 'serviceFields.contractor.availability_hours',
         type: 'checkbox',
         options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
       },
@@ -1103,17 +977,10 @@ const serviceFieldsConfig = {
 
   aluminum: {
     fields: [
-      { name: 'age', label: 'serviceFields.aluminum.age', type: 'number' },
       { name: 'experience', label: 'serviceFields.aluminum.experience', type: 'number' },
-      { 
-        name: 'availability_days', 
-        label: 'serviceFields.aluminum.availability_days', 
-        type: 'checkbox',
-        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע']
-      },
-      { 
-        name: 'availability_hours', 
-        label: 'serviceFields.aluminum.availability_hours', 
+      {
+        name: 'availability_hours',
+        label: 'serviceFields.aluminum.availability_hours',
         type: 'checkbox',
         options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
       },
@@ -1152,17 +1019,10 @@ const serviceFieldsConfig = {
 
   glass_works: {
     fields: [
-      { name: 'age', label: 'serviceFields.glass_works.age', type: 'number' },
       { name: 'experience', label: 'serviceFields.glass_works.experience', type: 'number' },
-      { 
-        name: 'availability_days', 
-        label: 'serviceFields.glass_works.availability_days', 
-        type: 'checkbox',
-        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע']
-      },
-      { 
-        name: 'availability_hours', 
-        label: 'serviceFields.glass_works.availability_hours', 
+      {
+        name: 'availability_hours',
+        label: 'serviceFields.glass_works.availability_hours',
         type: 'checkbox',
         options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
       },
@@ -1207,17 +1067,10 @@ const serviceFieldsConfig = {
 
   locksmith: {
     fields: [
-      { name: 'age', label: 'serviceFields.locksmith.age', type: 'number' },
       { name: 'experience', label: 'serviceFields.locksmith.experience', type: 'number' },
-      { 
-        name: 'availability_days', 
-        label: 'serviceFields.locksmith.availability_days', 
-        type: 'checkbox',
-        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע']
-      },
-      { 
-        name: 'availability_hours', 
-        label: 'serviceFields.locksmith.availability_hours', 
+      {
+        name: 'availability_hours',
+        label: 'serviceFields.locksmith.availability_hours',
         type: 'checkbox',
         options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
       },
@@ -1268,7 +1121,6 @@ const serviceFieldsConfig = {
         type: 'checkbox',
         options: ['בוקר', 'צהריים', 'ערב', '24/7']
       },
-      { name: 'age', label: 'serviceForm.common.age', type: 'number' },
       { name: 'experience', label: 'serviceForm.common.experience', type: 'number' },
       {
         name: 'pestTypes',

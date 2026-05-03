@@ -47,24 +47,6 @@ const PestControlForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
           {errors['serviceDetails.availability_hours'] && <span className="error-text">{errors['serviceDetails.availability_hours']}</span>}
         </div>
 
-        {/* AGE */}
-        <div className="input-group">
-          <label className="auth-form-label required">{t('serviceForm.common.age')}</label>
-          <input
-            type="text"
-            inputMode="numeric"
-            autoComplete="off"
-            value={serviceDetails.age || ''}
-            onChange={(e) => {
-              const numericValue = e.target.value.replace(/\D/g, '');
-              handleServiceDetailsChange('age', numericValue);
-            }}
-            className={`standard-input ${errors['serviceDetails.age'] ? 'error' : ''}`}
-            data-field="age"
-          />
-          {errors['serviceDetails.age'] && <span className="error-text">{errors['serviceDetails.age']}</span>}
-        </div>
-
         {/* YEARS OF EXPERIENCE */}
         <div className="input-group">
           <label className="auth-form-label required">{t('serviceForm.common.experience')}</label>

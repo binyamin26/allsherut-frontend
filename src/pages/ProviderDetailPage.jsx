@@ -424,14 +424,14 @@ const handleContact = () => {
         )}
         
 {/* === AGE pour services manquants === */}
-        {['cleaning', 'gardening', 'petcare', 'tutoring', 'eldercare', 'laundry', 'property_management'].includes(provider.serviceType) && details.age && (
+        {['tutoring', 'petcare', 'eldercare'].includes(provider.serviceType) && details.age && (
           <div className="detail-item">
             <strong>{t('provider.details.age')}:</strong>
             <span>{details.age} {t('provider.details.years')}</span>
           </div>
         )}
         {/* Disponibilité jours */}
-        {(details.availableDays || details.availability_days) && (details.availableDays?.length > 0 || details.availability_days?.length > 0) && (
+        {['tutoring', 'babysitting', 'petcare', 'eldercare', 'event_entertainment'].includes(provider.serviceType) && (details.availableDays || details.availability_days) && (details.availableDays?.length > 0 || details.availability_days?.length > 0) && (
           <div className="detail-item">
            <strong>{t('provider.details.availableDays')}:</strong>
         <span>{translateAndJoin(sortDays(details.availableDays || details.availability_days), 'days', t)}</span>
@@ -439,7 +439,7 @@ const handleContact = () => {
         )}
 
         {/* Disponibilité heures */}
-        {(details.availableHours || details.availability_hours) && (details.availableHours?.length > 0 || details.availability_hours?.length > 0) && (
+        {['tutoring', 'babysitting', 'petcare', 'eldercare', 'event_entertainment'].includes(provider.serviceType) && (details.availableHours || details.availability_hours) && (details.availableHours?.length > 0 || details.availability_hours?.length > 0) && (
           <div className="detail-item">
            <strong>{t('provider.details.availableHours')}:</strong>
          <span>{translateAndJoin(details.availableHours || details.availability_hours, 'hours', t)}</span>
@@ -547,12 +547,6 @@ const handleContact = () => {
         {/* === AIR_CONDITIONING === */}
         {provider.serviceType === 'air_conditioning' && (
           <>
-            {details.age && (
-              <div className="detail-item">
-                <strong>{t('provider.details.age')}:</strong>
-                <span>{details.age} {t('provider.details.years')}</span>
-              </div>
-            )}
             {details.installation_types && details.installation_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>❄️ {t('provider.details.acInstallation')}:</strong>
@@ -577,12 +571,6 @@ const handleContact = () => {
         {/* === DRYWALL === */}
         {provider.serviceType === 'drywall' && (
           <>
-            {details.age && (
-              <div className="detail-item">
-                <strong>{t('provider.details.age')}:</strong>
-                <span>{details.age} {t('provider.details.years')}</span>
-              </div>
-            )}
             {details.design_types && details.design_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🎨 {t('provider.details.drywallDesigns')}:</strong>
@@ -601,12 +589,6 @@ const handleContact = () => {
         {/* === CARPENTRY === */}
         {provider.serviceType === 'carpentry' && (
           <>
-            {details.age && (
-              <div className="detail-item">
-                <strong>{t('provider.details.age')}:</strong>
-                <span>{details.age} {t('provider.details.years')}</span>
-              </div>
-            )}
             {details.furniture_building_types && details.furniture_building_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🪑 {t('provider.details.furnitureBuilding')}:</strong>
@@ -649,12 +631,6 @@ const handleContact = () => {
         {/* === HOME_ORGANIZATION === */}
         {provider.serviceType === 'home_organization' && (
           <>
-            {details.age && (
-              <div className="detail-item">
-                <strong>{t('provider.details.age')}:</strong>
-                <span>{details.age} {t('provider.details.years')}</span>
-              </div>
-            )}
             <div className="detail-item">
               <strong>{t('provider.details.hourlyRate')}:</strong>
               {parseFloat(details.hourlyRate) > 0
@@ -728,12 +704,6 @@ const handleContact = () => {
         {/* === PRIVATE_CHEF === */}
         {provider.serviceType === 'private_chef' && (
           <>
-            {details.age && (
-              <div className="detail-item">
-                <strong>{t('provider.details.age')}:</strong>
-                <span>{details.age} {t('provider.details.years')}</span>
-              </div>
-            )}
             {details.provider_type && details.provider_type.length > 0 && (
               <div className="detail-item">
                 <strong>{t('provider.details.providerType')}:</strong>
@@ -767,12 +737,6 @@ const handleContact = () => {
         {/* === PAINTING === */}
         {provider.serviceType === 'painting' && (
           <>
-            {details.age && (
-              <div className="detail-item">
-                <strong>{t('provider.details.age')}:</strong>
-                <span>{details.age} {t('provider.details.years')}</span>
-              </div>
-            )}
             {details.work_types && details.work_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🎨 {t('provider.details.paintingServices')}:</strong>
@@ -785,12 +749,6 @@ const handleContact = () => {
         {/* === CONTRACTOR === */}
         {provider.serviceType === 'contractor' && (
           <>
-            {details.age && (
-              <div className="detail-item">
-                <strong>{t('provider.details.age')}:</strong>
-                <span>{details.age} {t('provider.details.years')}</span>
-              </div>
-            )}
             {details.structure_work_types && details.structure_work_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🏗️ {t('provider.details.structureWork')}:</strong>
@@ -827,12 +785,6 @@ const handleContact = () => {
         {/* === WATERPROOFING === */}
         {provider.serviceType === 'waterproofing' && (
           <>
-            {details.age && (
-              <div className="detail-item">
-                <strong>{t('provider.details.age')}:</strong>
-                <span>{details.age} {t('provider.details.years')}</span>
-              </div>
-            )}
             {details.roof_waterproofing_types && details.roof_waterproofing_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🏠 {t('provider.details.roofWaterproofing')}:</strong>
@@ -875,12 +827,6 @@ const handleContact = () => {
         {/* === ALUMINUM === */}
         {provider.serviceType === 'aluminum' && (
           <>
-            {details.age && (
-              <div className="detail-item">
-                <strong>{t('provider.details.age')}:</strong>
-                <span>{details.age} {t('provider.details.years')}</span>
-              </div>
-            )}
             {details.windows_doors_types && details.windows_doors_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🪟 {t('provider.details.aluminumWindowsDoors')}:</strong>
@@ -911,12 +857,6 @@ const handleContact = () => {
         {/* === GLASS_WORKS === */}
         {provider.serviceType === 'glass_works' && (
           <>
-            {details.age && (
-              <div className="detail-item">
-                <strong>{t('provider.details.age')}:</strong>
-                <span>{details.age} {t('provider.details.years')}</span>
-              </div>
-            )}
             {details.shower_glass_types && details.shower_glass_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🚿 {t('provider.details.showerGlass')}:</strong>
@@ -953,12 +893,6 @@ const handleContact = () => {
         {/* === LOCKSMITH === */}
         {provider.serviceType === 'locksmith' && (
           <>
-            {details.age && (
-              <div className="detail-item">
-                <strong>{t('provider.details.age')}:</strong>
-                <span>{details.age} {t('provider.details.years')}</span>
-              </div>
-            )}
             {details.lock_replacement_types && details.lock_replacement_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🔐 {t('provider.details.lockReplacement')}:</strong>
@@ -995,12 +929,6 @@ const handleContact = () => {
         {/* === GAS_TECHNICIAN === */}
         {provider.serviceType === 'gas_technician' && (
           <>
-            {details.age && (
-              <div className="detail-item">
-                <strong>{t('provider.details.age')}:</strong>
-                <span>{details.age} {t('provider.details.years')}</span>
-              </div>
-            )}
             {details.installation_types && details.installation_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>🔥 {t('provider.details.gasInstallation')}:</strong>
@@ -1019,12 +947,6 @@ const handleContact = () => {
         {/* === PEST_CONTROL === */}
         {provider.serviceType === 'pest_control' && (
           <>
-            {details.age && (
-              <div className="detail-item">
-                <strong>{t('provider.details.age')}:</strong>
-                <span>{details.age} {t('provider.details.years')}</span>
-              </div>
-            )}
             {details.certified !== undefined && details.certified !== null && (
               <div className="detail-item">
                 <strong>{t('serviceForm.pest_control.certification')}:</strong>
@@ -1191,16 +1113,6 @@ const handleContact = () => {
         )}
 
         {/* === ELECTRICIAN - CHAMPS COMPACTS === */}
-        {provider.serviceType === 'electrician' && (
-          <>
-            {details.age && (
-              <div className="detail-item">
-                <strong>{t('provider.details.age')}:</strong>
-                <span>{details.age} {t('provider.details.years')}</span>
-              </div>
-            )}
-          </>
-        )}
 
         {/* ELECTRICIAN - Types groupés par catégorie */}
         {provider.serviceType === 'electrician' && (
@@ -1232,16 +1144,6 @@ const handleContact = () => {
         )}
 
         {/* === PLUMBING - CHAMPS COMPACTS === */}
-        {provider.serviceType === 'plumbing' && (
-          <>
-            {details.age && (
-              <div className="detail-item">
-                <strong>{t('provider.details.age')}:</strong>
-                <span>{details.age} {t('provider.details.years')}</span>
-              </div>
-            )}
-          </>
-        )}
 
         {/* PLUMBING - Types groupés par catégorie */}
         {provider.serviceType === 'plumbing' && (
@@ -1283,28 +1185,10 @@ const handleContact = () => {
         {/* === EVENT DECORATION === */}
         {provider.serviceType === 'event_decoration' && (
           <>
-            {details.age && (
-              <div className="detail-item">
-                <strong>{t('serviceFields.event_decoration.age')}:</strong>
-                <span>{details.age} {t('provider.details.years')}</span>
-              </div>
-            )}
             {details.decoration_types && details.decoration_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>{t('serviceFields.event_decoration.decoration_types')}:</strong>
                 <span>{translateAndJoin(details.decoration_types, 'decorationTypes', t)}</span>
-              </div>
-            )}
-            {details.availability_days && details.availability_days.length > 0 && (
-              <div className="detail-item">
-                <strong>{t('serviceFields.event_decoration.availability_days')}:</strong>
-                <span>{translateAndJoin(details.availability_days, 'days', t)}</span>
-              </div>
-            )}
-            {details.availability_hours && details.availability_hours.length > 0 && (
-              <div className="detail-item">
-                <strong>{t('serviceFields.event_decoration.availability_hours')}:</strong>
-                <span>{translateAndJoin(details.availability_hours, 'hours', t)}</span>
               </div>
             )}
           </>
@@ -1313,12 +1197,6 @@ const handleContact = () => {
         {/* === MOVING === */}
         {provider.serviceType === 'moving' && (
           <>
-            {details.age && (
-              <div className="detail-item">
-                <strong>{t('provider.details.age')}:</strong>
-                <span>{details.age} {t('provider.details.years')}</span>
-              </div>
-            )}
             {(details.avoda_ivrit === 'עבודה עברית' || (Array.isArray(details.avoda_ivrit) && details.avoda_ivrit.includes('עבודה עברית'))) && (
               <div className="detail-item">
                 <strong>{t('provider.details.avodaIvrit')}:</strong>

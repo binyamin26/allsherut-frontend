@@ -11,24 +11,6 @@ const CleaningForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
       <div className="form-section">
      <h4>{t('serviceForm.common.requiredFields')}</h4>
 
-     {/* ✅ AGE */}
-        <div className="input-group">
-          <label className="auth-form-label required">{t('serviceForm.common.age')}</label>
-          <input
-            type="text"
-            inputMode="numeric"
-            autoComplete="off"
-            value={serviceDetails.age || ''}
-            onChange={(e) => {
-              const numericValue = e.target.value.replace(/\D/g, '');
-              handleServiceDetailsChange('age', numericValue);
-            }}
-            className={`standard-input ${errors['serviceDetails.age'] ? 'error' : ''}`}
-            data-field="age"
-          />
-          {errors['serviceDetails.age'] && <span className="error-text">{errors['serviceDetails.age']}</span>}
-        </div>
-        
         <div className="input-group">
         <label className="auth-form-label required">{t('serviceForm.cleaning.legalStatus')}</label>
 <CustomDropdown
@@ -225,30 +207,6 @@ const CleaningForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
   ))}
 </div>
     {errors['serviceDetails.frequency'] && <span className="error-text">{errors['serviceDetails.frequency']}</span>}
-  </div>
-
-  <div className="availability-subsection">
-   <h5 className="subsection-title required">{t('serviceForm.cleaning.days')}</h5>
-    <div className="checkbox-group">
-   {[
-  { value: 'ראשון', label: t('days.sunday') },
-  { value: 'שני', label: t('days.monday') },
-  { value: 'שלישי', label: t('days.tuesday') },
-  { value: 'רביעי', label: t('days.wednesday') },
-  { value: 'חמישי', label: t('days.thursday') },
-  { value: 'שישי', label: t('days.friday') },
-  { value: 'כל השבוע', label: t('days.allWeek') }
-].map(day => (
-        <label key={day.value} className="checkbox-item">
-    <input
-      type="checkbox"
-      checked={serviceDetails.availability_days?.includes(day.value) || false}
-      onChange={() => handleExclusiveCheckbox('availability_days', day.value, 'כל השבוע', ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי'])}
-    />
-    {day.label}
-  </label>
-))}
-    </div>
   </div>
 
   <div className="availability-subsection">
