@@ -1,6 +1,5 @@
 import React from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
-import CustomDropdown from '../../common/CustomDropdown';
 
 const PestControlForm = ({ serviceDetails, errors, handleServiceDetailsChange, handleExclusiveCheckbox }) => {
   const { t } = useLanguage();
@@ -28,23 +27,6 @@ const PestControlForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
             data-field="age"
           />
           {errors['serviceDetails.age'] && <span className="error-text">{errors['serviceDetails.age']}</span>}
-        </div>
-
-        {/* LEGAL STATUS */}
-        <div className="input-group">
-          <label className="auth-form-label required">{t('serviceForm.pest_control.legalStatus')}</label>
-          <CustomDropdown
-            name="legalStatus"
-            value={serviceDetails.legalStatus || ''}
-            onChange={(e) => handleServiceDetailsChange('legalStatus', e.target.value)}
-            placeholder={t('serviceForm.common.selectStatus')}
-            error={errors['serviceDetails.legalStatus']}
-            options={[
-              { value: 'חברה', label: t('serviceForm.pest_control.company') },
-              { value: 'עצמאי', label: t('serviceForm.pest_control.selfEmployed') }
-            ]}
-          />
-          {errors['serviceDetails.legalStatus'] && <span className="error-text">{errors['serviceDetails.legalStatus']}</span>}
         </div>
 
         {/* YEARS OF EXPERIENCE */}
