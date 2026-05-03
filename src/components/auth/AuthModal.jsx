@@ -700,41 +700,17 @@ console.log('🔍 serviceDetails object:', serviceDetails);
         break;
 
 case 'cleaning':
-  console.log('✅ DANS CASE CLEANING');
-  console.log('legalStatus:', serviceDetails.legalStatus);
-  console.log('cleaningTypes:', serviceDetails.cleaningTypes);
-
-  if (!serviceDetails.legalStatus) {
-    console.log('⚠️ Ajout erreur legalStatus');
-    newErrors['serviceDetails.legalStatus'] = t('validation.legalStatusRequired');
-  }
+  if (!serviceDetails.legalStatus) newErrors['serviceDetails.legalStatus'] = t('validation.legalStatusRequired');
   if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
-  if (!serviceDetails.cleaningTypes || serviceDetails.cleaningTypes.length === 0) {
-    console.log('⚠️ Ajout erreur cleaningTypes');
-    newErrors['serviceDetails.cleaningTypes'] = t('validation.selectAtLeastOne');
-  }
-  if (!serviceDetails.frequency || serviceDetails.frequency.length === 0) {
-    console.log('⚠️ Ajout erreur frequency');
-    newErrors['serviceDetails.frequency'] = t('validation.selectAtLeastOne');
-  }
-if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
-  newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
-}
-if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
-  newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
-}
-
-  console.log('📋 newErrors après cleaning:', newErrors);
+  if (!serviceDetails.cleaningTypes || serviceDetails.cleaningTypes.length === 0) newErrors['serviceDetails.cleaningTypes'] = t('validation.selectAtLeastOne');
+  if (!serviceDetails.frequency || serviceDetails.frequency.length === 0) newErrors['serviceDetails.frequency'] = t('validation.selectAtLeastOne');
+  if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
   break;
 case 'gardening':
   if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
   if (!serviceDetails.services || serviceDetails.services.length === 0) newErrors['serviceDetails.services'] = t('validation.selectAtLeastOne');
   if (!serviceDetails.seasons || serviceDetails.seasons.length === 0) newErrors['serviceDetails.seasons'] = t('validation.selectAtLeastOne');
   if (!serviceDetails.equipment || serviceDetails.equipment.length === 0) newErrors['serviceDetails.equipment'] = t('validation.selectAtLeastOne');
-  // rate is optional
-  if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
-    newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
-  }
   if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
     newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
   }
@@ -779,15 +755,7 @@ if (!serviceDetails.availability_hours || serviceDetails.availability_hours.leng
         break;
 
 case 'electrician':
-  if (!serviceDetails.age) {
-    newErrors['serviceDetails.age'] = t('validation.ageRequired');
-  } else if (parseInt(serviceDetails.age) < 18) {
-    newErrors['serviceDetails.age'] = t('validation.ageMin18');
-  }
   if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
-  if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
-    newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
-  }
   if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
     newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
   }
@@ -806,15 +774,7 @@ case 'electrician':
   break;
 
 case 'plumbing':
-  if (!serviceDetails.age) {
-    newErrors['serviceDetails.age'] = t('validation.ageRequired');
-  } else if (parseInt(serviceDetails.age) < 18) {
-    newErrors['serviceDetails.age'] = t('validation.ageMin18');
-  }
   if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
-  if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
-    newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
-  }
   if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
     newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
   }
@@ -838,9 +798,6 @@ case 'plumbing':
 case 'laundry':
   if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
   if (!serviceDetails.laundryTypes || serviceDetails.laundryTypes.length === 0) newErrors['serviceDetails.laundryTypes'] = t('validation.selectAtLeastOne');
-  if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
-    newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
-  }
   if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
     newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
   }
@@ -850,25 +807,14 @@ case 'laundry':
         if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
         if (!serviceDetails.management_type || serviceDetails.management_type.length === 0) {
           newErrors['serviceDetails.management_type'] = t('validation.selectAtLeastOne');
-          if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
-  newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
-}
-if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
-  newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
-}
+        }
+        if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
+          newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
         }
         break;
 
         case 'air_conditioning':
-        if (!serviceDetails.age) {
-          newErrors['serviceDetails.age'] = t('validation.ageRequired');
-        } else if (parseInt(serviceDetails.age) < 18) {
-          newErrors['serviceDetails.age'] = t('validation.ageMin18');
-        }
         if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
-        if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
-          newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
-        }
         if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
           newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
         }
@@ -887,15 +833,7 @@ if (!serviceDetails.availability_hours || serviceDetails.availability_hours.leng
         break;
 
        case 'gas_technician':
-        if (!serviceDetails.age) {
-          newErrors['serviceDetails.age'] = t('validation.ageRequired');
-        } else if (parseInt(serviceDetails.age) < 18) {
-          newErrors['serviceDetails.age'] = t('validation.ageMin18');
-        }
         if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
-        if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
-          newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
-        }
         if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
           newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
         }
@@ -911,15 +849,7 @@ if (!serviceDetails.availability_hours || serviceDetails.availability_hours.leng
       break;
 
      case 'drywall':
-  if (!serviceDetails.age) {
-    newErrors['serviceDetails.age'] = t('validation.ageRequired');
-  } else if (parseInt(serviceDetails.age) < 18) {
-    newErrors['serviceDetails.age'] = t('validation.ageMin18');
-  }
   if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
-  if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
-    newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
-  }
   if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
     newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
   }
@@ -935,15 +865,7 @@ if (!serviceDetails.availability_hours || serviceDetails.availability_hours.leng
   break;
 
 case 'carpentry':
-  if (!serviceDetails.age) {
-    newErrors['serviceDetails.age'] = t('validation.ageRequired');
-  } else if (parseInt(serviceDetails.age) < 18) {
-    newErrors['serviceDetails.age'] = t('validation.ageMin18');
-  }
   if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
-  if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
-    newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
-  }
   if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
     newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
   }
@@ -973,15 +895,7 @@ case 'carpentry':
  break;
 
 case 'home_organization':
-  if (!serviceDetails.age) {
-    newErrors['serviceDetails.age'] = t('validation.ageRequired');
-  } else if (parseInt(serviceDetails.age) < 18) {
-    newErrors['serviceDetails.age'] = t('validation.ageMin18');
-  }
   if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
-  if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
-    newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
-  }
   if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
     newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
   }
@@ -1042,15 +956,7 @@ case 'home_organization':
   break;
 
 case 'private_chef':
-    if (!serviceDetails.age) {
-      newErrors['serviceDetails.age'] = t('validation.ageRequired');
-    } else if (parseInt(serviceDetails.age) < 18) {
-      newErrors['serviceDetails.age'] = t('validation.ageMin18');
-    }
     if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
-    if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
-      newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
-    }
     if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
       newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
     }
@@ -1066,15 +972,7 @@ case 'private_chef':
     break;
 
 case 'painting':
-  if (!serviceDetails.age) {
-    newErrors['serviceDetails.age'] = t('validation.ageRequired');
-  } else if (parseInt(serviceDetails.age) < 18) {
-    newErrors['serviceDetails.age'] = t('validation.ageMin18');
-  }
   if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
-  if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
-    newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
-  }
   if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
     newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
   }
@@ -1084,15 +982,7 @@ case 'painting':
   break;
 
  case 'waterproofing':
-  if (!serviceDetails.age) {
-    newErrors['serviceDetails.age'] = t('validation.ageRequired');
-  } else if (parseInt(serviceDetails.age) < 18) {
-    newErrors['serviceDetails.age'] = t('validation.ageMin18');
-  }
   if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
-  if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
-    newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
-  }
   if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
     newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
   }
@@ -1120,15 +1010,7 @@ case 'painting':
   break;
 
 case 'contractor':
-  if (!serviceDetails.age) {
-    newErrors['serviceDetails.age'] = t('validation.ageRequired');
-  } else if (parseInt(serviceDetails.age) < 18) {
-    newErrors['serviceDetails.age'] = t('validation.ageMin18');
-  }
   if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
-  if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
-    newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
-  }
   if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
     newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
   }
@@ -1153,15 +1035,7 @@ case 'contractor':
  break;
 
 case 'aluminum':
-  if (!serviceDetails.age) {
-    newErrors['serviceDetails.age'] = t('validation.ageRequired');
-  } else if (parseInt(serviceDetails.age) < 18) {
-    newErrors['serviceDetails.age'] = t('validation.ageMin18');
-  }
   if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
-  if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
-    newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
-  }
   if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
     newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
   }
@@ -1183,15 +1057,7 @@ case 'aluminum':
   break;
 
 case 'glass_works':
-  if (!serviceDetails.age) {
-    newErrors['serviceDetails.age'] = t('validation.ageRequired');
-  } else if (parseInt(serviceDetails.age) < 18) {
-    newErrors['serviceDetails.age'] = t('validation.ageMin18');
-  }
   if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
-  if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
-    newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
-  }
   if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
     newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
   }
@@ -1216,15 +1082,7 @@ case 'glass_works':
   break;
 
  case 'locksmith':
-  if (!serviceDetails.age) {
-    newErrors['serviceDetails.age'] = t('validation.ageRequired');
-  } else if (parseInt(serviceDetails.age) < 18) {
-    newErrors['serviceDetails.age'] = t('validation.ageMin18');
-  }
   if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
-  if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
-    newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
-  }
   if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
     newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
   }
@@ -1249,21 +1107,13 @@ case 'glass_works':
   break;
 
   case 'moving':
-    if (!serviceDetails.age) newErrors['serviceDetails.age'] = t('validation.ageRequired');
-    else if (parseInt(serviceDetails.age) < 18) newErrors['serviceDetails.age'] = t('validation.ageMin18');
     if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
-    if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0)
-      newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
     if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0)
       newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
     break;
 
   case 'photographer':
-    if (!serviceDetails.age) newErrors['serviceDetails.age'] = t('validation.ageRequired');
-    else if (parseInt(serviceDetails.age) < 18) newErrors['serviceDetails.age'] = t('validation.ageMin18');
     if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
-    if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0)
-      newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
     if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0)
       newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
     if (!serviceDetails.work_types || serviceDetails.work_types.length === 0)
@@ -1271,13 +1121,9 @@ case 'glass_works':
     break;
 
   case 'event_decoration':
-    if (!serviceDetails.age) newErrors['serviceDetails.age'] = t('validation.ageRequired');
-    else if (parseInt(serviceDetails.age) < 18) newErrors['serviceDetails.age'] = t('validation.ageMin18');
     if (!serviceDetails.experience) newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
     if (!serviceDetails.decoration_types || serviceDetails.decoration_types.length === 0)
       newErrors['serviceDetails.decoration_types'] = t('validation.selectAtLeastOne');
-    if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0)
-      newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
     if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0)
       newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
     break;
