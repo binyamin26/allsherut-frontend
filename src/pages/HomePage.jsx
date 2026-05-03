@@ -62,68 +62,12 @@ const HomePage = () => {
   // Liste des services
   const services = [
     {
-      id: 'babysitting',
-      name: t('services.babysitting'),
-      image: '/images/babysite.png',
-      description: t('services.babysitting.desc'),
-      color: 'from-pink-500 to-rose-600',
-      href: '/services/babysitting'
-    },
-    {
-      id: 'cleaning',
-      name: t('services.cleaning'),
-      image: '/images/nikayon.jpg',
-      description: t('services.cleaning.desc'),
-      color: 'from-cyan-500 to-blue-600',
-      href: '/services/cleaning'
-    },
-    {
-      id: 'gardening',
-      name: t('services.gardening'),
-      image: '/images/jardinage.jpg',
-      description: t('services.gardening.desc'),
-      color: 'from-green-500 to-emerald-600',
-      href: '/services/gardening'
-    },
-    {
-      id: 'petcare',
-      name: t('services.petcare'),
-      image: '/images/chien.jpg',
-      description: t('services.petcare.desc'),
-      color: 'from-orange-500 to-amber-600',
-      href: '/services/petcare'
-    },
-    {
-      id: 'tutoring',
-      name: t('services.tutoring'),
-      image: '/images/tutoring.png',
-      description: t('services.tutoring.desc'),
-      color: 'from-blue-500 to-indigo-600',
-      href: '/services/tutoring'
-    },
-    {
-      id: 'eldercare',
-      name: t('services.eldercare'),
-      image: '/images/eldercare.png',
-      description: t('services.eldercare.desc'),
-      color: 'from-purple-500 to-violet-600',
-      href: '/services/eldercare'
-    },
-    {
-      id: 'laundry',
-      name: t('services.laundry'),
-      image: '/images/kvissa.jpg',
-      description: t('services.laundry.desc'),
-      color: 'from-blue-400 to-cyan-600',
-      href: '/services/laundry'
-    },
-    {
-      id: 'property_management',
-      name: t('services.property_management'),
-      image: '/images/nihoul-dirot.jpg',
-      description: t('services.property_management.desc'),
-      color: 'from-indigo-500 to-purple-600',
-      href: '/services/property-management'
+      id: 'plumbing',
+      name: t('services.plumbing'),
+      image: '/images/plombier.jpg',
+      description: t('services.plumbing.desc'),
+      color: 'from-teal-500 to-cyan-600',
+      href: '/services/plumbing'
     },
     {
       id: 'electrician',
@@ -134,68 +78,12 @@ const HomePage = () => {
       href: '/services/electrician'
     },
     {
-      id: 'plumbing',
-      name: t('services.plumbing'),
-      image: '/images/plombier.jpg',
-      description: t('services.plumbing.desc'),
-      color: 'from-teal-500 to-cyan-600',
-      href: '/services/plumbing'
-    },
-    {
-      id: 'air_conditioning',
-      name: t('services.air_conditioning'),
-      image: '/images/clim.png',
-      description: t('services.air_conditioning.desc'),
-      color: 'from-sky-500 to-blue-600',
-      href: '/services/air-conditioning'
-    },
-    {
-      id: 'gas_technician',
-      name: t('services.gas_technician'),
-      image: '/images/gaz.jpg',
-      description: t('services.gas_technician.desc'),
-      color: 'from-red-500 to-orange-600',
-      href: '/services/gas-technician'
-    },
-    {
-      id: 'drywall',
-      name: t('services.drywall'),
-      image: '/images/guevess.png',
-      description: t('services.drywall.desc'),
-      color: 'from-gray-500 to-slate-600',
-      href: '/services/drywall'
-    },
-    {
-      id: 'carpentry',
-      name: t('services.carpentry'),
-      image: '/images/menuisier.png',
-      description: t('services.carpentry.desc'),
-      color: 'from-amber-600 to-brown-700',
-      href: '/services/carpentry'
-    },
-    {
-      id: 'home_organization',
-      name: t('services.home_organization'),
-      image: '/images/rangement.jpg',
-      description: t('services.home_organization.desc'),
-      color: 'from-violet-500 to-fuchsia-600',
-      href: '/services/home-organization'
-    },
-    {
-      id: 'event_entertainment',
-      name: t('services.event_entertainment'),
-      image: '/images/fetes1.jpg',
-      description: t('services.event_entertainment.desc'),
-      color: 'from-pink-500 to-purple-600',
-      href: '/services/event-entertainment'
-    },
-    {
-      id: 'private_chef',
-      name: t('services.private_chef'),
-      image: '/images/traiteur.jpg',
-      description: t('services.private_chef.desc'),
+      id: 'locksmith',
+      name: t('services.locksmith'),
+      image: '/images/serrure.png',
+      description: t('services.locksmith.desc'),
       color: 'from-amber-500 to-yellow-600',
-      href: '/services/private-chef'
+      href: '/services/locksmith'
     },
     {
       id: 'painting',
@@ -206,20 +94,20 @@ const HomePage = () => {
       href: '/services/painting'
     },
     {
-      id: 'waterproofing',
-      name: t('services.waterproofing'),
-      image: '/images/itoum.jpg',
-      description: t('services.waterproofing.desc'),
-      color: 'from-blue-600 to-cyan-700',
-      href: '/services/waterproofing'
+      id: 'air_conditioning',
+      name: t('services.air_conditioning'),
+      image: '/images/clim.png',
+      description: t('services.air_conditioning.desc'),
+      color: 'from-sky-500 to-blue-600',
+      href: '/services/air-conditioning'
     },
     {
-      id: 'contractor',
-      name: t('services.contractor'),
-      image: '/images/kablan.png',
-      description: t('services.contractor.desc'),
-      color: 'from-orange-600 to-amber-700',
-      href: '/services/contractor'
+      id: 'drywall',
+      name: t('services.drywall'),
+      image: '/images/guevess.png',
+      description: t('services.drywall.desc'),
+      color: 'from-gray-500 to-slate-600',
+      href: '/services/drywall'
     },
     {
       id: 'aluminum',
@@ -238,12 +126,36 @@ const HomePage = () => {
       href: '/services/glass-works'
     },
     {
-      id: 'locksmith',
-      name: t('services.locksmith'),
-      image: '/images/serrure.png',
-      description: t('services.locksmith.desc'),
-      color: 'from-amber-500 to-yellow-600',
-      href: '/services/locksmith'
+      id: 'gas_technician',
+      name: t('services.gas_technician'),
+      image: '/images/gaz.jpg',
+      description: t('services.gas_technician.desc'),
+      color: 'from-red-500 to-orange-600',
+      href: '/services/gas-technician'
+    },
+    {
+      id: 'waterproofing',
+      name: t('services.waterproofing'),
+      image: '/images/itoum.jpg',
+      description: t('services.waterproofing.desc'),
+      color: 'from-blue-600 to-cyan-700',
+      href: '/services/waterproofing'
+    },
+    {
+      id: 'carpentry',
+      name: t('services.carpentry'),
+      image: '/images/menuisier.png',
+      description: t('services.carpentry.desc'),
+      color: 'from-amber-600 to-brown-700',
+      href: '/services/carpentry'
+    },
+    {
+      id: 'contractor',
+      name: t('services.contractor'),
+      image: '/images/kablan.png',
+      description: t('services.contractor.desc'),
+      color: 'from-orange-600 to-amber-700',
+      href: '/services/contractor'
     },
     {
       id: 'moving',
@@ -254,12 +166,52 @@ const HomePage = () => {
       href: '/services/moving'
     },
     {
-      id: 'photographer',
-      name: t('services.photographer'),
-      image: '/images/photographe1.jpg',
-      description: t('services.photographer.desc'),
-      color: 'from-purple-500 to-violet-600',
-      href: '/services/photographer'
+      id: 'gardening',
+      name: t('services.gardening'),
+      image: '/images/jardinage.jpg',
+      description: t('services.gardening.desc'),
+      color: 'from-green-500 to-emerald-600',
+      href: '/services/gardening'
+    },
+    {
+      id: 'pest_control',
+      name: t('services.pest_control'),
+      image: '/images/desinctisation.jpg',
+      description: t('services.pest_control.desc'),
+      color: 'from-green-800 to-lime-700',
+      href: '/services/pest-control'
+    },
+    {
+      id: 'cleaning',
+      name: t('services.cleaning'),
+      image: '/images/nikayon.jpg',
+      description: t('services.cleaning.desc'),
+      color: 'from-cyan-500 to-blue-600',
+      href: '/services/cleaning'
+    },
+    {
+      id: 'laundry',
+      name: t('services.laundry'),
+      image: '/images/kvissa.jpg',
+      description: t('services.laundry.desc'),
+      color: 'from-blue-400 to-cyan-600',
+      href: '/services/laundry'
+    },
+    {
+      id: 'property_management',
+      name: t('services.property_management'),
+      image: '/images/nihoul-dirot.jpg',
+      description: t('services.property_management.desc'),
+      color: 'from-indigo-500 to-purple-600',
+      href: '/services/property-management'
+    },
+    {
+      id: 'home_organization',
+      name: t('services.home_organization'),
+      image: '/images/rangement.jpg',
+      description: t('services.home_organization.desc'),
+      color: 'from-violet-500 to-fuchsia-600',
+      href: '/services/home-organization'
     },
     {
       id: 'event_decoration',
@@ -270,12 +222,60 @@ const HomePage = () => {
       href: '/services/event-decoration'
     },
     {
-      id: 'pest_control',
-      name: t('services.pest_control'),
-      image: '/images/desinctisation.jpg',
-      description: t('services.pest_control.desc'),
-      color: 'from-green-800 to-lime-700',
-      href: '/services/pest-control'
+      id: 'event_entertainment',
+      name: t('services.event_entertainment'),
+      image: '/images/fetes1.jpg',
+      description: t('services.event_entertainment.desc'),
+      color: 'from-pink-500 to-purple-600',
+      href: '/services/event-entertainment'
+    },
+    {
+      id: 'private_chef',
+      name: t('services.private_chef'),
+      image: '/images/traiteur.jpg',
+      description: t('services.private_chef.desc'),
+      color: 'from-amber-500 to-yellow-600',
+      href: '/services/private-chef'
+    },
+    {
+      id: 'photographer',
+      name: t('services.photographer'),
+      image: '/images/photographe1.jpg',
+      description: t('services.photographer.desc'),
+      color: 'from-purple-500 to-violet-600',
+      href: '/services/photographer'
+    },
+    {
+      id: 'tutoring',
+      name: t('services.tutoring'),
+      image: '/images/tutoring.png',
+      description: t('services.tutoring.desc'),
+      color: 'from-blue-500 to-indigo-600',
+      href: '/services/tutoring'
+    },
+    {
+      id: 'babysitting',
+      name: t('services.babysitting'),
+      image: '/images/babysite.png',
+      description: t('services.babysitting.desc'),
+      color: 'from-pink-500 to-rose-600',
+      href: '/services/babysitting'
+    },
+    {
+      id: 'petcare',
+      name: t('services.petcare'),
+      image: '/images/chien.jpg',
+      description: t('services.petcare.desc'),
+      color: 'from-orange-500 to-amber-600',
+      href: '/services/petcare'
+    },
+    {
+      id: 'eldercare',
+      name: t('services.eldercare'),
+      image: '/images/eldercare.png',
+      description: t('services.eldercare.desc'),
+      color: 'from-purple-500 to-violet-600',
+      href: '/services/eldercare'
     }
   ];
 
