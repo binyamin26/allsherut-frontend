@@ -268,6 +268,14 @@ const HomePage = () => {
       description: t('services.event_decoration.desc'),
       color: 'from-pink-500 to-fuchsia-600',
       href: '/services/event-decoration'
+    },
+    {
+      id: 'pest_control',
+      name: t('services.pest_control'),
+      image: null,
+      description: t('services.pest_control.desc'),
+      color: 'from-green-800 to-lime-700',
+      href: '/services/pest-control'
     }
   ];
 
