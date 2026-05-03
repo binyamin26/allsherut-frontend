@@ -56,11 +56,11 @@ import RecruitmentForm from '../components/recruitment/RecruitmentForm';
 import CustomDropdown from '../components/common/CustomDropdown';
 
 const ALL_SERVICE_KEYS = [
-  'babysitting','cleaning','gardening','petcare','tutoring','eldercare','laundry',
-  'property_management','electrician','plumbing','air_conditioning','gas_technician',
-  'drywall','carpentry','home_organization','event_entertainment','private_chef',
-  'painting','waterproofing','contractor','aluminum','glass_works','locksmith',
-  'moving','photographer','event_decoration','pest_control'
+  'plumbing','electrician','locksmith','painting','air_conditioning','drywall',
+  'aluminum','glass_works','gas_technician','waterproofing','carpentry','contractor',
+  'moving','gardening','pest_control','cleaning','laundry','property_management',
+  'home_organization','event_decoration','event_entertainment','private_chef',
+  'photographer','tutoring','babysitting','petcare','eldercare'
 ];
 
 // Définition des icônes de services
