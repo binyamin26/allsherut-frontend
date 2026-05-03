@@ -920,6 +920,22 @@ const translationMappings = {
     'עיצוב אולמות': 'filters.event_decoration.hallDeco',
     'קירות צילום ופינות צילום': 'filters.event_decoration.photoWall',
   },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PEST CONTROL
+  // ═══════════════════════════════════════════════════════════════
+  pestTypes: {
+    'הדברת תיקנים': 'filters.pest_control.cockroaches',
+    'הדברת נמלים': 'filters.pest_control.ants',
+    'הדברת פשפשים': 'filters.pest_control.bedbugs',
+    'הדברת פרעושים': 'filters.pest_control.fleas',
+    'הדברת יתושים': 'filters.pest_control.mosquitoes',
+    'הדברת חולדות': 'filters.pest_control.rats',
+    'הדברת עכברים': 'filters.pest_control.mice',
+    'הרחקת יונים': 'filters.pest_control.pigeons',
+    'הרחקת עטלפים': 'filters.pest_control.bats',
+    'הרחקת נחשים': 'filters.pest_control.snakes',
+  },
 };
 
 /**

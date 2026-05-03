@@ -1016,6 +1016,36 @@ const handleContact = () => {
           </>
         )}
 
+        {/* === PEST_CONTROL === */}
+        {provider.serviceType === 'pest_control' && (
+          <>
+            {details.age && (
+              <div className="detail-item">
+                <strong>{t('provider.details.age')}:</strong>
+                <span>{details.age} {t('provider.details.years')}</span>
+              </div>
+            )}
+            {details.certified !== undefined && details.certified !== null && (
+              <div className="detail-item">
+                <strong>{t('serviceForm.pest_control.certification')}:</strong>
+                <span>{details.certified === 'yes' || details.certified === true ? t('common.yes') : t('common.no')}</span>
+              </div>
+            )}
+            {details.worksAtHeight !== undefined && details.worksAtHeight !== null && (
+              <div className="detail-item">
+                <strong>{t('serviceForm.pest_control.workAtHeight')}:</strong>
+                <span>{details.worksAtHeight === 'yes' || details.worksAtHeight === true ? t('common.yes') : t('common.no')}</span>
+              </div>
+            )}
+            {details.pestTypes && details.pestTypes.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🐛 {t('serviceForm.pest_control.pestTypes')}:</strong>
+                <span>{translateAndJoin(details.pestTypes, 'pestTypes', t)}</span>
+              </div>
+            )}
+          </>
+        )}
+
     {/* TUTORING - Subjects dynamically grouped from DB */}
         {provider.serviceType === 'tutoring' && details.subjects && details.subjects.length > 0 && (
           <>
