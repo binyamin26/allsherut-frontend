@@ -2467,6 +2467,7 @@
   "filters.pest_control.pigeons": "Éloignement des pigeons",
   "filters.pest_control.bats": "Éloignement des chauves-souris",
   "filters.pest_control.snakes": "Éloignement des serpents",
+  "filters.pest_control.pigeonNets": "Filets anti-pigeons",
   "filters.pest_control.certified": "Exterminateur certifié",
   "filters.pest_control.worksAtHeight": "Travail en hauteur"
 }

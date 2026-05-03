@@ -2467,6 +2467,7 @@
   "filters.pest_control.pigeons": "Отпугивание голубей",
   "filters.pest_control.bats": "Отпугивание летучих мышей",
   "filters.pest_control.snakes": "Отпугивание змей",
+  "filters.pest_control.pigeonNets": "Сетки от голубей",
   "filters.pest_control.certified": "Сертифицированный дезинсектор",
   "filters.pest_control.worksAtHeight": "Работа на высоте"
 }

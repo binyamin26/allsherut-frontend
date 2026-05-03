@@ -1255,6 +1255,7 @@ locksmith: {
     ],
     birdsAnimals: [
       { value: 'הרחקת יונים', key: 'filters.pest_control.pigeons' },
+      { value: 'רשתות נגד יונים', key: 'filters.pest_control.pigeonNets' },
       { value: 'הרחקת עטלפים', key: 'filters.pest_control.bats' },
       { value: 'הרחקת נחשים', key: 'filters.pest_control.snakes' }
     ],

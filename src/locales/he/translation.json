@@ -2467,6 +2467,7 @@
   "filters.pest_control.pigeons": "הרחקת יונים",
   "filters.pest_control.bats": "הרחקת עטלפים",
   "filters.pest_control.snakes": "הרחקת נחשים",
+  "filters.pest_control.pigeonNets": "רשתות נגד יונים",
   "filters.pest_control.certified": "מדביר מוסמך",
   "filters.pest_control.worksAtHeight": "עבודה בגובה"
 }

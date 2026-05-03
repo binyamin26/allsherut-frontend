@@ -130,6 +130,7 @@ const PestControlForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
             <div className="checkbox-group">
               {[
                 { value: 'הרחקת יונים', label: t('filters.pest_control.pigeons') },
+                { value: 'רשתות נגד יונים', label: t('filters.pest_control.pigeonNets') },
                 { value: 'הרחקת עטלפים', label: t('filters.pest_control.bats') },
                 { value: 'הרחקת נחשים', label: t('filters.pest_control.snakes') }
               ].map(type => (

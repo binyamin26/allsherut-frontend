@@ -2467,6 +2467,7 @@
   "filters.pest_control.pigeons": "Pigeon removal",
   "filters.pest_control.bats": "Bat removal",
   "filters.pest_control.snakes": "Snake removal",
+  "filters.pest_control.pigeonNets": "Anti-pigeon nets",
   "filters.pest_control.certified": "Certified exterminator",
   "filters.pest_control.worksAtHeight": "Works at height"
 }

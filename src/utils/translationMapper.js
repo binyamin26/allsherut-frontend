@@ -933,6 +933,7 @@ const translationMappings = {
     'הדברת חולדות': 'filters.pest_control.rats',
     'הדברת עכברים': 'filters.pest_control.mice',
     'הרחקת יונים': 'filters.pest_control.pigeons',
+    'רשתות נגד יונים': 'filters.pest_control.pigeonNets',
     'הרחקת עטלפים': 'filters.pest_control.bats',
     'הרחקת נחשים': 'filters.pest_control.snakes',
   },
