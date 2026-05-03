@@ -272,7 +272,7 @@ const HomePage = () => {
     {
       id: 'pest_control',
       name: t('services.pest_control'),
-      image: null,
+      image: '/images/desinctisation.jpg',
       description: t('services.pest_control.desc'),
       color: 'from-green-800 to-lime-700',
       href: '/services/pest-control'
