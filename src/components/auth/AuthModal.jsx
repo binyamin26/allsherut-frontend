@@ -225,6 +225,7 @@ const services = [
       });
       setErrors({});
       setSubmitError('');
+      clearError();
       setFieldValidation({
         email: { status: 'idle', message: '' },
         phone: { status: 'idle', message: '' },
