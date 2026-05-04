@@ -139,6 +139,17 @@ const searchableServices = [
   { label: 'אגרוף', labelEn: 'Boxing', labelFr: 'Boxe', labelRu: 'Бокс', href: '/services/tutoring', type: 'specialty' },
   { label: 'התעמלות', labelEn: 'Gymnastics', labelFr: 'Gymnastique', labelRu: 'Гимнастика', href: '/services/tutoring', type: 'specialty' },
   { label: 'כושר אישי', labelEn: 'Personal fitness', labelFr: 'Fitness personnel', labelRu: 'Персональный фитнес', href: '/services/tutoring', type: 'specialty' },
+  { label: 'יסודי', labelEn: 'Elementary school', labelFr: 'École primaire', labelRu: 'Начальная школа', href: '/services/tutoring', type: 'specialty' },
+  { label: 'חטיבת ביניים', labelEn: 'Middle school', labelFr: 'Collège', labelRu: 'Средняя школа', href: '/services/tutoring', type: 'specialty' },
+  { label: 'תיכון', labelEn: 'High school', labelFr: 'Lycée', labelRu: 'Старшая школа', href: '/services/tutoring', type: 'specialty' },
+  { label: 'בגרות', labelEn: 'Matriculation', labelFr: 'Baccalauréat', labelRu: 'Аттестат', href: '/services/tutoring', type: 'specialty' },
+  { label: 'מכינה', labelEn: 'Pre-academic', labelFr: 'Prépa académique', labelRu: 'Подготовительный курс', href: '/services/tutoring', type: 'specialty' },
+  { label: 'אקדמי', labelEn: 'Academic', labelFr: 'Académique', labelRu: 'Академический', href: '/services/tutoring', type: 'specialty' },
+  { label: 'מבוגרים', labelEn: 'Adults', labelFr: 'Adultes', labelRu: 'Взрослые', href: '/services/tutoring', type: 'specialty' },
+  { label: 'שיעור פרונטלי', labelEn: 'In-person lesson', labelFr: 'Cours en présentiel', labelRu: 'Очный урок', href: '/services/tutoring', type: 'specialty' },
+  { label: 'שיעור אונליין', labelEn: 'Online lesson', labelFr: 'Cours en ligne', labelRu: 'Онлайн урок', href: '/services/tutoring', type: 'specialty' },
+  { label: 'הכנה לבחינות', labelEn: 'Exam preparation', labelFr: 'Préparation aux examens', labelRu: 'Подготовка к экзаменам', href: '/services/tutoring', type: 'specialty' },
+  { label: 'הפרעות למידה', labelEn: 'Learning disabilities', labelFr: 'Troubles d\'apprentissage', labelRu: 'Нарушения обучения', href: '/services/tutoring', type: 'specialty' },
 
   // 6. ELDERCARE
   { label: 'טיפול בקשישים', labelEn: 'Eldercare', labelFr: 'Aide aux seniors', labelRu: 'Уход за пожилыми', href: '/services/eldercare', type: 'service' },
