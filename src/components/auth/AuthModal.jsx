@@ -224,6 +224,7 @@ const services = [
         recruitmentDetails: {},
       });
       setErrors({});
+      setSubmitError('');
       setFieldValidation({
         email: { status: 'idle', message: '' },
         phone: { status: 'idle', message: '' },
@@ -1588,6 +1589,7 @@ if (!isValid) {
     setMode(mode === 'login' ? 'register' : 'login');
     setStep(1);
     setErrors({});
+    setSubmitError('');
     setFieldValidation({
       email: { status: 'idle', message: '' },
       phone: { status: 'idle', message: '' },
