@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 
 const AuthContext = createContext();
 
@@ -558,9 +558,9 @@ if (data && (method === 'POST' || method === 'PUT' || method === 'PATCH' || meth
     }
   };
 
-  const clearError = () => {
+  const clearError = useCallback(() => {
     setError(null);
-  };
+  }, []);
 
   // ==========================================
   // 🆕 NOUVELLES MÉTHODES - SYSTÈME D'ABONNEMENTS
