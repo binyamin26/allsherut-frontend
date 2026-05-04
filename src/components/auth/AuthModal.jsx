@@ -1537,7 +1537,7 @@ if (!isValid) {
     }
 
     if (!result?.success) {
-      console.error('❌ Registration error:', result);
+      console.error(`❌ ${mode === 'login' ? 'Login' : 'Registration'} error:`, result);
       const firstFieldError = result?.errors?.[0]?.message;
       setSubmitError(firstFieldError || result?.message || t('auth.errors.serverError'));
       return;
