@@ -522,10 +522,11 @@ getEmailHeader(subtitle = '') {
   }
 
   async sendContactEmail(formData) {
-    const adminEmail = process.env.SMTP_FROM || process.env.SMTP_USER;
+    const senderEmail = process.env.SMTP_FROM || process.env.SMTP_USER;
+    const adminEmail = process.env.ADMIN_EMAIL || senderEmail;
     try {
       const mailOptions = {
-        from: { name: 'AllSherut Contact', address: adminEmail },
+        from: { name: 'AllSherut Contact', address: senderEmail },
         to: adminEmail,
         subject: `AllSherut - פניה חדשה: ${formData.subject}`,
         html: this.getContactEmailTemplate(formData),
