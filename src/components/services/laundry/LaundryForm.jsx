@@ -75,6 +75,7 @@ const LaundryForm = ({ serviceDetails, errors, handleServiceDetailsChange, handl
   </label>
 ))}
           </div>
+          {errors['serviceDetails.availability_hours'] && <span className="error-text">{errors['serviceDetails.availability_hours']}</span>}
         </div>
       </div>
       <div className="form-section optional">
