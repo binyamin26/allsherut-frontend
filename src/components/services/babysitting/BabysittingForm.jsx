@@ -62,27 +62,6 @@ const BabysittingForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
           {errors['serviceDetails.age'] && <span className="error-text">{errors['serviceDetails.age']}</span>}
         </div>
 
-        {/* ✅ EXPERIENCE */}
-        <div className="input-group">
-          <label className="auth-form-label required">{t('serviceForm.common.experience')}</label>
-          <input
-            ref={experienceRef}
-            type="text"
-             inputMode="numeric"
-            name={`babysitter-exp-new-${Math.random()}`}
-            autoComplete="off"
-            data-lpignore="true"
-            data-form-type="other"
-           onChange={(e) => {
-  const numericValue = e.target.value.replace(/\D/g, '');
-  handleServiceDetailsChange('experience', numericValue);  // ← 'experience' ici !
-}}
-            className={`standard-input ${errors['serviceDetails.experience'] ? 'error' : ''}`}
-            data-field="experience"
-          />
-          {errors['serviceDetails.experience'] && <span className="error-text">{errors['serviceDetails.experience']}</span>}
-        </div>
-
         <div className="input-group">
           <label className="auth-form-label required">{t('serviceForm.babysitting.ageGroups')}</label>
           <div className="checkbox-group" data-field="ageGroups">
@@ -241,6 +220,25 @@ const BabysittingForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
 
       <div className="form-section optional">
         <h4>{t('serviceForm.common.optionalFields')}</h4>
+
+        <div className="input-group">
+          <label className="auth-form-label">{t('serviceForm.common.experience')}</label>
+          <input
+            ref={experienceRef}
+            type="text"
+            inputMode="numeric"
+            name={`babysitter-exp-new-${Math.random()}`}
+            autoComplete="off"
+            data-lpignore="true"
+            data-form-type="other"
+            onChange={(e) => {
+              const numericValue = e.target.value.replace(/\D/g, '');
+              handleServiceDetailsChange('experience', numericValue);
+            }}
+            className="standard-input"
+            data-field="experience"
+          />
+        </div>
 
         <div className="input-group">
           <label>{t('serviceForm.babysitting.hourlyRate')}</label>

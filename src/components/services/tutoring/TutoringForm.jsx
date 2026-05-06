@@ -107,24 +107,6 @@ const { t, currentLanguage } = useLanguage();
           {errors['serviceDetails.age'] && <span className="error-text">{errors['serviceDetails.age']}</span>}
         </div>
 
-                {/* EXPÉRIENCE */}
-                <div className="input-group">
-                    <label className="auth-form-label required">{t('serviceForm.common.experience')}</label>
-                    <input
-                        type="text"
-                        inputMode="numeric"
-                        autoComplete="off"
-                        value={serviceDetails.experience || ''}
-                        onChange={(e) => {
-                            const numericValue = e.target.value.replace(/\D/g, '');
-                            handleServiceDetailsChange('experience', numericValue);
-                        }}
-                        className={`standard-input ${errors['serviceDetails.experience'] ? 'error' : ''}`}
-                        data-field="experience"
-                    />
-                    {errors['serviceDetails.experience'] && <span className="error-text">{errors['serviceDetails.experience']}</span>}
-                </div>
-
                 {/* JOURS DE DISPONIBILITÉ */}
 <div className="input-group">
   <label className="auth-form-label required">{t('serviceForm.common.availabilityDays')}</label>
@@ -253,6 +235,22 @@ const { t, currentLanguage } = useLanguage();
 
             <div className="form-section optional">
                 <h4>{t('serviceForm.common.optionalFields')}</h4>
+
+                <div className="input-group">
+                    <label className="auth-form-label">{t('serviceForm.common.experience')}</label>
+                    <input
+                        type="text"
+                        inputMode="numeric"
+                        autoComplete="off"
+                        value={serviceDetails.experience || ''}
+                        onChange={(e) => {
+                            const numericValue = e.target.value.replace(/\D/g, '');
+                            handleServiceDetailsChange('experience', numericValue);
+                        }}
+                        className="standard-input"
+                        data-field="experience"
+                    />
+                </div>
 
                 {/* NIVEAUX */}
                 <div className="input-group">

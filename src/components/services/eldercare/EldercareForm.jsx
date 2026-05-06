@@ -126,23 +126,6 @@ const EldercareForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
           {errors['serviceDetails.availability_hours'] && <span className="error-text">{errors['serviceDetails.availability_hours']}</span>}
         </div>
 
-     <div className="input-group">
-          <label className="auth-form-label required">{t('serviceForm.eldercare.experience')}</label>
-          <input
-           type="text"
- inputMode="numeric"
- autoComplete="off"
-            value={serviceDetails.experience || ''}
-        onChange={(e) => {
-  const numericValue = e.target.value.replace(/\D/g, '');
-  handleServiceDetailsChange('experience', numericValue);
-}}
-            className={`standard-input ${errors['serviceDetails.experience'] ? 'error' : ''}`}
-            data-field="experience"
-          />
-          {errors['serviceDetails.experience'] && <span className="error-text">{errors['serviceDetails.experience']}</span>}
-        </div>
-
         <div className="input-group">
           <label className="auth-form-label required">{t('serviceForm.eldercare.languages')}</label>
           <div className="checkbox-group" data-field="languages">
@@ -176,6 +159,22 @@ const EldercareForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
 
       <div className="form-section optional">
         <h4>{t('serviceForm.common.optionalFields')}</h4>
+
+        <div className="input-group">
+          <label className="auth-form-label">{t('serviceForm.eldercare.experience')}</label>
+          <input
+            type="text"
+            inputMode="numeric"
+            autoComplete="off"
+            value={serviceDetails.experience || ''}
+            onChange={(e) => {
+              const numericValue = e.target.value.replace(/\D/g, '');
+              handleServiceDetailsChange('experience', numericValue);
+            }}
+            className="standard-input"
+            data-field="experience"
+          />
+        </div>
 
         {/* Certification → optionnel */}
         <div className="input-group">
