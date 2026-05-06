@@ -102,7 +102,7 @@ const serviceImages = {
   photographer: '/images/logo photographe.jpg',
   event_decoration: '/images/logo deco.jpg',
   pest_control: '/images/logo desinctisation.jpg',
-  handyman: '/images/handyman.png'
+  handyman: '/images/indimane.jpg'
 };
 
 const DashboardPage = () => {

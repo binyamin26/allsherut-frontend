@@ -105,7 +105,7 @@ const HandymanPage = () => {
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon">
-              <img src="/images/handyman.png" alt="Handyman" />
+              <img src="/images/logo indimane.jpg" alt="Handyman" />
             </div>
             <h1 className="service-title">{t('services.handyman.pageTitle')}</h1>
           </div>

@@ -152,7 +152,7 @@ const HomePage = () => {
     {
       id: 'handyman',
       name: t('services.handyman'),
-      image: '/images/handyman.png',
+      image: '/images/indimane.jpg',
       description: t('services.handyman.desc'),
       color: 'from-orange-500 to-red-600',
       href: '/services/handyman'
