@@ -119,7 +119,7 @@ export const FILTER_CONFIG = {
       { value: 'מפעלים', key: 'filters.cleaning.factories' }
     ],
     specialCleaning: [
-      { value: 'ניקוי חלונות בגובה ', key: 'filters.cleaning.highWindows' },
+      { value: 'ניקוי חלונות', key: 'filters.cleaning.highWindows' },
       { value: 'ניקוי שטיחים וספות', key: 'filters.cleaning.carpetsSofas' },
       { value: 'ניקוי וילונות', key: 'filters.cleaning.curtains' },
       { value: 'ניקוי בלחץ מים (טרסות, חזיתות)', key: 'filters.cleaning.pressureWashing' },
@@ -137,7 +137,7 @@ export const FILTER_CONFIG = {
     frequency: [
       { value: 'חד פעמי', key: 'filters.cleaning.oneTime' },
       { value: 'שבועי', key: 'filters.cleaning.weekly' },
-      { value: 'דו שבועי', key: 'filters.cleaning.biweekly' },
+      { value: 'דו-שבועי', key: 'filters.cleaning.biweekly' },
       { value: 'חודשי', key: 'filters.cleaning.monthly' }
     ],
     materialsOptions: [
