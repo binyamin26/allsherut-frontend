@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Menu, X, Home, Users, Heart, BookOpen, UserCheck, Sparkles, Baby, LogOut, Shirt, Zap, Wrench, Wind, Flame, Package, Layers, Hammer, PartyPopper, ChefHat, Paintbrush, Droplets, HardHat, Frame, Square, Key, Leaf, PawPrint, ChevronDown, Phone, Truck, Camera, Wand2, Bug, Nut } from 'lucide-react'
+import { Menu, X, Home, Users, Heart, BookOpen, UserCheck, Sparkles, Baby, LogOut, Shirt, Zap, Wrench, Wind, Flame, Package, Layers, Hammer, PartyPopper, ChefHat, Paintbrush, Droplets, HardHat, Frame, Square, Key, Leaf, PawPrint, ChevronDown, Phone, Truck, Camera, Wand2, Bug, Cog } from 'lucide-react'
 import { useAuth } from '../../context/AuthContext'
 import AuthModal from '../auth/AuthModal'
 import { useLanguage } from '../../context/LanguageContext'
@@ -49,7 +49,7 @@ const Header = () => {
     { icon: <Flame className="w-5 h-5" />, nameKey: 'services.gas_technician', descKey: 'services.gas_technician.desc', href: '/services/gas-technician' },
     { icon: <Droplets className="w-5 h-5" />, nameKey: 'services.waterproofing', descKey: 'services.waterproofing.desc', href: '/services/waterproofing' },
     { icon: <Hammer className="w-5 h-5" />, nameKey: 'services.carpentry', descKey: 'services.carpentry.desc', href: '/services/carpentry' },
-    { icon: <Nut className="w-5 h-5" />, nameKey: 'services.handyman', descKey: 'services.handyman.desc', href: '/services/handyman' },
+    { icon: <Cog className="w-5 h-5" />, nameKey: 'services.handyman', descKey: 'services.handyman.desc', href: '/services/handyman' },
     { icon: <HardHat className="w-5 h-5" />, nameKey: 'services.contractor', descKey: 'services.contractor.desc', href: '/services/contractor' },
     { icon: <Truck className="w-5 h-5" />, nameKey: 'services.moving', descKey: 'services.moving.desc', href: '/services/moving' },
     { icon: <Leaf className="w-5 h-5" />, nameKey: 'services.gardening', descKey: 'services.gardening.desc', href: '/services/gardening' },
