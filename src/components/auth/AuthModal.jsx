@@ -161,6 +161,7 @@ const services = [
   { key: 'gas_technician', name: t('services.gas_technician'), image: '/images/gaz.jpg', gradient: 'gas_technician-gradient' },
   { key: 'waterproofing', name: t('services.waterproofing'), image: '/images/itoum.jpg', gradient: 'waterproofing-gradient' },
   { key: 'carpentry', name: t('services.carpentry'), image: '/images/menuisier.png', gradient: 'carpentry-gradient' },
+  { key: 'handyman', name: t('services.handyman'), image: '/images/handyman.png', gradient: 'handyman-gradient' },
   { key: 'contractor', name: t('services.contractor'), image: '/images/kablan.png', gradient: 'contractor-gradient' },
   { key: 'moving', name: t('services.moving'), image: '/images/demenagement.jpg', gradient: 'moving-gradient' },
   { key: 'gardening', name: t('services.gardening'), image: '/images/jardinage.jpg', gradient: 'gardening-gradient' },
@@ -176,8 +177,7 @@ const services = [
   { key: 'tutoring', name: t('services.tutoring'), icon: '📚', image: '/images/tutoring.png', gradient: 'tutoring-gradient' },
   { key: 'babysitting', name: t('services.babysitting'), icon: '👶', image: '/images/babysite.png', gradient: 'babysitting-gradient' },
   { key: 'petcare', name: t('services.petcare'), image: '/images/chien.jpg', gradient: 'petcare-gradient' },
-  { key: 'eldercare', name: t('services.eldercare'), icon: '👵', image: '/images/eldercare.png', gradient: 'eldercare-gradient' },
-  { key: 'handyman', name: t('services.handyman'), image: '/images/handyman.png', gradient: 'handyman-gradient' }
+  { key: 'eldercare', name: t('services.eldercare'), icon: '👵', image: '/images/eldercare.png', gradient: 'eldercare-gradient' }
 ];
 
   // ── Détection clavier mobile via visualViewport ──────────────────────

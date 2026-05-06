@@ -57,8 +57,8 @@ import CustomDropdown from '../components/common/CustomDropdown';
 
 const ALL_SERVICE_KEYS = [
   'plumbing','electrician','locksmith','painting','air_conditioning','drywall',
-  'aluminum','glass_works','gas_technician','waterproofing','carpentry','contractor',
-  'moving','gardening','pest_control','cleaning','laundry','property_management','handyman',
+  'aluminum','glass_works','gas_technician','waterproofing','carpentry','handyman','contractor',
+  'moving','gardening','pest_control','cleaning','laundry','property_management',
   'home_organization','event_decoration','event_entertainment','private_chef',
   'photographer','tutoring','babysitting','petcare','eldercare'
 ];
@@ -1199,6 +1199,7 @@ const getServiceName = (serviceType) => {
       private_chef: 'services.private_chef',
       painting: 'services.painting',
       waterproofing: 'services.waterproofing',
+      handyman: 'services.handyman',
       contractor: 'services.contractor',
       aluminum: 'services.aluminum',
       glass_works: 'services.glass_works',
