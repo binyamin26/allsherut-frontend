@@ -154,6 +154,52 @@ case 'decoration_types': {
   break;
 }
 
+case 'general_repairs_types': {
+  const arr = value.split(',').map(v => v.trim());
+  if (arr.length > 0) {
+    const placeholders = arr.map(() => '?').join(',');
+    conditions.push(`JSON_OVERLAPS(sp.service_details->'$.general_repairs_types', JSON_ARRAY(${placeholders}))`);
+    params.push(...arr);
+  }
+  break;
+}
+case 'installations_types': {
+  const arr = value.split(',').map(v => v.trim());
+  if (arr.length > 0) {
+    const placeholders = arr.map(() => '?').join(',');
+    conditions.push(`JSON_OVERLAPS(sp.service_details->'$.installations_types', JSON_ARRAY(${placeholders}))`);
+    params.push(...arr);
+  }
+  break;
+}
+case 'doors_furniture_types': {
+  const arr = value.split(',').map(v => v.trim());
+  if (arr.length > 0) {
+    const placeholders = arr.map(() => '?').join(',');
+    conditions.push(`JSON_OVERLAPS(sp.service_details->'$.doors_furniture_types', JSON_ARRAY(${placeholders}))`);
+    params.push(...arr);
+  }
+  break;
+}
+case 'light_work_types': {
+  const arr = value.split(',').map(v => v.trim());
+  if (arr.length > 0) {
+    const placeholders = arr.map(() => '?').join(',');
+    conditions.push(`JSON_OVERLAPS(sp.service_details->'$.light_work_types', JSON_ARRAY(${placeholders}))`);
+    params.push(...arr);
+  }
+  break;
+}
+case 'hanging_types': {
+  const arr = value.split(',').map(v => v.trim());
+  if (arr.length > 0) {
+    const placeholders = arr.map(() => '?').join(',');
+    conditions.push(`JSON_OVERLAPS(sp.service_details->'$.hanging_types', JSON_ARRAY(${placeholders}))`);
+    params.push(...arr);
+  }
+  break;
+}
+
 case 'minAge':
   if (!isNaN(parseInt(value))) {
     conditions.push(`sp.service_details->>'$.age' >= ?`);
@@ -321,7 +367,7 @@ router.get('/providers', async (req, res) => {
 
     // Validation du service si fourni
     if (service) {
-const validServices = ['babysitting', 'cleaning', 'gardening', 'petcare', 'tutoring', 'eldercare', 'laundry', 'property_management', 'electrician', 'plumbing','air_conditioning', 'gas_technician','drywall', 'carpentry', 'home_organization', 'event_entertainment', 'private_chef', 'painting', 'waterproofing', 'contractor','aluminum','glass_works', 'locksmith', 'moving', 'photographer', 'event_decoration', 'pest_control'];
+const validServices = ['babysitting', 'cleaning', 'gardening', 'petcare', 'tutoring', 'eldercare', 'laundry', 'property_management', 'electrician', 'plumbing','air_conditioning', 'gas_technician','drywall', 'carpentry', 'home_organization', 'event_entertainment', 'private_chef', 'painting', 'waterproofing', 'contractor','aluminum','glass_works', 'locksmith', 'moving', 'photographer', 'event_decoration', 'pest_control', 'handyman'];
       if (!validServices.includes(service)) {
         const { errorResponse, statusCode } = ErrorHandler.validationError([{
           field: 'service',

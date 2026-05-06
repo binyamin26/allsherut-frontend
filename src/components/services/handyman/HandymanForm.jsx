@@ -258,6 +258,26 @@ const HandymanForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
           )}
         </div>
       </div>
+
+      <div className="form-section optional">
+        <h4>{t('serviceForm.common.optionalFields')}</h4>
+
+        <div className="input-group">
+          <label className="auth-form-label">{t('serviceForm.common.experience')}</label>
+          <input
+            type="text"
+            inputMode="numeric"
+            autoComplete="off"
+            value={serviceDetails.experience || ''}
+            onChange={(e) => {
+              const numericValue = e.target.value.replace(/\D/g, '');
+              handleServiceDetailsChange('experience', numericValue);
+            }}
+            className="standard-input"
+            data-field="experience"
+          />
+        </div>
+      </div>
     </div>
   );
 };

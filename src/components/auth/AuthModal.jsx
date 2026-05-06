@@ -176,7 +176,8 @@ const services = [
   { key: 'tutoring', name: t('services.tutoring'), icon: '📚', image: '/images/tutoring.png', gradient: 'tutoring-gradient' },
   { key: 'babysitting', name: t('services.babysitting'), icon: '👶', image: '/images/babysite.png', gradient: 'babysitting-gradient' },
   { key: 'petcare', name: t('services.petcare'), image: '/images/chien.jpg', gradient: 'petcare-gradient' },
-  { key: 'eldercare', name: t('services.eldercare'), icon: '👵', image: '/images/eldercare.png', gradient: 'eldercare-gradient' }
+  { key: 'eldercare', name: t('services.eldercare'), icon: '👵', image: '/images/eldercare.png', gradient: 'eldercare-gradient' },
+  { key: 'handyman', name: t('services.handyman'), image: '/images/handyman.png', gradient: 'handyman-gradient' }
 ];
 
   // ── Détection clavier mobile via visualViewport ──────────────────────
@@ -1076,6 +1077,25 @@ case 'glass_works':  if (!serviceDetails.availability_hours || serviceDetails.av
       newErrors['serviceDetails.decoration_types'] = t('validation.selectAtLeastOne');
     if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0)
       newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
+    break;
+
+  case 'handyman':
+    if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0)
+      newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
+    if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0)
+      newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
+    if (!serviceDetails.work_types || serviceDetails.work_types.length === 0)
+      newErrors['serviceDetails.work_types'] = t('validation.workTypesRequired');
+    if (serviceDetails.work_types?.includes('תיקונים כלליים') && (!serviceDetails.general_repairs_types || serviceDetails.general_repairs_types.length === 0))
+      newErrors['serviceDetails.general_repairs_types'] = t('validation.selectAtLeastOne');
+    if (serviceDetails.work_types?.includes('התקנות והרכבות') && (!serviceDetails.installations_types || serviceDetails.installations_types.length === 0))
+      newErrors['serviceDetails.installations_types'] = t('validation.selectAtLeastOne');
+    if (serviceDetails.work_types?.includes('דלתות ורהיטים') && (!serviceDetails.doors_furniture_types || serviceDetails.doors_furniture_types.length === 0))
+      newErrors['serviceDetails.doors_furniture_types'] = t('validation.selectAtLeastOne');
+    if (serviceDetails.work_types?.includes('עבודות קלות בבית') && (!serviceDetails.light_work_types || serviceDetails.light_work_types.length === 0))
+      newErrors['serviceDetails.light_work_types'] = t('validation.selectAtLeastOne');
+    if (serviceDetails.work_types?.includes('תליות וסידור') && (!serviceDetails.hanging_types || serviceDetails.hanging_types.length === 0))
+      newErrors['serviceDetails.hanging_types'] = t('validation.selectAtLeastOne');
     break;
 
     }
