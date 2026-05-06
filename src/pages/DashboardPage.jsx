@@ -79,7 +79,7 @@ const serviceImages = {
   cleaning: '/images/nikayon.jpg',
   gardening: '/images/jardinage.jpg',
   petcare: '/images/chien.jpg',
-  tutoring: '/images/tutoring.png',
+  tutoring: '/images/logo cours particulier.png',
   eldercare: '/images/eldercare.png',
   laundry: '/images/kvissa.jpg',
   property_management: '/images/nihoul-dirot.jpg',
@@ -1519,7 +1519,7 @@ const galleryImages = (() => {
       {/* GAUCHE - Icône service */}
       <div className="provider-service-icon">
         <img 
-          src={serviceImages[activeService] || serviceImages[userData?.serviceType] || serviceImages[user?.service_type]} 
+          src={serviceImages[activeService] || serviceImages[userData?.serviceType] || serviceImages[user?.service_type] || serviceImages[user?.services?.[0]]} 
           alt=""
         />
       </div>
