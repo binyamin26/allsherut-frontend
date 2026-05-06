@@ -58,7 +58,7 @@ import CustomDropdown from '../components/common/CustomDropdown';
 const ALL_SERVICE_KEYS = [
   'plumbing','electrician','locksmith','painting','air_conditioning','drywall',
   'aluminum','glass_works','gas_technician','waterproofing','carpentry','contractor',
-  'moving','gardening','pest_control','cleaning','laundry','property_management',
+  'moving','gardening','pest_control','cleaning','laundry','property_management','handyman',
   'home_organization','event_decoration','event_entertainment','private_chef',
   'photographer','tutoring','babysitting','petcare','eldercare'
 ];
@@ -101,7 +101,8 @@ const serviceImages = {
   moving: '/images/demenagement.jpg',
   photographer: '/images/logo photographe.jpg',
   event_decoration: '/images/logo deco.jpg',
-  pest_control: '/images/logo desinctisation.jpg'
+  pest_control: '/images/logo desinctisation.jpg',
+  handyman: '/images/handyman.png'
 };
 
 const DashboardPage = () => {

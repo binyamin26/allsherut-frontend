@@ -172,7 +172,8 @@ const PrivateChefForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
   { value: 'מגשי פירות', label: t('filters.chef.fruitPlatters') },
   { value: 'חלות שבת', label: t('filters.chef.shabbatChallah') },
   { value: 'שוקולדים', label: t('filters.chef.chocolates') },
-  { value: 'מקרון', label: t('filters.chef.macarons') }
+  { value: 'מקרון', label: t('filters.chef.macarons') },
+  { value: 'פטיסרי', label: t('filters.chef.patisserie') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
@@ -226,7 +227,9 @@ const PrivateChefForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
   { value: 'בד"ץ מקווה ישראל', label: t('filters.chef.badatzMikveh') },
   { value: 'בד"ץ רבני צפת', label: t('filters.chef.badatzTzfat') },
   { value: 'כשרות הרב לנדא', label: t('filters.chef.rabbiLanda') },
-  { value: 'כשרות הרב רובין', label: t('filters.chef.rabbiRubin') }
+  { value: 'כשרות הרב רובין', label: t('filters.chef.rabbiRubin') },
+  { value: 'רבנות', label: t('filters.chef.rabbinate') },
+  { value: 'רבנות מהדרין', label: t('filters.chef.rabbinateMethadrin') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input

@@ -276,6 +276,14 @@ const HomePage = () => {
       description: t('services.eldercare.desc'),
       color: 'from-purple-500 to-violet-600',
       href: '/services/eldercare'
+    },
+    {
+      id: 'handyman',
+      name: t('services.handyman'),
+      image: '/images/handyman.png',
+      description: t('services.handyman.desc'),
+      color: 'from-orange-500 to-red-600',
+      href: '/services/handyman'
     }
   ];
 

@@ -28,6 +28,7 @@ import MovingForm from './moving/MovingForm';
 import PhotographerForm from './photographer/PhotographerForm';
 import EventDecorationForm from './event_decoration/EventDecorationForm';
 import PestControlForm from './pest_control/PestControlForm';
+import HandymanForm from './handyman/HandymanForm';
 
 const ServiceDetailsForm = ({ 
   serviceType, 
@@ -65,7 +66,8 @@ const ServiceDetailsForm = ({
     moving: MovingForm,
     photographer: PhotographerForm,
     event_decoration: EventDecorationForm,
-    pest_control: PestControlForm
+    pest_control: PestControlForm,
+    handyman: HandymanForm
   };
 
   // Récupérer le bon composant

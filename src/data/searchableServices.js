@@ -634,6 +634,20 @@ const searchableServices = [
   { label: 'שוטינג פוטו', labelEn: 'Photo shoot', labelFr: 'Shooting photo', labelRu: 'Фотосессия', href: '/services/photographer', type: 'specialty' },
   { label: 'צלם תספורת', labelEn: 'Haircut photographer', labelFr: 'Photographe coupe de cheveux', labelRu: 'Фотограф стрижка', href: '/services/photographer', type: 'specialty' },
   { label: 'אירוסין', labelEn: 'Engagement', labelFr: 'Fiançailles', labelRu: 'Помолвка', href: '/services/photographer', type: 'specialty' },
+
+  // HANDYMAN
+  { label: 'הנדימן', labelEn: 'Handyman', labelFr: 'Homme toutes mains', labelRu: 'Разнорабочий', href: '/services/handyman', type: 'service' },
+  { label: 'תיקונים קטנים בבית', labelEn: 'Small home repairs', labelFr: 'Petites réparations maison', labelRu: 'Мелкий ремонт дома', href: '/services/handyman', type: 'specialty' },
+  { label: 'תחזוקה שוטפת', labelEn: 'Regular maintenance', labelFr: 'Entretien courant', labelRu: 'Текущее обслуживание', href: '/services/handyman', type: 'specialty' },
+  { label: 'התקנת טלוויזיה', labelEn: 'TV installation', labelFr: 'Installation télévision', labelRu: 'Установка телевизора', href: '/services/handyman', type: 'specialty' },
+  { label: 'התקנת מדפים', labelEn: 'Shelf installation', labelFr: 'Installation étagères', labelRu: 'Установка полок', href: '/services/handyman', type: 'specialty' },
+  { label: 'התקנת וילונות', labelEn: 'Curtain installation', labelFr: 'Installation rideaux', labelRu: 'Установка штор', href: '/services/handyman', type: 'specialty' },
+  { label: 'הרכבת רהיטים', labelEn: 'Furniture assembly', labelFr: 'Montage meubles', labelRu: 'Сборка мебели', href: '/services/handyman', type: 'specialty' },
+  { label: 'תיקון דלתות', labelEn: 'Door repair', labelFr: 'Réparation portes', labelRu: 'Ремонт дверей', href: '/services/handyman', type: 'specialty' },
+  { label: 'תיקון רהיטים', labelEn: 'Furniture repair', labelFr: 'Réparation meubles', labelRu: 'Ремонт мебели', href: '/services/handyman', type: 'specialty' },
+  { label: 'החלפת מנורות', labelEn: 'Lamp replacement', labelFr: 'Remplacement ampoules', labelRu: 'Замена ламп', href: '/services/handyman', type: 'specialty' },
+  { label: 'תליית תמונות', labelEn: 'Picture hanging', labelFr: 'Accrochage tableaux', labelRu: 'Вешание картин', href: '/services/handyman', type: 'specialty' },
+  { label: 'תליית אביזרים', labelEn: 'Accessory hanging', labelFr: 'Accrochage accessoires', labelRu: 'Вешание аксессуаров', href: '/services/handyman', type: 'specialty' },
 ];
 
 export default searchableServices;

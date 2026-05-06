@@ -809,7 +809,8 @@ laundry: {
       { value: 'מגשי פירות', key: 'filters.chef.fruitPlatters' },
       { value: 'חלות שבת', key: 'filters.chef.shabbatChallah' },
       { value: 'שוקולדים', key: 'filters.chef.chocolates' },
-      { value: 'מקרון', key: 'filters.chef.macarons' }
+      { value: 'מקרון', key: 'filters.chef.macarons' },
+      { value: 'פטיסרי', key: 'filters.chef.patisserie' }
     ],
     kosherTypes: [
     { value: 'בד"ץ העדה החרדית', key: 'filters.chef.badatzEdaChareidis' },  // ← était badatzEdaCharedit
@@ -1226,6 +1227,49 @@ locksmith: {
       { value: 'עיצוב שולחנות', key: 'filters.event_decoration.tableDeco' },
       { value: 'עיצוב אולמות', key: 'filters.event_decoration.hallDeco' },
       { value: 'קירות צילום ופינות צילום', key: 'filters.event_decoration.photoWall' }
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // HANDYMAN
+  // ═══════════════════════════════════════════════════════════════
+  handyman: {
+    sectionTitles: {
+      workTypes: 'filters.handyman.workTypes',
+      generalRepairsTypes: 'filters.handyman.generalRepairs',
+      installationsTypes: 'filters.handyman.installations',
+      doorsFurnitureTypes: 'filters.handyman.doorsAndFurniture',
+      lightWorkTypes: 'filters.handyman.lightWork',
+      hangingTypes: 'filters.handyman.hangingAndOrganizing'
+    },
+    workTypes: [
+      { value: 'תיקונים כלליים', key: 'serviceForm.handyman.generalRepairs' },
+      { value: 'התקנות והרכבות', key: 'serviceForm.handyman.installations' },
+      { value: 'דלתות ורהיטים', key: 'serviceForm.handyman.doorsAndFurniture' },
+      { value: 'עבודות קלות בבית', key: 'serviceForm.handyman.lightWork' },
+      { value: 'תליות וסידור', key: 'serviceForm.handyman.hangingAndOrganizing' }
+    ],
+    generalRepairsTypes: [
+      { value: 'תיקונים קטנים בבית', key: 'serviceForm.handyman.smallRepairs' },
+      { value: 'תחזוקה שוטפת', key: 'serviceForm.handyman.regularMaintenance' }
+    ],
+    installationsTypes: [
+      { value: 'התקנת טלוויזיה', key: 'serviceForm.handyman.tvInstall' },
+      { value: 'התקנת מדפים', key: 'serviceForm.handyman.shelvesInstall' },
+      { value: 'התקנת וילונות', key: 'serviceForm.handyman.curtainsInstall' },
+      { value: 'הרכבת רהיטים', key: 'serviceForm.handyman.furnitureAssembly' }
+    ],
+    doorsFurnitureTypes: [
+      { value: 'תיקון דלתות', key: 'serviceForm.handyman.doorRepair' },
+      { value: 'תיקון רהיטים', key: 'serviceForm.handyman.furnitureRepair' }
+    ],
+    lightWorkTypes: [
+      { value: 'החלפת מנורות', key: 'serviceForm.handyman.lampReplacement' },
+      { value: 'תיקונים קלים', key: 'serviceForm.handyman.lightRepairs' }
+    ],
+    hangingTypes: [
+      { value: 'תליית תמונות', key: 'serviceForm.handyman.pictureHanging' },
+      { value: 'תליית אביזרים', key: 'serviceForm.handyman.accessoryHanging' }
     ]
   },
 
