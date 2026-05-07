@@ -810,7 +810,8 @@ laundry: {
       { value: 'חלות שבת', key: 'filters.chef.shabbatChallah' },
       { value: 'שוקולדים', key: 'filters.chef.chocolates' },
       { value: 'מקרון', key: 'filters.chef.macarons' },
-      { value: 'פטיסרי', key: 'filters.chef.patisserie' }
+      { value: 'פטיסרי', key: 'filters.chef.patisserie' },
+      { value: 'קופסת עוגות', key: 'filters.chef.cakeBox' }
     ],
     kosherTypes: [
     { value: 'בד"ץ העדה החרדית', key: 'filters.chef.badatzEdaChareidis' },  // ← était badatzEdaCharedit
