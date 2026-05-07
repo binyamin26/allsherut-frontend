@@ -49,6 +49,13 @@ const promoTranslations = {
 
 const ANIM_CLASSES = ['impact-left', 'impact-right', 'impact-top', 'impact-zoom', 'impact-shrink'];
 
+// iOS Safari crashes when <video> elements are used alongside <audio> + heavy CSS animations
+// (WebKit content process OOM). Skip video entirely on iOS; show tech idle layer instead.
+const isIOS = typeof navigator !== 'undefined' && (
+  /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+);
+
 const MarqueeItem = ({ src }) => {
   if (!src) return null;
   return (
@@ -552,6 +559,17 @@ const styles = `
 const SlideVideo = ({ src, isActive, playing }) => {
   const ref = useRef(null);
 
+  // Release iOS video buffer on unmount — prevents the OOM crash on slide transition
+  useEffect(() => {
+    return () => {
+      if (ref.current) {
+        ref.current.pause();
+        ref.current.removeAttribute('src');
+        ref.current.load();
+      }
+    };
+  }, []);
+
   useEffect(() => {
     if (!ref.current) return;
     if (isActive) {
@@ -570,7 +588,7 @@ const SlideVideo = ({ src, isActive, playing }) => {
 
   return (
     <div className={`slide-video-wrap ${isActive ? 'visible' : 'hidden'}`}>
-      <video ref={ref} className="slide-video-main" src={src} loop muted playsInline />
+      <video ref={ref} className="slide-video-main" src={src} loop muted playsInline preload="none" />
     </div>
   );
 };
@@ -682,7 +700,8 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
   const isMarqueeActive = !!activeSlide?.isMarquee;
   const hasImage        = !!activeSlide?.bgImage;
   const hasVideo        = !!activeSlide?.bgVideo;
-  const showIdleLayer   = !hasImage && !hasVideo && !isMarqueeActive;
+  // On iOS, video elements are suppressed — treat those slides as idle-layer slides
+  const showIdleLayer   = !hasImage && (!hasVideo || isIOS) && !isMarqueeActive;
 
   return (
     <div className="promo-container">
@@ -714,8 +733,8 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
         ) : null
       )}
 
-      {/* Vidéos letterbox — seule la vidéo active est montée en DOM */}
-      {promoTexts.map((slide, i) =>
+      {/* Vidéos letterbox — désactivées sur iOS pour éviter le crash WebKit OOM */}
+      {!isIOS && promoTexts.map((slide, i) =>
         slide.bgVideo && activeSeq === i ? (
           <SlideVideo key={`vid-${i}`} src={slide.bgVideo} isActive={true} playing={isPlaying} />
         ) : null
@@ -744,7 +763,7 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
         </div>
       )}
 
-      <audio ref={audioRef} loop src={audioSrc} />
+      <audio ref={audioRef} loop src={audioSrc} preload="none" />
 
       {/* Sélecteur de langue — visible dès le début */}
       <div className="text-promo-lang">
@@ -842,4 +861,4 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
   );
 };
 
-export default PromoVideoVertical;// rebuild Sun Mar 15 2026 - iOS crash fix: lazy marquee, remove blur filters, throttle RAF, remove will-change
+export default PromoVideoVertical;// rebuild Thu May 7 2026 - iOS crash fix v2: disable video on iOS (isIOS guard), cleanup src on unmount, preload=none on audio+video
