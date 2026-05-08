@@ -112,7 +112,7 @@ const styles = `
     width: 100%; height: 100%;
     z-index: 1;
     pointer-events: none;
-    transition: opacity 1s ease;
+    transition: opacity 0.3s ease;
   }
   .slide-bg img {
     width: 100%; height: 100%;
@@ -556,7 +556,7 @@ const styles = `
   }
 `;
 
-const SlideVideo = ({ src, isActive, playing }) => {
+const SlideVideo = ({ src, isActive, playing, preload = "none" }) => {
   const ref = useRef(null);
 
   // Release iOS video buffer on unmount — prevents the OOM crash on slide transition
@@ -588,7 +588,7 @@ const SlideVideo = ({ src, isActive, playing }) => {
 
   return (
     <div className={`slide-video-wrap ${isActive ? 'visible' : 'hidden'}`}>
-      <video ref={ref} className="slide-video-main" src={src} loop muted playsInline preload="none" />
+      <video ref={ref} className="slide-video-main" src={src} loop muted playsInline preload={preload} />
     </div>
   );
 };
@@ -734,11 +734,23 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
       )}
 
       {/* Vidéos letterbox — désactivées sur iOS pour éviter le crash WebKit OOM */}
-      {!isIOS && promoTexts.map((slide, i) =>
-        slide.bgVideo && activeSeq === i ? (
-          <SlideVideo key={`vid-${i}`} src={slide.bgVideo} isActive={true} playing={isPlaying} />
-        ) : null
-      )}
+      {/* La slide suivante est préchargée en arrière-plan pour éviter le délai d'apparition */}
+      {!isIOS && promoTexts.map((slide, i) => {
+        if (!slide.bgVideo) return null;
+        const isActive = activeSeq === i;
+        const nextSeq = (activeSeq + 1) % promoTexts.length;
+        const isPreloading = !isActive && i === nextSeq;
+        if (!isActive && !isPreloading) return null;
+        return (
+          <SlideVideo
+            key={`vid-${i}`}
+            src={slide.bgVideo}
+            isActive={isActive}
+            playing={isActive && isPlaying}
+            preload={isPreloading ? "auto" : "none"}
+          />
+        );
+      })}
 
       {/* Idle tech */}
       <div className={`idle-layer ${showIdleLayer ? 'visible' : 'hidden'}`}>
