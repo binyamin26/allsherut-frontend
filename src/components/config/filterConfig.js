@@ -633,7 +633,8 @@ laundry: {
       { value: 'בניית רהיטים ייחודים', key: 'filters.carpentry.customFurniture' },
       { value: 'בניית מדפים', key: 'filters.carpentry.shelfBuilding' },
       { value: 'בניית חדר ארונות', key: 'filters.carpentry.walkInCloset' },
-      { value: 'בניית מיטה מעץ', key: 'filters.carpentry.woodenBed' }
+      { value: 'בניית מיטה מעץ', key: 'filters.carpentry.woodenBed' },
+      { value: 'בניית ארונות מטבח', key: 'filters.carpentry.kitchenFurniture' }
     ],
     furnitureRepairTypes: [
       { value: 'תיקון ארונות קיר', key: 'filters.carpentry.repairWallClosets' },

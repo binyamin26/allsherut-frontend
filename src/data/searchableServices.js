@@ -330,6 +330,7 @@ const searchableServices = [
   { label: 'בניית מדפים', labelEn: 'Shelf construction', labelFr: 'Construction étagères', labelRu: 'Изготовление полок', href: '/services/carpentry', type: 'specialty' },
   { label: 'בניית חדר ארונות', labelEn: 'Walk-in closet construction', labelFr: 'Construction dressing', labelRu: 'Строительство гардеробной', href: '/services/carpentry', type: 'specialty' },
   { label: 'בניית מיטה מעץ', labelEn: 'Wooden bed construction', labelFr: 'Construction lit en bois', labelRu: 'Изготовление деревянной кровати', href: '/services/carpentry', type: 'specialty' },
+  { label: 'בניית ארונות מטבח', labelEn: 'Kitchen furniture manufacturing', labelFr: 'Fabrication de meubles de cuisine', labelRu: 'Изготовление кухонной мебели', href: '/services/carpentry', type: 'specialty' },
   { label: 'תיקון ארונות קיר', labelEn: 'Wall closet repair', labelFr: 'Réparation armoires murales', labelRu: 'Ремонт встроенных шкафов', href: '/services/carpentry', type: 'specialty' },
   { label: 'תיקון שולחן', labelEn: 'Table repair', labelFr: 'Réparation table', labelRu: 'Ремонт стола', href: '/services/carpentry', type: 'specialty' },
   { label: 'תיקון כסאות', labelEn: 'Chair repair', labelFr: 'Réparation chaises', labelRu: 'Ремонт стульев', href: '/services/carpentry', type: 'specialty' },

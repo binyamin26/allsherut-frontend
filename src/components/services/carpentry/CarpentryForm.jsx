@@ -66,7 +66,8 @@ const CarpentryForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
   { value: 'בניית רהיטים ייחודים', label: t('filters.carpentry.customFurniture') },
   { value: 'בניית מדפים', label: t('filters.carpentry.shelfBuilding') },
   { value: 'בניית חדר ארונות', label: t('filters.carpentry.walkInCloset') },
-  { value: 'בניית מיטה מעץ', label: t('filters.carpentry.woodenBed') }
+  { value: 'בניית מיטה מעץ', label: t('filters.carpentry.woodenBed') },
+  { value: 'בניית ארונות מטבח', label: t('filters.carpentry.kitchenFurniture') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
