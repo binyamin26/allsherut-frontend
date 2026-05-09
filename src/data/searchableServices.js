@@ -638,7 +638,7 @@ const searchableServices = [
   { label: 'אירוסין', labelEn: 'Engagement', labelFr: 'Fiançailles', labelRu: 'Помолвка', href: '/services/photographer', type: 'specialty' },
 
   // HANDYMAN
-  { label: 'הנדימן', labelEn: 'Handyman', labelFr: 'Homme toutes mains', labelRu: 'Разнорабочий', href: '/services/handyman', type: 'service' },
+  { label: 'הנדימן', labelEn: 'Small Jobs & Repairs', labelFr: 'Petits travaux & réparations', labelRu: 'Мелкие работы & ремонт', href: '/services/handyman', type: 'service' },
   { label: 'תיקונים קטנים בבית', labelEn: 'Small home repairs', labelFr: 'Petites réparations maison', labelRu: 'Мелкий ремонт дома', href: '/services/handyman', type: 'specialty' },
   { label: 'תחזוקה שוטפת', labelEn: 'Regular maintenance', labelFr: 'Entretien courant', labelRu: 'Текущее обслуживание', href: '/services/handyman', type: 'specialty' },
   { label: 'התקנת טלוויזיה', labelEn: 'TV installation', labelFr: 'Installation télévision', labelRu: 'Установка телевизора', href: '/services/handyman', type: 'specialty' },
