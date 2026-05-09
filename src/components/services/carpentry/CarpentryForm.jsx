@@ -163,7 +163,8 @@ const CarpentryForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
               {[
   { value: 'חיפוי עץ לקיר', label: t('serviceForm.carpentry.wallCladding') },
   { value: 'פירוק והרכבת רהיטים', label: t('serviceForm.carpentry.disassembly') },
-  { value: 'תיקון ובניית דלתות', label: t('serviceForm.carpentry.doorRepair') },
+  { value: 'בניית דלתות', label: t('serviceForm.carpentry.doorFabrication') },
+  { value: 'תיקון דלתות', label: t('serviceForm.carpentry.doorRepair') },
   { value: 'חידוש דלתות כניסה מעץ', label: t('serviceForm.carpentry.doorRenovation') },
   { value: 'בניית קומת גלריה', label: t('serviceForm.carpentry.loft') },
   { value: 'מדרגות עץ לבית', label: t('serviceForm.carpentry.stairs') },

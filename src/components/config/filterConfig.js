@@ -650,7 +650,8 @@ laundry: {
     otherCarpentryTypes: [
       { value: 'חיפוי עץ לקיר', key: 'filters.carpentry.wallCladding' },
       { value: 'פירוק והרכבת רהיטים', key: 'filters.carpentry.disassembly' },
-      { value: 'תיקון ובניית דלתות', key: 'filters.carpentry.doorRepair' },
+      { value: 'בניית דלתות', key: 'filters.carpentry.doorFabrication' },
+      { value: 'תיקון דלתות', key: 'filters.carpentry.doorRepair' },
       { value: 'חידוש דלתות כניסה מעץ', key: 'filters.carpentry.doorRenovation' },
       { value: 'בניית קומת גלריה', key: 'filters.carpentry.loft' },
       { value: 'מדרגות עץ לבית', key: 'filters.carpentry.stairs' },

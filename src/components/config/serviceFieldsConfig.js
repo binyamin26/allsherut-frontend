@@ -599,7 +599,7 @@ const serviceFieldsConfig = {
         name: 'other_carpentry_types', 
         label: 'serviceFields.carpentry.other_carpentry_types', 
         type: 'checkbox',
-        options: ['חיפוי עץ לקיר', 'פירוק והרכבת רהיטים', 'תיקון ובניית דלתות', 'חידוש דלתות כניסה מעץ', 'בניית קומת גלריה', 'מדרגות עץ לבית', 'משרביות מעץ', 'בוצ\'ר עץ']
+        options: ['חיפוי עץ לקיר', 'פירוק והרכבת רהיטים', 'בניית דלתות', 'תיקון דלתות', 'חידוש דלתות כניסה מעץ', 'בניית קומת גלריה', 'מדרגות עץ לבית', 'משרביות מעץ', 'בוצ\'ר עץ']
       },
       { 
         name: 'outdoor_carpentry_types', 

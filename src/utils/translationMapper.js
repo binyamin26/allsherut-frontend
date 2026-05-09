@@ -494,7 +494,8 @@ const translationMappings = {
   carpentryOther: {
     'חיפוי עץ לקיר': 'filters.carpentry.wallCladding',
     'פירוק והרכבת רהיטים': 'filters.carpentry.disassembly',
-    'תיקון ובניית דלתות': 'filters.carpentry.doorRepair',
+    'בניית דלתות': 'filters.carpentry.doorFabrication',
+    'תיקון דלתות': 'filters.carpentry.doorRepair',
     'חידוש דלתות כניסה מעץ': 'filters.carpentry.doorRenovation',
     'בניית קומת גלריה': 'filters.carpentry.loft',
     'מדרגות עץ לבית': 'filters.carpentry.stairs',
