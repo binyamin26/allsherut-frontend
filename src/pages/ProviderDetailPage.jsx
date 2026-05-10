@@ -45,6 +45,7 @@ const ProviderDetailPage = () => {
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [showContactModal, setShowContactModal] = useState(false);
   const [tutoringSubcats, setTutoringSubcats] = useState([]);
+  const [profileImageError, setProfileImageError] = useState(false);
 
   // État pour ReviewModal
   const [reviewModal, setReviewModal] = useState({
@@ -1379,16 +1380,20 @@ const handleContact = () => {
   {/* Photo de profil - à gauche */}
   <div className="provider-image-section">
     <div className="image-wrapper">
-      {(provider.media?.profileImage || provider.profile_image) ? (
+      {(provider.media?.profileImage || provider.profile_image) && !profileImageError ? (
         <img
           src={(() => {
             const img = provider.media?.profileImage || provider.profile_image;
-            if (img.startsWith('http')) return img;
-            const base = (import.meta.env.VITE_API_URL || 'https://homesherut-backend.onrender.com').replace('/api', '');
-            return `${base}/${img.replace(/\\/g, '/').replace(/^\/+/, '')}`;
+            const src = img.startsWith('http') ? img : `${(import.meta.env.VITE_API_URL || 'https://homesherut-backend.onrender.com').replace('/api', '')}/${img.replace(/\\/g, '/').replace(/^\/+/, '')}`;
+            console.log('🖼️ PROFILE IMAGE SRC:', src);
+            return src;
           })()}
           alt={provider.name}
           className="provider-image"
+          onError={(e) => {
+            console.error('❌ IMAGE LOAD FAILED:', e.target.src);
+            setProfileImageError(true);
+          }}
         />
       ) : (
         <div style={{
