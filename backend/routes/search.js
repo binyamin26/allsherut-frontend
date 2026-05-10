@@ -154,6 +154,14 @@ case 'decoration_types': {
   break;
 }
 
+case 'magnets': {
+  if (value === 'true') {
+    conditions.push(`JSON_EXTRACT(sp.service_details, '$.magnets') = TRUE`);
+    console.log(`[buildAdvancedFilters] Condition magnets ajoutée`);
+  }
+  break;
+}
+
 case 'general_repairs_types': {
   const arr = value.split(',').map(v => v.trim());
   if (arr.length > 0) {

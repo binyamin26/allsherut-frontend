@@ -3023,6 +3023,20 @@ const EventDecorationFilters = ({ filters, handleFilterChange, handleCheckboxCha
         filters={filters}
         onCheckboxChange={handleCheckboxChange}
       />
+
+      <div className="filter-category-section">
+        <h4 className="filter-category-title">{t('filters.event_decoration.additionalServices')}</h4>
+        <div className="checkbox-grid">
+          <label className="checkbox-option">
+            <input
+              type="checkbox"
+              checked={filters.magnets === 'true'}
+              onChange={(e) => handleFilterChange('magnets', e.target.checked ? 'true' : '')}
+            />
+            {t('filters.event_decoration.magnets')}
+          </label>
+        </div>
+      </div>
     </div>
   );
 };

@@ -60,6 +60,19 @@ const EventDecorationForm = ({ serviceDetails, errors, handleServiceDetailsChang
         <h4>{t('serviceForm.common.optionalFields')}</h4>
 
         <div className="input-group">
+          <div className="checkbox-group" data-field="magnets">
+            <label className="checkbox-item">
+              <input
+                type="checkbox"
+                checked={!!serviceDetails.magnets}
+                onChange={(e) => handleServiceDetailsChange('magnets', e.target.checked)}
+              />
+              {t('serviceForm.event_decoration.magnets')}
+            </label>
+          </div>
+        </div>
+
+        <div className="input-group">
           <label className="auth-form-label">{t('serviceForm.common.experience')}</label>
           <input
             type="text"

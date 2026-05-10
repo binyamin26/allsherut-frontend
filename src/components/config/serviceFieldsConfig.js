@@ -803,6 +803,7 @@ const serviceFieldsConfig = {
 
   event_decoration: {
     fields: [
+      { name: 'magnets', label: 'serviceFields.event_decoration.magnets', type: 'boolean-select' },
       { name: 'experience', label: 'serviceFields.event_decoration.experience', type: 'number' },
       {
         name: 'decoration_types',
