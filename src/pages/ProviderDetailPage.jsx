@@ -94,7 +94,7 @@ const ProviderDetailPage = () => {
     event_decoration: '/images/logo deco.jpg',
     pest_control: '/images/logo desinctisation.jpg',
     handyman: '/images/logo indimane.jpg',
-    photography: '/images/logo photographe.jpg'
+    photographer: '/images/logo photographe.jpg'
   };
   return icons[serviceType] || '/images/logo-default.png';
 };
@@ -1319,59 +1319,12 @@ const handleContact = () => {
         <div className="container">
           <div className="provider-hero-content">
           <div className="provider-main-info">
-  {/* Photo de profil - à droite */}
-  <div className="provider-image-section">
-    <div className="image-wrapper">
-      {(provider.media?.profileImage || provider.profile_image) && !profileImageError ? (
-        <img
-          src={(() => {
-            const img = provider.media?.profileImage || provider.profile_image;
-            const src = img.startsWith('http') ? img : `${(import.meta.env.VITE_API_URL || 'https://homesherut-backend.onrender.com').replace('/api', '')}/${img.replace(/\\/g, '/').replace(/^\/+/, '')}`;
-            console.log('🖼️ PROFILE IMAGE SRC:', src);
-            return src;
-          })()}
-          alt={provider.name}
-          className="provider-image"
-          onError={(e) => {
-            console.error('❌ IMAGE LOAD FAILED:', e.target.src);
-            setProfileImageError(true);
-          }}
-        />
-      ) : (
-        <div style={{
-          width: '100%',
-          height: '100%',
-          borderRadius: '50%',
-          background: 'linear-gradient(145deg, #e8eef5 0%, #d1dbe8 100%)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          boxShadow: 'inset 0 2px 8px rgba(0,0,0,0.08)'
-        }}>
-          <svg width="90" height="90" viewBox="0 0 100 100" fill="none">
-            <defs>
-              <linearGradient id="avatarGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#a0aec0"/>
-                <stop offset="100%" stopColor="#718096"/>
-              </linearGradient>
-              <clipPath id="circleClip">
-                <circle cx="50" cy="50" r="48"/>
-              </clipPath>
-            </defs>
-            <g clipPath="url(#circleClip)">
-              <circle cx="50" cy="38" r="18" fill="url(#avatarGradient)"/>
-              <ellipse cx="50" cy="85" rx="32" ry="28" fill="url(#avatarGradient)"/>
-            </g>
-          </svg>
-        </div>
-      )}
-
-      {provider.verified && (
-        <div className="verified-badge">
-          <CheckCircle size={20} />
-        </div>
-      )}
+  {/* Logo service - à droite */}
+  <div className="hero-service-logo">
+    <div className="hero-logo-wrapper">
+      <img src={serviceIconUrl} alt={provider.serviceType} />
     </div>
+    <span>{t(`services.${provider.serviceType}`)}</span>
   </div>
 
   {/* Contenu central */}
@@ -1425,12 +1378,57 @@ const handleContact = () => {
     </div>
   </div>
 
-  {/* Logo service - à gauche */}
-  <div className="hero-service-logo">
-    <div className="hero-logo-wrapper">
-      <img src={serviceIconUrl} alt={provider.serviceType} />
+  {/* Photo de profil - à gauche */}
+  <div className="provider-image-section">
+    <div className="image-wrapper">
+      {(provider.media?.profileImage || provider.profile_image) && !profileImageError ? (
+        <img
+          src={(() => {
+            const img = provider.media?.profileImage || provider.profile_image;
+            const src = img.startsWith('http') ? img : `${(import.meta.env.VITE_API_URL || 'https://homesherut-backend.onrender.com').replace('/api', '')}/${img.replace(/\\/g, '/').replace(/^\/+/, '')}`;
+            return src;
+          })()}
+          alt={provider.name}
+          className="provider-image"
+          onError={(e) => {
+            setProfileImageError(true);
+          }}
+        />
+      ) : (
+        <div style={{
+          width: '100%',
+          height: '100%',
+          borderRadius: '50%',
+          background: 'linear-gradient(145deg, #e8eef5 0%, #d1dbe8 100%)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          boxShadow: 'inset 0 2px 8px rgba(0,0,0,0.08)'
+        }}>
+          <svg width="90" height="90" viewBox="0 0 100 100" fill="none">
+            <defs>
+              <linearGradient id="avatarGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#a0aec0"/>
+                <stop offset="100%" stopColor="#718096"/>
+              </linearGradient>
+              <clipPath id="circleClip">
+                <circle cx="50" cy="50" r="48"/>
+              </clipPath>
+            </defs>
+            <g clipPath="url(#circleClip)">
+              <circle cx="50" cy="38" r="18" fill="url(#avatarGradient)"/>
+              <ellipse cx="50" cy="85" rx="32" ry="28" fill="url(#avatarGradient)"/>
+            </g>
+          </svg>
+        </div>
+      )}
+
+      {provider.verified && (
+        <div className="verified-badge">
+          <CheckCircle size={20} />
+        </div>
+      )}
     </div>
-    <span>{t(`services.${provider.serviceType}`)}</span>
   </div>
 </div>
           </div>
