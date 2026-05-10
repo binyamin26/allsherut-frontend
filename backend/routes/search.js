@@ -535,6 +535,7 @@ if (advancedFilters.minRating && !isNaN(parseInt(advancedFilters.minRating))) {
     u.service_type,
     u.premium_until,
     u.profile_image,
+    u.profile_image_path,
 u.created_at,
 sp.id as provider_id,
 sp.profile_image as provider_profile_image,
@@ -706,8 +707,8 @@ sp.profile_image as provider_profile_image,
         location_area: provider.location_area,
         
         // Images
-profileImage: provider.provider_profile_image || provider.profile_image,
-profile_image: provider.provider_profile_image || provider.profile_image,
+profileImage: provider.provider_profile_image || provider.profile_image || provider.profile_image_path,
+profile_image: provider.provider_profile_image || provider.profile_image || provider.profile_image_path,
 profileImages: profileImages || [],
         
         // Ratings (avec tous les alias)

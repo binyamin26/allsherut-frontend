@@ -439,7 +439,8 @@ router.get('/:id', async (req, res) => {
     u.premium_until,
     sp.profile_image as provider_profile_image,
     sp.profile_images as provider_gallery_images,
-u.profile_image as user_profile_image,
+    u.profile_image as user_profile_image,
+    u.profile_image_path as user_profile_image_path,
     u.is_active as user_active,
     
     -- Statistiques reviews
@@ -589,9 +590,9 @@ serviceDetails: {
       },
       
       // Médias
-      profile_image: providerData.provider_profile_image || providerData.user_profile_image,
+      profile_image: providerData.provider_profile_image || providerData.user_profile_image || providerData.user_profile_image_path,
      media: {
-  profileImage: providerData.provider_profile_image || providerData.user_profile_image,
+  profileImage: providerData.provider_profile_image || providerData.user_profile_image || providerData.user_profile_image_path,
  gallery: (() => {
   const raw = providerData.provider_gallery_images;
   if (!raw) return [];
