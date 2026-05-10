@@ -1192,6 +1192,12 @@ const handleContact = () => {
                 <span>{translateAndJoin(details.decoration_types, 'decorationTypes', t)}</span>
               </div>
             )}
+            {details.magnets && (
+              <div className="detail-item">
+                <strong>{t('serviceFields.event_decoration.magnets')}:</strong>
+                <span>{t('common.yes')}</span>
+              </div>
+            )}
           </>
         )}
 
