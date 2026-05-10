@@ -451,13 +451,14 @@ router.get('/:id', async (req, res) => {
   LEFT JOIN reviews r ON sp.id = r.provider_id AND r.is_published = TRUE
   
   WHERE (sp.user_id = ? OR sp.id = ?)
-    AND sp.is_active = TRUE 
+    AND sp.is_active = TRUE
     AND u.is_active = TRUE
-  
+
   GROUP BY sp.id, u.id
+  ORDER BY (sp.id = ?) DESC
 `;
 
-    const provider = await query(providerQuery, [providerId, providerId]);
+    const provider = await query(providerQuery, [providerId, providerId, providerId]);
 
     // Gestion provider non trouvé
     if (provider.length === 0) {
