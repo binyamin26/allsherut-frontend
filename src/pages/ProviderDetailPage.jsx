@@ -1379,11 +1379,14 @@ const handleContact = () => {
   {/* Photo de profil - à gauche */}
   <div className="provider-image-section">
     <div className="image-wrapper">
-      {provider.media?.profileImage ? (
-        <img 
-          src={provider.media?.profileImage?.startsWith('http') 
-            ? provider.media.profileImage 
-            : `${(import.meta.env.VITE_API_URL || '').replace('/api', '')}/${(provider.media?.profileImage || '').replace(/\\/g, '/').replace(/^\/+/, '')}`}
+      {(provider.media?.profileImage || provider.profile_image) ? (
+        <img
+          src={(() => {
+            const img = provider.media?.profileImage || provider.profile_image;
+            if (img.startsWith('http')) return img;
+            const base = (import.meta.env.VITE_API_URL || 'https://homesherut-backend.onrender.com').replace('/api', '');
+            return `${base}/${img.replace(/\\/g, '/').replace(/^\/+/, '')}`;
+          })()}
           alt={provider.name}
           className="provider-image"
         />
@@ -1558,13 +1561,14 @@ const handleContact = () => {
     }}>
       <div className="provider-info" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
   <div className="provider-avatar">
-    <img 
-  src={provider.media?.profileImage 
-  ? (provider.media.profileImage.startsWith('http') 
-      ? provider.media.profileImage 
-      : `${import.meta.env.VITE_API_URL.replace('/api', '')}/${provider.media.profileImage.replace(/\\/g, '/').replace(/^\/+/, '')}`)
-  : '/images/placeholder-user.png'}
-  
+    <img
+      src={(() => {
+        const img = provider.media?.profileImage || provider.profile_image;
+        if (!img) return '/images/placeholder-user.png';
+        if (img.startsWith('http')) return img;
+        const base = (import.meta.env.VITE_API_URL || 'https://homesherut-backend.onrender.com').replace('/api', '');
+        return `${base}/${img.replace(/\\/g, '/').replace(/^\/+/, '')}`;
+      })()}
       alt={provider.name}
       className="provider-response-image"
     />

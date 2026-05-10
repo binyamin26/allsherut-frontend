@@ -589,6 +589,7 @@ serviceDetails: {
       },
       
       // Médias
+      profile_image: providerData.provider_profile_image || providerData.user_profile_image,
      media: {
   profileImage: providerData.provider_profile_image || providerData.user_profile_image,
  gallery: (() => {
