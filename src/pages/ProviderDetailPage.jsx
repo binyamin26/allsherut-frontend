@@ -93,7 +93,8 @@ const ProviderDetailPage = () => {
     moving: '/images/logo demenagement.jpg',
     event_decoration: '/images/logo deco.jpg',
     pest_control: '/images/logo desinctisation.jpg',
-    handyman: '/images/logo indimane.jpg'
+    handyman: '/images/logo indimane.jpg',
+    photography: '/images/logo photographe.jpg'
   };
   return icons[serviceType] || '/images/logo-default.png';
 };
