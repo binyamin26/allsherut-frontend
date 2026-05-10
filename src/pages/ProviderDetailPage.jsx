@@ -1318,66 +1318,7 @@ const handleContact = () => {
         <div className="container">
           <div className="provider-hero-content">
           <div className="provider-main-info">
-  {/* Logo service - à droite */}
-  <div className="hero-service-logo">
-   <div className="hero-logo-wrapper">
-  <img src={serviceIconUrl} alt={provider.serviceType} />
-</div>
-    <span>{t(`services.${provider.serviceType}`)}</span>
-  </div>
-
-  {/* Contenu central */}
-  <div className="hero-center-content">
-    <h1 className="provider-name">{provider.name}</h1>
-
-    <div className="provider-rating-location">
-      <div className="rating">
-        <Star fill="#fbbf24" color="#fbbf24" size={20} />
-        <span className="rating-score">{reviews.length > 0 ? (reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length).toFixed(1) : 0}</span>
-        <span className="reviews-count">({reviews.length} {t('provider.reviews')})</span>
-      </div>
-    </div>
-
-    <div className="provider-highlights">
-      {provider.experience && (
-        <div className="highlight">
-          <Award size={16} />
-          <span>{provider.experience} {t('provider.yearsExperience')}</span>
-        </div>
-      )}
-      {provider.languages && (
-        <div className="highlight">
-          <MessageCircle size={16} />
-          <span>שפות: {Array.isArray(provider.languages) ? provider.languages.join(', ') : provider.languages}</span>
-        </div>
-      )}
-    </div>
-
-  <div className="hero-actions-wrapper">
-  {provider.phone && (
-    <div className="contact-info">
-      <Phone size={16} />
-      <span className="phone-number">{provider.phone}</span>
-    </div>
-  )}
-  <div className="hero-buttons-grid">
-    <button onClick={() => window.location.href = `tel:${provider.phone}`} className="btn btn-primary btn-large hero-btn">
-      <Phone size={18} />
-      {t('provider.callNow')}
-    </button>
-    <button className="review-action-btn hero-btn" onClick={handleOpenReviewModal}>
-      <MessageCircle size={16} />
-      <span>{t('card.leaveReview')}</span>
-    </button>
-    <button onClick={() => window.open(`https://wa.me/972${provider.phone?.replace(/^0/, '')}`, '_blank')} className="btn btn-success btn-large hero-btn">
-      <MessageCircle size={18} />
-      {t('provider.sendWhatsapp')}
-    </button>
-  </div>
-</div>
-  </div>
-
-  {/* Photo de profil - à gauche */}
+  {/* Photo de profil - à droite */}
   <div className="provider-image-section">
     <div className="image-wrapper">
       {(provider.media?.profileImage || provider.profile_image) && !profileImageError ? (
@@ -1430,6 +1371,65 @@ const handleContact = () => {
         </div>
       )}
     </div>
+  </div>
+
+  {/* Contenu central */}
+  <div className="hero-center-content">
+    <h1 className="provider-name">{provider.name}</h1>
+
+    <div className="provider-rating-location">
+      <div className="rating">
+        <Star fill="#fbbf24" color="#fbbf24" size={20} />
+        <span className="rating-score">{reviews.length > 0 ? (reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length).toFixed(1) : 0}</span>
+        <span className="reviews-count">({reviews.length} {t('provider.reviews')})</span>
+      </div>
+    </div>
+
+    <div className="provider-highlights">
+      {provider.experience && (
+        <div className="highlight">
+          <Award size={16} />
+          <span>{provider.experience} {t('provider.yearsExperience')}</span>
+        </div>
+      )}
+      {provider.languages && (
+        <div className="highlight">
+          <MessageCircle size={16} />
+          <span>שפות: {Array.isArray(provider.languages) ? provider.languages.join(', ') : provider.languages}</span>
+        </div>
+      )}
+    </div>
+
+    <div className="hero-actions-wrapper">
+      {provider.phone && (
+        <div className="contact-info">
+          <Phone size={16} />
+          <span className="phone-number">{provider.phone}</span>
+        </div>
+      )}
+      <div className="hero-buttons-grid">
+        <button onClick={() => window.location.href = `tel:${provider.phone}`} className="btn btn-primary btn-large hero-btn">
+          <Phone size={18} />
+          {t('provider.callNow')}
+        </button>
+        <button className="review-action-btn hero-btn" onClick={handleOpenReviewModal}>
+          <MessageCircle size={16} />
+          <span>{t('card.leaveReview')}</span>
+        </button>
+        <button onClick={() => window.open(`https://wa.me/972${provider.phone?.replace(/^0/, '')}`, '_blank')} className="btn btn-success btn-large hero-btn">
+          <MessageCircle size={18} />
+          {t('provider.sendWhatsapp')}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  {/* Logo service - à gauche */}
+  <div className="hero-service-logo">
+    <div className="hero-logo-wrapper">
+      <img src={serviceIconUrl} alt={provider.serviceType} />
+    </div>
+    <span>{t(`services.${provider.serviceType}`)}</span>
   </div>
 </div>
           </div>
