@@ -1893,7 +1893,14 @@ async getProviderProfileForService(serviceType) {
 
 // Parser le JSON d'abord
     const parsedServiceDetails = parseJsonObject(profile.service_details);
-    
+
+    // Normalisation : ancienne valeur combinée → deux valeurs séparées
+    if (Array.isArray(parsedServiceDetails.cleaningTypes) && parsedServiceDetails.cleaningTypes.includes('ניקוי שטיחים וספות')) {
+      parsedServiceDetails.cleaningTypes = parsedServiceDetails.cleaningTypes
+        .filter(v => v !== 'ניקוי שטיחים וספות')
+        .concat(['ניקוי שטיחים', 'ניקוי ספות']);
+    }
+
     const serviceDetails = {
       // Colonnes DB
       experience_years: profile.experience_years || 0,
