@@ -93,7 +93,8 @@ const CleaningForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
     { value: 'ניקוי מזגן', label: t('filters.cleaning.acCleaning') },
     { value: 'ריסוס (נגד חרקים)', label: t('filters.cleaning.pestControl') },
     { value: 'ניקיון גגות רעפים', label: t('filters.cleaning.roofCleaning') },
-    { value: 'ניקוי שטיחים וספות', label: t('filters.cleaning.carpetsSofas') },
+    { value: 'ניקוי שטיחים', label: t('filters.cleaning.carpets') },
+    { value: 'ניקוי ספות', label: t('filters.cleaning.sofas') },
     { value: 'ניקוי וילונות', label: t('filters.cleaning.curtains') },
     { value: 'ניקוי בלחץ מים (טרסות, חזיתות)', label: t('filters.cleaning.pressureWashing') },
     { value: 'חיטוי וניקיון אחרי נזק (שריפה / הצפה)', label: t('filters.cleaning.damageCleanup') }

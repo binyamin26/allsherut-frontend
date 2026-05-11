@@ -120,7 +120,8 @@ export const FILTER_CONFIG = {
     ],
     specialCleaning: [
       { value: 'ניקוי חלונות', key: 'filters.cleaning.highWindows' },
-      { value: 'ניקוי שטיחים וספות', key: 'filters.cleaning.carpetsSofas' },
+      { value: 'ניקוי שטיחים', key: 'filters.cleaning.carpets' },
+      { value: 'ניקוי ספות', key: 'filters.cleaning.sofas' },
       { value: 'ניקוי וילונות', key: 'filters.cleaning.curtains' },
       { value: 'ניקוי בלחץ מים (טרסות, חזיתות)', key: 'filters.cleaning.pressureWashing' },
       { value: 'חיטוי וניקיון אחרי נזק (שריפה / הצפה)', key: 'filters.cleaning.damageCleanup' },

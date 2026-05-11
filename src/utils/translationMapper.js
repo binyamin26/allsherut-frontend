@@ -122,7 +122,8 @@ const translationMappings = {
   cleaningSpecial: {
     'ניקוי חלונות בגובה ': 'filters.cleaning.highWindows',
     'ניקוי חלונות': 'filters.cleaning.highWindows',
-    'ניקוי שטיחים וספות': 'filters.cleaning.carpetsSofas',
+    'ניקוי שטיחים': 'filters.cleaning.carpets',
+    'ניקוי ספות': 'filters.cleaning.sofas',
     'ניקוי וילונות': 'filters.cleaning.curtains',
     'ניקוי בלחץ מים (טרסות, חזיתות)': 'filters.cleaning.pressureWashing',
     'חיטוי וניקיון אחרי נזק (שריפה / הצפה)': 'filters.cleaning.damageCleanup',
