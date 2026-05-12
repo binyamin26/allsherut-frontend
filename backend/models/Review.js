@@ -171,9 +171,10 @@ class Review {
  static async createReview(reviewData) {
   return transaction(async (connection) => {
     try {
-      const { 
-        email, verificationCode, providerId, serviceType, 
-        rating, title, comment, displayNameOption = 'private' // AJOUTER ICI
+      const {
+        email, verificationCode, providerId, serviceType,
+        qualityRating, priceRating, availabilityRating, professionalismRating,
+        rating, title, comment, displayNameOption = 'private'
       } = reviewData;
 
 // ✅ CORRECTION: Convertir user_id en service_providers.id si nécessaire
@@ -238,11 +239,13 @@ if (displayNameOption === 'anonymous') {
       const [result] = await connection.execute(`
   INSERT INTO reviews (
     provider_id, reviewer_email, reviewer_name, service_type,
-    rating, comment, is_verified, is_published, helpful_count, created_at
-  ) VALUES (?, ?, ?, ?, ?, ?, TRUE, TRUE, 0, NOW())
+    rating, quality_rating, price_rating, availability_rating, professionalism_rating,
+    comment, is_verified, is_published, helpful_count, created_at
+  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, TRUE, TRUE, 0, NOW())
 `, [
   actualProviderId, email, reviewerName, serviceType,
-  rating, comment
+  rating, qualityRating, priceRating, availabilityRating, professionalismRating,
+  comment
 ]);
 
         const reviewId = result.insertId;
@@ -363,14 +366,18 @@ static async getProviderReviews(providerId, options = {}) {
 
     // ✅ AJOUT DU LEFT JOIN AVEC provider_responses
     const reviews = await query(`
-      SELECT 
-        r.id, 
-        r.reviewer_name, 
-        r.service_type, 
-        r.rating, 
-        r.title, 
+      SELECT
+        r.id,
+        r.reviewer_name,
+        r.service_type,
+        r.rating,
+        r.quality_rating,
+        r.price_rating,
+        r.availability_rating,
+        r.professionalism_rating,
+        r.title,
         r.comment,
-        r.helpful_count, 
+        r.helpful_count,
         r.created_at,
         r.updated_at,
         pr.response_text as provider_response,
@@ -378,8 +385,8 @@ static async getProviderReviews(providerId, options = {}) {
         pr.provider_user_id as response_author_id
       FROM reviews r
       LEFT JOIN provider_responses pr ON r.id = pr.review_id
-      WHERE r.provider_id = ? 
-        AND r.is_verified = TRUE 
+      WHERE r.provider_id = ?
+        AND r.is_verified = TRUE
         AND r.is_published = TRUE
       ORDER BY ${orderClause}
       LIMIT ? OFFSET ?
@@ -445,16 +452,15 @@ static async getProviderReviews(providerId, options = {}) {
   static async getProviderStats(providerId) {
     try {
       const stats = await query(`
-        SELECT 
+        SELECT
           COUNT(*) as total_reviews,
           AVG(rating) as average_rating,
-          COUNT(CASE WHEN rating = 5 THEN 1 END) as five_stars,
-          COUNT(CASE WHEN rating = 4 THEN 1 END) as four_stars,
-          COUNT(CASE WHEN rating = 3 THEN 1 END) as three_stars,
-          COUNT(CASE WHEN rating = 2 THEN 1 END) as two_stars,
-          COUNT(CASE WHEN rating = 1 THEN 1 END) as one_star,
+          AVG(quality_rating) as avg_quality,
+          AVG(price_rating) as avg_price,
+          AVG(availability_rating) as avg_availability,
+          AVG(professionalism_rating) as avg_professionalism,
           SUM(helpful_count) as total_helpful
-        FROM reviews 
+        FROM reviews
         WHERE provider_id = ? AND is_verified = TRUE AND is_published = TRUE
       `, [providerId]);
 
@@ -471,13 +477,10 @@ static async getProviderReviews(providerId, options = {}) {
       return {
         total_reviews: stat.total_reviews,
         average_rating: parseFloat(stat.average_rating || 0).toFixed(1),
-        rating_distribution: [
-          stat.one_star || 0,
-          stat.two_stars || 0, 
-          stat.three_stars || 0,
-          stat.four_stars || 0,
-          stat.five_stars || 0
-        ],
+        avg_quality: stat.avg_quality ? parseFloat(stat.avg_quality).toFixed(1) : null,
+        avg_price: stat.avg_price ? parseFloat(stat.avg_price).toFixed(1) : null,
+        avg_availability: stat.avg_availability ? parseFloat(stat.avg_availability).toFixed(1) : null,
+        avg_professionalism: stat.avg_professionalism ? parseFloat(stat.avg_professionalism).toFixed(1) : null,
         total_helpful: stat.total_helpful || 0
       };
 

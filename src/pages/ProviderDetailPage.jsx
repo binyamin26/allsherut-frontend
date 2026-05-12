@@ -1480,8 +1480,8 @@ const handleContact = () => {
                       <div className="reviews-summary">
                         <div className="rating-overview">
                           <div className="overall-rating">
-                            <Star fill="#fbbf24" color="#fbbf24" size={24} />
-                            <span className="rating-number">{reviews.length > 0 ? (reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length).toFixed(1) : 0}</span>
+                            <span className="rating-number">{reviews.length > 0 ? (reviews.reduce((sum, r) => sum + parseFloat(r.rating || 0), 0) / reviews.length).toFixed(1) : 0}</span>
+                            <span className="rating-out-of">/10</span>
                           </div>
                           <div className="rating-details">
                          <span className="rating-text">{t('provider.reviews.overallRating')}</span>
@@ -1523,15 +1523,17 @@ const handleContact = () => {
                                       <div className="reviewer-info-horizontal">
                                   <h5 className="reviewer-name">{review.reviewerName || t('provider.reviews.customer')}</h5>
                                         <div className="review-rating">
-                                          {[...Array(5)].map((_, i) => (
-                                            <Star 
-                                              key={i} 
-                                              size={14} 
-                                              fill={i < review.rating ? "#fbbf24" : "none"}
-                                              color="#fbbf24"
-                                            />
-                                          ))}
-                                          <span className="rating-text">({review.rating}/5)</span>
+                                          {review.quality_rating ? (
+                                            <div className="review-categories-inline">
+                                              <span className="cat-score">{t('review.categories.quality')}: <strong>{review.quality_rating}/10</strong></span>
+                                              <span className="cat-score">{t('review.categories.price')}: <strong>{review.price_rating}/10</strong></span>
+                                              <span className="cat-score">{t('review.categories.availability')}: <strong>{review.availability_rating}/10</strong></span>
+                                              <span className="cat-score">{t('review.categories.professionalism')}: <strong>{review.professionalism_rating}/10</strong></span>
+                                              <span className="global-badge">{t('review.categories.global')}: <strong>{parseFloat(review.rating).toFixed(1)}/10</strong></span>
+                                            </div>
+                                          ) : (
+                                            <span className="rating-text">⭐ {review.rating}/5</span>
+                                          )}
                                         </div>
                                       </div>
                                     </div>

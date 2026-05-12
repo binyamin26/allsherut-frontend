@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Star, User, Mail, MessageCircle, Send, Check, AlertCircle } from 'lucide-react';
+import { X, User, Mail, MessageCircle, Send, Check, AlertCircle } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useLanguage } from '../../context/LanguageContext';
 
@@ -12,28 +12,32 @@ const ReviewModal = ({ isOpen, onClose, providerId, providerName, serviceType })
     name: '',
     email: '',
     verificationCode: '',
-    rating: 0,
+    qualityRating: 0,
+    priceRating: 0,
+    availabilityRating: 0,
+    professionalismRating: 0,
     comment: '',
-      displayNameOption: 'private'
+    displayNameOption: 'private'
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [hoveredRating, setHoveredRating] = useState(0);
 
   const handleClose = () => {
   const wasSuccess = step === 'success';
-  
+
   setStep('email-verification');
   setFormData({
     name: '',
     email: '',
     verificationCode: '',
-    rating: 0,
+    qualityRating: 0,
+    priceRating: 0,
+    availabilityRating: 0,
+    professionalismRating: 0,
     comment: '',
     displayNameOption: 'private'
   });
   setError('');
-  setHoveredRating(0);
   onClose();
   
   if (wasSuccess) {
@@ -128,15 +132,20 @@ const handleVerifyCode = async () => {
   }
 };
 
+  const computedGlobal = (formData.qualityRating && formData.priceRating && formData.availabilityRating && formData.professionalismRating)
+    ? ((formData.qualityRating + formData.priceRating + formData.availabilityRating + formData.professionalismRating) / 4).toFixed(1)
+    : null;
+
   const handleSubmitReview = async () => {
- if (!formData.rating) {
-  setError(t('review.errors.ratingRequired'));
-  return;
-}
-if (!formData.comment.trim()) {
-  setError(t('review.errors.commentRequired'));
-  return;
-}
+    const { qualityRating, priceRating, availabilityRating, professionalismRating } = formData;
+    if (!qualityRating || !priceRating || !availabilityRating || !professionalismRating) {
+      setError(t('review.errors.ratingRequired'));
+      return;
+    }
+    if (!formData.comment.trim()) {
+      setError(t('review.errors.commentRequired'));
+      return;
+    }
 
     setLoading(true);
     setError('');
@@ -147,9 +156,12 @@ if (!formData.comment.trim()) {
         verificationCode: formData.verificationCode,
         providerId,
         serviceType,
-        rating: formData.rating,
+        qualityRating,
+        priceRating,
+        availabilityRating,
+        professionalismRating,
         comment: formData.comment,
-        displayNameOption: formData.displayNameOption 
+        displayNameOption: formData.displayNameOption
       });
 
  if (response.success) {
@@ -169,23 +181,27 @@ if (!formData.comment.trim()) {
     }
   };
 
-  const renderStarRating = () => {
-    const stars = [];
-    for (let i = 1; i <= 5; i++) {
-      stars.push(
-        <button
-          key={i}
-          type="button"
-          className={`star-btn ${i <= (hoveredRating || formData.rating) ? 'active' : ''}`}
-          onMouseEnter={() => setHoveredRating(i)}
-          onMouseLeave={() => setHoveredRating(0)}
-          onClick={() => handleInputChange('rating', i)}
-        >
-          <Star size={32} fill={i <= (hoveredRating || formData.rating) ? 'currentColor' : 'none'} />
-        </button>
-      );
-    }
-    return stars;
+  const renderCategoryRating = (field, labelKey) => {
+    const value = formData[field];
+    return (
+      <div className="category-rating-row">
+        <span className="category-rating-label">{t(labelKey)}</span>
+        <div className="category-rating-buttons">
+          {[1,2,3,4,5,6,7,8,9,10].map(n => (
+            <button
+              key={n}
+              type="button"
+              disabled={loading}
+              className={`rating-number-btn${value === n ? ' active' : ''}`}
+              onClick={() => handleInputChange(field, n)}
+            >
+              {n}
+            </button>
+          ))}
+          {value > 0 && <span className="category-score-badge">{value}/10</span>}
+        </div>
+      </div>
+    );
   };
 
   if (!isOpen) return null;
@@ -335,18 +351,18 @@ placeholder={t('review.form.codePlaceholder')}
               </div>
 
               <div className="auth-form">
-                <div className="rating-section">
-                <label className="form-label">{t('review.form.overallRating')}</label>
-                  <div className="star-rating">
-                    {renderStarRating()}
-                  </div>
-                <div className="rating-text">
-  {formData.rating === 1 && t('review.rating.terrible')}
-  {formData.rating === 2 && t('review.rating.bad')}
-  {formData.rating === 3 && t('review.rating.okay')}
-  {formData.rating === 4 && t('review.rating.good')}
-  {formData.rating === 5 && t('review.rating.excellent')}
-</div>
+                <div className="rating-categories-section">
+                  <label className="form-label">{t('review.form.categoriesTitle')}</label>
+                  {renderCategoryRating('qualityRating',        'review.form.qualityRating')}
+                  {renderCategoryRating('priceRating',          'review.form.priceRating')}
+                  {renderCategoryRating('availabilityRating',   'review.form.availabilityRating')}
+                  {renderCategoryRating('professionalismRating','review.form.professionalismRating')}
+                  {computedGlobal && (
+                    <div className="global-score-preview">
+                      <span>{t('review.form.globalScore')}</span>
+                      <strong className="global-score-value">{computedGlobal}/10</strong>
+                    </div>
+                  )}
                 </div>
 
              <div className="input-group">
