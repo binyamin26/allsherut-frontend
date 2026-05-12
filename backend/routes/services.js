@@ -981,7 +981,7 @@ router.delete('/:serviceType', authenticateToken, async (req, res) => {
       'electrician', 'plumbing', 'air_conditioning', 'gas_technician', 'drywall',
       'carpentry', 'home_organization', 'event_entertainment', 'private_chef',
       'painting', 'waterproofing', 'contractor', 'aluminum', 'glass_works',
-      'locksmith', 'property_management', 'laundry', 'moving', 'photographer', 'event_decoration', 'pest_control'
+      'locksmith', 'property_management', 'laundry', 'moving', 'photographer', 'event_decoration', 'pest_control', 'handyman'
     ];
     
     if (!validServices.includes(serviceType)) {
