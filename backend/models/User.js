@@ -1240,11 +1240,6 @@ static async updateServiceProviderWithDetails(connection, providerId, serviceTyp
       break;
 
     case 'event_entertainment':
-      if (!serviceDetails.age) {
-        errors.push({ field: 'age', message: 'גיל נדרש' });
-      } else if (parseInt(serviceDetails.age) < 18) {
-        errors.push({ field: 'age', message: 'גיל מינימלי: 18 שנים' });
-      }
       if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
         errors.push({ field: 'availability_days', message: 'יש לבחור ימי זמינות' });
       }

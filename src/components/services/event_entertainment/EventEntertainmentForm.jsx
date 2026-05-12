@@ -11,24 +11,6 @@ const EventEntertainmentForm = ({ serviceDetails, errors, handleServiceDetailsCh
   <h4>{t('serviceForm.common.requiredFields')}</h4>
         
         <div className="input-group">
-          <label className="auth-form-label required">{t('serviceForm.common.age')}</label>
-          <input
-           type="text"
- inputMode="numeric"
- autoComplete="off"
-            value={serviceDetails.age || ''}
-         onChange={(e) => {
-  const numericValue = e.target.value.replace(/\D/g, '');  // ← AJOUTE CETTE LIGNE
-  handleServiceDetailsChange('age', numericValue);  // (ou 'experience', ou 'hourlyRate')
-}}
-            className={`standard-input ${errors['serviceDetails.age'] ? 'error' : ''}`}
-            data-field="age"
-            min="18"
-          />
-          {errors['serviceDetails.age'] && <span className="error-text">{errors['serviceDetails.age']}</span>}
-        </div>
-
-        <div className="input-group">
           <label className="auth-form-label required">{t('serviceForm.common.availabilityDays')}</label>
           <div className="checkbox-group" data-field="availability_days">
         {[

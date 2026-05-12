@@ -4,12 +4,12 @@ import CustomDropdown from '../../common/CustomDropdown';
 
 const BabysittingForm = ({ serviceDetails, errors, handleServiceDetailsChange, handleExclusiveCheckbox }) => {
   const { t } = useLanguage();
-  
+
   // ✅ REFS pour les champs numériques
   const ageRef = useRef(null);
   const experienceRef = useRef(null);
   const hourlyRateRef = useRef(null);
-  
+
   // ✅ Forcer le reset des champs au montage SEULEMENT
   useEffect(() => {
     setTimeout(() => {
@@ -46,15 +46,15 @@ const BabysittingForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
           <input
             ref={ageRef}
             type="text"
-             inputMode="numeric"
+            inputMode="numeric"
             name={`babysitter-age-new-${Math.random()}`}
             autoComplete="off"
             data-lpignore="true"
             data-form-type="other"
-           onChange={(e) => {
-  const numericValue = e.target.value.replace(/\D/g, '');  // ← AJOUTE CETTE LIGNE
-  handleServiceDetailsChange('age', numericValue);  // (ou 'experience', ou 'hourlyRate')
-}}
+            onChange={(e) => {
+              const numericValue = e.target.value.replace(/\D/g, '');
+              handleServiceDetailsChange('age', numericValue);
+            }}
             className={`standard-input ${errors['serviceDetails.age'] ? 'error' : ''}`}
             data-field="age"
             min="15"

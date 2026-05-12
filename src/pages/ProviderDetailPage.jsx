@@ -665,12 +665,6 @@ const handleContact = () => {
         {/* === EVENT_ENTERTAINMENT === */}
         {provider.serviceType === 'event_entertainment' && (
           <>
-            {details.age && (
-              <div className="detail-item">
-                <strong>{t('provider.details.age')}:</strong>
-                <span>{details.age} {t('provider.details.years')}</span>
-              </div>
-            )}
             {details.food_machine_types && details.food_machine_types.length > 0 && (
                   <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                     <strong>🍿 {t('provider.details.foodMachines')}:</strong>

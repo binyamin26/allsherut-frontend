@@ -887,11 +887,7 @@ case 'home_organization':  if (!serviceDetails.availability_hours || serviceDeta
   break;
 
   case 'event_entertainment':
-  if (!serviceDetails.age) {
-    newErrors['serviceDetails.age'] = t('validation.ageRequired');
-  } else if (parseInt(serviceDetails.age) < 18) {
-    newErrors['serviceDetails.age'] = t('validation.ageMin18');
-  }  if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
+  if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
     newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
   }
   if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
