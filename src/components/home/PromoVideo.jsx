@@ -701,8 +701,7 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
   const hasImage        = !!activeSlide?.bgImage;
   const hasVideo        = !!activeSlide?.bgVideo;
   // On iOS, video elements are suppressed — treat those slides as idle-layer slides
-  const hasFallback     = isIOS && !!activeSlide?.bgFallback;
-  const showIdleLayer   = !hasImage && (!hasVideo || isIOS) && !isMarqueeActive && !hasFallback;
+  const showIdleLayer   = !hasImage && !hasVideo && !isMarqueeActive;
 
   return (
     <div className="promo-container">
@@ -734,22 +733,12 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
         ) : null
       )}
 
-      {/* Images fallback pour les slides vidéo sur iOS */}
-      {isIOS && promoTexts.map((slide, i) =>
-        slide.bgFallback ? (
-          <div key={`fallback-${i}`} className={`slide-bg ${activeSeq === i ? 'visible' : 'hidden'}`}>
-            <img src={slide.bgFallback} alt="" onError={(e) => { e.target.style.display = 'none'; }} />
-          </div>
-        ) : null
-      )}
-
-      {/* Vidéos letterbox — désactivées sur iOS pour éviter le crash WebKit OOM */}
-      {/* La slide suivante est préchargée en arrière-plan pour éviter le délai d'apparition */}
-      {!isIOS && promoTexts.map((slide, i) => {
+      {/* Vidéos letterbox — préchargement désactivé sur iOS pour économiser la RAM */}
+      {promoTexts.map((slide, i) => {
         if (!slide.bgVideo) return null;
         const isActive = activeSeq === i;
         const nextSeq = (activeSeq + 1) % promoTexts.length;
-        const isPreloading = !isActive && i === nextSeq;
+        const isPreloading = !isIOS && !isActive && i === nextSeq;
         if (!isActive && !isPreloading) return null;
         return (
           <SlideVideo
