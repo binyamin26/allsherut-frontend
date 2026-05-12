@@ -1114,6 +1114,60 @@ const serviceFieldsConfig = {
     ]
   },
 
+  handyman: {
+    fields: [
+      {
+        name: 'availability_hours',
+        label: 'serviceFields.handyman.availability_hours',
+        type: 'checkbox',
+        options: ['בוקר', 'צהריים', 'ערב', '24/7']
+      },
+      {
+        name: 'availability_days',
+        label: 'serviceFields.handyman.availability_days',
+        type: 'checkbox',
+        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי']
+      },
+      { name: 'experience', label: 'serviceForm.common.experience', type: 'number' },
+      {
+        name: 'work_types',
+        label: 'serviceFields.handyman.work_types',
+        type: 'checkbox',
+        options: ['תיקונים כלליים', 'התקנות והרכבות', 'דלתות ורהיטים', 'עבודות קלות בבית', 'תליות וסידור']
+      },
+      {
+        name: 'general_repairs_types',
+        label: 'serviceFields.handyman.general_repairs_types',
+        type: 'checkbox',
+        options: ['תיקונים קטנים בבית', 'תחזוקה שוטפת']
+      },
+      {
+        name: 'installations_types',
+        label: 'serviceFields.handyman.installations_types',
+        type: 'checkbox',
+        options: ['התקנת טלוויזיה', 'התקנת מדפים', 'התקנת וילונות', 'הרכבת רהיטים']
+      },
+      {
+        name: 'doors_furniture_types',
+        label: 'serviceFields.handyman.doors_furniture_types',
+        type: 'checkbox',
+        options: ['תיקון דלתות', 'תיקון רהיטים']
+      },
+      {
+        name: 'light_work_types',
+        label: 'serviceFields.handyman.light_work_types',
+        type: 'checkbox',
+        options: ['החלפת מנורות', 'תיקונים קלים']
+      },
+      {
+        name: 'hanging_types',
+        label: 'serviceFields.handyman.hanging_types',
+        type: 'checkbox',
+        options: ['תליית תמונות', 'תליית אביזרים']
+      }
+    ]
+  },
+
   pest_control: {
     fields: [
       {
