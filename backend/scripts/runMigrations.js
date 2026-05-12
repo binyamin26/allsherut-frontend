@@ -10,6 +10,8 @@ const migrations = [
   'add_location_to_listings.sql',
   'fix_experience_enum.sql',
   'fix_service_type_varchar.sql',
+  'add-review-categories.sql',
+  'remove-age-event-entertainment.sql',
 ];
 
 async function run() {
