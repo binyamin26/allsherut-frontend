@@ -556,7 +556,7 @@ const styles = `
   }
 `;
 
-const SlideVideo = ({ src, isActive, playing, preload = "none" }) => {
+const SlideVideo = ({ src, isActive, playing, preload = "none", poster }) => {
   const ref = useRef(null);
 
   // Release iOS video buffer on unmount — prevents the OOM crash on slide transition
@@ -588,7 +588,7 @@ const SlideVideo = ({ src, isActive, playing, preload = "none" }) => {
 
   return (
     <div className={`slide-video-wrap ${isActive ? 'visible' : 'hidden'}`}>
-      <video ref={ref} className="slide-video-main" src={src} loop muted playsInline preload={preload} />
+      <video ref={ref} className="slide-video-main" src={src} loop muted playsInline preload={preload} poster={poster} />
     </div>
   );
 };
@@ -747,6 +747,7 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
             isActive={isActive}
             playing={isActive && isPlaying}
             preload={isPreloading ? "auto" : "none"}
+            poster={slide.bgFallback}
           />
         );
       })}
