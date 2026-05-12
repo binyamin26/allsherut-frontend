@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+﻿import { useNavigate } from 'react-router-dom';
 import { Droplets, CheckCircle, Star, Phone, Shield, Clock, MessageCircle } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import FilterBar from '../../components/filters/FilterBar';
@@ -40,7 +40,7 @@ const WaterproofingPage = () => {
         ...locationFilter,
         ...activeFilters,
         page: 1,
-        limit: 20
+        limit: 100
       };
 
       const cleanParams = Object.fromEntries(
@@ -116,7 +116,7 @@ const WaterproofingPage = () => {
             <div className="service-hero-icon">
               <img
                 src="/images/logo itoum.png"
-                alt="Étanchéité"
+                alt="ֳ‰tanchֳ©itֳ©"
               />
             </div>
             <h1 className="service-title">{t('services.waterproofing.pageTitle')}</h1>

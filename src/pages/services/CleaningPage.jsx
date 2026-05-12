@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+﻿import { useNavigate } from 'react-router-dom';
 import { Home, CheckCircle, Star, Phone, Sparkles, Clock, Shield, MessageCircle } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import FilterBar from '../../components/filters/FilterBar';
@@ -24,7 +24,7 @@ const CleaningPageClean = () => {
   const [resultsCount, setResultsCount] = useState(0);
   const [error, setError] = useState(null);
   
-  // État pour modal d'avis
+  // ֳ‰tat pour modal d'avis
   const [reviewModal, setReviewModal] = useState({
     isOpen: false,
     providerId: null,
@@ -42,10 +42,10 @@ const CleaningPageClean = () => {
         ...locationFilter,
         ...activeFilters,
         page: 1,
-        limit: 20
+        limit: 100
       };
 
-      // Nettoyer les paramètres vides
+      // Nettoyer les paramֳ¨tres vides
       const cleanParams = Object.fromEntries(
         Object.entries(searchParams).filter(([key, value]) => 
           value !== '' && value !== null && value !== undefined
@@ -110,7 +110,7 @@ useEffect(() => {
     });
   };
 
-  // Fonction pour rafraîchir après création d'avis
+  // Fonction pour rafraֳ®chir aprֳ¨s crֳ©ation d'avis
   const handleReviewCreated = () => {
     loadProviders();
   };
@@ -123,7 +123,7 @@ useEffect(() => {
             <div className="service-hero-icon">
               <img
                 src="/images/logo nikayon.png"
-                alt="Ménage"
+                alt="Mֳ©nage"
               />
             </div>
             <h1 className="service-title">{t('services.cleaning.pageTitle')}</h1>

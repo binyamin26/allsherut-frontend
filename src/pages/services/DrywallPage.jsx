@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+﻿import { useNavigate } from 'react-router-dom';
 import { Layers, CheckCircle, Star, Phone, Shield, Clock, MessageCircle } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import FilterBar from '../../components/filters/FilterBar';
@@ -40,7 +40,7 @@ const DrywallPage = () => {
         ...locationFilter,
         ...activeFilters,
         page: 1,
-        limit: 20
+        limit: 100
       };
 
       const cleanParams = Object.fromEntries(
@@ -117,7 +117,7 @@ const DrywallPage = () => {
             <div className="service-hero-icon">
               <img
                 src="/images/logo placo.png"
-                alt="Plâtre"
+                alt="Plֳ¢tre"
               />
             </div>
             <h1 className="service-title">{t('services.drywall.pageTitle')}</h1>

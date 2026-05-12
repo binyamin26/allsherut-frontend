@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+﻿import { useNavigate } from 'react-router-dom';
 import { Square, CheckCircle, Star, Phone, Shield, Clock, MessageCircle } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import FilterBar from '../../components/filters/FilterBar';
@@ -40,7 +40,7 @@ const GlassWorksPage = () => {
         ...locationFilter,
         ...activeFilters,
         page: 1,
-        limit: 20
+        limit: 100
       };
 
       const cleanParams = Object.fromEntries(

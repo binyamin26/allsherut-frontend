@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+﻿import { useNavigate } from 'react-router-dom';
 import { CheckCircle, Star, Phone, Shield, Clock, MessageCircle, HardHat } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import FilterBar from '../../components/filters/FilterBar';
@@ -40,7 +40,7 @@ const ContractorPage = () => {
         ...locationFilter,
         ...activeFilters,
         page: 1,
-        limit: 20
+        limit: 100
       };
 
       const cleanParams = Object.fromEntries(
@@ -116,7 +116,7 @@ const ContractorPage = () => {
             <div className="service-hero-icon">
               <img
                 src="/images/logo kablan.png"
-                alt="Rénovation"
+                alt="Rֳ©novation"
               />
             </div>
             <h1 className="service-title">{t('services.contractor.pageTitle')}</h1>

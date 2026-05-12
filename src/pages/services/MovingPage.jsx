@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+﻿import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import FilterBar from '../../components/filters/FilterBar';
 import ReviewModal from '../../components/modals/ReviewModal';
@@ -39,7 +39,7 @@ const MovingPage = () => {
         ...locationFilter,
         ...activeFilters,
         page: 1,
-        limit: 20
+        limit: 100
       };
 
       const cleanParams = Object.fromEntries(
@@ -105,7 +105,7 @@ const MovingPage = () => {
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon">
-              <img src="/images/logo demenagement.jpg" alt="Déménagement" />
+              <img src="/images/logo demenagement.jpg" alt="Dֳ©mֳ©nagement" />
             </div>
             <h1 className="service-title">{t('services.moving.pageTitle')}</h1>
           </div>
@@ -190,3 +190,4 @@ const MovingPage = () => {
 };
 
 export default MovingPage;
+

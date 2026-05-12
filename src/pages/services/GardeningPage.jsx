@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';import { Scissors, CheckCircle, Star, Phone, Leaf, Droplets, MessageCircle } from 'lucide-react';
+﻿import { useNavigate } from 'react-router-dom';import { Scissors, CheckCircle, Star, Phone, Leaf, Droplets, MessageCircle } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import FilterBar from '../../components/filters/FilterBar';
 import ReviewModal from '../../components/modals/ReviewModal';
@@ -24,7 +24,7 @@ const GardeningPageClean = () => {
   const [resultsCount, setResultsCount] = useState(0);
   const [error, setError] = useState(null);
 
-  // État pour modal d'avis
+  // ֳ‰tat pour modal d'avis
   const [reviewModal, setReviewModal] = useState({
     isOpen: false,
     providerId: null,
@@ -42,10 +42,10 @@ const GardeningPageClean = () => {
         ...locationFilter,
         ...activeFilters,
         page: 1,
-        limit: 20
+        limit: 100
       };
 
-      // Nettoyer les paramètres vides
+      // Nettoyer les paramֳ¨tres vides
       const cleanParams = Object.fromEntries(
         Object.entries(searchParams).filter(([key, value]) => 
           value !== '' && value !== null && value !== undefined
@@ -109,7 +109,7 @@ useEffect(() => {
     });
   };
 
-  // Fonction pour rafraîchir après création d'avis
+  // Fonction pour rafraֳ®chir aprֳ¨s crֳ©ation d'avis
   const handleReviewCreated = () => {
     loadProviders();
   };

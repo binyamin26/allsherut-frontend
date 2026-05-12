@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+﻿import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import FilterBar from '../../components/filters/FilterBar';
 import ReviewModal from '../../components/modals/ReviewModal';
@@ -39,7 +39,7 @@ const PhotographerPage = () => {
         ...locationFilter,
         ...activeFilters,
         page: 1,
-        limit: 20
+        limit: 100
       };
 
       const cleanParams = Object.fromEntries(
@@ -172,3 +172,4 @@ const PhotographerPage = () => {
 };
 
 export default PhotographerPage;
+

@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+﻿import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import FilterBar from '../../components/filters/FilterBar';
 import ReviewModal from '../../components/modals/ReviewModal';
@@ -39,7 +39,7 @@ const PestControlPage = () => {
         ...locationFilter,
         ...activeFilters,
         page: 1,
-        limit: 20
+        limit: 100
       };
 
       const cleanParams = Object.fromEntries(
@@ -102,7 +102,7 @@ const PestControlPage = () => {
             <div className="service-hero-icon">
               <img
                 src="/images/logo desinctisation.jpg"
-                alt="הדברה"
+                alt="׳”׳“׳‘׳¨׳”"
               />
             </div>
             <h1 className="service-title">{t('services.pest_control.pageTitle')}</h1>
@@ -188,3 +188,4 @@ const PestControlPage = () => {
 };
 
 export default PestControlPage;
+

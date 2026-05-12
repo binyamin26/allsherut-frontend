@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+﻿import { useNavigate } from 'react-router-dom';
 import { User, CheckCircle, Star, Phone, Heart, Shield, Clock, MessageCircle } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import FilterBar from '../../components/filters/FilterBar';
@@ -25,7 +25,7 @@ const EldercarePageClean = () => {
   const [resultsCount, setResultsCount] = useState(0);
   const [error, setError] = useState(null);
 
-  // État pour modal d'avis
+  // ֳ‰tat pour modal d'avis
   const [reviewModal, setReviewModal] = useState({
     isOpen: false,
     providerId: null,
@@ -43,23 +43,23 @@ const EldercarePageClean = () => {
         ...locationFilter,
         ...activeFilters,
         page: 1,
-        limit: 20
+        limit: 100
       };
 
-      // Nettoyer les paramètres vides
+      // Nettoyer les paramֳ¨tres vides
       const cleanParams = Object.fromEntries(
         Object.entries(searchParams).filter(([key, value]) => 
           value !== '' && value !== null && value !== undefined
         )
       );
 
-        // 🔍 AJOUTE CES LIGNES DE DEBUG :
-    console.log('🔍 URL appelée:', `${apiService.baseURL}/search/providers`);
-    console.log('🔍 Paramètres:', cleanParams);
+        // נ” AJOUTE CES LIGNES DE DEBUG :
+    console.log('נ” URL appelֳ©e:', `${apiService.baseURL}/search/providers`);
+    console.log('נ” Paramֳ¨tres:', cleanParams);
 
       const response = await apiService.searchProviders(cleanParams);
 
-       console.log('🔍 Response complète:', response);
+       console.log('נ” Response complֳ¨te:', response);
       
       if (response.success) {
         setProviders(response.data.providers || []);
@@ -116,7 +116,7 @@ useEffect(() => {
     });
   };
 
-  // Fonction pour rafraîchir après création d'avis
+  // Fonction pour rafraֳ®chir aprֳ¨s crֳ©ation d'avis
   const handleReviewCreated = () => {
     loadProviders();
   };
@@ -129,7 +129,7 @@ useEffect(() => {
             <div className="service-hero-icon">
               <img
                 src="/images/logo kachich.png"
-                alt="Aide aux aînés"
+                alt="Aide aux aֳ®nֳ©s"
               />
             </div>
             <h1 className="service-title">{t('services.eldercare.pageTitle')}</h1>

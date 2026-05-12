@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+﻿import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import FilterBar from '../../components/filters/FilterBar';
 import ReviewModal from '../../components/modals/ReviewModal';
@@ -77,7 +77,7 @@ const EventDecorationPage = () => {
     setLoading(true);
     setError(null);
     try {
-      const searchParams = { service: 'event_decoration', ...locationFilter, ...activeFilters, page: 1, limit: 20 };
+      const searchParams = { service: 'event_decoration', ...locationFilter, ...activeFilters, page: 1, limit: 100 };
       const cleanParams = Object.fromEntries(Object.entries(searchParams).filter(([, v]) => v !== '' && v !== null && v !== undefined));
       const response = await apiService.searchProviders(cleanParams);
       if (response.success) {
@@ -187,3 +187,4 @@ const EventDecorationPage = () => {
 };
 
 export default EventDecorationPage;
+

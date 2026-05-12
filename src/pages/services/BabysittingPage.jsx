@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+﻿import { useNavigate } from 'react-router-dom';
 import { Baby } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import FilterBar from '../../components/filters/FilterBar';
@@ -24,7 +24,7 @@ const BabysittingPageClean = () => {
   const [resultsCount, setResultsCount] = useState(0);
   const [error, setError] = useState(null);
 
-  // État pour modal d'avis
+  // ֳ‰tat pour modal d'avis
   const [reviewModal, setReviewModal] = useState({
     isOpen: false,
     providerId: null,
@@ -42,10 +42,10 @@ const BabysittingPageClean = () => {
         ...locationFilter,
         ...activeFilters,
         page: 1,
-        limit: 20
+        limit: 100
       };
 
-      // Nettoyer les paramètres vides
+      // Nettoyer les paramֳ¨tres vides
       const cleanParams = Object.fromEntries(
         Object.entries(searchParams).filter(([key, value]) => 
           value !== '' && value !== null && value !== undefined
@@ -111,7 +111,7 @@ const response = await apiService.searchProviders(cleanParams);
     });
   };
 
-  // Fonction pour rafraîchir après création d'avis
+  // Fonction pour rafraֳ®chir aprֳ¨s crֳ©ation d'avis
   const handleReviewCreated = () => {
     loadProviders();
   };
@@ -124,7 +124,7 @@ const response = await apiService.searchProviders(cleanParams);
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo bébé.png"
+                src="/images/logo bֳ©bֳ©.png"
                 alt="baby-sitting"
               />
             </div>
@@ -142,7 +142,7 @@ const response = await apiService.searchProviders(cleanParams);
         selectedLocation={locationFilter}
       />
 
-      {/* Section résultats */}
+      {/* Section rֳ©sultats */}
       <div className="results-section">
         <div className="results-container">
           <div className="results-summary">

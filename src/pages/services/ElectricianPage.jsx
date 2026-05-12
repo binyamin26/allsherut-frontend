@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+﻿import { useNavigate } from 'react-router-dom';
 import { Zap, CheckCircle, Star, Phone, Shield, Clock, MessageCircle, Wrench } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import FilterBar from '../../components/filters/FilterBar';
@@ -40,7 +40,7 @@ const ElectricianPage = () => {
         ...locationFilter,
         ...activeFilters,
         page: 1,
-        limit: 20
+        limit: 100
       };
 
       const cleanParams = Object.fromEntries(
@@ -116,7 +116,7 @@ const ElectricianPage = () => {
             <div className="service-hero-icon">
               <img
                 src="/images/logo electricien.png"
-                alt="Électricité"
+                alt="ֳ‰lectricitֳ©"
               />
             </div>
             <h1 className="service-title">{t('services.electrician.pageTitle')}</h1>

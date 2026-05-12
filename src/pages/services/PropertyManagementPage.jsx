@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+﻿import { useNavigate } from 'react-router-dom';
 import { Building2, CheckCircle, Star, Phone, Home, Shield, MessageCircle, Key, FileText, Users, Clock } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import FilterBar from '../../components/filters/FilterBar';
@@ -24,7 +24,7 @@ const PropertyManagementPage = () => {
   const [resultsCount, setResultsCount] = useState(0);
   const [error, setError] = useState(null);
 
-  // État pour modal d'avis
+  // ֳ‰tat pour modal d'avis
   const [reviewModal, setReviewModal] = useState({
     isOpen: false,
     providerId: null,
@@ -42,10 +42,10 @@ const PropertyManagementPage = () => {
         ...locationFilter,
         ...activeFilters,
         page: 1,
-        limit: 20
+        limit: 100
       };
 
-      // Nettoyer les paramètres vides
+      // Nettoyer les paramֳ¨tres vides
       const cleanParams = Object.fromEntries(
         Object.entries(searchParams).filter(([key, value]) => 
           value !== '' && value !== null && value !== undefined
@@ -55,7 +55,7 @@ const PropertyManagementPage = () => {
       const response = await apiService.searchProviders(cleanParams);
       
       if (response.success) {
-         console.log('🔍 Premier provider:', response.data.providers[0]); // AJOUTE CETTE LIGNE
+         console.log('נ” Premier provider:', response.data.providers[0]); // AJOUTE CETTE LIGNE
         setProviders(response.data.providers || []);
         setResultsCount(response.data.pagination?.totalResults || response.data.providers?.length || 0);
       } else {
@@ -110,7 +110,7 @@ const PropertyManagementPage = () => {
     });
   };
 
-  // Fonction pour rafraîchir après création d'avis
+  // Fonction pour rafraֳ®chir aprֳ¨s crֳ©ation d'avis
   const handleReviewCreated = () => {
     loadProviders();
   };
@@ -123,7 +123,7 @@ const PropertyManagementPage = () => {
             <div className="service-hero-icon">
               <img
                 src="/images/logo nihoul dirot.png"
-                alt="Gestion Immobilière"
+                alt="Gestion Immobiliֳ¨re"
               />
             </div>
             <h1 className="service-title">{t('services.property_management.pageTitle')}</h1>

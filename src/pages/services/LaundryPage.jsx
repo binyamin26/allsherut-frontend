@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+﻿import { useNavigate } from 'react-router-dom';
 import { Shirt, CheckCircle, Star, Phone, Sparkles, Shield, Clock, MessageCircle } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import FilterBar from '../../components/filters/FilterBar';
@@ -25,7 +25,7 @@ const LaundryPage = () => {
   const [resultsCount, setResultsCount] = useState(0);
   const [error, setError] = useState(null);
 
-  // État pour modal d'avis
+  // ֳ‰tat pour modal d'avis
   const [reviewModal, setReviewModal] = useState({
     isOpen: false,
     providerId: null,
@@ -43,22 +43,22 @@ const LaundryPage = () => {
         ...locationFilter,
         ...activeFilters,
         page: 1,
-        limit: 20
+        limit: 100
       };
 
-      // Nettoyer les paramètres vides
+      // Nettoyer les paramֳ¨tres vides
       const cleanParams = Object.fromEntries(
         Object.entries(searchParams).filter(([key, value]) => 
           value !== '' && value !== null && value !== undefined
         )
       );
 
-      console.log('🔍 URL appelée:', `${apiService.baseURL}/search/providers`);
-      console.log('🔍 Paramètres:', cleanParams);
+      console.log('נ” URL appelֳ©e:', `${apiService.baseURL}/search/providers`);
+      console.log('נ” Paramֳ¨tres:', cleanParams);
 
       const response = await apiService.searchProviders(cleanParams);
 
-      console.log('🔍 Response complète:', response);
+      console.log('נ” Response complֳ¨te:', response);
       
       if (response.success) {
         setProviders(response.data.providers || []);
@@ -115,7 +115,7 @@ const LaundryPage = () => {
     });
   };
 
-  // Fonction pour rafraîchir après création d'avis
+  // Fonction pour rafraֳ®chir aprֳ¨s crֳ©ation d'avis
   const handleReviewCreated = () => {
     loadProviders();
   };
