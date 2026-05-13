@@ -63,7 +63,7 @@ const Header = () => {
     { icon: <ChefHat className="w-5 h-5" />, nameKey: 'services.private_chef', descKey: 'services.private_chef.desc', href: '/services/private-chef' },
     { icon: <Camera className="w-5 h-5" />, nameKey: 'services.photographer', descKey: 'services.photographer.desc', href: '/services/photographer' },
     { icon: <BookOpen className="w-5 h-5" />, nameKey: 'services.tutoring', descKey: 'services.tutoring.desc', href: '/services/tutoring' },
-    { icon: <Activity className="w-5 h-5" />, nameKey: 'services.sports_activities', descKey: 'services.sports_activities.desc', href: '/services/sports-activities' },
+    { icon: <span style={{ fontSize: '1.1rem', lineHeight: 1 }}>⚽</span>, nameKey: 'services.sports_activities', descKey: 'services.sports_activities.desc', href: '/services/sports-activities' },
     { icon: <Baby className="w-5 h-5" />, nameKey: 'services.babysitting', descKey: 'services.babysitting.desc', href: '/services/babysitting' },
     { icon: <PawPrint className="w-5 h-5" />, nameKey: 'services.petcare', descKey: 'services.petcare.desc', href: '/services/petcare' },
     { icon: <UserCheck className="w-5 h-5" />, nameKey: 'services.eldercare', descKey: 'services.eldercare.desc', href: '/services/eldercare' }
