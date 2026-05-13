@@ -264,7 +264,7 @@ const HomePage = () => {
     {
       id: 'sports_activities',
       name: t('services.sports_activities'),
-      image: '/images/jardinage.jpg',
+      image: '/images/sport.jpg',
       description: t('services.sports_activities.desc'),
       color: 'from-green-500 to-emerald-600',
       href: '/services/sports-activities'
