@@ -175,6 +175,7 @@ const services = [
   { key: 'private_chef', name: t('services.private_chef'), image: '/images/traiteur.jpg', gradient: 'private_chef-gradient' },
   { key: 'photographer', name: t('services.photographer'), image: '/images/photographe.jpg', gradient: 'photographer-gradient' },
   { key: 'tutoring', name: t('services.tutoring'), icon: '📚', image: '/images/tutoring.png', gradient: 'tutoring-gradient' },
+  { key: 'sports_activities', name: t('services.sports_activities'), icon: '⚽', image: '/images/jardinage.jpg', gradient: 'sports_activities-gradient' },
   { key: 'babysitting', name: t('services.babysitting'), icon: '👶', image: '/images/babysite.png', gradient: 'babysitting-gradient' },
   { key: 'petcare', name: t('services.petcare'), image: '/images/chien.jpg', gradient: 'petcare-gradient' },
   { key: 'eldercare', name: t('services.eldercare'), icon: '👵', image: '/images/eldercare.png', gradient: 'eldercare-gradient' }
@@ -308,33 +309,13 @@ if (authForm) {
         title: 'מקצועות לימוד',
         items: tutoringSubcategories.filter(s => s.display_order >= 200 && s.display_order <= 223)
       },
-      music: {
-        title: 'מוזיקה וכלי נגינה',
-        items: tutoringSubcategories.filter(s => s.display_order >= 1 && s.display_order <= 7)
-      },
-      art: {
-        title: 'אמנות חזותית',
-        items: tutoringSubcategories.filter(s => s.display_order >= 10 && s.display_order <= 16)
-      },
-      performance: {
-        title: 'אמנויות במה',
-        items: tutoringSubcategories.filter(s => s.display_order >= 20 && s.display_order <= 23)
-      },
-      sports: {
-        title: 'ספורט וכושר',
-        items: tutoringSubcategories.filter(s => s.display_order >= 30 && s.display_order <= 43)
-      },
       languages: {
-        title: 'שפות זרות',
-        items: tutoringSubcategories.filter(s => s.display_order >= 50 && s.display_order <= 61)
+        title: 'שפות ותרבויות',
+        items: tutoringSubcategories.filter(s => s.display_order >= 40 && s.display_order <= 47)
       },
       tech: {
-        title: 'טכנולוגיה ומחשבים',
-        items: tutoringSubcategories.filter(s => s.display_order >= 70 && s.display_order <= 78)
-      },
-      professional: {
-        title: 'מקצועות מיוחדים',
-        items: tutoringSubcategories.filter(s => s.display_order >= 80 && s.display_order <= 100)
+        title: 'טכנולוגיה ומדע יישומי',
+        items: tutoringSubcategories.filter(s => s.display_order >= 60 && s.display_order <= 64)
       }
     };
   }, [tutoringSubcategories]);
@@ -736,6 +717,13 @@ case 'petcare':
 if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
   newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
 }
+        break;
+
+      case 'sports_activities':
+        if (!serviceDetails.subjects || serviceDetails.subjects.length === 0) newErrors['serviceDetails.subjects'] = t('validation.selectAtLeastOne');
+        if (!serviceDetails.teachingMode) newErrors['serviceDetails.teachingMode'] = t('validation.teachingModeRequired');
+        if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
+        if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
         break;
 
      case 'eldercare':

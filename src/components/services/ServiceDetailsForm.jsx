@@ -6,6 +6,7 @@ import CleaningForm from './cleaning/CleaningForm';
 import GardeningForm from './gardening/GardeningForm';
 import PetcareForm from './petcare/PetcareForm';
 import TutoringForm from './tutoring/TutoringForm';
+import SportsActivitiesForm from './sports_activities/SportsActivitiesForm';
 import EldercareForm from './eldercare/EldercareForm';
 import LaundryForm from './laundry/LaundryForm';
 import PropertyManagementForm from './property_management/PropertyManagementForm';
@@ -45,6 +46,7 @@ const ServiceDetailsForm = ({
     gardening: GardeningForm,
     petcare: PetcareForm,
     tutoring: TutoringForm,
+    sports_activities: SportsActivitiesForm,
     eldercare: EldercareForm,
     laundry: LaundryForm,
     property_management: PropertyManagementForm,

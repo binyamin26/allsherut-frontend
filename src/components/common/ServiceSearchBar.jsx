@@ -12,6 +12,7 @@ const SERVICE_URLS = {
   petcare: '/services/petcare',
   eldercare: '/services/eldercare',
   tutoring: '/services/tutoring',
+  sports_activities: '/services/sports-activities',
   laundry: '/services/laundry',
   electrician: '/services/electrician',
   plumbing: '/services/plumbing',

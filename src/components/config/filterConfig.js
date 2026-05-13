@@ -349,6 +349,28 @@ tutoring: {
   },
 
   // ═══════════════════════════════════════════════════════════════
+  // SPORTS & ACTIVITIES
+  // ═══════════════════════════════════════════════════════════════
+  sports_activities: {
+    sectionTitles: {
+      levels: 'filters.sports_activities.ageGroups',
+      teachingMode: 'filters.sports_activities.activityMode',
+    },
+    levels: [
+      { value: 'ילדים', key: 'filters.sports_activities.children' },
+      { value: 'נוער', key: 'filters.sports_activities.youth' },
+      { value: 'מבוגרים', key: 'filters.sports_activities.adults' },
+      { value: 'כל הגילאים', key: 'filters.sports_activities.allAges' }
+    ],
+    teachingModes: [
+      { value: '', key: 'filters.tutoring.allOptions' },
+      { value: 'פרונטלי בלבד', key: 'filters.tutoring.inPersonOnly' },
+      { value: 'אונליין בלבד', key: 'filters.tutoring.onlineOnly' },
+      { value: 'שניהם', key: 'filters.tutoring.both' }
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════════════
   // LAUNDRY
   // ═══════════════════════════════════════════════════════════════
 laundry: {

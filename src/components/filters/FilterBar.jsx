@@ -660,7 +660,16 @@ const ServicePanel = ({ serviceType, filters, onChange }) => {
       
     case 'tutoring':
       return (
-        <TutoringFilters 
+        <TutoringFilters
+          filters={filters}
+          handleFilterChange={handleFilterChange}
+          handleCheckboxChange={handleCheckboxChange}
+        />
+      );
+
+    case 'sports_activities':
+      return (
+        <SportsActivitiesFilters
           filters={filters}
           handleFilterChange={handleFilterChange}
           handleCheckboxChange={handleCheckboxChange}
@@ -1276,16 +1285,8 @@ const { t, currentLanguage } = useLanguage();
     if (!subcategories.length) return {};
     return {
       academic: { title: t('filters.tutoring.academicSubjects'), items: subcategories.filter(s => s.display_order >= 200 && s.display_order <= 223) },
-      music: { title: t('filters.tutoring.music'), items: subcategories.filter(s => s.display_order >= 1 && s.display_order <= 7) },
-      art: { title: t('filters.tutoring.art'), items: subcategories.filter(s => s.display_order >= 10 && s.display_order <= 16) },
-      dance: { title: t('filters.tutoring.dance'), items: subcategories.filter(s => s.display_order >= 20 && s.display_order <= 24) },
-      theater: { title: t('filters.tutoring.theater'), items: subcategories.filter(s => s.display_order >= 30 && s.display_order <= 33) },
       languages: { title: t('filters.tutoring.languages'), items: subcategories.filter(s => s.display_order >= 40 && s.display_order <= 47) },
-      crafts: { title: t('filters.tutoring.crafts'), items: subcategories.filter(s => s.display_order >= 50 && s.display_order <= 54) },
-      tech: { title: t('filters.tutoring.tech'), items: subcategories.filter(s => s.display_order >= 60 && s.display_order <= 64) },
-      cooking: { title: t('filters.tutoring.cooking'), items: subcategories.filter(s => s.display_order >= 70 && s.display_order <= 74) },
-      personal: { title: t('filters.tutoring.personal'), items: subcategories.filter(s => s.display_order >= 80 && s.display_order <= 89) },
-      sports: { title: t('filters.tutoring.sports'), items: subcategories.filter(s => s.display_order >= 90 && s.display_order <= 119) }
+      tech: { title: t('filters.tutoring.tech'), items: subcategories.filter(s => s.display_order >= 60 && s.display_order <= 64) }
     };
   }, [subcategories, t]);
 
@@ -1382,6 +1383,133 @@ const { t, currentLanguage } = useLanguage();
     </div>
   );
 };
+// SPORTS & ACTIVITIES - avec chargement dynamique des sous-catégories
+const SportsActivitiesFilters = ({ filters, handleFilterChange, handleCheckboxChange }) => {
+  const { t, currentLanguage } = useLanguage();
+  const { apiCall } = useAuth();
+  const config = FILTER_CONFIG.sports_activities;
+  const [subcategories, setSubcategories] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [openGroups, setOpenGroups] = useState({});
+
+  const toggleGroup = (key) => {
+    setOpenGroups(prev => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  useEffect(() => {
+    const loadSubcategories = async () => {
+      try {
+        setLoading(true);
+        const response = await apiCall('/services/sports_activities/subcategories', 'GET');
+        if (response.success && response.data.subcategories) {
+          setSubcategories(response.data.subcategories);
+          setError(null);
+        } else {
+          throw new Error('Format de réponse invalide');
+        }
+      } catch (err) {
+        console.error('Erreur chargement sous-catégories sports_activities:', err);
+        setError(t('filters.tutoring.loadError'));
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadSubcategories();
+  }, [apiCall, t]);
+
+  const groupedSubcategories = useMemo(() => {
+    if (!subcategories.length) return {};
+    return {
+      music: { title: t('filters.tutoring.music'), items: subcategories.filter(s => s.display_order >= 1 && s.display_order <= 7) },
+      art: { title: t('filters.tutoring.art'), items: subcategories.filter(s => s.display_order >= 10 && s.display_order <= 16) },
+      dance: { title: t('filters.tutoring.dance'), items: subcategories.filter(s => s.display_order >= 20 && s.display_order <= 24) },
+      theater: { title: t('filters.tutoring.theater'), items: subcategories.filter(s => s.display_order >= 30 && s.display_order <= 33) },
+      crafts: { title: t('filters.tutoring.crafts'), items: subcategories.filter(s => s.display_order >= 50 && s.display_order <= 54) },
+      cooking: { title: t('filters.tutoring.cooking'), items: subcategories.filter(s => s.display_order >= 70 && s.display_order <= 74) },
+      personal: { title: t('filters.tutoring.personal'), items: subcategories.filter(s => s.display_order >= 80 && s.display_order <= 89) },
+      sports: { title: t('filters.tutoring.sports'), items: subcategories.filter(s => s.display_order >= 90 && s.display_order <= 119) }
+    };
+  }, [subcategories, t]);
+
+  if (loading) {
+    return (
+      <div className="service-panel">
+        <div style={{ textAlign: 'center', padding: '2rem', color: '#64748b' }}>
+          <div className="loading-spinner" style={{ margin: '0 auto 1rem' }}></div>
+          <p>{t('filters.tutoring.loading')}</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="service-panel">
+        <div style={{ textAlign: 'center', padding: '2rem', color: '#ef4444' }}>
+          <p>{error}</p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="service-panel">
+      <div className="tutor-accordion-panel">
+        {Object.entries(groupedSubcategories).map(([key, group]) => {
+          if (!group.items.length) return null;
+          const isOpen = !!openGroups[key];
+          const selectedCount = group.items.filter(s => filters.subjects?.includes(s.name_he)).length;
+          return (
+            <div key={key} className={`tutor-accordion-item${isOpen ? ' is-open' : ''}`}>
+              <button className="tutor-accordion-btn" onClick={() => toggleGroup(key)}>
+                <div className="tutor-accordion-btn-left">
+                  <span>{group.title}</span>
+                  {selectedCount > 0 && (
+                    <span className="tutor-accordion-badge">{selectedCount}</span>
+                  )}
+                </div>
+                <ChevronDown size={15} className="tutor-accordion-chevron" />
+              </button>
+              {isOpen && (
+                <div className="tutor-accordion-body">
+                  {group.items.map(subcat => (
+                    <label key={subcat.id} className="tutor-checkbox-item">
+                      <input
+                        type="checkbox"
+                        checked={filters.subjects?.includes(subcat.name_he) || false}
+                        onChange={(e) => handleCheckboxChange('subjects', subcat.name_he, e.target.checked)}
+                      />
+                      <span className="tutor-icon-chip">{subcat.icon}</span>
+                      <span style={{ direction: 'rtl', unicodeBidi: 'isolate', display: 'inline-block' }}>{(subcat[`name_${currentLanguage}`] || subcat.name_he).replace(/‏/g, '')}</span>
+                    </label>
+                  ))}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      <CheckboxSection
+        title={t(config.sectionTitles.levels)}
+        options={config.levels.map(o => ({ value: o.value, label: t(o.key) }))}
+        filterKey="levels"
+        filters={filters}
+        onCheckboxChange={handleCheckboxChange}
+      />
+
+      <SelectSection
+        title={t(config.sectionTitles.teachingMode)}
+        options={config.teachingModes.map(o => ({ value: o.value, label: t(o.key) }))}
+        filterKey="teachingMode"
+        filters={filters}
+        onFilterChange={handleFilterChange}
+      />
+    </div>
+  );
+};
+
 // Placeholders pour les autres services (même pattern)
 const LaundryFilters = ({ filters, handleFilterChange, handleCheckboxChange, handleExclusiveCheckbox }) => {
   const { t } = useLanguage();

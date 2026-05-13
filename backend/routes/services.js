@@ -804,15 +804,20 @@ router.get('/:serviceId/subcategories', async (req, res) => {
 
     console.log(DEV_LOGS.API.REQUEST_RECEIVED, `services/${serviceId}/subcategories`, { grouped });
 
-    // Validation du service ID
-    const validServiceIds = [1, 2, 3, 4, 5, 6];
-    const numericServiceId = parseInt(serviceId);
-    
-    if (!validServiceIds.includes(numericServiceId)) {
-      const { errorResponse, statusCode } = ErrorHandler.notFoundError('service',
-        MESSAGES.ERROR.RESOURCE.SERVICE_NOT_FOUND
-      );
-      return res.status(statusCode).json(errorResponse);
+    // Validation du service ID (numérique ou clé de service)
+    let numericServiceId;
+    const parsedId = parseInt(serviceId, 10);
+    if (!isNaN(parsedId) && String(parsedId) === serviceId.trim()) {
+      numericServiceId = parsedId;
+    } else {
+      const rows = await query('SELECT id FROM services WHERE service_key = ?', [serviceId]);
+      if (!rows.length) {
+        const { errorResponse, statusCode } = ErrorHandler.notFoundError('service',
+          MESSAGES.ERROR.RESOURCE.SERVICE_NOT_FOUND
+        );
+        return res.status(statusCode).json(errorResponse);
+      }
+      numericServiceId = rows[0].id;
     }
 
     // Récupération des sous-catégories

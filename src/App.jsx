@@ -37,6 +37,7 @@ import CleaningPage from "./pages/services/CleaningPage";
 import GardeningPage from "./pages/services/GardeningPage";
 import PetcarePage from "./pages/services/PetcarePage";
 import TutoringPage from "./pages/services/TutoringPage";
+import SportsActivitiesPage from "./pages/services/SportsActivitiesPage";
 import EldercarePage from "./pages/services/EldercarePage";
 import LaundryPage from "./pages/services/LaundryPage";
 import PropertyManagementPage from "./pages/services/PropertyManagementPage";
@@ -147,6 +148,7 @@ function App() {
                 <Route path="/services/gardening" element={<GardeningPage />} />
                 <Route path="/services/petcare" element={<PetcarePage />} />
                 <Route path="/services/tutoring" element={<TutoringPage />} />
+                <Route path="/services/sports-activities" element={<SportsActivitiesPage />} />
                 <Route path="/services/eldercare" element={<EldercarePage />} />
  <Route path="/services/laundry" element={<LaundryPage />} />
  <Route path="/services/property-management" element={<PropertyManagementPage />} />
