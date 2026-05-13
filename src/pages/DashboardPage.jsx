@@ -81,7 +81,7 @@ const serviceImages = {
   gardening: '/images/jardinage.jpg',
   petcare: '/images/chien.jpg',
   tutoring: '/images/logo cours particulier.png',
-  sports_activities: '/images/jardinage.jpg',
+  sports_activities: '/images/sport.jpg',
   eldercare: '/images/eldercare.png',
   laundry: '/images/kvissa.jpg',
   property_management: '/images/nihoul-dirot.jpg',
