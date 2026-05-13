@@ -60,7 +60,7 @@ const ALL_SERVICE_KEYS = [
   'aluminum','glass_works','gas_technician','waterproofing','carpentry','handyman','contractor',
   'moving','gardening','pest_control','cleaning','laundry','property_management',
   'home_organization','event_decoration','event_entertainment','private_chef',
-  'photographer','tutoring','babysitting','petcare','eldercare'
+  'photographer','tutoring','sports_activities','babysitting','petcare','eldercare'
 ];
 
 // Définition des icônes de services
@@ -70,6 +70,7 @@ const serviceIcons = {
   gardening: Scissors,
   petcare: PawPrint,
   tutoring: BookOpen,
+  sports_activities: Heart,
   eldercare: User
 };
 
@@ -80,6 +81,7 @@ const serviceImages = {
   gardening: '/images/jardinage.jpg',
   petcare: '/images/chien.jpg',
   tutoring: '/images/logo cours particulier.png',
+  sports_activities: '/images/jardinage.jpg',
   eldercare: '/images/eldercare.png',
   laundry: '/images/kvissa.jpg',
   property_management: '/images/nihoul-dirot.jpg',

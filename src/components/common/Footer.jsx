@@ -36,6 +36,7 @@ const Footer = () => {
       services: [
         { nameKey: 'services.babysitting', path: '/services/babysitting' },
         { nameKey: 'services.tutoring', path: '/services/tutoring' },
+        { nameKey: 'services.sports_activities', path: '/services/sports-activities' },
         { nameKey: 'services.eldercare', path: '/services/eldercare' }
       ]
     },

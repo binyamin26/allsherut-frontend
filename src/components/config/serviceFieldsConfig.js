@@ -261,6 +261,44 @@ const serviceFieldsConfig = {
     ]
   },
 
+  sports_activities: {
+    fields: [
+      { name: 'age', label: 'serviceForm.common.age', type: 'number' },
+      { name: 'experience', label: 'serviceFields.tutoring.experienceYears', type: 'number' },
+      {
+        name: 'availability_days',
+        label: 'serviceFields.tutoring.availability_days',
+        type: 'checkbox',
+        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת']
+      },
+      {
+        name: 'availability_hours',
+        label: 'serviceFields.tutoring.availability_hours',
+        type: 'checkbox',
+        options: ['בוקר', 'צהריים', 'אחר הצהריים', 'ערב', 'לילה']
+      },
+      {
+        name: 'subjects',
+        label: 'serviceForm.sports_activities.subjectsLabel',
+        type: 'checkbox',
+        options: []
+      },
+      {
+        name: 'levels',
+        label: 'filters.sports_activities.ageGroups',
+        type: 'checkbox',
+        options: ['ילדים', 'נוער', 'מבוגרים', 'כל הגילאים']
+      },
+      {
+        name: 'teachingMode',
+        label: 'serviceForm.sports_activities.activityMode',
+        type: 'select',
+        options: ['פרונטלי בלבד', 'אונליין בלבד', 'שניהם']
+      },
+      { name: 'hourlyRate', label: 'serviceFields.tutoring.hourlyRate', type: 'number' }
+    ]
+  },
+
   eldercare: {
     fields: [
       { name: 'age', label: 'serviceForm.common.age', type: 'number' },

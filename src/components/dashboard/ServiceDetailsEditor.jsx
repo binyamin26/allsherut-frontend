@@ -193,57 +193,64 @@ const ServiceDetailsEditor = ({
   const { apiCall } = useAuth();
   const config = serviceFieldsConfig[serviceType];
   
-  // État pour les matières tutoring chargées dynamiquement
+  // État pour les matières tutoring/sports chargées dynamiquement
   const [tutoringSubcategories, setTutoringSubcategories] = useState([]);
+  const [sportsSubcategories, setSportsSubcategories] = useState([]);
   const [loadingSubcategories, setLoadingSubcategories] = useState(false);
 
-  // Charger les matières tutoring depuis la DB
+  // Charger les matières depuis la DB selon le service
   useEffect(() => {
-    if (serviceType === 'tutoring') {
-      const loadSubcategories = async () => {
-        try {
-          setLoadingSubcategories(true);
+    const loadSubcategories = async () => {
+      try {
+        setLoadingSubcategories(true);
+        if (serviceType === 'tutoring') {
           const response = await apiCall('/services/5/subcategories', 'GET');
           if (response.success && response.data.subcategories) {
             setTutoringSubcategories(response.data.subcategories);
           }
-        } catch (err) {
-          console.error('Erreur chargement sous-catégories tutoring:', err);
-        } finally {
-          setLoadingSubcategories(false);
+        } else if (serviceType === 'sports_activities') {
+          const response = await apiCall('/services/sports_activities/subcategories', 'GET');
+          if (response.success && response.data.subcategories) {
+            setSportsSubcategories(response.data.subcategories);
+          }
         }
-      };
+      } catch (err) {
+        console.error('Erreur chargement sous-catégories:', err);
+      } finally {
+        setLoadingSubcategories(false);
+      }
+    };
+    if (serviceType === 'tutoring' || serviceType === 'sports_activities') {
       loadSubcategories();
     }
   }, [serviceType, apiCall]);
 
-  // Groupement des matières tutoring par catégorie
+  const inRange = (s, min, max) => s.display_order >= min && s.display_order <= max;
+
+  // Groupement des matières tutoring (academic / languages / tech uniquement)
   const groupedTutoringSubjects = useMemo(() => {
     if (!tutoringSubcategories.length) return {};
-
-    const inRange = (s, min, max) => s.display_order >= min && s.display_order <= max;
-    const groups = {
-      academic: { title: t('filters.tutoring.academicSubjects'), items: tutoringSubcategories.filter(s => inRange(s, 200, 299)) },
-      music:    { title: t('filters.tutoring.music'),            items: tutoringSubcategories.filter(s => inRange(s, 1, 7)) },
-      art:      { title: t('filters.tutoring.art'),              items: tutoringSubcategories.filter(s => inRange(s, 10, 16)) },
-      dance:    { title: t('filters.tutoring.dance'),            items: tutoringSubcategories.filter(s => inRange(s, 20, 24)) },
-      theater:  { title: t('filters.tutoring.theater'),          items: tutoringSubcategories.filter(s => inRange(s, 25, 29)) },
-      sports:   { title: t('filters.tutoring.sports'),           items: tutoringSubcategories.filter(s => inRange(s, 30, 43) || inRange(s, 85, 199)) },
-      languages:{ title: t('filters.tutoring.languages'),        items: tutoringSubcategories.filter(s => inRange(s, 44, 54)) },
-      tech:     { title: t('filters.tutoring.tech'),             items: tutoringSubcategories.filter(s => inRange(s, 60, 64)) },
-      cooking:  { title: t('filters.tutoring.cooking'),          items: tutoringSubcategories.filter(s => inRange(s, 70, 73)) },
-      personal: { title: t('filters.tutoring.personal'),         items: tutoringSubcategories.filter(s => inRange(s, 75, 89)) },
+    return {
+      academic:  { title: t('filters.tutoring.academicSubjects'), items: tutoringSubcategories.filter(s => inRange(s, 200, 223)) },
+      languages: { title: t('filters.tutoring.languages'),        items: tutoringSubcategories.filter(s => inRange(s, 40, 47)) },
+      tech:      { title: t('filters.tutoring.tech'),             items: tutoringSubcategories.filter(s => inRange(s, 60, 64)) },
     };
-
-    // Safety net: any subcategory not caught by a range appears here
-    const assignedIds = new Set(Object.values(groups).flatMap(g => g.items.map(i => i.id)));
-    const uncategorized = tutoringSubcategories.filter(s => !assignedIds.has(s.id));
-    if (uncategorized.length > 0) {
-      groups.other = { title: 'אחר', items: uncategorized };
-    }
-
-    return groups;
   }, [tutoringSubcategories, t]);
+
+  // Groupement des matières sports_activities
+  const groupedSportsSubjects = useMemo(() => {
+    if (!sportsSubcategories.length) return {};
+    return {
+      music:    { title: t('filters.tutoring.music'),    items: sportsSubcategories.filter(s => inRange(s, 1, 7)) },
+      art:      { title: t('filters.tutoring.art'),      items: sportsSubcategories.filter(s => inRange(s, 10, 16)) },
+      dance:    { title: t('filters.tutoring.dance'),    items: sportsSubcategories.filter(s => inRange(s, 20, 24)) },
+      theater:  { title: t('filters.tutoring.theater'),  items: sportsSubcategories.filter(s => inRange(s, 30, 33)) },
+      crafts:   { title: t('filters.tutoring.crafts'),   items: sportsSubcategories.filter(s => inRange(s, 50, 54)) },
+      cooking:  { title: t('filters.tutoring.cooking'),  items: sportsSubcategories.filter(s => inRange(s, 70, 74)) },
+      personal: { title: t('filters.tutoring.personal'), items: sportsSubcategories.filter(s => inRange(s, 80, 89)) },
+      sports:   { title: t('filters.tutoring.sports'),   items: sportsSubcategories.filter(s => inRange(s, 90, 119)) },
+    };
+  }, [sportsSubcategories, t]);
   
   if (!config) {
     return <p>{t('dashboard.noServiceConfig')}</p>;
@@ -331,9 +338,13 @@ const translateFieldArray = (fieldName, values) => {
     return t('dashboard.notSpecified');
   }
   
-  // Cas spécial : matières tutoring
-  if (serviceType === 'tutoring' && fieldName === 'subjects') {
-    const translatedValues = values.map(v => translateTutoringSubject(v));
+  // Cas spécial : matières tutoring / sports_activities
+  if ((serviceType === 'tutoring' || serviceType === 'sports_activities') && fieldName === 'subjects') {
+    const subcats = serviceType === 'tutoring' ? tutoringSubcategories : sportsSubcategories;
+    const translatedValues = values.map(v => {
+      const found = subcats.find(s => s.name_he === v);
+      return found ? (found[`name_${currentLanguage}`] || found.name_he) : v;
+    });
     return translatedValues.join(', ');
   }
   
@@ -342,42 +353,29 @@ const translateFieldArray = (fieldName, values) => {
   return translatedValues.join(', ');
 };
 
-// ✅ Traduire les matières tutoring qui viennent de la DB
-const translateTutoringSubject = (subjectNameHe) => {
-  if (serviceType !== 'tutoring') return subjectNameHe;
-  
-  const found = tutoringSubcategories.find(s => s.name_he === subjectNameHe);
-  if (found) {
-    return found[`name_${currentLanguage}`] || found.name_he;
-  }
-  
-  return subjectNameHe;
-};
-
-  // Rendu spécial pour les matières tutoring
-  const renderTutoringSubjects = (field) => {
+  // Rendu groupé des matières (tutoring ou sports_activities)
+  const renderSubjectsField = (field) => {
     const value = serviceDetails?.[field.name] || [];
+    const grouped = serviceType === 'tutoring' ? groupedTutoringSubjects : groupedSportsSubjects;
 
-    // MODE LECTURE
     if (!isEditMode) {
       return (
         <div className="tags-list">
-          {Array.isArray(value) && value.length > 0 
-            ? value.map((s, i) => <span key={i}><span style={{ direction: 'ltr', unicodeBidi: 'bidi-override', display: 'inline-block' }}>{s}</span>{i < value.length - 1 ? ', ' : ''}</span>)
+          {Array.isArray(value) && value.length > 0
+            ? value.map((s, i) => <span key={i}><span style={{ direction: 'rtl', unicodeBidi: 'isolate', display: 'inline-block' }}>{s}</span>{i < value.length - 1 ? ', ' : ''}</span>)
             : <span>{t('dashboard.notSpecified')}</span>
           }
         </div>
       );
     }
 
-    // MODE ÉDITION - Affichage groupé comme dans le formulaire d'inscription
     if (loadingSubcategories) {
       return <div style={{ padding: '1rem', color: '#64748b' }}>{t('filters.tutoring.loading')}</div>;
     }
 
     return (
       <div className="subjects-container">
-        {Object.entries(groupedTutoringSubjects).map(([key, group]) => (
+        {Object.entries(grouped).map(([key, group]) => (
           group.items.length > 0 && (
             <div key={key} className="subject-category" style={{ marginBottom: '1rem' }}>
               <h5 style={{ marginBottom: '0.5rem', color: '#374151', fontWeight: '600', fontSize: '0.9rem' }}>
@@ -406,9 +404,9 @@ const translateTutoringSubject = (subjectNameHe) => {
   };
 
   const renderField = (field) => {
-    // Cas spécial : matières tutoring
-    if (serviceType === 'tutoring' && field.name === 'subjects') {
-      return renderTutoringSubjects(field);
+    // Cas spécial : matières tutoring / sports_activities
+    if ((serviceType === 'tutoring' || serviceType === 'sports_activities') && field.name === 'subjects') {
+      return renderSubjectsField(field);
     }
 
     const value = serviceDetails?.[field.name];

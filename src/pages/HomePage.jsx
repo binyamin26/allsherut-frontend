@@ -262,6 +262,14 @@ const HomePage = () => {
       href: '/services/tutoring'
     },
     {
+      id: 'sports_activities',
+      name: t('services.sports_activities'),
+      image: '/images/jardinage.jpg',
+      description: t('services.sports_activities.desc'),
+      color: 'from-green-500 to-emerald-600',
+      href: '/services/sports-activities'
+    },
+    {
       id: 'babysitting',
       name: t('services.babysitting'),
       image: '/images/babysite.png',

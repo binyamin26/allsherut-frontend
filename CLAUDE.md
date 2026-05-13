@@ -36,7 +36,7 @@ docker-compose up -d   # MySQL 8.0 on port 3307 + phpMyAdmin on port 9091
 
 ## Architecture
 
-### Monorepo Layout
+claudec### Monorepo Layout
 
 - `/src/` — React 18 frontend (Vite 5, Tailwind CSS 4, React Router 6)
 - `/backend/` — Node.js/Express 4 API (CommonJS)
