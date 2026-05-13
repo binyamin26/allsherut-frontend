@@ -104,8 +104,8 @@ const SportsActivitiesPage = () => {
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">
-            <div className="service-hero-icon" style={{ fontSize: '3.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              ⚽
+            <div className="service-hero-icon">
+              <img src="/images/logo sport.jpg" alt="חוגים וספורט" />
             </div>
             <h1 className="service-title">{t('services.sports_activities.pageTitle')}</h1>
           </div>

@@ -73,7 +73,7 @@ const ProviderDetailPage = () => {
     gardening: '/images/logo jardinage.png',
     petcare: '/images/logo chien.png',
     tutoring: '/images/logo cours particulier.png',
-    sports_activities: '/images/sport.jpg',
+    sports_activities: '/images/logo sport.jpg',
     eldercare: '/images/logo kachich.png',
     laundry: '/images/logo kvissa.png',
     electrician: '/images/logo electricien.png',
