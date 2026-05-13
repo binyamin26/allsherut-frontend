@@ -45,6 +45,7 @@ const ProviderDetailPage = () => {
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [showContactModal, setShowContactModal] = useState(false);
   const [tutoringSubcats, setTutoringSubcats] = useState([]);
+  const [sportsSubcats, setSportsSubcats] = useState([]);
   const [profileImageError, setProfileImageError] = useState(false);
 
   // État pour ReviewModal
@@ -72,6 +73,7 @@ const ProviderDetailPage = () => {
     gardening: '/images/logo jardinage.png',
     petcare: '/images/logo chien.png',
     tutoring: '/images/logo cours particulier.png',
+    sports_activities: '/images/logo cours particulier.png',
     eldercare: '/images/logo kachich.png',
     laundry: '/images/logo kvissa.png',
     electrician: '/images/logo electricien.png',
@@ -107,6 +109,7 @@ const ProviderDetailPage = () => {
       gardening: 'from-green-500 to-emerald-600',
       petcare: 'from-orange-500 to-amber-600',
       tutoring: 'from-blue-500 to-indigo-600',
+      sports_activities: 'from-green-500 to-teal-600',
       eldercare: 'from-purple-500 to-violet-600'
     };
     return colors[serviceType] || 'from-gray-500 to-gray-600';
@@ -119,7 +122,7 @@ const ProviderDetailPage = () => {
     }
   }, [id]);
 
-  // Charger les sous-catégories de cours (uniquement pour tutoring)
+  // Charger les sous-catégories tutoring
   useEffect(() => {
     if (provider?.serviceType !== 'tutoring') return;
     const load = async () => {
@@ -130,6 +133,22 @@ const ProviderDetailPage = () => {
         }
       } catch (err) {
         console.error('Error loading tutoring subcategories:', err);
+      }
+    };
+    load();
+  }, [provider?.serviceType, apiCall]);
+
+  // Charger les sous-catégories sports_activities
+  useEffect(() => {
+    if (provider?.serviceType !== 'sports_activities') return;
+    const load = async () => {
+      try {
+        const response = await apiCall('/services/sports_activities/subcategories', 'GET');
+        if (response.success && response.data.subcategories) {
+          setSportsSubcats(response.data.subcategories);
+        }
+      } catch (err) {
+        console.error('Error loading sports_activities subcategories:', err);
       }
     };
     load();
@@ -256,7 +275,7 @@ const handleContact = () => {
         {/* === CHAMPS COMPACTS D'ABORD === */}
         
         {/* Taux horaire */}
-        {['babysitting', 'cleaning', 'gardening', 'tutoring'].includes(provider.serviceType) && (
+        {['babysitting', 'cleaning', 'gardening', 'tutoring', 'sports_activities'].includes(provider.serviceType) && (
           <div className="detail-item">
             <strong>{t('provider.details.hourlyRate')}:</strong>
             {parseFloat(provider.hourlyRate) > 0 || parseFloat(details.hourlyRate) > 0 || parseFloat(details.rate) > 0
@@ -372,8 +391,8 @@ const handleContact = () => {
           </>
         )}
 
-        {/* === TUTORING - CHAMPS COMPACTS === */}
-        {provider.serviceType === 'tutoring' && (
+        {/* === TUTORING / SPORTS_ACTIVITIES - CHAMPS COMPACTS === */}
+        {(provider.serviceType === 'tutoring' || provider.serviceType === 'sports_activities') && (
           <>
             {details.teachingMode && (
               <div className="detail-item">
@@ -427,14 +446,14 @@ const handleContact = () => {
         )}
         
 {/* === AGE pour services manquants === */}
-        {['tutoring', 'petcare', 'eldercare'].includes(provider.serviceType) && details.age && (
+        {['tutoring', 'sports_activities', 'petcare', 'eldercare'].includes(provider.serviceType) && details.age && (
           <div className="detail-item">
             <strong>{t('provider.details.age')}:</strong>
             <span>{details.age} {t('provider.details.years')}</span>
           </div>
         )}
         {/* Disponibilité jours */}
-        {['tutoring', 'babysitting', 'petcare', 'eldercare', 'event_entertainment'].includes(provider.serviceType) && (details.availableDays || details.availability_days) && (details.availableDays?.length > 0 || details.availability_days?.length > 0) && (
+        {['tutoring', 'sports_activities', 'babysitting', 'petcare', 'eldercare', 'event_entertainment'].includes(provider.serviceType) && (details.availableDays || details.availability_days) && (details.availableDays?.length > 0 || details.availability_days?.length > 0) && (
           <div className="detail-item">
            <strong>{t('provider.details.availableDays')}:</strong>
         <span>{translateAndJoin(sortDays(details.availableDays || details.availability_days), 'days', t)}</span>
@@ -442,7 +461,7 @@ const handleContact = () => {
         )}
 
         {/* Disponibilité heures */}
-        {['tutoring', 'babysitting', 'petcare', 'eldercare', 'event_entertainment'].includes(provider.serviceType) && (details.availableHours || details.availability_hours) && (details.availableHours?.length > 0 || details.availability_hours?.length > 0) && (
+        {['tutoring', 'sports_activities', 'babysitting', 'petcare', 'eldercare', 'event_entertainment'].includes(provider.serviceType) && (details.availableHours || details.availability_hours) && (details.availableHours?.length > 0 || details.availability_hours?.length > 0) && (
           <div className="detail-item">
            <strong>{t('provider.details.availableHours')}:</strong>
          <span>{translateAndJoin(details.availableHours || details.availability_hours, 'hours', t)}</span>
@@ -994,7 +1013,7 @@ const handleContact = () => {
                 return (
                   <div key={group.key} className="detail-item" style={{ gridColumn: '1 / -1' }}>
                     <strong>{group.emoji} {group.label}:</strong>
-                    <span>{selected.map((s, i) => <span key={i}><span style={{ direction: 'ltr', unicodeBidi: 'bidi-override', display: 'inline-block' }}>{cleanName(s)}</span>{i < selected.length - 1 ? ', ' : ''}</span>)}</span>
+                    <span>{selected.map((s, i) => <span key={i}>{cleanName(s)}{i < selected.length - 1 ? ', ' : ''}</span>)}</span>
                   </div>
                 );
               }).filter(Boolean);
@@ -1003,7 +1022,7 @@ const handleContact = () => {
                 elements.push(
                   <div key="other" className="detail-item" style={{ gridColumn: '1 / -1' }}>
                     <strong>📖 {t('filters.tutoring.other')}:</strong>
-                    <span>{others.map((s, i) => <span key={i}><span style={{ direction: 'ltr', unicodeBidi: 'bidi-override', display: 'inline-block' }}>{cleanName(s)}</span>{i < others.length - 1 ? ', ' : ''}</span>)}</span>
+                    <span>{others.map((s, i) => <span key={i}>{cleanName(s)}{i < others.length - 1 ? ', ' : ''}</span>)}</span>
                   </div>
                 );
               }
@@ -1011,7 +1030,7 @@ const handleContact = () => {
             })() : (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <strong>📚 {t('serviceForm.tutoring.subjectsLabel')}:</strong>
-                <span>{details.subjects.map((s, i) => <span key={i}><span style={{ direction: 'ltr', unicodeBidi: 'bidi-override', display: 'inline-block' }}>{s.replace(/‏/g, '')}</span>{i < details.subjects.length - 1 ? ', ' : ''}</span>)}</span>
+                <span>{details.subjects.map((s, i) => <span key={i}>{(s || '').replace(/‏/g, '')}{i < details.subjects.length - 1 ? ', ' : ''}</span>)}</span>
               </div>
             )}
           </>
@@ -1038,6 +1057,67 @@ const handleContact = () => {
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
             <strong>{t('provider.details.qualifications')}:</strong>
             <span>{details.qualifications}</span>
+          </div>
+        )}
+
+        {/* SPORTS_ACTIVITIES - Subjects */}
+        {provider.serviceType === 'sports_activities' && details.subjects && details.subjects.length > 0 && (
+          <>
+            {(() => {
+              const cleanName = (name) => (name || '').replace(/‏/g, '');
+              const subcats = sportsSubcats.length > 0 ? sportsSubcats : tutoringSubcats;
+              const groups = [
+                { key: 'music',    emoji: '🎵', label: t('filters.tutoring.music'),    min: 1,   max: 7   },
+                { key: 'art',      emoji: '🎨', label: t('filters.tutoring.art'),      min: 10,  max: 16  },
+                { key: 'dance',    emoji: '💃', label: t('filters.tutoring.dance'),    min: 20,  max: 24  },
+                { key: 'theater',  emoji: '🎭', label: t('filters.tutoring.theater'),  min: 30,  max: 33  },
+                { key: 'crafts',   emoji: '✂️', label: t('filters.tutoring.crafts'),   min: 50,  max: 54  },
+                { key: 'cooking',  emoji: '👨‍🍳', label: t('filters.tutoring.cooking'),  min: 70,  max: 74  },
+                { key: 'personal', emoji: '🧘', label: t('filters.tutoring.personal'), min: 80,  max: 89  },
+                { key: 'sports',   emoji: '⚽', label: t('filters.tutoring.sports'),   min: 90,  max: 119 },
+              ];
+              if (subcats.length > 0) {
+                const categorized = new Set();
+                const elements = groups.map(group => {
+                  const groupSubcats = subcats.filter(s => s.display_order >= group.min && s.display_order <= group.max);
+                  const selected = details.subjects.filter(subj =>
+                    groupSubcats.some(s => cleanName(s.name_he) === cleanName(subj))
+                  );
+                  if (!selected.length) return null;
+                  selected.forEach(s => categorized.add(s));
+                  return (
+                    <div key={group.key} className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                      <strong>{group.emoji} {group.label}:</strong>
+                      <span>{selected.map((s, i) => <span key={i}>{cleanName(s)}{i < selected.length - 1 ? ', ' : ''}</span>)}</span>
+                    </div>
+                  );
+                }).filter(Boolean);
+                const others = details.subjects.filter(s => !categorized.has(s));
+                if (others.length) {
+                  elements.push(
+                    <div key="other" className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                      <strong>📖 {t('filters.tutoring.other')}:</strong>
+                      <span>{others.map((s, i) => <span key={i}>{cleanName(s)}{i < others.length - 1 ? ', ' : ''}</span>)}</span>
+                    </div>
+                  );
+                }
+                return <>{elements}</>;
+              }
+              return (
+                <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                  <strong>⚽ {t('serviceForm.sports_activities.subjectsLabel')}:</strong>
+                  <span>{details.subjects.map((s, i) => <span key={i}>{cleanName(s)}{i < details.subjects.length - 1 ? ', ' : ''}</span>)}</span>
+                </div>
+              );
+            })()}
+          </>
+        )}
+
+        {/* SPORTS_ACTIVITIES - Levels (groupes d'âge) */}
+        {provider.serviceType === 'sports_activities' && details.levels && details.levels.length > 0 && (
+          <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+            <strong>{t('filters.sports_activities.ageGroups')}:</strong>
+            <span>{translateAndJoin(details.levels, 'tutoringLevels', t)}</span>
           </div>
         )}
 
