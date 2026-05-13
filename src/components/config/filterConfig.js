@@ -847,7 +847,8 @@ laundry: {
     workTypes: [
       { value: 'השכרת ציוד לאירועים', key: 'filters.events.equipmentRental' },
       { value: 'סוגי ההפעלה', key: 'filters.events.entertainmentServices' },
-      { value: 'אחר', key: 'filters.events.other' }
+      { value: 'אחר', key: 'filters.events.other' },
+      { value: 'DJ', key: 'filters.events.dj' }
     ],
     equipmentRentalCategories: [
       { value: '🍿 מכונות מזון', key: 'filters.events.foodMachines' },
@@ -892,6 +893,18 @@ laundry: {
       { value: 'איפור פנים מקצועי', key: 'filters.events.facePainting' },
       { value: 'בלוני קשת', key: 'filters.events.balloonArch' },
       { value: 'צילום מגנטים', key: 'filters.events.photoMagnets' }
+    ],
+    djEventTypes: [
+      { value: 'חתונה', key: 'filters.chef.wedding' },
+      { value: 'בר מצווה', key: 'filters.chef.barMitsva' },
+      { value: 'בת מצווה', key: 'filters.chef.batMitsva' },
+      { value: 'ברית מילה', key: 'filters.chef.britMila' },
+      { value: 'שבע ברכות', key: 'filters.chef.shevaBrahot' },
+      { value: 'יום הולדת / יום שנה', key: 'filters.chef.anniversary' },
+      { value: 'אירוע עסקי', key: 'filters.chef.corporateEvent' },
+      { value: 'מסיבה פרטית', key: 'filters.chef.privateParty' },
+      { value: 'חגיגה משפחתית', key: 'filters.chef.familyParty' },
+      { value: 'אירוסין', key: 'filters.chef.engagement' }
     ]
   },
 

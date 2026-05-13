@@ -2133,7 +2133,7 @@ const EventEntertainmentFilters = ({ filters, handleFilterChange, handleCheckbox
             />
             {t('filters.events.other')}
           </label>
-          
+
           {filters.work_types?.includes('אחר') && (
             <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem', marginBottom: '1rem' }}>
               {config.otherTypes.map(opt => (
@@ -2146,6 +2146,36 @@ const EventEntertainmentFilters = ({ filters, handleFilterChange, handleCheckbox
                   {t(opt.key)}
                 </label>
               ))}
+            </div>
+          )}
+        </div>
+
+        {/* DJ */}
+        <div>
+          <label className="checkbox-option">
+            <input
+              type="checkbox"
+              checked={filters.work_types?.includes('DJ') || false}
+              onChange={(e) => handleCheckboxChange('work_types', 'DJ', e.target.checked)}
+            />
+            {t('filters.events.dj')}
+          </label>
+
+          {filters.work_types?.includes('DJ') && (
+            <div style={{ marginRight: '1.5rem', marginTop: '0.5rem', marginBottom: '1rem' }}>
+              <p style={{ fontWeight: '600', marginBottom: '6px', fontSize: '0.9rem' }}>{t('filters.events.djEventTypes')}</p>
+              <div className="checkbox-grid">
+                {config.djEventTypes.map(opt => (
+                  <label key={opt.value} className="checkbox-option">
+                    <input
+                      type="checkbox"
+                      checked={filters.dj_event_types?.includes(opt.value) || false}
+                      onChange={(e) => handleCheckboxChange('dj_event_types', opt.value, e.target.checked)}
+                    />
+                    {t(opt.key)}
+                  </label>
+                ))}
+              </div>
             </div>
           )}
         </div>
