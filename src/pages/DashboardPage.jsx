@@ -214,6 +214,26 @@ const userData = useMemo(() => {
   const [cities, setCities] = useState([]);
   const [selectedCity, setSelectedCity] = useState('');
   const [availableNeighborhoods, setAvailableNeighborhoods] = useState([]);
+  const [locationMode, setLocationMode] = useState('');
+
+  const ezorim = ['מרכז', 'שרון', 'שפלה', 'ירושלים', 'צפון', 'חיפה', 'דרום', 'יהודה ושומרון'];
+  const locationModes = [
+    { value: 'israel',       label: 'כל ישראל' },
+    { value: 'ezor',         label: 'לפי אזור' },
+    { value: 'city',         label: 'לפי עיר' },
+    { value: 'neighborhood', label: 'לפי שכונה' },
+  ];
+
+  const handleLocationModeChange = (newMode) => {
+    setLocationMode(newMode);
+    setSelectedCity('');
+    setAvailableNeighborhoods([]);
+    if (newMode === 'israel') {
+      handleEditInputChange('workingAreas', [{ city: 'ישראל', neighborhood: 'כל ישראל' }]);
+    } else {
+      handleEditInputChange('workingAreas', []);
+    }
+  };
 
   const [imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
@@ -607,6 +627,7 @@ const response = await changePassword(
 
   const handleEditToggle = () => {
     if (!isEditMode) {
+      const areas = userData?.workingAreas || [];
       setEditFormData({
         firstName: user?.providerProfile?.serviceDetails?.service_first_name || userData?.firstName || '',
         lastName: user?.providerProfile?.serviceDetails?.service_last_name ?? userData?.lastName ?? '',
@@ -617,9 +638,15 @@ const response = await changePassword(
         hourlyRate: userData?.serviceDetails?.hourly_rate || '',
         availability: userData?.serviceDetails?.availability || [],
         languages: userData?.serviceDetails?.languages || [],
-        workingAreas: userData?.workingAreas || [],
+        workingAreas: areas,
         serviceDetails: userData?.serviceDetails || {}
       });
+      // Détecte le mode actuel
+      if (areas.some(a => a.neighborhood === 'כל ישראל')) setLocationMode('israel');
+      else if (areas.some(a => a.neighborhood === 'כל האזור')) setLocationMode('ezor');
+      else if (areas.some(a => a.neighborhood === 'כל העיר')) setLocationMode('city');
+      else if (areas.length > 0) setLocationMode('neighborhood');
+      else setLocationMode('');
     }
     setIsEditMode(!isEditMode);
     setMessage(null);
@@ -1601,109 +1628,144 @@ const galleryImages = (() => {
       
       {isEditMode ? (
         <>
-          {/* Option כל ישראל */}
-          <div className="form-group" style={{ marginBottom: '1rem', padding: '1rem', backgroundColor: '#E8EEF5', borderRadius: '8px', border: '2px solid #2F80ED' }}>
-            <label className="checkbox-item" style={{ fontWeight: '600', fontSize: '1.1rem' }}>
-              <input
-                type="checkbox"
-                checked={editFormData.workingAreas?.some(area => area.neighborhood === 'כל ישראל')}
+          {/* Sélecteur de mode */}
+          <div className="location-mode-selector" style={{ marginBottom: '1rem' }}>
+            {locationModes.map(({ value, label }) => (
+              <label key={value} className={`location-mode-option${locationMode === value ? ' selected' : ''}`}>
+                <input
+                  type="radio"
+                  name="dashboardLocationMode"
+                  value={value}
+                  checked={locationMode === value}
+                  onChange={() => handleLocationModeChange(value)}
+                />
+                <span>{label}</span>
+              </label>
+            ))}
+          </div>
+
+          {/* Mode: לפי אזור */}
+          {locationMode === 'ezor' && (
+            <div className="ezor-grid" style={{ marginBottom: '1rem' }}>
+              {ezorim.map(ezor => {
+                const isChecked = editFormData.workingAreas?.some(a => a.city === ezor && a.neighborhood === 'כל האזור');
+                return (
+                  <label key={ezor} className={`ezor-option${isChecked ? ' selected' : ''}`}>
+                    <input
+                      type="checkbox"
+                      value={ezor}
+                      checked={isChecked}
+                      onChange={() => {
+                        const alreadySelected = editFormData.workingAreas?.some(a => a.city === ezor && a.neighborhood === 'כל האזור');
+                        const newAreas = alreadySelected
+                          ? editFormData.workingAreas.filter(a => !(a.city === ezor && a.neighborhood === 'כל האזור'))
+                          : [...(editFormData.workingAreas || []), { city: ezor, neighborhood: 'כל האזור' }];
+                        handleEditInputChange('workingAreas', newAreas);
+                      }}
+                    />
+                    {ezor}
+                  </label>
+                );
+              })}
+            </div>
+          )}
+
+          {/* Mode: לפי עיר */}
+          {locationMode === 'city' && (
+            <div className="form-group" style={{ marginBottom: '1rem' }}>
+              <CustomDropdown
+                name="city"
+                options={cities}
+                value={selectedCity}
                 onChange={(e) => {
-                  if (e.target.checked) {
-                    handleEditInputChange('workingAreas', [{ city: 'ישראל', neighborhood: 'כל ישראל' }]);
-                    setSelectedCity('');
+                  const city = e.target.value;
+                  setSelectedCity(city);
+                  if (city) {
+                    const other = (editFormData.workingAreas || []).filter(a => a.city !== city);
+                    handleEditInputChange('workingAreas', [...other, { city, neighborhood: 'כל העיר' }]);
                   } else {
                     handleEditInputChange('workingAreas', []);
                   }
                 }}
+                placeholder="בחר עיר"
               />
- {t('dashboard.allIsrael')} 
-            </label>
-          </div>
+            </div>
+          )}
 
-          {/* Si כל ישראל n'est PAS sélectionné */}
-          {!editFormData.workingAreas?.some(area => area.neighborhood === 'כל ישראל') && (
-            <>
-              <div className="form-group" style={{ marginBottom: '1rem' }}>
-               <label>{t('dashboard.selectCity')}</label>
+          {/* Mode: לפי שכונה */}
+          {locationMode === 'neighborhood' && (
+            <div style={{ marginBottom: '1rem' }}>
+              <div className="form-group" style={{ marginBottom: '0.75rem' }}>
                 <CustomDropdown
                   name="city"
                   options={cities}
                   value={selectedCity}
-                  onChange={(e) => setSelectedCity(e.target.value)}
+                  onChange={(e) => {
+                    setSelectedCity(e.target.value);
+                    handleEditInputChange('workingAreas', (editFormData.workingAreas || []).filter(a => a.city !== e.target.value));
+                  }}
                   placeholder="בחר עיר"
                 />
               </div>
-
               {selectedCity && (
                 <>
-                  {/* Option כל העיר */}
-                  <div className="form-group" style={{ marginBottom: '0.5rem', padding: '0.75rem', backgroundColor: '#f0fdf4', borderRadius: '6px', border: '1px solid #22c55e' }}>
+                  <div style={{ marginBottom: '0.5rem', padding: '0.75rem', backgroundColor: '#f0fdf4', borderRadius: '8px', border: '1px solid #22c55e' }}>
                     <label className="checkbox-item" style={{ fontWeight: '600' }}>
                       <input
                         type="checkbox"
-                        checked={editFormData.workingAreas?.some(
-                          area => area.city === selectedCity && area.neighborhood === 'כל העיר'
-                        )}
+                        checked={editFormData.workingAreas?.some(a => a.city === selectedCity && a.neighborhood === 'כל השכונות')}
                         onChange={(e) => {
                           if (e.target.checked) {
-                            const otherCityAreas = editFormData.workingAreas?.filter(area => area.city !== selectedCity) || [];
-                            handleEditInputChange('workingAreas', [...otherCityAreas, { city: selectedCity, neighborhood: 'כל העיר' }]);
+                            const other = (editFormData.workingAreas || []).filter(a => a.city !== selectedCity);
+                            handleEditInputChange('workingAreas', [...other, { city: selectedCity, neighborhood: 'כל השכונות' }]);
                           } else {
-                            const newAreas = editFormData.workingAreas?.filter(
-                              area => !(area.city === selectedCity && area.neighborhood === 'כל העיר')
-                            ) || [];
-                            handleEditInputChange('workingAreas', newAreas);
+                            handleEditInputChange('workingAreas', (editFormData.workingAreas || []).filter(a => !(a.city === selectedCity && a.neighborhood === 'כל השכונות')));
                           }
                         }}
                       />
-   🏙️ {t('dashboard.allCity', { city: selectedCity })}
+                      כל השכונות ב{selectedCity}
                     </label>
                   </div>
-
-                  {/* Quartiers - seulement si כל העיר n'est PAS coché */}
-                  {!editFormData.workingAreas?.some(area => area.city === selectedCity && area.neighborhood === 'כל העיר') && 
-                   availableNeighborhoods.length > 0 && (
-                    <div className="form-group" style={{ marginBottom: '1rem' }}>
-                     <label>{t('dashboard.neighborhoodsIn')} {selectedCity}:</label>
-                      <div className="checkbox-grid">
-                        {availableNeighborhoods.map(neighborhood => {
-                          const isSelected = editFormData.workingAreas?.some(
-                            area => area.neighborhood === neighborhood && area.city === selectedCity
-                          );
-                          
-                          return (
-                            <label key={neighborhood} className="checkbox-item">
-                              <input
-                                type="checkbox"
-                                checked={isSelected}
-                                onChange={() => handleWorkingAreasChange(neighborhood)}
-                              />
-                              {neighborhood}
-                            </label>
-                          );
-                        })}
-                      </div>
+                  {!editFormData.workingAreas?.some(a => a.city === selectedCity && a.neighborhood === 'כל השכונות') && availableNeighborhoods.length > 0 && (
+                    <div className="checkbox-grid">
+                      {availableNeighborhoods.map(neighborhood => (
+                        <label key={neighborhood} className="checkbox-item">
+                          <input
+                            type="checkbox"
+                            checked={editFormData.workingAreas?.some(a => a.neighborhood === neighborhood && a.city === selectedCity) || false}
+                            onChange={() => handleWorkingAreasChange(neighborhood)}
+                          />
+                          {neighborhood}
+                        </label>
+                      ))}
                     </div>
                   )}
                 </>
               )}
-            </>
+            </div>
           )}
-   
 
+          {/* Tags des zones sélectionnées */}
           {editFormData.workingAreas && editFormData.workingAreas.length > 0 && (
             <div className="selected-areas">
-             <h5>{t('dashboard.selectedAreas')}:</h5>
+              <h5>{t('dashboard.selectedAreas')}:</h5>
               <div className="working-areas-grid">
                 {editFormData.workingAreas.map((area, index) => (
                   <div key={index} className="area-tag">
                     <MapPin size={14} />
-                    <span>{area.neighborhood}, {area.city}</span>
-                    <button 
+                    <span>
+                      {area.neighborhood === 'כל ישראל' ? 'כל ישראל' :
+                       area.neighborhood === 'כל האזור' ? `אזור ${area.city}` :
+                       area.neighborhood === 'כל העיר' ? `${area.city} - כל העיר` :
+                       area.neighborhood === 'כל השכונות' ? `${area.city} - כל השכונות` :
+                       `${area.city} - ${area.neighborhood}`}
+                    </span>
+                    <button
                       type="button"
                       onClick={() => {
                         const newAreas = editFormData.workingAreas.filter((_, i) => i !== index);
                         handleEditInputChange('workingAreas', newAreas);
+                        if (newAreas.length === 0) setLocationMode('');
                       }}
                       className="remove-area-btn"
                     >
