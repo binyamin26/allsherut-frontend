@@ -112,8 +112,13 @@ const CustomDropdown = ({
         top: menuPosition.top,
         bottom: menuPosition.bottom,
         left: menuPosition.left,
-        width: menuPosition.width,
-        zIndex: 99999
+        minWidth: menuPosition.width,
+        zIndex: 99999,
+        ...(menuPosition.openUpward && {
+          borderRadius: '16px 16px 0 0',
+          borderTop: '2px solid var(--primary-600)',
+          borderBottom: 'none',
+        })
       }}
     >
       {searchable && normalizedOptions.length > 5 && (
