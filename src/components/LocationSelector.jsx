@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { MapPin } from 'lucide-react';
-import { getAllCities, getNeighborhoodsByCity, getCityInfo } from '../data/israelLocations';
+import { getAllCities, getNeighborhoodsByCity } from '../data/israelLocations';
 import CustomDropdown from './common/CustomDropdown';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -56,10 +56,7 @@ const LocationSelector = ({
   };
 
   const handleCityChange = (e) => {
-    const cityName = e.target.value;
-    setSelectedCity(cityName);
-    const cityInfo = cityName ? getCityInfo(cityName) : null;
-    setSelectedArea(cityInfo?.area || '');
+    setSelectedCity(e.target.value);
   };
 
   const handleNeighborhoodChange = (e) => {

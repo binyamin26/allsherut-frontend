@@ -402,37 +402,22 @@ const validServices = ['babysitting', 'cleaning', 'gardening', 'petcare', 'tutor
   console.log(DEV_LOGS.API.REQUEST_RECEIVED, `Filtre service: ${service}`);
 }
 
-   if (city || neighborhood) {
-  const locConditions = [];
-  const locParams = [];
-
-  if (city && neighborhood) {
-    // Specific neighborhood in a city
-    locConditions.push(`(pwa.city LIKE ? AND pwa.neighborhood LIKE ?)`);
-    locParams.push(`%${city}%`, `%${neighborhood}%`);
-    // Provider covers the whole city
-    locConditions.push(`(pwa.city LIKE ? AND pwa.neighborhood IN ('כל העיר', 'כל השכונות'))`);
-    locParams.push(`%${city}%`);
-  } else if (city) {
-    // Any row for this city
-    locConditions.push(`pwa.city LIKE ?`);
-    locParams.push(`%${city}%`);
-  } else if (neighborhood) {
-    locConditions.push(`pwa.neighborhood LIKE ?`);
-    locParams.push(`%${neighborhood}%`);
-  }
-
-  // Provider covers the whole region that contains this city
-  if (area) {
-    locConditions.push(`(pwa.city = ? AND pwa.neighborhood = 'כל האזור')`);
-    locParams.push(area);
-  }
-
-  // Provider covers all of Israel
-  locConditions.push(`(pwa.city = 'ישראל' AND pwa.neighborhood = 'כל ישראל')`);
-
-  whereConditions.push(`EXISTS (SELECT 1 FROM provider_working_areas pwa WHERE pwa.provider_id = sp.id AND (${locConditions.join(' OR ')}))`);
-  params.push(...locParams);
+   if (city && neighborhood) {
+  // Quartier sélectionné : montrer ce quartier ET les prestataires qui couvrent toute la ville
+  whereConditions.push(`EXISTS (
+    SELECT 1 FROM provider_working_areas pwa
+    WHERE pwa.provider_id = sp.id
+    AND pwa.city LIKE ?
+    AND (pwa.neighborhood LIKE ? OR pwa.neighborhood IN ('כל העיר', 'כל השכונות'))
+  )`);
+  params.push(`%${city}%`, `%${neighborhood}%`);
+} else if (city) {
+  // Ville sélectionnée : montrer tous les prestataires de cette ville
+  whereConditions.push(`EXISTS (SELECT 1 FROM provider_working_areas pwa WHERE pwa.provider_id = sp.id AND pwa.city LIKE ?)`);
+  params.push(`%${city}%`);
+} else if (neighborhood) {
+  whereConditions.push(`EXISTS (SELECT 1 FROM provider_working_areas pwa WHERE pwa.provider_id = sp.id AND pwa.neighborhood LIKE ?)`);
+  params.push(`%${neighborhood}%`);
 }
 
     if (minPrice && !isNaN(parseFloat(minPrice))) {
