@@ -333,8 +333,6 @@
   "common.yes": "Yes",
   "common.no": "No",
   "filters.location": "Location",
-  "filters.ezor": "Region",
-  "filters.selectEzor": "Select region",
   "filters.price": "Price",
   "filters.experience": "Experience",
   "filters.rating": "Rating",

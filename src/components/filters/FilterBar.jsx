@@ -37,15 +37,13 @@ const FilterBar = ({
     switch (category) {
       case 'location':
         return selectedLocation.city ? 1 : 0;
-      case 'ezor':
-        return activeFilters.ezor ? 1 : 0;
       case 'price':
         return (activeFilters.minPrice || activeFilters.maxPrice) ? 1 : 0;
       case 'experience':
         return activeFilters.experience ? 1 : 0;
       case 'service':
-  return Object.keys(activeFilters).filter(key =>
-    !['minPrice', 'maxPrice', 'experience', 'minRating', 'ezor'].includes(key)
+  return Object.keys(activeFilters).filter(key => 
+    !['minPrice', 'maxPrice', 'experience', 'minRating'].includes(key)
   ).reduce((total, key) => {
     const val = activeFilters[key];
     return total + (Array.isArray(val) ? val.length : (val ? 1 : 0));
@@ -94,21 +92,6 @@ const FilterBar = ({
             </span>
             {getActiveCount('location') > 0 && (
               <span className="filter-pill-badge">{getActiveCount('location')}</span>
-            )}
-            <ChevronDown size={14} className="filter-pill-arrow" />
-          </button>
-
-          {/* Filtre Ezor */}
-          <button
-            className={`filter-pill ${activeFilter === 'ezor' ? 'active' : ''}`}
-            onClick={() => handleFilterClick('ezor')}
-          >
-            <MapPin size={16} />
-            <span className="filter-pill-text">
-              {activeFilters.ezor || t('filters.ezor')}
-            </span>
-            {getActiveCount('ezor') > 0 && (
-              <span className="filter-pill-badge">{getActiveCount('ezor')}</span>
             )}
             <ChevronDown size={14} className="filter-pill-arrow" />
           </button>
@@ -201,7 +184,6 @@ const FilterBar = ({
           <div className="filter-sidebar-header">
             <h3 className="filter-sidebar-title">
               {activeFilter === 'location' && t('filters.selectLocation')}
-              {activeFilter === 'ezor' && t('filters.selectEzor')}
               {activeFilter === 'price' && t('filters.priceRange')}
               {activeFilter === 'experience' && t('filters.experienceLevel')}
               {activeFilter === 'rating' && t('filters.ratingFilter')}
@@ -217,16 +199,9 @@ const FilterBar = ({
 
           <div className="filter-sidebar-content">
             {activeFilter === 'location' && (
-              <LocationPanel
+              <LocationPanel 
                 selectedLocation={selectedLocation}
                 onLocationChange={onLocationChange}
-              />
-            )}
-
-            {activeFilter === 'ezor' && (
-              <EzorPanel
-                selected={tempFilters.ezor || ''}
-                onChange={(value) => setTempFilters(prev => ({ ...prev, ezor: value }))}
               />
             )}
 
@@ -277,10 +252,6 @@ const FilterBar = ({
               onClick={() => {
                 if (activeFilter === 'location') {
                   onLocationChange({ area: '', city: '', neighborhood: '', fullLocation: '' });
-                } else if (activeFilter === 'ezor') {
-                  const newFilters = { ...activeFilters, ezor: undefined };
-                  setTempFilters(newFilters);
-                  onFiltersChange(newFilters);
                 } else if (activeFilter === 'price') {
                   const newFilters = { ...activeFilters, minPrice: undefined, maxPrice: undefined };
                   setTempFilters(newFilters);
@@ -386,47 +357,10 @@ const PricePanel = ({ minPrice, maxPrice, onChange }) => {
   );
 };
 
-const EZORIM = ['מרכז', 'שרון', 'שפלה', 'ירושלים', 'צפון', 'חיפה', 'דרום', 'יהודה ושומרון'];
-
-const EzorPanel = ({ selected, onChange }) => {
-  return (
-    <div className="experience-panel">
-      {EZORIM.map(ezor => (
-        <label key={ezor} className="experience-option">
-          <input
-            type="radio"
-            name="ezor"
-            value={ezor}
-            checked={selected === ezor}
-            onChange={(e) => onChange(e.target.value)}
-          />
-          <div className="experience-option-content">
-            <span className="experience-option-label">{ezor}</span>
-          </div>
-        </label>
-      ))}
-      {selected && (
-        <label className="experience-option">
-          <input
-            type="radio"
-            name="ezor"
-            value=""
-            checked={selected === ''}
-            onChange={() => onChange('')}
-          />
-          <div className="experience-option-content">
-            <span className="experience-option-label">כל הארץ</span>
-          </div>
-        </label>
-      )}
-    </div>
-  );
-};
-
 const LocationPanel = ({ selectedLocation, onLocationChange }) => {
   return (
     <div className="location-panel">
-      <LocationSelector
+      <LocationSelector 
         onLocationChange={onLocationChange}
         initialCity={selectedLocation.city}
         initialNeighborhood={selectedLocation.neighborhood}
