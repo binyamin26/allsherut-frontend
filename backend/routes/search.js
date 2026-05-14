@@ -401,12 +401,14 @@ const validServices = ['babysitting', 'cleaning', 'gardening', 'petcare', 'tutor
   console.log(DEV_LOGS.API.REQUEST_RECEIVED, `Filtre service: ${service}`);
 }
 
-   if (city) {
+   if (city && neighborhood) {
+  // Provider covers this city AND (this specific neighborhood OR no neighborhood = covers whole city)
+  whereConditions.push(`EXISTS (SELECT 1 FROM provider_working_areas pwa WHERE pwa.provider_id = sp.id AND pwa.city LIKE ? AND (pwa.neighborhood LIKE ? OR pwa.neighborhood IS NULL OR pwa.neighborhood = ''))`);
+  params.push(`%${city}%`, `%${neighborhood}%`);
+} else if (city) {
   whereConditions.push(`EXISTS (SELECT 1 FROM provider_working_areas pwa WHERE pwa.provider_id = sp.id AND pwa.city LIKE ?)`);
   params.push(`%${city}%`);
-}
-
-if (neighborhood) {
+} else if (neighborhood) {
   whereConditions.push(`EXISTS (SELECT 1 FROM provider_working_areas pwa WHERE pwa.provider_id = sp.id AND pwa.neighborhood LIKE ?)`);
   params.push(`%${neighborhood}%`);
 }
