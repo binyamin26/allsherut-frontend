@@ -352,6 +352,7 @@ router.get('/providers', async (req, res) => {
       service,
       city,
       neighborhood,
+      ezor,
       area,
       minPrice,
       maxPrice,
@@ -418,6 +419,23 @@ const validServices = ['babysitting', 'cleaning', 'gardening', 'petcare', 'tutor
 } else if (neighborhood) {
   whereConditions.push(`EXISTS (SELECT 1 FROM provider_working_areas pwa WHERE pwa.provider_id = sp.id AND pwa.neighborhood LIKE ?)`);
   params.push(`%${neighborhood}%`);
+} else if (ezor) {
+  // Ezor (région) sélectionné : prestataires couvrant tout l'ezor, כל ישראל,
+  // ou ayant une ville qui appartient à cet ezor dans la table locations
+  whereConditions.push(`EXISTS (
+    SELECT 1 FROM provider_working_areas pwa
+    WHERE pwa.provider_id = sp.id
+    AND (
+      (pwa.city = ? AND pwa.neighborhood = 'כל האזור')
+      OR pwa.neighborhood = 'כל ישראל'
+      OR EXISTS (
+        SELECT 1 FROM locations l
+        WHERE l.city_name_he = pwa.city
+        AND l.region_he = ?
+      )
+    )
+  )`);
+  params.push(ezor, ezor);
 }
 
     if (minPrice && !isNaN(parseFloat(minPrice))) {

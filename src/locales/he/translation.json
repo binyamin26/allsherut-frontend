@@ -338,6 +338,8 @@
   "common.yes": "כן",
   "common.no": "לא",
   "filters.location": "מיקום",
+  "filters.ezor": "אזור",
+  "filters.selectEzor": "בחר אזור",
   "filters.price": "מחיר",
   "filters.experience": "ניסיון",
   "filters.rating": "דירוג",
