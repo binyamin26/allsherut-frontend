@@ -352,6 +352,7 @@ router.get('/providers', async (req, res) => {
       service,
       city,
       neighborhood,
+      area,
       minPrice,
       maxPrice,
       sortBy = 'newest',
@@ -401,16 +402,37 @@ const validServices = ['babysitting', 'cleaning', 'gardening', 'petcare', 'tutor
   console.log(DEV_LOGS.API.REQUEST_RECEIVED, `Filtre service: ${service}`);
 }
 
-   if (city && neighborhood) {
-  // Provider covers this city AND (this specific neighborhood OR no neighborhood = covers whole city)
-  whereConditions.push(`EXISTS (SELECT 1 FROM provider_working_areas pwa WHERE pwa.provider_id = sp.id AND pwa.city LIKE ? AND (pwa.neighborhood LIKE ? OR pwa.neighborhood IS NULL OR pwa.neighborhood = ''))`);
-  params.push(`%${city}%`, `%${neighborhood}%`);
-} else if (city) {
-  whereConditions.push(`EXISTS (SELECT 1 FROM provider_working_areas pwa WHERE pwa.provider_id = sp.id AND pwa.city LIKE ?)`);
-  params.push(`%${city}%`);
-} else if (neighborhood) {
-  whereConditions.push(`EXISTS (SELECT 1 FROM provider_working_areas pwa WHERE pwa.provider_id = sp.id AND pwa.neighborhood LIKE ?)`);
-  params.push(`%${neighborhood}%`);
+   if (city || neighborhood) {
+  const locConditions = [];
+  const locParams = [];
+
+  if (city && neighborhood) {
+    // Specific neighborhood in a city
+    locConditions.push(`(pwa.city LIKE ? AND pwa.neighborhood LIKE ?)`);
+    locParams.push(`%${city}%`, `%${neighborhood}%`);
+    // Provider covers the whole city
+    locConditions.push(`(pwa.city LIKE ? AND pwa.neighborhood IN ('כל העיר', 'כל השכונות'))`);
+    locParams.push(`%${city}%`);
+  } else if (city) {
+    // Any row for this city
+    locConditions.push(`pwa.city LIKE ?`);
+    locParams.push(`%${city}%`);
+  } else if (neighborhood) {
+    locConditions.push(`pwa.neighborhood LIKE ?`);
+    locParams.push(`%${neighborhood}%`);
+  }
+
+  // Provider covers the whole region that contains this city
+  if (area) {
+    locConditions.push(`(pwa.city = ? AND pwa.neighborhood = 'כל האזור')`);
+    locParams.push(area);
+  }
+
+  // Provider covers all of Israel
+  locConditions.push(`(pwa.city = 'ישראל' AND pwa.neighborhood = 'כל ישראל')`);
+
+  whereConditions.push(`EXISTS (SELECT 1 FROM provider_working_areas pwa WHERE pwa.provider_id = sp.id AND (${locConditions.join(' OR ')}))`);
+  params.push(...locParams);
 }
 
     if (minPrice && !isNaN(parseFloat(minPrice))) {
@@ -469,6 +491,10 @@ if (advancedFilters.minRating && !isNaN(parseInt(advancedFilters.minRating))) {
   // Supprimer de advancedFilters pour ne pas le traiter 2 fois
   delete advancedFilters.minRating;
 }
+
+// Supprimer les champs de localisation qui ne sont pas des filtres de service
+delete advancedFilters.area;
+delete advancedFilters.fullLocation;
 
     if (featured === 'true') {
       whereConditions.push(`sp.is_featured = 1`);
