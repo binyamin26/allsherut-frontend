@@ -1426,6 +1426,7 @@
   "auth.workingAreas": "Working areas",
   "auth.allIsrael": "All Israel",
   "auth.selectCity": "Select city",
+  "auth.selectAnotherCity": "Select another city...",
   "auth.allCity": "All {city} (all neighborhoods)",
   "auth.allCityShort": "All {city}",
   "auth.selectNeighborhoods": "Select neighborhoods in {city}",

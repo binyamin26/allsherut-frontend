@@ -1659,7 +1659,7 @@ const renderWorkingAreasSection = () => {
               }
               if (errors.workingAreas) setErrors(prev => ({ ...prev, workingAreas: '' }));
             }}
-            placeholder={formData.workingAreas.length > 0 ? 'בחר עיר נוספת...' : t('auth.selectCity')}
+            placeholder={formData.workingAreas.length > 0 ? t('auth.selectAnotherCity') : t('auth.selectCity')}
             error={errors.workingAreas}
           />
           {selectedCity && (
@@ -1698,7 +1698,7 @@ const renderWorkingAreasSection = () => {
                 setFormData(prev => ({ ...prev, workingAreas: prev.workingAreas.filter(a => a.city !== e.target.value) }));
                 if (errors.workingAreas) setErrors(prev => ({ ...prev, workingAreas: '' }));
               }}
-              placeholder={formData.workingAreas.length > 0 ? 'בחר עיר נוספת...' : t('auth.selectCity')}
+              placeholder={formData.workingAreas.length > 0 ? t('auth.selectAnotherCity') : t('auth.selectCity')}
               error={errors.workingAreas}
             />
           </div>

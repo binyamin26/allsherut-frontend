@@ -1410,6 +1410,7 @@
   "auth.workingAreas": "Рабочие зоны",
   "auth.allIsrael": "Весь Израиль",
   "auth.selectCity": "Выберите город",
+  "auth.selectAnotherCity": "Выберите другой город...",
   "auth.allCity": "Весь {city} (все районы)",
   "auth.allCityShort": "Весь {city}",
   "auth.selectNeighborhoods": "Выберите районы в {city}",

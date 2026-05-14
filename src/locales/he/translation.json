@@ -1417,6 +1417,7 @@
   "auth.workingAreas": "אזורי עבודה",
   "auth.allIsrael": "כל ישראל",
   "auth.selectCity": "בחר עיר",
+  "auth.selectAnotherCity": "בחר עיר נוספת...",
   "auth.allCity": "כל {city} (כל השכונות)",
   "auth.allCityShort": "כל {city}",
   "auth.selectNeighborhoods": "בחר שכונות ב{city}",
