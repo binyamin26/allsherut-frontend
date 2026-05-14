@@ -10,6 +10,7 @@ import {
   Star
 } from 'lucide-react';
 import LocationSelector from '../LocationSelector';
+import CustomDropdown from '../common/CustomDropdown';
 import { useAuth } from '../../context/AuthContext';
 import { useLanguage } from '../../context/LanguageContext';
 import { 
@@ -473,15 +474,13 @@ const SelectSection = ({ title, options, filterKey, filters, onFilterChange }) =
   return (
     <div className="filter-section">
       <h4>{title}</h4>
-      <select 
-        value={filters[filterKey] || ''} 
+      <CustomDropdown
+        name={filterKey}
+        options={options}
+        value={filters[filterKey] || ''}
         onChange={(e) => onFilterChange(filterKey, e.target.value)}
-        className="filter-select"
-      >
-        {options.map(opt => (
-          <option key={opt.value} value={opt.value}>{opt.label}</option>
-        ))}
-      </select>
+        searchable={false}
+      />
     </div>
   );
 };
