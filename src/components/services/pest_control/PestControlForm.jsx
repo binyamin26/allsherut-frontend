@@ -161,9 +161,14 @@ const PestControlForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
           {errors['serviceDetails.certified'] && <span className="error-text">{errors['serviceDetails.certified']}</span>}
         </div>
 
+      </div>
+
+      <div className="form-section optional">
+        <h4>{t('serviceForm.common.optionalFields')}</h4>
+
         {/* WORK AT HEIGHT - עבודה בגובה */}
         <div className="input-group">
-          <label className="auth-form-label required">{t('serviceForm.pest_control.workAtHeight')}</label>
+          <label className="auth-form-label">{t('serviceForm.pest_control.workAtHeight')}</label>
           <div className="checkbox-group">
             {[
               { value: 'yes', label: t('common.yes') },
@@ -179,12 +184,7 @@ const PestControlForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
               </label>
             ))}
           </div>
-          {errors['serviceDetails.worksAtHeight'] && <span className="error-text">{errors['serviceDetails.worksAtHeight']}</span>}
         </div>
-      </div>
-
-      <div className="form-section optional">
-        <h4>{t('serviceForm.common.optionalFields')}</h4>
 
         <div className="input-group">
           <label className="auth-form-label">{t('serviceForm.common.experience')}</label>
