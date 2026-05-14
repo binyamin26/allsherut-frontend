@@ -73,6 +73,15 @@ const { t, currentLanguage } = useLanguage();
         handleServiceDetailsChange('levels', newLevels);
     };
 
+    // Handler pour les checkboxes de groupes d'âge
+    const handleAgeGroupChange = (ageValue, checked) => {
+        const current = serviceDetails.ageGroups || [];
+        const newAgeGroups = checked
+            ? [...current, ageValue]
+            : current.filter(a => a !== ageValue);
+        handleServiceDetailsChange('ageGroups', newAgeGroups);
+    };
+
     // Handler pour les checkboxes de spécialisations
     const handleSpecializationChange = (specValue, checked) => {
         const current = serviceDetails.specializations || [];
@@ -250,6 +259,23 @@ const { t, currentLanguage } = useLanguage();
                         className="standard-input"
                         data-field="experience"
                     />
+                </div>
+
+                {/* GROUPES D'ÂGE */}
+                <div className="input-group">
+                    <label className="auth-form-label">{t('filters.sports_activities.ageGroups')}</label>
+                    <div className="checkbox-group" data-field="ageGroups">
+                        {config.ageGroups.map(ag => (
+                            <label key={ag.value} className="checkbox-item">
+                                <input
+                                    type="checkbox"
+                                    checked={serviceDetails.ageGroups?.includes(ag.value) || false}
+                                    onChange={(e) => handleAgeGroupChange(ag.value, e.target.checked)}
+                                />
+                                {t(ag.key)}
+                            </label>
+                        ))}
+                    </div>
                 </div>
 
                 {/* NIVEAUX */}

@@ -25,15 +25,31 @@ const buildAdvancedFilters = (serviceType, filters) => {
     console.log(`[buildAdvancedFilters] Traitement ${key}:`, value);
 
     switch (key) {
-      case 'ageGroups':
+      case 'ageGroups': {
         const ageGroupsArray = value.split(',').map(v => v.trim());
         if (ageGroupsArray.length > 0) {
           const placeholders = ageGroupsArray.map(() => '?').join(',');
-          conditions.push(`JSON_OVERLAPS(sp.availability->'$.ageGroups', JSON_ARRAY(${placeholders}))`);
+          if (serviceType === 'tutoring') {
+            conditions.push(`JSON_OVERLAPS(sp.service_details->'$.ageGroups', JSON_ARRAY(${placeholders}))`);
+          } else {
+            conditions.push(`JSON_OVERLAPS(sp.availability->'$.ageGroups', JSON_ARRAY(${placeholders}))`);
+          }
           params.push(...ageGroupsArray);
           console.log(`[buildAdvancedFilters] Condition ageGroups ajoutée:`, ageGroupsArray);
         }
         break;
+      }
+
+      case 'levels': {
+        const levelsArray = value.split(',').map(v => v.trim());
+        if (levelsArray.length > 0) {
+          const placeholders = levelsArray.map(() => '?').join(',');
+          conditions.push(`JSON_OVERLAPS(sp.service_details->'$.levels', JSON_ARRAY(${placeholders}))`);
+          params.push(...levelsArray);
+          console.log(`[buildAdvancedFilters] Condition levels ajoutée:`, levelsArray);
+        }
+        break;
+      }
 
       case 'availability':
         const availabilityArray = value.split(',').map(v => v.trim());

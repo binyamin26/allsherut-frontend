@@ -195,6 +195,22 @@ const SportsActivitiesForm = ({ serviceDetails, errors, handleServiceDetailsChan
         </div>
 
         <div className="input-group">
+          <label className="auth-form-label">{t('filters.sports_activities.ageGroups')}</label>
+          <div className="checkbox-group" data-field="levels">
+            {config.levels.map(level => (
+              <label key={level.value} className="checkbox-item">
+                <input
+                  type="checkbox"
+                  checked={serviceDetails.levels?.includes(level.value) || false}
+                  onChange={(e) => handleLevelChange(level.value, e.target.checked)}
+                />
+                {t(level.key)}
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <div className="input-group">
           <label className="auth-form-label required">{t('serviceForm.sports_activities.activityMode')}</label>
           <CustomDropdown
             name="teachingMode"
@@ -228,22 +244,6 @@ const SportsActivitiesForm = ({ serviceDetails, errors, handleServiceDetailsChan
             className="standard-input"
             data-field="experience"
           />
-        </div>
-
-        <div className="input-group">
-          <label className="auth-form-label">{t('filters.sports_activities.ageGroups')}</label>
-          <div className="checkbox-group" data-field="levels">
-            {config.levels.map(level => (
-              <label key={level.value} className="checkbox-item">
-                <input
-                  type="checkbox"
-                  checked={serviceDetails.levels?.includes(level.value) || false}
-                  onChange={(e) => handleLevelChange(level.value, e.target.checked)}
-                />
-                {t(level.key)}
-              </label>
-            ))}
-          </div>
         </div>
 
         <div className="input-group">

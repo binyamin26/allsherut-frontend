@@ -239,6 +239,12 @@ const serviceFieldsConfig = {
         options: ['מתמטיקה', 'אנגלית', 'עברית', 'פיזיקה', 'כימיה', 'ביולוגיה', 'היסטוריה', 'ספורט', 'מוזיקה', 'אומנות']
       },
       {
+        name: 'ageGroups',
+        label: 'filters.sports_activities.ageGroups',
+        type: 'checkbox',
+        options: ['ילדים', 'נוער', 'מבוגרים', 'כל הגילאים']
+      },
+      {
         name: 'levels',
         label: 'serviceFields.tutoring.levels',
         type: 'checkbox',

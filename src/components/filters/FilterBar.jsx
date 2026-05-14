@@ -1348,7 +1348,15 @@ const { t, currentLanguage } = useLanguage();
         })}
       </div>
 
-      <CheckboxSection 
+      <CheckboxSection
+        title={t(config.sectionTitles.ageGroups)}
+        options={config.ageGroups.map(o => ({ value: o.value, label: t(o.key) }))}
+        filterKey="ageGroups"
+        filters={filters}
+        onCheckboxChange={handleCheckboxChange}
+      />
+
+      <CheckboxSection
         title={t(config.sectionTitles.levels)}
         options={config.levels.map(o => ({ value: o.value, label: t(o.key) }))}
         filterKey="levels"
@@ -1356,7 +1364,7 @@ const { t, currentLanguage } = useLanguage();
         onCheckboxChange={handleCheckboxChange}
       />
 
-      <SelectSection 
+      <SelectSection
         title={t(config.sectionTitles.teachingMode)}
         options={config.teachingModes.map(o => ({ value: o.value, label: t(o.key) }))}
         filterKey="teachingMode"

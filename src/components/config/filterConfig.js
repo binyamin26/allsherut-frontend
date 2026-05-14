@@ -317,11 +317,18 @@ eldercare: {
   // ═══════════════════════════════════════════════════════════════
 tutoring: {
     sectionTitles: {
+      ageGroups: 'filters.sports_activities.ageGroups',
       levels: 'filters.tutoring.studyLevels',
       teachingMode: 'filters.tutoring.teachingMode',
       specializations: 'filters.tutoring.specializations',
       qualifications: 'filters.tutoring.qualifications'
     },
+    ageGroups: [
+      { value: 'ילדים', key: 'filters.sports_activities.children' },
+      { value: 'נוער', key: 'filters.sports_activities.youth' },
+      { value: 'מבוגרים', key: 'filters.sports_activities.adults' },
+      { value: 'כל הגילאים', key: 'filters.sports_activities.allAges' }
+    ],
     levels: [
       { value: 'יסודי', key: 'filters.tutoring.elementary' },
       { value: 'חטיבת ביניים', key: 'filters.tutoring.middleSchool' },
