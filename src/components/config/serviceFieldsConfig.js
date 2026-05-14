@@ -1166,12 +1166,6 @@ const serviceFieldsConfig = {
         type: 'checkbox',
         options: ['בוקר', 'צהריים', 'ערב', '24/7']
       },
-      {
-        name: 'availability_days',
-        label: 'serviceFields.handyman.availability_days',
-        type: 'checkbox',
-        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי']
-      },
       { name: 'experience', label: 'serviceForm.common.experience', type: 'number' },
       {
         name: 'work_types',
