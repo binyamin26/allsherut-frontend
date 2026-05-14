@@ -17,7 +17,7 @@ const CustomDropdown = ({
    const { t, direction } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-  const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0, width: 0 });
+  const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0, width: 0, openUpward: false });
   const wrapperRef = useRef(null);
   const triggerRef = useRef(null);
   const menuRef = useRef(null);
@@ -56,14 +56,24 @@ const CustomDropdown = ({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isOpen]);
 
+  const computePosition = () => {
+    if (!triggerRef.current) return;
+    const rect = triggerRef.current.getBoundingClientRect();
+    const estimatedMenuHeight = Math.min(normalizedOptions.length * 44 + 8, 260);
+    const spaceBelow = window.innerHeight - rect.bottom;
+    const openUpward = spaceBelow < estimatedMenuHeight && rect.top > estimatedMenuHeight;
+    setMenuPosition({
+      top: openUpward ? undefined : rect.bottom,
+      bottom: openUpward ? window.innerHeight - rect.top : undefined,
+      left: rect.left,
+      width: rect.width,
+      openUpward
+    });
+  };
+
   useEffect(() => {
-    if (isOpen && triggerRef.current) {
-      const rect = triggerRef.current.getBoundingClientRect();
-      setMenuPosition({
-        top: rect.bottom,
-        left: rect.left,
-        width: rect.width
-      });
+    if (isOpen) {
+      computePosition();
     }
     if (isOpen && searchable) {
       setTimeout(() => {
@@ -77,24 +87,13 @@ const CustomDropdown = ({
 
   useEffect(() => {
     if (!isOpen) return;
-    
-    const updatePosition = () => {
-      if (triggerRef.current) {
-        const rect = triggerRef.current.getBoundingClientRect();
-        setMenuPosition({
-          top: rect.bottom,
-          left: rect.left,
-          width: rect.width
-        });
-      }
-    };
 
-    window.addEventListener('scroll', updatePosition, true);
-    window.addEventListener('resize', updatePosition);
-    
+    window.addEventListener('scroll', computePosition, true);
+    window.addEventListener('resize', computePosition);
+
     return () => {
-      window.removeEventListener('scroll', updatePosition, true);
-      window.removeEventListener('resize', updatePosition);
+      window.removeEventListener('scroll', computePosition, true);
+      window.removeEventListener('resize', computePosition);
     };
   }, [isOpen]);
 
@@ -105,12 +104,13 @@ const CustomDropdown = ({
   };
 
   const menuContent = isOpen && createPortal(
-    <ul 
+    <ul
       ref={menuRef}
       className="custom-dropdown-menu-portal"
       style={{
         position: 'fixed',
         top: menuPosition.top,
+        bottom: menuPosition.bottom,
         left: menuPosition.left,
         width: menuPosition.width,
         zIndex: 99999
