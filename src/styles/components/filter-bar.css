@@ -902,6 +902,150 @@
 }
 
 /* ====================================
+   RATING SLIDER PANEL
+   ==================================== */
+.rating-slider-panel {
+  direction: rtl;
+  padding: 0.5rem 0;
+}
+
+.rating-slider-display {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 1.25rem;
+  background: #f8fafc;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rating-slider-all {
+  font-size: 1rem;
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+.rating-slider-value {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #111827;
+  line-height: 1;
+}
+
+.rating-slider-suffix {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #6b7280;
+  margin-right: 0.25rem;
+}
+
+.rating-slider-track-wrapper {
+  position: relative;
+  height: 48px;
+  margin: 0 0.5rem;
+}
+
+.rating-slider-track {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 3px;
+  transform: translateY(-50%);
+  overflow: hidden;
+}
+
+.rating-slider-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #06b6d4);
+  border-radius: 3px;
+  transition: width 0.1s ease;
+}
+
+.rating-slider-input {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 6px;
+  background: transparent;
+  pointer-events: all;
+  appearance: none;
+  -webkit-appearance: none;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.rating-slider-input::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: white;
+  border: 3px solid #3b82f6;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.rating-slider-input::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.45);
+}
+
+.rating-slider-input::-moz-range-thumb {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: white;
+  border: 3px solid #3b82f6;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.35);
+}
+
+.rating-slider-input:focus {
+  outline: none;
+}
+
+.rating-slider-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  color: #9ca3af;
+  font-weight: 500;
+  padding: 0 0.25rem;
+}
+
+.rating-slider-reset {
+  display: block;
+  width: 100%;
+  margin-top: 1.25rem;
+  padding: 0.625rem 1rem;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  color: #dc2626;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.rating-slider-reset:hover {
+  background: #fee2e2;
+  border-color: #f87171;
+}
+
+/* ====================================
    RANGE FILTER - INPUTS NUMBER
    ==================================== */
 .range-filter {

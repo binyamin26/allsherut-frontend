@@ -484,8 +484,8 @@ const validServices = ['babysitting', 'cleaning', 'gardening', 'petcare', 'tutor
     }
 
     // ✅ AJOUTER ICI - Filtre rating minimum
-if (advancedFilters.minRating && !isNaN(parseInt(advancedFilters.minRating))) {
-  const minRatingValue = parseInt(advancedFilters.minRating);
+if (advancedFilters.minRating && !isNaN(parseFloat(advancedFilters.minRating))) {
+  const minRatingValue = parseFloat(advancedFilters.minRating);
   whereConditions.push(`sp.average_rating >= ?`);
   params.push(minRatingValue);
   console.log(`[Filtre minRating] Ajouté: >= ${minRatingValue}`);

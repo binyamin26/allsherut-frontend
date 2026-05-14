@@ -137,8 +137,8 @@ const FilterBar = ({
           >
             <Star size={16} />
             <span className="filter-pill-text">
-              {activeFilters.minRating 
-                ? `${activeFilters.minRating}+ ${t('filters.stars')}` 
+              {activeFilters.minRating
+                ? `${parseFloat(activeFilters.minRating).toFixed(1)}+`
                 : t('filters.rating')}
             </span>
             {activeFilters.minRating && (
@@ -402,44 +402,49 @@ const ExperiencePanel = ({ selected, onChange }) => {
 
 const RatingPanel = ({ selected, onChange }) => {
   const { t } = useLanguage();
-  
-  const options = [
-    { value: '', label: t('filters.allRatings') },
-    { value: 5, label: `5 ${t('filters.stars')}` },
-    { value: 4, label: `4+ ${t('filters.stars')}` },
-    { value: 3, label: `3+ ${t('filters.stars')}` },
-    { value: 2, label: `2+ ${t('filters.stars')}` },
-    { value: 1, label: `1+ ${t('filters.star')}` }
-  ];
+  const value = selected === '' || selected === undefined ? 0 : parseFloat(selected);
+  const fillPercent = (value / 10) * 100;
 
   return (
-    <div className="rating-panel">
-      {options.map(option => (
-        <label key={option.value} className="rating-option">
-          <input
-            type="radio"
-            name="rating"
-            value={option.value}
-            checked={selected === option.value}
-            onChange={(e) => onChange(e.target.value === '' ? '' : parseInt(e.target.value))}
-          />
-          <div className="rating-option-content">
-            <span>{option.label}</span>
-            {option.value !== '' && (
-              <div className="stars-display">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    size={14}
-                    fill={i < option.value ? "currentColor" : "none"}
-                    style={{ color: i < option.value ? '#facc15' : '#d1d5db' }}
-                  />
-                ))}
-              </div>
-            )}
-          </div>
-        </label>
-      ))}
+    <div className="rating-slider-panel">
+      <div className="rating-slider-display">
+        {value === 0 ? (
+          <span className="rating-slider-all">{t('filters.allRatings')}</span>
+        ) : (
+          <span className="rating-slider-value">
+            {value.toFixed(1)}<span className="rating-slider-suffix">+ / 10</span>
+          </span>
+        )}
+      </div>
+
+      <div className="rating-slider-track-wrapper">
+        <div className="rating-slider-track">
+          <div className="rating-slider-fill" style={{ width: `${fillPercent}%` }} />
+        </div>
+        <input
+          type="range"
+          min="0"
+          max="10"
+          step="0.1"
+          value={value}
+          onChange={(e) => {
+            const val = parseFloat(e.target.value);
+            onChange(val === 0 ? '' : val);
+          }}
+          className="rating-slider-input"
+        />
+      </div>
+
+      <div className="rating-slider-labels">
+        <span>{t('filters.allRatings')}</span>
+        <span>10</span>
+      </div>
+
+      {value > 0 && (
+        <button type="button" onClick={() => onChange('')} className="rating-slider-reset">
+          {t('filters.reset') || 'נקה'}
+        </button>
+      )}
     </div>
   );
 };
