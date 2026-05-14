@@ -146,6 +146,7 @@ export const israelCities = [
   { name: "אריאל", area: "יהודה ושומרון", nameVariants: ["אריאל"] },
   { name: "גבעת זאב", area: "יהודה ושומרון", nameVariants: ["גבעת זאב"] },
   { name: "אפרת", area: "יהודה ושומרון", nameVariants: ["אפרת"] },
+  { name: "גוש עציון", area: "יהודה ושומרון", nameVariants: ["גוש עציון"] },
   { name: "קרני שומרון", area: "יהודה ושומרון", nameVariants: ["קרני שומרון"] },
   { name: "אלקנה", area: "יהודה ושומרון", nameVariants: ["אלקנה"] },
 ];
