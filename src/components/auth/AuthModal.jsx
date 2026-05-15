@@ -1066,8 +1066,6 @@ case 'glass_works':  if (!serviceDetails.availability_hours || serviceDetails.av
   case 'handyman':
     if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0)
       newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
-    if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0)
-      newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
     if (!serviceDetails.work_types || serviceDetails.work_types.length === 0)
       newErrors['serviceDetails.work_types'] = t('validation.workTypesRequired');
     if (serviceDetails.work_types?.includes('תיקונים כלליים') && (!serviceDetails.general_repairs_types || serviceDetails.general_repairs_types.length === 0))
