@@ -627,7 +627,7 @@ try {
     if (userData.role === 'provider') {
       const serviceType = userData.serviceType || userData.service_type;
      const validServices = [
-  'babysitting', 'cleaning', 'gardening', 'petcare', 'tutoring', 'eldercare',
+  'babysitting', 'cleaning', 'gardening', 'petcare', 'tutoring', 'sports_activities', 'eldercare',
   'laundry', 'property_management', 'electrician', 'plumbing', 'air_conditioning',
   'gas_technician', 'drywall', 'carpentry', 'home_organization', 'event_entertainment',
   'private_chef', 'painting', 'waterproofing', 'contractor', 'aluminum',
