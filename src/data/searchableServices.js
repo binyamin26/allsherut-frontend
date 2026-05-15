@@ -138,6 +138,8 @@ const searchableServices = [
   { label: 'שיעורי קרמיקה', labelEn: 'Ceramics lessons', labelFr: 'Cours de céramique', labelRu: 'Уроки керамики', href: '/services/sports-activities', type: 'specialty' },
   { label: 'נגרות יצירתית', labelEn: 'Woodworking', labelFr: 'Menuiserie créative', labelRu: 'Столярное дело', href: '/services/sports-activities', type: 'specialty' },
   { label: 'תכשיטנות', labelEn: 'Jewelry making', labelFr: 'Bijouterie', labelRu: 'Ювелирное дело', href: '/services/sports-activities', type: 'specialty' },
+  { label: 'ציור, יצירה ודמיון', labelEn: 'Painting, crafts & imagination', labelFr: 'Peinture, bricolage & imagination', labelRu: 'Рисование, творчество и фантазия', href: '/services/sports-activities', type: 'specialty' },
+  { label: 'סדנאות יום הולדת יצירתיות', labelEn: 'Creative birthday workshops', labelFr: 'Ateliers anniversaires créatifs', labelRu: 'Творческие мастер-классы на день рождения', href: '/services/sports-activities', type: 'specialty' },
   { label: 'בישול', labelEn: 'Cooking', labelFr: 'Cuisine', labelRu: 'Кулинария', href: '/services/sports-activities', type: 'specialty' },
   { label: 'אפייה', labelEn: 'Baking', labelFr: 'Pâtisserie', labelRu: 'Выпечка', href: '/services/sports-activities', type: 'specialty' },
   { label: 'קונדיטוריה', labelEn: 'Pastry', labelFr: 'Confiserie', labelRu: 'Кондитерское дело', href: '/services/sports-activities', type: 'specialty' },
