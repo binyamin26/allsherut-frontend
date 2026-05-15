@@ -1084,14 +1084,8 @@ const CleaningFilters = ({ filters, handleFilterChange, handleCheckboxChange, ha
         filters={filters}
         onFilterChange={handleFilterChange}
       />
-      <AvailabilityDaysSection 
-        filters={filters} 
-        onExclusiveCheckbox={handleExclusiveCheckbox}
-        includeSaturday={true}
-      />
-      
-      <AvailabilityHoursSection 
-        filters={filters} 
+      <AvailabilityHoursSection
+        filters={filters}
         onExclusiveCheckbox={handleExclusiveCheckbox}
       />
     </div>
@@ -1535,9 +1529,8 @@ const LaundryFilters = ({ filters, handleFilterChange, handleCheckboxChange, han
         filters={filters}
         onCheckboxChange={handleCheckboxChange}
       />
-      <AvailabilityDaysSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} includeSaturday={true} />
       <AvailabilityHoursSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} />
-      <SelectSection 
+      <SelectSection
         title={t(config.sectionTitles.pickupService)}
         options={FILTER_CONFIG.common.yesNoOptions.map(o => ({ value: o.value, label: t(o.key) }))}
         filterKey="pickupService"
@@ -1599,7 +1592,6 @@ const TechnicalServiceFilters = ({
         ))}
       </div>
 
-      <AvailabilityDaysSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} />
       <AvailabilityHoursSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} />
       <AgeRangeSection filters={filters} onFilterChange={handleFilterChange} />
     </div>
@@ -1843,7 +1835,6 @@ const CarpentryFilters = ({ filters, handleFilterChange, handleCheckboxChange, h
         </div>
       </div>
 
-      <AvailabilityDaysSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} />
       <AvailabilityHoursSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} />
       <AgeRangeSection filters={filters} onFilterChange={handleFilterChange} />
     </div>
@@ -1965,7 +1956,6 @@ const HomeOrganizationFilters = ({ filters, handleFilterChange, handleCheckboxCh
         </div>
       </div>
 
-      <AvailabilityDaysSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} />
       <AvailabilityHoursSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} />
       <AgeRangeSection filters={filters} onFilterChange={handleFilterChange} />
     </div>
@@ -1987,7 +1977,6 @@ const PaintingFilters = ({ filters, handleFilterChange, handleCheckboxChange, ha
         onCheckboxChange={handleCheckboxChange}
       />
 
-      <AvailabilityDaysSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} />
       <AvailabilityHoursSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} />
       <AgeRangeSection filters={filters} onFilterChange={handleFilterChange} />
     </div>
@@ -2127,7 +2116,6 @@ const PrivateChefFilters = ({ filters, handleFilterChange, handleCheckboxChange,
       </div>
       )}
 
-      <AvailabilityDaysSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} includeSaturday={true} />
       <AvailabilityHoursSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} />
     </div>
   );
@@ -2445,7 +2433,6 @@ const AluminumFilters = ({ filters, handleFilterChange, handleCheckboxChange, ha
         </div>
       </div>
 
-      <AvailabilityDaysSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} />
       <AvailabilityHoursSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} />
       <AgeRangeSection filters={filters} onFilterChange={handleFilterChange} />
     </div>
@@ -2598,7 +2585,6 @@ const ContractorFilters = ({ filters, handleFilterChange, handleCheckboxChange, 
         </div>
       </div>
 
-      <AvailabilityDaysSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} />
       <AvailabilityHoursSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} />
       <AgeRangeSection filters={filters} onFilterChange={handleFilterChange} />
     </div>
@@ -2751,7 +2737,6 @@ const GlassWorksFilters = ({ filters, handleFilterChange, handleCheckboxChange, 
         </div>
       </div>
 
-      <AvailabilityDaysSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} />
       <AvailabilityHoursSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} />
       <AgeRangeSection filters={filters} onFilterChange={handleFilterChange} />
     </div>
@@ -2904,7 +2889,6 @@ const LocksmithFilters = ({ filters, handleFilterChange, handleCheckboxChange, h
         </div>
       </div>
 
-      <AvailabilityDaysSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} />
       <AvailabilityHoursSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} />
       <AgeRangeSection filters={filters} onFilterChange={handleFilterChange} />
     </div>
@@ -3084,7 +3068,6 @@ const WaterproofingFilters = ({ filters, handleFilterChange, handleCheckboxChang
         </div>
       </div>
 
-      <AvailabilityDaysSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} />
       <AvailabilityHoursSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} />
       <AgeRangeSection filters={filters} onFilterChange={handleFilterChange} />
     </div>
@@ -3099,11 +3082,6 @@ const MovingFilters = ({ filters, handleFilterChange, handleCheckboxChange, hand
   return (
     <div className="service-panel">
       <AgeRangeSection filters={filters} onFilterChange={handleFilterChange} />
-
-      <AvailabilityDaysSection
-        filters={filters}
-        onExclusiveCheckbox={handleExclusiveCheckbox}
-      />
 
       <AvailabilityHoursSection
         filters={filters}
@@ -3129,11 +3107,6 @@ const PhotographerFilters = ({ filters, handleFilterChange, handleCheckboxChange
   return (
     <div className="service-panel">
       <AgeRangeSection filters={filters} onFilterChange={handleFilterChange} />
-
-      <AvailabilityDaysSection
-        filters={filters}
-        onExclusiveCheckbox={handleExclusiveCheckbox}
-      />
 
       <AvailabilityHoursSection
         filters={filters}
@@ -3175,11 +3148,6 @@ const EventDecorationFilters = ({ filters, handleFilterChange, handleCheckboxCha
   return (
     <div className="service-panel">
       <AgeRangeSection filters={filters} onFilterChange={handleFilterChange} />
-
-      <AvailabilityDaysSection
-        filters={filters}
-        onExclusiveCheckbox={handleExclusiveCheckbox}
-      />
 
       <AvailabilityHoursSection
         filters={filters}
@@ -3426,10 +3394,6 @@ const HandymanFilters = ({ filters, handleFilterChange, handleCheckboxChange, ha
         </div>
       </div>
 
-      <AvailabilityDaysSection
-        filters={filters}
-        onExclusiveCheckbox={handleExclusiveCheckbox}
-      />
       <AvailabilityHoursSection
         filters={filters}
         onExclusiveCheckbox={handleExclusiveCheckbox}

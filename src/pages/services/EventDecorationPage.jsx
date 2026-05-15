@@ -11,11 +11,10 @@ const DecorationProviderDetails = ({ provider, t }) => {
   const details = provider.service_details || {};
   const age = details.age;
   const decorationTypes = details.decoration_types || [];
-  const days = provider.availability_days || [];
   const hours = provider.availability_hours || [];
   const magnets = details.magnets;
 
-  if (!age && decorationTypes.length === 0 && days.length === 0 && hours.length === 0 && !magnets) return null;
+  if (!age && decorationTypes.length === 0 && hours.length === 0 && !magnets) return null;
 
   return (
     <div className="decoration-provider-details">
@@ -23,14 +22,6 @@ const DecorationProviderDetails = ({ provider, t }) => {
         <div className="decoration-detail-row">
           <span className="decoration-detail-label">{t('serviceFields.event_decoration.age')}:</span>
           <span className="decoration-detail-value">{age}</span>
-        </div>
-      )}
-      {days.length > 0 && (
-        <div className="decoration-detail-row">
-          <span className="decoration-detail-label">{t('serviceFields.event_decoration.availability_days')}:</span>
-          <div className="decoration-tags">
-            {days.map(d => <span key={d} className="decoration-tag">{d}</span>)}
-          </div>
         </div>
       )}
       {hours.length > 0 && (
