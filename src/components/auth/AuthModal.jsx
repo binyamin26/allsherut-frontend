@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { X, Mail, Lock, User, Phone, Eye, EyeOff, Loader, Upload, CheckCircle, AlertCircle, Zap,
   Wrench, Sparkles, Users, Briefcase, Layers } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
@@ -107,8 +107,6 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
   const [locationMode, setLocationMode] = useState(''); // 'israel' | 'ezor' | 'city' | 'neighborhood'
   const [selectedEzor, setSelectedEzor] = useState('');
   
-  const [tutoringSubcategories, setTutoringSubcategories] = useState([]);
-  const [loadingSubcategories, setLoadingSubcategories] = useState(false);
   const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
   const [neighborhoodInput, setNeighborhoodInput] = useState('');
   const [showNeighborhoodSuggestions, setShowNeighborhoodSuggestions] = useState(false);
@@ -240,7 +238,6 @@ const services = [
       setAvailableNeighborhoods([]);
       setLocationMode('');
       setSelectedEzor('');
-      setTutoringSubcategories([]);
       setImageError('');
     }
   }, [isOpen, initialMode, clearError]);
@@ -279,46 +276,6 @@ if (authForm) {
       }, 300);
     }
   }, [mode, step, formData.serviceType]);
-
-  useEffect(() => {
-    const loadTutoringSubcategories = async () => {
-      if (mode === 'register' && step === 2 && formData.serviceType === 'tutoring' && tutoringSubcategories.length === 0) {
-        try {
-          setLoadingSubcategories(true);
-          const response = await apiCall('/services/5/subcategories', 'GET');
-          
-          if (response.success && response.data.subcategories) {
-            setTutoringSubcategories(response.data.subcategories);
-          }
-        } catch (err) {
-          console.error('Erreur chargement sous-catégories tutoring:', err);
-        } finally {
-          setLoadingSubcategories(false);
-        }
-      }
-    };
-
-    loadTutoringSubcategories();
-  }, [mode, step, formData.serviceType, tutoringSubcategories.length, apiCall]);
-
-  const groupedTutoringSubcategories = useMemo(() => {
-    if (!tutoringSubcategories.length) return {};
-
-    return {
-      academic: {
-        title: 'מקצועות לימוד',
-        items: tutoringSubcategories.filter(s => s.display_order >= 200 && s.display_order <= 223)
-      },
-      languages: {
-        title: 'שפות ותרבויות',
-        items: tutoringSubcategories.filter(s => s.display_order >= 40 && s.display_order <= 47)
-      },
-      tech: {
-        title: 'טכנולוגיה ומדע יישומי',
-        items: tutoringSubcategories.filter(s => s.display_order >= 60 && s.display_order <= 64)
-      }
-    };
-  }, [tutoringSubcategories]);
 
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
