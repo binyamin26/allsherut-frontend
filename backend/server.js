@@ -172,7 +172,7 @@ app.use('/api/recruitment', require('./routes/recruitment'));
 // Upload avec rate limiting spécifique
 const uploadLimiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 heure
-  max: 10,
+  max: 30,
   message: {
     success: false,
     message: 'יותר מדי העלאות. נסה שוב בעוד שעה'
