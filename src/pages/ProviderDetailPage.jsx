@@ -1606,7 +1606,7 @@ const handleContact = () => {
                                               <span className="global-badge">{t('review.categories.global')}: <strong>{parseFloat(review.rating).toFixed(1)}/10</strong></span>
                                             </div>
                                           ) : (
-                                            <span className="rating-text">⭐ {review.rating}/5</span>
+                                            <span className="rating-text">⭐ {parseFloat(review.rating).toFixed(1)}/10</span>
                                           )}
                                         </div>
                                       </div>
