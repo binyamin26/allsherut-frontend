@@ -52,10 +52,12 @@ if (userData.role === 'provider') {
 
     const newFirstName = (userData.firstName || userData.first_name || '').trim().toLowerCase();
     const newLastName = (userData.lastName || userData.last_name || '').trim().toLowerCase();
-    const existingFirstName = (existingUser.first_name || '').trim().toLowerCase();
-    const existingLastName = (existingUser.last_name || '').trim().toLowerCase();
-    if (newFirstName !== existingFirstName || newLastName !== existingLastName) {
-      throw new Error('NAME_MISMATCH_FOR_EXISTING_ACCOUNT');
+    if (newFirstName || newLastName) {
+      const existingFirstName = (existingUser.first_name || '').trim().toLowerCase();
+      const existingLastName = (existingUser.last_name || '').trim().toLowerCase();
+      if (newFirstName !== existingFirstName || newLastName !== existingLastName) {
+        throw new Error('NAME_MISMATCH_FOR_EXISTING_ACCOUNT');
+      }
     }
   }
 
