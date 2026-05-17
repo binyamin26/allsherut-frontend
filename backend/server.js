@@ -338,6 +338,9 @@ const runMigrations = async () => {
     ['babysitting_types sp column', `ALTER TABLE service_providers ADD COLUMN babysitting_types JSON NULL`],
     ['can_travel_alone sp column', `ALTER TABLE service_providers ADD COLUMN can_travel_alone TINYINT(1) DEFAULT 0`],
     ['profile_completed sp column', `ALTER TABLE service_providers ADD COLUMN profile_completed BOOLEAN DEFAULT FALSE`],
+    ['legacy_rating_converted marker', `ALTER TABLE reviews ADD COLUMN legacy_rating_converted BOOLEAN NOT NULL DEFAULT FALSE`],
+    ['convert legacy 5-star ratings to /10', `UPDATE reviews SET rating = LEAST(rating * 2, 10), legacy_rating_converted = TRUE WHERE quality_rating IS NULL AND price_rating IS NULL AND availability_rating IS NULL AND professionalism_rating IS NULL AND legacy_rating_converted = FALSE AND rating IS NOT NULL`],
+    ['recalc average_rating after legacy conversion', `UPDATE service_providers sp SET average_rating = COALESCE((SELECT ROUND(AVG(r.rating), 1) FROM reviews r WHERE r.provider_id = sp.id AND r.is_verified = TRUE AND r.is_published = TRUE), average_rating) WHERE EXISTS (SELECT 1 FROM reviews r2 WHERE r2.provider_id = sp.id AND r2.legacy_rating_converted = TRUE)`],
   ];
 
   for (const [label, sql] of steps) {
