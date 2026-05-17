@@ -114,12 +114,20 @@ const {user, isAuthenticated, isSubscriptionExpired, getMyReviews, apiCall, upda
   
 const userData = useMemo(() => {
   if (!user) return null;
-  
+
   const serviceDetails = user.providerProfile?.serviceDetails || {};
-  
+  const displayFirstName = serviceDetails.service_first_name || user.first_name || user.firstName || '';
+  const displayLastName = serviceDetails.service_last_name !== undefined
+    ? serviceDetails.service_last_name
+    : (user.last_name || user.lastName || '');
+
   return {
     ...user,
- serviceType: user.service_type || user.providerProfile?.service_type,
+    firstName: displayFirstName,
+    lastName: displayLastName,
+    first_name: displayFirstName,
+    last_name: displayLastName,
+    serviceType: user.service_type || user.providerProfile?.service_type,
     serviceDetails: serviceDetails,
     workingAreas: user.providerProfile?.workingAreas || []
   };
