@@ -724,11 +724,11 @@ const serviceFieldsConfig = {
         type: 'checkbox',
         options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
       },
-      { 
-        name: 'work_types', 
-        label: 'serviceFields.event_entertainment.work_types', 
+      {
+        name: 'work_types',
+        label: 'serviceFields.event_entertainment.work_types',
         type: 'checkbox',
-        options: ['השכרת ציוד לאירועים', 'סוגי ההפעלה', 'אחר']
+        options: ['השכרת ציוד לאירועים', 'סוגי ההפעלה', 'דוכני מזון לאירועים', 'אחר', 'DJ']
       },
       { 
         name: 'equipment_rental_types', 
@@ -760,11 +760,23 @@ const serviceFieldsConfig = {
         type: 'checkbox',
         options: ['קוסם ילדים', 'קוסם', 'ליצן ילדים', 'בלוני צורות', 'הפרחת בלונים / ניפוח בלונים במקום', 'דמויות ותחפושות', 'שעשועונים ומשחקי קבוצה', 'מופע בועות סבון', 'הפעלה מוזיקלית / ריקודים']
       },
-      { 
-        name: 'other_types', 
-        label: 'serviceFields.event_entertainment.other_types', 
+      {
+        name: 'food_stand_types',
+        label: 'serviceFields.event_entertainment.food_stand_types',
+        type: 'checkbox',
+        options: ['פופקורן', 'ברבה פאפא', 'הוט דוג', 'גרניטה / סלאש', 'קרפים', 'וופלים', 'גלידה', 'קפה', 'סוכריות', 'שוקולד', 'נאצ\'וס', 'המבורגרים', 'פיצה']
+      },
+      {
+        name: 'other_types',
+        label: 'serviceFields.event_entertainment.other_types',
         type: 'checkbox',
         options: ['איפור פנים מקצועי', 'בלוני קשת', 'צילום מגנטים']
+      },
+      {
+        name: 'dj_event_types',
+        label: 'serviceFields.event_entertainment.dj_event_types',
+        type: 'checkbox',
+        options: ['חתונה', 'בר מצווה', 'בת מצווה', 'ברית מילה', 'שבע ברכות', 'יום הולדת / יום שנה', 'אירוע עסקי', 'מסיבה פרטית', 'חגיגה משפחתית', 'אירוסין']
       }
     ]
   },
