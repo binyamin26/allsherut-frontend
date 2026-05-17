@@ -876,6 +876,7 @@ laundry: {
     workTypes: [
       { value: 'השכרת ציוד לאירועים', key: 'filters.events.equipmentRental' },
       { value: 'סוגי ההפעלה', key: 'filters.events.entertainmentServices' },
+      { value: 'דוכני מזון לאירועים', key: 'filters.events.foodStands' },
       { value: 'אחר', key: 'filters.events.other' },
       { value: 'DJ', key: 'filters.events.dj' }
     ],
@@ -906,6 +907,21 @@ laundry: {
       { value: 'מכונת עשן', key: 'filters.events.smokeMachine' },
       { value: 'מכונת שלג', key: 'filters.events.snowMachine' },
       { value: 'מכונת בועות', key: 'filters.events.bubbleMachine' }
+    ],
+    foodStandTypes: [
+      { value: 'פופקורן', key: 'filters.events.stand.popcorn' },
+      { value: 'ברבה פאפא', key: 'filters.events.stand.cottonCandy' },
+      { value: 'הוט דוג', key: 'filters.events.stand.hotdog' },
+      { value: 'גרניטה / סלאש', key: 'filters.events.stand.granita' },
+      { value: 'קרפים', key: 'filters.events.stand.crepe' },
+      { value: 'וופלים', key: 'filters.events.stand.waffle' },
+      { value: 'גלידה', key: 'filters.events.stand.icecream' },
+      { value: 'קפה', key: 'filters.events.stand.coffee' },
+      { value: 'סוכריות', key: 'filters.events.stand.candy' },
+      { value: 'שוקולד', key: 'filters.events.stand.chocolate' },
+      { value: 'נאצ\'וס', key: 'filters.events.stand.nachos' },
+      { value: 'המבורגרים', key: 'filters.events.stand.burger' },
+      { value: 'פיצה', key: 'filters.events.stand.pizza' }
     ],
     entertainmentTypes: [
       { value: 'קוסם ילדים', key: 'filters.events.magician' },

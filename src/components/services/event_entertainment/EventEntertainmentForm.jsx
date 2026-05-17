@@ -284,6 +284,61 @@ const EventEntertainmentForm = ({ serviceDetails, errors, handleServiceDetailsCh
             <label className="checkbox-item" style={{fontWeight: 'bold'}}>
               <input
                 type="checkbox"
+                checked={serviceDetails.work_types?.includes('דוכני מזון לאירועים') || false}
+                onChange={(e) => {
+                  const current = serviceDetails.work_types || [];
+                  const newTypes = e.target.checked
+                    ? [...current, 'דוכני מזון לאירועים']
+                    : current.filter(t => t !== 'דוכני מזון לאירועים');
+                  handleServiceDetailsChange('work_types', newTypes);
+                }}
+              />
+              {t('serviceForm.event.foodStands')}
+            </label>
+
+            {serviceDetails.work_types?.includes('דוכני מזון לאירועים') && (
+              <div style={{marginRight: '30px', marginTop: '10px'}}>
+                <div className="checkbox-group" data-field="food_stand_types">
+                {[
+  { value: 'פופקורן', label: t('filters.events.stand.popcorn') },
+  { value: 'ברבה פאפא', label: t('filters.events.stand.cottonCandy') },
+  { value: 'הוט דוג', label: t('filters.events.stand.hotdog') },
+  { value: 'גרניטה / סלאש', label: t('filters.events.stand.granita') },
+  { value: 'קרפים', label: t('filters.events.stand.crepe') },
+  { value: 'וופלים', label: t('filters.events.stand.waffle') },
+  { value: 'גלידה', label: t('filters.events.stand.icecream') },
+  { value: 'קפה', label: t('filters.events.stand.coffee') },
+  { value: 'סוכריות', label: t('filters.events.stand.candy') },
+  { value: 'שוקולד', label: t('filters.events.stand.chocolate') },
+  { value: 'נאצ\'וס', label: t('filters.events.stand.nachos') },
+  { value: 'המבורגרים', label: t('filters.events.stand.burger') },
+  { value: 'פיצה', label: t('filters.events.stand.pizza') }
+].map(type => (
+  <label key={type.value} className="checkbox-item">
+    <input
+      type="checkbox"
+      checked={serviceDetails.food_stand_types?.includes(type.value) || false}
+      onChange={(e) => {
+        const current = serviceDetails.food_stand_types || [];
+        const newTypes = e.target.checked
+          ? [...current, type.value]
+          : current.filter(t => t !== type.value);
+        handleServiceDetailsChange('food_stand_types', newTypes);
+      }}
+    />
+    {type.label}
+  </label>
+))}
+                </div>
+                {errors['serviceDetails.food_stand_types'] && <span className="error-text">{errors['serviceDetails.food_stand_types']}</span>}
+              </div>
+            )}
+          </div>
+
+          <div style={{marginBottom: '20px'}}>
+            <label className="checkbox-item" style={{fontWeight: 'bold'}}>
+              <input
+                type="checkbox"
                 checked={serviceDetails.work_types?.includes('אחר') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];

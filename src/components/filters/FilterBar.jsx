@@ -2251,6 +2251,33 @@ const EventEntertainmentFilters = ({ filters, handleFilterChange, handleCheckbox
           )}
         </div>
         
+        {/* דוכני מזון לאירועים */}
+        <div>
+          <label className="checkbox-option">
+            <input
+              type="checkbox"
+              checked={filters.work_types?.includes('דוכני מזון לאירועים') || false}
+              onChange={(e) => handleCheckboxChange('work_types', 'דוכני מזון לאירועים', e.target.checked)}
+            />
+            {t('filters.events.foodStands')}
+          </label>
+
+          {filters.work_types?.includes('דוכני מזון לאירועים') && (
+            <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem', marginBottom: '1rem' }}>
+              {config.foodStandTypes.map(opt => (
+                <label key={opt.value} className="checkbox-option">
+                  <input
+                    type="checkbox"
+                    checked={filters.food_stand_types?.includes(opt.value) || false}
+                    onChange={(e) => handleCheckboxChange('food_stand_types', opt.value, e.target.checked)}
+                  />
+                  {t(opt.key)}
+                </label>
+              ))}
+            </div>
+          )}
+        </div>
+
         {/* אחר */}
         <div>
           <label className="checkbox-option">
