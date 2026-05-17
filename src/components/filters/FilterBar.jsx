@@ -442,7 +442,7 @@ const RatingPanel = ({ selected, onChange }) => {
 
       {value > 0 && (
         <button type="button" onClick={() => onChange('')} className="rating-slider-reset">
-          {t('filters.reset') || 'נקה'}
+          {t('filters.resetFilters')}
         </button>
       )}
     </div>
