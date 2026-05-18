@@ -13,12 +13,10 @@ import LocationSelector from '../LocationSelector';
 import CustomDropdown from '../common/CustomDropdown';
 import { useAuth } from '../../context/AuthContext';
 import { useLanguage } from '../../context/LanguageContext';
-import { 
-  FILTER_CONFIG, 
-  getFilterOptions, 
-  getSectionTitle,
+import {
+  FILTER_CONFIG,
   getCommonDays,
-  getCommonHours 
+  getCommonHours
 } from './../config/filterConfig';
 
 const FilterBar = ({ 
@@ -577,6 +575,35 @@ const AgeRangeSection = ({ filters, onFilterChange }) => {
 };
 
 // ═══════════════════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════════════════════
+// SECTION LANGUES PARTAGÉE (ajoutée à tous les services)
+// ═══════════════════════════════════════════════════════════════════════════
+
+const SharedLanguagesSection = ({ filters, onCheckboxChange }) => {
+  const { t } = useLanguage();
+  const languages = FILTER_CONFIG.common.languages;
+  return (
+    <div className="filter-category-section">
+      <h4 className="filter-category-title">{t('filters.common.languages')}</h4>
+      <div className="checkbox-grid">
+        {languages.map(o => (
+          <label key={o.value} className="checkbox-option">
+            <input
+              type="checkbox"
+              checked={filters.languages?.includes(o.value) || false}
+              onChange={(e) => onCheckboxChange('languages', o.value, e.target.checked)}
+            />
+            {t(o.key)}
+          </label>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+// Services qui ont déjà leur propre section langues
+const SERVICES_WITH_OWN_LANGUAGES = new Set(['babysitting', 'event_entertainment', 'photographer']);
+
 // SERVICE PANEL PRINCIPAL
 // ═══════════════════════════════════════════════════════════════════════════
 
@@ -618,302 +645,62 @@ const ServicePanel = ({ serviceType, filters, onChange }) => {
     }
   };
 
-  // Fonction helper pour créer des options traduites
-  const getOptions = (configKey) => getFilterOptions(serviceType, configKey, t);
-  const getTitle = (sectionKey) => getSectionTitle(serviceType, sectionKey, t);
+  const sharedProps = { filters, handleFilterChange, handleCheckboxChange, handleExclusiveCheckbox };
 
-  // Rendu selon le type de service
-  switch (serviceType) {
-    case 'babysitting':
-      return (
-        <BabysittingFilters 
-          filters={filters}
-          handleFilterChange={handleFilterChange}
-          handleCheckboxChange={handleCheckboxChange}
-          handleExclusiveCheckbox={handleExclusiveCheckbox}
-        />
-      );
-      
-    case 'cleaning':
-      return (
-        <CleaningFilters 
-          filters={filters}
-          handleFilterChange={handleFilterChange}
-          handleCheckboxChange={handleCheckboxChange}
-          handleExclusiveCheckbox={handleExclusiveCheckbox}
-        />
-      );
-      
-    case 'gardening':
-      return (
-        <GardeningFilters 
-          filters={filters}
-          handleFilterChange={handleFilterChange}
-          handleCheckboxChange={handleCheckboxChange}
-        />
-      );
-      
-    case 'petcare':
-      return (
-        <PetcareFilters 
-          filters={filters}
-          handleFilterChange={handleFilterChange}
-          handleCheckboxChange={handleCheckboxChange}
-        />
-      );
-      
-    case 'tutoring':
-      return (
-        <TutoringFilters
-          filters={filters}
-          handleFilterChange={handleFilterChange}
-          handleCheckboxChange={handleCheckboxChange}
-        />
-      );
+  const SERVICE_FILTER_COMPONENTS = {
+    babysitting: BabysittingFilters,
+    cleaning: CleaningFilters,
+    gardening: GardeningFilters,
+    petcare: PetcareFilters,
+    tutoring: TutoringFilters,
+    sports_activities: SportsActivitiesFilters,
+    eldercare: EldercareFilters,
+    laundry: LaundryFilters,
+    electrician: ElectricianFilters,
+    plumbing: PlumbingFilters,
+    air_conditioning: AirConditioningFilters,
+    gas_technician: GasTechnicianFilters,
+    drywall: DrywallFilters,
+    carpentry: CarpentryFilters,
+    property_management: PropertyManagementFilters,
+    home_organization: HomeOrganizationFilters,
+    painting: PaintingFilters,
+    private_chef: PrivateChefFilters,
+    event_entertainment: EventEntertainmentFilters,
+    waterproofing: WaterproofingFilters,
+    contractor: ContractorFilters,
+    aluminum: AluminumFilters,
+    glass_works: GlassWorksFilters,
+    locksmith: LocksmithFilters,
+    moving: MovingFilters,
+    photographer: PhotographerFilters,
+    event_decoration: EventDecorationFilters,
+    pest_control: PestControlFilters,
+    handyman: HandymanFilters,
+  };
 
-    case 'sports_activities':
-      return (
-        <SportsActivitiesFilters
-          filters={filters}
-          handleFilterChange={handleFilterChange}
-          handleCheckboxChange={handleCheckboxChange}
-        />
-      );
-      
-    case 'eldercare':
-      return (
-        <EldercareFilters 
-          filters={filters}
-          handleFilterChange={handleFilterChange}
-          handleCheckboxChange={handleCheckboxChange}
-        />
-      );
-      
-    case 'laundry':
-      return (
-        <LaundryFilters 
-          filters={filters}
-          handleFilterChange={handleFilterChange}
-          handleCheckboxChange={handleCheckboxChange}
-          handleExclusiveCheckbox={handleExclusiveCheckbox}
-        />
-      );
-      
-    case 'electrician':
-      return (
-        <ElectricianFilters 
-          filters={filters}
-          handleFilterChange={handleFilterChange}
-          handleCheckboxChange={handleCheckboxChange}
-          handleExclusiveCheckbox={handleExclusiveCheckbox}
-        />
-      );
-      
-    case 'plumbing':
-      return (
-        <PlumbingFilters 
-          filters={filters}
-          handleFilterChange={handleFilterChange}
-          handleCheckboxChange={handleCheckboxChange}
-          handleExclusiveCheckbox={handleExclusiveCheckbox}
-        />
-      );
-      
-    case 'air_conditioning':
-      return (
-        <AirConditioningFilters 
-          filters={filters}
-          handleFilterChange={handleFilterChange}
-          handleCheckboxChange={handleCheckboxChange}
-          handleExclusiveCheckbox={handleExclusiveCheckbox}
-        />
-      );
-      
-    case 'gas_technician':
-      return (
-        <GasTechnicianFilters 
-          filters={filters}
-          handleFilterChange={handleFilterChange}
-          handleCheckboxChange={handleCheckboxChange}
-          handleExclusiveCheckbox={handleExclusiveCheckbox}
-        />
-      );
-      
-    case 'drywall':
-      return (
-        <DrywallFilters 
-          filters={filters}
-          handleFilterChange={handleFilterChange}
-          handleCheckboxChange={handleCheckboxChange}
-          handleExclusiveCheckbox={handleExclusiveCheckbox}
-        />
-      );
-      
-    case 'carpentry':
-      return (
-        <CarpentryFilters 
-          filters={filters}
-          handleFilterChange={handleFilterChange}
-          handleCheckboxChange={handleCheckboxChange}
-          handleExclusiveCheckbox={handleExclusiveCheckbox}
-        />
-      );
-      
-    case 'property_management':
-      return (
-        <PropertyManagementFilters 
-          filters={filters}
-          handleFilterChange={handleFilterChange}
-          handleCheckboxChange={handleCheckboxChange}
-        />
-      );
-      
-    case 'home_organization':
-      return (
-        <HomeOrganizationFilters 
-          filters={filters}
-          handleFilterChange={handleFilterChange}
-          handleCheckboxChange={handleCheckboxChange}
-          handleExclusiveCheckbox={handleExclusiveCheckbox}
-        />
-      );
-      
-    case 'painting':
-      return (
-        <PaintingFilters 
-          filters={filters}
-          handleFilterChange={handleFilterChange}
-          handleCheckboxChange={handleCheckboxChange}
-          handleExclusiveCheckbox={handleExclusiveCheckbox}
-        />
-      );
-      
-    case 'private_chef':
-      return (
-        <PrivateChefFilters 
-          filters={filters}
-          handleFilterChange={handleFilterChange}
-          handleCheckboxChange={handleCheckboxChange}
-          handleExclusiveCheckbox={handleExclusiveCheckbox}
-        />
-      );
-      
-    case 'event_entertainment':
-      return (
-        <EventEntertainmentFilters 
-          filters={filters}
-          handleFilterChange={handleFilterChange}
-          handleCheckboxChange={handleCheckboxChange}
-          handleExclusiveCheckbox={handleExclusiveCheckbox}
-        />
-      );
-      
-    case 'waterproofing':
-      return (
-        <WaterproofingFilters 
-          filters={filters}
-          handleFilterChange={handleFilterChange}
-          handleCheckboxChange={handleCheckboxChange}
-          handleExclusiveCheckbox={handleExclusiveCheckbox}
-        />
-      );
-      
-    case 'contractor':
-      return (
-        <ContractorFilters 
-          filters={filters}
-          handleFilterChange={handleFilterChange}
-          handleCheckboxChange={handleCheckboxChange}
-          handleExclusiveCheckbox={handleExclusiveCheckbox}
-        />
-      );
-      
-    case 'aluminum':
-      return (
-        <AluminumFilters 
-          filters={filters}
-          handleFilterChange={handleFilterChange}
-          handleCheckboxChange={handleCheckboxChange}
-          handleExclusiveCheckbox={handleExclusiveCheckbox}
-        />
-      );
-      
-    case 'glass_works':
-      return (
-        <GlassWorksFilters 
-          filters={filters}
-          handleFilterChange={handleFilterChange}
-          handleCheckboxChange={handleCheckboxChange}
-          handleExclusiveCheckbox={handleExclusiveCheckbox}
-        />
-      );
-      
-    case 'locksmith':
-      return (
-        <LocksmithFilters
-          filters={filters}
-          handleFilterChange={handleFilterChange}
-          handleCheckboxChange={handleCheckboxChange}
-          handleExclusiveCheckbox={handleExclusiveCheckbox}
-        />
-      );
+  const Component = SERVICE_FILTER_COMPONENTS[serviceType];
 
-    case 'moving':
-      return (
-        <MovingFilters
-          filters={filters}
-          handleFilterChange={handleFilterChange}
-          handleCheckboxChange={handleCheckboxChange}
-          handleExclusiveCheckbox={handleExclusiveCheckbox}
-        />
-      );
-
-    case 'photographer':
-      return (
-        <PhotographerFilters
-          filters={filters}
-          handleFilterChange={handleFilterChange}
-          handleCheckboxChange={handleCheckboxChange}
-          handleExclusiveCheckbox={handleExclusiveCheckbox}
-        />
-      );
-
-    case 'event_decoration':
-      return (
-        <EventDecorationFilters
-          filters={filters}
-          handleFilterChange={handleFilterChange}
-          handleCheckboxChange={handleCheckboxChange}
-          handleExclusiveCheckbox={handleExclusiveCheckbox}
-        />
-      );
-
-    case 'pest_control':
-      return (
-        <PestControlFilters
-          filters={filters}
-          handleFilterChange={handleFilterChange}
-          handleCheckboxChange={handleCheckboxChange}
-        />
-      );
-
-    case 'handyman':
-      return (
-        <HandymanFilters
-          filters={filters}
-          handleFilterChange={handleFilterChange}
-          handleCheckboxChange={handleCheckboxChange}
-          handleExclusiveCheckbox={handleExclusiveCheckbox}
-        />
-      );
-
-    default:
-      return (
-        <div className="service-panel">
-          <p>{t('filters.noFiltersAvailable')}</p>
-        </div>
-      );
+  if (!Component) {
+    return (
+      <div className="service-panel">
+        <p>{t('filters.noFiltersAvailable')}</p>
+      </div>
+    );
   }
+
+  return (
+    <>
+      <Component {...sharedProps} />
+      {!SERVICES_WITH_OWN_LANGUAGES.has(serviceType) && (
+        <SharedLanguagesSection
+          filters={filters}
+          onCheckboxChange={handleCheckboxChange}
+        />
+      )}
+    </>
+  );
+
 };
 
 // ═══════════════════════════════════════════════════════════════════════════

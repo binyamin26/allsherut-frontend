@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLanguage } from '../../context/LanguageContext';
 
 // Import tous les 23 formulaires
 import BabysittingForm from './babysitting/BabysittingForm';
@@ -31,14 +32,26 @@ import EventDecorationForm from './event_decoration/EventDecorationForm';
 import PestControlForm from './pest_control/PestControlForm';
 import HandymanForm from './handyman/HandymanForm';
 
-const ServiceDetailsForm = ({ 
-  serviceType, 
-  serviceDetails, 
-  errors, 
+// Services qui gèrent déjà les langues dans leur propre formulaire
+const SERVICES_WITH_OWN_LANGUAGES = new Set(['babysitting', 'eldercare', 'photographer']);
+
+const LANGUAGES_OPTIONS = [
+  { value: 'עברית', key: 'languages.hebrew' },
+  { value: 'ערבית', key: 'languages.arabic' },
+  { value: 'רוסית', key: 'languages.russian' },
+  { value: 'אנגלית', key: 'languages.english' },
+  { value: 'צרפתית', key: 'languages.french' },
+];
+
+const ServiceDetailsForm = ({
+  serviceType,
+  serviceDetails,
+  errors,
   handleServiceDetailsChange,
-  handleExclusiveCheckbox 
+  handleExclusiveCheckbox
 }) => {
-  
+  const { t } = useLanguage();
+
   // Mapping des formulaires
   const serviceFormComponents = {
     babysitting: BabysittingForm,
@@ -86,12 +99,39 @@ const ServiceDetailsForm = ({
 
   // Rendre le formulaire approprié
   return (
-    <FormComponent
-      serviceDetails={serviceDetails}
-      errors={errors}
-      handleServiceDetailsChange={handleServiceDetailsChange}
-      handleExclusiveCheckbox={handleExclusiveCheckbox}
-    />
+    <>
+      <FormComponent
+        serviceDetails={serviceDetails}
+        errors={errors}
+        handleServiceDetailsChange={handleServiceDetailsChange}
+        handleExclusiveCheckbox={handleExclusiveCheckbox}
+      />
+      {!SERVICES_WITH_OWN_LANGUAGES.has(serviceType) && (
+        <div className="form-section optional">
+          <div className="input-group">
+            <label className="auth-form-label">{t('filters.common.languages')}</label>
+            <div className="checkbox-group" data-field="languages">
+              {LANGUAGES_OPTIONS.map(lang => (
+                <label key={lang.value} className="checkbox-item">
+                  <input
+                    type="checkbox"
+                    checked={serviceDetails.languages?.includes(lang.value) || false}
+                    onChange={(e) => {
+                      const current = serviceDetails.languages || [];
+                      const newLangs = e.target.checked
+                        ? [...current, lang.value]
+                        : current.filter(l => l !== lang.value);
+                      handleServiceDetailsChange('languages', newLangs);
+                    }}
+                  />
+                  {t(lang.key)}
+                </label>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

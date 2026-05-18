@@ -26,6 +26,13 @@ export const FILTER_CONFIG = {
       { value: '', key: 'filters.noMatter' },
       { value: 'yes', key: 'common.yes' },
       { value: 'no', key: 'common.no' }
+    ],
+    languages: [
+      { value: 'עברית', key: 'languages.hebrew' },
+      { value: 'ערבית', key: 'languages.arabic' },
+      { value: 'רוסית', key: 'languages.russian' },
+      { value: 'אנגלית', key: 'languages.english' },
+      { value: 'צרפתית', key: 'languages.french' }
     ]
   },
 

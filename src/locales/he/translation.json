@@ -370,6 +370,7 @@
   "filters.common.availabilityDays": "ימי זמינות",
   "filters.common.availabilityHours": "שעות זמינות",
   "filters.common.age": "גיל",
+  "filters.common.languages": "שפות מדוברות",
   "filters.allOptions": "כל האפשרויות",
   "days.sunday": "ראשון",
   "days.monday": "שני",
