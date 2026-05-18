@@ -2566,6 +2566,9 @@ select.inline-edit {
   overflow: hidden;
   background: #f0f0f0;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .provider-header-new .provider-service-icon img {

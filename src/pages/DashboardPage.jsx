@@ -107,6 +107,16 @@ const serviceImages = {
   handyman: '/images/indimane.jpg'
 };
 
+const ServiceIconDisplay = ({ svcType }) => {
+  const [imgError, setImgError] = useState(false);
+  const imgSrc = serviceImages[svcType];
+  const FallbackIcon = serviceIcons[svcType] || User;
+  if (imgSrc && !imgError) {
+    return <img src={imgSrc} alt="" onError={() => setImgError(true)} />;
+  }
+  return <FallbackIcon size={60} color="#9ca3af" />;
+};
+
 const DashboardPage = () => {
 const {user, isAuthenticated, isSubscriptionExpired, getMyReviews, apiCall, updateProfile, uploadProfileImage, deleteProfileImage, switchService, deleteService, changePassword, uploadGalleryImage, deleteGalleryImage} = useAuth();
   const { t } = useLanguage();
@@ -1552,10 +1562,10 @@ const galleryImages = (() => {
 
       {/* GAUCHE - Icône service */}
       <div className="provider-service-icon">
-        <img 
-          src={serviceImages[activeService] || serviceImages[userData?.serviceType] || serviceImages[user?.service_type] || serviceImages[user?.services?.[0]]} 
-          alt=""
-        />
+        {(() => {
+          const svcType = activeService || userData?.serviceType || user?.service_type || user?.serviceType || user?.services?.[0];
+          return <ServiceIconDisplay key={svcType} svcType={svcType} />;
+        })()}
       </div>
     </div>
 
