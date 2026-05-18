@@ -315,12 +315,8 @@ useEffect(() => {
   };
 
   useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      setStats(userData?.role === 'provider' ? mockStats.provider : mockStats.client);
-      setRecentActivity(userData?.role === 'provider' ? mockRecentActivity.provider : mockRecentActivity.client);
-      setLoading(false);
-    }, 500);
+    setStats(userData?.role === 'provider' ? mockStats.provider : mockStats.client);
+    setRecentActivity(userData?.role === 'provider' ? mockRecentActivity.provider : mockRecentActivity.client);
   }, [user]);
 
   useEffect(() => {
