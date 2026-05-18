@@ -1632,52 +1632,43 @@ const handleContact = () => {
 
 {/* Réponse prestataire */}
 {(review.provider_response || review.providerResponse) && (
-  <div className="provider-response" style={{ direction: 'rtl' }}>
-    <div className="response-header" style={{ 
-      display: 'flex', 
-      justifyContent: 'space-between', 
-      alignItems: 'center',
-      direction: 'rtl'
-    }}>
-      <div className="provider-info" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-  <div className="provider-avatar">
-    <img
-      src={(() => {
-        const img = provider.media?.profileImage || provider.profile_image;
-        if (!img) return '/images/placeholder-user.png';
-        if (img.startsWith('http')) return img;
-        const base = (import.meta.env.VITE_API_URL || 'https://homesherut-backend.onrender.com').replace('/api', '');
-        return `${base}/${img.replace(/\\/g, '/').replace(/^\/+/, '')}`;
-      })()}
-      alt={provider.name}
-      className="provider-response-image"
-    />
-  </div>
-  <div className="response-details" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
- <h6 className="provider-response-name">{t('provider.reviews.responseFrom')}{provider.name}</h6>
-    <span className="response-date" style={{ color: '#6b7280', fontSize: '12px' }}>
-      {new Date(
-        review.provider_response?.createdAt || 
-        review.provider_response?.created_at ||
-        review.providerResponse?.createdAt
-      ).toLocaleDateString('he-IL')}
-    </span>
-  </div>
-</div>
+  <div className="provider-response">
+    <div className="provider-response-header">
+      <img
+        src={(() => {
+          const img = provider.media?.profileImage || provider.profile_image;
+          if (!img) return null;
+          if (img.startsWith('http')) return img;
+          const base = (import.meta.env.VITE_API_URL || 'https://homesherut-backend.onrender.com').replace('/api', '');
+          return `${base}/${img.replace(/\\/g, '/').replace(/^\/+/, '')}`;
+        })()}
+        alt={provider.name}
+        className="provider-response-avatar-img"
+        onError={(e) => { e.currentTarget.style.display = 'none'; }}
+      />
+      <div className="provider-response-meta">
+        <span className="provider-response-name">
+          {t('provider.reviews.responseFrom')} {provider.name}
+        </span>
+        <span className="provider-response-date">
+          {new Date(
+            review.provider_response?.createdAt ||
+            review.provider_response?.created_at ||
+            review.providerResponse?.createdAt
+          ).toLocaleDateString('he-IL')}
+        </span>
+      </div>
       <div className="response-badge">
-        <MessageCircle size={14} />
-      <span>{t('provider.reviews.providerResponse')}</span>
+        <MessageCircle size={12} />
+        <span>{t('provider.reviews.providerResponse')}</span>
       </div>
     </div>
-    
-    <div className="response-content" style={{ textAlign: 'right', marginTop: '12px' }}>
-      <p>{
-        review.provider_response?.responseText || 
-        review.provider_response?.response_text ||
-        review.providerResponse?.responseText ||
-        review.providerResponse
-      }</p>
-    </div>
+    <p className="provider-response-text">
+      {review.provider_response?.responseText ||
+       review.provider_response?.response_text ||
+       review.providerResponse?.responseText ||
+       review.providerResponse}
+    </p>
   </div>
 )}
                               </div>
