@@ -1222,6 +1222,7 @@ const getServiceName = (serviceType) => {
       gardening: 'services.gardening',
       petcare: 'services.petcare',
       tutoring: 'services.tutoring',
+      sports_activities: 'services.sports_activities',
       eldercare: 'services.eldercare',
       laundry: 'services.laundry',
       property_management: 'services.property_management',
