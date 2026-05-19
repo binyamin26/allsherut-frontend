@@ -100,6 +100,12 @@ const serviceFieldsConfig = {
         label: 'serviceFields.cleaning.materialsProvided',
         type: 'select',
         options: ['yes', 'no', 'partial']
+      },
+      {
+        name: 'languages',
+        label: 'serviceFields.eldercare.languages',
+        type: 'checkbox',
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
       }
     ]
   },
@@ -143,7 +149,13 @@ const serviceFieldsConfig = {
         options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
       },
       { name: 'experience', label: 'serviceFields.gardening.experienceYears', type: 'number' },
-      { name: 'rate', label: 'serviceFields.gardening.hourlyRate', type: 'number' }
+      { name: 'rate', label: 'serviceFields.gardening.hourlyRate', type: 'number' },
+      {
+        name: 'languages',
+        label: 'serviceFields.eldercare.languages',
+        type: 'checkbox',
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+      }
     ]
   },
 
@@ -207,11 +219,17 @@ const serviceFieldsConfig = {
         type: 'checkbox',
         options: ['גינה מגודרת', 'חצר גדולה', 'מזגן']
       },
-      { 
-        name: 'veterinaryServices', 
-        label: 'serviceFields.petcare.veterinaryServices', 
+      {
+        name: 'veterinaryServices',
+        label: 'serviceFields.petcare.veterinaryServices',
         type: 'checkbox',
         options: ['ביקור וטרינר', 'טיפול בסיסי']
+      },
+      {
+        name: 'languages',
+        label: 'serviceFields.eldercare.languages',
+        type: 'checkbox',
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
       }
     ]
   },
@@ -263,7 +281,13 @@ const serviceFieldsConfig = {
         type: 'checkbox',
         options: ['הכנה לבחינות', 'הפרעות למידה']
       },
-      { name: 'qualifications', label: 'serviceFields.tutoring.qualifications', type: 'text' }
+      { name: 'qualifications', label: 'serviceFields.tutoring.qualifications', type: 'text' },
+      {
+        name: 'languages',
+        label: 'serviceFields.eldercare.languages',
+        type: 'checkbox',
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+      }
     ]
   },
 
@@ -301,7 +325,13 @@ const serviceFieldsConfig = {
         type: 'select',
         options: ['פרונטלי בלבד', 'אונליין בלבד', 'שניהם']
       },
-      { name: 'hourlyRate', label: 'serviceFields.tutoring.hourlyRate', type: 'number' }
+      { name: 'hourlyRate', label: 'serviceFields.tutoring.hourlyRate', type: 'number' },
+      {
+        name: 'languages',
+        label: 'serviceFields.eldercare.languages',
+        type: 'checkbox',
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+      }
     ]
   },
 
@@ -396,14 +426,20 @@ const serviceFieldsConfig = {
       type: 'checkbox',
       options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
     },
-      { 
-        name: 'pickupService', 
-        label: 'serviceFields.laundry.pickupService', 
+      {
+        name: 'pickupService',
+        label: 'serviceFields.laundry.pickupService',
         type: 'select',
         options: [
           { value: 'yes', label: 'מספק שירות איסוף' },
           { value: 'no', label: 'לא מספק שירות איסוף' }
         ]
+      },
+      {
+        name: 'languages',
+        label: 'serviceFields.eldercare.languages',
+        type: 'checkbox',
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
       }
     ]
   },
@@ -434,6 +470,12 @@ const serviceFieldsConfig = {
           'בדיקה תקופתית של הנכס',
           'תיקונים כלליים (חשמל, אינסטלציה, מזגן וכו׳)'
         ]
+      },
+      {
+        name: 'languages',
+        label: 'serviceFields.eldercare.languages',
+        type: 'checkbox',
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
       }
     ]
   },
@@ -470,6 +512,12 @@ const serviceFieldsConfig = {
         label: 'serviceFields.electrician.large_work_types', 
         type: 'checkbox',
         options: ['בניית תשתית חשמל בכל הבית', 'החלפת תשתית חשמל בכל הבית', 'החלפת לוח חשמל', 'הארקה', 'החלפה לתלת פאזי', 'הכנה לביקורת עבור חברת חשמל']
+      },
+      {
+        name: 'languages',
+        label: 'serviceFields.eldercare.languages',
+        type: 'checkbox',
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
       }
     ]
   },
@@ -512,6 +560,12 @@ const serviceFieldsConfig = {
         label: 'serviceFields.plumbing.fixture_types', 
         type: 'checkbox',
         options: ['התקנת בר מים', 'ניאגרה סמויה', 'ברזים', 'ניאגרות ואסלות', 'מסנני מים', 'התקנת טוחן אשפה', 'תיקון טוחן אשפה', 'כיורים', 'הכנה למדיח כלים', 'אגנית למקלחון', 'אביזרים אחרים', 'סילוקית לאסלה', 'התקנת בידה', 'אסלה תלויה', 'אל חוזר לשעון מים', 'התקנת מערכות מים תת כיוריות']
+      },
+      {
+        name: 'languages',
+        label: 'serviceFields.eldercare.languages',
+        type: 'checkbox',
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
       }
     ]
   },
@@ -548,6 +602,12 @@ const serviceFieldsConfig = {
         label: 'serviceFields.air_conditioning.disassembly_types', 
         type: 'checkbox',
         options: ['פירוק והרכבת מזגן', 'פירוק מיזוג מיני מרכזי', 'פירוק מיזוג מרכזי', 'פירוק מזגן אינוורטר', 'פירוק מזגן VRF']
+      },
+      {
+        name: 'languages',
+        label: 'serviceFields.eldercare.languages',
+        type: 'checkbox',
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
       }
     ]
   },
@@ -578,6 +638,12 @@ const serviceFieldsConfig = {
         label: 'serviceFields.gas_technician.repair_types', 
         type: 'checkbox',
         options: ['תיקון כיריים גז', 'תיקון צנרת גז']
+      },
+      {
+        name: 'languages',
+        label: 'serviceFields.eldercare.languages',
+        type: 'checkbox',
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
       }
     ]
   },
@@ -608,6 +674,12 @@ const serviceFieldsConfig = {
         label: 'serviceFields.drywall.construction_types', 
         type: 'checkbox',
         options: ['בניית קירות גבס', 'בניית תקרות גבס', 'בניית מדפי גבס', 'הנמכת תקרה למזגן', 'חיפוי גבס לצנרת', 'בניית סינר\\קרניז גבס', 'בידוד אקוסטי']
+      },
+      {
+        name: 'languages',
+        label: 'serviceFields.eldercare.languages',
+        type: 'checkbox',
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
       }
     ]
   },
@@ -668,6 +740,12 @@ const serviceFieldsConfig = {
         label: 'serviceFields.carpentry.fence_types', 
         type: 'checkbox',
         options: ['גדרות עץ', 'מחיצות עץ לגינה', 'שערי עץ']
+      },
+      {
+        name: 'languages',
+        label: 'serviceFields.eldercare.languages',
+        type: 'checkbox',
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
       }
     ]
   },
@@ -704,6 +782,12 @@ const serviceFieldsConfig = {
         label: 'serviceFields.home_organization.professional_organization_types', 
         type: 'checkbox',
         options: ['יצירת פתרונות אחסון', 'אופטימיזציה של חללים קטנים', 'עיצוב וסידור מדפים']
+      },
+      {
+        name: 'languages',
+        label: 'serviceFields.eldercare.languages',
+        type: 'checkbox',
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
       }
     ]
   },
@@ -777,6 +861,12 @@ const serviceFieldsConfig = {
         label: 'serviceFields.event_entertainment.dj_event_types',
         type: 'checkbox',
         options: ['חתונה', 'בר מצווה', 'בת מצווה', 'ברית מילה', 'שבע ברכות', 'יום הולדת / יום שנה', 'אירוע עסקי', 'מסיבה פרטית', 'חגיגה משפחתית', 'אירוסין']
+      },
+      {
+        name: 'languages',
+        label: 'serviceFields.eldercare.languages',
+        type: 'checkbox',
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
       }
     ]
   },
@@ -829,7 +919,13 @@ const serviceFieldsConfig = {
           'בד"ץ רבני צפת', 'כשרות הרב לנדא', 'כשרות הרב רובין', 'רבנות מהדרין', 'רבנות', 'אחר'
         ]
       },
-      { name: 'kosher_other', label: 'serviceFields.private_chef.kosher_other', type: 'text' }
+      { name: 'kosher_other', label: 'serviceFields.private_chef.kosher_other', type: 'text' },
+      {
+        name: 'languages',
+        label: 'serviceFields.eldercare.languages',
+        type: 'checkbox',
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+      }
     ]
   },
 
@@ -853,6 +949,12 @@ const serviceFieldsConfig = {
         label: 'serviceFields.photographer.event_types',
         type: 'checkbox',
         options: ['בר מצווה', 'בת מצווה', 'חתונה', 'אירוסין', 'תספורת', 'שוטינג פוטו', 'אירועים פרטיים']
+      },
+      {
+        name: 'languages',
+        label: 'serviceFields.eldercare.languages',
+        type: 'checkbox',
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
       }
     ]
   },
@@ -872,6 +974,12 @@ const serviceFieldsConfig = {
         label: 'serviceFields.event_decoration.availability_hours',
         type: 'checkbox',
         options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+      },
+      {
+        name: 'languages',
+        label: 'serviceFields.eldercare.languages',
+        type: 'checkbox',
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
       }
     ]
   },
@@ -908,6 +1016,12 @@ const serviceFieldsConfig = {
         label: 'serviceFields.moving.cardboard_supply',
         type: 'checkbox',
         options: ['כן']
+      },
+      {
+        name: 'languages',
+        label: 'serviceFields.eldercare.languages',
+        type: 'checkbox',
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
       }
     ]
   },
@@ -926,6 +1040,12 @@ const serviceFieldsConfig = {
         label: 'serviceFields.painting.work_types', 
         type: 'checkbox',
         options: ['צביעה כללית של דירה', 'תיקוני קירות – חורים, סדקים, שפכטל', 'החלקת קירות (שפכטל מלא)', 'תיקון רטיבות / עובש', 'קילופי צבע ישן', 'צביעת אפקטים – בטון, משי, אומבר', 'צביעת קיר דקורטיבי / Accent Wall', 'טקסטורות מיוחדות']
+      },
+      {
+        name: 'languages',
+        label: 'serviceFields.eldercare.languages',
+        type: 'checkbox',
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
       }
     ]
   },
@@ -980,6 +1100,12 @@ const serviceFieldsConfig = {
         label: 'serviceFields.waterproofing.inspection_equipment_types',
         type: 'checkbox',
         options: ['leakDetection', 'moistureTests', 'thermalImaging']
+      },
+      {
+        name: 'languages',
+        label: 'serviceFields.eldercare.languages',
+        type: 'checkbox',
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
       }
     ]
   },
@@ -1028,6 +1154,12 @@ const serviceFieldsConfig = {
         label: 'serviceFields.contractor.facade_repair_types', 
         type: 'checkbox',
         options: ['תיקון טיח חוץ', 'שיקום קירות חיצוניים', 'איטום סדקים בקירות', 'טיפול בנפילת טיח']
+      },
+      {
+        name: 'languages',
+        label: 'serviceFields.eldercare.languages',
+        type: 'checkbox',
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
       }
     ]
   },
@@ -1070,6 +1202,12 @@ const serviceFieldsConfig = {
         label: 'serviceFields.aluminum.cladding_types', 
         type: 'checkbox',
         options: ['חיפוי צנרת / כיסוי צינורות', 'חיפוי מונים (חשמל / מים / גז)', 'ארגזים דקורטיביים מאלומיניום', 'חיפוי קווי מזגן', 'הגנה למנוע מזגן חיצוני', 'חיפוי קירות חוץ מאלומיניום', 'חיפויים דקורטיביים', 'חיפוי וארגזי תריס']
+      },
+      {
+        name: 'languages',
+        label: 'serviceFields.eldercare.languages',
+        type: 'checkbox',
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
       }
     ]
   },
@@ -1118,6 +1256,12 @@ const serviceFieldsConfig = {
         label: 'serviceFields.glass_works.repair_custom_types', 
         type: 'checkbox',
         options: ['תיקון שריטות וסדקים', 'ליטוש זכוכית', 'חיתוך זכוכית לפי מידה']
+      },
+      {
+        name: 'languages',
+        label: 'serviceFields.eldercare.languages',
+        type: 'checkbox',
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
       }
     ]
   },
@@ -1166,6 +1310,12 @@ const serviceFieldsConfig = {
         label: 'serviceFields.locksmith.security_services_types',
         type: 'checkbox',
         options: ['שדרוג מערכת ביטחון', 'התקנת דלת ביטחון', 'בדיקת פגיעות דלת', 'שירות מסגרות מסחרי']
+      },
+      {
+        name: 'languages',
+        label: 'serviceFields.eldercare.languages',
+        type: 'checkbox',
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
       }
     ]
   },
@@ -1214,6 +1364,12 @@ const serviceFieldsConfig = {
         label: 'serviceFields.handyman.hanging_types',
         type: 'checkbox',
         options: ['תליית תמונות', 'תליית אביזרים']
+      },
+      {
+        name: 'languages',
+        label: 'serviceFields.eldercare.languages',
+        type: 'checkbox',
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
       }
     ]
   },
@@ -1246,6 +1402,12 @@ const serviceFieldsConfig = {
         name: 'worksAtHeight',
         label: 'serviceForm.pest_control.workAtHeight',
         type: 'boolean-select'
+      },
+      {
+        name: 'languages',
+        label: 'serviceFields.eldercare.languages',
+        type: 'checkbox',
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
       }
     ]
   }
