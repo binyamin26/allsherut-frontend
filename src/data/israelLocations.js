@@ -38,21 +38,21 @@ export const israelCities = [
   { name: "באר יעקב", area: "מרכז", nameVariants: ["באר יעקב"] },
   
   // ══════════════════════════════════════════
-  // תל אביב - TEL AVIV REGION
+  // גוש דן / תל אביב - GUSH DAN (part of מרכז ezor)
   // ══════════════════════════════════════════
-  { name: "תל אביב", area: "תל אביב", nameVariants: ["תל אביב", "תל אביב-יפו"] },
-  { name: "רמת גן", area: "תל אביב", nameVariants: ["רמת גן"] },
-  { name: "בני ברק", area: "תל אביב", nameVariants: ["בני ברק"] },
-  { name: "חולון", area: "תל אביב", nameVariants: ["חולון"] },
-  { name: "בת ים", area: "תל אביב", nameVariants: ["בת ים"] },
-  { name: "גבעתיים", area: "תל אביב", nameVariants: ["גבעתיים"] },
-  { name: "אור יהודה", area: "תל אביב", nameVariants: ["אור יהודה"] },
-  { name: "קריית אונו", area: "תל אביב", nameVariants: ["קריית אונו"] },
-  { name: "יהוד", area: "תל אביב", nameVariants: ["יהוד", "יהוד-מונוסון"] },
-  { name: "אזור", area: "תל אביב", nameVariants: ["אזור"] },
-  { name: "גבעת שמואל", area: "תל אביב", nameVariants: ["גבעת שמואל"] },
-  { name: "רמת השרון", area: "תל אביב", nameVariants: ["רמת השרון"] },
-  { name: "סביון", area: "תל אביב", nameVariants: ["סביון"] },
+  { name: "תל אביב", area: "מרכז", nameVariants: ["תל אביב", "תל אביב-יפו"] },
+  { name: "רמת גן", area: "מרכז", nameVariants: ["רמת גן"] },
+  { name: "בני ברק", area: "מרכז", nameVariants: ["בני ברק"] },
+  { name: "חולון", area: "מרכז", nameVariants: ["חולון"] },
+  { name: "בת ים", area: "מרכז", nameVariants: ["בת ים"] },
+  { name: "גבעתיים", area: "מרכז", nameVariants: ["גבעתיים"] },
+  { name: "אור יהודה", area: "מרכז", nameVariants: ["אור יהודה"] },
+  { name: "קריית אונו", area: "מרכז", nameVariants: ["קריית אונו"] },
+  { name: "יהוד", area: "מרכז", nameVariants: ["יהוד", "יהוד-מונוסון"] },
+  { name: "אזור", area: "מרכז", nameVariants: ["אזור"] },
+  { name: "גבעת שמואל", area: "מרכז", nameVariants: ["גבעת שמואל"] },
+  { name: "רמת השרון", area: "מרכז", nameVariants: ["רמת השרון"] },
+  { name: "סביון", area: "מרכז", nameVariants: ["סביון"] },
   
   // ══════════════════════════════════════════
   // השרון - SHARON
