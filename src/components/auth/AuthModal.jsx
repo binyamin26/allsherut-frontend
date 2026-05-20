@@ -170,6 +170,7 @@ const services = [
   { key: 'home_organization', name: t('services.home_organization'), image: '/images/rangement.jpg', gradient: 'home_organization-gradient' },
   { key: 'event_decoration', name: t('services.event_decoration'), image: '/images/deco.jpg', gradient: 'event_decoration-gradient' },
   { key: 'event_entertainment', name: t('services.event_entertainment'), image: '/images/fetes1.jpg', gradient: 'event_entertainment-gradient' },
+  { key: 'dj', name: t('services.dj'), image: '/images/fetes1.jpg', gradient: 'event_entertainment-gradient' },
   { key: 'private_chef', name: t('services.private_chef'), image: '/images/traiteur.jpg', gradient: 'private_chef-gradient' },
   { key: 'photographer', name: t('services.photographer'), image: '/images/photographe.jpg', gradient: 'photographer-gradient' },
   { key: 'tutoring', name: t('services.tutoring'), icon: '📚', image: '/images/tutoring.png', gradient: 'tutoring-gradient' },
@@ -865,6 +866,18 @@ case 'home_organization':  if (!serviceDetails.availability_hours || serviceDeta
   if (serviceDetails.work_types?.includes('אחר') && (!serviceDetails.other_types || serviceDetails.other_types.length === 0)) {
     newErrors['serviceDetails.other_types'] = t('validation.selectAtLeastOne');
   }
+  break;
+
+  case 'dj':
+    if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
+      newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
+    }
+    if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
+      newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
+    }
+    if (!serviceDetails.dj_event_types || serviceDetails.dj_event_types.length === 0) {
+      newErrors['serviceDetails.dj_event_types'] = t('validation.selectAtLeastOne');
+    }
   break;
 
 case 'private_chef':    if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
