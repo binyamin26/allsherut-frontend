@@ -68,7 +68,7 @@ const LocationSelector = ({
       <div className="location-selector-header">
         <h3 className="location-selector-title">
           <MapPin size={20} className="location-icon" />
-          בחר מיקום
+          {t('location.selectLocation')}
         </h3>
       </div>
 
@@ -76,7 +76,7 @@ const LocationSelector = ({
         <div className="location-dropdowns">
           {/* Sélection de ville */}
           <div className="dropdown-group">
-            <label>עיר:</label>
+            <label>{t('location.city')}</label>
             <CustomDropdown
               name="city"
               options={availableCities}
@@ -89,13 +89,13 @@ const LocationSelector = ({
           {/* Sélection de quartier - CONDITIONNEL */}
           {selectedCity && availableNeighborhoods.length > 0 && (
             <div className="dropdown-group">
-              <label>שכונה:</label>
+              <label>{t('location.neighborhood')}</label>
               <CustomDropdown
                 name="neighborhood"
                 options={availableNeighborhoods}
                 value={selectedNeighborhood}
                 onChange={handleNeighborhoodChange}
-                placeholder={`כל השכונות ב${selectedCity}`}
+                placeholder={t('location.allNeighborhoods', { city: selectedCity })}
               />
             </div>
           )}
@@ -104,7 +104,7 @@ const LocationSelector = ({
 
       {getFullLocationString() && (
         <div className="selected-location-display">
-          <div className="selected-location-label">מיקום נבחר:</div>
+          <div className="selected-location-label">{t('location.selected')}</div>
           <div className="selected-location-value">{getFullLocationString()}</div>
         </div>
       )}

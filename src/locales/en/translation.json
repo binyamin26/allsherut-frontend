@@ -2582,5 +2582,11 @@
   "serviceFields.handyman.installations_types": "Installations & assembly",
   "serviceFields.handyman.doors_furniture_types": "Doors & furniture",
   "serviceFields.handyman.light_work_types": "Light home work",
-  "serviceFields.handyman.hanging_types": "Hanging & organizing"
+  "serviceFields.handyman.hanging_types": "Hanging & organizing",
+
+  "location.selectLocation": "Select Location",
+  "location.city": "City:",
+  "location.neighborhood": "Neighborhood:",
+  "location.allNeighborhoods": "All neighborhoods in {{city}}",
+  "location.selected": "Selected location:"
 }

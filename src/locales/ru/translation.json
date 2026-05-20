@@ -2582,5 +2582,11 @@
   "serviceFields.handyman.installations_types": "Установка и сборка",
   "serviceFields.handyman.doors_furniture_types": "Двери и мебель",
   "serviceFields.handyman.light_work_types": "Лёгкие работы",
-  "serviceFields.handyman.hanging_types": "Вешание и организация"
+  "serviceFields.handyman.hanging_types": "Вешание и организация",
+
+  "location.selectLocation": "Выбрать местоположение",
+  "location.city": "Город:",
+  "location.neighborhood": "Район:",
+  "location.allNeighborhoods": "Все районы в {{city}}",
+  "location.selected": "Выбранное местоположение:"
 }

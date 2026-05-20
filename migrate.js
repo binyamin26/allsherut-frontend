@@ -4,6 +4,19 @@ const path = require('path');
 require('dotenv').config({ path: path.join(__dirname, 'backend/.env') });
 
 const SQL = [
+  // 0. migrate_dj_service
+  `UPDATE service_providers
+   SET service_type = 'dj'
+   WHERE service_type = 'event_entertainment'
+     AND JSON_CONTAINS(service_details, '"DJ"', '$.work_types');`,
+
+  `UPDATE users
+   SET service_type = 'dj'
+   WHERE service_type = 'event_entertainment'
+     AND id IN (
+       SELECT user_id FROM service_providers WHERE service_type = 'dj'
+     );`,
+
   // 1. add_recruitment
   `
   SET @col = (SELECT COUNT(*) FROM information_schema.COLUMNS
@@ -14,7 +27,7 @@ const SQL = [
   PREPARE st FROM @s; EXECUTE st; DEALLOCATE PREPARE st;
   `,
   `
-  CREATE TABLE IF NOT EXISTS job_listings (
+  CREAT E TABLE IF NOT EXISTS job_listings (
     id INT PRIMARY KEY AUTO_INCREMENT,
     provider_id INT NOT NULL,
     service_type VARCHAR(50) NOT NULL,
@@ -43,6 +56,8 @@ const SQL = [
 ];
 
 const LABELS = [
+  'migrate event_entertainment DJ providers → service_type=dj',
+  'migrate users.service_type event_entertainment → dj',
   'seeking_type column',
   'job_listings table',
   'fix experience_required',
