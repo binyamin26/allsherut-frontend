@@ -49,6 +49,7 @@ import DrywallPage from './pages/services/DrywallPage';
 import CarpentryPage from './pages/services/CarpentryPage';
 import HomeOrganizationPage from './pages/services/HomeOrganizationPage';
 import EventEntertainmentPage from './pages/services/EventEntertainmentPage';
+import DJPage from './pages/services/DJPage';
 import PrivateChefPage from './pages/services/PrivateChefPage';
 import PaintingPage from './pages/services/PaintingPage';
 import WaterproofingPage from './pages/services/WaterproofingPage';
@@ -160,6 +161,7 @@ function App() {
 <Route path="/services/carpentry" element={<CarpentryPage />} />
 <Route path="/services/home-organization" element={<HomeOrganizationPage />} />
 <Route path="/services/event-entertainment" element={<EventEntertainmentPage />} />
+<Route path="/services/dj" element={<DJPage />} />
 <Route path="/services/private-chef" element={<PrivateChefPage />} />
 <Route path="/services/painting" element={<PaintingPage />} />
 <Route path="/services/waterproofing" element={<WaterproofingPage />} />

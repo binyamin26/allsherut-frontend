@@ -31,6 +31,7 @@ import PhotographerForm from './photographer/PhotographerForm';
 import EventDecorationForm from './event_decoration/EventDecorationForm';
 import PestControlForm from './pest_control/PestControlForm';
 import HandymanForm from './handyman/HandymanForm';
+import DJForm from './dj/DJForm';
 
 // Services qui gèrent déjà les langues dans leur propre formulaire
 const SERVICES_WITH_OWN_LANGUAGES = new Set(['babysitting', 'eldercare', 'photographer']);
@@ -82,7 +83,8 @@ const ServiceDetailsForm = ({
     photographer: PhotographerForm,
     event_decoration: EventDecorationForm,
     pest_control: PestControlForm,
-    handyman: HandymanForm
+    handyman: HandymanForm,
+    dj: DJForm
   };
 
   // Récupérer le bon composant

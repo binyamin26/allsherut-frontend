@@ -380,59 +380,6 @@ const EventEntertainmentForm = ({ serviceDetails, errors, handleServiceDetailsCh
             )}
           </div>
 
-          <div style={{marginBottom: '20px'}}>
-            <label className="checkbox-item" style={{fontWeight: 'bold'}}>
-              <input
-                type="checkbox"
-                checked={serviceDetails.work_types?.includes('DJ') || false}
-                onChange={(e) => {
-                  const current = serviceDetails.work_types || [];
-                  const newTypes = e.target.checked
-                    ? [...current, 'DJ']
-                    : current.filter(t => t !== 'DJ');
-                  handleServiceDetailsChange('work_types', newTypes);
-                }}
-              />
-              {t('serviceForm.event.dj')}
-            </label>
-
-            {serviceDetails.work_types?.includes('DJ') && (
-              <div style={{marginRight: '30px', marginTop: '10px'}}>
-                <p style={{fontWeight: '600', marginBottom: '8px'}}>{t('filters.chef.eventType')}</p>
-                <div className="checkbox-group" data-field="dj_event_types">
-                {[
-  { value: 'חתונה', label: t('filters.chef.wedding') },
-  { value: 'בר מצווה', label: t('filters.chef.barMitsva') },
-  { value: 'בת מצווה', label: t('filters.chef.batMitsva') },
-  { value: 'ברית מילה', label: t('filters.chef.britMila') },
-  { value: 'שבע ברכות', label: t('filters.chef.shevaBrahot') },
-  { value: 'יום הולדת / יום שנה', label: t('filters.chef.anniversary') },
-  { value: 'אירוע עסקי', label: t('filters.chef.corporateEvent') },
-  { value: 'מסיבה פרטית', label: t('filters.chef.privateParty') },
-  { value: 'חגיגה משפחתית', label: t('filters.chef.familyParty') },
-  { value: 'אירוסין', label: t('filters.chef.engagement') }
-].map(type => (
-  <label key={type.value} className="checkbox-item">
-    <input
-      type="checkbox"
-      checked={serviceDetails.dj_event_types?.includes(type.value) || false}
-      onChange={(e) => {
-        const current = serviceDetails.dj_event_types || [];
-        const newTypes = e.target.checked
-          ? [...current, type.value]
-          : current.filter(t => t !== type.value);
-        handleServiceDetailsChange('dj_event_types', newTypes);
-      }}
-    />
-    {type.label}
-  </label>
-))}
-                </div>
-                {errors['serviceDetails.dj_event_types'] && <span className="error-text">{errors['serviceDetails.dj_event_types']}</span>}
-              </div>
-            )}
-          </div>
-
           {errors['serviceDetails.work_types'] && <span className="error-text">{errors['serviceDetails.work_types']}</span>}
         </div>
       </div>

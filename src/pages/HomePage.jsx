@@ -238,6 +238,14 @@ const HomePage = () => {
       href: '/services/event-entertainment'
     },
     {
+      id: 'dj',
+      name: t('services.dj'),
+      image: '/images/fetes1.jpg',
+      description: t('services.dj.desc'),
+      color: 'from-purple-600 to-indigo-700',
+      href: '/services/dj'
+    },
+    {
       id: 'private_chef',
       name: t('services.private_chef'),
       image: '/images/traiteur.jpg',

@@ -59,7 +59,7 @@ const ALL_SERVICE_KEYS = [
   'plumbing','electrician','locksmith','painting','air_conditioning','drywall',
   'aluminum','glass_works','gas_technician','waterproofing','carpentry','handyman','contractor',
   'moving','gardening','pest_control','cleaning','laundry','property_management',
-  'home_organization','event_decoration','event_entertainment','private_chef',
+  'home_organization','event_decoration','event_entertainment','dj','private_chef',
   'photographer','tutoring','sports_activities','babysitting','petcare','eldercare'
 ];
 
@@ -93,6 +93,7 @@ const serviceImages = {
   carpentry: '/images/logo menuisier.png',
   home_organization: '/images/logo rangement.png',
   event_entertainment: '/images/logo event.png',
+  dj: '/images/logo event.png',
   private_chef: '/images/logo chef.png',
   painting: '/images/logo peinture.png',
   waterproofing: '/images/logo itoum.png',
@@ -1240,6 +1241,7 @@ const getServiceName = (serviceType) => {
       carpentry: 'services.carpentry',
       home_organization: 'services.home_organization',
       event_entertainment: 'services.event_entertainment',
+      dj: 'services.dj',
       private_chef: 'services.private_chef',
       painting: 'services.painting',
       waterproofing: 'services.waterproofing',

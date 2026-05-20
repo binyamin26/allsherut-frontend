@@ -63,6 +63,8 @@
   "services.home_organization.desc": "Organisation professionnelle des espaces de vie",
   "services.event_entertainment": "Animation événements",
   "services.event_entertainment.desc": "Animation et divertissement pour événements",
+  "services.dj": "DJ / Disc Jockey",
+  "services.dj.desc": "DJs professionnels pour tous types d'événements",
   "services.private_chef": "Traiteur / Chef à domicile",
   "services.private_chef.desc": "Services traiteur et chef à domicile pour événements et repas",
   "services.painting": "Peinture",

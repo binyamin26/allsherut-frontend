@@ -593,6 +593,56 @@ optional: {
 }
   },
 
+  dj: {
+    required: {
+      availability_days: {
+        label: 'ימי זמינות',
+        type: 'checkbox',
+        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע'],
+        dbField: 'availability_days'
+      },
+      availability_hours: {
+        label: 'שעות זמינות',
+        type: 'checkbox',
+        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל'],
+        dbField: 'availability_hours'
+      },
+      dj_event_types: {
+        label: 'סוגי אירועים',
+        type: 'checkbox',
+        options: [
+          'חתונה',
+          'בר מצווה',
+          'בת מצווה',
+          'ברית מילה',
+          'שבע ברכות',
+          'יום הולדת / יום שנה',
+          'אירוע עסקי',
+          'מסיבה פרטית',
+          'חגיגה משפחתית',
+          'אירוסין'
+        ],
+        dbField: 'service_details->>"$.dj_event_types"'
+      }
+    },
+    optional: {
+      languages: {
+        label: 'שפות מדוברות',
+        type: 'checkbox',
+        options: ['עברית', 'ערבית', 'רוסית', 'אנגלית', 'צרפתית'],
+        dbField: 'languages'
+      },
+      experienceYears: {
+        label: 'שנות ניסיון',
+        type: 'range',
+        min: 0,
+        max: 30,
+        unit: 'שנים',
+        dbField: 'experience_years'
+      }
+    }
+  },
+
   pest_control: {
     required: {
       pestTypes: {
