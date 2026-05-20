@@ -106,7 +106,7 @@ const DJPage = () => {
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon">
-              <img src="/images/logo event.png" alt="DJ" />
+              <img src="/images/logo DJ.jpg" alt="DJ" />
             </div>
             <h1 className="service-title">{t('services.dj.pageTitle')}</h1>
           </div>
