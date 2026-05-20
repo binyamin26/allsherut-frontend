@@ -4,14 +4,13 @@
 
 export const israelAreas = [
   "מרכז",
-  "צפון", 
-  "דרום",
+  "שרון",
+  "שפלה",
   "ירושלים",
-  "תל אביב",
+  "צפון",
   "חיפה",
+  "דרום",
   "יהודה ושומרון",
-  "השרון",
-  "השפלה",
 ];
 
 export const israelCities = [
@@ -25,8 +24,8 @@ export const israelCities = [
   { name: "ראשון לציון", area: "מרכז", nameVariants: ["ראשון לציון"] },
   { name: "נס ציונה", area: "מרכז", nameVariants: ["נס ציונה"] },
   { name: "מודיעין", area: "מרכז", nameVariants: ["מודיעין", "מודיעין-מכבים-רעות"] },
-  { name: "יבנה", area: "מרכז", nameVariants: ["יבנה"] },
-  { name: "גדרה", area: "מרכז", nameVariants: ["גדרה"] },
+  { name: "יבנה", area: "שפלה", nameVariants: ["יבנה"] },
+  { name: "גדרה", area: "שפלה", nameVariants: ["גדרה"] },
   { name: "גני תקווה", area: "מרכז", nameVariants: ["גני תקווה"] },
   { name: "קריית עקרון", area: "מרכז", nameVariants: ["קריית עקרון"] },
   { name: "שוהם", area: "מרכז", nameVariants: ["שוהם"] },
@@ -55,33 +54,43 @@ export const israelCities = [
   { name: "סביון", area: "מרכז", nameVariants: ["סביון"] },
   
   // ══════════════════════════════════════════
-  // השרון - SHARON
+  // שרון - SHARON
   // ══════════════════════════════════════════
-  { name: "הרצליה", area: "השרון", nameVariants: ["הרצליה"] },
-  { name: "כפר סבא", area: "השרון", nameVariants: ["כפר סבא"] },
-  { name: "רעננה", area: "השרון", nameVariants: ["רעננה"] },
-  { name: "הוד השרון", area: "השרון", nameVariants: ["הוד השרון"] },
-  { name: "נתניה", area: "השרון", nameVariants: ["נתניה"] },
-  { name: "כפר יונה", area: "השרון", nameVariants: ["כפר יונה"] },
-  { name: "כוכב יאיר", area: "השרון", nameVariants: ["כוכב יאיר", "כוכב יאיר-צור יגאל"] },
-  { name: "קדימה צורן", area: "השרון", nameVariants: ["קדימה צורן", "קדימה-צורן"] },
-  { name: "אבן יהודה", area: "השרון", nameVariants: ["אבן יהודה"] },
-  { name: "פרדסיה", area: "השרון", nameVariants: ["פרדסיה"] },
-  { name: "תל מונד", area: "השרון", nameVariants: ["תל מונד"] },
-  { name: "חדרה", area: "השרון", nameVariants: ["חדרה"] },
-  { name: "חריש", area: "השרון", nameVariants: ["חריש"] },
-  { name: "פרדס חנה כרכור", area: "השרון", nameVariants: ["פרדס חנה כרכור", "פרדס חנה-כרכור"] },
-  { name: "בנימינה גבעת עדה", area: "השרון", nameVariants: ["בנימינה גבעת עדה", "בנימינה-גבעת עדה"] },
-  { name: "זכרון יעקב", area: "השרון", nameVariants: ["זכרון יעקב"] },
-  { name: "קיסריה", area: "השרון", nameVariants: ["קיסריה"] },
-  { name: "אור עקיבא", area: "השרון", nameVariants: ["אור עקיבא"] },
+  { name: "הרצליה", area: "שרון", nameVariants: ["הרצליה"] },
+  { name: "כפר סבא", area: "שרון", nameVariants: ["כפר סבא"] },
+  { name: "רעננה", area: "שרון", nameVariants: ["רעננה"] },
+  { name: "הוד השרון", area: "שרון", nameVariants: ["הוד השרון"] },
+  { name: "נתניה", area: "שרון", nameVariants: ["נתניה"] },
+  { name: "כפר יונה", area: "שרון", nameVariants: ["כפר יונה"] },
+  { name: "כוכב יאיר", area: "שרון", nameVariants: ["כוכב יאיר", "כוכב יאיר-צור יגאל"] },
+  { name: "קדימה צורן", area: "שרון", nameVariants: ["קדימה צורן", "קדימה-צורן"] },
+  { name: "אבן יהודה", area: "שרון", nameVariants: ["אבן יהודה"] },
+  { name: "פרדסיה", area: "שרון", nameVariants: ["פרדסיה"] },
+  { name: "תל מונד", area: "שרון", nameVariants: ["תל מונד"] },
+  { name: "חדרה", area: "שרון", nameVariants: ["חדרה"] },
+  { name: "חריש", area: "שרון", nameVariants: ["חריש"] },
+  { name: "פרדס חנה כרכור", area: "שרון", nameVariants: ["פרדס חנה כרכור", "פרדס חנה-כרכור"] },
+  { name: "בנימינה גבעת עדה", area: "שרון", nameVariants: ["בנימינה גבעת עדה", "בנימינה-גבעת עדה"] },
+  { name: "זכרון יעקב", area: "שרון", nameVariants: ["זכרון יעקב"] },
+  { name: "קיסריה", area: "שרון", nameVariants: ["קיסריה"] },
+  { name: "אור עקיבא", area: "שרון", nameVariants: ["אור עקיבא"] },
   
   // ══════════════════════════════════════════
-  // צפון - NORD
+  // חיפה - HAÏFA ET BAIE DE HAÏFA
   // ══════════════════════════════════════════
-  { name: "חיפה", area: "צפון", nameVariants: ["חיפה"] },
-  { name: "עכו", area: "צפון", nameVariants: ["עכו"] },
-  { name: "נהריה", area: "צפון", nameVariants: ["נהריה"] },
+  { name: "חיפה", area: "חיפה", nameVariants: ["חיפה"] },
+  { name: "קריית מוצקין", area: "חיפה", nameVariants: ["קריית מוצקין"] },
+  { name: "קריית ביאליק", area: "חיפה", nameVariants: ["קריית ביאליק"] },
+  { name: "קריית ים", area: "חיפה", nameVariants: ["קריית ים"] },
+  { name: "קריית אתא", area: "חיפה", nameVariants: ["קריית אתא"] },
+  { name: "נשר", area: "חיפה", nameVariants: ["נשר"] },
+  { name: "טירת כרמל", area: "חיפה", nameVariants: ["טירת כרמל"] },
+  { name: "עכו", area: "חיפה", nameVariants: ["עכו"] },
+  { name: "נהריה", area: "חיפה", nameVariants: ["נהריה"] },
+
+  // ══════════════════════════════════════════
+  // צפון - NORD (GALILÉE)
+  // ══════════════════════════════════════════
   { name: "כרמיאל", area: "צפון", nameVariants: ["כרמיאל"] },
   { name: "טבריה", area: "צפון", nameVariants: ["טבריה"] },
   { name: "צפת", area: "צפון", nameVariants: ["צפת"] },
@@ -90,14 +99,8 @@ export const israelCities = [
   { name: "עפולה", area: "צפון", nameVariants: ["עפולה"] },
   { name: "קריית שמונה", area: "צפון", nameVariants: ["קריית שמונה"] },
   { name: "מעלות תרשיחא", area: "צפון", nameVariants: ["מעלות תרשיחא", "מעלות-תרשיחא"] },
-  { name: "קריית מוצקין", area: "צפון", nameVariants: ["קריית מוצקין"] },
-  { name: "קריית ביאליק", area: "צפון", nameVariants: ["קריית ביאליק"] },
-  { name: "קריית ים", area: "צפון", nameVariants: ["קריית ים"] },
-  { name: "קריית אתא", area: "צפון", nameVariants: ["קריית אתא"] },
   { name: "יקנעם", area: "צפון", nameVariants: ["יקנעם", "יקנעם עילית"] },
   { name: "מגדל העמק", area: "צפון", nameVariants: ["מגדל העמק"] },
-  { name: "טירת כרמל", area: "צפון", nameVariants: ["טירת כרמל"] },
-  { name: "נשר", area: "צפון", nameVariants: ["נשר"] },
   { name: "עראבה", area: "צפון", nameVariants: ["עראבה"] },
   { name: "סח'נין", area: "צפון", nameVariants: ["סח'נין", "סחנין"] },
   { name: "טמרה", area: "צפון", nameVariants: ["טמרה"] },
@@ -118,7 +121,7 @@ export const israelCities = [
   { name: "אשקלון", area: "דרום", nameVariants: ["אשקלון"] },
   { name: "דימונה", area: "דרום", nameVariants: ["דימונה"] },
   { name: "אילת", area: "דרום", nameVariants: ["אילת"] },
-  { name: "קריית גת", area: "דרום", nameVariants: ["קריית גת"] },
+  { name: "קריית גת", area: "שפלה", nameVariants: ["קריית גת"] },
   { name: "שדרות", area: "דרום", nameVariants: ["שדרות"] },
   { name: "נתיבות", area: "דרום", nameVariants: ["נתיבות"] },
   { name: "אופקים", area: "דרום", nameVariants: ["אופקים"] },
@@ -126,13 +129,13 @@ export const israelCities = [
   { name: "רהט", area: "דרום", nameVariants: ["רהט"] },
   { name: "מצפה רמון", area: "דרום", nameVariants: ["מצפה רמון"] },
   { name: "ירוחם", area: "דרום", nameVariants: ["ירוחם"] },
-  { name: "קריית מלאכי", area: "דרום", nameVariants: ["קריית מלאכי"] },
+  { name: "קריית מלאכי", area: "שפלה", nameVariants: ["קריית מלאכי"] },
   
   // ══════════════════════════════════════════
   // ירושלים - JERUSALEM
   // ══════════════════════════════════════════
   { name: "ירושלים", area: "ירושלים", nameVariants: ["ירושלים"] },
-  { name: "בית שמש", area: "ירושלים", nameVariants: ["בית שמש"] },
+  { name: "בית שמש", area: "שפלה", nameVariants: ["בית שמש"] },
   { name: "מעלה אדומים", area: "ירושלים", nameVariants: ["מעלה אדומים"] },
   { name: "מבשרת ציון", area: "ירושלים", nameVariants: ["מבשרת ציון"] },
   { name: "אבו גוש", area: "ירושלים", nameVariants: ["אבו גוש"] },
