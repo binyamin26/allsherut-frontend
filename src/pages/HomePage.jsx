@@ -240,7 +240,7 @@ const HomePage = () => {
     {
       id: 'dj',
       name: t('services.dj'),
-      image: '/images/fetes1.jpg',
+      image: '/images/DJ.jpg',
       description: t('services.dj.desc'),
       color: 'from-purple-600 to-indigo-700',
       href: '/services/dj'

@@ -170,7 +170,7 @@ const services = [
   { key: 'home_organization', name: t('services.home_organization'), image: '/images/rangement.jpg', gradient: 'home_organization-gradient' },
   { key: 'event_decoration', name: t('services.event_decoration'), image: '/images/deco.jpg', gradient: 'event_decoration-gradient' },
   { key: 'event_entertainment', name: t('services.event_entertainment'), image: '/images/fetes1.jpg', gradient: 'event_entertainment-gradient' },
-  { key: 'dj', name: t('services.dj'), image: '/images/fetes1.jpg', gradient: 'event_entertainment-gradient' },
+  { key: 'dj', name: t('services.dj'), image: '/images/DJ.jpg', gradient: 'event_entertainment-gradient' },
   { key: 'private_chef', name: t('services.private_chef'), image: '/images/traiteur.jpg', gradient: 'private_chef-gradient' },
   { key: 'photographer', name: t('services.photographer'), image: '/images/photographe.jpg', gradient: 'photographer-gradient' },
   { key: 'tutoring', name: t('services.tutoring'), icon: '📚', image: '/images/tutoring.png', gradient: 'tutoring-gradient' },
