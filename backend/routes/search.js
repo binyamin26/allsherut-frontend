@@ -419,17 +419,24 @@ const validServices = ['babysitting', 'cleaning', 'gardening', 'petcare', 'tutor
 }
 
    if (city && neighborhood) {
-  // Quartier sélectionné : montrer ce quartier ET les prestataires qui couvrent toute la ville
+  // Quartier sélectionné : montrer ce quartier + toute la ville + tout Israël
   whereConditions.push(`EXISTS (
     SELECT 1 FROM provider_working_areas pwa
     WHERE pwa.provider_id = sp.id
-    AND pwa.city LIKE ?
-    AND (pwa.neighborhood LIKE ? OR pwa.neighborhood IN ('כל העיר', 'כל השכונות'))
+    AND (
+      (pwa.city LIKE ? AND (pwa.neighborhood LIKE ? OR pwa.neighborhood IN ('כל העיר', 'כל השכונות')))
+      OR pwa.neighborhood = 'כל ישראל'
+      OR pwa.city = 'ישראל'
+    )
   )`);
   params.push(`%${city}%`, `%${neighborhood}%`);
 } else if (city) {
-  // Ville sélectionnée : montrer tous les prestataires de cette ville
-  whereConditions.push(`EXISTS (SELECT 1 FROM provider_working_areas pwa WHERE pwa.provider_id = sp.id AND pwa.city LIKE ?)`);
+  // Ville sélectionnée : montrer les prestataires de cette ville + ceux qui couvrent tout Israël
+  whereConditions.push(`EXISTS (
+    SELECT 1 FROM provider_working_areas pwa
+    WHERE pwa.provider_id = sp.id
+    AND (pwa.city LIKE ? OR pwa.neighborhood = 'כל ישראל' OR pwa.city = 'ישראל')
+  )`);
   params.push(`%${city}%`);
 } else if (neighborhood) {
   whereConditions.push(`EXISTS (SELECT 1 FROM provider_working_areas pwa WHERE pwa.provider_id = sp.id AND pwa.neighborhood LIKE ?)`);
