@@ -1437,7 +1437,7 @@
   "location.selectLocation": "בחר מיקום",
   "location.city": "עיר:",
   "location.neighborhood": "שכונה:",
-  "location.allNeighborhoods": "כל השכונות ב{{city}}",
+  "location.allNeighborhoods": "כל השכונות ב{city}",
   "location.selected": "מיקום נבחר:",
   "auth.selectAnotherCity": "בחר עיר נוספת...",
   "auth.allCity": "כל {city} (כל השכונות)",

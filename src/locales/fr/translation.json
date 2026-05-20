@@ -1452,7 +1452,7 @@
   "location.selectLocation": "Choisir un lieu",
   "location.city": "Ville :",
   "location.neighborhood": "Quartier :",
-  "location.allNeighborhoods": "Tous les quartiers de {{city}}",
+  "location.allNeighborhoods": "Tous les quartiers de {city}",
   "location.selected": "Lieu sélectionné :",
   "auth.selectAnotherCity": "Sélectionner une autre ville...",
   "auth.allCity": "Tout {city} (tous les quartiers)",

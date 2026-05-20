@@ -2587,6 +2587,6 @@
   "location.selectLocation": "Select Location",
   "location.city": "City:",
   "location.neighborhood": "Neighborhood:",
-  "location.allNeighborhoods": "All neighborhoods in {{city}}",
+  "location.allNeighborhoods": "All neighborhoods in {city}",
   "location.selected": "Selected location:"
 }

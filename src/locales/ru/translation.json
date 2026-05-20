@@ -2587,6 +2587,6 @@
   "location.selectLocation": "Выбрать местоположение",
   "location.city": "Город:",
   "location.neighborhood": "Район:",
-  "location.allNeighborhoods": "Все районы в {{city}}",
+  "location.allNeighborhoods": "Все районы в {city}",
   "location.selected": "Выбранное местоположение:"
 }
