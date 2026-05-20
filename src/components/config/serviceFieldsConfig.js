@@ -871,6 +871,36 @@ const serviceFieldsConfig = {
     ]
   },
 
+  dj: {
+    fields: [
+      { name: 'experience', label: 'serviceFields.dj.experience', type: 'number' },
+      {
+        name: 'availability_days',
+        label: 'serviceFields.dj.availability_days',
+        type: 'checkbox',
+        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע']
+      },
+      {
+        name: 'availability_hours',
+        label: 'serviceFields.dj.availability_hours',
+        type: 'checkbox',
+        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+      },
+      {
+        name: 'dj_event_types',
+        label: 'serviceFields.dj.dj_event_types',
+        type: 'checkbox',
+        options: ['חתונה', 'בר מצווה', 'בת מצווה', 'ברית מילה', 'שבע ברכות', 'יום הולדת / יום שנה', 'אירוע עסקי', 'מסיבה פרטית', 'חגיגה משפחתית', 'אירוסין']
+      },
+      {
+        name: 'languages',
+        label: 'serviceFields.dj.languages',
+        type: 'checkbox',
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+      }
+    ]
+  },
+
   private_chef: {
     fields: [
       { name: 'experience', label: 'serviceFields.private_chef.experience', type: 'number' },

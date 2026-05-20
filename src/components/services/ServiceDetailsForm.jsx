@@ -111,7 +111,7 @@ const ServiceDetailsForm = ({
       {!SERVICES_WITH_OWN_LANGUAGES.has(serviceType) && (
         <div className="form-section optional">
           <div className="input-group">
-            <label className="auth-form-label">{t('filters.common.languages')}</label>
+            <label className="auth-form-label" style={{ fontWeight: 600 }}>{t('filters.common.languages')}</label>
             <div className="checkbox-group" data-field="languages">
               {LANGUAGES_OPTIONS.map(lang => (
                 <label key={lang.value} className="checkbox-item">
