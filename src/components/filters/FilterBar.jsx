@@ -667,6 +667,7 @@ const ServicePanel = ({ serviceType, filters, onChange }) => {
     painting: PaintingFilters,
     private_chef: PrivateChefFilters,
     event_entertainment: EventEntertainmentFilters,
+    dj: DJFilters,
     waterproofing: WaterproofingFilters,
     contractor: ContractorFilters,
     aluminum: AluminumFilters,
@@ -3207,6 +3208,53 @@ const HandymanFilters = ({ filters, handleFilterChange, handleCheckboxChange, ha
           )}
         </div>
       </div>
+
+      <AvailabilityHoursSection
+        filters={filters}
+        onExclusiveCheckbox={handleExclusiveCheckbox}
+      />
+    </div>
+  );
+};
+
+const DJFilters = ({ filters, handleFilterChange, handleCheckboxChange, handleExclusiveCheckbox }) => {
+  const { t } = useLanguage();
+
+  const eventTypes = [
+    { value: 'חתונה', key: 'filters.chef.wedding' },
+    { value: 'בר מצווה', key: 'filters.chef.barMitsva' },
+    { value: 'בת מצווה', key: 'filters.chef.batMitsva' },
+    { value: 'ברית מילה', key: 'filters.chef.britMila' },
+    { value: 'שבע ברכות', key: 'filters.chef.shevaBrahot' },
+    { value: 'יום הולדת / יום שנה', key: 'filters.chef.anniversary' },
+    { value: 'אירוע עסקי', key: 'filters.chef.corporateEvent' },
+    { value: 'מסיבה פרטית', key: 'filters.chef.privateParty' },
+    { value: 'חגיגה משפחתית', key: 'filters.chef.familyParty' },
+    { value: 'אירוסין', key: 'filters.chef.engagement' }
+  ];
+
+  return (
+    <div className="service-panel">
+      <div className="filter-section">
+        <h4>{t('serviceForm.dj.eventTypes')}</h4>
+        <div className="checkbox-grid">
+          {eventTypes.map(opt => (
+            <label key={opt.value} className="checkbox-option">
+              <input
+                type="checkbox"
+                checked={filters.dj_event_types?.includes(opt.value) || false}
+                onChange={(e) => handleCheckboxChange('dj_event_types', opt.value, e.target.checked)}
+              />
+              {t(opt.key)}
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <AvailabilityDaysSection
+        filters={filters}
+        onExclusiveCheckbox={handleExclusiveCheckbox}
+      />
 
       <AvailabilityHoursSection
         filters={filters}

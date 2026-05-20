@@ -984,7 +984,7 @@ router.delete('/:serviceType', authenticateToken, async (req, res) => {
     const validServices = [
       'babysitting', 'cleaning', 'gardening', 'petcare', 'tutoring', 'eldercare',
       'electrician', 'plumbing', 'air_conditioning', 'gas_technician', 'drywall',
-      'carpentry', 'home_organization', 'event_entertainment', 'private_chef',
+      'carpentry', 'home_organization', 'event_entertainment', 'dj', 'private_chef',
       'painting', 'waterproofing', 'contractor', 'aluminum', 'glass_works',
       'locksmith', 'property_management', 'laundry', 'moving', 'photographer', 'event_decoration', 'pest_control', 'handyman'
     ];
