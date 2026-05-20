@@ -922,6 +922,8 @@
   "filters.chef.rabbinate": "Rabbanout",
   "filters.chef.otherKosher": "Autre",
   "filters.chef.otherKosherPlaceholder": "Nom de la cacheroute",
+  "filters.chef.smokedFish": "Poissons fumés",
+  "filters.chef.herring": "Hareng",
   "filters.events.workTypes": "Types de travaux",
   "filters.events.equipmentRentalTypes": "Types de location équipement",
   "filters.events.entertainmentTypes": "Types d'animation",

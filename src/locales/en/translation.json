@@ -892,6 +892,8 @@
   "filters.chef.rabbinate": "Rabbinate",
   "filters.chef.otherKosher": "Other",
   "filters.chef.otherKosherPlaceholder": "Kashrut name",
+  "filters.chef.smokedFish": "Smoked Fish",
+  "filters.chef.herring": "Herring",
   "filters.events.workTypes": "Work types",
   "filters.events.equipmentRentalTypes": "Equipment rental types",
   "filters.events.entertainmentTypes": "Entertainment types",

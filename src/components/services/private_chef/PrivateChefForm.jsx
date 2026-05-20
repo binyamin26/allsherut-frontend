@@ -157,7 +157,9 @@ const PrivateChefForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
   { value: 'שוקולדים', label: t('filters.chef.chocolates') },
   { value: 'מקרון', label: t('filters.chef.macarons') },
   { value: 'פטיסרי', label: t('filters.chef.patisserie') },
-  { value: 'קופסת עוגות', label: t('filters.chef.cakeBox') }
+  { value: 'קופסת עוגות', label: t('filters.chef.cakeBox') },
+  { value: 'דגים מעושנים', label: t('filters.chef.smokedFish') },
+  { value: 'הרינג', label: t('filters.chef.herring') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
