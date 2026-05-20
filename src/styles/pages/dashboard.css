@@ -2572,9 +2572,9 @@ select.inline-edit {
 }
 
 .provider-header-new .provider-service-icon img {
-  width: 85%;
-  height: 85%;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   transform: none;
 }
 
