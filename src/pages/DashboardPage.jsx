@@ -93,7 +93,7 @@ const serviceImages = {
   carpentry: '/images/logo menuisier.png',
   home_organization: '/images/logo rangement.png',
   event_entertainment: '/images/logo event.png',
-  dj: '/images/logo event.png',
+  dj: '/images/logo DJ.jpg',
   private_chef: '/images/logo chef.png',
   painting: '/images/logo peinture.png',
   waterproofing: '/images/logo itoum.png',
