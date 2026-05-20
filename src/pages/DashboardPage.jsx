@@ -74,37 +74,37 @@ const serviceIcons = {
   eldercare: User
 };
 
-// Définition des images de services
+// Définition des logos de services
 const serviceImages = {
-  babysitting: '/images/babysite.png',
-  cleaning: '/images/nikayon.jpg',
-  gardening: '/images/jardinage.jpg',
-  petcare: '/images/chien.jpg',
+  babysitting: '/images/logo bébé.png',
+  cleaning: '/images/logo nikayon.png',
+  gardening: '/images/logo jardinage.png',
+  petcare: '/images/logo chien.png',
   tutoring: '/images/logo cours particulier.png',
-  sports_activities: '/images/sport.jpg',
-  eldercare: '/images/eldercare.png',
-  laundry: '/images/kvissa.jpg',
-  property_management: '/images/nihoul-dirot.jpg',
-  electrician: '/images/electrician.jpg',
-  plumbing: '/images/plombier.jpg',
-  air_conditioning: '/images/clim.png',
-  gas_technician: '/images/gaz.jpg',
-  drywall: '/images/guevess.png',
-  carpentry: '/images/menuisier.png',
-  home_organization: '/images/rangement.jpg',
-  event_entertainment: '/images/fetes1.jpg',
-  private_chef: '/images/traiteur.jpg',
-  painting: '/images/peinture.jpg',
-  waterproofing: '/images/itoum.jpg',
-  contractor: '/images/kablan.png',
-  aluminum: '/images/aluminium.png',
-  glass_works: '/images/verre.png',
-  locksmith: '/images/serrure.png',
-  moving: '/images/demenagement.jpg',
+  sports_activities: '/images/logo sport.jpg',
+  eldercare: '/images/logo kachich.png',
+  laundry: '/images/logo kvissa.png',
+  property_management: '/images/logo nihoul dirot.png',
+  electrician: '/images/logo electricien.png',
+  plumbing: '/images/logo plomberie.png',
+  air_conditioning: '/images/logo clim.png',
+  gas_technician: '/images/logo gaz.png',
+  drywall: '/images/logo placo.png',
+  carpentry: '/images/logo menuisier.png',
+  home_organization: '/images/logo rangement.png',
+  event_entertainment: '/images/logo event.png',
+  private_chef: '/images/logo chef.png',
+  painting: '/images/logo peinture.png',
+  waterproofing: '/images/logo itoum.png',
+  contractor: '/images/logo kablan.png',
+  aluminum: '/images/logo aluminium.png',
+  glass_works: '/images/logo verre.png',
+  locksmith: '/images/logo serrure.png',
+  moving: '/images/logo demenagement.jpg',
   photographer: '/images/logo photographe.jpg',
   event_decoration: '/images/logo deco.jpg',
   pest_control: '/images/logo desinctisation.jpg',
-  handyman: '/images/indimane.jpg'
+  handyman: '/images/logo indimane.jpg'
 };
 
 const ServiceIconDisplay = ({ svcType }) => {

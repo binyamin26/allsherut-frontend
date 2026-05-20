@@ -33,6 +33,11 @@ const MovingForm = ({ serviceDetails, errors, handleServiceDetailsChange, handle
           {errors['serviceDetails.availability_hours'] && <span className="error-text">{errors['serviceDetails.availability_hours']}</span>}
         </div>
 
+      </div>
+
+      <div className="form-section optional">
+        <h4>{t('serviceForm.common.optionalFields')}</h4>
+
         <div className="input-group">
           <div className="checkbox-group" data-field="avoda_ivrit">
             <label className="checkbox-item" style={{ fontWeight: 'bold' }}>
@@ -47,10 +52,6 @@ const MovingForm = ({ serviceDetails, errors, handleServiceDetailsChange, handle
             </label>
           </div>
         </div>
-      </div>
-
-      <div className="form-section optional">
-        <h4>{t('serviceForm.common.optionalFields')}</h4>
 
         <div className="input-group">
           <label className="auth-form-label">{t('serviceForm.common.experience')}</label>
