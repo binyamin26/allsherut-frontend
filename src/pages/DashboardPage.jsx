@@ -57,7 +57,7 @@ import CustomDropdown from '../components/common/CustomDropdown';
 
 const ALL_SERVICE_KEYS = [
   'plumbing','electrician','locksmith','painting','air_conditioning','drywall',
-  'aluminum','glass_works','gas_technician','waterproofing','carpentry','handyman','contractor',
+  'aluminum','glass_works','gas_technician','waterproofing','carpentry','handyman','mechanic','contractor',
   'moving','gardening','pest_control','cleaning','laundry','property_management',
   'home_organization','event_decoration','event_entertainment','dj','private_chef',
   'photographer','tutoring','sports_activities','babysitting','petcare','eldercare'
@@ -105,7 +105,8 @@ const serviceImages = {
   photographer: '/images/logo photographe.jpg',
   event_decoration: '/images/logo deco.jpg',
   pest_control: '/images/logo desinctisation.jpg',
-  handyman: '/images/logo indimane.jpg'
+  handyman: '/images/logo indimane.jpg',
+  mechanic: '/images/mechanic.png'
 };
 
 const ServiceIconDisplay = ({ svcType }) => {
@@ -1246,6 +1247,7 @@ const getServiceName = (serviceType) => {
       painting: 'services.painting',
       waterproofing: 'services.waterproofing',
       handyman: 'services.handyman',
+      mechanic: 'services.mechanic',
       contractor: 'services.contractor',
       aluminum: 'services.aluminum',
       glass_works: 'services.glass_works',

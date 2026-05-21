@@ -158,6 +158,14 @@ const HomePage = () => {
       href: '/services/handyman'
     },
     {
+      id: 'mechanic',
+      name: t('services.mechanic'),
+      image: '/images/mechanic.png',
+      description: t('services.mechanic.desc'),
+      color: 'from-blue-700 to-slate-700',
+      href: '/services/mechanic'
+    },
+    {
       id: 'contractor',
       name: t('services.contractor'),
       image: '/images/kablan.png',
