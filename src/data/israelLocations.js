@@ -83,6 +83,7 @@ export const israelCities = [
   { name: "קריית ביאליק", area: "חיפה", nameVariants: ["קריית ביאליק"] },
   { name: "קריית ים", area: "חיפה", nameVariants: ["קריית ים"] },
   { name: "קריית אתא", area: "חיפה", nameVariants: ["קריית אתא"] },
+  { name: "רכסים", area: "חיפה", nameVariants: ["רכסים"] },
   { name: "נשר", area: "חיפה", nameVariants: ["נשר"] },
   { name: "טירת כרמל", area: "חיפה", nameVariants: ["טירת כרמל"] },
   { name: "עכו", area: "חיפה", nameVariants: ["עכו"] },
