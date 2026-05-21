@@ -678,6 +678,7 @@ const ServicePanel = ({ serviceType, filters, onChange }) => {
     event_decoration: EventDecorationFilters,
     pest_control: PestControlFilters,
     handyman: HandymanFilters,
+    mechanic: MechanicFilters,
   };
 
   const Component = SERVICE_FILTER_COMPONENTS[serviceType];
@@ -3213,6 +3214,31 @@ const HandymanFilters = ({ filters, handleFilterChange, handleCheckboxChange, ha
         filters={filters}
         onExclusiveCheckbox={handleExclusiveCheckbox}
       />
+    </div>
+  );
+};
+
+const MechanicFilters = ({ filters, handleFilterChange, handleCheckboxChange, handleExclusiveCheckbox }) => {
+  const { t } = useLanguage();
+  const config = FILTER_CONFIG.mechanic;
+
+  return (
+    <div className="service-panel">
+      <div className="filter-section">
+        <h4>{t(config.sectionTitles.workTypes)}</h4>
+        <div className="checkbox-grid">
+          {config.workTypes.map(opt => (
+            <label key={opt.value} className="checkbox-option">
+              <input
+                type="checkbox"
+                checked={filters.work_types?.includes(opt.value) || false}
+                onChange={(e) => handleCheckboxChange('work_types', opt.value, e.target.checked)}
+              />
+              {t(opt.key)}
+            </label>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

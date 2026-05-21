@@ -1384,6 +1384,26 @@ locksmith: {
       { value: 'yes', key: 'common.yes' },
       { value: 'no', key: 'common.no' }
     ]
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // MECHANIC
+  // ═══════════════════════════════════════════════════════════════
+  mechanic: {
+    sectionTitles: {
+      workTypes: 'filters.mechanic.workTypes'
+    },
+    workTypes: [
+      { value: 'מכונאות רכב',   key: 'serviceForm.mechanic.carMechanics' },
+      { value: 'הכנה לטסט',     key: 'serviceForm.mechanic.testPrep' },
+      { value: 'טיפולים שוטפים', key: 'serviceForm.mechanic.routineMaintenance' },
+      { value: 'בדיקות מחשב',   key: 'serviceForm.mechanic.computerDiagnostics' },
+      { value: 'מצברים',         key: 'serviceForm.mechanic.batteries' },
+      { value: 'מיזוג אוויר',   key: 'serviceForm.mechanic.airConditioning' },
+      { value: 'אלטרנטור',       key: 'serviceForm.mechanic.alternator' },
+      { value: 'תיקוני מנוע',   key: 'serviceForm.mechanic.engineRepairs' },
+      { value: 'רדיאטור וקירור', key: 'serviceForm.mechanic.radiatorCooling' }
+    ]
   }
 };
 
