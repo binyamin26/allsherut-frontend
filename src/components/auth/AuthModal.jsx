@@ -177,7 +177,8 @@ const services = [
   { key: 'sports_activities', name: t('services.sports_activities'), icon: '⚽', image: '/images/sport.jpg', gradient: 'sports_activities-gradient' },
   { key: 'babysitting', name: t('services.babysitting'), icon: '👶', image: '/images/babysite.png', gradient: 'babysitting-gradient' },
   { key: 'petcare', name: t('services.petcare'), image: '/images/chien.jpg', gradient: 'petcare-gradient' },
-  { key: 'eldercare', name: t('services.eldercare'), icon: '👵', image: '/images/eldercare.png', gradient: 'eldercare-gradient' }
+  { key: 'eldercare', name: t('services.eldercare'), icon: '👵', image: '/images/eldercare.png', gradient: 'eldercare-gradient' },
+  { key: 'mechanic', name: t('services.mechanic'), image: '/images/mechanic.png', gradient: 'mechanic-gradient' }
 ];
 
   // ── Détection clavier mobile via visualViewport ──────────────────────
@@ -1048,6 +1049,11 @@ case 'glass_works':  if (!serviceDetails.availability_hours || serviceDetails.av
       newErrors['serviceDetails.light_work_types'] = t('validation.selectAtLeastOne');
     if (serviceDetails.work_types?.includes('תליות וסידור') && (!serviceDetails.hanging_types || serviceDetails.hanging_types.length === 0))
       newErrors['serviceDetails.hanging_types'] = t('validation.selectAtLeastOne');
+    break;
+
+  case 'mechanic':
+    if (!serviceDetails.work_types || serviceDetails.work_types.length === 0)
+      newErrors['serviceDetails.work_types'] = t('validation.workTypesRequired');
     break;
 
     }

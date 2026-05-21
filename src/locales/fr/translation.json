@@ -2589,5 +2589,38 @@
   "serviceFields.handyman.installations_types": "Installations & montage",
   "serviceFields.handyman.doors_furniture_types": "Portes & meubles",
   "serviceFields.handyman.light_work_types": "Travaux légers",
-  "serviceFields.handyman.hanging_types": "Accrochage & organisation"
+  "serviceFields.handyman.hanging_types": "Accrochage & organisation",
+
+  "services.mechanic": "Garagiste à Domicile",
+  "services.mechanic.desc": "Services de mécanique automobile à domicile – réparations, diagnostics et entretien",
+  "services.mechanic.pageTitle": "Garagiste à Domicile – Service chez vous",
+  "services.mechanic.searching": "Recherche de garagistes...",
+  "services.mechanic.loading": "Chargement des garagistes...",
+  "services.mechanic.loadError": "Erreur lors du chargement des garagistes",
+  "services.mechanic.found": "garagistes trouvés",
+  "services.mechanic.noResults": "Aucun garagiste trouvé dans cette zone",
+
+  "serviceForm.mechanic.title": "Détails du service de mécanique automobile",
+  "serviceForm.mechanic.carMechanics": "Mécanique automobile",
+  "serviceForm.mechanic.testPrep": "Préparation au contrôle technique",
+  "serviceForm.mechanic.routineMaintenance": "Entretien courant",
+  "serviceForm.mechanic.computerDiagnostics": "Diagnostics informatiques",
+  "serviceForm.mechanic.batteries": "Batteries",
+  "serviceForm.mechanic.airConditioning": "Climatisation",
+  "serviceForm.mechanic.alternator": "Alternateur",
+  "serviceForm.mechanic.engineRepairs": "Réparations moteur",
+  "serviceForm.mechanic.radiatorCooling": "Radiateur & Refroidissement",
+
+  "filters.mechanic.workTypes": "Types de travaux",
+  "filters.mechanic.carMechanics": "Mécanique automobile",
+  "filters.mechanic.testPrep": "Préparation au contrôle technique",
+  "filters.mechanic.routineMaintenance": "Entretien courant",
+  "filters.mechanic.computerDiagnostics": "Diagnostics informatiques",
+  "filters.mechanic.batteries": "Batteries",
+  "filters.mechanic.airConditioning": "Climatisation",
+  "filters.mechanic.alternator": "Alternateur",
+  "filters.mechanic.engineRepairs": "Réparations moteur",
+  "filters.mechanic.radiatorCooling": "Radiateur & Refroidissement",
+
+  "serviceFields.mechanic.work_types": "Types de travaux"
 }

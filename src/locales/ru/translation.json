@@ -2590,5 +2590,38 @@
   "location.city": "Город:",
   "location.neighborhood": "Район:",
   "location.allNeighborhoods": "Все районы в {city}",
-  "location.selected": "Выбранное местоположение:"
+  "location.selected": "Выбранное местоположение:",
+
+  "services.mechanic": "Автомеханик на дому",
+  "services.mechanic.desc": "Профессиональный ремонт автомобилей с выездом на дом",
+  "services.mechanic.pageTitle": "Автомеханик на дому – сервис у вас",
+  "services.mechanic.searching": "Поиск механиков...",
+  "services.mechanic.loading": "Загрузка механиков...",
+  "services.mechanic.loadError": "Ошибка загрузки механиков",
+  "services.mechanic.found": "механиков найдено",
+  "services.mechanic.noResults": "Механики в этом районе не найдены",
+
+  "serviceForm.mechanic.title": "Данные об услуге автомеханика",
+  "serviceForm.mechanic.carMechanics": "Автомеханика",
+  "serviceForm.mechanic.testPrep": "Подготовка к техосмотру",
+  "serviceForm.mechanic.routineMaintenance": "Плановое обслуживание",
+  "serviceForm.mechanic.computerDiagnostics": "Компьютерная диагностика",
+  "serviceForm.mechanic.batteries": "Аккумуляторы",
+  "serviceForm.mechanic.airConditioning": "Кондиционер",
+  "serviceForm.mechanic.alternator": "Генератор",
+  "serviceForm.mechanic.engineRepairs": "Ремонт двигателя",
+  "serviceForm.mechanic.radiatorCooling": "Радиатор и охлаждение",
+
+  "filters.mechanic.workTypes": "Виды работ",
+  "filters.mechanic.carMechanics": "Автомеханика",
+  "filters.mechanic.testPrep": "Подготовка к техосмотру",
+  "filters.mechanic.routineMaintenance": "Плановое обслуживание",
+  "filters.mechanic.computerDiagnostics": "Компьютерная диагностика",
+  "filters.mechanic.batteries": "Аккумуляторы",
+  "filters.mechanic.airConditioning": "Кондиционер",
+  "filters.mechanic.alternator": "Генератор",
+  "filters.mechanic.engineRepairs": "Ремонт двигателя",
+  "filters.mechanic.radiatorCooling": "Радиатор и охлаждение",
+
+  "serviceFields.mechanic.work_types": "Виды работ"
 }

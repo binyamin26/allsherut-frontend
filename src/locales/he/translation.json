@@ -2596,5 +2596,38 @@
   "serviceFields.handyman.installations_types": "התקנות והרכבות",
   "serviceFields.handyman.doors_furniture_types": "דלתות ורהיטים",
   "serviceFields.handyman.light_work_types": "עבודות קלות בבית",
-  "serviceFields.handyman.hanging_types": "תליות וסידור"
+  "serviceFields.handyman.hanging_types": "תליות וסידור",
+
+  "services.mechanic": "מכונאי רכב ביתי",
+  "services.mechanic.desc": "שירותי מכונאות רכב עד הבית – תיקונים, בדיקות וטיפולים",
+  "services.mechanic.pageTitle": "מכונאי רכב ביתי – שירות עד הבית",
+  "services.mechanic.searching": "מחפש מכונאים...",
+  "services.mechanic.loading": "טוען מכונאים...",
+  "services.mechanic.loadError": "שגיאה בטעינת מכונאים",
+  "services.mechanic.found": "מכונאים נמצאו",
+  "services.mechanic.noResults": "לא נמצאו מכונאים באזור זה",
+
+  "serviceForm.mechanic.title": "פרטי שירות מכונאי רכב",
+  "serviceForm.mechanic.carMechanics": "מכונאות רכב",
+  "serviceForm.mechanic.testPrep": "הכנה לטסט",
+  "serviceForm.mechanic.routineMaintenance": "טיפולים שוטפים",
+  "serviceForm.mechanic.computerDiagnostics": "בדיקות מחשב",
+  "serviceForm.mechanic.batteries": "מצברים",
+  "serviceForm.mechanic.airConditioning": "מיזוג אוויר",
+  "serviceForm.mechanic.alternator": "אלטרנטור",
+  "serviceForm.mechanic.engineRepairs": "תיקוני מנוע",
+  "serviceForm.mechanic.radiatorCooling": "רדיאטור וקירור",
+
+  "filters.mechanic.workTypes": "סוגי עבודה",
+  "filters.mechanic.carMechanics": "מכונאות רכב",
+  "filters.mechanic.testPrep": "הכנה לטסט",
+  "filters.mechanic.routineMaintenance": "טיפולים שוטפים",
+  "filters.mechanic.computerDiagnostics": "בדיקות מחשב",
+  "filters.mechanic.batteries": "מצברים",
+  "filters.mechanic.airConditioning": "מיזוג אוויר",
+  "filters.mechanic.alternator": "אלטרנטור",
+  "filters.mechanic.engineRepairs": "תיקוני מנוע",
+  "filters.mechanic.radiatorCooling": "רדיאטור וקירור",
+
+  "serviceFields.mechanic.work_types": "סוגי עבודה"
 }

@@ -2590,5 +2590,38 @@
   "location.city": "City:",
   "location.neighborhood": "Neighborhood:",
   "location.allNeighborhoods": "All neighborhoods in {city}",
-  "location.selected": "Selected location:"
+  "location.selected": "Selected location:",
+
+  "services.mechanic": "Mobile Car Mechanic",
+  "services.mechanic.desc": "Professional car repair services at your doorstep",
+  "services.mechanic.pageTitle": "Mobile Car Mechanic – Service at Your Door",
+  "services.mechanic.searching": "Searching for mechanics...",
+  "services.mechanic.loading": "Loading mechanics...",
+  "services.mechanic.loadError": "Error loading mechanics",
+  "services.mechanic.found": "mechanics found",
+  "services.mechanic.noResults": "No mechanics found in this area",
+
+  "serviceForm.mechanic.title": "Car Mechanic Service Details",
+  "serviceForm.mechanic.carMechanics": "Car Mechanics",
+  "serviceForm.mechanic.testPrep": "Vehicle Test Preparation",
+  "serviceForm.mechanic.routineMaintenance": "Routine Maintenance",
+  "serviceForm.mechanic.computerDiagnostics": "Computer Diagnostics",
+  "serviceForm.mechanic.batteries": "Batteries",
+  "serviceForm.mechanic.airConditioning": "Air Conditioning",
+  "serviceForm.mechanic.alternator": "Alternator",
+  "serviceForm.mechanic.engineRepairs": "Engine Repairs",
+  "serviceForm.mechanic.radiatorCooling": "Radiator & Cooling",
+
+  "filters.mechanic.workTypes": "Work Types",
+  "filters.mechanic.carMechanics": "Car Mechanics",
+  "filters.mechanic.testPrep": "Vehicle Test Preparation",
+  "filters.mechanic.routineMaintenance": "Routine Maintenance",
+  "filters.mechanic.computerDiagnostics": "Computer Diagnostics",
+  "filters.mechanic.batteries": "Batteries",
+  "filters.mechanic.airConditioning": "Air Conditioning",
+  "filters.mechanic.alternator": "Alternator",
+  "filters.mechanic.engineRepairs": "Engine Repairs",
+  "filters.mechanic.radiatorCooling": "Radiator & Cooling",
+
+  "serviceFields.mechanic.work_types": "Work types"
 }
