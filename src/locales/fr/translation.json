@@ -2610,6 +2610,7 @@
   "serviceForm.mechanic.alternator": "Alternateur",
   "serviceForm.mechanic.engineRepairs": "Réparations moteur",
   "serviceForm.mechanic.radiatorCooling": "Radiateur & Refroidissement",
+  "serviceForm.mechanic.vehicleInspection": "Passage du véhicule au contrôle technique",
 
   "filters.mechanic.workTypes": "Types de travaux",
   "filters.mechanic.carMechanics": "Mécanique automobile",

@@ -2611,6 +2611,7 @@
   "serviceForm.mechanic.alternator": "Alternator",
   "serviceForm.mechanic.engineRepairs": "Engine Repairs",
   "serviceForm.mechanic.radiatorCooling": "Radiator & Cooling",
+  "serviceForm.mechanic.vehicleInspection": "Vehicle inspection service",
 
   "filters.mechanic.workTypes": "Work Types",
   "filters.mechanic.carMechanics": "Car Mechanics",

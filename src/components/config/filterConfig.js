@@ -1402,7 +1402,8 @@ locksmith: {
       { value: 'מיזוג אוויר',   key: 'serviceForm.mechanic.airConditioning' },
       { value: 'אלטרנטור',       key: 'serviceForm.mechanic.alternator' },
       { value: 'תיקוני מנוע',   key: 'serviceForm.mechanic.engineRepairs' },
-      { value: 'רדיאטור וקירור', key: 'serviceForm.mechanic.radiatorCooling' }
+      { value: 'רדיאטור וקירור', key: 'serviceForm.mechanic.radiatorCooling' },
+      { value: 'לקיחת רכב לטסט', key: 'serviceForm.mechanic.vehicleInspection' }
     ]
   }
 };

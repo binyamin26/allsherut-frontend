@@ -2617,6 +2617,7 @@
   "serviceForm.mechanic.alternator": "אלטרנטור",
   "serviceForm.mechanic.engineRepairs": "תיקוני מנוע",
   "serviceForm.mechanic.radiatorCooling": "רדיאטור וקירור",
+  "serviceForm.mechanic.vehicleInspection": "לקיחת רכב לטסט",
 
   "filters.mechanic.workTypes": "סוגי עבודה",
   "filters.mechanic.carMechanics": "מכונאות רכב",

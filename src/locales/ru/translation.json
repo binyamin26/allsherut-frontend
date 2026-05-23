@@ -2611,6 +2611,7 @@
   "serviceForm.mechanic.alternator": "Генератор",
   "serviceForm.mechanic.engineRepairs": "Ремонт двигателя",
   "serviceForm.mechanic.radiatorCooling": "Радиатор и охлаждение",
+  "serviceForm.mechanic.vehicleInspection": "Прохождение техосмотра автомобиля",
 
   "filters.mechanic.workTypes": "Виды работ",
   "filters.mechanic.carMechanics": "Автомеханика",
