@@ -115,7 +115,7 @@ const ElectricianPage = () => {
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo electricien.png"
+                src="/images/logo electricien.jpg"
                 alt="ֳ‰lectricitֳ©"
               />
             </div>

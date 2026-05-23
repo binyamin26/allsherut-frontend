@@ -115,7 +115,7 @@ const WaterproofingPage = () => {
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo itoum.png"
+                src="/images/logo itoum.jpg"
                 alt="ֳ‰tanchֳ©itֳ©"
               />
             </div>
