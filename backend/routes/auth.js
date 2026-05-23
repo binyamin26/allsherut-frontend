@@ -23,23 +23,11 @@ const { query } = require('../config/database');
 // ===== FONCTION DE VALIDATION SÉCURISÉE DES MOTS DE PASSE =====
 const validatePasswordComplexity = (password) => {
   const errors = [];
-  
-  if (password.length < 8) {
-    errors.push(MESSAGES.ERROR.VALIDATION.PASSWORD_COMPLEXITY);
+
+  if (password.length < 6) {
+    errors.push('הסיסמה חייבת להכיל לפחות 6 תווים');
   }
-  
-  if (!/(?=.*[a-z])/.test(password)) {
-    errors.push('הסיסמה חייבת להכיל לפחות אות קטנה באנגלית');
-  }
-  
-  if (!/(?=.*[A-Z])/.test(password)) {
-    errors.push('הסיסמה חייבת להכיל לפחות אות גדולה באנגלית');
-  }
-  
-  if (!/(?=.*\d)/.test(password)) {
-    errors.push('הסיסמה חייבת להכיל לפחות ספרה אחת');
-  }
-  
+
   return errors;
 };
 

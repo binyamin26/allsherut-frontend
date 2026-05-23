@@ -604,8 +604,8 @@ try {
     }
 
     // Mot de passe
-    if (!userData.password || userData.password.length < 8) {
-      errors.push({ field: 'password', message: 'הסיסמה חייבת להכיל לפחות 8 תווים' });
+    if (!userData.password || userData.password.length < 6) {
+      errors.push({ field: 'password', message: 'הסיסמה חייבת להכיל לפחות 6 תווים' });
     }
 
     // Noms

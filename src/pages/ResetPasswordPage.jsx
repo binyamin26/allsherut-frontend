@@ -64,6 +64,8 @@ const ResetPasswordPage = () => {
     
     if (!password) {
       errors.newPassword = 'סיסמה נדרשת';
+    } else if (password.length < 6) {
+      errors.newPassword = 'הסיסמה חייבת להכיל לפחות 6 תווים';
     }
 
     if (!formData.confirmPassword) {

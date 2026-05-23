@@ -546,13 +546,8 @@ useEffect(() => {
     if (!passwordData.newPassword) {
       newErrors.newPassword = t('dashboard.errors.newPasswordRequired');
    } else {
-  const missing = [];
-if (passwordData.newPassword.length < 8) missing.push(t('dashboard.errors.chars8'));
-  if (!/[a-z]/.test(passwordData.newPassword)) missing.push(t('dashboard.errors.lowercase'));
-  if (!/[A-Z]/.test(passwordData.newPassword)) missing.push(t('dashboard.errors.uppercase'));
-  if (!/[0-9]/.test(passwordData.newPassword)) missing.push(t('dashboard.errors.digit'));
-  if (missing.length > 0) {
-newErrors.newPassword = `${t('dashboard.errors.passwordMustContain')}: ${missing.join(', ')}`;
+  if (passwordData.newPassword.length < 6) {
+    newErrors.newPassword = t('auth.validation.passwordWeak');
   }
 }
     

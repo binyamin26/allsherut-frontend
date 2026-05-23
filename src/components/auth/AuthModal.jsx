@@ -294,10 +294,7 @@ if (authForm) {
 
   const validatePasswordStrength = (password) => {
     const requirements = [];
-    if (password.length < 8) requirements.push(t('auth.validation.min8chars'));
-    if (!/[a-z]/.test(password)) requirements.push(t('auth.validation.lowercase'));
-    if (!/[A-Z]/.test(password)) requirements.push(t('auth.validation.uppercase'));
-    if (!/[0-9]/.test(password)) requirements.push(t('auth.validation.digit'));
+    if (password.length < 6) requirements.push(t('auth.validation.min6chars'));
     return requirements;
   };
 
@@ -389,7 +386,7 @@ if (authForm) {
   console.log('Email:', email, 'Password:', password, 'Length:', password?.length);
   console.log('Email validation status:', fieldValidation.email.status);
   
-  if (!email || !password || password.length < 8) {
+  if (!email || !password || password.length < 6) {
     console.log('❌ Condition non remplie - return early');
     return;
   }
