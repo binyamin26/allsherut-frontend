@@ -178,7 +178,7 @@ const services = [
   { key: 'babysitting', name: t('services.babysitting'), icon: '👶', image: '/images/babysite.png', gradient: 'babysitting-gradient' },
   { key: 'petcare', name: t('services.petcare'), image: '/images/chien.jpg', gradient: 'petcare-gradient' },
   { key: 'eldercare', name: t('services.eldercare'), icon: '👵', image: '/images/eldercare.png', gradient: 'eldercare-gradient' },
-  { key: 'mechanic', name: t('services.mechanic'), image: '/images/mechanic.png', gradient: 'mechanic-gradient' }
+  { key: 'mechanic', name: t('services.mechanic'), image: '/images/logo garagiste.jpg', gradient: 'mechanic-gradient' }
 ];
 
   // ── Détection clavier mobile via visualViewport ──────────────────────

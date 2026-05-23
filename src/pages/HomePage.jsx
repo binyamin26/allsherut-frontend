@@ -160,7 +160,7 @@ const HomePage = () => {
     {
       id: 'mechanic',
       name: t('services.mechanic'),
-      image: '/images/mechanic.png',
+      image: '/images/logo garagiste.jpg',
       description: t('services.mechanic.desc'),
       color: 'from-blue-700 to-slate-700',
       href: '/services/mechanic'
