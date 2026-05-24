@@ -124,7 +124,7 @@ const response = await apiService.searchProviders(cleanParams);
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo bֳ©bֳ©.png"
+                src="/images/logo bébé.png"
                 alt="baby-sitting"
               />
             </div>
