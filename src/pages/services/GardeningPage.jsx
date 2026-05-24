@@ -121,7 +121,7 @@ useEffect(() => {
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo jardinage.png"
+                src="/images/logo jardinage.jpg"
                 alt="Jardinage"
               />
             </div>

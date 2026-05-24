@@ -115,7 +115,7 @@ const PlumbingPage = () => {
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo plomberie.png"
+                src="/images/logo plomberie.jpg"
                 alt="Plomberie"
               />
             </div>

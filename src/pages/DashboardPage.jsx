@@ -78,7 +78,7 @@ const serviceIcons = {
 const serviceImages = {
   babysitting: '/images/logo bébé.png',
   cleaning: '/images/logo nikayon.png',
-  gardening: '/images/logo jardinage.png',
+  gardening: '/images/logo jardinage.jpg',
   petcare: '/images/logo chien.png',
   tutoring: '/images/logo cours particulier.png',
   sports_activities: '/images/logo sport.jpg',
@@ -86,7 +86,7 @@ const serviceImages = {
   laundry: '/images/logo kvissa.png',
   property_management: '/images/logo nihoul dirot.png',
   electrician: '/images/logo electricien.jpg',
-  plumbing: '/images/logo plomberie.png',
+  plumbing: '/images/logo plomberie.jpg',
   air_conditioning: '/images/logo clim.png',
   gas_technician: '/images/logo gaz.png',
   drywall: '/images/logo placo.png',
