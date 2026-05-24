@@ -852,7 +852,8 @@ laundry: {
       { value: 'פטיסרי', key: 'filters.chef.patisserie' },
       { value: 'קופסת עוגות', key: 'filters.chef.cakeBox' },
       { value: 'דגים מעושנים', key: 'filters.chef.smokedFish' },
-      { value: 'הרינג', key: 'filters.chef.herring' }
+      { value: 'הרינג', key: 'filters.chef.herring' },
+      { value: 'עיצובי פירות', key: 'filters.chef.fruitArrangements' }
     ],
     kosherTypes: [
     { value: 'בד"ץ העדה החרדית', key: 'filters.chef.badatzEdaChareidis' },  // ← était badatzEdaCharedit
