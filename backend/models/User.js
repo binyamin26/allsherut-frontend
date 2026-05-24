@@ -632,9 +632,9 @@ try {
   'babysitting', 'cleaning', 'gardening', 'petcare', 'tutoring', 'sports_activities', 'eldercare',
   'laundry', 'property_management', 'electrician', 'plumbing', 'air_conditioning',
   'gas_technician', 'drywall', 'carpentry', 'home_organization', 'event_entertainment',
-  'private_chef', 'painting', 'waterproofing', 'contractor', 'aluminum',
+  'dj', 'private_chef', 'painting', 'waterproofing', 'contractor', 'aluminum',
   'glass_works', 'locksmith', 'moving', 'photographer', 'event_decoration', 'pest_control',
-  'handyman'
+  'handyman', 'mechanic'
 ];
       
       if (!serviceType || !validServices.includes(serviceType)) {
