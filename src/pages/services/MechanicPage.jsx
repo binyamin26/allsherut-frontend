@@ -59,7 +59,7 @@ const MechanicPage = () => {
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon">
-              <img src="/images/logo garagiste.jpg" alt="מכונאי רכב" />
+              <img src="/images/garagiste.jpg" alt="מכונאי רכב" />
             </div>
             <h1 className="service-title">{t('services.mechanic.pageTitle')}</h1>
           </div>

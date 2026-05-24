@@ -97,7 +97,7 @@ const ProviderDetailPage = () => {
     pest_control: '/images/logo desinctisation.jpg',
     handyman: '/images/logo indimane.jpg',
     photographer: '/images/logo photographe.jpg',
-    mechanic: '/images/logo garagiste.jpg'
+    mechanic: '/images/garagiste.jpg'
   };
   return icons[serviceType] || '/images/logo-default.png';
 };
