@@ -638,6 +638,7 @@ const searchableServices = [
   { label: 'הובלת משרד', labelEn: 'Office moving', labelFr: 'Déménagement bureau', labelRu: 'Переезд офиса', href: '/services/moving', type: 'specialty' },
   { label: 'פינוי דירה', labelEn: 'Apartment clearance', labelFr: 'Vidage appartement', labelRu: 'Выезд из квартиры', href: '/services/moving', type: 'specialty' },
   { label: 'עבודה עברית', labelEn: 'Israeli workers (Avoda Ivrit)', labelFr: 'Employés israéliens (עבודה עברית)', labelRu: 'Израильские работники', href: '/services/moving', type: 'specialty' },
+  { label: 'אחסון', labelEn: 'Storage', labelFr: 'Garde-meuble', labelRu: 'Хранение', href: '/services/moving', type: 'specialty' },
   { label: 'דיסמנטל', labelEn: 'Furniture disassembly', labelFr: 'Démontage meubles', labelRu: 'Разборка мебели', href: '/services/moving', type: 'specialty' },
   { label: 'הרכבת רהיטים', labelEn: 'Furniture assembly', labelFr: 'Montage meubles', labelRu: 'Сборка мебели', href: '/services/moving', type: 'specialty' },
 

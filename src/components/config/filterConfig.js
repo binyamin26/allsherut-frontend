@@ -1241,10 +1241,14 @@ locksmith: {
   // ═══════════════════════════════════════════════════════════════
   moving: {
     sectionTitles: {
-      avodaIvrit: 'filters.moving.avodaIvrit'
+      avodaIvrit: 'filters.moving.avodaIvrit',
+      storage: 'filters.moving.storage'
     },
     avodaIvrit: [
       { value: 'עבודה עברית', key: 'filters.moving.avodaIvritLabel' }
+    ],
+    storage: [
+      { value: 'כן', key: 'filters.moving.storageLabel' }
     ]
   },
 

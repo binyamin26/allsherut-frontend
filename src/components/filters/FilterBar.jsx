@@ -2911,6 +2911,14 @@ const MovingFilters = ({ filters, handleFilterChange, handleCheckboxChange, hand
         filters={filters}
         onCheckboxChange={handleCheckboxChange}
       />
+
+      <CheckboxSection
+        title={t(config.sectionTitles.storage)}
+        options={config.storage.map(o => ({ value: o.value, label: t(o.key) }))}
+        filterKey="storage"
+        filters={filters}
+        onCheckboxChange={handleCheckboxChange}
+      />
     </div>
   );
 };

@@ -1048,6 +1048,12 @@ const serviceFieldsConfig = {
         options: ['כן']
       },
       {
+        name: 'storage',
+        label: 'serviceFields.moving.storage',
+        type: 'checkbox',
+        options: ['כן']
+      },
+      {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',

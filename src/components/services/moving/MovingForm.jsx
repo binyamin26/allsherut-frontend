@@ -113,6 +113,21 @@ const MovingForm = ({ serviceDetails, errors, handleServiceDetailsChange, handle
             </label>
           </div>
         </div>
+
+        <div className="input-group">
+          <div className="checkbox-group" data-field="storage">
+            <label className="checkbox-item" style={{ fontWeight: 'bold' }}>
+              <input
+                type="checkbox"
+                checked={serviceDetails.storage === 'כן'}
+                onChange={(e) =>
+                  handleServiceDetailsChange('storage', e.target.checked ? 'כן' : '')
+                }
+              />
+              {t('serviceForm.moving.storage')}
+            </label>
+          </div>
+        </div>
       </div>
     </div>
   );
