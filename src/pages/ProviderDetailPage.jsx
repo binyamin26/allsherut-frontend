@@ -7,6 +7,7 @@ import ReviewModal from '../components/modals/ReviewModal';
 import apiService from '../services/api';
 import { useLanguage } from '../context/LanguageContext';
 import { translateValue, translateAndJoin, translateArrayFromMultipleCategories } from '../utils/translationMapper';
+import { TUTORING_SUBCATEGORIES } from '../data/subcategoriesData';
 import { 
   Star, MapPin, Clock, Phone, Mail, CheckCircle, Award, 
   Calendar, MessageCircle, ThumbsUp, User, Shield, Heart,
@@ -985,10 +986,10 @@ const handleContact = () => {
           </>
         )}
 
-    {/* TUTORING - Subjects dynamically grouped from DB */}
+    {/* TUTORING - Subjects grouped from frontend data (source of truth) */}
         {provider.serviceType === 'tutoring' && details.subjects && details.subjects.length > 0 && (
           <>
-            {tutoringSubcats.length > 0 ? (() => {
+            {(() => {
               const cleanName = (name) => (name || '').replace(/‏/g, '');
               const groups = [
                 { key: 'music',    emoji: '🎵', label: t('filters.tutoring.music'),           min: 1,   max: 7   },
@@ -996,16 +997,16 @@ const handleContact = () => {
                 { key: 'dance',    emoji: '💃', label: t('filters.tutoring.dance'),           min: 20,  max: 24  },
                 { key: 'theater',  emoji: '🎭', label: t('filters.tutoring.theater'),         min: 30,  max: 33  },
                 { key: 'languages',emoji: '🌍', label: t('filters.tutoring.languages'),       min: 40,  max: 47  },
-                { key: 'crafts',   emoji: '✂️', label: t('filters.tutoring.crafts'),          min: 50,  max: 54  },
+                { key: 'crafts',   emoji: '✂️', label: t('filters.tutoring.crafts'),          min: 50,  max: 56  },
                 { key: 'tech',     emoji: '💻', label: t('filters.tutoring.tech'),            min: 60,  max: 64  },
-                { key: 'cooking',  emoji: '👨‍🍳', label: t('filters.tutoring.cooking'),         min: 70,  max: 74  },
+                { key: 'cooking',  emoji: '🍳', label: t('filters.tutoring.cooking'),         min: 70,  max: 74  },
                 { key: 'personal', emoji: '🧘', label: t('filters.tutoring.personal'),        min: 80,  max: 89  },
                 { key: 'sports',   emoji: '⚽', label: t('filters.tutoring.sports'),          min: 90,  max: 119 },
                 { key: 'academic', emoji: '📚', label: t('filters.tutoring.academicSubjects'),min: 200, max: 223 },
               ];
               const categorized = new Set();
               const elements = groups.map(group => {
-                const groupSubcats = tutoringSubcats.filter(s => s.display_order >= group.min && s.display_order <= group.max);
+                const groupSubcats = TUTORING_SUBCATEGORIES.filter(s => s.display_order >= group.min && s.display_order <= group.max);
                 const selected = details.subjects.filter(subj =>
                   groupSubcats.some(s => cleanName(s.name_he) === cleanName(subj))
                 );
@@ -1014,7 +1015,7 @@ const handleContact = () => {
                 return (
                   <div key={group.key} className="detail-item" style={{ gridColumn: '1 / -1' }}>
                     <strong>{group.emoji} {group.label}:</strong>
-                    <span>{selected.map((s, i) => <span key={i}>{cleanName(s)}{i < selected.length - 1 ? ', ' : ''}</span>)}</span>
+                    <span dir="rtl">{selected.map((s, i) => <span key={i}>{cleanName(s)}{i < selected.length - 1 ? ', ' : ''}</span>)}</span>
                   </div>
                 );
               }).filter(Boolean);
@@ -1022,18 +1023,13 @@ const handleContact = () => {
               if (others.length) {
                 elements.push(
                   <div key="other" className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                    <strong>📖 {t('filters.tutoring.other')}:</strong>
-                    <span>{others.map((s, i) => <span key={i}>{cleanName(s)}{i < others.length - 1 ? ', ' : ''}</span>)}</span>
+                    <strong>📖 {t('serviceForm.tutoring.subjectsLabel')}:</strong>
+                    <span dir="rtl">{others.map((s, i) => <span key={i}>{cleanName(s)}{i < others.length - 1 ? ', ' : ''}</span>)}</span>
                   </div>
                 );
               }
               return <>{elements}</>;
-            })() : (
-              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <strong>📚 {t('serviceForm.tutoring.subjectsLabel')}:</strong>
-                <span>{details.subjects.map((s, i) => <span key={i}>{(s || '').replace(/‏/g, '')}{i < details.subjects.length - 1 ? ', ' : ''}</span>)}</span>
-              </div>
-            )}
+            })()}
           </>
         )}
 
