@@ -990,7 +990,7 @@ const handleContact = () => {
         {provider.serviceType === 'tutoring' && details.subjects && details.subjects.length > 0 && (
           <>
             {(() => {
-              const cleanName = (name) => (name || '').replace(/‏/g, '');
+              const cleanName = (name) => (name || '').replace(/[​-‏‪-‮﻿]/g, '');
               const groups = [
                 { key: 'music',    emoji: '🎵', label: t('filters.tutoring.music'),           min: 1,   max: 7   },
                 { key: 'art',      emoji: '🎨', label: t('filters.tutoring.art'),             min: 10,  max: 16  },
@@ -1015,7 +1015,7 @@ const handleContact = () => {
                 return (
                   <div key={group.key} className="detail-item" style={{ gridColumn: '1 / -1' }}>
                     <strong>{group.emoji} {group.label}:</strong>
-                    <span dir="rtl">{selected.map((s, i) => <span key={i}>{cleanName(s)}{i < selected.length - 1 ? ', ' : ''}</span>)}</span>
+                    <span>{selected.map((s, i) => <React.Fragment key={i}><bdi>{cleanName(s)}</bdi>{i < selected.length - 1 ? ', ' : ''}</React.Fragment>)}</span>
                   </div>
                 );
               }).filter(Boolean);
@@ -1024,7 +1024,7 @@ const handleContact = () => {
                 elements.push(
                   <div key="other" className="detail-item" style={{ gridColumn: '1 / -1' }}>
                     <strong>📖 {t('serviceForm.tutoring.subjectsLabel')}:</strong>
-                    <span dir="rtl">{others.map((s, i) => <span key={i}>{cleanName(s)}{i < others.length - 1 ? ', ' : ''}</span>)}</span>
+                    <span>{others.map((s, i) => <React.Fragment key={i}><bdi>{cleanName(s)}</bdi>{i < others.length - 1 ? ', ' : ''}</React.Fragment>)}</span>
                   </div>
                 );
               }
