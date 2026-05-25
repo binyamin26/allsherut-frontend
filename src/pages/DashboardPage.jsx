@@ -2857,6 +2857,7 @@ placeholder={t('dashboard.security.newPasswordPlaceholder')}
                       errors={{}}
                       handleServiceDetailsChange={handleAddServiceFieldChange}
                       handleExclusiveCheckbox={handleAddServiceExclusiveCheckbox}
+                      hideLanguages={true}
                     />
                   )}
 

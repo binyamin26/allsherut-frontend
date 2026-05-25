@@ -50,7 +50,8 @@ const ServiceDetailsForm = ({
   serviceDetails,
   errors,
   handleServiceDetailsChange,
-  handleExclusiveCheckbox
+  handleExclusiveCheckbox,
+  hideLanguages = false
 }) => {
   const { t } = useLanguage();
 
@@ -110,7 +111,7 @@ const ServiceDetailsForm = ({
         handleServiceDetailsChange={handleServiceDetailsChange}
         handleExclusiveCheckbox={handleExclusiveCheckbox}
       />
-      {!SERVICES_WITH_OWN_LANGUAGES.has(serviceType) && (
+      {!hideLanguages && !SERVICES_WITH_OWN_LANGUAGES.has(serviceType) && (
         <div className="form-section optional">
           <div className="input-group">
             <label className="auth-form-label" style={{ fontWeight: 600 }}>{t('filters.common.languages')}</label>

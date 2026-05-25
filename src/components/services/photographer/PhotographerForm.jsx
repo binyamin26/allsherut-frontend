@@ -103,6 +103,23 @@ const PhotographerForm = ({ serviceDetails, errors, handleServiceDetailsChange, 
             </label>
           </div>
 
+          <div style={{ marginBottom: '10px' }}>
+            <label className="checkbox-item" style={{ fontWeight: 'bold' }}>
+              <input
+                type="checkbox"
+                checked={serviceDetails.work_types?.includes('מגנט') || false}
+                onChange={(e) => {
+                  const current = serviceDetails.work_types || [];
+                  const newTypes = e.target.checked
+                    ? [...current, 'מגנט']
+                    : current.filter(v => v !== 'מגנט');
+                  handleServiceDetailsChange('work_types', newTypes);
+                }}
+              />
+              {t('filters.photographer.magnet')}
+            </label>
+          </div>
+
           {errors['serviceDetails.work_types'] && <span className="error-text">{errors['serviceDetails.work_types']}</span>}
         </div>
 
@@ -159,25 +176,20 @@ const PhotographerForm = ({ serviceDetails, errors, handleServiceDetailsChange, 
         <div className="input-group">
           <label className="auth-form-label">{t('serviceForm.photographer.additionalServices')}</label>
           <div className="checkbox-group" data-field="work_types_optional">
-            {[
-              { value: 'מגנט', label: t('filters.photographer.magnet') },
-              { value: 'קמרמן', label: t('filters.photographer.cameraman') }
-            ].map(item => (
-              <label key={item.value} className="checkbox-item">
-                <input
-                  type="checkbox"
-                  checked={serviceDetails.work_types?.includes(item.value) || false}
-                  onChange={(e) => {
-                    const current = serviceDetails.work_types || [];
-                    const newTypes = e.target.checked
-                      ? [...current, item.value]
-                      : current.filter(v => v !== item.value);
-                    handleServiceDetailsChange('work_types', newTypes);
-                  }}
-                />
-                {item.label}
-              </label>
-            ))}
+            <label className="checkbox-item">
+              <input
+                type="checkbox"
+                checked={serviceDetails.work_types?.includes('קמרמן') || false}
+                onChange={(e) => {
+                  const current = serviceDetails.work_types || [];
+                  const newTypes = e.target.checked
+                    ? [...current, 'קמרמן']
+                    : current.filter(v => v !== 'קמרמן');
+                  handleServiceDetailsChange('work_types', newTypes);
+                }}
+              />
+              {t('filters.photographer.cameraman')}
+            </label>
           </div>
         </div>
       </div>
