@@ -13,65 +13,44 @@ async function run() {
   });
   console.log('Connected to DB:', process.env.DB_HOST);
 
-  // 1. Check for orphaned reviews (provider_id not in service_providers)
-  console.log('\n--- Orphaned reviews (provider_id missing from service_providers) ---');
-  const [orphaned] = await conn.query(`
-    SELECT r.id, r.provider_id, r.reviewer_name, r.rating, r.created_at
-    FROM reviews r
-    LEFT JOIN service_providers sp ON r.provider_id = sp.id
-    WHERE sp.id IS NULL
-    ORDER BY r.created_at DESC
-  `);
-  if (orphaned.length === 0) {
-    console.log('None found — all reviews have valid provider_id.');
-  } else {
-    console.log('Found', orphaned.length, 'orphaned review(s) — deleting them now...');
-    orphaned.forEach(r => console.log(' review id=' + r.id + ' provider_id=' + r.provider_id + ' reviewer=' + r.reviewer_name + ' rating=' + r.rating));
-    const ids = orphaned.map(r => r.id);
-    const [del] = await conn.query('DELETE FROM reviews WHERE id IN (?)', [ids]);
-    console.log('Deleted', del.affectedRows, 'orphaned review(s).');
+  // 1. Find who has user_id = 358 and what their sp.id is
+  console.log('\n--- Looking up user_id=358 ---');
+  const [users358] = await conn.query(
+    `SELECT u.id as user_id, u.first_name, u.last_name, u.email, sp.id as sp_id, sp.average_rating
+     FROM users u
+     LEFT JOIN service_providers sp ON sp.user_id = u.id
+     WHERE u.id = 358`
+  );
+  if (users358.length === 0) {
+    console.log('No user with id=358 found.');
+    await conn.end();
+    return;
+  }
+  const user = users358[0];
+  console.log('User:', user.first_name, user.last_name, '| email:', user.email, '| sp_id:', user.sp_id, '| stored avg:', user.average_rating);
+
+  if (!user.sp_id) {
+    console.log('This user has no service_provider record — cannot restore review.');
+    await conn.end();
+    return;
   }
 
-  // 2. List providers with reviews: stored avg vs actual avg
-  console.log('\n--- Providers with reviews (stored avg vs actual avg) ---');
-  const [providers] = await conn.query(`
-    SELECT sp.id,
-           CONCAT(u.first_name, ' ', u.last_name) AS name,
-           sp.average_rating AS stored_avg,
-           COUNT(r.id) AS review_count,
-           ROUND(AVG(r.rating), 2) AS actual_avg
-    FROM service_providers sp
-    JOIN users u ON sp.user_id = u.id
-    LEFT JOIN reviews r ON r.provider_id = sp.id AND r.is_verified = TRUE AND r.is_published = TRUE
-    GROUP BY sp.id, u.first_name, u.last_name, sp.average_rating
-    HAVING review_count > 0
-    ORDER BY sp.id
-  `);
-  let mismatches = 0;
-  providers.forEach(p => {
-    const drift = Math.abs((parseFloat(p.stored_avg) || 0) - (parseFloat(p.actual_avg) || 0)) > 0.01;
-    if (drift) mismatches++;
-    console.log(' sp.id=' + p.id + ' "' + p.name + '" stored=' + p.stored_avg + ' actual=' + p.actual_avg + ' count=' + p.review_count + (drift ? ' *** MISMATCH ***' : ''));
-  });
+  // 2. Check current reviews for this provider
+  const [existing] = await conn.query(
+    `SELECT id, reviewer_name, rating, is_verified, is_published FROM reviews WHERE provider_id = ?`, [user.sp_id]
+  );
+  console.log('Current reviews for sp_id=' + user.sp_id + ':', existing.length);
+  existing.forEach(r => console.log(' id=' + r.id + ' reviewer=' + r.reviewer_name + ' rating=' + r.rating));
 
-  // 3. Fix any average_rating mismatches
-  if (mismatches > 0) {
-    console.log('\nFixing ' + mismatches + ' average_rating mismatch(es)...');
-    for (const p of providers) {
-      const drift = Math.abs((parseFloat(p.stored_avg) || 0) - (parseFloat(p.actual_avg) || 0)) > 0.01;
-      if (drift) {
-        await conn.query(`
-          UPDATE service_providers SET average_rating = (
-            SELECT COALESCE(AVG(rating), 0) FROM reviews
-            WHERE provider_id = ? AND is_verified = TRUE AND is_published = TRUE
-          ) WHERE id = ?
-        `, [p.id, p.id]);
-        console.log(' Fixed sp.id=' + p.id + ' "' + p.name + '"');
-      }
-    }
-  } else {
-    console.log('\nAll average_ratings are correct — nothing to fix.');
-  }
+  // 3. Show actual columns of reviews table
+  const [cols] = await conn.query(
+    `SELECT COLUMN_NAME, IS_NULLABLE, COLUMN_DEFAULT
+     FROM information_schema.COLUMNS
+     WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'reviews'
+     ORDER BY ORDINAL_POSITION`
+  );
+  console.log('\nActual reviews columns:');
+  cols.forEach(c => console.log(' ' + c.COLUMN_NAME + ' nullable=' + c.IS_NULLABLE + ' default=' + c.COLUMN_DEFAULT));
 
   await conn.end();
   console.log('\nDone.');
