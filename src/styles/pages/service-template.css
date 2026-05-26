@@ -461,12 +461,13 @@ word-break: break-word;
 }
 
 .contact-provider-btn:hover {
-  transform: translateY(-1px);
+  filter: brightness(1.1);
   box-shadow: var(--shadow-md);
 }
 
 .contact-provider-btn:active {
-  transform: translateY(0);
+  transform: translateY(1px);
+  box-shadow: none;
 }
 
 .review-action-btn {
@@ -476,8 +477,13 @@ word-break: break-word;
 }
 
 .review-action-btn:hover {
-  transform: translateY(-1px);
+  filter: brightness(1.15);
   box-shadow: var(--shadow-md);
+}
+
+.review-action-btn:active {
+  transform: translateY(1px);
+  box-shadow: none;
 }
 
 /* ====================================

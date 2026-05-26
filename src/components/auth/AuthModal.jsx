@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { X, Mail, Lock, User, Phone, Eye, EyeOff, Loader, Upload, Camera, CheckCircle, AlertCircle, Zap,
+import { X, Mail, Lock, User, Phone, Eye, EyeOff, Loader, Upload, CheckCircle, AlertCircle, Zap,
   Wrench, Sparkles, Users, Briefcase, Layers } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
@@ -2088,7 +2088,7 @@ const renderWorkingAreasSection = () => {
 </div>
 
 <div className="input-group">
-  <label className="auth-form-label">{t('auth.profileImage')}</label>
+<label className="auth-form-label">{t('auth.profileImage')}</label>
   <div className="image-upload-container">
     <input
       type="file"
@@ -2097,36 +2097,23 @@ const renderWorkingAreasSection = () => {
       onChange={handleImageUpload}
       style={{ display: 'none' }}
     />
-    <input
-      type="file"
-      id="profileImageCamera"
-      accept="image/*"
-      capture="user"
-      onChange={handleImageUpload}
-      style={{ display: 'none' }}
-    />
-    <div className="image-preview-area">
+    <label htmlFor="profileImageUpload" className="image-upload-label">
       {formData.profileImagePreview ? (
         <div className="image-preview">
           <img src={formData.profileImagePreview} alt="Profile preview" />
+          <div className="image-overlay">
+            <Upload size={24} />
+          <span>{t('auth.changeImage')}</span>
+          </div>
         </div>
       ) : (
         <div className="image-upload-placeholder">
-          <User size={40} />
-          <small>{t('auth.imageFormats')}</small>
+          <Upload size={32} />
+        <span>{t('auth.clickToUpload')}</span>
+<small>{t('auth.imageFormats')}</small>
         </div>
       )}
-    </div>
-    <div className="image-upload-actions">
-      <label htmlFor="profileImageUpload" className="image-action-btn">
-        <Upload size={16} />
-        <span>{t('auth.gallery')}</span>
-      </label>
-      <label htmlFor="profileImageCamera" className="image-action-btn image-action-camera">
-        <Camera size={16} />
-        <span>{t('auth.camera')}</span>
-      </label>
-    </div>
+    </label>
   </div>
   {imageError && <span className="error-text">{imageError}</span>}
 </div>
