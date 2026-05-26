@@ -551,16 +551,17 @@ delete advancedFilters.fullLocation;
           orderClause = 'ORDER BY sp.hourly_rate DESC';
           break;
         case 'rating':
-          orderClause = 'ORDER BY sp.average_rating DESC, sp.total_reviews DESC';
+          orderClause = 'ORDER BY sp.average_rating DESC, actual_reviews_count DESC';
           break;
         case 'experience':
           orderClause = 'ORDER BY sp.experience_years DESC';
           break;
         default:
-          orderClause = `ORDER BY 
+          orderClause = `ORDER BY
             (u.premium_until > NOW()) DESC,
             sp.is_featured DESC,
             sp.average_rating DESC,
+            actual_reviews_count DESC,
             u.created_at DESC`;
       }
     }
