@@ -8,8 +8,13 @@ class Review {
     this.provider_id = reviewData.provider_id;
     this.reviewer_email = reviewData.reviewer_email;
     this.reviewer_name = reviewData.reviewer_name;
+    this.reviewerName = reviewData.reviewer_name;
     this.service_type = reviewData.service_type;
     this.rating = reviewData.rating;
+    this.quality_rating = reviewData.quality_rating;
+    this.price_rating = reviewData.price_rating;
+    this.availability_rating = reviewData.availability_rating;
+    this.professionalism_rating = reviewData.professionalism_rating;
     this.title = reviewData.title;
     this.comment = reviewData.comment;
     this.is_verified = reviewData.is_verified;
@@ -17,7 +22,6 @@ class Review {
     this.helpful_count = reviewData.helpful_count;
     this.created_at = reviewData.created_at;
     this.updated_at = reviewData.updated_at;
-    // Nouvelle propriété pour les réponses
     this.provider_response = reviewData.provider_response;
   }
 
