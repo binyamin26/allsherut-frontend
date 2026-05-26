@@ -181,24 +181,26 @@ class Review {
         rating, title, comment, displayNameOption = 'private'
       } = reviewData;
 
-// ✅ CORRECTION: Convertir user_id en service_providers.id si nécessaire
+// Résolution : priorité à sp.id direct, sinon fallback sur user_id
 let actualProviderId = providerId;
-const [spCheck] = await connection.execute(`
-  SELECT sp.id as sp_id 
-  FROM service_providers sp 
-  WHERE sp.id = ? OR sp.user_id = ?
-  LIMIT 1
-`, [providerId, providerId]);
-
-if (spCheck.length > 0) {
-  actualProviderId = spCheck[0].sp_id;
-  console.log(`🔄 Provider ID résolu: ${providerId} → ${actualProviderId}`);
+const [directMatch] = await connection.execute(
+  'SELECT id as sp_id FROM service_providers WHERE id = ? LIMIT 1',
+  [providerId]
+);
+if (directMatch.length > 0) {
+  actualProviderId = directMatch[0].sp_id;
 } else {
-  return { 
-    success: false, 
-    message: 'ספק לא נמצא' 
-  };
+  const [userMatch] = await connection.execute(
+    'SELECT id as sp_id FROM service_providers WHERE user_id = ? LIMIT 1',
+    [providerId]
+  );
+  if (userMatch.length > 0) {
+    actualProviderId = userMatch[0].sp_id;
+  } else {
+    return { success: false, message: 'ספק לא נמצא' };
+  }
 }
+console.log(`🔄 Provider ID résolu: ${providerId} → ${actualProviderId}`);
 
 // Vérifier que le token existe et a été utilisé récemment
 const tokens = await connection.execute(`
@@ -353,15 +355,22 @@ static async getProviderReviews(providerId, options = {}) {
 
     const offset = (page - 1) * limit;
 
-    // Résoudre l'ID : accepte aussi bien users.id que service_providers.id
-    const spCheck = await query(`
-      SELECT sp.id as sp_id FROM service_providers sp
-      WHERE sp.id = ? OR sp.user_id = ? LIMIT 1
-    `, [providerId, providerId]);
-    if (spCheck.length === 0) {
-      return { success: false, message: 'ספק לא נמצא' };
+    // Résoudre l'ID : priorité à sp.id direct, sinon fallback user_id
+    let actualProviderId;
+    const directMatch = await query(
+      'SELECT id as sp_id FROM service_providers WHERE id = ? LIMIT 1',
+      [providerId]
+    );
+    if (directMatch.length > 0) {
+      actualProviderId = directMatch[0].sp_id;
+    } else {
+      const userMatch = await query(
+        'SELECT id as sp_id FROM service_providers WHERE user_id = ? LIMIT 1',
+        [providerId]
+      );
+      if (userMatch.length === 0) return { success: false, message: 'ספק לא נמצא' };
+      actualProviderId = userMatch[0].sp_id;
     }
-    const actualProviderId = spCheck[0].sp_id;
 
     // Déterminer l'ordre de tri
     let orderClause = 'r.created_at DESC';

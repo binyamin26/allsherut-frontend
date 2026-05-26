@@ -53,6 +53,15 @@ const SQL = [
   `,
   `ALTER TABLE job_listings MODIFY COLUMN experience_required VARCHAR(20) NOT NULL DEFAULT 'beginner';`,
   `ALTER TABLE service_providers MODIFY COLUMN service_type VARCHAR(50) NOT NULL;`,
+
+  // fix_review_52: move review #52 from wrong provider (174) to correct provider (93)
+  `UPDATE reviews SET provider_id = 93 WHERE id = 52 AND provider_id = 174;`,
+  `UPDATE service_providers SET average_rating = (
+     SELECT COALESCE(AVG(rating), 0) FROM reviews WHERE provider_id = 93 AND is_verified = TRUE AND is_published = TRUE
+   ) WHERE id = 93;`,
+  `UPDATE service_providers SET average_rating = (
+     SELECT COALESCE(AVG(rating), 0) FROM reviews WHERE provider_id = 174 AND is_verified = TRUE AND is_published = TRUE
+   ) WHERE id = 174;`,
 ];
 
 const LABELS = [
@@ -62,6 +71,9 @@ const LABELS = [
   'job_listings table',
   'fix experience_required',
   'fix service_type',
+  'fix review #52 provider_id 174→93',
+  'recalculate average_rating for sp 93',
+  'recalculate average_rating for sp 174',
 ];
 
 async function run() {
