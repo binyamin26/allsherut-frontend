@@ -203,7 +203,8 @@ getEmailHeader(subtitle = '') {
       'glass-works': 'זגגות', 'glassworks': 'זגגות', 'locksmith': 'מנעולן'
     };
     const serviceName = serviceNames[serviceType] || '';
-    const starsDisplay = '★'.repeat(rating) + '☆'.repeat(5 - rating);
+    const starsOut5 = Math.round(rating / 2);
+    const starsDisplay = '★'.repeat(starsOut5) + '☆'.repeat(5 - starsOut5);
 
     return `
       ${this.getEmailHeader('💬 ביקורת חדשה!')}

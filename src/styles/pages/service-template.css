@@ -288,7 +288,6 @@
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-sm);
   transition: all var(--transition-medium);
-  overflow: hidden;
   position: relative;
   width: 100%;
   margin: 0 auto;

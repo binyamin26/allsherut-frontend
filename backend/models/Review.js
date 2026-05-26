@@ -341,17 +341,27 @@ await connection.execute(`
  */
 static async getProviderReviews(providerId, options = {}) {
   try {
-    const { 
-      page = 1, 
-      limit = 10, 
-      sortBy = 'newest' 
+    const {
+      page = 1,
+      limit = 10,
+      sortBy = 'newest'
     } = options;
-    
+
     const offset = (page - 1) * limit;
-    
+
+    // Résoudre l'ID : accepte aussi bien users.id que service_providers.id
+    const spCheck = await query(`
+      SELECT sp.id as sp_id FROM service_providers sp
+      WHERE sp.id = ? OR sp.user_id = ? LIMIT 1
+    `, [providerId, providerId]);
+    if (spCheck.length === 0) {
+      return { success: false, message: 'ספק לא נמצא' };
+    }
+    const actualProviderId = spCheck[0].sp_id;
+
     // Déterminer l'ordre de tri
-    let orderClause = 'r.created_at DESC'; // Par défaut: plus récents
-    
+    let orderClause = 'r.created_at DESC';
+
     if (sortBy === 'oldest') {
       orderClause = 'r.created_at ASC';
     } else if (sortBy === 'highest_rating') {
@@ -362,7 +372,7 @@ static async getProviderReviews(providerId, options = {}) {
       orderClause = 'r.helpful_count DESC, r.created_at DESC';
     }
 
-    console.log(`📖 Récupération avis provider ${providerId} avec réponses, page ${page}`);
+    console.log(`📖 Récupération avis provider ${providerId} (sp.id=${actualProviderId}) avec réponses, page ${page}`);
 
     // ✅ AJOUT DU LEFT JOIN AVEC provider_responses
     const reviews = await query(`
@@ -390,24 +400,24 @@ static async getProviderReviews(providerId, options = {}) {
         AND r.is_published = TRUE
       ORDER BY ${orderClause}
       LIMIT ? OFFSET ?
-    `, [providerId, limit, offset]);
+    `, [actualProviderId, limit, offset]);
 
     // Compter le total d'avis
     const countResult = await query(`
       SELECT COUNT(*) as total
       FROM reviews r
-      WHERE r.provider_id = ? 
-        AND r.is_verified = TRUE 
+      WHERE r.provider_id = ?
+        AND r.is_verified = TRUE
         AND r.is_published = TRUE
-    `, [providerId]);
+    `, [actualProviderId]);
 
     const totalReviews = countResult[0].total;
     const totalPages = Math.ceil(totalReviews / limit);
 
     // Récupérer les statistiques
-    const stats = await Review.getProviderStats(providerId);
+    const stats = await Review.getProviderStats(actualProviderId);
 
-    console.log(`✅ Trouvé ${reviews.length} avis pour provider ${providerId}`);
+    console.log(`✅ Trouvé ${reviews.length} avis pour provider ${providerId} (sp.id=${actualProviderId})`);
 
     return {
       success: true,
