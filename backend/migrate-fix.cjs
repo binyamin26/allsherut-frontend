@@ -13,45 +13,56 @@ async function run() {
   });
   console.log('Connected to DB:', process.env.DB_HOST);
 
-  // Search ALL reviews for this text fragment
-  console.log('\n--- Search by comment text ---');
-  const [found] = await conn.query(
-    `SELECT id, provider_id, reviewer_name, reviewer_email, rating,
-            is_verified, is_published, comment, created_at
-     FROM reviews
-     WHERE comment LIKE '%ביום שישי%'
-        OR comment LIKE '%המקרר%'
-        OR comment LIKE '%בבוקר%'
-     ORDER BY created_at DESC`
+  // 1. Move review id=49 from provider_id=310 to provider_id=175
+  console.log('\n--- Moving review id=49 from provider_id=310 to provider_id=175 ---');
+  const [move] = await conn.query(
+    `UPDATE reviews SET provider_id = 175 WHERE id = 49 AND provider_id = 310`
   );
-  if (found.length === 0) {
-    console.log('Nothing found. Trying broader search on ALL reviews from last 30 days...');
-    const [recent] = await conn.query(
-      `SELECT id, provider_id, reviewer_name, reviewer_email, rating,
-              is_verified, is_published, LEFT(comment,80) as comment_preview, created_at
-       FROM reviews
-       WHERE created_at >= NOW() - INTERVAL 30 DAY
-       ORDER BY created_at DESC`
-    );
-    if (recent.length === 0) {
-      console.log('No reviews in last 30 days at all.');
-    } else {
-      console.log('Recent reviews (last 30 days):');
-      recent.forEach(r => console.log(
-        ' id=' + r.id + ' provider_id=' + r.provider_id +
-        ' reviewer=' + r.reviewer_name + ' rating=' + r.rating +
-        ' verified=' + r.is_verified + ' published=' + r.is_published +
-        '\n   comment: ' + r.comment_preview +
-        '\n   date: ' + r.created_at
-      ));
-    }
+  console.log('Rows affected:', move.affectedRows);
+
+  // 2. Recalculate average_rating for sp 310 and sp 175
+  console.log('\n--- Recalculating average_rating for sp 310 and sp 175 ---');
+  for (const spId of [310, 175]) {
+    const [upd] = await conn.query(`
+      UPDATE service_providers SET average_rating = (
+        SELECT COALESCE(AVG(rating), 0)
+        FROM reviews
+        WHERE provider_id = ? AND is_verified = TRUE AND is_published = TRUE
+      ) WHERE id = ?
+    `, [spId, spId]);
+    const [check] = await conn.query(`SELECT average_rating FROM service_providers WHERE id = ?`, [spId]);
+    console.log(' sp.id=' + spId + ' new average_rating=' + check[0].average_rating);
+  }
+
+  // 3. Show all reviews now for sp 175 (Noam Bitton)
+  console.log('\n--- All reviews for sp.id=175 (נועם ביטון) after fix ---');
+  const [noamReviews] = await conn.query(
+    `SELECT id, reviewer_name, rating, is_verified, is_published, LEFT(comment,60) as preview
+     FROM reviews WHERE provider_id = 175 ORDER BY created_at DESC`
+  );
+  noamReviews.forEach(r => console.log(
+    ' id=' + r.id + ' reviewer=' + r.reviewer_name + ' rating=' + r.rating +
+    ' verified=' + r.is_verified + ' | ' + r.preview
+  ));
+
+  // 4. Search for a possible 2nd misrouted review for Noam
+  // Look at ALL reviews from last 7 days that mention electrician context
+  console.log('\n--- All reviews created in last 7 days (searching for Noam 2nd review) ---');
+  const [recent] = await conn.query(`
+    SELECT id, provider_id, reviewer_name, reviewer_email, rating,
+           is_verified, is_published, LEFT(comment,80) as preview, created_at
+    FROM reviews
+    WHERE created_at >= NOW() - INTERVAL 7 DAY
+    ORDER BY created_at DESC
+  `);
+  if (recent.length === 0) {
+    console.log('No reviews in last 7 days.');
   } else {
-    found.forEach(r => console.log(
+    recent.forEach(r => console.log(
       ' id=' + r.id + ' provider_id=' + r.provider_id +
-      ' reviewer=' + r.reviewer_name + ' email=' + r.reviewer_email +
-      ' rating=' + r.rating + ' verified=' + r.is_verified +
-      '\n   comment: ' + r.comment +
-      '\n   date: ' + r.created_at
+      ' reviewer=' + r.reviewer_name + ' rating=' + r.rating +
+      ' verified=' + r.is_verified +
+      '\n   ' + r.preview
     ));
   }
 
