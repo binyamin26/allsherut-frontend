@@ -13,44 +13,45 @@ async function run() {
   });
   console.log('Connected to DB:', process.env.DB_HOST);
 
-  // 1. Find who has user_id = 358 and what their sp.id is
-  console.log('\n--- Looking up user_id=358 ---');
-  const [users358] = await conn.query(
-    `SELECT u.id as user_id, u.first_name, u.last_name, u.email, sp.id as sp_id, sp.average_rating
-     FROM users u
-     LEFT JOIN service_providers sp ON sp.user_id = u.id
-     WHERE u.id = 358`
-  );
-  if (users358.length === 0) {
-    console.log('No user with id=358 found.');
-    await conn.end();
-    return;
-  }
-  const user = users358[0];
-  console.log('User:', user.first_name, user.last_name, '| email:', user.email, '| sp_id:', user.sp_id, '| stored avg:', user.average_rating);
-
-  if (!user.sp_id) {
-    console.log('This user has no service_provider record — cannot restore review.');
-    await conn.end();
-    return;
+  // 1. Find any user/provider with "noam" or "ביטון" or "bitton" in name
+  console.log('\n--- Search for Noam Bitton ---');
+  const [found] = await conn.query(`
+    SELECT u.id as user_id, u.first_name, u.last_name, u.email,
+           sp.id as sp_id, sp.average_rating, sp.service_type
+    FROM users u
+    LEFT JOIN service_providers sp ON sp.user_id = u.id
+    WHERE LOWER(u.first_name) LIKE '%noam%'
+       OR LOWER(u.last_name)  LIKE '%noam%'
+       OR LOWER(u.first_name) LIKE '%bitton%'
+       OR LOWER(u.last_name)  LIKE '%bitton%'
+       OR u.first_name        LIKE '%נועם%'
+       OR u.last_name         LIKE '%ביטון%'
+  `);
+  if (found.length === 0) {
+    console.log('No user found matching Noam / Bitton / נועם / ביטון');
+  } else {
+    found.forEach(u => console.log(' user_id=' + u.user_id + ' name="' + u.first_name + ' ' + u.last_name + '" email=' + u.email + ' sp_id=' + u.sp_id + ' avg=' + u.average_rating + ' type=' + u.service_type));
   }
 
-  // 2. Check current reviews for this provider
-  const [existing] = await conn.query(
-    `SELECT id, reviewer_name, rating, is_verified, is_published FROM reviews WHERE provider_id = ?`, [user.sp_id]
-  );
-  console.log('Current reviews for sp_id=' + user.sp_id + ':', existing.length);
-  existing.forEach(r => console.log(' id=' + r.id + ' reviewer=' + r.reviewer_name + ' rating=' + r.rating));
-
-  // 3. Show actual columns of reviews table
-  const [cols] = await conn.query(
-    `SELECT COLUMN_NAME, IS_NULLABLE, COLUMN_DEFAULT
-     FROM information_schema.COLUMNS
-     WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'reviews'
-     ORDER BY ORDINAL_POSITION`
-  );
-  console.log('\nActual reviews columns:');
-  cols.forEach(c => console.log(' ' + c.COLUMN_NAME + ' nullable=' + c.IS_NULLABLE + ' default=' + c.COLUMN_DEFAULT));
+  // 2. Providers with stored avg > 0 but ZERO verified+published reviews
+  // These are providers whose reviews were likely deleted/orphaned
+  console.log('\n--- Providers with stored avg > 0 but 0 actual reviews ---');
+  const [broken] = await conn.query(`
+    SELECT sp.id as sp_id, CONCAT(u.first_name, ' ', u.last_name) AS name,
+           sp.average_rating, sp.service_type,
+           (SELECT COUNT(*) FROM reviews r WHERE r.provider_id = sp.id AND r.is_verified = TRUE AND r.is_published = TRUE) AS actual_count
+    FROM service_providers sp
+    JOIN users u ON sp.user_id = u.id
+    WHERE sp.average_rating > 0
+    HAVING actual_count = 0
+    ORDER BY sp.id
+  `);
+  if (broken.length === 0) {
+    console.log('None — all providers with avg > 0 still have their reviews.');
+  } else {
+    console.log('Found', broken.length, 'provider(s) whose reviews were deleted:');
+    broken.forEach(p => console.log(' sp_id=' + p.sp_id + ' "' + p.name + '" stored_avg=' + p.average_rating + ' type=' + p.service_type));
+  }
 
   await conn.end();
   console.log('\nDone.');
