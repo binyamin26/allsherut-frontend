@@ -13,38 +13,45 @@ async function run() {
   });
   console.log('Connected to DB:', process.env.DB_HOST);
 
-  // 1. Move review id=46 from provider_id=310 to provider_id=175
-  console.log('\n--- Moving review id=46 from provider_id=310 to provider_id=175 ---');
-  const [move] = await conn.query(
-    `UPDATE reviews SET provider_id = 175 WHERE id = 46 AND provider_id = 310`
-  );
-  console.log('Rows affected:', move.affectedRows);
+  // 1. Pending email tokens for provider_id=175 or 94
+  console.log('\n--- Pending review tokens for Noam (provider_id 175 or 94) ---');
+  const [tokens] = await conn.query(`
+    SELECT id, email, provider_id, service_type, reviewer_name,
+           verification_code, expires_at, used_at, created_at
+    FROM review_email_tokens
+    WHERE provider_id IN (175, 94)
+    ORDER BY created_at DESC
+  `);
+  if (tokens.length === 0) console.log('None.');
+  else tokens.forEach(t => console.log(
+    ' id=' + t.id + ' email=' + t.email + ' reviewer=' + t.reviewer_name +
+    ' provider_id=' + t.provider_id + ' used_at=' + t.used_at +
+    ' expires=' + t.expires_at
+  ));
 
-  // 2. Recalculate average_rating for sp 310 and sp 175
-  console.log('\n--- Recalculating average_rating ---');
-  for (const spId of [310, 175]) {
-    await conn.query(`
-      UPDATE service_providers SET average_rating = (
-        SELECT COALESCE(AVG(rating), 0)
-        FROM reviews
-        WHERE provider_id = ? AND is_verified = TRUE AND is_published = TRUE
-      ) WHERE id = ?
-    `, [spId, spId]);
-    const [check] = await conn.query(
-      `SELECT average_rating,
-              (SELECT COUNT(*) FROM reviews WHERE provider_id = ? AND is_verified=1 AND is_published=1) as cnt
-       FROM service_providers WHERE id = ?`, [spId, spId]
-    );
-    console.log(' sp.id=' + spId + ' average_rating=' + check[0].average_rating + ' reviews=' + check[0].cnt);
-  }
+  // 2. ALL pending tokens (any provider) created in last 7 days
+  console.log('\n--- All pending tokens last 7 days ---');
+  const [allTokens] = await conn.query(`
+    SELECT id, email, provider_id, reviewer_name, used_at, expires_at, created_at
+    FROM review_email_tokens
+    WHERE created_at >= NOW() - INTERVAL 7 DAY
+    ORDER BY created_at DESC
+  `);
+  if (allTokens.length === 0) console.log('None.');
+  else allTokens.forEach(t => console.log(
+    ' id=' + t.id + ' provider_id=' + t.provider_id +
+    ' reviewer=' + t.reviewer_name + ' email=' + t.email +
+    ' used=' + (t.used_at ? 'YES' : 'NO') + ' expires=' + t.expires_at
+  ));
 
-  // 3. Final state of Noam Bitton's reviews
-  console.log('\n--- Final reviews for נועם ביטון (sp.id=175) ---');
-  const [noam] = await conn.query(
-    `SELECT id, reviewer_name, rating, LEFT(comment,80) as preview
-     FROM reviews WHERE provider_id = 175 AND is_verified=1 ORDER BY created_at DESC`
-  );
-  noam.forEach(r => console.log(' id=' + r.id + ' reviewer=' + r.reviewer_name + ' rating=' + r.rating + '\n   ' + r.preview));
+  // 3. Any reviews stored at provider 310 that mention Noam
+  console.log('\n--- Any remaining reviews at provider 310 ---');
+  const [at310] = await conn.query(`
+    SELECT id, reviewer_name, rating, LEFT(comment,100) as preview
+    FROM reviews WHERE provider_id = 310
+  `);
+  if (at310.length === 0) console.log('None.');
+  else at310.forEach(r => console.log(' id=' + r.id + ' reviewer=' + r.reviewer_name + ' | ' + r.preview));
 
   await conn.end();
   console.log('\nDone.');
