@@ -695,6 +695,12 @@ const handleContact = () => {
         {/* === EVENT_ENTERTAINMENT === */}
         {['event_entertainment', 'dj'].includes(provider.serviceType) && (
           <>
+            {details.dj_event_types && details.dj_event_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🎧 {t('serviceFields.dj.dj_event_types')}:</strong>
+                <span>{translateAndJoin(details.dj_event_types, 'chefEventType', t)}</span>
+              </div>
+            )}
             {details.food_machine_types && details.food_machine_types.length > 0 && (
                   <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                     <strong>🍿 {t('provider.details.foodMachines')}:</strong>
