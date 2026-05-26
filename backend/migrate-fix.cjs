@@ -13,45 +13,53 @@ async function run() {
   });
   console.log('Connected to DB:', process.env.DB_HOST);
 
-  // 1. Find any user/provider with "noam" or "ביטון" or "bitton" in name
-  console.log('\n--- Search for Noam Bitton ---');
-  const [found] = await conn.query(`
-    SELECT u.id as user_id, u.first_name, u.last_name, u.email,
-           sp.id as sp_id, sp.average_rating, sp.service_type
-    FROM users u
-    LEFT JOIN service_providers sp ON sp.user_id = u.id
-    WHERE LOWER(u.first_name) LIKE '%noam%'
-       OR LOWER(u.last_name)  LIKE '%noam%'
-       OR LOWER(u.first_name) LIKE '%bitton%'
-       OR LOWER(u.last_name)  LIKE '%bitton%'
-       OR u.first_name        LIKE '%נועם%'
-       OR u.last_name         LIKE '%ביטון%'
-  `);
-  if (found.length === 0) {
-    console.log('No user found matching Noam / Bitton / נועם / ביטון');
-  } else {
-    found.forEach(u => console.log(' user_id=' + u.user_id + ' name="' + u.first_name + ' ' + u.last_name + '" email=' + u.email + ' sp_id=' + u.sp_id + ' avg=' + u.average_rating + ' type=' + u.service_type));
+  // 1. All reviews for sp.id=175 (Noam Bitton's real sp), any verification status
+  console.log('\n--- All reviews WHERE provider_id=175 (Noam sp_id, any status) ---');
+  const [r175] = await conn.query(
+    `SELECT id, reviewer_name, rating, is_verified, is_published, created_at
+     FROM reviews WHERE provider_id = 175 ORDER BY created_at DESC`
+  );
+  if (r175.length === 0) console.log('None.');
+  else r175.forEach(r => console.log(' id=' + r.id + ' reviewer=' + r.reviewer_name + ' rating=' + r.rating + ' verified=' + r.is_verified + ' published=' + r.is_published + ' date=' + r.created_at));
+
+  // 2. All reviews for provider_id=94 (Noam's user_id — wrong ID)
+  console.log('\n--- All reviews WHERE provider_id=94 (Noam user_id, any status) ---');
+  const [r94] = await conn.query(
+    `SELECT id, reviewer_name, rating, is_verified, is_published, created_at
+     FROM reviews WHERE provider_id = 94 ORDER BY created_at DESC`
+  );
+  if (r94.length === 0) console.log('None.');
+  else r94.forEach(r => console.log(' id=' + r.id + ' reviewer=' + r.reviewer_name + ' rating=' + r.rating + ' verified=' + r.is_verified + ' published=' + r.is_published + ' date=' + r.created_at));
+
+  // 3. Does sp.id=94 exist?
+  console.log('\n--- Does service_provider sp.id=94 exist? ---');
+  const [sp94] = await conn.query(
+    `SELECT sp.id, u.first_name, u.last_name, sp.service_type, sp.average_rating
+     FROM service_providers sp JOIN users u ON sp.user_id = u.id WHERE sp.id = 94`
+  );
+  if (sp94.length === 0) console.log('No — sp.id=94 does not exist.');
+  else sp94.forEach(s => console.log(' sp.id=94 belongs to: ' + s.first_name + ' ' + s.last_name + ' type=' + s.service_type + ' avg=' + s.average_rating));
+
+  // 4. If sp.id=94 exists, show its reviews
+  if (sp94.length > 0) {
+    console.log('\n--- All reviews WHERE provider_id=94 attached to sp.id=94 ---');
+    const [r94sp] = await conn.query(
+      `SELECT id, reviewer_name, rating, is_verified, is_published FROM reviews WHERE provider_id = 94`
+    );
+    if (r94sp.length === 0) console.log('None.');
+    else r94sp.forEach(r => console.log(' id=' + r.id + ' reviewer=' + r.reviewer_name + ' rating=' + r.rating + ' verified=' + r.is_verified));
   }
 
-  // 2. Providers with stored avg > 0 but ZERO verified+published reviews
-  // These are providers whose reviews were likely deleted/orphaned
-  console.log('\n--- Providers with stored avg > 0 but 0 actual reviews ---');
-  const [broken] = await conn.query(`
-    SELECT sp.id as sp_id, CONCAT(u.first_name, ' ', u.last_name) AS name,
-           sp.average_rating, sp.service_type,
-           (SELECT COUNT(*) FROM reviews r WHERE r.provider_id = sp.id AND r.is_verified = TRUE AND r.is_published = TRUE) AS actual_count
-    FROM service_providers sp
-    JOIN users u ON sp.user_id = u.id
-    WHERE sp.average_rating > 0
-    HAVING actual_count = 0
-    ORDER BY sp.id
-  `);
-  if (broken.length === 0) {
-    console.log('None — all providers with avg > 0 still have their reviews.');
-  } else {
-    console.log('Found', broken.length, 'provider(s) whose reviews were deleted:');
-    broken.forEach(p => console.log(' sp_id=' + p.sp_id + ' "' + p.name + '" stored_avg=' + p.average_rating + ' type=' + p.service_type));
-  }
+  // 5. Search ALL reviews for any reviewer mentioning Noam or bitton (comment text)
+  console.log('\n--- Any review with reviewer_email containing bitnoam or noam ---');
+  const [rEmail] = await conn.query(
+    `SELECT id, provider_id, reviewer_name, reviewer_email, rating, is_verified, is_published
+     FROM reviews
+     WHERE reviewer_email LIKE '%bitnoam%' OR reviewer_email LIKE '%noam%'
+     ORDER BY created_at DESC`
+  );
+  if (rEmail.length === 0) console.log('None.');
+  else rEmail.forEach(r => console.log(' id=' + r.id + ' provider_id=' + r.provider_id + ' reviewer=' + r.reviewer_name + ' email=' + r.reviewer_email + ' rating=' + r.rating + ' verified=' + r.is_verified));
 
   await conn.end();
   console.log('\nDone.');
