@@ -96,6 +96,7 @@ const ProviderDetailPage = () => {
     painting: '/images/logo peinture.png',
     private_chef: '/images/logo chef.png',
     event_entertainment: '/images/logo event.png',
+    dj: '/images/logo DJ.jpg',
     waterproofing: '/images/logo itoum.jpg',
     contractor: '/images/logo kablan.png',
     aluminum: '/images/logo aluminium.png',
@@ -463,7 +464,7 @@ const handleContact = () => {
           </div>
         )}
         {/* Disponibilité jours */}
-        {['tutoring', 'sports_activities', 'babysitting', 'petcare', 'eldercare', 'event_entertainment'].includes(provider.serviceType) && (details.availableDays || details.availability_days) && (details.availableDays?.length > 0 || details.availability_days?.length > 0) && (
+        {['tutoring', 'sports_activities', 'babysitting', 'petcare', 'eldercare', 'event_entertainment', 'dj'].includes(provider.serviceType) && (details.availableDays || details.availability_days) && (details.availableDays?.length > 0 || details.availability_days?.length > 0) && (
           <div className="detail-item">
            <strong>{t('provider.details.availableDays')}:</strong>
         <span>{translateAndJoin(sortDays(details.availableDays || details.availability_days), 'days', t)}</span>
@@ -471,7 +472,7 @@ const handleContact = () => {
         )}
 
         {/* Disponibilité heures */}
-        {['tutoring', 'sports_activities', 'babysitting', 'petcare', 'eldercare', 'event_entertainment'].includes(provider.serviceType) && (details.availableHours || details.availability_hours) && (details.availableHours?.length > 0 || details.availability_hours?.length > 0) && (
+        {['tutoring', 'sports_activities', 'babysitting', 'petcare', 'eldercare', 'event_entertainment', 'dj'].includes(provider.serviceType) && (details.availableHours || details.availability_hours) && (details.availableHours?.length > 0 || details.availability_hours?.length > 0) && (
           <div className="detail-item">
            <strong>{t('provider.details.availableHours')}:</strong>
          <span>{translateAndJoin(details.availableHours || details.availability_hours, 'hours', t)}</span>
@@ -692,7 +693,7 @@ const handleContact = () => {
         )}
 
         {/* === EVENT_ENTERTAINMENT === */}
-        {provider.serviceType === 'event_entertainment' && (
+        {['event_entertainment', 'dj'].includes(provider.serviceType) && (
           <>
             {details.food_machine_types && details.food_machine_types.length > 0 && (
                   <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
