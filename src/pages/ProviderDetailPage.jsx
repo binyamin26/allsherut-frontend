@@ -1600,7 +1600,6 @@ const handleContact = () => {
                                               <span className="cat-score">{t('review.categories.price')}: <strong>{review.price_rating}/10</strong></span>
                                               <span className="cat-score">{t('review.categories.availability')}: <strong>{review.availability_rating}/10</strong></span>
                                               <span className="cat-score">{t('review.categories.professionalism')}: <strong>{review.professionalism_rating}/10</strong></span>
-                                              <span className="global-badge">{t('review.categories.global')}: <strong>{parseFloat(review.rating).toFixed(1)}/10</strong></span>
                                             </div>
                                           ) : (
                                             <span className="rating-text">{parseFloat(review.rating).toFixed(1)}/10</span>
