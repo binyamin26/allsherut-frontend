@@ -19,9 +19,14 @@ import {
   getCommonHours
 } from './../config/filterConfig';
 
-const FilterBar = ({ 
-  serviceType, 
-  onFiltersChange, 
+const formatRating = (v) => {
+  const n = parseFloat(parseFloat(v).toFixed(2));
+  return n.toString();
+};
+
+const FilterBar = ({
+  serviceType,
+  onFiltersChange,
   activeFilters = {},
   onLocationChange,
   selectedLocation = {}
@@ -136,7 +141,7 @@ const FilterBar = ({
             <Star size={16} />
             <span className="filter-pill-text">
               {activeFilters.minRating
-                ? `${parseFloat(activeFilters.minRating).toFixed(1)}+`
+                ? `${formatRating(activeFilters.minRating)}+`
                 : t('filters.rating')}
             </span>
             {activeFilters.minRating && (
@@ -410,7 +415,7 @@ const RatingPanel = ({ selected, onChange }) => {
           <span className="rating-slider-all">{t('filters.allRatings')}</span>
         ) : (
           <span className="rating-slider-value">
-            {value.toFixed(1)}<span className="rating-slider-suffix">+ / 10</span>
+            {formatRating(value)}<span className="rating-slider-suffix">+ / 10</span>
           </span>
         )}
       </div>
