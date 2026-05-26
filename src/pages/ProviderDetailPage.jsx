@@ -1620,10 +1620,9 @@ const handleContact = () => {
        : '')}
   </span>
 </div>
-                                  </div>
-
                                   <div className="review-content">
                                     <p>{review.comment}</p>
+                                  </div>
                                   </div>
                                 </div>
 
