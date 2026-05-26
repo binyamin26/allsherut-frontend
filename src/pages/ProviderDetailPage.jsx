@@ -9,7 +9,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { translateValue, translateAndJoin, translateArrayFromMultipleCategories } from '../utils/translationMapper';
 import { TUTORING_SUBCATEGORIES } from '../data/subcategoriesData';
 import { 
-  Star, MapPin, Clock, Phone, Mail, CheckCircle, Award, 
+  MapPin, Clock, Phone, Mail, CheckCircle, Award,
   Calendar, MessageCircle, ThumbsUp, User, Shield, Heart,
   ChevronLeft, Send, AlertCircle
 } from 'lucide-react';
@@ -1412,10 +1412,9 @@ const handleContact = () => {
 
     <div className="provider-rating-location">
       <div className="rating">
-        <Star fill="#fbbf24" color="#fbbf24" size={20} />
         {reviews.length > 0 && formatRating(reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length) ? (
           <>
-            <span className="rating-score">{formatRating(reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length)}</span>
+            <span className="rating-score"><span style={{color:'#ef4444', fontWeight:'700'}}>{formatRating(reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length)}</span><span style={{fontWeight:'500'}}>/10</span></span>
             <span className="reviews-count">({reviews.length} {t('provider.reviews')})</span>
           </>
         ) : (
@@ -1567,7 +1566,7 @@ const handleContact = () => {
                           <div className="overall-rating">
                             {reviews.length > 0 && formatRating(reviews.reduce((sum, r) => sum + parseFloat(r.rating || 0), 0) / reviews.length) ? (
                               <>
-                                <span className="rating-number">{formatRating(reviews.reduce((sum, r) => sum + parseFloat(r.rating || 0), 0) / reviews.length)}</span>
+                                <span className="rating-number" style={{color:'#ef4444'}}>{formatRating(reviews.reduce((sum, r) => sum + parseFloat(r.rating || 0), 0) / reviews.length)}</span>
                                 <span className="rating-out-of">/10</span>
                               </>
                             ) : null}
@@ -1645,18 +1644,37 @@ const handleContact = () => {
 {(review.provider_response || review.providerResponse) && (
   <div className="provider-response">
     <div className="provider-response-header">
-      <img
-        src={(() => {
-          const img = provider.media?.profileImage || provider.profile_image;
-          if (!img) return null;
-          if (img.startsWith('http')) return img;
-          const base = (import.meta.env.VITE_API_URL || 'https://homesherut-backend.onrender.com').replace('/api', '');
-          return `${base}/${img.replace(/\\/g, '/').replace(/^\/+/, '')}`;
-        })()}
-        alt={provider.name}
-        className="provider-response-avatar-img"
-        onError={(e) => { e.currentTarget.style.display = 'none'; }}
-      />
+      {(() => {
+        const img = provider.media?.profileImage || provider.profile_image;
+        const src = img
+          ? (img.startsWith('http') ? img : `${ (import.meta.env.VITE_API_URL || 'https://homesherut-backend.onrender.com').replace('/api', '') }/${img.replace(/\\/g, '/').replace(/^\/+/, '')}`)
+          : null;
+        if (src) {
+          return (
+            <img
+              src={src}
+              alt={provider.name}
+              className="provider-response-avatar-img"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+                e.currentTarget.nextSibling.style.display = 'flex';
+              }}
+            />
+          );
+        }
+        return null;
+      })()}
+      <div className="provider-response-avatar-img" style={{
+        display: (provider.media?.profileImage || provider.profile_image) ? 'none' : 'flex',
+        background: 'linear-gradient(145deg, #e8eef5 0%, #d1dbe8 100%)',
+        alignItems: 'center', justifyContent: 'center', borderRadius: '50%', flexShrink: 0
+      }}>
+        <svg width="100%" height="100%" viewBox="0 0 100 100" fill="none">
+          <circle cx="50" cy="50" r="50" fill="#d1dbe8"/>
+          <circle cx="50" cy="38" r="18" fill="#8a9ab5"/>
+          <ellipse cx="50" cy="85" rx="32" ry="28" fill="#8a9ab5"/>
+        </svg>
+      </div>
       <div className="provider-response-meta">
         <span className="provider-response-name">
           {t('provider.reviews.responseFrom')} {provider.name}
