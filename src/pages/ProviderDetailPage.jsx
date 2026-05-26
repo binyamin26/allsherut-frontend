@@ -37,6 +37,14 @@ const ProviderDetailPage = () => {
     return hebrewRegex.test(text);
   };
 
+  const formatRating = (val) => {
+    const num = parseFloat(val);
+    if (!val || isNaN(num) || num === 0) return null;
+    const rounded = Math.round(num * 100) / 100;
+    if (rounded % 1 === 0) return String(rounded);
+    return rounded.toFixed(2).replace(/0+$/, '');
+  };
+
   // États
   const [provider, setProvider] = useState(null);
   const [reviews, setReviews] = useState([]);
@@ -1405,8 +1413,14 @@ const handleContact = () => {
     <div className="provider-rating-location">
       <div className="rating">
         <Star fill="#fbbf24" color="#fbbf24" size={20} />
-        <span className="rating-score">{reviews.length > 0 ? (reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length).toFixed(1) : 0}</span>
-        <span className="reviews-count">({reviews.length} {t('provider.reviews')})</span>
+        {reviews.length > 0 && formatRating(reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length) ? (
+          <>
+            <span className="rating-score">{formatRating(reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length)}</span>
+            <span className="reviews-count">({reviews.length} {t('provider.reviews')})</span>
+          </>
+        ) : (
+          <span className="reviews-count">{reviews.length} {t('provider.reviews')}</span>
+        )}
       </div>
     </div>
 
@@ -1551,8 +1565,12 @@ const handleContact = () => {
                       <div className="reviews-summary">
                         <div className="rating-overview">
                           <div className="overall-rating">
-                            <span className="rating-number">{reviews.length > 0 ? (reviews.reduce((sum, r) => sum + parseFloat(r.rating || 0), 0) / reviews.length).toFixed(1) : 0}</span>
-                            <span className="rating-out-of">/10</span>
+                            {reviews.length > 0 && formatRating(reviews.reduce((sum, r) => sum + parseFloat(r.rating || 0), 0) / reviews.length) ? (
+                              <>
+                                <span className="rating-number">{formatRating(reviews.reduce((sum, r) => sum + parseFloat(r.rating || 0), 0) / reviews.length)}</span>
+                                <span className="rating-out-of">/10</span>
+                              </>
+                            ) : null}
                           </div>
                           <div className="rating-details">
                          <span className="rating-text">{t('provider.reviews.overallRating')}</span>
@@ -1601,9 +1619,7 @@ const handleContact = () => {
                                               <span className="cat-score">{t('review.categories.availability')}: <strong>{review.availability_rating}/10</strong></span>
                                               <span className="cat-score">{t('review.categories.professionalism')}: <strong>{review.professionalism_rating}/10</strong></span>
                                             </div>
-                                          ) : (
-                                            <span className="rating-text">{parseFloat(review.rating).toFixed(1)}/10</span>
-                                          )}
+                                          ) : null}
                                         </div>
                                       </div>
                                     </div>
