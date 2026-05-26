@@ -1435,6 +1435,8 @@
   "auth.clickToUpload": "Нажмите для загрузки",
   "auth.imageFormats": "JPG, PNG, WebP - до 5МБ",
   "auth.changeImage": "Изменить изображение",
+  "auth.gallery": "Выбрать из галереи",
+  "auth.camera": "Сделать фото",
   "auth.workingAreas": "Рабочие зоны",
   "auth.allIsrael": "Весь Израиль",
   "auth.selectCity": "Выберите город",

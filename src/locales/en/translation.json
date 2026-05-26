@@ -1452,6 +1452,8 @@
   "auth.clickToUpload": "Click to upload image",
   "auth.imageFormats": "JPG, PNG, WebP - up to 5MB",
   "auth.changeImage": "Change image",
+  "auth.gallery": "Choose from Gallery",
+  "auth.camera": "Take Photo",
   "auth.workingAreas": "Working areas",
   "auth.allIsrael": "All Israel",
   "auth.selectCity": "Select city",

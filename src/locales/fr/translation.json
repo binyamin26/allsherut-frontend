@@ -1452,6 +1452,8 @@
   "auth.clickToUpload": "Cliquez pour télécharger",
   "auth.imageFormats": "JPG, PNG, WebP - max 5Mo",
   "auth.changeImage": "Changer l'image",
+  "auth.gallery": "Choisir depuis la galerie",
+  "auth.camera": "Prendre une photo",
   "auth.workingAreas": "Zones de travail",
   "auth.allIsrael": "Tout Israël",
   "auth.selectCity": "Sélectionner une ville",

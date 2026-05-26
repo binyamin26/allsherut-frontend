@@ -1437,6 +1437,8 @@
   "auth.clickToUpload": "לחץ להעלאת תמונה",
   "auth.imageFormats": "JPG, PNG, WebP - עד 5MB",
   "auth.changeImage": "שנה תמונה",
+  "auth.gallery": "בחר מהגלריה",
+  "auth.camera": "צלם תמונה",
   "auth.workingAreas": "אזורי עבודה",
   "auth.allIsrael": "כל ישראל",
   "auth.selectCity": "בחר עיר",
