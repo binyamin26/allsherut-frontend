@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Star, Phone, MessageCircle } from 'lucide-react';
+import { Phone, MessageCircle } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 
 const ProviderCard = ({ provider, onOpenReviewModal }) => {
@@ -51,6 +51,17 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
   // Expérience
   const experience = provider.experience_years || provider.experience || 0;
 
+  const reviewsCount = provider.reviewsCount || provider.reviews_count || 0;
+
+  const formatRating = (rating) => {
+    const num = parseFloat(rating);
+    if (!rating || isNaN(num) || num === 0) return null;
+    const rounded = Math.round(num * 100) / 100;
+    if (rounded % 1 === 0) return String(rounded);
+    return rounded.toFixed(2).replace(/0+$/, '');
+  };
+  const formattedRating = formatRating(provider.average_rating);
+
   // Ville avec logique כל ישראל
   const getCity = () => {
     const city = provider.city || provider.location?.city || provider.location || '';
@@ -96,9 +107,14 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
       <div className="card-horizontal-info">
         <h3 className="provider-name">{provider.name || provider.full_name}</h3>
         <div className="rating-stars">
-<Star size={13} fill="#fbbf24" color="#fbbf24" />
-          <span className="rating-score">{provider.average_rating || t('card.new')}</span>
-          <span className="reviews-count">({provider.reviewsCount || provider.reviews_count || 0} {t('card.reviews')})</span>
+          {reviewsCount > 0 && formattedRating ? (
+            <>
+              <span className="rating-score">{formattedRating}</span>
+              <span className="reviews-count">({reviewsCount} {t('card.reviews')})</span>
+            </>
+          ) : (
+            <span className="reviews-count">0 {t('card.reviews')}</span>
+          )}
         </div>
         <div className="price-experience-info">
           {hourlyRate ? (
