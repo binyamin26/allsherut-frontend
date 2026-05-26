@@ -494,17 +494,17 @@
   }
 }
 
-/* Boutons action carte prestataire - même taille */
+/* Boutons action carte prestataire */
 .provider-card .action-buttons {
   display: flex;
-  gap: var(--space-3);
-  padding: var(--space-4);
+  gap: var(--space-2);
   width: 100%;
+  overflow: hidden;
 }
 
 .provider-card .contact-provider-btn,
 .provider-card .review-action-btn {
   flex: 1;
-  min-height: 48px;
+  min-width: 0;
   margin-top: 0;
 }
