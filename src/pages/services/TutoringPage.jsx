@@ -132,7 +132,7 @@ useEffect(() => {
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo cours particulier.png"
+                src="/images/logo cours particulier.jpg"
                 alt="Soutien scolaire"
               />
             </div>

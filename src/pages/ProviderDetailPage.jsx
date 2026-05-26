@@ -73,7 +73,7 @@ const ProviderDetailPage = () => {
     cleaning: '/images/logo nikayon.png',
     gardening: '/images/logo jardinage.jpg',
     petcare: '/images/logo chien.png',
-    tutoring: '/images/logo cours particulier.png',
+    tutoring: '/images/logo cours particulier.jpg',
     sports_activities: '/images/logo sport.jpg',
     eldercare: '/images/logo kachich.png',
     laundry: '/images/logo kvissa.png',
