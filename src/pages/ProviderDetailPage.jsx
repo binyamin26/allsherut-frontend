@@ -84,7 +84,7 @@ const ProviderDetailPage = () => {
     drywall: '/images/logo placo.png',
     carpentry: '/images/logo menuisier.png',
     property_management: '/images/logo nihoul dirot.png',
-    home_organization: '/images/logo rangement.png',
+    home_organization: '/images/logo rangement.jpg',
     painting: '/images/logo peinture.png',
     private_chef: '/images/logo chef.png',
     event_entertainment: '/images/logo event.png',

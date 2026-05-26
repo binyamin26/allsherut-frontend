@@ -115,7 +115,7 @@ const HomeOrganizationPage = () => {
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo rangement.png"
+                src="/images/logo rangement.jpg"
                 alt="Rangement"
               />
             </div>

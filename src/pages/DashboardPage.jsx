@@ -91,7 +91,7 @@ const serviceImages = {
   gas_technician: '/images/logo gaz.png',
   drywall: '/images/logo placo.png',
   carpentry: '/images/logo menuisier.png',
-  home_organization: '/images/logo rangement.png',
+  home_organization: '/images/logo rangement.jpg',
   event_entertainment: '/images/logo event.png',
   dj: '/images/logo DJ.jpg',
   private_chef: '/images/logo chef.png',
