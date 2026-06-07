@@ -2524,7 +2524,7 @@
   "pricing.saveSuccess": "Tarifs enregistrés avec succès !",
   "pricing.saveError": "Erreur lors de l'enregistrement",
   "pricing.loadError": "Erreur lors du chargement des tarifs",
-  "pricing.empty": "Aucun tarif renseigné. Cliquez sur \"+Ajouter un service\" pour commencer.",
+  "pricing.empty": "Aucun tarif renseigné",
   "pricing.validation.nameRequired": "Le nom du service est obligatoire",
   "pricing.validation.priceRequired": "Le tarif est obligatoire",
   "pricing.public.title": "Services et tarifs",

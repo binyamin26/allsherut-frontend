@@ -2531,7 +2531,7 @@
   "pricing.saveSuccess": "המחירון נשמר בהצלחה!",
   "pricing.saveError": "שגיאה בשמירת המחירון",
   "pricing.loadError": "שגיאה בטעינת המחירון",
-  "pricing.empty": "אין מחירים. לחץ על \"+ הוסף שירות\" כדי להתחיל.",
+  "pricing.empty": "אין מחירים",
   "pricing.validation.nameRequired": "שם השירות חובה",
   "pricing.validation.priceRequired": "מחיר חובה",
   "pricing.public.title": "שירותים ומחירים",

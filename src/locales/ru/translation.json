@@ -2519,7 +2519,7 @@
   "pricing.saveSuccess": "Тарифы успешно сохранены!",
   "pricing.saveError": "Ошибка при сохранении тарифов",
   "pricing.loadError": "Ошибка загрузки тарифов",
-  "pricing.empty": "Нет тарифов. Нажмите \"+Добавить услугу\" чтобы начать.",
+  "pricing.empty": "Нет тарифов",
   "pricing.validation.nameRequired": "Название услуги обязательно",
   "pricing.validation.priceRequired": "Тариф обязателен",
   "pricing.public.title": "Услуги и тарифы",

@@ -2519,7 +2519,7 @@
   "pricing.saveSuccess": "Rates saved successfully!",
   "pricing.saveError": "Error saving rates",
   "pricing.loadError": "Error loading rates",
-  "pricing.empty": "No rates listed. Click \"+Add a service\" to get started.",
+  "pricing.empty": "No rates listed",
   "pricing.validation.nameRequired": "Service name is required",
   "pricing.validation.priceRequired": "Rate is required",
   "pricing.public.title": "Services & rates",
