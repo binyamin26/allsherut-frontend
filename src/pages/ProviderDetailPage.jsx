@@ -63,6 +63,7 @@ const ProviderDetailPage = () => {
   const detailsRef = useRef(null);
   const galleryRef = useRef(null);
   const pricingRef = useRef(null);
+  const reviewsRef = useRef(null);
   const navRef = useRef(null);
 
   // État pour ReviewModal
@@ -180,6 +181,7 @@ const ProviderDetailPage = () => {
       { ref: detailsRef, id: 'details' },
       { ref: galleryRef, id: 'gallery' },
       { ref: pricingRef, id: 'pricing' },
+      { ref: reviewsRef, id: 'reviews' },
     ];
     const observer = new IntersectionObserver(
       (entries) => {
@@ -1588,6 +1590,10 @@ const handleContact = () => {
               className={`section-nav-tab${activeSection === 'pricing' ? ' active' : ''}`}
               onClick={() => scrollToSection(pricingRef)}
             >{t('provider.navPricing')}</button>
+            <button
+              className={`section-nav-tab${activeSection === 'reviews' ? ' active' : ''}`}
+              onClick={() => scrollToSection(reviewsRef)}
+            >{t('provider.navReviews')}</button>
           </nav>
         </div>
       </div>
@@ -1653,7 +1659,7 @@ const handleContact = () => {
                       background: idx % 2 === 0 ? '#fff' : '#fafafa',
                     }}>
                       <span style={{ fontSize: '0.92rem', color: '#374151' }}>{item.service_name}</span>
-                      <span style={{ fontSize: '0.92rem', color: '#0F2A44', fontWeight: 600, whiteSpace: 'nowrap' }}>{item.price}</span>
+                      <span style={{ fontSize: '0.92rem', color: '#0F2A44', fontWeight: 600, whiteSpace: 'nowrap' }}>₪{item.price}</span>
                     </div>
                   ))}
                 </div>
@@ -1665,7 +1671,7 @@ const handleContact = () => {
             </div>
 
             {/* Section: ביקורות */}
-                  <div className="reviews-section-enhanced">
+                  <div ref={reviewsRef} data-section="reviews" className="reviews-section-enhanced">
                     <div className="reviews-header">
                    <h3 className="section-title">{t('provider.reviews.title')}</h3>
                       <div className="reviews-summary">

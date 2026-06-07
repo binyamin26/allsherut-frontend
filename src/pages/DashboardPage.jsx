@@ -2493,18 +2493,24 @@ const galleryImages = (() => {
                         )}
                       </div>
                       <div>
-                        <input
-                          type="text"
-                          value={item.price}
-                          onChange={e => handlePricingRowChange(item._key, 'price', e.target.value)}
-                          placeholder={t('pricing.pricePlaceholder')}
-                          style={{
-                            width: '100%', padding: '0.45rem 0.7rem',
-                            border: `1px solid ${pricingErrors[`${item._key}_price`] ? '#f87171' : '#e5e7eb'}`,
-                            borderRadius: '6px', fontSize: '0.9rem', outline: 'none',
-                            background: 'transparent',
-                          }}
-                        />
+                        <div style={{ position: 'relative' }}>
+                          <span style={{
+                            position: 'absolute', right: '0.7rem', top: '50%', transform: 'translateY(-50%)',
+                            color: '#6b7280', fontSize: '0.9rem', pointerEvents: 'none', userSelect: 'none',
+                          }}>₪</span>
+                          <input
+                            type="text"
+                            value={item.price}
+                            onChange={e => handlePricingRowChange(item._key, 'price', e.target.value)}
+                            placeholder={t('pricing.pricePlaceholder')}
+                            style={{
+                              width: '100%', padding: '0.45rem 1.8rem 0.45rem 0.7rem',
+                              border: `1px solid ${pricingErrors[`${item._key}_price`] ? '#f87171' : '#e5e7eb'}`,
+                              borderRadius: '6px', fontSize: '0.9rem', outline: 'none',
+                              background: 'transparent', direction: 'ltr',
+                            }}
+                          />
+                        </div>
                         {pricingErrors[`${item._key}_price`] && (
                           <span style={{ color: '#dc2626', fontSize: '0.75rem' }}>{pricingErrors[`${item._key}_price`]}</span>
                         )}
