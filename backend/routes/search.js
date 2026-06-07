@@ -558,7 +558,7 @@ delete advancedFilters.fullLocation;
 
     // Définition du tri — par défaut : avis vérifiés en premier
     const SORT_REVIEWS = `(SELECT COUNT(DISTINCT r.id) FROM reviews r WHERE r.provider_id = sp.id AND r.is_verified = TRUE AND r.is_published = TRUE)`;
-    let orderClause = `ORDER BY (u.premium_until > NOW()) DESC, sp.is_featured DESC, ${SORT_REVIEWS} DESC, sp.average_rating DESC, u.created_at DESC`;
+    let orderClause = `ORDER BY ${SORT_REVIEWS} DESC, sp.average_rating DESC, sp.is_featured DESC, u.created_at DESC`;
 
     if (sortBy === 'oldest')     orderClause = 'ORDER BY u.created_at ASC';
     if (sortBy === 'price_asc')  orderClause = 'ORDER BY sp.hourly_rate ASC';
