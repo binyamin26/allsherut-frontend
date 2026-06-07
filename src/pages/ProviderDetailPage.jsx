@@ -57,6 +57,7 @@ const ProviderDetailPage = () => {
   const [sportsSubcats, setSportsSubcats] = useState([]);
   const [profileImageError, setProfileImageError] = useState(false);
   const [pricing, setPricing] = useState([]);
+  const [activeSection, setActiveSection] = useState('details');
 
   // État pour ReviewModal
   const [reviewModal, setReviewModal] = useState({
@@ -1537,55 +1538,79 @@ const handleContact = () => {
 {/* Main Content */}
       <div className="provider-content">
         <div className="container">
-          <div className="content-grid">
+          {/* Mobile tab bar */}
+          <div className="detail-tabs-mobile">
+            <button
+              className={`detail-tab-btn${activeSection === 'details' ? ' active' : ''}`}
+              onClick={() => setActiveSection('details')}
+            >{t('provider.sidebarDetails')}</button>
+            <button
+              className={`detail-tab-btn${activeSection === 'gallery' ? ' active' : ''}`}
+              onClick={() => setActiveSection('gallery')}
+            >{t('provider.sidebarGallery')}</button>
+            <button
+              className={`detail-tab-btn${activeSection === 'reviews' ? ' active' : ''}`}
+              onClick={() => setActiveSection('reviews')}
+            >{t('provider.sidebarReviews')}</button>
+          </div>
+
+          <div className="content-grid-sidebar">
+            {/* Sidebar — shown on desktop */}
+            <div className="detail-sidebar">
+              <nav className="detail-sidebar-nav">
+                <button
+                  className={`detail-sidebar-item${activeSection === 'details' ? ' active' : ''}`}
+                  onClick={() => setActiveSection('details')}
+                >{t('provider.sidebarDetails')}</button>
+                <button
+                  className={`detail-sidebar-item${activeSection === 'gallery' ? ' active' : ''}`}
+                  onClick={() => setActiveSection('gallery')}
+                >{t('provider.sidebarGallery')}</button>
+                <button
+                  className={`detail-sidebar-item${activeSection === 'reviews' ? ' active' : ''}`}
+                  onClick={() => setActiveSection('reviews')}
+                >{t('provider.sidebarReviews')}</button>
+              </nav>
+            </div>
+
+            {/* Content panel */}
             <div className="main-content">
-              
-                {/* Colonne gauche - פרטי השירות */}
-              
+
+              {/* פרטי השירות */}
+              {activeSection === 'details' && (
+                <>
                   {renderServiceDetails()}
 
-{provider.media?.gallery?.length > 0 && (
-  <div className="service-details-section">
-  <h3 className="details-title" style={{ textAlign: 'start' }}>{t('provider.gallery')}</h3>
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.75rem' }}>
-      {provider.media.gallery.map((url, i) => (
-        <img key={i} src={url} alt={`תמונה ${i + 1}`} style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover', borderRadius: '8px' }} />
-      ))}
-    </div>
-  </div>
-)}
-               {/* Tarifs */}
-{pricing.length > 0 && (
-  <div className="service-details-section">
-    <h3 className="details-title" style={{ textAlign: 'start' }}>{t('pricing.public.title')}</h3>
-    <div style={{ border: '1px solid #e5e7eb', borderRadius: '10px', overflow: 'hidden' }}>
-      <div style={{
-        display: 'grid', gridTemplateColumns: '1fr auto',
-        background: 'linear-gradient(135deg, #0F2A44, #2F80ED)',
-        color: '#fff', padding: '0.6rem 1rem', fontWeight: 600, fontSize: '0.85rem', gap: '1rem'
-      }}>
-        <span>{t('pricing.serviceNameLabel')}</span>
-        <span>{t('pricing.priceLabel')}</span>
-      </div>
-      {pricing.map((item, idx) => (
-        <div key={item.id} style={{
-          display: 'grid', gridTemplateColumns: '1fr auto',
-          padding: '0.65rem 1rem', gap: '1rem', alignItems: 'center',
-          borderBottom: idx < pricing.length - 1 ? '1px solid #f3f4f6' : 'none',
-          background: idx % 2 === 0 ? '#fff' : '#fafafa',
-        }}>
-          <span style={{ fontSize: '0.92rem', color: '#374151' }}>{item.service_name}</span>
-          <span style={{ fontSize: '0.92rem', color: '#0F2A44', fontWeight: 600, whiteSpace: 'nowrap' }}>{item.price}</span>
-        </div>
-      ))}
-    </div>
-  </div>
-)}
+                  {pricing.length > 0 && (
+                    <div className="service-details-section">
+                      <h3 className="details-title" style={{ textAlign: 'start' }}>{t('pricing.public.title')}</h3>
+                      <div style={{ border: '1px solid #e5e7eb', borderRadius: '10px', overflow: 'hidden' }}>
+                        <div style={{
+                          display: 'grid', gridTemplateColumns: '1fr auto',
+                          background: 'linear-gradient(135deg, #0F2A44, #2F80ED)',
+                          color: '#fff', padding: '0.6rem 1rem', fontWeight: 600, fontSize: '0.85rem', gap: '1rem'
+                        }}>
+                          <span>{t('pricing.serviceNameLabel')}</span>
+                          <span>{t('pricing.priceLabel')}</span>
+                        </div>
+                        {pricing.map((item, idx) => (
+                          <div key={item.id} style={{
+                            display: 'grid', gridTemplateColumns: '1fr auto',
+                            padding: '0.65rem 1rem', gap: '1rem', alignItems: 'center',
+                            borderBottom: idx < pricing.length - 1 ? '1px solid #f3f4f6' : 'none',
+                            background: idx % 2 === 0 ? '#fff' : '#fafafa',
+                          }}>
+                            <span style={{ fontSize: '0.92rem', color: '#374151' }}>{item.service_name}</span>
+                            <span style={{ fontSize: '0.92rem', color: '#0F2A44', fontWeight: 600, whiteSpace: 'nowrap' }}>{item.price}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
 
-               {/* Certifications */}
-{provider.certifications && provider.certifications.length > 0 && provider.serviceType !== 'eldercare' && provider.serviceType !== 'laundry' && (
-  <div className="certifications-section">
-    <h3 className="section-title">הכשרות ותעודות</h3>
+                  {provider.certifications && provider.certifications.length > 0 && provider.serviceType !== 'eldercare' && provider.serviceType !== 'laundry' && (
+                    <div className="certifications-section">
+                      <h3 className="section-title">הכשרות ותעודות</h3>
                       <div className="certifications-list">
                         {provider.certifications.map((cert, index) => (
                           <div key={index} className="certification-item">
@@ -1596,11 +1621,30 @@ const handleContact = () => {
                       </div>
                     </div>
                   )}
-             
+                </>
+              )}
 
-                {/* Colonne droite - ביקורות */}
-             
-                  {/* Section avis */}
+              {/* גלריית תמונות */}
+              {activeSection === 'gallery' && (
+                <div className="service-details-section">
+                  <h3 className="details-title" style={{ textAlign: 'start' }}>{t('provider.sidebarGallery')}</h3>
+                  {provider.media?.gallery?.length > 0 ? (
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.75rem' }}>
+                      {provider.media.gallery.map((url, i) => (
+                        <img key={i} src={url} alt={`תמונה ${i + 1}`} style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover', borderRadius: '8px' }} />
+                      ))}
+                    </div>
+                  ) : (
+                    <div style={{ textAlign: 'center', padding: '3rem 1rem', color: '#9ca3af' }}>
+                      <div style={{ fontSize: '3rem', marginBottom: '0.75rem' }}>🖼️</div>
+                      <p style={{ margin: 0 }}>{t('provider.galleryEmpty')}</p>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* ביקורות מלקוחות */}
+              {activeSection === 'reviews' && (
                   <div className="reviews-section-enhanced">
                     <div className="reviews-header">
                    <h3 className="section-title">{t('provider.reviews.title')}</h3>
@@ -1619,9 +1663,9 @@ const handleContact = () => {
 <span className="reviews-total">{reviews.length} {t('provider.reviews')}</span>
                           </div>
                         </div>
-                        
+
                         {isAuthenticated && user?.role === 'client' && (
-                          <button 
+                          <button
                             className="btn btn-primary write-review-btn"
                             onClick={handleOpenReviewModal}
                           >
@@ -1768,6 +1812,7 @@ const handleContact = () => {
                       )}
                     </div>
                   </div>
+              )}
             </div>
           </div>
         </div>

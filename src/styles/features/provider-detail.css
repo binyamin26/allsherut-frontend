@@ -428,6 +428,7 @@
   padding: var(--space-8) 0;
 }
 
+/* Legacy single-column grid (kept for compatibility) */
 .content-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -437,10 +438,109 @@
   margin: 0 auto;
 }
 
-@media (max-width: 1024px) {
-  .content-grid {
+/* Sidebar + content layout */
+.content-grid-sidebar {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: var(--space-8);
+  align-items: start;
+  direction: rtl;
+}
+
+/* Sidebar navigation */
+.detail-sidebar {
+  position: sticky;
+  top: 90px;
+}
+
+.detail-sidebar-nav {
+  background: white;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--neutral-200);
+  overflow: hidden;
+}
+
+.detail-sidebar-item {
+  display: block;
+  width: 100%;
+  padding: 1rem 1.25rem;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--neutral-100);
+  cursor: pointer;
+  text-align: right;
+  font-size: var(--text-sm);
+  color: var(--neutral-700);
+  font-weight: 500;
+  transition: background 0.15s, color 0.15s;
+  font-family: inherit;
+}
+
+.detail-sidebar-item:last-child {
+  border-bottom: none;
+}
+
+.detail-sidebar-item:hover {
+  background: var(--neutral-50);
+  color: var(--primary-600);
+}
+
+.detail-sidebar-item.active {
+  background: linear-gradient(135deg, #0F2A44, #2F80ED);
+  color: white;
+  font-weight: 600;
+}
+
+/* Mobile horizontal tabs */
+.detail-tabs-mobile {
+  display: none;
+  overflow-x: auto;
+  border-radius: var(--radius-xl);
+  background: white;
+  border: 1px solid var(--neutral-200);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--space-6);
+  direction: rtl;
+}
+
+.detail-tab-btn {
+  flex: 1;
+  white-space: nowrap;
+  padding: 0.85rem 1rem;
+  background: none;
+  border: none;
+  border-left: 1px solid var(--neutral-100);
+  cursor: pointer;
+  font-size: var(--text-sm);
+  color: var(--neutral-700);
+  font-weight: 500;
+  transition: background 0.15s, color 0.15s;
+  font-family: inherit;
+}
+
+.detail-tab-btn:first-child {
+  border-left: none;
+}
+
+.detail-tab-btn.active {
+  background: linear-gradient(135deg, #0F2A44, #2F80ED);
+  color: white;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .detail-tabs-mobile {
+    display: flex;
+  }
+
+  .detail-sidebar {
+    display: none;
+  }
+
+  .content-grid-sidebar {
     grid-template-columns: 1fr;
-    gap: var(--space-8);
+    gap: var(--space-4);
   }
 }
 
