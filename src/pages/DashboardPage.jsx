@@ -38,7 +38,8 @@ import {
    Briefcase,
    Loader,
    Search,
-   ChevronRight
+   ChevronRight,
+   DollarSign
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import LoadingSpinner from '../components/common/LoadingSpinner';
@@ -189,6 +190,13 @@ const userData = useMemo(() => {
   const [addServiceDetails, setAddServiceDetails] = useState({});
   const [addServiceLoading, setAddServiceLoading] = useState(false);
   const [addServiceMsg, setAddServiceMsg] = useState({ type: '', text: '' });
+
+  // Tarifs
+  const [pricingItems, setPricingItems] = useState([]);
+  const [pricingLoading, setPricingLoading] = useState(false);
+  const [pricingSaving, setPricingSaving] = useState(false);
+  const [pricingMsg, setPricingMsg] = useState({ type: '', text: '' });
+  const [pricingErrors, setPricingErrors] = useState({});
 
   const [passwordData, setPasswordData] = useState({
     currentPassword: '',
@@ -392,6 +400,75 @@ const loadMyReviews = async () => {
     }
   };
 
+  const loadMyPricing = async () => {
+    if (user?.role !== 'provider') return;
+    setPricingLoading(true);
+    try {
+      const token = localStorage.getItem('homesherut_token');
+      const res = await fetch('/api/pricing/my', {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      const data = await res.json();
+      if (data.success) {
+        setPricingItems(data.data.map(item => ({ ...item, _key: item.id })));
+      }
+    } catch (err) {
+      console.error('loadMyPricing error:', err);
+      setPricingMsg({ type: 'error', text: t('pricing.loadError') });
+    } finally {
+      setPricingLoading(false);
+    }
+  };
+
+  const handleAddPricingRow = () => {
+    setPricingItems(prev => [...prev, { _key: Date.now(), service_name: '', price: '' }]);
+  };
+
+  const handlePricingRowChange = (key, field, value) => {
+    setPricingItems(prev => prev.map(item => item._key === key ? { ...item, [field]: value } : item));
+    if (pricingErrors[`${key}_${field}`]) {
+      setPricingErrors(prev => { const next = { ...prev }; delete next[`${key}_${field}`]; return next; });
+    }
+  };
+
+  const handleDeletePricingRow = (key) => {
+    setPricingItems(prev => prev.filter(item => item._key !== key));
+  };
+
+  const handleSavePricing = async () => {
+    const errs = {};
+    pricingItems.forEach(item => {
+      if (!item.service_name?.trim()) errs[`${item._key}_service_name`] = t('pricing.validation.nameRequired');
+      if (!item.price?.trim()) errs[`${item._key}_price`] = t('pricing.validation.priceRequired');
+    });
+    if (Object.keys(errs).length > 0) {
+      setPricingErrors(errs);
+      return;
+    }
+    setPricingErrors({});
+    setPricingSaving(true);
+    try {
+      const token = localStorage.getItem('homesherut_token');
+      const res = await fetch('/api/pricing/my', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ items: pricingItems.map(({ service_name, price }) => ({ service_name, price })) })
+      });
+      const data = await res.json();
+      if (data.success) {
+        setPricingItems(data.data.map(item => ({ ...item, _key: item.id })));
+        setPricingMsg({ type: 'success', text: t('pricing.saveSuccess') });
+        setTimeout(() => setPricingMsg({ type: '', text: '' }), 3500);
+      } else {
+        setPricingMsg({ type: 'error', text: data.message || t('pricing.saveError') });
+      }
+    } catch (err) {
+      setPricingMsg({ type: 'error', text: t('pricing.saveError') });
+    } finally {
+      setPricingSaving(false);
+    }
+  };
+
   const handleSaveListing = async () => {
     const rd = recruitmentDetails;
     const errs = {};
@@ -497,6 +574,9 @@ const loadMyReviews = async () => {
     }
     if (activeTab === 'recruitment' && user?.role === 'provider') {
       loadMyListings();
+    }
+    if (activeTab === 'pricing' && user?.role === 'provider') {
+      loadMyPricing();
     }
  }, [activeTab, user, activeService]);
 
@@ -1384,6 +1464,16 @@ const galleryImages = (() => {
               >
                 <Briefcase size={18} />
                 {t('dashboard.tabs.recruitment')}
+              </button>
+            )}
+
+            {userData?.role === 'provider' && (
+              <button
+                className={`tab-btn ${activeTab === 'pricing' ? 'active' : ''}`}
+                onClick={() => setActiveTab('pricing')}
+              >
+                <DollarSign size={18} />
+                {t('dashboard.tabs.pricing')}
               </button>
             )}
 
@@ -2329,6 +2419,151 @@ const galleryImages = (() => {
                   )}
                 </>
               )}
+            </div>
+          )}
+
+          {activeTab === 'pricing' && userData?.role === 'provider' && (
+            <div className="overview-section">
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem', flexWrap: 'wrap', gap: '0.75rem' }}>
+                <div>
+                  <h3 className="section-subtitle" style={{ margin: 0 }}>{t('pricing.title')}</h3>
+                  <p style={{ color: '#6b7280', fontSize: '0.9rem', marginTop: '0.35rem' }}>{t('pricing.description')}</p>
+                </div>
+              </div>
+
+              {pricingMsg.text && (
+                <div style={{
+                  padding: '0.75rem 1rem', marginBottom: '1rem', borderRadius: '8px',
+                  background: pricingMsg.type === 'success' ? '#f0fdf4' : '#fef2f2',
+                  color: pricingMsg.type === 'success' ? '#166534' : '#991b1b',
+                  border: `1px solid ${pricingMsg.type === 'success' ? '#86efac' : '#fca5a5'}`,
+                  display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                }}>
+                  <span>{pricingMsg.text}</span>
+                  <button onClick={() => setPricingMsg({ type: '', text: '' })} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '1.1rem', lineHeight: 1 }}>×</button>
+                </div>
+              )}
+
+              {pricingLoading ? (
+                <div style={{ textAlign: 'center', padding: '2rem', color: '#6b7280' }}>
+                  <Loader size={20} className="animate-spin" style={{ margin: '0 auto 0.5rem' }} />
+                </div>
+              ) : (
+                <div style={{ background: '#fff', borderRadius: '14px', border: '1px solid #e5e7eb', overflow: 'hidden' }}>
+                  {/* En-tête du tableau */}
+                  <div style={{
+                    display: 'grid', gridTemplateColumns: '1fr 180px 80px',
+                    background: 'linear-gradient(135deg, #0F2A44, #2F80ED)',
+                    color: '#fff', padding: '0.75rem 1rem', fontWeight: 600, fontSize: '0.85rem',
+                    gap: '0.5rem'
+                  }}>
+                    <span>{t('pricing.serviceNameLabel')}</span>
+                    <span>{t('pricing.priceLabel')}</span>
+                    <span style={{ textAlign: 'center' }}>{t('pricing.actionsLabel')}</span>
+                  </div>
+
+                  {/* Lignes de tarif */}
+                  {pricingItems.length === 0 && (
+                    <div style={{ padding: '2.5rem 1.5rem', textAlign: 'center', color: '#9ca3af', fontSize: '0.9rem' }}>
+                      {t('pricing.empty')}
+                    </div>
+                  )}
+                  {pricingItems.map((item, idx) => (
+                    <div key={item._key} style={{
+                      display: 'grid', gridTemplateColumns: '1fr 180px 80px',
+                      padding: '0.6rem 1rem', gap: '0.5rem', alignItems: 'center',
+                      borderBottom: '1px solid #f3f4f6',
+                      background: idx % 2 === 0 ? '#fff' : '#fafafa',
+                    }}>
+                      <div>
+                        <input
+                          type="text"
+                          value={item.service_name}
+                          onChange={e => handlePricingRowChange(item._key, 'service_name', e.target.value)}
+                          placeholder={t('pricing.serviceNamePlaceholder')}
+                          style={{
+                            width: '100%', padding: '0.45rem 0.7rem',
+                            border: `1px solid ${pricingErrors[`${item._key}_service_name`] ? '#f87171' : '#e5e7eb'}`,
+                            borderRadius: '6px', fontSize: '0.9rem', outline: 'none',
+                            background: 'transparent',
+                          }}
+                        />
+                        {pricingErrors[`${item._key}_service_name`] && (
+                          <span style={{ color: '#dc2626', fontSize: '0.75rem' }}>{pricingErrors[`${item._key}_service_name`]}</span>
+                        )}
+                      </div>
+                      <div>
+                        <input
+                          type="text"
+                          value={item.price}
+                          onChange={e => handlePricingRowChange(item._key, 'price', e.target.value)}
+                          placeholder={t('pricing.pricePlaceholder')}
+                          style={{
+                            width: '100%', padding: '0.45rem 0.7rem',
+                            border: `1px solid ${pricingErrors[`${item._key}_price`] ? '#f87171' : '#e5e7eb'}`,
+                            borderRadius: '6px', fontSize: '0.9rem', outline: 'none',
+                            background: 'transparent',
+                          }}
+                        />
+                        {pricingErrors[`${item._key}_price`] && (
+                          <span style={{ color: '#dc2626', fontSize: '0.75rem' }}>{pricingErrors[`${item._key}_price`]}</span>
+                        )}
+                      </div>
+                      <div style={{ display: 'flex', justifyContent: 'center' }}>
+                        <button
+                          onClick={() => handleDeletePricingRow(item._key)}
+                          title="Supprimer"
+                          style={{
+                            background: '#fee2e2', border: 'none', borderRadius: '6px',
+                            padding: '0.4rem 0.6rem', cursor: 'pointer', color: '#dc2626',
+                            display: 'flex', alignItems: 'center',
+                          }}
+                        >
+                          <Trash2 size={15} />
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+
+                  {/* Pied du tableau — bouton Ajouter */}
+                  <div style={{ padding: '0.75rem 1rem', borderTop: '1px solid #f3f4f6' }}>
+                    <button
+                      onClick={handleAddPricingRow}
+                      style={{
+                        display: 'flex', alignItems: 'center', gap: '6px',
+                        padding: '0.5rem 1rem', borderRadius: '8px',
+                        background: '#f0f9ff', color: '#0369a1',
+                        border: '1px dashed #7dd3fc', cursor: 'pointer',
+                        fontWeight: 600, fontSize: '0.88rem',
+                      }}
+                    >
+                      <Plus size={15} />
+                      {t('pricing.addService')}
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* Bouton Sauvegarder */}
+              <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '1.25rem' }}>
+                <button
+                  onClick={handleSavePricing}
+                  disabled={pricingSaving}
+                  style={{
+                    display: 'flex', alignItems: 'center', gap: '8px',
+                    padding: '0.7rem 2rem', borderRadius: '10px',
+                    background: 'linear-gradient(135deg, #0F2A44, #2F80ED)',
+                    color: '#fff', border: 'none', cursor: pricingSaving ? 'not-allowed' : 'pointer',
+                    fontWeight: 700, fontSize: '0.95rem',
+                    opacity: pricingSaving ? 0.7 : 1,
+                  }}
+                >
+                  {pricingSaving
+                    ? <><Loader size={16} className="animate-spin" />{t('pricing.saving')}</>
+                    : <><Save size={16} />{t('pricing.save')}</>
+                  }
+                </button>
+              </div>
             </div>
           )}
 

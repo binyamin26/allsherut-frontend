@@ -56,6 +56,7 @@ const ProviderDetailPage = () => {
   const [tutoringSubcats, setTutoringSubcats] = useState([]);
   const [sportsSubcats, setSportsSubcats] = useState([]);
   const [profileImageError, setProfileImageError] = useState(false);
+  const [pricing, setPricing] = useState([]);
 
   // État pour ReviewModal
   const [reviewModal, setReviewModal] = useState({
@@ -183,6 +184,13 @@ const ProviderDetailPage = () => {
       
       setProvider(providerResponse.data);
       loadReviews();
+      // Charger les tarifs du prestataire
+      if (providerResponse.data?.id) {
+        fetch(`/api/pricing/provider/${providerResponse.data.id}`)
+          .then(r => r.json())
+          .then(d => { if (d.success) setPricing(d.data || []); })
+          .catch(() => {});
+      }
     } else {
         console.error('❌ Provider API failed:', providerResponse);
         setError('ספק השירות לא נמצא');
@@ -1546,6 +1554,34 @@ const handleContact = () => {
     </div>
   </div>
 )}
+               {/* Tarifs */}
+{pricing.length > 0 && (
+  <div className="service-details-section">
+    <h3 className="details-title" style={{ textAlign: 'start' }}>{t('pricing.public.title')}</h3>
+    <div style={{ border: '1px solid #e5e7eb', borderRadius: '10px', overflow: 'hidden' }}>
+      <div style={{
+        display: 'grid', gridTemplateColumns: '1fr auto',
+        background: 'linear-gradient(135deg, #0F2A44, #2F80ED)',
+        color: '#fff', padding: '0.6rem 1rem', fontWeight: 600, fontSize: '0.85rem', gap: '1rem'
+      }}>
+        <span>{t('pricing.serviceNameLabel')}</span>
+        <span>{t('pricing.priceLabel')}</span>
+      </div>
+      {pricing.map((item, idx) => (
+        <div key={item.id} style={{
+          display: 'grid', gridTemplateColumns: '1fr auto',
+          padding: '0.65rem 1rem', gap: '1rem', alignItems: 'center',
+          borderBottom: idx < pricing.length - 1 ? '1px solid #f3f4f6' : 'none',
+          background: idx % 2 === 0 ? '#fff' : '#fafafa',
+        }}>
+          <span style={{ fontSize: '0.92rem', color: '#374151' }}>{item.service_name}</span>
+          <span style={{ fontSize: '0.92rem', color: '#0F2A44', fontWeight: 600, whiteSpace: 'nowrap' }}>{item.price}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+)}
+
                {/* Certifications */}
 {provider.certifications && provider.certifications.length > 0 && provider.serviceType !== 'eldercare' && provider.serviceType !== 'laundry' && (
   <div className="certifications-section">

@@ -11,6 +11,7 @@ const migrations = [
   'fix_experience_enum.sql',
   'fix_service_type_varchar.sql',
   'fix_average_rating_decimal.sql',
+  'add_provider_pricing.sql',
 ];
 
 async function run() {
