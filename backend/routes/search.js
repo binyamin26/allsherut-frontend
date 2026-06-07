@@ -551,7 +551,9 @@ delete advancedFilters.fullLocation;
           orderClause = 'ORDER BY sp.hourly_rate DESC';
           break;
         case 'rating':
-          orderClause = 'ORDER BY actual_reviews_count DESC, sp.average_rating DESC';
+          orderClause = `ORDER BY
+            (SELECT COUNT(DISTINCT r.id) FROM reviews r WHERE r.provider_id = sp.id AND r.is_verified = TRUE AND r.is_published = TRUE) DESC,
+            sp.average_rating DESC`;
           break;
         case 'experience':
           orderClause = 'ORDER BY sp.experience_years DESC';
@@ -560,7 +562,7 @@ delete advancedFilters.fullLocation;
           orderClause = `ORDER BY
             (u.premium_until > NOW()) DESC,
             sp.is_featured DESC,
-            actual_reviews_count DESC,
+            (SELECT COUNT(DISTINCT r.id) FROM reviews r WHERE r.provider_id = sp.id AND r.is_verified = TRUE AND r.is_published = TRUE) DESC,
             sp.average_rating DESC,
             u.created_at DESC`;
       }
