@@ -556,38 +556,15 @@ delete advancedFilters.fullLocation;
 
     const whereClause = `WHERE ${whereConditions.join(' AND ')}`;
 
-    // Définition du tri
-    let orderClause = 'ORDER BY u.created_at DESC';
-    const validSortOptions = ['newest', 'oldest', 'price_asc', 'price_desc', 'rating', 'experience'];
-    
-    if (validSortOptions.includes(sortBy)) {
-      switch (sortBy) {
-        case 'oldest':
-          orderClause = 'ORDER BY u.created_at ASC';
-          break;
-        case 'price_asc':
-          orderClause = 'ORDER BY sp.hourly_rate ASC';
-          break;
-        case 'price_desc':
-          orderClause = 'ORDER BY sp.hourly_rate DESC';
-          break;
-        case 'rating':
-          orderClause = `ORDER BY
-            (SELECT COUNT(DISTINCT r.id) FROM reviews r WHERE r.provider_id = sp.id AND r.is_verified = TRUE AND r.is_published = TRUE) DESC,
-            sp.average_rating DESC`;
-          break;
-        case 'experience':
-          orderClause = 'ORDER BY sp.experience_years DESC';
-          break;
-        default:
-          orderClause = `ORDER BY
-            (u.premium_until > NOW()) DESC,
-            sp.is_featured DESC,
-            (SELECT COUNT(DISTINCT r.id) FROM reviews r WHERE r.provider_id = sp.id AND r.is_verified = TRUE AND r.is_published = TRUE) DESC,
-            sp.average_rating DESC,
-            u.created_at DESC`;
-      }
-    }
+    // Définition du tri — par défaut : avis vérifiés en premier
+    const SORT_REVIEWS = `(SELECT COUNT(DISTINCT r.id) FROM reviews r WHERE r.provider_id = sp.id AND r.is_verified = TRUE AND r.is_published = TRUE)`;
+    let orderClause = `ORDER BY (u.premium_until > NOW()) DESC, sp.is_featured DESC, ${SORT_REVIEWS} DESC, sp.average_rating DESC, u.created_at DESC`;
+
+    if (sortBy === 'oldest')     orderClause = 'ORDER BY u.created_at ASC';
+    if (sortBy === 'price_asc')  orderClause = 'ORDER BY sp.hourly_rate ASC';
+    if (sortBy === 'price_desc') orderClause = 'ORDER BY sp.hourly_rate DESC';
+    if (sortBy === 'rating')     orderClause = `ORDER BY ${SORT_REVIEWS} DESC, sp.average_rating DESC`;
+    if (sortBy === 'experience') orderClause = 'ORDER BY sp.experience_years DESC';
 
     // ✅ REQUÊTE PRINCIPALE AVEC COMPTEUR DYNAMIQUE
    const searchQuery = `
