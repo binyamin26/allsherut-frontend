@@ -9,6 +9,27 @@ const ResponseHelper = require('../utils/responseHelper');
 // Middleware pour les réponses standardisées
 router.use(ResponseHelper.middleware);
 
+// Route de diagnostic temporaire — vérifier le tri des reviews cleaning
+router.get('/debug/cleaning-sort', async (req, res) => {
+  try {
+    const rows = await query(`
+      SELECT
+        sp.id AS provider_id,
+        CONCAT(u.first_name, ' ', u.last_name) AS nom,
+        sp.average_rating,
+        (SELECT COUNT(DISTINCT r.id) FROM reviews r WHERE r.provider_id = sp.id AND r.is_verified = TRUE AND r.is_published = TRUE) AS nb_avis_verified,
+        (SELECT COUNT(DISTINCT r.id) FROM reviews r WHERE r.provider_id = sp.id) AS nb_avis_total
+      FROM service_providers sp
+      JOIN users u ON u.id = sp.user_id
+      WHERE sp.service_type = 'cleaning' AND sp.is_active = TRUE
+      ORDER BY nb_avis_verified DESC, sp.average_rating DESC
+    `);
+    res.json({ success: true, version: 'inline-subquery-v2', data: rows });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
 // Configuration des filtres avancés côté backend
 const buildAdvancedFilters = (serviceType, filters) => {
   const conditions = [];
