@@ -116,7 +116,7 @@ const AirConditioningPage = () => {
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo clim.png"
+                src="/images/logo clim.jpg"
                 alt="Climatisation"
               />
             </div>

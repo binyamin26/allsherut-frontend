@@ -78,7 +78,7 @@ const serviceIcons = {
 // Définition des logos de services
 const serviceImages = {
   babysitting: '/images/logo bébé.png',
-  cleaning: '/images/logo nikayon.png',
+  cleaning: '/images/logo nikayon.jpg',
   gardening: '/images/logo jardinage.jpg',
   petcare: '/images/logo chien.jpg',
   tutoring: '/images/logo cours particulier.png',
@@ -88,7 +88,7 @@ const serviceImages = {
   property_management: '/images/logo nihoul dirot.png',
   electrician: '/images/logo electricien.jpg',
   plumbing: '/images/logo plomberie.jpg',
-  air_conditioning: '/images/logo clim.png',
+  air_conditioning: '/images/logo clim.jpg',
   gas_technician: '/images/logo gaz.png',
   drywall: '/images/logo placo.png',
   carpentry: '/images/logo menuisier.png',

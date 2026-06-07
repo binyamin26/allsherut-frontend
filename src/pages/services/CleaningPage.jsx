@@ -122,7 +122,7 @@ useEffect(() => {
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo nikayon.png"
+                src="/images/logo nikayon.jpg"
                 alt="Mֳ©nage"
               />
             </div>
