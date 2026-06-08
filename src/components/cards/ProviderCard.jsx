@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Phone, MessageCircle } from 'lucide-react';
+import { Phone, Eye } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 
 const ProviderCard = ({ provider, onOpenReviewModal }) => {
@@ -82,21 +82,20 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
 
  return (
   <div className="provider-card enhanced-card" dir={isRTL ? 'rtl' : 'ltr'}>
-    <div className="card-horizontal-body">
-      <div className="card-horizontal-image">
+    <div className="card-vertical-body">
+      <div className="card-avatar">
         {imageUrl ? (
-          <img src={imageUrl} alt={provider.name || provider.full_name} className="provider-image"
+          <img src={imageUrl} alt={provider.name || provider.full_name} className="provider-avatar-img"
             onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
         ) : null}
         <div style={{
           display: imageUrl ? 'none' : 'flex',
-          width: '110px', height: '110px', borderRadius: '50%',
+          width: '96px', height: '96px', borderRadius: '50%',
           background: 'linear-gradient(145deg, #e8eef5 0%, #d1dbe8 100%)',
           alignItems: 'center', justifyContent: 'center',
-          flexShrink: 0,
           boxShadow: 'inset 0 2px 8px rgba(0,0,0,0.08)'
         }}>
-          <svg width="110" height="110" viewBox="0 0 100 100" fill="none">
+          <svg width="96" height="96" viewBox="0 0 100 100" fill="none">
             <circle cx="50" cy="50" r="50" fill="#d1dbe8"/>
             <circle cx="50" cy="38" r="18" fill="#8a9ab5"/>
             <ellipse cx="50" cy="85" rx="32" ry="28" fill="#8a9ab5"/>
@@ -104,7 +103,7 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
         </div>
       </div>
 
-      <div className="card-horizontal-info">
+      <div className="card-vertical-info">
         <h3 className="provider-name">{provider.name || provider.full_name}</h3>
         <div className="rating-stars">
           {reviewsCount > 0 && formattedRating ? (
@@ -116,23 +115,10 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
             <span className="reviews-count">0 {t('card.reviews')}</span>
           )}
         </div>
-        <div className="price-experience-info">
-          {hourlyRate ? (
-            <div className="hourly-rate">
-              <strong>₪{hourlyRate}</strong>
-              <span>{t('card.perHour')}</span>
-            </div>
-          ) : (
-            <div className="location-info">
-              <span>{t('card.serviceArea')} </span>
-              <strong style={{ color: '#1f2937' }}>{getCity()}</strong>
-              {getNeighborhood() && <strong style={{ color: '#1f2937' }}> - {getNeighborhood()}</strong>}
-            </div>
-          )}
-          <div className="experience-info">
-            <strong>{experience}</strong>
-            <span> {t('card.yearsExperience')}</span>
-          </div>
+        <div className="location-info">
+          <span>{t('card.serviceArea')} </span>
+          <strong style={{ color: '#1f2937' }}>{getCity()}</strong>
+          {getNeighborhood() && <strong style={{ color: '#1f2937' }}> - {getNeighborhood()}</strong>}
         </div>
       </div>
     </div>
@@ -140,12 +126,12 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
     <div className="card-footer">
       <div className="action-buttons" dir={isRTL ? 'rtl' : 'ltr'}>
         <button className="contact-provider-btn" onClick={handleViewProfile}>
-          <Phone size={15} />
+          <Eye size={15} />
           <span>{t('card.viewProfile')}</span>
         </button>
-        <button className="review-action-btn" onClick={handleReviewClick}>
-          <MessageCircle size={15} />
-          <span>{t('card.leaveReview')}</span>
+        <button className="call-provider-btn" onClick={() => { if (provider.phone) window.location.href = `tel:${provider.phone}`; }}>
+          <Phone size={15} />
+          <span>contacter</span>
         </button>
       </div>
     </div>
