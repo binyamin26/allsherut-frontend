@@ -90,7 +90,7 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
         ) : null}
         <div style={{
           display: imageUrl ? 'none' : 'flex',
-          width: '96px', height: '96px', borderRadius: '50%',
+          width: '128px', height: '128px', borderRadius: '50%',
           background: 'linear-gradient(145deg, #e8eef5 0%, #d1dbe8 100%)',
           alignItems: 'center', justifyContent: 'center',
           boxShadow: 'inset 0 2px 8px rgba(0,0,0,0.08)'
@@ -131,7 +131,7 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
         </button>
         <button className="call-provider-btn" onClick={() => { if (provider.phone) window.location.href = `tel:${provider.phone}`; }}>
           <Phone size={15} />
-          <span>contacter</span>
+          <span>{t('card.contact')}</span>
         </button>
       </div>
     </div>

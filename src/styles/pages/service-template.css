@@ -313,16 +313,16 @@
 }
 
 .card-avatar {
-  width: 96px;
-  height: 96px;
+  width: 128px;
+  height: 128px;
   border-radius: 50%;
   overflow: hidden;
   flex-shrink: 0;
 }
 
 .provider-avatar-img {
-  width: 96px;
-  height: 96px;
+  width: 128px;
+  height: 128px;
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid white;
