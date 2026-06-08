@@ -102,7 +102,7 @@ const ProviderDetailPage = () => {
     carpentry: '/images/logo menuisier.png',
     property_management: '/images/logo nihoul dirot.png',
     home_organization: '/images/logo rangement.jpg',
-    painting: '/images/logo peinture.png',
+    painting: '/images/logo peinture.jpg',
     private_chef: '/images/logo chef.jpg',
     event_entertainment: '/images/logo event.png',
     dj: '/images/logo DJ.jpg',

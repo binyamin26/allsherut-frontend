@@ -96,7 +96,7 @@ const serviceImages = {
   event_entertainment: '/images/logo event.png',
   dj: '/images/logo DJ.jpg',
   private_chef: '/images/logo chef.jpg',
-  painting: '/images/logo peinture.png',
+  painting: '/images/logo peinture.jpg',
   waterproofing: '/images/logo itoum.jpg',
   contractor: '/images/logo kablan.png',
   aluminum: '/images/logo aluminium.png',

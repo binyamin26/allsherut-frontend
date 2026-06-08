@@ -115,7 +115,7 @@ const PaintingPage = () => {
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo peinture.png"
+                src="/images/logo peinture.jpg"
                 alt="Peinture"
               />
             </div>

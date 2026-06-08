@@ -288,7 +288,7 @@ const HomePage = () => {
     {
       id: 'babysitting',
       name: t('services.babysitting'),
-      image: '/images/babysite.png',
+      image: '/images/babysite.jpg',
       description: t('services.babysitting.desc'),
       color: 'from-pink-500 to-rose-600',
       href: '/services/babysitting'

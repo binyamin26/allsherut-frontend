@@ -624,7 +624,7 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
   const isRTL      = promoLang === 'he';
 
   const defaultMedia = [
-    '/images/babysite.png','/images/nikayon.jpg','/images/jardinage.jpg',
+    '/images/babysite.jpg','/images/nikayon.jpg','/images/jardinage.jpg',
     '/images/chien.jpg','/images/tutoring.png','/images/eldercare.png',
     '/images/plombier.jpg','/images/clim.png','/images/gaz.jpg'
   ];
