@@ -168,7 +168,7 @@ const HomePage = () => {
     {
       id: 'contractor',
       name: t('services.contractor'),
-      image: '/images/kablan.png',
+      image: '/images/kablan.jpg',
       description: t('services.contractor.desc'),
       color: 'from-orange-600 to-amber-700',
       href: '/services/contractor'
