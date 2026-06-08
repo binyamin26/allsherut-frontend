@@ -1467,14 +1467,26 @@ const handleContact = () => {
 
     <div className="provider-rating-location">
       <div className="rating">
-        {reviews.length > 0 && formatRating(reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length) ? (
-          <>
-            <span className="rating-score"><span style={{color:'#ef4444', fontWeight:'700'}}>{formatRating(reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length)}</span><span style={{fontWeight:'500'}}>/10</span></span>
-            <span className="reviews-count">({reviews.length} {t('provider.reviews')})</span>
-          </>
-        ) : (
-          <span className="reviews-count">{reviews.length} {t('provider.reviews')}</span>
-        )}
+        {(() => {
+          const avg = provider.rating?.average
+            ? parseFloat(provider.rating.average)
+            : reviews.length > 0
+              ? reviews.reduce((sum, r) => sum + parseFloat(r.rating || 0), 0) / reviews.length
+              : 0;
+          const count = provider.rating?.count ?? reviews.length;
+          const formatted = formatRating(avg);
+          return formatted ? (
+            <>
+              <span className="rating-score">
+                <span style={{color:'#ef4444', fontWeight:'700'}}>{formatted}</span>
+                <span style={{fontWeight:'500'}}>/10</span>
+              </span>
+              <span className="reviews-count">({count} {t('provider.reviews')})</span>
+            </>
+          ) : (
+            <span className="reviews-count">{count} {t('provider.reviews')}</span>
+          );
+        })()}
       </div>
     </div>
 
