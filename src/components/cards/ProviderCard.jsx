@@ -91,14 +91,12 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
         <div style={{
           display: imageUrl ? 'none' : 'flex',
           width: '120px', height: '120px', borderRadius: '50%',
-          background: 'linear-gradient(145deg, #e8eef5 0%, #d1dbe8 100%)',
+          background: '#d1dbe8',
           alignItems: 'center', justifyContent: 'center',
-          boxShadow: 'inset 0 2px 8px rgba(0,0,0,0.08)'
         }}>
-          <svg width="96" height="96" viewBox="0 0 100 100" fill="none">
-            <circle cx="50" cy="50" r="50" fill="#d1dbe8"/>
-            <circle cx="50" cy="38" r="18" fill="#8a9ab5"/>
-            <ellipse cx="50" cy="85" rx="32" ry="28" fill="#8a9ab5"/>
+          <svg width="80" height="80" viewBox="0 0 100 100" fill="none">
+            <circle cx="50" cy="38" r="22" fill="#8a9ab5"/>
+            <ellipse cx="50" cy="88" rx="38" ry="30" fill="#8a9ab5"/>
           </svg>
         </div>
       </div>
