@@ -86,7 +86,7 @@ class ApiService {
   }
 
   async getProviderReviews(id) {
-    return this.request("/reviews/provider/" + id);
+    return this.request("/reviews/provider/" + id + "?sortBy=newest&limit=100");
 }
 
   async submitReview(providerId, reviewData) {
