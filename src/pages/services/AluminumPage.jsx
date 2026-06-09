@@ -115,7 +115,7 @@ const AluminumPage = () => {
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo aluminium.png"
+                src="/images/logo aluminium.jpg"
                 alt="Aluminium"
               />
             </div>

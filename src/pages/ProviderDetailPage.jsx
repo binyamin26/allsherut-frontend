@@ -108,7 +108,7 @@ const ProviderDetailPage = () => {
     dj: '/images/logo DJ.jpg',
     waterproofing: '/images/logo itoum.jpg',
     contractor: '/images/logo kablan.png',
-    aluminum: '/images/logo aluminium.png',
+    aluminum: '/images/logo aluminium.jpg',
     glass_works: '/images/logo verre.png',
     locksmith: '/images/logo serrure.png',
     moving: '/images/logo demenagement.jpg',
