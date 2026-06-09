@@ -318,7 +318,7 @@ const uploadProfileImage = async (imageFile, serviceType = null) => {
  // ✅ Le backend renvoie déjà l'URL complète, ne rien rajouter si elle commence par http
 const imageFullUrl = data.data.imageUrl.startsWith('http') 
   ? data.data.imageUrl 
-  : `https://homesherut-backend.onrender.com${data.data.imageUrl.startsWith('/') ? '' : '/'}${data.data.imageUrl}`;
+  : `https://homesherut-backend.fly.dev${data.data.imageUrl.startsWith('/') ? '' : '/'}${data.data.imageUrl}`;
 
 const updatedUser = { 
   ...user, 

@@ -1516,7 +1516,7 @@ const galleryImages = (() => {
             src={
               userData.providerProfile.profile_image.startsWith('http') 
                 ? userData.providerProfile.profile_image 
-                : `https://homesherut-backend.onrender.com/${userData.providerProfile.profile_image.replace(/^\/+/, '')}`
+                : `https://homesherut-backend.fly.dev/${userData.providerProfile.profile_image.replace(/^\/+/, '')}`
             }
             alt={userData.firstName}
           />

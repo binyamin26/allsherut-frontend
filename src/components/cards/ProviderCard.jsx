@@ -26,14 +26,14 @@ const ProviderCard = ({ provider, onOpenReviewModal }) => {
 // 1. Définition sécurisée de l'URL de base du serveur
 const baseUrl = import.meta.env.VITE_API_URL 
   ? import.meta.env.VITE_API_URL.replace('/api', '')
-  : 'https://homesherut-backend.onrender.com';
+  : 'https://homesherut-backend.fly.dev';
 
 // 2. Création de la variable 'imageUrl' UNIQUE et SÉCURISÉE
 // ✅ Ne rajouter baseUrl QUE si l'URL n'est pas déjà complète
 const imageUrl = provider.profile_image 
   ? (provider.profile_image.startsWith('http') 
       ? provider.profile_image 
-      : `https://homesherut-backend.onrender.com/${provider.profile_image.replace(/\\/g, '/').replace(/^\/+/, '')}`)
+      : `https://homesherut-backend.fly.dev/${provider.profile_image.replace(/\\/g, '/').replace(/^\/+/, '')}`)
   : null;
 
 // 🔍 Log de contrôle (Ligne 36 de votre console)

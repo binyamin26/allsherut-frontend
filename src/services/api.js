@@ -2,7 +2,7 @@ class ApiService {
   constructor() {
     // Base URL components split to avoid Vite minifier optimization
     this.protocol = "https://";
-    this.domain = "homesherut-backend.onrender.com";
+    this.domain = "homesherut-backend.fly.dev";
     this.basePath = "/api";
   }
 

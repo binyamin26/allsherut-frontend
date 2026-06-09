@@ -1536,7 +1536,7 @@ const handleContact = () => {
         <img
           src={(() => {
             const img = provider.media?.profileImage || provider.profile_image;
-            const src = img.startsWith('http') ? img : `${(import.meta.env.VITE_API_URL || 'https://homesherut-backend.onrender.com').replace('/api', '')}/${img.replace(/\\/g, '/').replace(/^\/+/, '')}`;
+            const src = img.startsWith('http') ? img : `${(import.meta.env.VITE_API_URL || 'https://homesherut-backend.fly.dev').replace('/api', '')}/${img.replace(/\\/g, '/').replace(/^\/+/, '')}`;
             return src;
           })()}
           alt={provider.name}
@@ -1772,7 +1772,7 @@ const handleContact = () => {
       {(() => {
         const img = provider.media?.profileImage || provider.profile_image;
         const src = img
-          ? (img.startsWith('http') ? img : `${ (import.meta.env.VITE_API_URL || 'https://homesherut-backend.onrender.com').replace('/api', '') }/${img.replace(/\\/g, '/').replace(/^\/+/, '')}`)
+          ? (img.startsWith('http') ? img : `${ (import.meta.env.VITE_API_URL || 'https://homesherut-backend.fly.dev').replace('/api', '') }/${img.replace(/\\/g, '/').replace(/^\/+/, '')}`)
           : null;
         if (src) {
           return (
