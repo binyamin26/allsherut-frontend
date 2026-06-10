@@ -788,7 +788,8 @@ static async hasService(email, serviceType) {
         console.log('✅ Utilisateur créé, ID:', user.id);
 
         // 2. Récupérer le service provider créé automatiquement
-        const [providers] = await connection.execute(
+        // pool.query (hors transaction) pour voir les données committées par User.create
+        const providers = await query(
           'SELECT id FROM service_providers WHERE user_id = ? AND service_type = ?',
           [user.id, userData.serviceType]
         );
