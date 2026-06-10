@@ -18,7 +18,9 @@ jobs:
       - uses: superfly/flyctl-actions/setup-flyctl@master
 
       - name: Deploy to Fly.io
-        run: flyctl deploy --local-only
+        run: |
+          export FLY_API_TOKEN="$(echo "$RAW_TOKEN" | tr -d '[:space:]')"
+          flyctl deploy --local-only
         working-directory: backend
         env:
-          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+          RAW_TOKEN: ${{ secrets.FLY_API_TOKEN }}
