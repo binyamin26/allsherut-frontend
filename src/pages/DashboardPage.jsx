@@ -1195,16 +1195,9 @@ const handleAddService = async () => {
   setAddServiceLoading(true);
   setAddServiceMsg({ type: '', text: '' });
   try {
-    const token = localStorage.getItem('homesherut_token');
-
     if (addServiceSeeking === 'recruitment') {
       // Soumettre l'offre de recrutement
-      const res = await fetch('/api/recruitment', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-        body: JSON.stringify({ ...addServiceDetails, service_type: addServiceType }),
-      });
-      const data = await res.json();
+      const data = await apiCall('/recruitment', 'POST', { ...addServiceDetails, service_type: addServiceType });
       if (data.success) {
         setAddServiceMsg({ type: 'success', text: t('dashboard.addService.success') });
         loadMyListings();
@@ -1217,16 +1210,11 @@ const handleAddService = async () => {
       }
     } else {
       // Soumettre le service (chercher des clients)
-      const res = await fetch('/api/services/add', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-        body: JSON.stringify({
-          serviceType: addServiceType,
-          seekingType: addServiceSeeking,
-          serviceDetails: addServiceDetails,
-        }),
+      const data = await apiCall('/services/add', 'POST', {
+        serviceType: addServiceType,
+        seekingType: addServiceSeeking,
+        serviceDetails: addServiceDetails,
       });
-      const data = await res.json();
       if (data.success) {
         setAddServiceMsg({ type: 'success', text: t('dashboard.addService.success') });
         await switchService(addServiceType);
