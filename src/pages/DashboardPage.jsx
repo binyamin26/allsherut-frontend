@@ -960,7 +960,8 @@ const handleUploadImage = async () => {
       setImageFile(null);
       setImagePreview(null);
       
-      // ✅ Recharger automatiquement les données
+      // Attendre que Cloudinary propage l'image sur son CDN avant de recharger
+      await new Promise(resolve => setTimeout(resolve, 800));
       await switchService(activeService || userData?.serviceType);
     } else {
       setMessage({
