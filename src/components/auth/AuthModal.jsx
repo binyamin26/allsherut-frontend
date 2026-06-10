@@ -145,7 +145,7 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
   const { login, register, loading, error, clearError, apiCall } = useAuth();
 
 
-  const API_BASE = '/api';
+  const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
 const services = [
   { key: 'plumbing', name: t('services.plumbing'), image: '/images/plombier.jpg', gradient: 'plumbing-gradient' },
