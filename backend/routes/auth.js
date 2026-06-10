@@ -213,7 +213,7 @@ router.post('/register',
     // Validation conditionnelle pour providers
     body('serviceType').custom((value, { req }) => {
       if (req.body.role === 'provider') {
-     const availableServices = ['babysitting', 'cleaning', 'gardening', 'petcare', 'tutoring', 'sports_activities', 'eldercare', 'laundry', 'property_management', 'electrician', 'plumbing', 'air_conditioning', 'gas_technician', 'drywall', 'carpentry', 'home_organization', 'event_entertainment', 'dj', 'private_chef', 'painting', 'waterproofing', 'contractor', 'aluminum', 'glass_works', 'locksmith', 'moving', 'photographer', 'event_decoration', 'pest_control', 'handyman'];
+     const availableServices = config.services.available;
         if (!value || !availableServices.includes(value)) {
           throw new Error('סוג שירות נדרש לספקים');
         }

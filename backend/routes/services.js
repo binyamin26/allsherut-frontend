@@ -8,6 +8,7 @@ const ServiceSubcategory = require('../models/ServiceSubcategory');
 const { authenticateToken } = require('../middleware/authMiddleware');
 const User = require('../models/User');
 const { query, transaction } = require('../config/database');
+const config = require('../config/config');
 
 // =============================================
 // CONFIGURATION DES SERVICES HOMESHERUT
@@ -981,14 +982,8 @@ router.delete('/:serviceType', authenticateToken, async (req, res) => {
     }
     
     // Vérifier que le service existe
-    const validServices = [
-      'babysitting', 'cleaning', 'gardening', 'petcare', 'tutoring', 'eldercare',
-      'electrician', 'plumbing', 'air_conditioning', 'gas_technician', 'drywall',
-      'carpentry', 'home_organization', 'event_entertainment', 'dj', 'private_chef',
-      'painting', 'waterproofing', 'contractor', 'aluminum', 'glass_works',
-      'locksmith', 'property_management', 'laundry', 'moving', 'photographer', 'event_decoration', 'pest_control', 'handyman'
-    ];
-    
+    const validServices = config.services.available;
+
     if (!validServices.includes(serviceType)) {
       return res.status(400).json({
         success: false,
