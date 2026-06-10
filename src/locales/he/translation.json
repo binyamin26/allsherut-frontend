@@ -2311,6 +2311,7 @@
   "serviceFields.moving.crane_services": "שירותי מנוף",
   "serviceFields.moving.cardboard_supply": "אספקת קרטונים",
   "serviceFields.moving.storage": "אחסון",
+  "serviceFields.moving.extras": "שירותים נוספים",
   "serviceFields.photographer.age": "גיל",
   "serviceFields.photographer.experience": "שנות ניסיון",
   "serviceFields.photographer.availability_days": "ימי עבודה",

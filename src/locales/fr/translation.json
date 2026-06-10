@@ -2327,6 +2327,7 @@
   "serviceFields.moving.crane_services": "Services de grue",
   "serviceFields.moving.cardboard_supply": "Fourniture de cartons",
   "serviceFields.moving.storage": "Garde-meuble",
+  "serviceFields.moving.extras": "Services supplémentaires",
   "serviceFields.photographer.age": "Âge",
   "serviceFields.photographer.experience": "Années d'expérience",
   "serviceFields.photographer.availability_days": "Jours disponibles",

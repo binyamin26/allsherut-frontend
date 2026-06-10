@@ -696,16 +696,28 @@ const response = await changePassword(
 
   // ✅ Gérer les tableaux (checkboxes multiples)
   const handleServiceDetailArrayChange = (field, value, checked) => {
+    // boolean-group (ex: moving_flags) : chaque option est un champ individuel booléen
+    if (field === 'moving_flags') {
+      setEditFormData(prev => ({
+        ...prev,
+        serviceDetails: {
+          ...prev.serviceDetails,
+          [value]: checked
+        }
+      }));
+      return;
+    }
+
     setEditFormData(prev => {
       const currentArray = prev.serviceDetails[field] || [];
       let newArray;
-      
+
       if (checked) {
         newArray = [...currentArray, value];
       } else {
         newArray = currentArray.filter(item => item !== value);
       }
-      
+
       return {
         ...prev,
         serviceDetails: {

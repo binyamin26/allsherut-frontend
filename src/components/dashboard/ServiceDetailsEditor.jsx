@@ -506,6 +506,40 @@ if (field.type === 'select') {
       );
     }
 
+    // Groupe de booléens (ex: moving_flags) — chaque option est un champ individuel
+    if (field.type === 'boolean-group') {
+      const checkedValues = field.options
+        .filter(opt => serviceDetails?.[opt.value])
+        .map(opt => opt.value);
+
+      if (!isEditMode) {
+        const labels = checkedValues.map(v => {
+          const opt = field.options.find(o => o.value === v);
+          return opt ? t(opt.labelKey) : v;
+        });
+        return (
+          <div className="tags-list">
+            {labels.length > 0 ? labels.join(', ') : <span>{t('dashboard.notSpecified')}</span>}
+          </div>
+        );
+      }
+
+      return (
+        <div className="checkbox-grid">
+          {field.options.map(opt => (
+            <label key={opt.value} className="checkbox-item">
+              <input
+                type="checkbox"
+                checked={checkedValues.includes(opt.value)}
+                onChange={(e) => onArrayChange(field.name, opt.value, e.target.checked)}
+              />
+              {t(opt.labelKey)}
+            </label>
+          ))}
+        </div>
+      );
+    }
+
     if (field.type === 'json-array' || field.type === 'checkbox') {
       // ✅ Définir les options "tout sélectionner" pour chaque champ
       const selectAllOptions = {

@@ -2322,6 +2322,7 @@
   "serviceFields.moving.crane_services": "Услуги крана",
   "serviceFields.moving.cardboard_supply": "Поставка картонных коробок",
   "serviceFields.moving.storage": "Хранение",
+  "serviceFields.moving.extras": "Дополнительные услуги",
   "serviceFields.photographer.age": "Возраст",
   "serviceFields.photographer.experience": "Лет опыта",
   "serviceFields.photographer.availability_days": "Доступные дни",

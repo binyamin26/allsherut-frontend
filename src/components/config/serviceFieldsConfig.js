@@ -1030,28 +1030,15 @@ const serviceFieldsConfig = {
         options: ['עבודה עברית']
       },
       {
-        name: 'packing_materials',
-        label: 'serviceFields.moving.packing_materials',
-        type: 'checkbox',
-        options: ['כן']
-      },
-      {
-        name: 'crane_services',
-        label: 'serviceFields.moving.crane_services',
-        type: 'checkbox',
-        options: ['כן']
-      },
-      {
-        name: 'cardboard_supply',
-        label: 'serviceFields.moving.cardboard_supply',
-        type: 'checkbox',
-        options: ['כן']
-      },
-      {
-        name: 'storage',
-        label: 'serviceFields.moving.storage',
-        type: 'checkbox',
-        options: ['כן']
+        name: 'moving_flags',
+        label: 'serviceFields.moving.extras',
+        type: 'boolean-group',
+        options: [
+          { value: 'packing_materials', labelKey: 'serviceFields.moving.packing_materials' },
+          { value: 'crane_services',    labelKey: 'serviceFields.moving.crane_services' },
+          { value: 'cardboard_supply',  labelKey: 'serviceFields.moving.cardboard_supply' },
+          { value: 'storage',           labelKey: 'serviceFields.moving.storage' }
+        ]
       },
       {
         name: 'languages',

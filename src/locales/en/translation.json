@@ -2322,6 +2322,7 @@
   "serviceFields.moving.crane_services": "Crane Services",
   "serviceFields.moving.cardboard_supply": "Cardboard Box Supply",
   "serviceFields.moving.storage": "Storage",
+  "serviceFields.moving.extras": "Additional Services",
   "serviceFields.photographer.age": "Age",
   "serviceFields.photographer.experience": "Years of experience",
   "serviceFields.photographer.availability_days": "Available days",
