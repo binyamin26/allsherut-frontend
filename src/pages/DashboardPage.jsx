@@ -2181,6 +2181,9 @@ const galleryImages = (() => {
 
           {activeTab === 'contacts' && user?.role === 'provider' && (
             <div className="contacts-tab-section">
+              <div style={{display:'flex',justifyContent:'flex-end',marginBottom:'8px'}}>
+                <button onClick={() => loadContactClicks(contactPeriod, contactPage)} style={{background:'none',border:'1px solid #e2e8f0',borderRadius:'8px',padding:'6px 14px',cursor:'pointer',fontSize:'13px',color:'#64748b'}}>🔄 {t('common.refresh') || 'רענן'}</button>
+              </div>
               {/* Bloc mensuel — toujours le mois en cours */}
               <div className="contacts-monthly-card">
                 <h3 className="contacts-monthly-title">{t('dashboard.contacts.monthTitle')}</h3>
@@ -2235,8 +2238,8 @@ const galleryImages = (() => {
                     {contactClicks.map((click) => {
                       const date = new Date(click.clicked_at);
                       const isCall = click.click_type === 'call';
-                      const dateStr = date.toLocaleDateString('he-IL', { day: '2-digit', month: '2-digit', year: 'numeric' });
-                      const timeStr = date.toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' });
+                      const dateStr = date.toLocaleDateString('he-IL', { day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'Asia/Jerusalem' });
+                      const timeStr = date.toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Jerusalem' });
                       return (
                         <div key={click.id} className={`contact-click-item ${isCall ? 'contact-call' : 'contact-whatsapp'}`}>
                           <span className="contact-click-emoji">{isCall ? '📞' : '💬'}</span>
