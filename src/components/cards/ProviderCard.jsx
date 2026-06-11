@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Phone, Eye } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
+import apiService from '../../services/api';
 
 const ProviderCard = ({ provider, onOpenReviewModal }) => {
   console.log('🔍 ProviderCard:', {
@@ -127,7 +128,7 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
           <Eye size={15} />
           <span>{t('card.viewProfile')}</span>
         </button>
-        <button className="call-provider-btn" onClick={() => { if (provider.phone) window.location.href = `tel:${provider.phone}`; }}>
+        <button className="call-provider-btn" onClick={() => { if (provider.phone) { const phone = provider.phone; apiService.logContactClick(provider.id, 'call').catch(() => {}); setTimeout(() => { window.location.href = `tel:${phone}`; }, 300); } }}>
           <Phone size={15} />
           <span>{t('card.contact')}</span>
         </button>

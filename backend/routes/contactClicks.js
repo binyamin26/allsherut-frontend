@@ -36,15 +36,19 @@ router.post('/', async (req, res) => {
 // period: today | week | month | year | all  (default: month)
 router.get('/my-clicks', authenticateToken, async (req, res) => {
   try {
+    console.log(`📊 my-clicks: userId=${req.user.userId} period=${req.query.period}`);
     const spRows = await query(
       'SELECT id FROM service_providers WHERE user_id = ? LIMIT 1',
       [req.user.userId]
     );
+    console.log(`📊 my-clicks: spRows=${JSON.stringify(spRows)}`);
     if (!spRows.length) {
+      console.log(`📊 my-clicks: no provider found for userId=${req.user.userId}`);
       return res.json({ success: true, clicks: [], monthly: { call: 0, whatsapp: 0, total: 0 }, pagination: { page: 1, totalPages: 1, total: 0 } });
     }
 
     const providerId = spRows[0].id;
+    console.log(`📊 my-clicks: providerId=${providerId}`);
     const period = req.query.period || 'month';
     const page = Math.max(1, parseInt(req.query.page) || 1);
     const limit = 20;
