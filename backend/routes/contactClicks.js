@@ -138,49 +138,42 @@ router.post('/claim-provider', authenticateToken, async (req, res) => {
 });
 
 // GET /api/contact-clicks/claim/:providerId
-// Allows claim if: orphaned, OR same phone number as one of the current user's providers
 router.get('/claim/:providerId', authenticateToken, async (req, res) => {
   try {
     const provider_id = parseInt(req.params.providerId);
     if (!provider_id) return res.status(400).json({ success: false, message: 'provider_id invalide' });
 
-    // Target provider info
-    const rows = await query(
-      `SELECT sp.id, sp.user_id, sp.phone,
-              (SELECT COUNT(*) FROM users u WHERE u.id = sp.user_id) AS owner_exists
-       FROM service_providers sp WHERE sp.id = ?`,
-      [provider_id]
-    );
+    // Get target provider
+    const rows = await query('SELECT id, user_id, phone FROM service_providers WHERE id = ?', [provider_id]);
     if (!rows.length) return res.status(404).json({ success: false, message: 'Provider introuvable' });
-
-    const { user_id: currentOwner, owner_exists, phone: targetPhone } = rows[0];
+    const { user_id: currentOwner, phone: targetPhone } = rows[0];
 
     // Already mine
-    if (currentOwner === req.user.userId) {
+    if (Number(currentOwner) === Number(req.user.userId)) {
       return res.json({ success: true, message: `Provider ${provider_id} déjà lié à ton compte` });
     }
 
-    // Orphaned (account deleted) → allow
-    const isOrphaned = owner_exists === 0 || !currentOwner;
+    // Check if owner's account still exists
+    const userCheck = currentOwner ? await query('SELECT id FROM users WHERE id = ?', [currentOwner]) : [];
+    const isOrphaned = userCheck.length === 0;
 
-    // Same phone as one of my providers → it's my old record → allow
-    const myProviders = await query(
-      'SELECT phone FROM service_providers WHERE user_id = ?',
-      [req.user.userId]
-    );
-    const myPhones = myProviders.map(r => r.phone).filter(Boolean);
-    const samePhone = targetPhone && myPhones.includes(targetPhone);
+    // Check same phone
+    const myProviders = await query('SELECT phone FROM service_providers WHERE user_id = ?', [req.user.userId]);
+    const myPhones = myProviders.map(r => (r.phone || '').replace(/\s/g, ''));
+    const normalizedTarget = (targetPhone || '').replace(/\s/g, '');
+    const samePhone = normalizedTarget && myPhones.includes(normalizedTarget);
+
+    console.log(`🔗 claim debug: provider=${provider_id} currentOwner=${currentOwner} isOrphaned=${isOrphaned} targetPhone=${targetPhone} myPhones=${JSON.stringify(myPhones)} samePhone=${samePhone}`);
 
     if (!isOrphaned && !samePhone) {
-      return res.status(403).json({ success: false, message: `Provider appartient à un autre compte actif avec un numéro différent` });
+      return res.status(403).json({ success: false, message: `Bloqué: compte actif userId=${currentOwner}, téléphone provider=${targetPhone}, mes téléphones=${JSON.stringify(myPhones)}` });
     }
 
     await query('UPDATE service_providers SET user_id = ? WHERE id = ?', [req.user.userId, provider_id]);
-    console.log(`🔗 claim: userId=${req.user.userId} claimed provider=${provider_id} (orphaned=${isOrphaned} samePhone=${samePhone})`);
     res.json({ success: true, message: `Provider ${provider_id} lié à ton compte !` });
   } catch (error) {
     console.error('❌ claim GET:', error.message);
-    res.status(500).json({ success: false });
+    res.status(500).json({ success: false, error: error.message });
   }
 });
 
