@@ -391,7 +391,7 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  padding: var(--space-2) var(--space-3);
+  padding: var(--space-2) var(--space-5);
   background: white;
   color: var(--accent-700);
   border-radius: var(--radius-full);
@@ -616,9 +616,9 @@
 
   .area-tag {
     font-size: var(--text-xs);
-    padding: var(--space-1) var(--space-2);
+    padding: var(--space-2) var(--space-4);
   }
-  
+
   .image-upload-btn {
     padding: var(--space-2) var(--space-4);
     font-size: var(--text-xs);

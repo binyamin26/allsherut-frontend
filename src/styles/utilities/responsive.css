@@ -787,9 +787,9 @@
   
   .area-tag {
     font-size: var(--text-xs);
-    padding: var(--space-1) var(--space-2);
+    padding: var(--space-2) var(--space-4);
   }
-  
+
   .image-upload-btn {
     padding: var(--space-3) var(--space-4);
     font-size: var(--text-sm);
