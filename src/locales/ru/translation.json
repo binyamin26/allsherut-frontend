@@ -1312,6 +1312,8 @@
   "provider.details.securityServices": "Услуги безопасности",
   "provider.details.gasInstallation": "Установка газа",
   "provider.details.gasRepairs": "Ремонт газового оборудования",
+  "provider.details.gasLicenseType": "Тип лицензии на газ",
+  "provider.details.mechanicWorkTypes": "Виды работ",
   "provider.details.dogSizes": "Размеры собак",
   "provider.details.veterinaryServices": "Ветеринарные услуги",
   "provider.details.specializations": "Специализации",

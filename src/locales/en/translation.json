@@ -1329,6 +1329,8 @@
   "provider.details.securityServices": "Security Services",
   "provider.details.gasInstallation": "Gas Installation",
   "provider.details.gasRepairs": "Gas Repairs",
+  "provider.details.gasLicenseType": "Gas License Type",
+  "provider.details.mechanicWorkTypes": "Work Types",
   "provider.details.dogSizes": "Dog Sizes",
   "provider.details.veterinaryServices": "Veterinary Services",
   "provider.details.specializations": "Specializations",

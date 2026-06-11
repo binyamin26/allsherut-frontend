@@ -1012,6 +1012,24 @@ const handleContact = () => {
               <span>{translateAndJoin(details.repair_types, 'gasRepair', t)}</span>
               </div>
             )}
+            {details.license_type && details.license_type.length > 0 && (
+              <div className="detail-item">
+                <strong>📋 {t('provider.details.gasLicenseType')}:</strong>
+                <span>{translateAndJoin(details.license_type, 'gasLicenseTypes', t)}</span>
+              </div>
+            )}
+          </>
+        )}
+
+        {/* === MECHANIC === */}
+        {provider.serviceType === 'mechanic' && (
+          <>
+            {details.work_types && details.work_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <strong>🔧 {t('provider.details.mechanicWorkTypes')}:</strong>
+                <span>{translateAndJoin(details.work_types, 'mechanicWorkTypes', t)}</span>
+              </div>
+            )}
           </>
         )}
 

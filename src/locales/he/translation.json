@@ -1312,6 +1312,8 @@
   "provider.details.securityServices": "שירותי ביטחון",
   "provider.details.gasInstallation": "התקנת צנרת גז",
   "provider.details.gasRepairs": "תיקוני גז",
+  "provider.details.gasLicenseType": "סוג רישיון גז",
+  "provider.details.mechanicWorkTypes": "סוגי עבודה",
   "provider.details.dogSizes": "גודל כלבים",
   "provider.details.veterinaryServices": "שירותים וטרינריים",
   "provider.details.specializations": "התמחויות",

@@ -369,6 +369,8 @@ const translationMappings = {
     'אסלה תלויה': 'filters.plumbing.wallMountedToilet',
     'אל חוזר לשעון מים': 'filters.plumbing.checkValve',
     'התקנת מערכות מים תת כיוריות': 'filters.plumbing.underSinkSystems',
+    'התקנת דוד שמש': 'filters.plumbing.solarHeaterInstall',
+    'תיקון דוד שמש': 'filters.plumbing.solarHeaterRepair',
   },
 
   // ═══════════════════════════════════════════════════════════════
@@ -428,6 +430,26 @@ const translationMappings = {
   gasRepair: {
     'תיקון כיריים גז': 'filters.gas.stovetopRepair',
     'תיקון צנרת גז': 'filters.gas.pipeRepair',
+  },
+  gasLicenseTypes: {
+    'רמה 1': 'filters.gas.licenseLevel1',
+    'רמה 2': 'filters.gas.licenseLevel2',
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // MECHANIC
+  // ═══════════════════════════════════════════════════════════════
+  mechanicWorkTypes: {
+    'מכונאות רכב':    'serviceForm.mechanic.carMechanics',
+    'הכנה לטסט':     'serviceForm.mechanic.testPrep',
+    'טיפולים שוטפים': 'serviceForm.mechanic.routineMaintenance',
+    'בדיקות מחשב':   'serviceForm.mechanic.computerDiagnostics',
+    'מצברים':         'serviceForm.mechanic.batteries',
+    'מיזוג אוויר':   'serviceForm.mechanic.airConditioning',
+    'אלטרנטור':       'serviceForm.mechanic.alternator',
+    'תיקוני מנוע':   'serviceForm.mechanic.engineRepairs',
+    'רדיאטור וקירור': 'serviceForm.mechanic.radiatorCooling',
+    'לקיחת רכב לטסט': 'serviceForm.mechanic.vehicleInspection',
   },
 
   // ═══════════════════════════════════════════════════════════════
