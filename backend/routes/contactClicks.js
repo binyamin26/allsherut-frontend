@@ -39,18 +39,31 @@ router.post('/', async (req, res) => {
 router.get('/my-clicks', authenticateToken, async (req, res) => {
   try {
     console.log(`📊 my-clicks: userId=${req.user.userId} period=${req.query.period}`);
-    // Get ALL provider records for this user (handles duplicate/migrated records)
-    const spRows = await query(
-      'SELECT id FROM service_providers WHERE user_id = ?',
-      [req.user.userId]
-    );
+    // Find all provider records for the same phone number (handles multi-account/migration cases)
+    // 1. Get current user's phone
+    const userRows = await query('SELECT phone FROM users WHERE id = ?', [req.user.userId]);
+    const myPhone = userRows[0]?.phone;
+
+    // 2. Find providers whose user has the same phone (= same person, different account)
+    let spRows;
+    if (myPhone) {
+      spRows = await query(
+        `SELECT sp.id FROM service_providers sp
+         JOIN users u ON sp.user_id = u.id
+         WHERE u.phone = ? OR sp.user_id = ?`,
+        [myPhone, req.user.userId]
+      );
+    } else {
+      spRows = await query('SELECT id FROM service_providers WHERE user_id = ?', [req.user.userId]);
+    }
+
     if (!spRows.length) {
       return res.json({ success: true, clicks: [], monthly: { call: 0, whatsapp: 0, total: 0 }, pagination: { page: 1, totalPages: 1, total: 0 } });
     }
 
-    const providerIds = spRows.map(r => r.id);
+    const providerIds = [...new Set(spRows.map(r => r.id))];
     const inClause = providerIds.map(() => '?').join(',');
-    console.log(`📊 my-clicks: userId=${req.user.userId} providerIds=${providerIds}`);
+    console.log(`📊 my-clicks: userId=${req.user.userId} phone=${myPhone} providerIds=${providerIds}`);
 
     const period = req.query.period || 'month';
     const page = Math.max(1, parseInt(req.query.page) || 1);
