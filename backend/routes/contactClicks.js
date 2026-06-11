@@ -137,4 +137,32 @@ router.post('/claim-provider', authenticateToken, async (req, res) => {
   }
 });
 
+// GET /api/contact-clicks/claim/:providerId — same as POST but as GET for easy browser use
+router.get('/claim/:providerId', authenticateToken, async (req, res) => {
+  try {
+    const provider_id = parseInt(req.params.providerId);
+    if (!provider_id) return res.status(400).json({ success: false, message: 'provider_id invalide' });
+
+    const rows = await query(
+      `SELECT sp.id, sp.user_id,
+              (SELECT COUNT(*) FROM users u WHERE u.id = sp.user_id) AS owner_exists
+       FROM service_providers sp WHERE sp.id = ?`,
+      [provider_id]
+    );
+    if (!rows.length) return res.status(404).json({ success: false, message: 'Provider introuvable' });
+
+    const { user_id: currentOwner, owner_exists } = rows[0];
+    if (owner_exists > 0 && currentOwner !== req.user.userId) {
+      return res.status(403).json({ success: false, message: `Provider appartient à un compte actif (userId=${currentOwner})` });
+    }
+
+    await query('UPDATE service_providers SET user_id = ? WHERE id = ?', [req.user.userId, provider_id]);
+    console.log(`🔗 claim GET: userId=${req.user.userId} claimed providerId=${provider_id}`);
+    res.json({ success: true, message: `Provider ${provider_id} lié à userId ${req.user.userId}` });
+  } catch (error) {
+    console.error('❌ claim GET:', error.message);
+    res.status(500).json({ success: false });
+  }
+});
+
 module.exports = router;
