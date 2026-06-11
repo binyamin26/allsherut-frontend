@@ -98,10 +98,35 @@ router.get('/my-clicks', authenticateToken, async (req, res) => {
       [...providerIds, limit, offset]
     );
 
-    res.json({ success: true, clicks, monthly, pagination: { page, totalPages, total, limit } });
+    res.json({ success: true, clicks, monthly, pagination: { page, totalPages, total, limit }, _providerIds: providerIds });
   } catch (error) {
     console.error('❌ contact-clicks GET:', error.message);
     res.status(500).json({ success: false, clicks: [], monthly: { call: 0, whatsapp: 0, total: 0 }, pagination: { page: 1, totalPages: 1, total: 0 } });
+  }
+});
+
+// POST /api/contact-clicks/claim-provider — link an orphan provider record to the logged-in user
+// Body: { provider_id: 213 }
+router.post('/claim-provider', authenticateToken, async (req, res) => {
+  try {
+    const { provider_id } = req.body;
+    if (!provider_id) return res.status(400).json({ success: false, message: 'provider_id requis' });
+
+    // Check provider exists and its current user_id
+    const rows = await query('SELECT id, user_id FROM service_providers WHERE id = ?', [provider_id]);
+    if (!rows.length) return res.status(404).json({ success: false, message: 'Provider introuvable' });
+
+    const current = rows[0];
+    if (current.user_id && current.user_id !== req.user.userId) {
+      return res.status(403).json({ success: false, message: `Ce provider appartient déjà à user ${current.user_id}` });
+    }
+
+    await query('UPDATE service_providers SET user_id = ? WHERE id = ?', [req.user.userId, provider_id]);
+    console.log(`🔗 claim-provider: userId=${req.user.userId} claimed providerId=${provider_id}`);
+    res.json({ success: true, message: `Provider ${provider_id} lié à userId ${req.user.userId}` });
+  } catch (error) {
+    console.error('❌ claim-provider:', error.message);
+    res.status(500).json({ success: false });
   }
 });
 
