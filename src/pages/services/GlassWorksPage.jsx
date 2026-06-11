@@ -115,7 +115,7 @@ const GlassWorksPage = () => {
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo verre.png"
+                src="/images/logo verre.jpg"
                 alt="Vitrerie"
               />
             </div>

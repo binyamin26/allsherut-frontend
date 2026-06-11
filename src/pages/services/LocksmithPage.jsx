@@ -117,7 +117,7 @@ const LocksmithPage = () => {
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo serrure.png"
+                src="/images/logo serrure.jpg"
                 alt="Serrurier"
               />
             </div>

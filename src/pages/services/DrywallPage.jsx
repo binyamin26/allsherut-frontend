@@ -116,7 +116,7 @@ const DrywallPage = () => {
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo placo.png"
+                src="/images/logo placo.jpg"
                 alt="Plֳ¢tre"
               />
             </div>

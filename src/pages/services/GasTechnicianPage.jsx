@@ -115,7 +115,7 @@ const GasTechnicianPage = () => {
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo gaz.png"
+                src="/images/logo gaz.jpg"
                 alt="Gaz"
               />
             </div>
