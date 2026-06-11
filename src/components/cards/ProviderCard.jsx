@@ -128,7 +128,7 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
           <Eye size={15} />
           <span>{t('card.viewProfile')}</span>
         </button>
-        <button className="call-provider-btn" onClick={() => { if (provider.phone) { const phone = provider.phone; apiService.logContactClick(provider.id, 'call').catch(() => {}); setTimeout(() => { window.location.href = `tel:${phone}`; }, 300); } }}>
+        <button className="call-provider-btn" onClick={() => { console.log('📞 ProviderCard call click — id:', provider.id, 'phone:', provider.phone); if (provider.phone) { const phone = provider.phone; apiService.logContactClick(provider.id, 'call').then(r => console.log('📞 click logged:', r)).catch(e => console.error('📞 click error:', e)); setTimeout(() => { window.location.href = `tel:${phone}`; }, 300); } else { console.warn('📞 no phone on provider'); } }}>
           <Phone size={15} />
           <span>{t('card.contact')}</span>
         </button>

@@ -12,7 +12,7 @@ const pool = mysql.createPool({
   connectionLimit: 10,
   queueLimit: 0,
   charset: 'utf8mb4',
-timezone: '+03:00', // Israël
+timezone: 'Z', // MySQL server is UTC (Fly.io default); frontend converts to Asia/Jerusalem
   
   // Configuration simplifiée pour MySQL2
   ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
