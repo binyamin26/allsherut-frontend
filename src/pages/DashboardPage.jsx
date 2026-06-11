@@ -394,7 +394,7 @@ const loadMyReviews = async () => {
     if (user?.role !== 'provider') return;
     setContactsLoading(true);
     try {
-      const result = await apiService.getMyContactClicks(period, page);
+      const result = await apiCall(`/contact-clicks/my-clicks?period=${period}&page=${page}`, 'GET');
       if (result.success) {
         setContactClicks(result.clicks || []);
         setContactMonthly(result.monthly || { call: 0, whatsapp: 0, total: 0 });
