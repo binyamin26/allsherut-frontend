@@ -39,18 +39,19 @@ router.post('/', async (req, res) => {
 router.get('/my-clicks', authenticateToken, async (req, res) => {
   try {
     console.log(`📊 my-clicks: userId=${req.user.userId} period=${req.query.period}`);
+    // Get ALL provider records for this user (handles duplicate/migrated records)
     const spRows = await query(
-      'SELECT id FROM service_providers WHERE user_id = ? LIMIT 1',
+      'SELECT id FROM service_providers WHERE user_id = ?',
       [req.user.userId]
     );
-    console.log(`📊 my-clicks: spRows=${JSON.stringify(spRows)}`);
     if (!spRows.length) {
-      console.log(`📊 my-clicks: no provider found for userId=${req.user.userId}`);
       return res.json({ success: true, clicks: [], monthly: { call: 0, whatsapp: 0, total: 0 }, pagination: { page: 1, totalPages: 1, total: 0 } });
     }
 
-    const providerId = spRows[0].id;
-    console.log(`📊 my-clicks: providerId=${providerId}`);
+    const providerIds = spRows.map(r => r.id);
+    const inClause = providerIds.map(() => '?').join(',');
+    console.log(`📊 my-clicks: userId=${req.user.userId} providerIds=${providerIds}`);
+
     const period = req.query.period || 'month';
     const page = Math.max(1, parseInt(req.query.page) || 1);
     const limit = 20;
@@ -60,11 +61,11 @@ router.get('/my-clicks', authenticateToken, async (req, res) => {
     const monthlyRows = await query(
       `SELECT click_type, COUNT(*) as cnt
        FROM contact_clicks
-       WHERE provider_id = ?
+       WHERE provider_id IN (${inClause})
          AND YEAR(clicked_at) = YEAR(NOW())
          AND MONTH(clicked_at) = MONTH(NOW())
        GROUP BY click_type`,
-      [providerId]
+      providerIds
     );
     const monthly = { call: 0, whatsapp: 0, total: 0 };
     monthlyRows.forEach(r => { monthly[r.click_type] = Number(r.cnt); });
@@ -81,8 +82,8 @@ router.get('/my-clicks', authenticateToken, async (req, res) => {
 
     // Count for pagination
     const countRows = await query(
-      `SELECT COUNT(*) as total FROM contact_clicks WHERE provider_id = ? ${periodWhere}`,
-      [providerId]
+      `SELECT COUNT(*) as total FROM contact_clicks WHERE provider_id IN (${inClause}) ${periodWhere}`,
+      providerIds
     );
     const total = Number(countRows[0].total);
     const totalPages = Math.max(1, Math.ceil(total / limit));
@@ -91,13 +92,13 @@ router.get('/my-clicks', authenticateToken, async (req, res) => {
     const clicks = await query(
       `SELECT id, click_type, clicked_at
        FROM contact_clicks
-       WHERE provider_id = ? ${periodWhere}
+       WHERE provider_id IN (${inClause}) ${periodWhere}
        ORDER BY clicked_at DESC
        LIMIT ? OFFSET ?`,
-      [providerId, limit, offset]
+      [...providerIds, limit, offset]
     );
 
-    res.json({ success: true, clicks, monthly, pagination: { page, totalPages, total, limit }, _debug: { queryProviderId: providerId, clickCount: clicks.length } });
+    res.json({ success: true, clicks, monthly, pagination: { page, totalPages, total, limit } });
   } catch (error) {
     console.error('❌ contact-clicks GET:', error.message);
     res.status(500).json({ success: false, clicks: [], monthly: { call: 0, whatsapp: 0, total: 0 }, pagination: { page: 1, totalPages: 1, total: 0 } });
