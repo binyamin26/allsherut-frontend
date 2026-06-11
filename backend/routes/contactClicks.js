@@ -107,22 +107,29 @@ router.get('/my-clicks', authenticateToken, async (req, res) => {
 
 // POST /api/contact-clicks/claim-provider — link an orphan provider record to the logged-in user
 // Body: { provider_id: 213 }
+// Allowed if provider's current user_id no longer exists in users table (truly orphaned)
 router.post('/claim-provider', authenticateToken, async (req, res) => {
   try {
     const { provider_id } = req.body;
     if (!provider_id) return res.status(400).json({ success: false, message: 'provider_id requis' });
 
-    // Check provider exists and its current user_id
-    const rows = await query('SELECT id, user_id FROM service_providers WHERE id = ?', [provider_id]);
+    const rows = await query(
+      `SELECT sp.id, sp.user_id,
+              (SELECT COUNT(*) FROM users u WHERE u.id = sp.user_id) AS owner_exists
+       FROM service_providers sp WHERE sp.id = ?`,
+      [provider_id]
+    );
     if (!rows.length) return res.status(404).json({ success: false, message: 'Provider introuvable' });
 
-    const current = rows[0];
-    if (current.user_id && current.user_id !== req.user.userId) {
-      return res.status(403).json({ success: false, message: `Ce provider appartient déjà à user ${current.user_id}` });
+    const { user_id: currentOwner, owner_exists } = rows[0];
+
+    // Allow claim if: no owner, or owner account no longer exists, or already same user
+    if (owner_exists > 0 && currentOwner !== req.user.userId) {
+      return res.status(403).json({ success: false, message: `Ce provider appartient à un compte actif (userId=${currentOwner})` });
     }
 
     await query('UPDATE service_providers SET user_id = ? WHERE id = ?', [req.user.userId, provider_id]);
-    console.log(`🔗 claim-provider: userId=${req.user.userId} claimed providerId=${provider_id}`);
+    console.log(`🔗 claim-provider: userId=${req.user.userId} claimed providerId=${provider_id} (was userId=${currentOwner})`);
     res.json({ success: true, message: `Provider ${provider_id} lié à userId ${req.user.userId}` });
   } catch (error) {
     console.error('❌ claim-provider:', error.message);
