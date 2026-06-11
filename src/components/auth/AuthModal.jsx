@@ -769,6 +769,9 @@ case 'laundry':  if (!serviceDetails.laundryTypes || serviceDetails.laundryTypes
         if (serviceDetails.work_types?.includes('תיקוני גז בבית') && (!serviceDetails.repair_types || serviceDetails.repair_types.length === 0)) {
           newErrors['serviceDetails.repair_types'] = t('validation.selectAtLeastOne');
         }
+        if (!serviceDetails.license_type || serviceDetails.license_type.length === 0) {
+          newErrors['serviceDetails.license_type'] = t('validation.selectAtLeastOne');
+        }
       break;
 
      case 'drywall':  if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {

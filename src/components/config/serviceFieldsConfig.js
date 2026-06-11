@@ -633,11 +633,17 @@ const serviceFieldsConfig = {
         type: 'checkbox',
         options: ['הזזת\\התקנת נקודת גז', 'התקנת כיריים גז', 'התקנת צינור גז', 'התקנת גריל גז', 'התקנת חימום מים בגז', 'התקנת חגז', 'בניית תשתית גז במבנה חדש', 'שירותי גז לעסקים']
       },
-      { 
-        name: 'repair_types', 
-        label: 'serviceFields.gas_technician.repair_types', 
+      {
+        name: 'repair_types',
+        label: 'serviceFields.gas_technician.repair_types',
         type: 'checkbox',
         options: ['תיקון כיריים גז', 'תיקון צנרת גז']
+      },
+      {
+        name: 'license_type',
+        label: 'serviceFields.gas_technician.license_type',
+        type: 'checkbox',
+        options: ['רמה 1', 'רמה 2']
       },
       {
         name: 'languages',

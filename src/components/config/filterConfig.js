@@ -581,7 +581,8 @@ laundry: {
     sectionTitles: {
       workTypes: 'filters.gas.workTypes',
       installationTypes: 'filters.gas.installationTypes',
-      repairTypes: 'filters.gas.repairTypes'
+      repairTypes: 'filters.gas.repairTypes',
+      licenseTypes: 'filters.gas.licenseTypes'
     },
     workTypes: [
       { value: 'התקנת צנרת גז בבית', key: 'filters.gas.pipeInstallation' },
@@ -600,6 +601,10 @@ laundry: {
     repairTypes: [
       { value: 'תיקון כיריים גז', key: 'filters.gas.stovetopRepair' },
       { value: 'תיקון צנרת גז', key: 'filters.gas.pipeRepair' }
+    ],
+    licenseTypes: [
+      { value: 'רמה 1', key: 'filters.gas.licenseLevel1' },
+      { value: 'רמה 2', key: 'filters.gas.licenseLevel2' }
     ]
   },
 

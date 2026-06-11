@@ -1425,12 +1425,24 @@ const AirConditioningFilters = (props) => {
 };
 
 const GasTechnicianFilters = (props) => {
+  const { t } = useLanguage();
   const config = FILTER_CONFIG.gas_technician;
   const filterMappings = {
     'התקנת צנרת גז בבית': { title: config.sectionTitles.installationTypes, filterKey: 'installation_types', options: config.installationTypes },
     'תיקוני גז בבית': { title: config.sectionTitles.repairTypes, filterKey: 'repair_types', options: config.repairTypes }
   };
-  return <TechnicalServiceFilters {...props} serviceConfig={config} filterMappings={filterMappings} />;
+  return (
+    <>
+      <TechnicalServiceFilters {...props} serviceConfig={config} filterMappings={filterMappings} />
+      <CheckboxSection
+        title={t(config.sectionTitles.licenseTypes)}
+        options={config.licenseTypes.map(o => ({ value: o.value, label: t(o.key) }))}
+        filterKey="license_type"
+        filters={props.filters}
+        onCheckboxChange={props.handleCheckboxChange}
+      />
+    </>
+  );
 };
 
 const DrywallFilters = (props) => {

@@ -131,6 +131,32 @@ const GasTechnicianForm = ({ serviceDetails, errors, handleServiceDetailsChange,
 
           {errors['serviceDetails.work_types'] && <span className="error-text">{errors['serviceDetails.work_types']}</span>}
         </div>
+
+        <div className="input-group">
+          <label className="auth-form-label required">{t('serviceForm.gas.licenseType')}</label>
+          <div className="checkbox-group" data-field="license_type">
+            {[
+              { value: 'רמה 1', label: t('serviceForm.gas.licenseLevel1') },
+              { value: 'רמה 2', label: t('serviceForm.gas.licenseLevel2') }
+            ].map(level => (
+              <label key={level.value} className="checkbox-item">
+                <input
+                  type="checkbox"
+                  checked={serviceDetails.license_type?.includes(level.value) || false}
+                  onChange={(e) => {
+                    const current = serviceDetails.license_type || [];
+                    const newTypes = e.target.checked
+                      ? [...current, level.value]
+                      : current.filter(v => v !== level.value);
+                    handleServiceDetailsChange('license_type', newTypes);
+                  }}
+                />
+                {level.label}
+              </label>
+            ))}
+          </div>
+          {errors['serviceDetails.license_type'] && <span className="error-text">{errors['serviceDetails.license_type']}</span>}
+        </div>
       </div>
 
       <div className="form-section optional">
