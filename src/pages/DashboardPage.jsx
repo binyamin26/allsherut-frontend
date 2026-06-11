@@ -160,7 +160,7 @@ const userData = useMemo(() => {
   const [contactClicks, setContactClicks] = useState([]);
   const [contactMonthly, setContactMonthly] = useState({ call: 0, whatsapp: 0, total: 0 });
   const [contactsLoading, setContactsLoading] = useState(false);
-  const [contactPeriod, setContactPeriod] = useState('month');
+  const [contactPeriod, setContactPeriod] = useState('today');
   const [contactPage, setContactPage] = useState(1);
   const [contactPagination, setContactPagination] = useState({ page: 1, totalPages: 1, total: 0 });
 
