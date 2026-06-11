@@ -187,6 +187,17 @@ class ApiService {
     });
   }
 
+  async logContactClick(providerId, clickType) {
+    return this.request('/contact-clicks', {
+      method: 'POST',
+      body: JSON.stringify({ provider_id: providerId, click_type: clickType })
+    });
+  }
+
+  async getMyContactClicks() {
+    return this.request('/contact-clicks/my-clicks');
+  }
+
   async testConnection() {
     return this.request('/health');
   }

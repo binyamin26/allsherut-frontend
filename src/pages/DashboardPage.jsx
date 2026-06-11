@@ -157,6 +157,10 @@ const userData = useMemo(() => {
   const [myReviews, setMyReviews] = useState([]);
   const [reviewsLoading, setReviewsLoading] = useState(false);
 
+  const [contactClicks, setContactClicks] = useState([]);
+  const [contactTotals, setContactTotals] = useState({ call: 0, whatsapp: 0 });
+  const [contactsLoading, setContactsLoading] = useState(false);
+
   const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
 
   // Recrutement
@@ -383,6 +387,22 @@ const loadMyReviews = async () => {
     }
   };
 
+  const loadContactClicks = async () => {
+    if (user?.role !== 'provider') return;
+    setContactsLoading(true);
+    try {
+      const result = await apiService.getMyContactClicks();
+      if (result.success) {
+        setContactClicks(result.clicks || []);
+        setContactTotals(result.totals || { call: 0, whatsapp: 0 });
+      }
+    } catch (e) {
+      console.error('Erreur contacts:', e);
+    } finally {
+      setContactsLoading(false);
+    }
+  };
+
   const loadMyListings = async () => {
     if (user?.role !== 'provider') return;
     setRecruitmentLoading(true);
@@ -577,6 +597,9 @@ const loadMyReviews = async () => {
     }
     if (activeTab === 'pricing' && user?.role === 'provider') {
       loadMyPricing();
+    }
+    if (activeTab === 'contacts' && user?.role === 'provider') {
+      loadContactClicks();
     }
  }, [activeTab, user, activeService]);
 
@@ -1460,6 +1483,16 @@ const galleryImages = (() => {
 
             {userData?.role === 'provider' && (
               <button
+                className={`tab-btn ${activeTab === 'contacts' ? 'active' : ''}`}
+                onClick={() => setActiveTab('contacts')}
+              >
+                <Phone size={18} />
+                {t('dashboard.tabs.contacts')}
+              </button>
+            )}
+
+            {userData?.role === 'provider' && (
+              <button
                 className={`tab-btn ${activeTab === 'recruitment' ? 'active' : ''}`}
                 onClick={() => setActiveTab('recruitment')}
               >
@@ -2138,6 +2171,72 @@ const galleryImages = (() => {
                   <h4>{t('dashboard.reviews.noReviews')}</h4>
                   <p>{t('dashboard.reviews.noReviewsDesc')}</p>
                 </div>
+              )}
+            </div>
+          )}
+
+          {activeTab === 'contacts' && user?.role === 'provider' && (
+            <div className="contacts-tab-section">
+              <div className="contacts-header">
+                <h3 className="section-subtitle">{t('dashboard.contacts.title')}</h3>
+                <p className="section-description">{t('dashboard.contacts.description')}</p>
+              </div>
+
+              {contactsLoading ? (
+                <div className="reviews-loading">
+                  <div className="loading-spinner"></div>
+                  <p>{t('dashboard.contacts.loading')}</p>
+                </div>
+              ) : (
+                <>
+                  <div className="contacts-stats-row">
+                    <div className="contacts-stat-card contacts-stat-call">
+                      <div className="contacts-stat-icon"><Phone size={28} /></div>
+                      <div className="contacts-stat-info">
+                        <span className="contacts-stat-count">{contactTotals.call}</span>
+                        <span className="contacts-stat-label">{t('dashboard.contacts.totalCalls')}</span>
+                      </div>
+                    </div>
+                    <div className="contacts-stat-card contacts-stat-whatsapp">
+                      <div className="contacts-stat-icon"><MessageCircle size={28} /></div>
+                      <div className="contacts-stat-info">
+                        <span className="contacts-stat-count">{contactTotals.whatsapp}</span>
+                        <span className="contacts-stat-label">{t('dashboard.contacts.totalWhatsapp')}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {contactClicks.length === 0 ? (
+                    <div className="empty-state">
+                      <Phone size={48} />
+                      <h4>{t('dashboard.contacts.noContacts')}</h4>
+                      <p>{t('dashboard.contacts.noContactsDesc')}</p>
+                    </div>
+                  ) : (
+                    <div className="contacts-list">
+                      {contactClicks.map((click) => {
+                        const date = new Date(click.clicked_at);
+                        const isCall = click.click_type === 'call';
+                        return (
+                          <div key={click.id} className={`contact-click-item ${isCall ? 'contact-call' : 'contact-whatsapp'}`}>
+                            <div className={`contact-click-icon ${isCall ? 'icon-call' : 'icon-whatsapp'}`}>
+                              {isCall ? <Phone size={18} /> : <MessageCircle size={18} />}
+                            </div>
+                            <div className="contact-click-details">
+                              <span className="contact-click-type">
+                                {isCall ? t('dashboard.contacts.clickCall') : t('dashboard.contacts.clickWhatsapp')}
+                              </span>
+                              <span className="contact-click-time">
+                                <Clock size={13} />
+                                {date.toLocaleDateString('he-IL')} — {date.toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' })}
+                              </span>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </>
               )}
             </div>
           )}

@@ -183,6 +183,8 @@ const uploadLimiter = rateLimit({
 });
 app.use('/api/upload', uploadLimiter, require('./routes/upload'));
 
+app.use('/api/contact-clicks', require('./routes/contactClicks'));
+
 // =============================================
 // 🆕 ROUTES PREMIUM PROTÉGÉES PAR ABONNEMENT
 // =============================================
@@ -348,6 +350,14 @@ const runMigrations = async () => {
     ['legacy_rating_converted marker', `ALTER TABLE reviews ADD COLUMN IF NOT EXISTS legacy_rating_converted BOOLEAN NOT NULL DEFAULT FALSE`],
     ['convert legacy 5-star ratings to /10', `UPDATE reviews SET rating = LEAST(rating * 2, 10), legacy_rating_converted = TRUE WHERE quality_rating IS NULL AND price_rating IS NULL AND availability_rating IS NULL AND professionalism_rating IS NULL AND legacy_rating_converted = FALSE AND rating IS NOT NULL`],
     ['recalc average_rating after legacy conversion', `UPDATE service_providers sp SET average_rating = COALESCE((SELECT ROUND(AVG(r.rating), 1) FROM reviews r WHERE r.provider_id = sp.id AND r.is_verified = TRUE AND r.is_published = TRUE), average_rating) WHERE EXISTS (SELECT 1 FROM reviews r2 WHERE r2.provider_id = sp.id AND r2.legacy_rating_converted = TRUE)`],
+    ['contact_clicks table', `CREATE TABLE IF NOT EXISTS contact_clicks (
+      id INT PRIMARY KEY AUTO_INCREMENT,
+      provider_id INT NOT NULL,
+      click_type ENUM('call','whatsapp') NOT NULL,
+      clicked_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      INDEX idx_provider_id (provider_id),
+      INDEX idx_clicked_at (clicked_at)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`],
     ['provider_responses table', `CREATE TABLE IF NOT EXISTS provider_responses (
       id INT PRIMARY KEY AUTO_INCREMENT,
       review_id INT NOT NULL,

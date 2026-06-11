@@ -1521,7 +1521,7 @@ const handleContact = () => {
         </div>
       )}
       <div className="hero-buttons-grid">
-        <button onClick={() => window.location.href = `tel:${provider.phone}`} className="btn btn-primary btn-large hero-btn">
+        <button onClick={() => { apiService.logContactClick(provider.id, 'call').catch(()=>{}); window.location.href = `tel:${provider.phone}`; }} className="btn btn-primary btn-large hero-btn">
           <Phone size={18} />
           {t('provider.callNow')}
         </button>
@@ -1529,7 +1529,7 @@ const handleContact = () => {
           <MessageCircle size={16} />
           <span>{t('card.leaveReview')}</span>
         </button>
-        <button onClick={() => window.open(`https://wa.me/972${provider.phone?.replace(/^0/, '')}`, '_blank')} className="btn btn-success btn-large hero-btn">
+        <button onClick={() => { apiService.logContactClick(provider.id, 'whatsapp').catch(()=>{}); window.open(`https://wa.me/972${provider.phone?.replace(/^0/, '')}`, '_blank'); }} className="btn btn-success btn-large hero-btn">
           <MessageCircle size={18} />
           {t('provider.sendWhatsapp')}
         </button>

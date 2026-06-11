@@ -2681,3 +2681,152 @@ select.inline-edit {
     justify-content: center;
   }
 }
+
+/* ====================================
+   CONTACTS TAB — פניות מ-AllSherut
+   ==================================== */
+.contacts-tab-section {
+  padding: var(--space-6);
+  max-width: 800px;
+}
+
+.contacts-header {
+  margin-bottom: var(--space-6);
+}
+
+.contacts-stats-row {
+  display: flex;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+  flex-wrap: wrap;
+}
+
+.contacts-stat-card {
+  flex: 1;
+  min-width: 180px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-6);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  transition: transform 0.2s;
+}
+
+.contacts-stat-card:hover {
+  transform: translateY(-2px);
+}
+
+.contacts-stat-call {
+  background: linear-gradient(135deg, #1A5490 0%, #2F80ED 100%);
+  color: white;
+}
+
+.contacts-stat-whatsapp {
+  background: linear-gradient(135deg, #1a7c40 0%, #25d366 100%);
+  color: white;
+}
+
+.contacts-stat-icon {
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.contacts-stat-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.contacts-stat-count {
+  font-size: var(--text-3xl);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.contacts-stat-label {
+  font-size: var(--text-sm);
+  opacity: 0.9;
+  font-weight: 500;
+}
+
+.contacts-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.contact-click-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--neutral-100);
+  background: white;
+  transition: background 0.15s;
+}
+
+.contact-click-item:hover {
+  background: var(--neutral-25);
+}
+
+.contact-click-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icon-call {
+  background: #dbeafe;
+  color: #1A5490;
+}
+
+.icon-whatsapp {
+  background: #dcfce7;
+  color: #1a7c40;
+}
+
+.contact-click-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.contact-click-type {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--neutral-800);
+}
+
+.contact-click-time {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--text-xs);
+  color: var(--neutral-500);
+}
+
+@media (max-width: 640px) {
+  .contacts-tab-section {
+    padding: var(--space-4);
+  }
+
+  .contacts-stats-row {
+    flex-direction: column;
+  }
+
+  .contacts-stat-card {
+    min-width: unset;
+  }
+}
