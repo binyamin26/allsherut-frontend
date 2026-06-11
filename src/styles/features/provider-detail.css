@@ -1391,3 +1391,17 @@ text-align: start;
   .btn-success.hero-btn { order: 2; }
   .review-action-btn.hero-btn { order: 3; }
 }
+
+/* ====================================
+   AREA-TAG — badge lieu (ville / quartier / כל הארץ)
+   Chargé en dernier pour garantir la priorité sur tous les overrides
+   ==================================== */
+.area-tag {
+  padding: var(--space-2) var(--space-6) !important;
+}
+
+@media (max-width: 768px) {
+  .area-tag {
+    padding: var(--space-2) var(--space-4) !important;
+  }
+}
