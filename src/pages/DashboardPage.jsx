@@ -160,6 +160,9 @@ const userData = useMemo(() => {
   const [contactClicks, setContactClicks] = useState([]);
   const [contactMonthly, setContactMonthly] = useState({ call: 0, whatsapp: 0, total: 0 });
   const [contactsLoading, setContactsLoading] = useState(false);
+  const [contactPeriod, setContactPeriod] = useState('month');
+  const [contactPage, setContactPage] = useState(1);
+  const [contactPagination, setContactPagination] = useState({ page: 1, totalPages: 1, total: 0 });
 
   const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
 
@@ -387,14 +390,15 @@ const loadMyReviews = async () => {
     }
   };
 
-  const loadContactClicks = async () => {
+  const loadContactClicks = async (period, page) => {
     if (user?.role !== 'provider') return;
     setContactsLoading(true);
     try {
-      const result = await apiService.getMyContactClicks();
+      const result = await apiService.getMyContactClicks(period, page);
       if (result.success) {
         setContactClicks(result.clicks || []);
         setContactMonthly(result.monthly || { call: 0, whatsapp: 0, total: 0 });
+        setContactPagination(result.pagination || { page: 1, totalPages: 1, total: 0 });
       }
     } catch (e) {
       console.error('Erreur contacts:', e);
@@ -599,7 +603,7 @@ const loadMyReviews = async () => {
       loadMyPricing();
     }
     if (activeTab === 'contacts' && user?.role === 'provider') {
-      loadContactClicks();
+      loadContactClicks(contactPeriod, contactPage);
     }
  }, [activeTab, user, activeService]);
 
@@ -2177,63 +2181,82 @@ const galleryImages = (() => {
 
           {activeTab === 'contacts' && user?.role === 'provider' && (
             <div className="contacts-tab-section">
+              {/* Bloc mensuel — toujours le mois en cours */}
+              <div className="contacts-monthly-card">
+                <h3 className="contacts-monthly-title">{t('dashboard.contacts.monthTitle')}</h3>
+                <div className="contacts-monthly-rows">
+                  <div className="contacts-monthly-row">
+                    <span className="contacts-monthly-emoji">📞</span>
+                    <span className="contacts-monthly-label">{t('dashboard.contacts.totalCalls')}</span>
+                    <span className="contacts-monthly-num contacts-num-call">{contactMonthly.call}</span>
+                  </div>
+                  <div className="contacts-monthly-row">
+                    <span className="contacts-monthly-emoji">💬</span>
+                    <span className="contacts-monthly-label">{t('dashboard.contacts.totalWhatsapp')}</span>
+                    <span className="contacts-monthly-num contacts-num-wa">{contactMonthly.whatsapp}</span>
+                  </div>
+                  <div className="contacts-monthly-divider" />
+                  <div className="contacts-monthly-row contacts-monthly-total">
+                    <span className="contacts-monthly-emoji">✨</span>
+                    <span className="contacts-monthly-label">{t('dashboard.contacts.total')}</span>
+                    <span className="contacts-monthly-num">{contactMonthly.total}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Filtres période */}
+              <div className="contacts-filters">
+                {['today','week','month','year','all'].map(p => (
+                  <button
+                    key={p}
+                    className={`contacts-filter-btn ${contactPeriod === p ? 'active' : ''}`}
+                    onClick={() => { setContactPeriod(p); setContactPage(1); loadContactClicks(p, 1); }}
+                  >
+                    {t(`dashboard.contacts.period.${p}`)}
+                  </button>
+                ))}
+              </div>
+
+              {/* Historique */}
               {contactsLoading ? (
                 <div className="reviews-loading">
                   <div className="loading-spinner"></div>
                   <p>{t('dashboard.contacts.loading')}</p>
                 </div>
+              ) : contactClicks.length === 0 ? (
+                <div className="empty-state">
+                  <Phone size={48} />
+                  <h4>{t('dashboard.contacts.noContacts')}</h4>
+                  <p>{t('dashboard.contacts.noContactsDesc')}</p>
+                </div>
               ) : (
                 <>
-                  {/* Bloc mensuel */}
-                  <div className="contacts-monthly-card">
-                    <h3 className="contacts-monthly-title">{t('dashboard.contacts.monthTitle')}</h3>
-                    <div className="contacts-monthly-rows">
-                      <div className="contacts-monthly-row">
-                        <span className="contacts-monthly-emoji">📞</span>
-                        <span className="contacts-monthly-label">{t('dashboard.contacts.totalCalls')}</span>
-                        <span className="contacts-monthly-num contacts-num-call">{contactMonthly.call}</span>
-                      </div>
-                      <div className="contacts-monthly-row">
-                        <span className="contacts-monthly-emoji">💬</span>
-                        <span className="contacts-monthly-label">{t('dashboard.contacts.totalWhatsapp')}</span>
-                        <span className="contacts-monthly-num contacts-num-wa">{contactMonthly.whatsapp}</span>
-                      </div>
-                      <div className="contacts-monthly-divider" />
-                      <div className="contacts-monthly-row contacts-monthly-total">
-                        <span className="contacts-monthly-emoji">✨</span>
-                        <span className="contacts-monthly-label">{t('dashboard.contacts.total')}</span>
-                        <span className="contacts-monthly-num">{contactMonthly.total}</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Historique */}
-                  <h4 className="contacts-history-title">{t('dashboard.contacts.historyTitle')}</h4>
-                  {contactClicks.length === 0 ? (
-                    <div className="empty-state">
-                      <Phone size={48} />
-                      <h4>{t('dashboard.contacts.noContacts')}</h4>
-                      <p>{t('dashboard.contacts.noContactsDesc')}</p>
-                    </div>
-                  ) : (
-                    <div className="contacts-list">
-                      {contactClicks.map((click) => {
-                        const date = new Date(click.clicked_at);
-                        const isCall = click.click_type === 'call';
-                        const dateStr = date.toLocaleDateString('he-IL', { day: '2-digit', month: '2-digit', year: 'numeric' });
-                        const timeStr = date.toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' });
-                        return (
-                          <div key={click.id} className={`contact-click-item ${isCall ? 'contact-call' : 'contact-whatsapp'}`}>
-                            <span className="contact-click-emoji">{isCall ? '📞' : '💬'}</span>
-                            <div className="contact-click-details">
-                              <span className="contact-click-type">
-                                {isCall ? t('dashboard.contacts.clickCall') : t('dashboard.contacts.clickWhatsapp')}
-                              </span>
-                              <span className="contact-click-time">{dateStr} • {timeStr}</span>
-                            </div>
+                  <div className="contacts-list">
+                    {contactClicks.map((click) => {
+                      const date = new Date(click.clicked_at);
+                      const isCall = click.click_type === 'call';
+                      const dateStr = date.toLocaleDateString('he-IL', { day: '2-digit', month: '2-digit', year: 'numeric' });
+                      const timeStr = date.toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' });
+                      return (
+                        <div key={click.id} className={`contact-click-item ${isCall ? 'contact-call' : 'contact-whatsapp'}`}>
+                          <span className="contact-click-emoji">{isCall ? '📞' : '💬'}</span>
+                          <div className="contact-click-details">
+                            <span className="contact-click-type">
+                              {isCall ? t('dashboard.contacts.clickCall') : t('dashboard.contacts.clickWhatsapp')}
+                            </span>
+                            <span className="contact-click-time">{dateStr} • {timeStr}</span>
                           </div>
-                        );
-                      })}
+                        </div>
+                      );
+                    })}
+                  </div>
+                  {contactPagination.totalPages > 1 && (
+                    <div className="contacts-pagination">
+                      <button className="contacts-page-btn" disabled={contactPage <= 1}
+                        onClick={() => { const p = contactPage - 1; setContactPage(p); loadContactClicks(contactPeriod, p); }}>‹</button>
+                      <span className="contacts-page-info">{contactPage} / {contactPagination.totalPages}</span>
+                      <button className="contacts-page-btn" disabled={contactPage >= contactPagination.totalPages}
+                        onClick={() => { const p = contactPage + 1; setContactPage(p); loadContactClicks(contactPeriod, p); }}>›</button>
                     </div>
                   )}
                 </>

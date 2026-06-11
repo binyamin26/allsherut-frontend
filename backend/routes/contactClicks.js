@@ -24,6 +24,7 @@ router.post('/', async (req, res) => {
       'INSERT INTO contact_clicks (provider_id, click_type) VALUES (?, ?)',
       [provider_id, click_type]
     );
+    console.log(`📞 contact-click: provider=${provider_id} type=${click_type}`);
     res.json({ success: true });
   } catch (error) {
     console.error('❌ contact-clicks POST:', error.message);
@@ -31,8 +32,8 @@ router.post('/', async (req, res) => {
   }
 });
 
-// GET /api/contact-clicks/my-clicks — provider only
-// Returns: monthly totals (call/whatsapp) + last 20 clicks
+// GET /api/contact-clicks/my-clicks?period=month&page=1&limit=20
+// period: today | week | month | year | all  (default: month)
 router.get('/my-clicks', authenticateToken, async (req, res) => {
   try {
     const spRows = await query(
@@ -40,12 +41,16 @@ router.get('/my-clicks', authenticateToken, async (req, res) => {
       [req.user.userId]
     );
     if (!spRows.length) {
-      return res.json({ success: true, clicks: [], monthly: { call: 0, whatsapp: 0, total: 0 } });
+      return res.json({ success: true, clicks: [], monthly: { call: 0, whatsapp: 0, total: 0 }, pagination: { page: 1, totalPages: 1, total: 0 } });
     }
 
     const providerId = spRows[0].id;
+    const period = req.query.period || 'month';
+    const page = Math.max(1, parseInt(req.query.page) || 1);
+    const limit = 20;
+    const offset = (page - 1) * limit;
 
-    // Monthly totals (current calendar month)
+    // Monthly totals (always current calendar month)
     const monthlyRows = await query(
       `SELECT click_type, COUNT(*) as cnt
        FROM contact_clicks
@@ -59,20 +64,37 @@ router.get('/my-clicks', authenticateToken, async (req, res) => {
     monthlyRows.forEach(r => { monthly[r.click_type] = Number(r.cnt); });
     monthly.total = monthly.call + monthly.whatsapp;
 
-    // Last 20 clicks (history)
+    // Period WHERE clause
+    const periodWhere = {
+      today: `AND DATE(clicked_at) = CURDATE()`,
+      week:  `AND clicked_at >= NOW() - INTERVAL 7 DAY`,
+      month: `AND YEAR(clicked_at) = YEAR(NOW()) AND MONTH(clicked_at) = MONTH(NOW())`,
+      year:  `AND YEAR(clicked_at) = YEAR(NOW())`,
+      all:   ``
+    }[period] || `AND YEAR(clicked_at) = YEAR(NOW()) AND MONTH(clicked_at) = MONTH(NOW())`;
+
+    // Count for pagination
+    const countRows = await query(
+      `SELECT COUNT(*) as total FROM contact_clicks WHERE provider_id = ? ${periodWhere}`,
+      [providerId]
+    );
+    const total = Number(countRows[0].total);
+    const totalPages = Math.max(1, Math.ceil(total / limit));
+
+    // Paginated clicks
     const clicks = await query(
       `SELECT id, click_type, clicked_at
        FROM contact_clicks
-       WHERE provider_id = ?
+       WHERE provider_id = ? ${periodWhere}
        ORDER BY clicked_at DESC
-       LIMIT 20`,
-      [providerId]
+       LIMIT ? OFFSET ?`,
+      [providerId, limit, offset]
     );
 
-    res.json({ success: true, clicks, monthly });
+    res.json({ success: true, clicks, monthly, pagination: { page, totalPages, total, limit } });
   } catch (error) {
     console.error('❌ contact-clicks GET:', error.message);
-    res.status(500).json({ success: false, clicks: [], monthly: { call: 0, whatsapp: 0, total: 0 } });
+    res.status(500).json({ success: false, clicks: [], monthly: { call: 0, whatsapp: 0, total: 0 }, pagination: { page: 1, totalPages: 1, total: 0 } });
   }
 });
 

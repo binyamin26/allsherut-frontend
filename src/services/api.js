@@ -194,8 +194,8 @@ class ApiService {
     });
   }
 
-  async getMyContactClicks() {
-    return this.request('/contact-clicks/my-clicks');
+  async getMyContactClicks(period = 'month', page = 1) {
+    return this.request(`/contact-clicks/my-clicks?period=${period}&page=${page}`);
   }
 
   async testConnection() {
