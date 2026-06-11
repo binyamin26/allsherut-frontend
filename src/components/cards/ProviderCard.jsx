@@ -51,6 +51,9 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
   // Expérience
   const experience = provider.experience_years || provider.experience || 0;
 
+  // Types de travail (depuis service_details)
+  const workTypes = provider.service_details?.work_types || [];
+
   const reviewsCount = provider.reviewsCount || provider.reviews_count || 0;
 
   const formatRating = (rating) => {
@@ -120,6 +123,13 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
         </div>
       </div>
     </div>
+
+    {workTypes.length > 0 && (
+      <div className="card-work-types" dir="rtl">
+        <span>🔧 </span>
+        <span>{workTypes.join(', ')}</span>
+      </div>
+    )}
 
     <div className="card-footer">
       <div className="action-buttons" dir={isRTL ? 'rtl' : 'ltr'}>

@@ -371,6 +371,13 @@
   color: var(--neutral-600);
 }
 
+.card-work-types {
+  padding: var(--space-1) var(--space-4) var(--space-2);
+  font-size: var(--text-xs);
+  color: var(--neutral-600);
+  line-height: 1.4;
+}
+
 .card-footer {
   padding: var(--space-3) var(--space-4) var(--space-4);
   background: white;
