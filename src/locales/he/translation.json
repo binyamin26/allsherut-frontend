@@ -2673,5 +2673,6 @@
   "filters.mechanic.engineRepairs": "תיקוני מנוע",
   "filters.mechanic.radiatorCooling": "רדיאטור וקירור",
 
-  "serviceFields.mechanic.work_types": "סוגי עבודה"
+  "serviceFields.mechanic.work_types": "סוגי עבודה",
+  "serviceFields.mechanic.experience": "שנות ניסיון"
 }

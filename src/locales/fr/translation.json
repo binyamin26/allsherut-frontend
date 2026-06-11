@@ -2666,5 +2666,6 @@
   "filters.mechanic.engineRepairs": "Réparations moteur",
   "filters.mechanic.radiatorCooling": "Radiateur & Refroidissement",
 
-  "serviceFields.mechanic.work_types": "Types de travaux"
+  "serviceFields.mechanic.work_types": "Types de travaux",
+  "serviceFields.mechanic.experience": "Années d'expérience"
 }

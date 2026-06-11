@@ -2667,5 +2667,6 @@
   "filters.mechanic.engineRepairs": "Engine Repairs",
   "filters.mechanic.radiatorCooling": "Radiator & Cooling",
 
-  "serviceFields.mechanic.work_types": "Work types"
+  "serviceFields.mechanic.work_types": "Work types",
+  "serviceFields.mechanic.experience": "Years of experience"
 }

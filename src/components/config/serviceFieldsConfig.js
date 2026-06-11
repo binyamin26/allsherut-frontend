@@ -1439,6 +1439,35 @@ const serviceFieldsConfig = {
         options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
       }
     ]
+  },
+
+  mechanic: {
+    fields: [
+      { name: 'experience', label: 'serviceFields.mechanic.experience', type: 'number' },
+      {
+        name: 'work_types',
+        label: 'serviceFields.mechanic.work_types',
+        type: 'checkbox',
+        options: [
+          { value: 'מכונאות רכב',    labelKey: 'serviceForm.mechanic.carMechanics' },
+          { value: 'הכנה לטסט',      labelKey: 'serviceForm.mechanic.testPrep' },
+          { value: 'טיפולים שוטפים', labelKey: 'serviceForm.mechanic.routineMaintenance' },
+          { value: 'בדיקות מחשב',    labelKey: 'serviceForm.mechanic.computerDiagnostics' },
+          { value: 'מצברים',          labelKey: 'serviceForm.mechanic.batteries' },
+          { value: 'מיזוג אוויר',    labelKey: 'serviceForm.mechanic.airConditioning' },
+          { value: 'אלטרנטור',        labelKey: 'serviceForm.mechanic.alternator' },
+          { value: 'תיקוני מנוע',    labelKey: 'serviceForm.mechanic.engineRepairs' },
+          { value: 'רדיאטור וקירור',  labelKey: 'serviceForm.mechanic.radiatorCooling' },
+          { value: 'לקיחת רכב לטסט', labelKey: 'serviceForm.mechanic.vehicleInspection' }
+        ]
+      },
+      {
+        name: 'languages',
+        label: 'serviceFields.eldercare.languages',
+        type: 'checkbox',
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+      }
+    ]
   }
 };
 
