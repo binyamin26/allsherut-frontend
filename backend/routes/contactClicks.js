@@ -32,33 +32,47 @@ router.post('/', async (req, res) => {
 });
 
 // GET /api/contact-clicks/my-clicks — provider only
+// Returns: monthly totals (call/whatsapp) + last 20 clicks
 router.get('/my-clicks', authenticateToken, async (req, res) => {
   try {
     const spRows = await query(
       'SELECT id FROM service_providers WHERE user_id = ? LIMIT 1',
       [req.user.userId]
     );
-    if (!spRows.length) return res.json({ success: true, clicks: [], totals: { call: 0, whatsapp: 0 } });
+    if (!spRows.length) {
+      return res.json({ success: true, clicks: [], monthly: { call: 0, whatsapp: 0, total: 0 } });
+    }
 
     const providerId = spRows[0].id;
+
+    // Monthly totals (current calendar month)
+    const monthlyRows = await query(
+      `SELECT click_type, COUNT(*) as cnt
+       FROM contact_clicks
+       WHERE provider_id = ?
+         AND YEAR(clicked_at) = YEAR(NOW())
+         AND MONTH(clicked_at) = MONTH(NOW())
+       GROUP BY click_type`,
+      [providerId]
+    );
+    const monthly = { call: 0, whatsapp: 0, total: 0 };
+    monthlyRows.forEach(r => { monthly[r.click_type] = Number(r.cnt); });
+    monthly.total = monthly.call + monthly.whatsapp;
+
+    // Last 20 clicks (history)
     const clicks = await query(
       `SELECT id, click_type, clicked_at
        FROM contact_clicks
        WHERE provider_id = ?
        ORDER BY clicked_at DESC
-       LIMIT 200`,
+       LIMIT 20`,
       [providerId]
     );
 
-    const totals = clicks.reduce(
-      (acc, c) => { acc[c.click_type] = (acc[c.click_type] || 0) + 1; return acc; },
-      { call: 0, whatsapp: 0 }
-    );
-
-    res.json({ success: true, clicks, totals });
+    res.json({ success: true, clicks, monthly });
   } catch (error) {
     console.error('❌ contact-clicks GET:', error.message);
-    res.status(500).json({ success: false, clicks: [], totals: { call: 0, whatsapp: 0 } });
+    res.status(500).json({ success: false, clicks: [], monthly: { call: 0, whatsapp: 0, total: 0 } });
   }
 });
 

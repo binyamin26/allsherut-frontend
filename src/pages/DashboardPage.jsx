@@ -158,7 +158,7 @@ const userData = useMemo(() => {
   const [reviewsLoading, setReviewsLoading] = useState(false);
 
   const [contactClicks, setContactClicks] = useState([]);
-  const [contactTotals, setContactTotals] = useState({ call: 0, whatsapp: 0 });
+  const [contactMonthly, setContactMonthly] = useState({ call: 0, whatsapp: 0, total: 0 });
   const [contactsLoading, setContactsLoading] = useState(false);
 
   const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
@@ -394,7 +394,7 @@ const loadMyReviews = async () => {
       const result = await apiService.getMyContactClicks();
       if (result.success) {
         setContactClicks(result.clicks || []);
-        setContactTotals(result.totals || { call: 0, whatsapp: 0 });
+        setContactMonthly(result.monthly || { call: 0, whatsapp: 0, total: 0 });
       }
     } catch (e) {
       console.error('Erreur contacts:', e);
@@ -2177,11 +2177,6 @@ const galleryImages = (() => {
 
           {activeTab === 'contacts' && user?.role === 'provider' && (
             <div className="contacts-tab-section">
-              <div className="contacts-header">
-                <h3 className="section-subtitle">{t('dashboard.contacts.title')}</h3>
-                <p className="section-description">{t('dashboard.contacts.description')}</p>
-              </div>
-
               {contactsLoading ? (
                 <div className="reviews-loading">
                   <div className="loading-spinner"></div>
@@ -2189,23 +2184,31 @@ const galleryImages = (() => {
                 </div>
               ) : (
                 <>
-                  <div className="contacts-stats-row">
-                    <div className="contacts-stat-card contacts-stat-call">
-                      <div className="contacts-stat-icon"><Phone size={28} /></div>
-                      <div className="contacts-stat-info">
-                        <span className="contacts-stat-count">{contactTotals.call}</span>
-                        <span className="contacts-stat-label">{t('dashboard.contacts.totalCalls')}</span>
+                  {/* Bloc mensuel */}
+                  <div className="contacts-monthly-card">
+                    <h3 className="contacts-monthly-title">{t('dashboard.contacts.monthTitle')}</h3>
+                    <div className="contacts-monthly-rows">
+                      <div className="contacts-monthly-row">
+                        <span className="contacts-monthly-emoji">📞</span>
+                        <span className="contacts-monthly-label">{t('dashboard.contacts.totalCalls')}</span>
+                        <span className="contacts-monthly-num contacts-num-call">{contactMonthly.call}</span>
                       </div>
-                    </div>
-                    <div className="contacts-stat-card contacts-stat-whatsapp">
-                      <div className="contacts-stat-icon"><MessageCircle size={28} /></div>
-                      <div className="contacts-stat-info">
-                        <span className="contacts-stat-count">{contactTotals.whatsapp}</span>
-                        <span className="contacts-stat-label">{t('dashboard.contacts.totalWhatsapp')}</span>
+                      <div className="contacts-monthly-row">
+                        <span className="contacts-monthly-emoji">💬</span>
+                        <span className="contacts-monthly-label">{t('dashboard.contacts.totalWhatsapp')}</span>
+                        <span className="contacts-monthly-num contacts-num-wa">{contactMonthly.whatsapp}</span>
+                      </div>
+                      <div className="contacts-monthly-divider" />
+                      <div className="contacts-monthly-row contacts-monthly-total">
+                        <span className="contacts-monthly-emoji">✨</span>
+                        <span className="contacts-monthly-label">{t('dashboard.contacts.total')}</span>
+                        <span className="contacts-monthly-num">{contactMonthly.total}</span>
                       </div>
                     </div>
                   </div>
 
+                  {/* Historique */}
+                  <h4 className="contacts-history-title">{t('dashboard.contacts.historyTitle')}</h4>
                   {contactClicks.length === 0 ? (
                     <div className="empty-state">
                       <Phone size={48} />
@@ -2217,19 +2220,16 @@ const galleryImages = (() => {
                       {contactClicks.map((click) => {
                         const date = new Date(click.clicked_at);
                         const isCall = click.click_type === 'call';
+                        const dateStr = date.toLocaleDateString('he-IL', { day: '2-digit', month: '2-digit', year: 'numeric' });
+                        const timeStr = date.toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' });
                         return (
                           <div key={click.id} className={`contact-click-item ${isCall ? 'contact-call' : 'contact-whatsapp'}`}>
-                            <div className={`contact-click-icon ${isCall ? 'icon-call' : 'icon-whatsapp'}`}>
-                              {isCall ? <Phone size={18} /> : <MessageCircle size={18} />}
-                            </div>
+                            <span className="contact-click-emoji">{isCall ? '📞' : '💬'}</span>
                             <div className="contact-click-details">
                               <span className="contact-click-type">
                                 {isCall ? t('dashboard.contacts.clickCall') : t('dashboard.contacts.clickWhatsapp')}
                               </span>
-                              <span className="contact-click-time">
-                                <Clock size={13} />
-                                {date.toLocaleDateString('he-IL')} — {date.toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' })}
-                              </span>
+                              <span className="contact-click-time">{dateStr} • {timeStr}</span>
                             </div>
                           </div>
                         );
