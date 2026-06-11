@@ -24,8 +24,10 @@ router.post('/', async (req, res) => {
       'INSERT INTO contact_clicks (provider_id, click_type) VALUES (?, ?)',
       [provider_id, click_type]
     );
-    console.log(`📞 contact-click: provider=${provider_id} type=${click_type}`);
-    res.json({ success: true });
+    const lastId = await query('SELECT LAST_INSERT_ID() as newId');
+    const newId = lastId[0]?.newId;
+    console.log(`📞 contact-click: provider=${provider_id} type=${click_type} newId=${newId}`);
+    res.json({ success: true, newId, insertedProviderId: provider_id });
   } catch (error) {
     console.error('❌ contact-clicks POST:', error.message);
     res.status(500).json({ success: false });
@@ -95,7 +97,7 @@ router.get('/my-clicks', authenticateToken, async (req, res) => {
       [providerId, limit, offset]
     );
 
-    res.json({ success: true, clicks, monthly, pagination: { page, totalPages, total, limit } });
+    res.json({ success: true, clicks, monthly, pagination: { page, totalPages, total, limit }, _debug: { queryProviderId: providerId, clickCount: clicks.length } });
   } catch (error) {
     console.error('❌ contact-clicks GET:', error.message);
     res.status(500).json({ success: false, clicks: [], monthly: { call: 0, whatsapp: 0, total: 0 }, pagination: { page: 1, totalPages: 1, total: 0 } });
