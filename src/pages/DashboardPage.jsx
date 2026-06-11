@@ -391,10 +391,15 @@ const loadMyReviews = async () => {
   };
 
   const loadContactClicks = async (period, page) => {
-    if (user?.role !== 'provider') return;
+    console.log('📊 loadContactClicks called — role:', user?.role, 'userId:', user?.id || user?.userId, 'period:', period);
+    if (user?.role !== 'provider') {
+      console.warn('📊 loadContactClicks: role is not provider, skipping. role=', user?.role);
+      return;
+    }
     setContactsLoading(true);
     try {
       const result = await apiCall(`/contact-clicks/my-clicks?period=${period}&page=${page}`, 'GET');
+      console.log('📊 my-clicks API response:', JSON.stringify(result));
       if (result.success) {
         setContactClicks(result.clicks || []);
         setContactMonthly(result.monthly || { call: 0, whatsapp: 0, total: 0 });
