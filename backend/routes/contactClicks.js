@@ -157,26 +157,27 @@ router.get('/claim/:providerId', authenticateToken, async (req, res) => {
     if (!provider_id) return res.status(400).json({ success: false, message: 'provider_id invalide' });
 
     // Get target provider
-    const rows = await query('SELECT id, user_id, phone FROM service_providers WHERE id = ?', [provider_id]);
+    const rows = await query('SELECT id, user_id FROM service_providers WHERE id = ?', [provider_id]);
     if (!rows.length) return res.status(404).json({ success: false, message: 'Provider introuvable' });
-    const { user_id: currentOwner, phone: targetPhone } = rows[0];
+    const { user_id: currentOwner } = rows[0];
 
     // Already mine
     if (Number(currentOwner) === Number(req.user.userId)) {
       return res.json({ success: true, message: `Provider ${provider_id} déjà lié à ton compte` });
     }
 
-    // Check if owner's account still exists
-    const userCheck = currentOwner ? await query('SELECT id FROM users WHERE id = ?', [currentOwner]) : [];
+    // Check if owner's account still exists + get their phone
+    const userCheck = currentOwner ? await query('SELECT id, phone FROM users WHERE id = ?', [currentOwner]) : [];
     const isOrphaned = userCheck.length === 0;
+    const targetPhone = userCheck[0]?.phone;
 
-    // Check same phone
-    const myProviders = await query('SELECT phone FROM service_providers WHERE user_id = ?', [req.user.userId]);
-    const myPhones = myProviders.map(r => (r.phone || '').replace(/\s/g, ''));
-    const normalizedTarget = (targetPhone || '').replace(/\s/g, '');
-    const samePhone = normalizedTarget && myPhones.includes(normalizedTarget);
+    // Check same phone via users table
+    const myUserRows = await query('SELECT phone FROM users WHERE id = ?', [req.user.userId]);
+    const myPhone = myUserRows[0]?.phone;
+    const normalize = p => (p || '').replace(/\s/g, '');
+    const samePhone = normalize(targetPhone) && normalize(myPhone) && normalize(targetPhone) === normalize(myPhone);
 
-    console.log(`🔗 claim debug: provider=${provider_id} currentOwner=${currentOwner} isOrphaned=${isOrphaned} targetPhone=${targetPhone} myPhones=${JSON.stringify(myPhones)} samePhone=${samePhone}`);
+    console.log(`🔗 claim debug: provider=${provider_id} currentOwner=${currentOwner} isOrphaned=${isOrphaned} targetPhone=${targetPhone} myPhone=${myPhone} samePhone=${samePhone}`);
 
     if (!isOrphaned && !samePhone) {
       return res.status(403).json({ success: false, message: `Bloqué: compte actif userId=${currentOwner}, téléphone provider=${targetPhone}, mes téléphones=${JSON.stringify(myPhones)}` });
