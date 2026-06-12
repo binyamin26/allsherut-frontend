@@ -2188,14 +2188,6 @@ const galleryImages = (() => {
             <div className="contacts-tab-section">
               <div style={{display:'flex',justifyContent:'flex-end',gap:'8px',marginBottom:'8px'}}>
                 <button onClick={() => loadContactClicks(contactPeriod, contactPage)} style={{background:'none',border:'1px solid #e2e8f0',borderRadius:'8px',padding:'6px 14px',cursor:'pointer',fontSize:'13px',color:'#64748b'}}>🔄 {t('common.refresh') || 'רענן'}</button>
-                {!contactClicks.some(c => true) || true ? null : null}
-                <button onClick={async () => {
-                  const token = localStorage.getItem('homesherut_token');
-                  const r = await fetch('https://homesherut-backend.fly.dev/api/contact-clicks/claim/213', {headers:{Authorization:'Bearer '+token}});
-                  const d = await r.json();
-                  alert(d.message || JSON.stringify(d));
-                  loadContactClicks(contactPeriod, contactPage);
-                }} style={{background:'#fef3c7',border:'1px solid #f59e0b',borderRadius:'8px',padding:'6px 14px',cursor:'pointer',fontSize:'13px',color:'#92400e'}}>🔗 Lier ma fiche</button>
               </div>
               {/* Bloc mensuel — toujours le mois en cours */}
               <div className="contacts-monthly-card">
