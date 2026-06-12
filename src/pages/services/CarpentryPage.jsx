@@ -115,7 +115,7 @@ const CarpentryPage = () => {
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo menuisier.png"
+                src="/images/logo menuisier.jpg"
                 alt="Menuiserie"
               />
             </div>

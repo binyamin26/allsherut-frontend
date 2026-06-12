@@ -122,7 +122,7 @@ const PropertyManagementPage = () => {
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo nihoul dirot.png"
+                src="/images/logo nihoul dirot.jpg"
                 alt="Gestion Immobiliֳ¨re"
               />
             </div>

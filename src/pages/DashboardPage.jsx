@@ -85,13 +85,13 @@ const serviceImages = {
   sports_activities: '/images/logo sport.jpg',
   eldercare: '/images/logo kachich.png',
   laundry: '/images/logo kvissa.png',
-  property_management: '/images/logo nihoul dirot.png',
+  property_management: '/images/logo nihoul dirot.jpg',
   electrician: '/images/logo electricien.jpg',
   plumbing: '/images/logo plomberie.jpg',
   air_conditioning: '/images/logo clim.jpg',
   gas_technician: '/images/logo gaz.jpg',
   drywall: '/images/logo placo.jpg',
-  carpentry: '/images/logo menuisier.png',
+  carpentry: '/images/logo menuisier.jpg',
   home_organization: '/images/logo rangement.jpg',
   event_entertainment: '/images/logo event.png',
   dj: '/images/logo DJ.jpg',
@@ -2186,9 +2186,6 @@ const galleryImages = (() => {
 
           {activeTab === 'contacts' && user?.role === 'provider' && (
             <div className="contacts-tab-section">
-              <div style={{display:'flex',justifyContent:'flex-end',gap:'8px',marginBottom:'8px'}}>
-                <button onClick={() => loadContactClicks(contactPeriod, contactPage)} style={{background:'none',border:'1px solid #e2e8f0',borderRadius:'8px',padding:'6px 14px',cursor:'pointer',fontSize:'13px',color:'#64748b'}}>🔄 {t('common.refresh') || 'רענן'}</button>
-              </div>
               {/* Bloc mensuel — toujours le mois en cours */}
               <div className="contacts-monthly-card">
                 <h3 className="contacts-monthly-title">{t('dashboard.contacts.monthTitle')}</h3>
