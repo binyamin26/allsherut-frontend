@@ -1700,7 +1700,11 @@
    ==================================== */
 @media (max-width: 640px) {
   .modal-content.auth-modal {
-    border-radius: 28px 28px 0 0 !important;
+    border-radius: 24px !important;
+    height: auto !important;
+    max-height: 90dvh !important;
+    width: calc(100% - 2rem) !important;
+    margin: auto 1rem !important;
   }
 }
 
