@@ -551,6 +551,7 @@
     width: 100%;
     right: 0;
     left: 0;
+    height: 100dvh;
     animation: slideUp 0.3s ease;
   }
   
@@ -571,7 +572,9 @@
   
   .filter-sidebar-footer {
     padding: 1rem 1.5rem;
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom));
     flex-direction: column;
+    flex-shrink: 0;
   }
   
   .price-display {
