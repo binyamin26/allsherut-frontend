@@ -1157,10 +1157,6 @@ text-align: start;
     padding: var(--space-8) 0;
   }
   
-  .provider-name {
-    font-size: var(--text-3xl);
-  }
-  
   .provider-rating-location {
     flex-direction: column;
     align-items: start;
@@ -1243,7 +1239,8 @@ text-align: start;
   }
 
   .provider-name {
-    font-size: var(--text-xl) !important;
+    font-size: var(--text-lg) !important;
+    font-weight: 600 !important;
   }
 }
 
