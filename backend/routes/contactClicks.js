@@ -180,7 +180,7 @@ router.get('/claim/:providerId', authenticateToken, async (req, res) => {
     console.log(`🔗 claim debug: provider=${provider_id} currentOwner=${currentOwner} isOrphaned=${isOrphaned} targetPhone=${targetPhone} myPhone=${myPhone} samePhone=${samePhone}`);
 
     if (!isOrphaned && !samePhone) {
-      return res.status(403).json({ success: false, message: `Bloqué: compte actif userId=${currentOwner}, téléphone provider=${targetPhone}, mes téléphones=${JSON.stringify(myPhones)}` });
+      return res.status(403).json({ success: false, message: `Bloqué: compte actif userId=${currentOwner}, téléphone de ce compte=${targetPhone}, ton téléphone=${myPhone}` });
     }
 
     await query('UPDATE service_providers SET user_id = ? WHERE id = ?', [req.user.userId, provider_id]);
