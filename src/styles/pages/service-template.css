@@ -461,13 +461,13 @@
 .contact-provider-btn {
   background: white;
   color: var(--primary-600);
-  border: 1.5px solid var(--primary-300);
+  border: 1.5px solid var(--primary-300) !important;
   box-shadow: none;
 }
 
 .contact-provider-btn:hover {
-  background: #f0f6ff;
-  border-color: var(--primary-400);
+  background: linear-gradient(135deg, #ffffff 0%, #dbeafe 100%);
+  border-color: var(--primary-400) !important;
   box-shadow: var(--shadow-sm);
 }
 
