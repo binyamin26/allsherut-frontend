@@ -1030,16 +1030,8 @@ const handleCancelImageSelection = () => {
 };
 
 const handleDeleteImage = async () => {
-  console.log('🔴 1. FONCTION handleDeleteImage APPELÉE');
-  
-  if (!window.confirm('האם אתה בטוח שברצונך להסיר את התמונה?')) {
-    console.log('🔴 2. Utilisateur a annulé');
-    return;
-  }
-  
-  console.log('🔴 3. Utilisateur a confirmé, début suppression');
-  console.log('🔴 4. activeService:', activeService);
-  console.log('🔴 5. userData?.serviceType:', userData?.serviceType);
+  console.log('🔴 activeService:', activeService);
+  console.log('🔴 userData?.serviceType:', userData?.serviceType);
   
   setUploadingImage(true);
   
