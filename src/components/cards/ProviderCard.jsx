@@ -5,12 +5,12 @@ import { useLanguage } from '../../context/LanguageContext';
 import apiService from '../../services/api';
 
 const AVATAR_GRADIENTS = [
-  'linear-gradient(145deg, #2563EB 0%, #1d4ed8 100%)',
-  'linear-gradient(145deg, #10B981 0%, #059669 100%)',
-  'linear-gradient(145deg, #F97316 0%, #ea6c0c 100%)',
-  'linear-gradient(145deg, #8B5CF6 0%, #7c3aed 100%)',
-  'linear-gradient(145deg, #EC4899 0%, #db2777 100%)',
-  'linear-gradient(145deg, #06B6D4 0%, #0891b2 100%)',
+  'linear-gradient(145deg, #2563EB 0%, #1E3A8A 100%)',
+  'linear-gradient(145deg, #0D9488 0%, #0F766E 100%)',
+  'linear-gradient(145deg, #EA580C 0%, #C2410C 100%)',
+  'linear-gradient(145deg, #7C3AED 0%, #5B21B6 100%)',
+  'linear-gradient(145deg, #BE185D 0%, #9D174D 100%)',
+  'linear-gradient(145deg, #0369A1 0%, #075985 100%)',
 ];
 
 const getAvatarGradient = (name) => {
