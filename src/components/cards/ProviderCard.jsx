@@ -4,6 +4,33 @@ import { Phone, Eye } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import apiService from '../../services/api';
 
+const AVATAR_GRADIENTS = [
+  'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+  'linear-gradient(135deg, #f5576c 0%, #c23866 100%)',
+  'linear-gradient(135deg, #4facfe 0%, #0066cc 100%)',
+  'linear-gradient(135deg, #43e97b 0%, #1a9e5e 100%)',
+  'linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%)',
+  'linear-gradient(135deg, #f97316 0%, #c2410c 100%)',
+  'linear-gradient(135deg, #06b6d4 0%, #0369a1 100%)',
+  'linear-gradient(135deg, #10b981 0%, #065f46 100%)',
+  'linear-gradient(135deg, #f59e0b 0%, #b45309 100%)',
+  'linear-gradient(135deg, #ec4899 0%, #be185d 100%)',
+];
+
+const getAvatarGradient = (name) => {
+  if (!name) return AVATAR_GRADIENTS[0];
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) {
+    hash = name.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  return AVATAR_GRADIENTS[Math.abs(hash) % AVATAR_GRADIENTS.length];
+};
+
+const getInitial = (name) => {
+  if (!name) return '?';
+  return name.trim()[0] || '?';
+};
+
 const ProviderCard = ({ provider, onOpenReviewModal }) => {
   console.log('🔍 ProviderCard:', {
     id: provider.id,
@@ -86,19 +113,21 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
     <div className="card-vertical-body">
       <div className="card-avatar">
         {imageUrl ? (
-          <img src={imageUrl} alt={provider.name || provider.full_name} className="provider-avatar-img"
-            onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
+          <img
+            src={imageUrl}
+            alt={provider.name || provider.full_name}
+            className="provider-avatar-img"
+            onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }}
+          />
         ) : null}
-        <div style={{
-          display: imageUrl ? 'none' : 'flex',
-          width: '120px', height: '120px', borderRadius: '50%',
-          background: '#d1dbe8',
-          alignItems: 'center', justifyContent: 'center',
-        }}>
-          <svg width="80" height="80" viewBox="0 0 100 100" fill="none">
-            <circle cx="50" cy="38" r="22" fill="#8a9ab5"/>
-            <ellipse cx="50" cy="88" rx="38" ry="30" fill="#8a9ab5"/>
-          </svg>
+        <div
+          className="provider-avatar-initials"
+          style={{
+            display: imageUrl ? 'none' : 'flex',
+            background: getAvatarGradient(provider.name || provider.full_name),
+          }}
+        >
+          {getInitial(provider.name || provider.full_name)}
         </div>
       </div>
 
