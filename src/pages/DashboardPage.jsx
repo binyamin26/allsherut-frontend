@@ -1564,7 +1564,32 @@ const galleryImages = (() => {
             alt={userData.firstName}
           />
         ) : (
-          <User size={60} />
+          <>
+            <div className="avatar-empty-state">
+              <svg className="avatar-silhouette-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="dashAvatarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#a0aec0"/>
+                    <stop offset="100%" stopColor="#718096"/>
+                  </linearGradient>
+                  <clipPath id="dashAvatarClip">
+                    <circle cx="50" cy="50" r="50"/>
+                  </clipPath>
+                </defs>
+                <g clipPath="url(#dashAvatarClip)">
+                  <circle cx="50" cy="37" r="19" fill="url(#dashAvatarGrad)"/>
+                  <ellipse cx="50" cy="88" rx="34" ry="28" fill="url(#dashAvatarGrad)"/>
+                </g>
+              </svg>
+              <div className="avatar-upload-hint">
+                <Camera size={22} />
+                <span>הוסף תמונה</span>
+              </div>
+            </div>
+            <div className="avatar-camera-badge">
+              <Camera size={14} />
+            </div>
+          </>
         )}
 
         <div className="avatar-actions">
