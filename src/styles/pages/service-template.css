@@ -469,7 +469,6 @@
 .contact-provider-btn:hover {
   background: linear-gradient(135deg, var(--primary-500) 0%, var(--accent-400) 100%) !important;
   color: white !important;
-  transform: translateY(-3px);
   box-shadow: var(--shadow-primary-hover);
 }
 
