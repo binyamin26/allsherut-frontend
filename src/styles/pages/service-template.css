@@ -466,9 +466,10 @@
 }
 
 .contact-provider-btn:hover {
-  background: var(--primary-50, #eff6ff);
-  border-color: var(--primary-400);
-  box-shadow: none;
+  background: linear-gradient(135deg, #2563EB 0%, #1d4ed8 100%);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
 }
 
 .contact-provider-btn:active {
