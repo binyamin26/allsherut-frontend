@@ -117,7 +117,7 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
           />
         ) : null}
         <div
-          className="provider-avatar-initials"
+          className="text-avatar-initials"
           style={{
             display: imageUrl ? 'none' : 'flex',
             background: getAvatarGradient(provider.name || provider.full_name),
