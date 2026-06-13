@@ -459,22 +459,22 @@
 }
 
 .contact-provider-btn {
-  background: white;
-  color: var(--primary-600) !important;
-  border: 1.5px solid var(--primary-300) !important;
+  background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-500) 100%) !important;
+  color: white !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
   border-radius: var(--radius-lg) !important;
-  box-shadow: none;
+  box-shadow: var(--shadow-primary);
 }
 
 .contact-provider-btn:hover {
-  background: #dbeafe !important;
-  color: var(--primary-700) !important;
-  border-color: var(--primary-400) !important;
-  box-shadow: var(--shadow-sm);
+  background: linear-gradient(135deg, var(--primary-500) 0%, var(--accent-400) 100%) !important;
+  color: white !important;
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-primary-hover);
 }
 
 .contact-provider-btn:active {
-  transform: translateY(1px);
+  transform: scale(0.96);
 }
 
 .review-action-btn {
