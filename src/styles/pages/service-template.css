@@ -460,13 +460,15 @@
 
 .contact-provider-btn {
   background: white;
-  color: var(--primary-600);
+  color: var(--primary-600) !important;
   border: 1.5px solid var(--primary-300) !important;
+  border-radius: var(--radius-lg) !important;
   box-shadow: none;
 }
 
 .contact-provider-btn:hover {
-  background: linear-gradient(135deg, #ffffff 0%, #dbeafe 100%);
+  background: #dbeafe !important;
+  color: var(--primary-700) !important;
   border-color: var(--primary-400) !important;
   box-shadow: var(--shadow-sm);
 }
