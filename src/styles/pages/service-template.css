@@ -598,11 +598,11 @@
   }
 
   .service-title {
-    font-size: 0.65rem !important;
+    font-size: 0.82rem !important;
   }
 
   .service-page .service-header .service-title {
-    font-size: 0.65rem !important;
+    font-size: 0.82rem !important;
   }
 
   .location-search-section,
@@ -1151,15 +1151,15 @@ LOCATION SELECTOR - VERSION PLEINE LARGEUR
   }
 
   .service-hero-icon {
-    width: 62px;
-    height: 62px;
-    min-width: 62px;
+    width: 82px;
+    height: 82px;
+    min-width: 82px;
     margin-bottom: 0;
     box-shadow: var(--shadow-sm);
   }
 
   .service-title {
-    font-size: 0.68rem !important;
+    font-size: 0.85rem !important;
     font-weight: 700;
     line-height: 1.3;
     padding: 0;
@@ -1169,7 +1169,7 @@ LOCATION SELECTOR - VERSION PLEINE LARGEUR
   }
 
   .service-page .service-header .service-title {
-    font-size: 0.68rem !important;
+    font-size: 0.85rem !important;
   }
 }
 
