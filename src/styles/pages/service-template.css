@@ -601,6 +601,10 @@
     font-size: 0.65rem !important;
   }
 
+  .service-page .service-header .service-title {
+    font-size: 0.65rem !important;
+  }
+
   .location-search-section,
   .filters-section {
     padding: var(--space-4) 0;
@@ -1162,6 +1166,10 @@ LOCATION SELECTOR - VERSION PLEINE LARGEUR
     width: auto;
     flex: 1;
     text-align: start;
+  }
+
+  .service-page .service-header .service-title {
+    font-size: 0.68rem !important;
   }
 }
 
