@@ -314,7 +314,7 @@
   "dashboard.security.currentPassword": "Mot de passe actuel",
   "dashboard.security.currentPasswordPlaceholder": "Entrez votre mot de passe actuel",
   "dashboard.security.newPassword": "Nouveau mot de passe",
-  "dashboard.security.newPasswordPlaceholder": "Nouveau mdp (8 car., maj, min et chiffre)",
+  "dashboard.security.newPasswordPlaceholder": "Nouveau mdp (6 car. min.)",
   "dashboard.security.confirmPassword": "Confirmer nouveau mot de passe",
   "dashboard.security.confirmPasswordPlaceholder": "Entrez à nouveau le nouveau mot de passe",
   "dashboard.security.changingPassword": "Changement en cours...",

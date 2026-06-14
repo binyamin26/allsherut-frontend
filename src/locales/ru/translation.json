@@ -314,7 +314,7 @@
   "dashboard.security.currentPassword": "Текущий пароль",
   "dashboard.security.currentPasswordPlaceholder": "Введите текущий пароль",
   "dashboard.security.newPassword": "Новый пароль",
-  "dashboard.security.newPasswordPlaceholder": "Новый пароль (8 символов, заглавная, строчная и цифра)",
+  "dashboard.security.newPasswordPlaceholder": "Новый пароль (мин. 6 символов)",
   "dashboard.security.confirmPassword": "Подтвердите новый пароль",
   "dashboard.security.confirmPasswordPlaceholder": "Введите новый пароль ещё раз",
   "dashboard.security.changingPassword": "Изменение пароля...",

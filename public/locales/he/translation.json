@@ -271,7 +271,7 @@
   "dashboard.security.currentPassword": "סיסמה נוכחית",
   "dashboard.security.currentPasswordPlaceholder": "רשום את הסיסמה הנוכחית",
   "dashboard.security.newPassword": "סיסמה חדשה",
-  "dashboard.security.newPasswordPlaceholder": "סיסמה חדשה (8 תווים, אות גדולה, קטנה וספרה)",
+  "dashboard.security.newPasswordPlaceholder": "סיסמה חדשה (לפחות 6 תווים)",
   "dashboard.security.confirmPassword": "אימות סיסמה חדשה",
   "dashboard.security.confirmPasswordPlaceholder": "רשום שוב את הסיסמה החדשה",
   "dashboard.security.changingPassword": "משנה סיסמה...",

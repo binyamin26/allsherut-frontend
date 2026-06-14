@@ -309,7 +309,7 @@
   "dashboard.security.currentPassword": "Current Password",
   "dashboard.security.currentPasswordPlaceholder": "Enter your current password",
   "dashboard.security.newPassword": "New Password",
-  "dashboard.security.newPasswordPlaceholder": "New password (8 chars, uppercase, lowercase and digit)",
+  "dashboard.security.newPasswordPlaceholder": "New password (min. 6 chars)",
   "dashboard.security.confirmPassword": "Confirm New Password",
   "dashboard.security.confirmPasswordPlaceholder": "Enter new password again",
   "dashboard.security.changingPassword": "Changing password...",
