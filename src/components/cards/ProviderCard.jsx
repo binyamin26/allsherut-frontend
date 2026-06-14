@@ -132,8 +132,8 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
         <div className="rating-stars">
           {reviewsCount > 0 && formattedRating ? (
             <>
-              <span className="rating-score"><span style={{color:'#ef4444', fontWeight:'700'}}>{formattedRating}</span><span style={{color:'#6b7280', fontWeight:'500', marginInlineStart:'4px'}}>{t('card.ratingLabel')}</span></span>
-              <span className="reviews-count">({reviewsCount} {t('card.reviews')})</span>
+              <span className="rating-score"><span style={{color:'#6b7280', fontWeight:'500', marginInlineEnd:'4px'}}>{t('card.ratingLabel')}</span><span style={{color:'#ef4444', fontWeight:'700'}}>{formattedRating}</span></span>
+              <span className="reviews-count" style={{marginInlineStart:'8px'}}>({reviewsCount} {t('card.reviews')})</span>
             </>
           ) : (
             <span className="reviews-count">0 {t('card.reviews')}</span>
