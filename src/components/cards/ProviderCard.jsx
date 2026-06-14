@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Phone, Eye } from 'lucide-react';
+import { Phone, Eye, Star, MapPin } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import apiService from '../../services/api';
 
@@ -106,6 +106,7 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
 
  return (
   <div className="provider-card enhanced-card" dir={isRTL ? 'rtl' : 'ltr'}>
+    <div className="card-top-accent" style={{background: getAvatarGradient(provider.name || provider.full_name)}} />
     <div className="card-vertical-body">
       <div className="card-avatar">
         {imageUrl ? (
@@ -132,17 +133,20 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
         <div className="rating-stars">
           {reviewsCount > 0 && formattedRating ? (
             <>
-              <span className="rating-score"><span style={{color:'#6b7280', fontWeight:'500', marginInlineEnd:'4px'}}>{t('card.ratingLabel')}</span><span style={{color:'#ef4444', fontWeight:'700'}}>{formattedRating}</span></span>
-              <span className="reviews-count" style={{marginInlineStart:'8px'}}>({reviewsCount} {t('card.reviews')})</span>
+              <Star size={13} fill="#f59e0b" color="#f59e0b" />
+              <span className="rating-num">{formattedRating}</span>
+              <span className="rating-lbl">{t('card.ratingLabel')}</span>
+              <span className="rating-dot">·</span>
+              <span className="reviews-count">{reviewsCount} {t('card.reviews')}</span>
             </>
           ) : (
-            <span className="reviews-count">0 {t('card.reviews')}</span>
+            <span className="reviews-count no-rating">—</span>
           )}
         </div>
         <div className="location-info">
-          <span>{t('card.serviceArea')} </span>
-          <strong style={{ color: '#1f2937' }}>{getCity()}</strong>
-          {getNeighborhood() && <strong style={{ color: '#1f2937' }}> - {getNeighborhood()}</strong>}
+          <MapPin size={12} strokeWidth={2} />
+          <strong>{getCity()}</strong>
+          {getNeighborhood() && <strong> · {getNeighborhood()}</strong>}
         </div>
       </div>
     </div>
