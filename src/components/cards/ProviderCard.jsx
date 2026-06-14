@@ -106,7 +106,6 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
 
  return (
   <div className="provider-card enhanced-card" dir={isRTL ? 'rtl' : 'ltr'}>
-    <div className="card-top-accent" style={{background: getAvatarGradient(provider.name || provider.full_name)}} />
     <div className="card-vertical-body">
       <div className="card-avatar">
         {imageUrl ? (
@@ -133,7 +132,7 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
         <div className="rating-stars">
           {reviewsCount > 0 && formattedRating ? (
             <>
-              <Star size={13} fill="#f59e0b" color="#f59e0b" />
+              <Star size={13} fill="#2563eb" color="#2563eb" />
               <span className="rating-num">{formattedRating}</span>
               <span className="rating-lbl">{t('card.ratingLabel')}</span>
               <span className="rating-dot">·</span>
