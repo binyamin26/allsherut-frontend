@@ -1417,6 +1417,7 @@
   "notFound.backHome": "Back to Home",
   "card.new": "New",
   "card.reviews": "reviews",
+  "card.ratingLabel": "Overall score",
   "card.serviceArea": "Service area:",
   "card.perHour": "/hour",
   "card.yearsExperience": "years experience",

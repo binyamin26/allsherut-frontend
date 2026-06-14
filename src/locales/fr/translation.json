@@ -1417,6 +1417,7 @@
   "notFound.backHome": "Retour à l'accueil",
   "card.new": "Nouveau",
   "card.reviews": "avis",
+  "card.ratingLabel": "Note générale",
   "card.serviceArea": "Zone d'activité :",
   "card.perHour": "/heure",
   "card.yearsExperience": "ans d'expérience",
