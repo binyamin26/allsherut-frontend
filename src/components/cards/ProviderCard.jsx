@@ -132,7 +132,7 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
         <div className="rating-stars">
           {reviewsCount > 0 && formattedRating ? (
             <>
-              <Star size={13} fill="#2563eb" color="#2563eb" />
+              <Star size={13} fill="#1d4ed8" color="#1d4ed8" />
               <span className="rating-num">{formattedRating}</span>
               <span className="rating-lbl">{t('card.ratingLabel')}</span>
               <span className="rating-dot">·</span>

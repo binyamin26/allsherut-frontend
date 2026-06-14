@@ -2805,11 +2805,29 @@ select.inline-edit {
   gap: var(--space-3);
 }
 
-.contacts-monthly-emoji {
-  font-size: 1.25rem;
-  width: 28px;
-  text-align: center;
+.contacts-monthly-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+}
+
+.contacts-icon-call {
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.contacts-icon-wa {
+  background: #f0fdf4;
+  color: #16a34a;
+}
+
+.contacts-icon-total {
+  background: #f5f3ff;
+  color: #7c3aed;
 }
 
 .contacts-monthly-label {
@@ -2937,8 +2955,13 @@ select.inline-edit {
   border: 1px solid var(--neutral-100);
 }
 
-.contact-click-emoji {
-  font-size: 1.2rem;
+.contact-click-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
 }
 

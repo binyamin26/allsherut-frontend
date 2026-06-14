@@ -2208,18 +2208,18 @@ const galleryImages = (() => {
                 <h3 className="contacts-monthly-title">{t('dashboard.contacts.monthTitle')}</h3>
                 <div className="contacts-monthly-rows">
                   <div className="contacts-monthly-row">
-                    <span className="contacts-monthly-emoji">📞</span>
+                    <div className="contacts-monthly-icon contacts-icon-call"><Phone size={16} /></div>
                     <span className="contacts-monthly-label">{t('dashboard.contacts.totalCalls')}</span>
                     <span className="contacts-monthly-num contacts-num-call">{contactMonthly.call}</span>
                   </div>
                   <div className="contacts-monthly-row">
-                    <span className="contacts-monthly-emoji">💬</span>
+                    <div className="contacts-monthly-icon contacts-icon-wa"><MessageCircle size={16} /></div>
                     <span className="contacts-monthly-label">{t('dashboard.contacts.totalWhatsapp')}</span>
                     <span className="contacts-monthly-num contacts-num-wa">{contactMonthly.whatsapp}</span>
                   </div>
                   <div className="contacts-monthly-divider" />
                   <div className="contacts-monthly-row contacts-monthly-total">
-                    <span className="contacts-monthly-emoji">✨</span>
+                    <div className="contacts-monthly-icon contacts-icon-total"><BarChart3 size={16} /></div>
                     <span className="contacts-monthly-label">{t('dashboard.contacts.total')}</span>
                     <span className="contacts-monthly-num">{contactMonthly.total}</span>
                   </div>
@@ -2261,7 +2261,7 @@ const galleryImages = (() => {
                       const timeStr = date.toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Jerusalem' });
                       return (
                         <div key={click.id} className={`contact-click-item ${isCall ? 'contact-call' : 'contact-whatsapp'}`}>
-                          <span className="contact-click-emoji">{isCall ? '📞' : '💬'}</span>
+                          <div className={`contact-click-icon ${isCall ? 'contacts-icon-call' : 'contacts-icon-wa'}`}>{isCall ? <Phone size={14} /> : <MessageCircle size={14} />}</div>
                           <div className="contact-click-details">
                             <span className="contact-click-type">
                               {isCall ? t('dashboard.contacts.clickCall') : t('dashboard.contacts.clickWhatsapp')}
