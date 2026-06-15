@@ -1575,20 +1575,10 @@ const handleContact = () => {
           }}
         />
       ) : (
-        <div style={{
-          width: '100%',
-          height: '100%',
-          borderRadius: '50%',
-          background: getAvatarGradient(provider.name || provider.full_name),
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontSize: '2.8rem',
-          fontWeight: '700',
-          color: '#fff',
-          letterSpacing: '0.05em',
-          userSelect: 'none',
-        }}>
+        <div
+          className="text-provider-initials"
+          style={{ background: getAvatarGradient(provider.name || provider.full_name) }}
+        >
           {getInitials(provider.name || provider.full_name)}
         </div>
       )}
