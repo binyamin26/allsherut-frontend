@@ -918,10 +918,8 @@ const handleSaveProfile = async () => {
           : null;
       }
 
-      // Description
-      if (cleanedData.serviceDetails.description !== undefined) {
-        cleanedData.description = cleanedData.serviceDetails.description;
-      }
+      // Description: propager la valeur saisie par l'utilisateur vers serviceDetails
+      cleanedData.serviceDetails.description = cleanedData.description ?? null;
 
       // Supprimer les alias stales (déjà fait dans cleanProfileData, double sécurité)
       delete cleanedData.serviceDetails.hourly_rate;
