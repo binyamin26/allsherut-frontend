@@ -976,13 +976,14 @@ const PetcareFilters = ({ filters, handleFilterChange, handleCheckboxChange }) =
         filters={filters}
         onCheckboxChange={handleCheckboxChange}
       />
-      <CheckboxSection 
+      <CheckboxSection
         title={t(config.sectionTitles.veterinaryServices)}
         options={config.veterinaryServices.map(o => ({ value: o.value, label: t(o.key) }))}
         filterKey="veterinaryServices"
         filters={filters}
         onCheckboxChange={handleCheckboxChange}
       />
+      <AgeRangeSection filters={filters} onFilterChange={handleFilterChange} />
     </div>
   );
 };
@@ -1028,13 +1029,14 @@ const EldercareFilters = ({ filters, handleFilterChange, handleCheckboxChange })
         filters={filters}
         onFilterChange={handleFilterChange}
       />
-      <SelectSection 
+      <SelectSection
         title={t(config.sectionTitles.vehicleForOutings)}
         options={FILTER_CONFIG.common.yesNoOptions.map(o => ({ value: o.value, label: t(o.key) }))}
         filterKey="vehicleForOutings"
         filters={filters}
         onFilterChange={handleFilterChange}
       />
+      <AgeRangeSection filters={filters} onFilterChange={handleFilterChange} />
     </div>
   );
 };
@@ -1174,13 +1176,14 @@ const { t, currentLanguage } = useLanguage();
         onCheckboxChange={handleCheckboxChange}
       />
 
-      <SelectSection 
+      <SelectSection
         title={t(config.sectionTitles.qualifications)}
         options={config.qualifications.map(o => ({ value: o.value, label: t(o.key) }))}
         filterKey="qualifications"
         filters={filters}
         onFilterChange={handleFilterChange}
       />
+      <AgeRangeSection filters={filters} onFilterChange={handleFilterChange} />
     </div>
   );
 };
@@ -1307,6 +1310,7 @@ const SportsActivitiesFilters = ({ filters, handleFilterChange, handleCheckboxCh
         filters={filters}
         onFilterChange={handleFilterChange}
       />
+      <AgeRangeSection filters={filters} onFilterChange={handleFilterChange} />
     </div>
   );
 };
@@ -1388,7 +1392,6 @@ const TechnicalServiceFilters = ({
       </div>
 
       <AvailabilityHoursSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} />
-      <AgeRangeSection filters={filters} onFilterChange={handleFilterChange} />
     </div>
   );
 };
@@ -1643,7 +1646,6 @@ const CarpentryFilters = ({ filters, handleFilterChange, handleCheckboxChange, h
       </div>
 
       <AvailabilityHoursSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} />
-      <AgeRangeSection filters={filters} onFilterChange={handleFilterChange} />
     </div>
   );
 };
@@ -1764,7 +1766,6 @@ const HomeOrganizationFilters = ({ filters, handleFilterChange, handleCheckboxCh
       </div>
 
       <AvailabilityHoursSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} />
-      <AgeRangeSection filters={filters} onFilterChange={handleFilterChange} />
     </div>
   );
 };
@@ -1785,7 +1786,6 @@ const PaintingFilters = ({ filters, handleFilterChange, handleCheckboxChange, ha
       />
 
       <AvailabilityHoursSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} />
-      <AgeRangeSection filters={filters} onFilterChange={handleFilterChange} />
     </div>
   );
 };
@@ -2268,7 +2268,6 @@ const AluminumFilters = ({ filters, handleFilterChange, handleCheckboxChange, ha
       </div>
 
       <AvailabilityHoursSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} />
-      <AgeRangeSection filters={filters} onFilterChange={handleFilterChange} />
     </div>
   );
 };
@@ -2420,7 +2419,6 @@ const ContractorFilters = ({ filters, handleFilterChange, handleCheckboxChange, 
       </div>
 
       <AvailabilityHoursSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} />
-      <AgeRangeSection filters={filters} onFilterChange={handleFilterChange} />
     </div>
   );
 };
@@ -2572,7 +2570,6 @@ const GlassWorksFilters = ({ filters, handleFilterChange, handleCheckboxChange, 
       </div>
 
       <AvailabilityHoursSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} />
-      <AgeRangeSection filters={filters} onFilterChange={handleFilterChange} />
     </div>
   );
 };
@@ -2724,7 +2721,6 @@ const LocksmithFilters = ({ filters, handleFilterChange, handleCheckboxChange, h
       </div>
 
       <AvailabilityHoursSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} />
-      <AgeRangeSection filters={filters} onFilterChange={handleFilterChange} />
     </div>
   );
 };
@@ -2903,7 +2899,6 @@ const WaterproofingFilters = ({ filters, handleFilterChange, handleCheckboxChang
       </div>
 
       <AvailabilityHoursSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} />
-      <AgeRangeSection filters={filters} onFilterChange={handleFilterChange} />
     </div>
   );
 };
@@ -2915,8 +2910,6 @@ const MovingFilters = ({ filters, handleFilterChange, handleCheckboxChange, hand
 
   return (
     <div className="service-panel">
-      <AgeRangeSection filters={filters} onFilterChange={handleFilterChange} />
-
       <AvailabilityHoursSection
         filters={filters}
         onExclusiveCheckbox={handleExclusiveCheckbox}
@@ -2948,8 +2941,6 @@ const PhotographerFilters = ({ filters, handleFilterChange, handleCheckboxChange
 
   return (
     <div className="service-panel">
-      <AgeRangeSection filters={filters} onFilterChange={handleFilterChange} />
-
       <AvailabilityHoursSection
         filters={filters}
         onExclusiveCheckbox={handleExclusiveCheckbox}
@@ -2989,8 +2980,6 @@ const EventDecorationFilters = ({ filters, handleFilterChange, handleCheckboxCha
 
   return (
     <div className="service-panel">
-      <AgeRangeSection filters={filters} onFilterChange={handleFilterChange} />
-
       <AvailabilityHoursSection
         filters={filters}
         onExclusiveCheckbox={handleExclusiveCheckbox}
