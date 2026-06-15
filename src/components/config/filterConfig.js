@@ -1415,6 +1415,17 @@ locksmith: {
       { value: 'רדיאטור וקירור', key: 'serviceForm.mechanic.radiatorCooling' },
       { value: 'לקיחת רכב לטסט', key: 'serviceForm.mechanic.vehicleInspection' }
     ]
+  },
+
+  metalwork: {
+    sectionTitles: {
+      workTypes: 'filters.metalwork.workTypes'
+    },
+    workTypes: [
+      { value: 'סורגים', key: 'serviceForm.metalwork.bars' },
+      { value: 'מעקות',  key: 'serviceForm.metalwork.railings' },
+      { value: 'גדרות',  key: 'serviceForm.metalwork.fences' }
+    ]
   }
 };
 
