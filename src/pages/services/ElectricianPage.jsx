@@ -14,7 +14,7 @@ const ElectricianPage = () => {
   const { t } = useLanguage();
   
   const [locationFilter, setLocationFilter] = useState({
-    city: '',
+    city: 'ירושלים',
     neighborhood: '',
     fullLocation: ''
   });

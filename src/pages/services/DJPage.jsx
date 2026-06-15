@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+﻿import { useNavigate } from 'react-router-dom';
 import { CheckCircle, Star, Phone, Shield, Clock, MessageCircle } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import FilterBar from '../../components/filters/FilterBar';
@@ -14,7 +14,7 @@ const DJPage = () => {
   const { t } = useLanguage();
 
   const [locationFilter, setLocationFilter] = useState({
-    city: '',
+    city: 'ירושלים',
     neighborhood: '',
     fullLocation: ''
   });

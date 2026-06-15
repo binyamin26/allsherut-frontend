@@ -74,7 +74,7 @@ const FilterBar = ({
   const resetFilters = useCallback(() => {
     setTempFilters({});
     onFiltersChange({});
-    onLocationChange({ city: '', neighborhood: '', fullLocation: '' });
+    onLocationChange({ city: 'ירושלים', neighborhood: '', fullLocation: '' });
     closePanel();
   }, [onFiltersChange, onLocationChange, closePanel]);
 
@@ -254,7 +254,7 @@ const FilterBar = ({
               className="btn btn-secondary"
               onClick={() => {
                 if (activeFilter === 'location') {
-                  onLocationChange({ area: '', city: '', neighborhood: '', fullLocation: '' });
+                  onLocationChange({ area: '', city: 'ירושלים', neighborhood: '', fullLocation: '' });
                 } else if (activeFilter === 'price') {
                   const newFilters = { ...activeFilters, minPrice: undefined, maxPrice: undefined };
                   setTempFilters(newFilters);

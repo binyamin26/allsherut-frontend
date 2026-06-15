@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+﻿import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import FilterBar from '../../components/filters/FilterBar';
 import ReviewModal from '../../components/modals/ReviewModal';
@@ -13,7 +13,7 @@ const SportsActivitiesPage = () => {
   const { t } = useLanguage();
 
   const [locationFilter, setLocationFilter] = useState({
-    city: '',
+    city: 'ירושלים',
     neighborhood: '',
     fullLocation: ''
   });

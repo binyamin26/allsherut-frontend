@@ -56,7 +56,7 @@ const EventDecorationPage = () => {
   const { isAuthenticated } = useAuth();
   const { t } = useLanguage();
 
-  const [locationFilter, setLocationFilter] = useState({ city: '', neighborhood: '', fullLocation: '' });
+  const [locationFilter, setLocationFilter] = useState({ city: 'ירושלים', neighborhood: '', fullLocation: '' });
   const [activeFilters, setActiveFilters] = useState({});
   const [providers, setProviders] = useState([]);
   const [loading, setLoading] = useState(false);
