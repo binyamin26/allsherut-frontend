@@ -205,6 +205,22 @@
   box-shadow: var(--shadow-xl);
 }
 
+.text-detail-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 90px !important;
+  font-weight: 700;
+  color: white;
+  letter-spacing: -2px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  user-select: none;
+  line-height: 1;
+}
+
 .verified-badge {
   position: absolute;
   bottom: 10px;

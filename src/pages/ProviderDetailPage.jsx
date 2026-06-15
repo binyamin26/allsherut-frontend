@@ -1613,22 +1613,10 @@ const handleContact = () => {
           }}
         />
       ) : (
-        <div style={{
-          width: '100%',
-          height: '100%',
-          borderRadius: '50%',
-          background: getAvatarGradient(provider.name),
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontSize: '72px',
-          fontWeight: 700,
-          color: 'white',
-          letterSpacing: '-2px',
-          textShadow: '0 2px 8px rgba(0,0,0,0.25)',
-          userSelect: 'none',
-          lineHeight: 1,
-        }}>
+        <div
+          className="text-detail-avatar"
+          style={{ background: getAvatarGradient(provider.name) }}
+        >
           {getInitial(provider.name)}
         </div>
       )}

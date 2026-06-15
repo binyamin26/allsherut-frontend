@@ -58,7 +58,7 @@ import CustomDropdown from '../components/common/CustomDropdown';
 
 const ALL_SERVICE_KEYS = [
   'plumbing','electrician','locksmith','painting','air_conditioning','drywall',
-  'aluminum','glass_works','gas_technician','waterproofing','carpentry','handyman','mechanic','contractor',
+  'aluminum','metalwork','glass_works','gas_technician','waterproofing','carpentry','handyman','mechanic','contractor',
   'moving','gardening','pest_control','cleaning','laundry','property_management',
   'home_organization','event_decoration','event_entertainment','dj','private_chef',
   'photographer','tutoring','sports_activities','babysitting','petcare','eldercare'
