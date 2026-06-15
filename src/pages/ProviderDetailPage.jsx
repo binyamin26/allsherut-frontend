@@ -329,7 +329,13 @@ const handleContact = () => {
   return (
     <div className="service-details-section">
      <h3 className="details-title">{t('provider.details.title')}</h3>
-      
+
+      {(provider.description || provider.serviceDetails?.description) && (
+        <p style={{ color: '#374151', lineHeight: '1.7', marginBottom: '1.5rem', padding: '1rem 1.25rem', backgroundColor: '#f9fafb', borderRadius: '8px', border: '1px solid #e5e7eb', whiteSpace: 'pre-wrap' }}>
+          {provider.description || provider.serviceDetails?.description}
+        </p>
+      )}
+
       <div className="details-grid">
         {/* === CHAMPS COMPACTS D'ABORD === */}
         
