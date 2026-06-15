@@ -118,6 +118,14 @@ const HomePage = () => {
       href: '/services/aluminum'
     },
     {
+      id: 'metalwork',
+      name: t('services.metalwork'),
+      image: '/images/metalwork.jpg',
+      description: t('services.metalwork.desc'),
+      color: 'from-zinc-600 to-slate-700',
+      href: '/services/metalwork'
+    },
+    {
       id: 'glass_works',
       name: t('services.glass_works'),
       image: '/images/verre.png',
@@ -164,14 +172,6 @@ const HomePage = () => {
       description: t('services.mechanic.desc'),
       color: 'from-blue-700 to-slate-700',
       href: '/services/mechanic'
-    },
-    {
-      id: 'metalwork',
-      name: t('services.metalwork'),
-      image: '/images/metalwork.jpg',
-      description: t('services.metalwork.desc'),
-      color: 'from-zinc-600 to-slate-700',
-      href: '/services/metalwork'
     },
     {
       id: 'contractor',

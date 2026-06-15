@@ -154,6 +154,7 @@ const services = [
   { key: 'air_conditioning', name: t('services.air_conditioning'), image: '/images/clim.png', gradient: 'air_conditioning-gradient' },
   { key: 'drywall', name: t('services.drywall'), image: '/images/guevess.png', gradient: 'drywall-gradient' },
   { key: 'aluminum', name: t('services.aluminum'), image: '/images/aluminium.png', gradient: 'aluminum-gradient' },
+  { key: 'metalwork', name: t('services.metalwork'), image: '/images/metalwork.jpg', gradient: 'metalwork-gradient' },
   { key: 'glass_works', name: t('services.glass_works'), image: '/images/verre.png', gradient: 'glass_works-gradient' },
   { key: 'gas_technician', name: t('services.gas_technician'), image: '/images/gaz.jpg', gradient: 'gas_technician-gradient' },
   { key: 'waterproofing', name: t('services.waterproofing'), image: '/images/itoum.jpg', gradient: 'waterproofing-gradient' },
@@ -177,8 +178,7 @@ const services = [
   { key: 'babysitting', name: t('services.babysitting'), icon: '👶', image: '/images/babysite.jpg', gradient: 'babysitting-gradient' },
   { key: 'petcare', name: t('services.petcare'), image: '/images/chien.jpg', gradient: 'petcare-gradient' },
   { key: 'eldercare', name: t('services.eldercare'), icon: '👵', image: '/images/eldercare.png', gradient: 'eldercare-gradient' },
-  { key: 'mechanic', name: t('services.mechanic'), image: '/images/garagiste.jpg', gradient: 'mechanic-gradient' },
-  { key: 'metalwork', name: t('services.metalwork'), image: '/images/metalwork.jpg', gradient: 'metalwork-gradient' }
+  { key: 'mechanic', name: t('services.mechanic'), image: '/images/garagiste.jpg', gradient: 'mechanic-gradient' }
 ];
 
 

@@ -45,6 +45,7 @@ const Header = () => {
     { icon: <Wind className="w-5 h-5" />, nameKey: 'services.air_conditioning', descKey: 'services.air_conditioning.desc', href: '/services/air-conditioning' },
     { icon: <Layers className="w-5 h-5" />, nameKey: 'services.drywall', descKey: 'services.drywall.desc', href: '/services/drywall' },
     { icon: <Frame className="w-5 h-5" />, nameKey: 'services.aluminum', descKey: 'services.aluminum.desc', href: '/services/aluminum' },
+    { icon: <Shield className="w-5 h-5" />, nameKey: 'services.metalwork', descKey: 'services.metalwork.desc', href: '/services/metalwork' },
     { icon: <Square className="w-5 h-5" />, nameKey: 'services.glass_works', descKey: 'services.glass_works.desc', href: '/services/glass-works' },
     { icon: <Flame className="w-5 h-5" />, nameKey: 'services.gas_technician', descKey: 'services.gas_technician.desc', href: '/services/gas-technician' },
     { icon: <Droplets className="w-5 h-5" />, nameKey: 'services.waterproofing', descKey: 'services.waterproofing.desc', href: '/services/waterproofing' },
@@ -68,8 +69,7 @@ const Header = () => {
     { icon: <Baby className="w-5 h-5" />, nameKey: 'services.babysitting', descKey: 'services.babysitting.desc', href: '/services/babysitting' },
     { icon: <PawPrint className="w-5 h-5" />, nameKey: 'services.petcare', descKey: 'services.petcare.desc', href: '/services/petcare' },
     { icon: <UserCheck className="w-5 h-5" />, nameKey: 'services.eldercare', descKey: 'services.eldercare.desc', href: '/services/eldercare' },
-    { icon: <Car className="w-5 h-5" />, nameKey: 'services.mechanic', descKey: 'services.mechanic.desc', href: '/services/mechanic' },
-    { icon: <Shield className="w-5 h-5" />, nameKey: 'services.metalwork', descKey: 'services.metalwork.desc', href: '/services/metalwork' }
+    { icon: <Car className="w-5 h-5" />, nameKey: 'services.mechanic', descKey: 'services.mechanic.desc', href: '/services/mechanic' }
   ]
 
   const handleLogout = async () => {
