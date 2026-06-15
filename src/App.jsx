@@ -14,6 +14,7 @@ import ServiceTitleFitter from "./components/common/ServiceTitleFitter";
 
 // Import du Widget d'Accessibilité
 import AccessibilityWidget from "./components/common/AccessibilityWidget";
+import FloatingWhatsApp from "./components/common/FloatingWhatsApp";
 
 // Pages principales
 import HomePage from "./pages/HomePage";
@@ -223,6 +224,7 @@ function App() {
             
             {/* Widget d'accessibilité */}
             <AccessibilityWidget />
+            <FloatingWhatsApp />
           </div>
         </Router>
       </AuthProvider>
