@@ -32,7 +32,7 @@ import {
   MapPin,
   X,
   Save,
-  Trash2,
+  XCircle,
   Camera,
    LayoutGrid,
    Briefcase,
@@ -1524,7 +1524,7 @@ const galleryImages = (() => {
               className={`tab-btn ${activeTab === 'account-management' ? 'active' : ''}`}
               onClick={() => setActiveTab('account-management')}
             >
-              <Trash2 size={18} />
+              <XCircle size={18} />
               {t('dashboard.tabs.accountManagement')}
             </button>
           </div>
@@ -1610,7 +1610,7 @@ const galleryImages = (() => {
                   className="btn btn-danger btn-sm"
                   disabled={uploadingImage}
                 >
-                  <Trash2 size={14} />
+                  <XCircle size={14} />
                  {t('dashboard.gallery.removePhoto')}
                 </button>
               )}
@@ -2443,7 +2443,7 @@ const galleryImages = (() => {
                                     disabled={recruitmentDeleting}
                                     style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px', padding: '0.5rem 0.4rem', borderRadius: '8px', background: 'transparent', color: '#ef4444', border: '1.5px solid #ef4444', cursor: 'pointer', fontSize: '0.82rem', fontWeight: 600 }}
                                   >
-                                    <Trash2 size={13} />{recruitmentDeleting ? '...' : t('recruitment.dashboard.delete')}
+                                    <XCircle size={13} />{recruitmentDeleting ? '...' : t('recruitment.dashboard.delete')}
                                   </button>
                                   <button
                                     onClick={() => navigate(`/recruitment/${listing.service_type}`)}
@@ -2511,7 +2511,7 @@ const galleryImages = (() => {
                                   disabled={recruitmentDeleting}
                                   style={{ display: 'flex', alignItems: 'center', gap: '5px', padding: '0.45rem 0.9rem', borderRadius: '8px', background: '#0F2A44', color: 'white', border: 'none', cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600 }}
                                 >
-                                  <Trash2 size={14} />
+                                  <XCircle size={14} />
                                   {recruitmentDeleting ? t('recruitment.dashboard.deleting') : t('recruitment.dashboard.delete')}
                                 </button>
                               </div>
@@ -2699,7 +2699,7 @@ const galleryImages = (() => {
                             display: 'flex', alignItems: 'center',
                           }}
                         >
-                          <Trash2 size={15} />
+                          <XCircle size={15} />
                         </button>
                       </div>
                     </div>
@@ -3075,7 +3075,7 @@ placeholder={t('dashboard.security.newPasswordPlaceholder')}
 
     <div className="settings-card danger-zone" style={{marginTop: '20px'}}>
       <div className="settings-card-header">
-        <Trash2 size={24} />
+        <XCircle size={24} />
         <h4>{t('dashboard.account.immediateDeleteTitle')}</h4>
       </div>
       <div className="settings-content">
@@ -3113,7 +3113,7 @@ placeholder={t('dashboard.security.newPasswordPlaceholder')}
         })}
         className="btn btn-danger btn-sm"
       >
-        <Trash2 size={16} />
+        <XCircle size={16} />
         {t('dashboard.account.deleteNowBtn')}
       </button>
     </div>
