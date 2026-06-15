@@ -28,6 +28,7 @@ const SERVICE_URLS = {
   waterproofing: '/services/waterproofing',
   contractor: '/services/contractor',
   aluminum: '/services/aluminum',
+  metalwork: '/services/metalwork',
   glass_works: '/services/glass-works',
   locksmith: '/services/locksmith',
   handyman: '/services/handyman',

@@ -2708,11 +2708,17 @@
   "serviceForm.metalwork.bars": "סורגים",
   "serviceForm.metalwork.railings": "מעקות",
   "serviceForm.metalwork.fences": "גדרות",
+  "serviceForm.metalwork.galleries": "גלריות",
+  "serviceForm.metalwork.hangingBalconies": "מרפסות תלויות",
+  "serviceForm.metalwork.stairs": "מדרגות",
 
   "filters.metalwork.workTypes": "סוג עבודה",
   "filters.metalwork.bars": "סורגים",
   "filters.metalwork.railings": "מעקות",
   "filters.metalwork.fences": "גדרות",
+  "filters.metalwork.galleries": "גלריות",
+  "filters.metalwork.hangingBalconies": "מרפסות תלויות",
+  "filters.metalwork.stairs": "מדרגות",
 
   "serviceFields.metalwork.work_types": "סוג עבודה",
   "serviceFields.metalwork.availability_hours": "שעות זמינות",

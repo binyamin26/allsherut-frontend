@@ -1422,9 +1422,12 @@ locksmith: {
       workTypes: 'filters.metalwork.workTypes'
     },
     workTypes: [
-      { value: 'סורגים', key: 'serviceForm.metalwork.bars' },
-      { value: 'מעקות',  key: 'serviceForm.metalwork.railings' },
-      { value: 'גדרות',  key: 'serviceForm.metalwork.fences' }
+      { value: 'סורגים',        key: 'serviceForm.metalwork.bars' },
+      { value: 'מעקות',         key: 'serviceForm.metalwork.railings' },
+      { value: 'גדרות',         key: 'serviceForm.metalwork.fences' },
+      { value: 'גלריות',        key: 'serviceForm.metalwork.galleries' },
+      { value: 'מרפסות תלויות', key: 'serviceForm.metalwork.hangingBalconies' },
+      { value: 'מדרגות',        key: 'serviceForm.metalwork.stairs' }
     ]
   }
 };

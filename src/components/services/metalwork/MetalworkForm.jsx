@@ -2,9 +2,12 @@ import React from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
 
 const WORK_TYPES = [
-  { value: 'סורגים',  key: 'serviceForm.metalwork.bars' },
-  { value: 'מעקות',  key: 'serviceForm.metalwork.railings' },
-  { value: 'גדרות',  key: 'serviceForm.metalwork.fences' },
+  { value: 'סורגים',          key: 'serviceForm.metalwork.bars' },
+  { value: 'מעקות',           key: 'serviceForm.metalwork.railings' },
+  { value: 'גדרות',           key: 'serviceForm.metalwork.fences' },
+  { value: 'גלריות',          key: 'serviceForm.metalwork.galleries' },
+  { value: 'מרפסות תלויות',   key: 'serviceForm.metalwork.hangingBalconies' },
+  { value: 'מדרגות',          key: 'serviceForm.metalwork.stairs' },
 ];
 
 const HOURS = ['בוקר', 'אחר הצהריים', 'ערב', 'הכל'];

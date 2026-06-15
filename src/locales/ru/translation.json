@@ -2702,11 +2702,17 @@
   "serviceForm.metalwork.bars": "Решётки безопасности",
   "serviceForm.metalwork.railings": "Перила",
   "serviceForm.metalwork.fences": "Ограждения",
+  "serviceForm.metalwork.galleries": "Галереи",
+  "serviceForm.metalwork.hangingBalconies": "Подвесные балконы",
+  "serviceForm.metalwork.stairs": "Лестницы",
 
   "filters.metalwork.workTypes": "Вид работ",
   "filters.metalwork.bars": "Решётки безопасности",
   "filters.metalwork.railings": "Перила",
   "filters.metalwork.fences": "Ограждения",
+  "filters.metalwork.galleries": "Галереи",
+  "filters.metalwork.hangingBalconies": "Подвесные балконы",
+  "filters.metalwork.stairs": "Лестницы",
 
   "serviceFields.metalwork.work_types": "Вид работ",
   "serviceFields.metalwork.availability_hours": "Часы работы",

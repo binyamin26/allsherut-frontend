@@ -2701,11 +2701,17 @@
   "serviceForm.metalwork.bars": "Barreaux de sécurité",
   "serviceForm.metalwork.railings": "Garde-corps",
   "serviceForm.metalwork.fences": "Clôtures",
+  "serviceForm.metalwork.galleries": "Galeries",
+  "serviceForm.metalwork.hangingBalconies": "Balcons suspendus",
+  "serviceForm.metalwork.stairs": "Escaliers",
 
   "filters.metalwork.workTypes": "Type de travaux",
   "filters.metalwork.bars": "Barreaux de sécurité",
   "filters.metalwork.railings": "Garde-corps",
   "filters.metalwork.fences": "Clôtures",
+  "filters.metalwork.galleries": "Galeries",
+  "filters.metalwork.hangingBalconies": "Balcons suspendus",
+  "filters.metalwork.stairs": "Escaliers",
 
   "serviceFields.metalwork.work_types": "Type de travaux",
   "serviceFields.metalwork.availability_hours": "Heures disponibles",

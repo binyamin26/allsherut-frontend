@@ -538,6 +538,15 @@ const searchableServices = [
   { label: 'איטום סדקים בקירות קבלן', labelEn: 'Contractor wall crack sealing', labelFr: 'Colmatage fissures entrepreneur', labelRu: 'Герметизация трещин подрядчиком', href: '/services/contractor', type: 'specialty' },
   { label: 'טיפול בנפילת טיח', labelEn: 'Falling plaster treatment', labelFr: 'Traitement enduit qui s\'écaille', labelRu: 'Обработка осыпающейся штукатурки', href: '/services/contractor', type: 'specialty' },
 
+  // 20b. METALWORK
+  { label: 'מסגרות', labelEn: 'Metalwork', labelFr: 'Ferronnerie', labelRu: 'Металлоконструкции', href: '/services/metalwork', type: 'service' },
+  { label: 'סורגים', labelEn: 'Security Bars', labelFr: 'Barreaux de sécurité', labelRu: 'Решётки безопасности', href: '/services/metalwork', type: 'specialty' },
+  { label: 'מעקות', labelEn: 'Railings', labelFr: 'Garde-corps', labelRu: 'Перила', href: '/services/metalwork', type: 'specialty' },
+  { label: 'גדרות', labelEn: 'Fences', labelFr: 'Clôtures', labelRu: 'Ограждения', href: '/services/metalwork', type: 'specialty' },
+  { label: 'גלריות', labelEn: 'Galleries', labelFr: 'Galeries', labelRu: 'Галереи', href: '/services/metalwork', type: 'specialty' },
+  { label: 'מרפסות תלויות', labelEn: 'Hanging Balconies', labelFr: 'Balcons suspendus', labelRu: 'Подвесные балконы', href: '/services/metalwork', type: 'specialty' },
+  { label: 'מדרגות', labelEn: 'Stairs', labelFr: 'Escaliers', labelRu: 'Лестницы', href: '/services/metalwork', type: 'specialty' },
+
   // 21. ALUMINUM
   { label: 'אלומיניום', labelEn: 'Aluminum', labelFr: 'Aluminium', labelRu: 'Алюминий', href: '/services/aluminum', type: 'service' },
   { label: 'התקנת חלונות אלומיניום', labelEn: 'Aluminum window installation', labelFr: 'Installation fenêtres aluminium', labelRu: 'Установка алюминиевых окон', href: '/services/aluminum', type: 'specialty' },

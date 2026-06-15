@@ -2702,11 +2702,17 @@
   "serviceForm.metalwork.bars": "Security Bars",
   "serviceForm.metalwork.railings": "Railings",
   "serviceForm.metalwork.fences": "Fences",
+  "serviceForm.metalwork.galleries": "Galleries",
+  "serviceForm.metalwork.hangingBalconies": "Hanging Balconies",
+  "serviceForm.metalwork.stairs": "Stairs",
 
   "filters.metalwork.workTypes": "Work Type",
   "filters.metalwork.bars": "Security Bars",
   "filters.metalwork.railings": "Railings",
   "filters.metalwork.fences": "Fences",
+  "filters.metalwork.galleries": "Galleries",
+  "filters.metalwork.hangingBalconies": "Hanging Balconies",
+  "filters.metalwork.stairs": "Stairs",
 
   "serviceFields.metalwork.work_types": "Work type",
   "serviceFields.metalwork.availability_hours": "Available hours",
