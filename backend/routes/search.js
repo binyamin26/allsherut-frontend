@@ -556,6 +556,26 @@ delete advancedFilters.fullLocation;
 
     const whereClause = `WHERE ${whereConditions.join(' AND ')}`;
 
+    // Sous-requêtes location : si ville filtrée, on affiche en priorité cette ville
+    const selectParams = [];
+    let locationCitySubquery, locationAreaSubquery;
+    if (city) {
+      locationCitySubquery = `COALESCE(
+        (SELECT pwa.city FROM provider_working_areas pwa WHERE pwa.provider_id = sp.id AND pwa.city LIKE ? LIMIT 1),
+        (SELECT 'כל ישראל' FROM provider_working_areas pwa WHERE pwa.provider_id = sp.id AND (pwa.neighborhood = 'כל ישראל' OR pwa.city = 'ישראל') LIMIT 1),
+        (SELECT pwa.city FROM provider_working_areas pwa WHERE pwa.provider_id = sp.id LIMIT 1)
+      )`;
+      locationAreaSubquery = `COALESCE(
+        (SELECT pwa.neighborhood FROM provider_working_areas pwa WHERE pwa.provider_id = sp.id AND pwa.city LIKE ? LIMIT 1),
+        (SELECT pwa.neighborhood FROM provider_working_areas pwa WHERE pwa.provider_id = sp.id AND (pwa.neighborhood = 'כל ישראל' OR pwa.city = 'ישראל') LIMIT 1),
+        (SELECT pwa.neighborhood FROM provider_working_areas pwa WHERE pwa.provider_id = sp.id LIMIT 1)
+      )`;
+      selectParams.push(`%${city}%`, `%${city}%`);
+    } else {
+      locationCitySubquery = `(SELECT pwa.city FROM provider_working_areas pwa WHERE pwa.provider_id = sp.id LIMIT 1)`;
+      locationAreaSubquery = `(SELECT pwa.neighborhood FROM provider_working_areas pwa WHERE pwa.provider_id = sp.id LIMIT 1)`;
+    }
+
     // Définition du tri — par défaut : avis vérifiés en premier
     const SORT_REVIEWS = `(SELECT COUNT(DISTINCT r.id) FROM reviews r WHERE r.provider_id = sp.id AND r.is_verified = TRUE AND r.is_published = TRUE)`;
     let orderClause = `ORDER BY ${SORT_REVIEWS} DESC, sp.average_rating DESC, sp.is_featured DESC, u.created_at DESC`;
@@ -585,8 +605,8 @@ sp.profile_image as provider_profile_image,
     sp.description,
     sp.hourly_rate,
     sp.currency,
-   (SELECT pwa.city FROM provider_working_areas pwa WHERE pwa.provider_id = sp.id LIMIT 1) as location_city,
-(SELECT pwa.neighborhood FROM provider_working_areas pwa WHERE pwa.provider_id = sp.id LIMIT 1) as location_area,
+   ${locationCitySubquery} as location_city,
+   ${locationAreaSubquery} as location_area,
     sp.experience_years,
     sp.verification_status,
     sp.is_featured,
@@ -617,7 +637,7 @@ sp.profile_image as provider_profile_image,
     console.log(DEV_LOGS.DATABASE.QUERY_EXECUTED || 'QUERY', searchQuery.replace(/\s+/g, ' ').trim());
     console.log('🔍 Params de la requête:', params);
 
-    const providers = await query(searchQuery, params);
+    const providers = await query(searchQuery, [...selectParams, ...params]);
 
     console.log('🔍 DIAGNOSTIC - Premiers providers avant formatage:');
     providers.slice(0, 2).forEach(p => {

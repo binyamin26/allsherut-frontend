@@ -143,8 +143,8 @@ const PaintingPage = () => {
               ) : (
                 <div className="results-count">
                  <strong>{resultsCount}</strong> {t('services.painting.found')}
-                  {locationFilter.neighborhood && <span> {t('common.in')} {locationFilter.neighborhood}</span>}
-  {!locationFilter.neighborhood && locationFilter.city && <span> {t('common.in')} {locationFilter.city}</span>}
+                  {locationFilter.neighborhood && <span> {t('common.in')} <strong style={{color:'#dc2626',fontSize:'1.15em'}}>{locationFilter.neighborhood}</strong></span>}
+  {!locationFilter.neighborhood && locationFilter.city && <span> {t('common.in')} <strong style={{color:'#dc2626',fontSize:'1.15em'}}>{locationFilter.city}</strong></span>}
 </div>
               )}
             </div>
