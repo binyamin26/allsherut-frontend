@@ -22,9 +22,11 @@ const getAvatarGradient = (name) => {
   return AVATAR_GRADIENTS[Math.abs(hash) % AVATAR_GRADIENTS.length];
 };
 
-const getInitial = (name) => {
+const getInitials = (name) => {
   if (!name) return '?';
-  return name.trim()[0] || '?';
+  const parts = name.trim().split(/\s+/);
+  if (parts.length === 1) return parts[0][0].toUpperCase();
+  return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
 };
 
 const ProviderCard = ({ provider, onOpenReviewModal }) => {
@@ -123,7 +125,7 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
             background: getAvatarGradient(provider.name || provider.full_name),
           }}
         >
-          {getInitial(provider.name || provider.full_name)}
+          {getInitials(provider.name || provider.full_name)}
         </div>
       </div>
 

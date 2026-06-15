@@ -14,6 +14,27 @@ import {
   ChevronLeft, Send, AlertCircle
 } from 'lucide-react';
 
+const AVATAR_GRADIENTS = [
+  'linear-gradient(145deg, #2563EB 0%, #1E3A8A 100%)',
+  'linear-gradient(145deg, #0D9488 0%, #0F766E 100%)',
+  'linear-gradient(145deg, #EA580C 0%, #C2410C 100%)',
+  'linear-gradient(145deg, #7C3AED 0%, #5B21B6 100%)',
+  'linear-gradient(145deg, #BE185D 0%, #9D174D 100%)',
+  'linear-gradient(145deg, #0369A1 0%, #075985 100%)',
+];
+const getAvatarGradient = (name) => {
+  if (!name) return AVATAR_GRADIENTS[0];
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) hash = name.charCodeAt(i) + ((hash << 5) - hash);
+  return AVATAR_GRADIENTS[Math.abs(hash) % AVATAR_GRADIENTS.length];
+};
+const getInitials = (name) => {
+  if (!name) return '?';
+  const parts = name.trim().split(/\s+/);
+  if (parts.length === 1) return parts[0][0].toUpperCase();
+  return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+};
+
 const DAY_ORDER = ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת', 'כל השבוע'];
 const sortDays = (days) => {
   if (!Array.isArray(days)) return days;
@@ -1558,27 +1579,17 @@ const handleContact = () => {
           width: '100%',
           height: '100%',
           borderRadius: '50%',
-          background: 'linear-gradient(145deg, #e8eef5 0%, #d1dbe8 100%)',
+          background: getAvatarGradient(provider.name || provider.full_name),
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          boxShadow: 'inset 0 2px 8px rgba(0,0,0,0.08)'
+          fontSize: '2.8rem',
+          fontWeight: '700',
+          color: '#fff',
+          letterSpacing: '0.05em',
+          userSelect: 'none',
         }}>
-          <svg width="90" height="90" viewBox="0 0 100 100" fill="none">
-            <defs>
-              <linearGradient id="avatarGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#a0aec0"/>
-                <stop offset="100%" stopColor="#718096"/>
-              </linearGradient>
-              <clipPath id="circleClip">
-                <circle cx="50" cy="50" r="48"/>
-              </clipPath>
-            </defs>
-            <g clipPath="url(#circleClip)">
-              <circle cx="50" cy="38" r="18" fill="url(#avatarGradient)"/>
-              <ellipse cx="50" cy="85" rx="32" ry="28" fill="url(#avatarGradient)"/>
-            </g>
-          </svg>
+          {getInitials(provider.name || provider.full_name)}
         </div>
       )}
 
