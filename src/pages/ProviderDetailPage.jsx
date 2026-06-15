@@ -1500,16 +1500,20 @@ const handleContact = () => {
               : 0;
           const count = provider.rating?.count ?? reviews.length;
           const formatted = formatRating(avg);
-          return formatted ? (
-            <>
-              <span className="rating-score">
-                <span style={{color:'#ef4444', fontWeight:'700'}}>{formatted}</span>
-                <span style={{fontWeight:'500'}}>/10</span>
-              </span>
-              <span className="reviews-count">({count} {t('provider.reviews')})</span>
-            </>
-          ) : (
-            <span className="reviews-count">{count} {t('provider.reviews')}</span>
+          if (!formatted) return <span className="reviews-count">{count} {t('provider.reviews')}</span>;
+          const starScore = (avg / 2).toFixed(1);
+          const fullStars = Math.floor(avg / 2);
+          return (
+            <div className="text-hero-rating-row">
+              <div className="text-hero-stars">
+                {[1,2,3,4,5].map(i => (
+                  <Star key={i} size={14} fill={i <= fullStars ? '#F59E0B' : 'none'} color="#F59E0B" strokeWidth={2} />
+                ))}
+              </div>
+              <span className="text-hero-score">{starScore}</span>
+              <span className="text-hero-divider">·</span>
+              <span className="text-hero-count">{count} {t('provider.reviews')}</span>
+            </div>
           );
         })()}
       </div>
@@ -1713,18 +1717,22 @@ const handleContact = () => {
                    <h3 className="section-title">{t('provider.reviews.title')}</h3>
                       <div className="reviews-summary">
                         <div className="rating-overview">
-                          <div className="overall-rating">
-                            {reviews.length > 0 && formatRating(reviews.reduce((sum, r) => sum + parseFloat(r.rating || 0), 0) / reviews.length) ? (
-                              <>
-                                <span className="rating-number" style={{color:'#ef4444'}}>{formatRating(reviews.reduce((sum, r) => sum + parseFloat(r.rating || 0), 0) / reviews.length)}</span>
-                                <span className="rating-out-of">/10</span>
-                              </>
-                            ) : null}
-                          </div>
-                          <div className="rating-details">
-                         <span className="rating-text">{t('provider.reviews.overallRating')}</span>
-<span className="reviews-total">{reviews.length} {t('provider.reviews')}</span>
-                          </div>
+                          {reviews.length > 0 ? (() => {
+                            const avg = reviews.reduce((sum, r) => sum + parseFloat(r.rating || 0), 0) / reviews.length;
+                            const starScore = (avg / 2).toFixed(1);
+                            const fullStars = Math.floor(avg / 2);
+                            return (
+                              <div className="text-overall-rating-block">
+                                <span className="text-overall-score">{starScore}</span>
+                                <div className="text-overall-stars">
+                                  {[1,2,3,4,5].map(i => (
+                                    <Star key={i} size={22} fill={i <= fullStars ? '#F59E0B' : 'none'} color="#F59E0B" strokeWidth={1.5} />
+                                  ))}
+                                </div>
+                                <span className="text-overall-count">{reviews.length} {t('provider.reviews')}</span>
+                              </div>
+                            );
+                          })() : null}
                         </div>
 
                         {isAuthenticated && user?.role === 'client' && (
@@ -1762,11 +1770,19 @@ const handleContact = () => {
                                   <h5 className="reviewer-name">{review.reviewerName || t('provider.reviews.customer')}</h5>
                                         <div className="review-rating">
                                           {review.quality_rating ? (
-                                            <div className="review-categories-inline">
-                                              <span className="cat-score">{t('review.categories.quality')}: <strong>{review.quality_rating}/10</strong></span>
-                                              <span className="cat-score">{t('review.categories.price')}: <strong>{review.price_rating}/10</strong></span>
-                                              <span className="cat-score">{t('review.categories.availability')}: <strong>{review.availability_rating}/10</strong></span>
-                                              <span className="cat-score">{t('review.categories.professionalism')}: <strong>{review.professionalism_rating}/10</strong></span>
+                                            <div className="text-review-cats">
+                                              {[
+                                                { key: 'quality', score: review.quality_rating },
+                                                { key: 'price', score: review.price_rating },
+                                                { key: 'availability', score: review.availability_rating },
+                                                { key: 'professionalism', score: review.professionalism_rating },
+                                              ].map(({ key, score }) => (
+                                                <span key={key} className="text-cat-badge">
+                                                  <Star size={10} fill="#F59E0B" color="#F59E0B" strokeWidth={2} />
+                                                  <span className="text-cat-score">{(score / 2).toFixed(1)}</span>
+                                                  <span className="text-cat-label">{t(`review.categories.${key}`)}</span>
+                                                </span>
+                                              ))}
                                             </div>
                                           ) : null}
                                         </div>
