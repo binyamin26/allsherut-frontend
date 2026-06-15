@@ -52,6 +52,7 @@ export const israelCities = [
   { name: "גבעת שמואל", area: "מרכז", nameVariants: ["גבעת שמואל"] },
   { name: "רמת השרון", area: "מרכז", nameVariants: ["רמת השרון"] },
   { name: "סביון", area: "מרכז", nameVariants: ["סביון"] },
+  { name: "ראש העין", area: "מרכז", nameVariants: ["ראש העין"] },
   
   // ══════════════════════════════════════════
   // שרון - SHARON
@@ -84,6 +85,7 @@ export const israelCities = [
   { name: "קריית ים", area: "חיפה", nameVariants: ["קריית ים"] },
   { name: "קריית אתא", area: "חיפה", nameVariants: ["קריית אתא"] },
   { name: "רכסים", area: "חיפה", nameVariants: ["רכסים"] },
+  { name: "קריית טבעון", area: "חיפה", nameVariants: ["קריית טבעון"] },
   { name: "נשר", area: "חיפה", nameVariants: ["נשר"] },
   { name: "טירת כרמל", area: "חיפה", nameVariants: ["טירת כרמל"] },
   { name: "עכו", area: "חיפה", nameVariants: ["עכו"] },
@@ -96,7 +98,7 @@ export const israelCities = [
   { name: "טבריה", area: "צפון", nameVariants: ["טבריה"] },
   { name: "צפת", area: "צפון", nameVariants: ["צפת"] },
   { name: "נצרת", area: "צפון", nameVariants: ["נצרת"] },
-  { name: "נצרת עילית", area: "צפון", nameVariants: ["נצרת עילית", "נוף הגליל"] },
+  { name: "נוף הגליל", area: "צפון", nameVariants: ["נוף הגליל", "נצרת עילית"] },
   { name: "עפולה", area: "צפון", nameVariants: ["עפולה"] },
   { name: "קריית שמונה", area: "צפון", nameVariants: ["קריית שמונה"] },
   { name: "מעלות תרשיחא", area: "צפון", nameVariants: ["מעלות תרשיחא", "מעלות-תרשיחא"] },
@@ -106,7 +108,7 @@ export const israelCities = [
   { name: "סח'נין", area: "צפון", nameVariants: ["סח'נין", "סחנין"] },
   { name: "טמרה", area: "צפון", nameVariants: ["טמרה"] },
   { name: "אום אל-פחם", area: "צפון", nameVariants: ["אום אל-פחם"] },
-  { name: "באקה אל-גרביה", area: "צפון", nameVariants: ["באקה אל-גרביה", "באקה-ג'ת"] },
+  { name: "באקה אל-גרבייה", area: "צפון", nameVariants: ["באקה אל-גרבייה", "באקה אל-גרביה", "באקה-ג'ת"] },
   { name: "שפרעם", area: "צפון", nameVariants: ["שפרעם"] },
   { name: "בית שאן", area: "צפון", nameVariants: ["בית שאן"] },
   { name: "ראש פינה", area: "צפון", nameVariants: ["ראש פינה"] },
@@ -140,7 +142,7 @@ export const israelCities = [
   { name: "מעלה אדומים", area: "ירושלים", nameVariants: ["מעלה אדומים"] },
   { name: "מבשרת ציון", area: "ירושלים", nameVariants: ["מבשרת ציון"] },
   { name: "אבו גוש", area: "ירושלים", nameVariants: ["אבו גוש"] },
-  { name: "מזכרת בתיה", area: "ירושלים", nameVariants: ["מזכרת בתיה"] },
+  { name: "מזכרת בתיה", area: "מרכז", nameVariants: ["מזכרת בתיה"] },
   
   // ══════════════════════════════════════════
   // יהודה ושומרון - JUDÉE-SAMARIE
