@@ -166,6 +166,14 @@ const HomePage = () => {
       href: '/services/mechanic'
     },
     {
+      id: 'metalwork',
+      name: t('services.metalwork'),
+      image: '/images/metalwork.jpg',
+      description: t('services.metalwork.desc'),
+      color: 'from-zinc-600 to-slate-700',
+      href: '/services/metalwork'
+    },
+    {
       id: 'contractor',
       name: t('services.contractor'),
       image: '/images/kablan.jpg',

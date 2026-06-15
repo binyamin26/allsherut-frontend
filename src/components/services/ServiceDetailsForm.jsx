@@ -33,6 +33,7 @@ import PestControlForm from './pest_control/PestControlForm';
 import HandymanForm from './handyman/HandymanForm';
 import DJForm from './dj/DJForm';
 import MechanicForm from './mechanic/MechanicForm';
+import MetalworkForm from './metalwork/MetalworkForm';
 
 // Services qui gèrent déjà les langues dans leur propre formulaire
 const SERVICES_WITH_OWN_LANGUAGES = new Set(['babysitting', 'eldercare', 'photographer']);
@@ -87,7 +88,8 @@ const ServiceDetailsForm = ({
     pest_control: PestControlForm,
     handyman: HandymanForm,
     dj: DJForm,
-    mechanic: MechanicForm
+    mechanic: MechanicForm,
+    metalwork: MetalworkForm
   };
 
   // Récupérer le bon composant
@@ -114,7 +116,7 @@ const ServiceDetailsForm = ({
       {!hideLanguages && !SERVICES_WITH_OWN_LANGUAGES.has(serviceType) && (
         <div className="form-section optional">
           <div className="input-group">
-            <label className="auth-form-label" style={{ fontWeight: 600 }}>{t('filters.common.languages')}</label>
+            <label className="auth-form-label">{t('filters.common.languages')}</label>
             <div className="checkbox-group" data-field="languages">
               {LANGUAGES_OPTIONS.map(lang => (
                 <label key={lang.value} className="checkbox-item">

@@ -699,6 +699,39 @@ optional: {
         dbField: 'experience_years'
       }
     }
+  },
+
+  metalwork: {
+    required: {
+      work_types: {
+        label: 'סוג עבודה',
+        type: 'checkbox',
+        options: ['סורגים', 'מעקות', 'גדרות'],
+        dbField: 'service_details->>"$.work_types"'
+      },
+      availability_hours: {
+        label: 'שעות זמינות',
+        type: 'checkbox',
+        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל'],
+        dbField: 'availability_hours'
+      }
+    },
+    optional: {
+      languages: {
+        label: 'שפות מדוברות',
+        type: 'checkbox',
+        options: ['עברית', 'ערבית', 'רוסית', 'אנגלית', 'צרפתית'],
+        dbField: 'languages'
+      },
+      experienceYears: {
+        label: 'שנות ניסיון',
+        type: 'range',
+        min: 0,
+        max: 40,
+        unit: 'שנים',
+        dbField: 'experience_years'
+      }
+    }
   }
 };
 

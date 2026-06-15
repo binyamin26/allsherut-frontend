@@ -2693,5 +2693,28 @@
   "filters.mechanic.radiatorCooling": "רדיאטור וקירור",
 
   "serviceFields.mechanic.work_types": "סוגי עבודה",
-  "serviceFields.mechanic.experience": "שנות ניסיון"
+  "serviceFields.mechanic.experience": "שנות ניסיון",
+
+  "services.metalwork": "מסגרות",
+  "services.metalwork.desc": "סורגים, מעקות וגדרות מקצועיים",
+  "services.metalwork.pageTitle": "ספקי שירות מסגרות מקצועיים",
+  "services.metalwork.searching": "מחפש מסגרות...",
+  "services.metalwork.loading": "טוען מסגרות...",
+  "services.metalwork.loadError": "שגיאה בטעינת מסגרות",
+  "services.metalwork.found": "מסגרות נמצאו",
+  "services.metalwork.noResults": "לא נמצאו מסגרות באזור זה",
+
+  "serviceForm.metalwork.title": "פרטי שירות מסגרות",
+  "serviceForm.metalwork.bars": "סורגים",
+  "serviceForm.metalwork.railings": "מעקות",
+  "serviceForm.metalwork.fences": "גדרות",
+
+  "filters.metalwork.workTypes": "סוג עבודה",
+  "filters.metalwork.bars": "סורגים",
+  "filters.metalwork.railings": "מעקות",
+  "filters.metalwork.fences": "גדרות",
+
+  "serviceFields.metalwork.work_types": "סוג עבודה",
+  "serviceFields.metalwork.availability_hours": "שעות זמינות",
+  "serviceFields.metalwork.experience": "שנות ניסיון"
 }

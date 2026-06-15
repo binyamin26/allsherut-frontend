@@ -2686,5 +2686,28 @@
   "filters.mechanic.radiatorCooling": "Radiateur & Refroidissement",
 
   "serviceFields.mechanic.work_types": "Types de travaux",
-  "serviceFields.mechanic.experience": "Années d'expérience"
+  "serviceFields.mechanic.experience": "Années d'expérience",
+
+  "services.metalwork": "Ferronnerie",
+  "services.metalwork.desc": "Barreaux de sécurité, garde-corps et clôtures professionnels",
+  "services.metalwork.pageTitle": "Prestataires de ferronnerie professionnels",
+  "services.metalwork.searching": "Recherche de ferronnier...",
+  "services.metalwork.loading": "Chargement des feronniers...",
+  "services.metalwork.loadError": "Erreur lors du chargement",
+  "services.metalwork.found": "prestataires trouvés",
+  "services.metalwork.noResults": "Aucun prestataire trouvé dans cette zone",
+
+  "serviceForm.metalwork.title": "Détails du service ferronnerie",
+  "serviceForm.metalwork.bars": "Barreaux de sécurité",
+  "serviceForm.metalwork.railings": "Garde-corps",
+  "serviceForm.metalwork.fences": "Clôtures",
+
+  "filters.metalwork.workTypes": "Type de travaux",
+  "filters.metalwork.bars": "Barreaux de sécurité",
+  "filters.metalwork.railings": "Garde-corps",
+  "filters.metalwork.fences": "Clôtures",
+
+  "serviceFields.metalwork.work_types": "Type de travaux",
+  "serviceFields.metalwork.availability_hours": "Heures disponibles",
+  "serviceFields.metalwork.experience": "Années d'expérience"
 }

@@ -177,7 +177,8 @@ const services = [
   { key: 'babysitting', name: t('services.babysitting'), icon: '👶', image: '/images/babysite.jpg', gradient: 'babysitting-gradient' },
   { key: 'petcare', name: t('services.petcare'), image: '/images/chien.jpg', gradient: 'petcare-gradient' },
   { key: 'eldercare', name: t('services.eldercare'), icon: '👵', image: '/images/eldercare.png', gradient: 'eldercare-gradient' },
-  { key: 'mechanic', name: t('services.mechanic'), image: '/images/garagiste.jpg', gradient: 'mechanic-gradient' }
+  { key: 'mechanic', name: t('services.mechanic'), image: '/images/garagiste.jpg', gradient: 'mechanic-gradient' },
+  { key: 'metalwork', name: t('services.metalwork'), image: '/images/metalwork.jpg', gradient: 'metalwork-gradient' }
 ];
 
 
@@ -1029,6 +1030,13 @@ case 'glass_works':  if (!serviceDetails.availability_hours || serviceDetails.av
   case 'mechanic':
     if (!serviceDetails.work_types || serviceDetails.work_types.length === 0)
       newErrors['serviceDetails.work_types'] = t('validation.workTypesRequired');
+    break;
+
+  case 'metalwork':
+    if (!serviceDetails.work_types || serviceDetails.work_types.length === 0)
+      newErrors['serviceDetails.work_types'] = t('validation.workTypesRequired');
+    if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0)
+      newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
     break;
 
     }

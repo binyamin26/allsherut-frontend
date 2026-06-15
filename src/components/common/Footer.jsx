@@ -55,6 +55,7 @@ const Footer = () => {
         { nameKey: 'services.glass_works', path: '/services/glass-works' },
         { nameKey: 'services.handyman', path: '/services/handyman' },
         { nameKey: 'services.mechanic', path: '/services/mechanic' },
+        { nameKey: 'services.metalwork', path: '/services/metalwork' },
         { nameKey: 'services.contractor', path: '/services/contractor' },
         { nameKey: 'services.locksmith', path: '/services/locksmith' },
         { nameKey: 'services.moving', path: '/services/moving' },

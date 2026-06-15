@@ -2687,5 +2687,28 @@
   "filters.mechanic.radiatorCooling": "Радиатор и охлаждение",
 
   "serviceFields.mechanic.work_types": "Виды работ",
-  "serviceFields.mechanic.experience": "Лет опыта"
+  "serviceFields.mechanic.experience": "Лет опыта",
+
+  "services.metalwork": "Металлоконструкции",
+  "services.metalwork.desc": "Решётки безопасности, перила и ограждения",
+  "services.metalwork.pageTitle": "Профессиональные мастера металлоконструкций",
+  "services.metalwork.searching": "Поиск мастеров...",
+  "services.metalwork.loading": "Загрузка мастеров...",
+  "services.metalwork.loadError": "Ошибка загрузки",
+  "services.metalwork.found": "мастеров найдено",
+  "services.metalwork.noResults": "Мастера в этом районе не найдены",
+
+  "serviceForm.metalwork.title": "Детали услуги металлоконструкций",
+  "serviceForm.metalwork.bars": "Решётки безопасности",
+  "serviceForm.metalwork.railings": "Перила",
+  "serviceForm.metalwork.fences": "Ограждения",
+
+  "filters.metalwork.workTypes": "Вид работ",
+  "filters.metalwork.bars": "Решётки безопасности",
+  "filters.metalwork.railings": "Перила",
+  "filters.metalwork.fences": "Ограждения",
+
+  "serviceFields.metalwork.work_types": "Вид работ",
+  "serviceFields.metalwork.availability_hours": "Часы работы",
+  "serviceFields.metalwork.experience": "Лет опыта"
 }

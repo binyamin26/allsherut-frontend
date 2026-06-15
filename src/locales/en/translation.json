@@ -2687,5 +2687,28 @@
   "filters.mechanic.radiatorCooling": "Radiator & Cooling",
 
   "serviceFields.mechanic.work_types": "Work types",
-  "serviceFields.mechanic.experience": "Years of experience"
+  "serviceFields.mechanic.experience": "Years of experience",
+
+  "services.metalwork": "Metalwork",
+  "services.metalwork.desc": "Professional bars, railings and fences",
+  "services.metalwork.pageTitle": "Professional Metalwork Service Providers",
+  "services.metalwork.searching": "Searching for metalwork providers...",
+  "services.metalwork.loading": "Loading metalwork providers...",
+  "services.metalwork.loadError": "Error loading metalwork providers",
+  "services.metalwork.found": "providers found",
+  "services.metalwork.noResults": "No metalwork providers found in this area",
+
+  "serviceForm.metalwork.title": "Metalwork Service Details",
+  "serviceForm.metalwork.bars": "Security Bars",
+  "serviceForm.metalwork.railings": "Railings",
+  "serviceForm.metalwork.fences": "Fences",
+
+  "filters.metalwork.workTypes": "Work Type",
+  "filters.metalwork.bars": "Security Bars",
+  "filters.metalwork.railings": "Railings",
+  "filters.metalwork.fences": "Fences",
+
+  "serviceFields.metalwork.work_types": "Work type",
+  "serviceFields.metalwork.availability_hours": "Available hours",
+  "serviceFields.metalwork.experience": "Years of experience"
 }
