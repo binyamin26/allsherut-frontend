@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Phone, Eye, Star, MapPin } from 'lucide-react';
+import { Phone, Eye, MapPin } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import apiService from '../../services/api';
 
@@ -134,7 +134,9 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
             <>
               <span className="rating-lbl">{t('card.ratingLabel')}</span>
               <span className="rating-num">{formattedRating}</span>
-              <Star size={13} fill="#1d4ed8" color="#1d4ed8" />
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="#1d4ed8" xmlns="http://www.w3.org/2000/svg" style={{flexShrink:0}}>
+                <polygon points="6.5,0.5 7.558,5.044 12.207,4.646 8.212,7.056 10.027,11.354 6.5,8.3 2.973,11.354 4.788,7.056 0.793,4.646 5.442,5.044" />
+              </svg>
               <span className="rating-dot">·</span>
               <span className="reviews-count">{reviewsCount} {t('card.reviews')}</span>
             </>
