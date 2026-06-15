@@ -59,7 +59,7 @@ const MetalworkPage = () => {
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon">
-              <img src="/images/metalwork.jpg" alt="מסגרות" />
+              <img src="/images/logo fer.jpg" alt="מסגרות" />
             </div>
             <h1 className="service-title">{t('services.metalwork.pageTitle')}</h1>
           </div>

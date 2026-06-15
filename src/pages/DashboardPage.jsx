@@ -107,7 +107,8 @@ const serviceImages = {
   event_decoration: '/images/logo deco.jpg',
   pest_control: '/images/logo desinctisation.jpg',
   handyman: '/images/logo indimane.jpg',
-  mechanic: '/images/logo garagiste.jpg'
+  mechanic: '/images/logo garagiste.jpg',
+  metalwork: '/images/logo fer.jpg'
 };
 
 const ServiceIconDisplay = ({ svcType }) => {
