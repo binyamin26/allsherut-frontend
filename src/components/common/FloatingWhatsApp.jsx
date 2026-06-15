@@ -12,7 +12,7 @@ export default function FloatingWhatsApp() {
       style={{
         position: 'fixed',
         bottom: '24px',
-        left: '24px',
+        right: '24px',
         width: '56px',
         height: '56px',
         borderRadius: '50%',
