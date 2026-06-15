@@ -107,7 +107,6 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
   const [locationMode, setLocationMode] = useState(''); // 'israel' | 'ezor' | 'city' | 'neighborhood'
   const [selectedEzor, setSelectedEzor] = useState('');
   
-  const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
   const [neighborhoodInput, setNeighborhoodInput] = useState('');
   const [showNeighborhoodSuggestions, setShowNeighborhoodSuggestions] = useState(false);
   const modalRef = useRef(null);
@@ -181,30 +180,6 @@ const services = [
   { key: 'mechanic', name: t('services.mechanic'), image: '/images/garagiste.jpg', gradient: 'mechanic-gradient' }
 ];
 
-  // ── Détection clavier mobile via visualViewport ──────────────────────
-  useEffect(() => {
-    if (!isOpen) return;
-    const viewport = window.visualViewport;
-    if (!viewport) return;
-
-    const onResize = () => {
-      const keyboardOpen = viewport.height < window.screen.height * 0.75;
-      setIsKeyboardOpen(keyboardOpen);
-    };
-
-    viewport.addEventListener('resize', onResize);
-    return () => viewport.removeEventListener('resize', onResize);
-  }, [isOpen]);
-
-  // ── Auto-scroll vers le champ focalisé (mobile uniquement) ──────────
-  const handleFocusCapture = (e) => {
-    if (window.innerWidth >= 768) return; // desktop : pas de scroll auto
-    const target = e.target;
-    if (!['INPUT', 'SELECT', 'TEXTAREA'].includes(target.tagName)) return;
-    setTimeout(() => {
-      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }, 350); // attendre que le clavier soit ouvert
-  };
 
   useEffect(() => {
     if (isOpen) {
@@ -1771,9 +1746,8 @@ const renderWorkingAreasSection = () => {
       <div className="modal-overlay">
         <div
           ref={modalRef}
-          className={`modal-content auth-modal${isKeyboardOpen ? ' keyboard-open' : ''}`}
+          className="modal-content auth-modal"
           onClick={(e) => e.stopPropagation()}
-          onFocusCapture={handleFocusCapture}
         >
           <button className="modal-close" onClick={onClose}>
             <X size={24} />
