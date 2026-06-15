@@ -120,7 +120,7 @@ const HomePage = () => {
     {
       id: 'metalwork',
       name: t('services.metalwork'),
-      image: '/images/metalwork.jpg',
+      image: '/images/fer.jpg',
       description: t('services.metalwork.desc'),
       color: 'from-zinc-600 to-slate-700',
       href: '/services/metalwork'
