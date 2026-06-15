@@ -1503,6 +1503,7 @@ const handleContact = () => {
           if (!formatted) return <span className="reviews-count">{count} {t('provider.reviews')}</span>;
           return (
             <div className="text-hero-rating-row">
+              <Star size={18} fill="#F59E0B" color="#F59E0B" strokeWidth={0} />
               <span className="text-hero-score">{formatted}</span>
               <span className="text-hero-divider">·</span>
               <span className="text-hero-count">{count} {t('provider.reviews')}</span>
@@ -1716,7 +1717,10 @@ const handleContact = () => {
                             const avg = reviews.reduce((sum, r) => sum + parseFloat(r.rating || 0), 0) / reviews.length;
                             return (
                               <div className="text-overall-rating-block">
-                                <span className="text-overall-score">{formatRating(avg)}</span>
+                                <div className="text-overall-score-row">
+                                  <Star size={28} fill="#F59E0B" color="#F59E0B" strokeWidth={0} />
+                                  <span className="text-overall-score">{formatRating(avg)}</span>
+                                </div>
                                 <span className="text-overall-count">{reviews.length} {t('provider.reviews')}</span>
                               </div>
                             );

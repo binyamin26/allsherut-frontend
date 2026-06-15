@@ -361,9 +361,9 @@
   direction: ltr;
 }
 .text-hero-score {
-  font-weight: 700;
-  font-size: 15px !important;
-  color: #1f2937;
+  font-weight: 800;
+  font-size: 20px !important;
+  color: #F59E0B;
 }
 .text-hero-divider {
   color: #d1d5db;
@@ -382,6 +382,11 @@
   flex-direction: column;
   align-items: center;
   gap: 6px;
+}
+.text-overall-score-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 .text-overall-score {
   font-size: 3.2rem !important;
