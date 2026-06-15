@@ -289,6 +289,23 @@ textarea,
   background: linear-gradient(135deg, var(--accent-400) 0%, var(--accent-500) 100%);
 }
 
+/* Fusionner visuellement le bloc obligatoire et optionnel en un seul bloc */
+.form-section:has(+ .form-section.optional) {
+  margin-bottom: 0;
+  border-bottom: none;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.form-section + .form-section.optional {
+  margin-top: 0;
+  border-top: 1px solid var(--neutral-100);
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  background: white;
+  border-color: var(--neutral-200);
+}
+
 /* Form row layouts */
 .form-row {
   display: grid;
