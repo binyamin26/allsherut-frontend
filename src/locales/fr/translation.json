@@ -280,6 +280,7 @@
   "dashboard.selectedAreas": "Zones sélectionnées",
   "dashboard.noWorkingAreas": "Aucune zone définie",
   "dashboard.personalDescription": "Description personnelle",
+  "dashboard.descriptionPlaceholder": "Parlez de vous, de votre expérience et du service que vous proposez...",
   "dashboard.noDescription": "Aucune description ajoutée",
   "provider.aboutProvider": "À propos du prestataire",
   "dashboard.stats.weeklyContacts": "Contacts hebdo",

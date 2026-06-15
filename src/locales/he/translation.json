@@ -274,6 +274,7 @@
   "dashboard.selectedAreas": "אזורי עבודה נבחרים",
   "dashboard.noWorkingAreas": "לא הוגדרו אזורי עבודה",
   "dashboard.personalDescription": "תיאור אישי",
+  "dashboard.descriptionPlaceholder": "ספר על עצמך, הניסיון שלך והשירות שאתה מציע...",
   "dashboard.noDescription": "לא הוסף תיאור עדיין",
   "provider.aboutProvider": "אודות הספק",
   "dashboard.stats.weeklyContacts": "פניות שבועיות",

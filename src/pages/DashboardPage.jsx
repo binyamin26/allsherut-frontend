@@ -1799,7 +1799,7 @@ const galleryImages = (() => {
           }
         }}
         className="form-input"
-        placeholder="ספר על עצמך, הניסיון שלך והשירות שאתה מציע..."
+        placeholder={t('dashboard.descriptionPlaceholder')}
         rows={4}
         maxLength={300}
         style={{ resize: 'vertical', minHeight: '100px', width: '100%' }}
