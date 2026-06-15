@@ -634,7 +634,7 @@ try {
   'gas_technician', 'drywall', 'carpentry', 'home_organization', 'event_entertainment',
   'dj', 'private_chef', 'painting', 'waterproofing', 'contractor', 'aluminum',
   'glass_works', 'locksmith', 'moving', 'photographer', 'event_decoration', 'pest_control',
-  'handyman', 'mechanic'
+  'handyman', 'mechanic', 'metalwork'
 ];
       
       if (!serviceType || !validServices.includes(serviceType)) {
