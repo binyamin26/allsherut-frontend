@@ -138,7 +138,7 @@ export const israelCities = [
   // ירושלים - JERUSALEM
   // ══════════════════════════════════════════
   { name: "ירושלים", area: "ירושלים", nameVariants: ["ירושלים"] },
-  { name: "בית שמש", area: "שפלה", nameVariants: ["בית שמש"] },
+  { name: "בית שמש", area: "ירושלים", nameVariants: ["בית שמש"] },
   { name: "מעלה אדומים", area: "ירושלים", nameVariants: ["מעלה אדומים"] },
   { name: "מבשרת ציון", area: "ירושלים", nameVariants: ["מבשרת ציון"] },
   { name: "אבו גוש", area: "ירושלים", nameVariants: ["אבו גוש"] },
@@ -147,11 +147,11 @@ export const israelCities = [
   // ══════════════════════════════════════════
   // יהודה ושומרון - JUDÉE-SAMARIE
   // ══════════════════════════════════════════
-  { name: "ביתר עילית", area: "יהודה ושומרון", nameVariants: ["ביתר עילית"] },
+  { name: "ביתר עילית", area: "ירושלים", nameVariants: ["ביתר עילית"] },
   { name: "מודיעין עילית", area: "יהודה ושומרון", nameVariants: ["מודיעין עילית"] },
   { name: "אריאל", area: "יהודה ושומרון", nameVariants: ["אריאל"] },
-  { name: "גבעת זאב", area: "יהודה ושומרון", nameVariants: ["גבעת זאב"] },
-  { name: "אפרת", area: "יהודה ושומרון", nameVariants: ["אפרת"] },
+  { name: "גבעת זאב", area: "ירושלים", nameVariants: ["גבעת זאב"] },
+  { name: "אפרת", area: "ירושלים", nameVariants: ["אפרת"] },
   { name: "גוש עציון", area: "יהודה ושומרון", nameVariants: ["גוש עציון"] },
   { name: "קרני שומרון", area: "יהודה ושומרון", nameVariants: ["קרני שומרון"] },
   { name: "אלקנה", area: "יהודה ושומרון", nameVariants: ["אלקנה"] },
