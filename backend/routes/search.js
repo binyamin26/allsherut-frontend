@@ -453,18 +453,17 @@ const validServices = ['babysitting', 'cleaning', 'gardening', 'petcare', 'tutor
   )`);
   params.push(`%${city}%`, `%${neighborhood}%`, area || '', area || '');
 } else if (city) {
-  // Ville sélectionnée : prestataires de cette ville + région + tout Israël
+  // Ville sélectionnée : uniquement cette ville + tout Israël (pas les "כל האזור" d'autres villes)
   whereConditions.push(`EXISTS (
     SELECT 1 FROM provider_working_areas pwa
     WHERE pwa.provider_id = sp.id
     AND (
       pwa.city LIKE ?
-      OR (? != '' AND pwa.city = ? AND pwa.neighborhood = 'כל האזור')
       OR pwa.neighborhood = 'כל ישראל'
       OR pwa.city = 'ישראל'
     )
   )`);
-  params.push(`%${city}%`, area || '', area || '');
+  params.push(`%${city}%`);
 } else if (neighborhood) {
   whereConditions.push(`EXISTS (SELECT 1 FROM provider_working_areas pwa WHERE pwa.provider_id = sp.id AND pwa.neighborhood LIKE ?)`);
   params.push(`%${neighborhood}%`);
