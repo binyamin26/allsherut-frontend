@@ -768,7 +768,7 @@ const response = await changePassword(
         lastName: user?.providerProfile?.serviceDetails?.service_last_name ?? userData?.lastName ?? '',
         phone: userData?.phone || '',
         email: userData?.email || '',
-        description: userData?.serviceDetails?.description || '',
+        description: /^ספק .+ מקצועי$/.test(userData?.serviceDetails?.description) ? '' : (userData?.serviceDetails?.description || ''),
         experienceYears: userData?.serviceDetails?.experience_years || '',
         hourlyRate: userData?.serviceDetails?.hourly_rate || '',
         availability: userData?.serviceDetails?.availability || [],
@@ -1786,6 +1786,39 @@ const galleryImages = (() => {
   onArrayChange={handleServiceDetailArrayChange}
 />
 
+    {/* Section Description */}
+<div className="info-section">
+  <h3 className="section-title">{t('dashboard.personalDescription')}</h3>
+  {isEditMode ? (
+    <div className="form-group">
+      <textarea
+        value={editFormData.description || ''}
+        onChange={(e) => {
+          if (e.target.value.length <= 300) {
+            handleEditInputChange('description', e.target.value);
+          }
+        }}
+        className="form-input"
+        placeholder="ספר על עצמך, הניסיון שלך והשירות שאתה מציע..."
+        rows={4}
+        maxLength={300}
+        style={{ resize: 'vertical', minHeight: '100px', width: '100%' }}
+      />
+      <div style={{ textAlign: 'left', fontSize: '0.8rem', color: '#6b7280', marginTop: '4px' }}>
+        {(editFormData.description || '').length}/300
+      </div>
+    </div>
+  ) : (() => {
+    const desc = userData?.serviceDetails?.description;
+    const cleanDesc = /^ספק .+ מקצועי$/.test(desc) ? null : desc;
+    return (
+      <p style={{ color: cleanDesc ? '#374151' : '#9ca3af', lineHeight: '1.6', margin: 0 }}>
+        {cleanDesc || t('dashboard.noDescription')}
+      </p>
+    );
+  })()}
+</div>
+
    {/* Section Zones de travail */}
  <div className="info-section">
       <h3 className="section-title">{t('dashboard.workingAreas')}</h3>
@@ -1958,35 +1991,6 @@ const galleryImages = (() => {
         </>
       )}
     </div>
-
-    {/* Section Description */}
-<div className="info-section">
-  <h3 className="section-title">תיאור אישי</h3>
-  {isEditMode ? (
-    <div className="form-group">
-      <textarea
-        value={editFormData.description || ''}
-        onChange={(e) => {
-          if (e.target.value.length <= 300) {
-            handleEditInputChange('description', e.target.value);
-          }
-        }}
-        className="form-input"
-        placeholder="ספר על עצמך, הניסיון שלך והשירות שאתה מציע..."
-        rows={4}
-        maxLength={300}
-        style={{ resize: 'vertical', minHeight: '100px', width: '100%' }}
-      />
-      <div style={{ textAlign: 'left', fontSize: '0.8rem', color: '#6b7280', marginTop: '4px' }}>
-        {(editFormData.description || '').length}/300
-      </div>
-    </div>
-  ) : (
-    <p style={{ color: userData?.serviceDetails?.description ? '#374151' : '#9ca3af', lineHeight: '1.6', margin: 0 }}>
-      {userData?.serviceDetails?.description || 'לא הוסף תיאור עדיין'}
-    </p>
-  )}
-</div>
 
     {/* ===== GALERIE DE SERVICES ===== */}
 <div className="info-section">

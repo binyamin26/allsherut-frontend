@@ -745,8 +745,8 @@ sp.profile_image as provider_profile_image,
         title: provider.title || `ספק ${getServiceLabel ? getServiceLabel(provider.service_type) : provider.service_type} מקצועי`,
         
         // Description (avec tous les alias)
-        description: provider.description || 'אין תיאור זמין',
-        bio: provider.description || 'אין תיאור זמין',
+        description: provider.description || null,
+        bio: provider.description || null,
         
         // Tarifs et expérience (avec tous les alias)
         hourlyRate: provider.hourly_rate || 0,

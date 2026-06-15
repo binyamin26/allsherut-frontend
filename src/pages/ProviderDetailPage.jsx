@@ -330,12 +330,6 @@ const handleContact = () => {
     <div className="service-details-section">
      <h3 className="details-title">{t('provider.details.title')}</h3>
 
-      {(provider.description || provider.serviceDetails?.description) && (
-        <p style={{ color: '#374151', lineHeight: '1.7', marginBottom: '1.5rem', padding: '1rem 1.25rem', backgroundColor: '#f9fafb', borderRadius: '8px', border: '1px solid #e5e7eb', whiteSpace: 'pre-wrap' }}>
-          {provider.description || provider.serviceDetails?.description}
-        </p>
-      )}
-
       <div className="details-grid">
         {/* === CHAMPS COMPACTS D'ABORD === */}
         
@@ -1628,6 +1622,20 @@ const handleContact = () => {
       <div className="provider-content">
         <div className="container">
           <div className="main-content">
+
+            {/* Section: À propos du prestataire */}
+            {(() => {
+              const rawDesc = provider.description || provider.serviceDetails?.description;
+              const desc = /^ספק .+ מקצועי$/.test(rawDesc) ? null : rawDesc;
+              return desc ? (
+                <div className="service-details-section" style={{ marginBottom: '1.5rem' }}>
+                  <h3 className="details-title" style={{ textAlign: 'start' }}>{t('provider.aboutProvider')}</h3>
+                  <p style={{ color: '#374151', lineHeight: '1.7', padding: '1rem 1.25rem', backgroundColor: '#f9fafb', borderRadius: '8px', border: '1px solid #e5e7eb', whiteSpace: 'pre-wrap', margin: 0 }}>
+                    {desc}
+                  </p>
+                </div>
+              ) : null;
+            })()}
 
             {/* Section: פרטים */}
             <div ref={detailsRef} data-section="details">

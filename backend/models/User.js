@@ -856,7 +856,7 @@ static async updateServiceProviderWithDetails(connection, providerId, serviceTyp
     
     // Champs de base communs (uniquement les colonnes garanties dans le schéma)
     const baseFields = {
-      description: details.description || `ספק ${serviceType} מקצועי`,
+      description: details.description || null,
       experience_years: details.experience || details.experienceYears || 0,
       hourly_rate: details.hourlyRate || details.rate || 0,
     };
