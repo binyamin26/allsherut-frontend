@@ -175,10 +175,10 @@ const fieldToMultipleCategories = {
   management_type: ['propertyFullYear', 'propertyShortTerm'],
   cleaningTypes: ['cleaningHome', 'cleaningOffice', 'cleaningSpecial', 'cleaningAdditional'],
   additionalServices: ['petcareServices', 'gardeningAdditional'],
-  work_types: ['electricianWorkTypes', 'acWorkTypes', 'gasWorkTypes', 'drywallWorkTypes', 
+  work_types: ['electricianWorkTypes', 'acWorkTypes', 'gasWorkTypes', 'drywallWorkTypes',
                'carpentryWorkTypes', 'homeOrgWorkTypes', 'paintingWorkTypes', 'eventWorkTypes',
-               'waterproofingWorkTypes', 'contractorWorkTypes', 'aluminumWorkTypes', 
-               'glassWorkTypes', 'locksmithWorkTypes'],
+               'waterproofingWorkTypes', 'contractorWorkTypes', 'aluminumWorkTypes',
+               'glassWorkTypes', 'locksmithWorkTypes', 'metalworkWorkTypes'],
 };
 
 const ServiceDetailsEditor = ({

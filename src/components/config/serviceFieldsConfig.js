@@ -1441,6 +1441,31 @@ const serviceFieldsConfig = {
     ]
   },
 
+  metalwork: {
+    fields: [
+      { name: 'experience', label: 'serviceFields.metalwork.experience', type: 'number' },
+      {
+        name: 'availability_hours',
+        label: 'serviceFields.metalwork.availability_hours',
+        type: 'checkbox',
+        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+      },
+      {
+        name: 'work_types',
+        label: 'serviceFields.metalwork.work_types',
+        type: 'checkbox',
+        options: [
+          { value: 'סורגים',         labelKey: 'serviceForm.metalwork.bars' },
+          { value: 'מעקות',          labelKey: 'serviceForm.metalwork.railings' },
+          { value: 'גדרות',          labelKey: 'serviceForm.metalwork.fences' },
+          { value: 'גלריות',         labelKey: 'serviceForm.metalwork.galleries' },
+          { value: 'מרפסות תלויות',  labelKey: 'serviceForm.metalwork.hangingBalconies' },
+          { value: 'מדרגות',         labelKey: 'serviceForm.metalwork.stairs' },
+        ]
+      }
+    ]
+  },
+
   mechanic: {
     fields: [
       { name: 'experience', label: 'serviceFields.mechanic.experience', type: 'number' },

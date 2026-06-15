@@ -1051,6 +1051,24 @@ const handleContact = () => {
           </>
         )}
 
+        {/* === METALWORK === */}
+        {provider.serviceType === 'metalwork' && (
+          <>
+            {details.work_types && details.work_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <IconLabel icon={Settings} color="#78350F" bg="#FEF3C7">{t('filters.metalwork.workTypes')}:</IconLabel>
+                <span>{translateAndJoin(details.work_types, 'metalworkWorkTypes', t)}</span>
+              </div>
+            )}
+            {details.availability_hours && details.availability_hours.length > 0 && (
+              <div className="detail-item">
+                <IconLabel icon={Clock} color="#78350F" bg="#FEF3C7">{t('serviceFields.metalwork.availability_hours')}:</IconLabel>
+                <span>{translateAndJoin(details.availability_hours, 'hours', t)}</span>
+              </div>
+            )}
+          </>
+        )}
+
         {/* === PEST_CONTROL === */}
         {provider.serviceType === 'pest_control' && (
           <>

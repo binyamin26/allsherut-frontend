@@ -981,6 +981,18 @@ const translationMappings = {
     'הרחקת עטלפים': 'filters.pest_control.bats',
     'הרחקת נחשים': 'filters.pest_control.snakes',
   },
+
+  // ═══════════════════════════════════════════════════════════════
+  // METALWORK
+  // ═══════════════════════════════════════════════════════════════
+  metalworkWorkTypes: {
+    'סורגים':         'serviceForm.metalwork.bars',
+    'מעקות':          'serviceForm.metalwork.railings',
+    'גדרות':          'serviceForm.metalwork.fences',
+    'גלריות':         'serviceForm.metalwork.galleries',
+    'מרפסות תלויות':  'serviceForm.metalwork.hangingBalconies',
+    'מדרגות':         'serviceForm.metalwork.stairs',
+  },
 };
 
 /**
