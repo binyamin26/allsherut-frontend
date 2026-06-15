@@ -1501,16 +1501,9 @@ const handleContact = () => {
           const count = provider.rating?.count ?? reviews.length;
           const formatted = formatRating(avg);
           if (!formatted) return <span className="reviews-count">{count} {t('provider.reviews')}</span>;
-          const starScore = (avg / 2).toFixed(1);
-          const fullStars = Math.floor(avg / 2);
           return (
             <div className="text-hero-rating-row">
-              <div className="text-hero-stars">
-                {[1,2,3,4,5].map(i => (
-                  <Star key={i} size={14} fill={i <= fullStars ? '#F59E0B' : 'none'} color="#F59E0B" strokeWidth={2} />
-                ))}
-              </div>
-              <span className="text-hero-score">{starScore}</span>
+              <span className="text-hero-score">{formatted}</span>
               <span className="text-hero-divider">·</span>
               <span className="text-hero-count">{count} {t('provider.reviews')}</span>
             </div>
@@ -1719,16 +1712,9 @@ const handleContact = () => {
                         <div className="rating-overview">
                           {reviews.length > 0 ? (() => {
                             const avg = reviews.reduce((sum, r) => sum + parseFloat(r.rating || 0), 0) / reviews.length;
-                            const starScore = (avg / 2).toFixed(1);
-                            const fullStars = Math.floor(avg / 2);
                             return (
                               <div className="text-overall-rating-block">
-                                <span className="text-overall-score">{starScore}</span>
-                                <div className="text-overall-stars">
-                                  {[1,2,3,4,5].map(i => (
-                                    <Star key={i} size={22} fill={i <= fullStars ? '#F59E0B' : 'none'} color="#F59E0B" strokeWidth={1.5} />
-                                  ))}
-                                </div>
+                                <span className="text-overall-score">{formatRating(avg)}</span>
                                 <span className="text-overall-count">{reviews.length} {t('provider.reviews')}</span>
                               </div>
                             );
@@ -1778,8 +1764,7 @@ const handleContact = () => {
                                                 { key: 'professionalism', score: review.professionalism_rating },
                                               ].map(({ key, score }) => (
                                                 <span key={key} className="text-cat-badge">
-                                                  <Star size={10} fill="#F59E0B" color="#F59E0B" strokeWidth={2} />
-                                                  <span className="text-cat-score">{(score / 2).toFixed(1)}</span>
+                                                  <span className="text-cat-score">{score}</span>
                                                   <span className="text-cat-label">{t(`review.categories.${key}`)}</span>
                                                 </span>
                                               ))}

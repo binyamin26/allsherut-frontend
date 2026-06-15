@@ -353,17 +353,12 @@
   font-weight: 500;
 }
 
-/* ── Hero rating row (stars + score + count) ── */
+/* ── Hero rating row (score + count) ── */
 .text-hero-rating-row {
   display: flex;
   align-items: center;
   gap: 5px;
   direction: ltr;
-}
-.text-hero-stars {
-  display: flex;
-  align-items: center;
-  gap: 1px;
 }
 .text-hero-score {
   font-weight: 700;
@@ -394,11 +389,6 @@
   color: #1f2937;
   line-height: 1;
   letter-spacing: -1px;
-}
-.text-overall-stars {
-  display: flex;
-  gap: 3px;
-  align-items: center;
 }
 .text-overall-count {
   font-size: 13px !important;
