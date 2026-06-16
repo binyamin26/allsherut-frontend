@@ -111,6 +111,19 @@ const DJForm = ({ serviceDetails, errors, handleServiceDetailsChange, handleExcl
             data-field="experience"
           />
         </div>
+
+        <div className="input-group">
+          <div className="checkbox-group">
+            <label className="checkbox-item">
+              <input
+                type="checkbox"
+                checked={serviceDetails.separated_dancing || false}
+                onChange={(e) => handleServiceDetailsChange('separated_dancing', e.target.checked)}
+              />
+              {t('serviceFields.dj.separated_dancing')}
+            </label>
+          </div>
+        </div>
       </div>
     </div>
   );

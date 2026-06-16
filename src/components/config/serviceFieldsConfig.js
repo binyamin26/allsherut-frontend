@@ -903,6 +903,11 @@ const serviceFieldsConfig = {
         label: 'serviceFields.dj.languages',
         type: 'checkbox',
         options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+      },
+      {
+        name: 'separated_dancing',
+        label: 'serviceFields.dj.separated_dancing',
+        type: 'boolean-select'
       }
     ]
   },
