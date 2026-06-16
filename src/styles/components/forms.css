@@ -324,8 +324,13 @@ textarea,
   margin-bottom: 0;
 }
 
+/* Annule le gap flex depuis le premier item (pas de margin négatif sur le bloc langues) */
+.service-details-form:has(.form-section.optional:last-child):has(+ .form-section.optional) {
+  margin-bottom: calc(-1 * var(--space-2));
+}
+
 .service-details-form:has(.form-section.optional:last-child) + .form-section.optional {
-  margin-top: calc(-1 * var(--space-2)); /* annule le gap: var(--space-2) du flex .auth-form */
+  margin-top: 0;
   border-top: none;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
