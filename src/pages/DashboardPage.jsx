@@ -3076,7 +3076,6 @@ placeholder={t('dashboard.security.newPasswordPlaceholder')}
 
     <div className="settings-card danger-zone" style={{marginTop: '20px'}}>
       <div className="settings-card-header">
-        <XCircle size={24} />
         <h4>{t('dashboard.account.immediateDeleteTitle')}</h4>
       </div>
       <div className="settings-content">
