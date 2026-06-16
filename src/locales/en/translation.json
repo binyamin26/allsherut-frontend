@@ -2722,5 +2722,30 @@
 
   "serviceFields.metalwork.work_types": "Work type",
   "serviceFields.metalwork.availability_hours": "Available hours",
-  "serviceFields.metalwork.experience": "Years of experience"
+  "serviceFields.metalwork.experience": "Years of experience",
+
+  "services.driver": "Private Driver",
+  "services.driver.desc": "Personal driver service – private taxi to your door",
+  "services.driver.pageTitle": "Private Driver – Personal Taxi Service",
+  "services.driver.searching": "Searching for drivers...",
+  "services.driver.loading": "Loading drivers...",
+  "services.driver.loadError": "Error loading drivers",
+  "services.driver.found": "drivers found",
+  "services.driver.noResults": "No drivers found in this area",
+
+  "serviceForm.driver.title": "Private Driver Service Details",
+  "serviceForm.driver.vehicleType": "Vehicle type",
+  "serviceForm.driver.seats5": "5 seats",
+  "serviceForm.driver.seats7": "7 seats",
+  "serviceForm.driver.seats9": "9 seats",
+
+  "filters.driver.vehicleType": "Vehicle type",
+  "filters.driver.availabilityHours": "Available hours",
+
+  "serviceFields.driver.experience": "Years of experience",
+  "serviceFields.driver.availability_hours": "Available hours",
+  "serviceFields.driver.vehicle_type": "Vehicle type",
+  "serviceFields.driver.languages": "Spoken languages",
+
+  "provider.details.driverVehicleType": "Vehicle type"
 }

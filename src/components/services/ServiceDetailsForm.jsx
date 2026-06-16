@@ -34,9 +34,10 @@ import HandymanForm from './handyman/HandymanForm';
 import DJForm from './dj/DJForm';
 import MechanicForm from './mechanic/MechanicForm';
 import MetalworkForm from './metalwork/MetalworkForm';
+import DriverForm from './driver/DriverForm';
 
 // Services qui gèrent déjà les langues dans leur propre formulaire
-const SERVICES_WITH_OWN_LANGUAGES = new Set(['babysitting', 'eldercare', 'photographer']);
+const SERVICES_WITH_OWN_LANGUAGES = new Set(['babysitting', 'eldercare', 'photographer', 'driver']);
 
 const LANGUAGES_OPTIONS = [
   { value: 'עברית', key: 'languages.hebrew' },
@@ -89,7 +90,8 @@ const ServiceDetailsForm = ({
     handyman: HandymanForm,
     dj: DJForm,
     mechanic: MechanicForm,
-    metalwork: MetalworkForm
+    metalwork: MetalworkForm,
+    driver: DriverForm
   };
 
   // Récupérer le bon composant

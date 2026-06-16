@@ -1498,6 +1498,40 @@ const serviceFieldsConfig = {
         options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
       }
     ]
+  },
+
+  driver: {
+    fields: [
+      { name: 'experience', label: 'serviceFields.driver.experience', type: 'number' },
+      {
+        name: 'availability_hours',
+        label: 'serviceFields.driver.availability_hours',
+        type: 'checkbox',
+        options: [
+          { value: 'בוקר',        labelKey: 'hours.morning' },
+          { value: 'אחר הצהריים', labelKey: 'hours.afternoon' },
+          { value: 'ערב',         labelKey: 'hours.evening' },
+          { value: 'לילה',        labelKey: 'hours.night' },
+          { value: '24 שעות',     labelKey: 'hours.twentyFourSeven' }
+        ]
+      },
+      {
+        name: 'vehicle_type',
+        label: 'serviceFields.driver.vehicle_type',
+        type: 'checkbox',
+        options: [
+          { value: '5 מקומות', labelKey: 'serviceForm.driver.seats5' },
+          { value: '7 מקומות', labelKey: 'serviceForm.driver.seats7' },
+          { value: '9 מקומות', labelKey: 'serviceForm.driver.seats9' }
+        ]
+      },
+      {
+        name: 'languages',
+        label: 'serviceFields.driver.languages',
+        type: 'checkbox',
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ערבית', 'רוסית']
+      }
+    ]
   }
 };
 

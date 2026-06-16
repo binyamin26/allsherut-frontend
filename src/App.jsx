@@ -65,6 +65,7 @@ import PestControlPage from './pages/services/PestControlPage';
 import HandymanPage from './pages/services/HandymanPage';
 import MechanicPage from './pages/services/MechanicPage';
 import MetalworkPage from './pages/services/MetalworkPage';
+import DriverPage from './pages/services/DriverPage';
 
 // Page de détails provider
 import ProviderDetailPage from './pages/ProviderDetailPage';
@@ -179,6 +180,7 @@ function App() {
 <Route path="/services/handyman" element={<HandymanPage />} />
 <Route path="/services/mechanic" element={<MechanicPage />} />
 <Route path="/services/metalwork" element={<MetalworkPage />} />
+<Route path="/services/driver" element={<DriverPage />} />
 
 
                 {/* Pages recrutement */}

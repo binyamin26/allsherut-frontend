@@ -2722,5 +2722,30 @@
 
   "serviceFields.metalwork.work_types": "Вид работ",
   "serviceFields.metalwork.availability_hours": "Часы работы",
-  "serviceFields.metalwork.experience": "Лет опыта"
+  "serviceFields.metalwork.experience": "Лет опыта",
+
+  "services.driver": "Частный водитель",
+  "services.driver.desc": "Услуга частного водителя – личное такси до вашей двери",
+  "services.driver.pageTitle": "Частный водитель – Персональное такси",
+  "services.driver.searching": "Поиск водителей...",
+  "services.driver.loading": "Загрузка водителей...",
+  "services.driver.loadError": "Ошибка загрузки водителей",
+  "services.driver.found": "водителей найдено",
+  "services.driver.noResults": "Водители в этом районе не найдены",
+
+  "serviceForm.driver.title": "Данные об услуге частного водителя",
+  "serviceForm.driver.vehicleType": "Тип автомобиля",
+  "serviceForm.driver.seats5": "5 мест",
+  "serviceForm.driver.seats7": "7 мест",
+  "serviceForm.driver.seats9": "9 мест",
+
+  "filters.driver.vehicleType": "Тип автомобиля",
+  "filters.driver.availabilityHours": "Часы работы",
+
+  "serviceFields.driver.experience": "Лет опыта",
+  "serviceFields.driver.availability_hours": "Часы работы",
+  "serviceFields.driver.vehicle_type": "Тип автомобиля",
+  "serviceFields.driver.languages": "Языки общения",
+
+  "provider.details.driverVehicleType": "Тип автомобиля"
 }

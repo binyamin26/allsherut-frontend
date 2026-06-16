@@ -1429,6 +1429,28 @@ locksmith: {
       { value: 'מרפסות תלויות', key: 'serviceForm.metalwork.hangingBalconies' },
       { value: 'מדרגות',        key: 'serviceForm.metalwork.stairs' }
     ]
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // DRIVER
+  // ═══════════════════════════════════════════════════════════════
+  driver: {
+    sectionTitles: {
+      vehicleType: 'filters.driver.vehicleType',
+      availabilityHours: 'filters.driver.availabilityHours'
+    },
+    vehicleType: [
+      { value: '5 מקומות', key: 'serviceForm.driver.seats5' },
+      { value: '7 מקומות', key: 'serviceForm.driver.seats7' },
+      { value: '9 מקומות', key: 'serviceForm.driver.seats9' }
+    ],
+    availabilityHours: [
+      { value: 'בוקר',        key: 'hours.morning' },
+      { value: 'אחר הצהריים', key: 'hours.afternoon' },
+      { value: 'ערב',         key: 'hours.evening' },
+      { value: 'לילה',        key: 'hours.night' },
+      { value: '24 שעות',     key: 'hours.twentyFourSeven' }
+    ]
   }
 };
 

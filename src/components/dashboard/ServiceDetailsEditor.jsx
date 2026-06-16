@@ -168,6 +168,9 @@ const fieldToCategoryMapping = {
   
   // PROPERTY MANAGEMENT
   management_type: 'propertyFullYear',  // Peut être full year ou short term
+
+  // DRIVER
+  vehicle_type: 'driverVehicleType',
 };
 
 // ✅ Catégories multiples pour certains champs (chercher dans plusieurs mappings)

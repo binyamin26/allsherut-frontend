@@ -2721,5 +2721,30 @@
 
   "serviceFields.metalwork.work_types": "Type de travaux",
   "serviceFields.metalwork.availability_hours": "Heures disponibles",
-  "serviceFields.metalwork.experience": "Années d'expérience"
+  "serviceFields.metalwork.experience": "Années d'expérience",
+
+  "services.driver": "Chauffeur Privé",
+  "services.driver.desc": "Service de chauffeur privé – taxi personnel à votre porte",
+  "services.driver.pageTitle": "Chauffeur Privé – Service de Taxi Personnel",
+  "services.driver.searching": "Recherche de chauffeurs...",
+  "services.driver.loading": "Chargement des chauffeurs...",
+  "services.driver.loadError": "Erreur lors du chargement des chauffeurs",
+  "services.driver.found": "chauffeurs trouvés",
+  "services.driver.noResults": "Aucun chauffeur trouvé dans cette zone",
+
+  "serviceForm.driver.title": "Détails du service de chauffeur privé",
+  "serviceForm.driver.vehicleType": "Type de véhicule",
+  "serviceForm.driver.seats5": "5 places",
+  "serviceForm.driver.seats7": "7 places",
+  "serviceForm.driver.seats9": "9 places",
+
+  "filters.driver.vehicleType": "Type de véhicule",
+  "filters.driver.availabilityHours": "Heures disponibles",
+
+  "serviceFields.driver.experience": "Années d'expérience",
+  "serviceFields.driver.availability_hours": "Heures disponibles",
+  "serviceFields.driver.vehicle_type": "Type de véhicule",
+  "serviceFields.driver.languages": "Langues parlées",
+
+  "provider.details.driverVehicleType": "Type de véhicule"
 }

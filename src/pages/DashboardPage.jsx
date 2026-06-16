@@ -61,7 +61,7 @@ const ALL_SERVICE_KEYS = [
   'aluminum','metalwork','glass_works','gas_technician','waterproofing','carpentry','handyman','mechanic','contractor',
   'moving','gardening','pest_control','cleaning','laundry','property_management',
   'home_organization','event_decoration','event_entertainment','dj','private_chef',
-  'photographer','tutoring','sports_activities','babysitting','petcare','eldercare'
+  'photographer','tutoring','sports_activities','babysitting','petcare','eldercare','driver'
 ];
 
 // Définition des icônes de services
@@ -108,7 +108,8 @@ const serviceImages = {
   pest_control: '/images/logo desinctisation.jpg',
   handyman: '/images/logo indimane.jpg',
   mechanic: '/images/logo garagiste.jpg',
-  metalwork: '/images/logo fer.jpg'
+  metalwork: '/images/logo fer.jpg',
+  driver: '/images/driver.jpg'
 };
 
 const ServiceIconDisplay = ({ svcType }) => {
@@ -1356,7 +1357,8 @@ const getServiceName = (serviceType) => {
       moving: 'services.moving',
       photographer: 'services.photographer',
       event_decoration: 'services.event_decoration',
-      pest_control: 'services.pest_control'
+      pest_control: 'services.pest_control',
+      driver: 'services.driver'
     };
     return t(serviceKeys[serviceType], serviceType);
   };
