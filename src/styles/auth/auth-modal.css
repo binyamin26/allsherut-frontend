@@ -1046,7 +1046,8 @@
    ==================================== */
 
 /* Label "קטגוריות ניקיון" plus grand et plus bas */
-.service-details-form .input-group > label {
+.service-details-form .input-group > label,
+.service-details-form + .form-section.optional .input-group > label {
   font-size: var(--text-xl) !important;
   font-weight: 700 !important;
   margin-top: var(--space-6);

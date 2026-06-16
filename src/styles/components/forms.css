@@ -310,6 +310,28 @@ textarea,
   padding-top: var(--space-3);
 }
 
+/* Fusionner le bloc langues (ServiceDetailsForm, hors service-details-form)
+   avec le dernier bloc optionnel du formulaire spécifique */
+.service-details-form:has(+ .form-section.optional) .form-section.optional:last-child {
+  margin-bottom: 0;
+  border-bottom: none;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  padding-bottom: 0;
+}
+
+.service-details-form:has(+ .form-section.optional) .form-section.optional:last-child .input-group:last-child {
+  margin-bottom: 0;
+}
+
+.service-details-form:has(.form-section.optional:last-child) + .form-section.optional {
+  margin-top: 0;
+  border-top: 1px solid var(--accent-100);
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  padding-top: var(--space-3);
+}
+
 /* Form row layouts */
 .form-row {
   display: grid;
