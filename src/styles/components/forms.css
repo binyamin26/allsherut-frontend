@@ -325,7 +325,7 @@ textarea,
 }
 
 .service-details-form:has(.form-section.optional:last-child) + .form-section.optional {
-  margin-top: 0;
+  margin-top: calc(-1 * var(--space-2)); /* annule le gap: var(--space-2) du flex .auth-form */
   border-top: 1px solid var(--accent-100);
   border-top-left-radius: 0;
   border-top-right-radius: 0;
