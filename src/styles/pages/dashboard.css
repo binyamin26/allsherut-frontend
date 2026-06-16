@@ -1577,7 +1577,7 @@ body .dashboard-page .info-section h3.section-title,
   transition: all var(--transition-medium);
   box-shadow: 0 4px 20px rgba(220, 38, 38, 0.15);
   border-radius: 5px;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .settings-card.danger-zone:hover {
@@ -1594,7 +1594,7 @@ body .dashboard-page .info-section h3.section-title,
   justify-content: flex-start;
   direction: var(--direction);
   gap: var(--space-3);
-  border-radius: 5px 5px 0 0;
+  border-radius: 0;
 }
 
 .settings-card.danger-zone .settings-card-header h4 {
