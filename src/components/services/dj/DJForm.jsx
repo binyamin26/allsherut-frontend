@@ -97,6 +97,19 @@ const DJForm = ({ serviceDetails, errors, handleServiceDetailsChange, handleExcl
         <h4>{t('serviceForm.common.optionalFields')}</h4>
 
         <div className="input-group">
+          <div className="checkbox-group">
+            <label className="checkbox-item">
+              <input
+                type="checkbox"
+                checked={serviceDetails.separated_dancing || false}
+                onChange={(e) => handleServiceDetailsChange('separated_dancing', e.target.checked)}
+              />
+              {t('serviceFields.dj.separated_dancing')}
+            </label>
+          </div>
+        </div>
+
+        <div className="input-group">
           <label className="auth-form-label">{t('serviceForm.common.experience')}</label>
           <input
             type="text"
@@ -110,19 +123,6 @@ const DJForm = ({ serviceDetails, errors, handleServiceDetailsChange, handleExcl
             className="standard-input"
             data-field="experience"
           />
-        </div>
-
-        <div className="input-group">
-          <div className="checkbox-group">
-            <label className="checkbox-item">
-              <input
-                type="checkbox"
-                checked={serviceDetails.separated_dancing || false}
-                onChange={(e) => handleServiceDetailsChange('separated_dancing', e.target.checked)}
-              />
-              {t('serviceFields.dj.separated_dancing')}
-            </label>
-          </div>
         </div>
       </div>
     </div>

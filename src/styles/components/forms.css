@@ -277,7 +277,7 @@ textarea,
 
 .form-section.optional {
   border-color: var(--accent-200);
-  background: linear-gradient(135deg, var(--accent-25) 0%, var(--neutral-25) 100%);
+  background: var(--accent-25);
 }
 
 .form-section.optional .input-group:last-child {
