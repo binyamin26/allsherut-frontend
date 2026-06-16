@@ -1577,7 +1577,7 @@ body .dashboard-page .info-section h3.section-title,
   transition: all var(--transition-medium);
   box-shadow: 0 4px 20px rgba(220, 38, 38, 0.15);
   border-radius: var(--radius-xl);
-  /* overflow: hidden retiré — le header prend son propre border-radius */
+  overflow: visible;
 }
 
 .settings-card.danger-zone:hover {
