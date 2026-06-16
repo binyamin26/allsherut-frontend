@@ -1,6 +1,9 @@
 app = 'homesherut-backend'
 primary_region = 'ams'
 
+[deploy]
+  release_command = "node migrate-driver.js"
+
 [build]
 
 [env]
