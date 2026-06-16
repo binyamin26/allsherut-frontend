@@ -316,11 +316,11 @@ if (role === 'provider' && userData.tranziliaToken) {
           console.log(DEV_LOGS.BUSINESS.PROFILE_COMPLETED, user.id);
 
         } catch (parseError) {
-          console.error(DEV_LOGS.API.ERROR_OCCURRED, 'Step 2 data parsing:', parseError);
-          
+          console.error('❌ REGISTER STEP2 ERROR:', parseError?.message, parseError?.code, parseError?.sqlMessage);
+
 return res.status(400).json({
   success: false,
-  message: 'נתונים לא תקינים'
+  message: parseError?.sqlMessage || parseError?.message || 'נתונים לא תקינים'
 });
         }
       }
