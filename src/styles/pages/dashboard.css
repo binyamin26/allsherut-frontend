@@ -1576,7 +1576,7 @@ body .dashboard-page .info-section h3.section-title,
   background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
   transition: all var(--transition-medium);
   box-shadow: 0 4px 20px rgba(220, 38, 38, 0.15);
-  border-radius: 4px !important;
+  border-radius: 8px !important;
   overflow: hidden;
 }
 
