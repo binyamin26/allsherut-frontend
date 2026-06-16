@@ -379,7 +379,7 @@
 .text-hero-score {
   font-weight: 800;
   font-size: 20px !important;
-  color: #F59E0B;
+  color: #dc2626;
 }
 .text-hero-divider {
   color: #d1d5db;
@@ -407,7 +407,7 @@
 .text-overall-score {
   font-size: 3.2rem !important;
   font-weight: 800;
-  color: #1f2937;
+  color: #dc2626;
   line-height: 1;
   letter-spacing: -1px;
 }
