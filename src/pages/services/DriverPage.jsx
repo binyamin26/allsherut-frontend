@@ -55,7 +55,7 @@ const DriverPage = () => {
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon">
-              <img src="/images/driver.jpg" alt="דרייבר פרטי" />
+              <img src="/images/logo driver.jpg" alt="דרייבר" />
             </div>
             <h1 className="service-title">{t('services.driver.pageTitle')}</h1>
           </div>

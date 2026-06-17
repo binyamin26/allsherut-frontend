@@ -1093,6 +1093,24 @@ const handleContact = () => {
           </>
         )}
 
+        {/* === DRIVER === */}
+        {provider.serviceType === 'driver' && (
+          <>
+            {details.vehicle_type && details.vehicle_type.length > 0 && (
+              <div className="detail-item">
+                <strong>{t('serviceForm.driver.vehicleType')}:</strong>
+                <span>{translateAndJoin(details.vehicle_type, 'vehicleType', t)}</span>
+              </div>
+            )}
+            {details.availability_hours && details.availability_hours.length > 0 && (
+              <div className="detail-item">
+                <strong>{t('filters.driver.availabilityHours')}:</strong>
+                <span>{translateAndJoin(details.availability_hours, 'hours', t)}</span>
+              </div>
+            )}
+          </>
+        )}
+
         {/* === PEST_CONTROL === */}
         {provider.serviceType === 'pest_control' && (
           <>
