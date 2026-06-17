@@ -152,7 +152,7 @@ const services = [
   { key: 'locksmith', name: t('services.locksmith'), image: '/images/serrure.png', gradient: 'locksmith-gradient' },
   { key: 'painting', name: t('services.painting'), image: '/images/peinture.jpg', gradient: 'painting-gradient' },
   { key: 'air_conditioning', name: t('services.air_conditioning'), image: '/images/clim.png', gradient: 'air_conditioning-gradient' },
-  { key: 'drywall', name: t('services.drywall'), image: '/images/guevess.png', gradient: 'drywall-gradient' },
+  { key: 'drywall', name: t('services.drywall'), image: '/images/guevess.jpg', gradient: 'drywall-gradient' },
   { key: 'aluminum', name: t('services.aluminum'), image: '/images/aluminium.png', gradient: 'aluminum-gradient' },
   { key: 'metalwork', name: t('services.metalwork'), image: '/images/fer.jpg', gradient: 'metalwork-gradient' },
   { key: 'glass_works', name: t('services.glass_works'), image: '/images/verre.png', gradient: 'glass_works-gradient' },
@@ -177,7 +177,7 @@ const services = [
   { key: 'sports_activities', name: t('services.sports_activities'), icon: '⚽', image: '/images/sport.jpg', gradient: 'sports_activities-gradient' },
   { key: 'babysitting', name: t('services.babysitting'), icon: '👶', image: '/images/babysite.jpg', gradient: 'babysitting-gradient' },
   { key: 'petcare', name: t('services.petcare'), image: '/images/chien.jpg', gradient: 'petcare-gradient' },
-  { key: 'eldercare', name: t('services.eldercare'), icon: '👵', image: '/images/eldercare.png', gradient: 'eldercare-gradient' },
+  { key: 'eldercare', name: t('services.eldercare'), icon: '👵', image: '/images/eldercare.jpg', gradient: 'eldercare-gradient' },
   { key: 'mechanic', name: t('services.mechanic'), image: '/images/garagiste.jpg', gradient: 'mechanic-gradient' },
   { key: 'driver', name: t('services.driver'), image: '/images/driver.jpg', gradient: 'driver-gradient' }
 ];

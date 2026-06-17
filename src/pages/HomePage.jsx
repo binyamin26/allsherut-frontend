@@ -104,7 +104,7 @@ const HomePage = () => {
     {
       id: 'drywall',
       name: t('services.drywall'),
-      image: '/images/guevess.png',
+      image: '/images/guevess.jpg',
       description: t('services.drywall.desc'),
       color: 'from-gray-500 to-slate-600',
       href: '/services/drywall'
@@ -312,10 +312,18 @@ const HomePage = () => {
     {
       id: 'eldercare',
       name: t('services.eldercare'),
-      image: '/images/eldercare.png',
+      image: '/images/eldercare.jpg',
       description: t('services.eldercare.desc'),
       color: 'from-purple-500 to-violet-600',
       href: '/services/eldercare'
+    },
+    {
+      id: 'driver',
+      name: t('services.driver'),
+      image: '/images/driver.jpg',
+      description: t('services.driver.desc'),
+      color: 'from-blue-500 to-indigo-600',
+      href: '/services/driver'
     },
   ];
 

@@ -92,7 +92,7 @@ const quickLinks = [
             <div className="footer-logo">
            <div className="footer-logo-icon">
   <img 
-    src="/images/logo-homesherut2.png"
+    src="/images/logo-homesherut2.jpg"
     alt="AllSherut" 
     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
   />

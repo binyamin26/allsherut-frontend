@@ -109,7 +109,7 @@ const serviceImages = {
   handyman: '/images/logo indimane.jpg',
   mechanic: '/images/logo garagiste.jpg',
   metalwork: '/images/logo fer.jpg',
-  driver: '/images/driver.jpg'
+  driver: '/images/logo driver.jpg'
 };
 
 const ServiceIconDisplay = ({ svcType }) => {

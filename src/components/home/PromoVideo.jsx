@@ -625,7 +625,7 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
 
   const defaultMedia = [
     '/images/babysite.jpg','/images/nikayon.jpg','/images/jardinage.jpg',
-    '/images/chien.jpg','/images/tutoring.png','/images/eldercare.png',
+    '/images/chien.jpg','/images/tutoring.png','/images/eldercare.jpg',
     '/images/plombier.jpg','/images/clim.png','/images/gaz.jpg'
   ];
   const displayMedia      = services.length > 0 ? services.map(s => s.image || s) : defaultMedia;

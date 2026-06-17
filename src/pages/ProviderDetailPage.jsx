@@ -157,7 +157,8 @@ const ProviderDetailPage = () => {
     handyman: '/images/logo indimane.jpg',
     photographer: '/images/logo photographe.jpg',
     mechanic: '/images/logo garagiste.jpg',
-    metalwork: '/images/logo fer.jpg'
+    metalwork: '/images/logo fer.jpg',
+    driver: '/images/logo driver.jpg'
   };
   return icons[serviceType] || '/images/logo-default.png';
 };
