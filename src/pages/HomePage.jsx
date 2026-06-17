@@ -320,7 +320,7 @@ const HomePage = () => {
     {
       id: 'driver',
       name: t('services.driver'),
-      image: '/images/driver.jpg',
+      image: '/images/logo driver.jpg',
       description: t('services.driver.desc'),
       color: 'from-blue-500 to-indigo-600',
       href: '/services/driver'

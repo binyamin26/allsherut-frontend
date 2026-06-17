@@ -685,6 +685,7 @@ const ServicePanel = ({ serviceType, filters, onChange }) => {
     handyman: HandymanFilters,
     mechanic: MechanicFilters,
     metalwork: MetalworkFilters,
+    driver: DriverFilters,
   };
 
   const Component = SERVICE_FILTER_COMPONENTS[serviceType];
@@ -3326,6 +3327,40 @@ const DJFilters = ({ filters, handleFilterChange, handleCheckboxChange, handleEx
         filters={filters}
         onExclusiveCheckbox={handleExclusiveCheckbox}
       />
+    </div>
+  );
+};
+
+const DriverFilters = ({ filters, handleFilterChange, handleCheckboxChange, handleExclusiveCheckbox }) => {
+  const { t } = useLanguage();
+  const config = FILTER_CONFIG.driver;
+
+  return (
+    <div className="service-panel">
+      <CheckboxSection
+        title={t(config.sectionTitles.vehicleType)}
+        options={config.vehicleType.map(o => ({ value: o.value, label: t(o.key) }))}
+        filterKey="vehicle_type"
+        filters={filters}
+        onCheckboxChange={handleCheckboxChange}
+      />
+
+      <div className="filter-section">
+        <h4>{t(config.sectionTitles.availabilityHours)}</h4>
+        <div className="checkbox-grid">
+          {config.availabilityHours.map(opt => (
+            <label key={opt.value} className="checkbox-option">
+              <input
+                type="checkbox"
+                checked={filters.availability_hours?.includes(opt.value) || false}
+                onChange={(e) => handleExclusiveCheckbox('availability_hours', opt.value, '24/6', config.availabilityHours.map(o => o.value))}
+              />
+              {t(opt.key)}
+            </label>
+          ))}
+        </div>
+      </div>
+
     </div>
   );
 };
