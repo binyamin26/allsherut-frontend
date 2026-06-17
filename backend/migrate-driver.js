@@ -28,6 +28,7 @@ const mysql = require('mysql2/promise');
       `ALTER TABLE subscriptions MODIFY COLUMN service_type ENUM(${ENUM_VALS})`,
       `ALTER TABLE review_verifications MODIFY COLUMN service_type ENUM(${ENUM_VALS})`,
       `ALTER TABLE bookings MODIFY COLUMN service_type ENUM(${ENUM_VALS})`,
+      `ALTER TABLE trial_history MODIFY COLUMN service_type ENUM(${ENUM_VALS})`,
     ];
 
     for (const sql of sqls) {

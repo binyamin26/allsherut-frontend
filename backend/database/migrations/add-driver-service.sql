@@ -79,5 +79,15 @@ ALTER TABLE bookings
     'event_decoration','pest_control','handyman','mechanic','metalwork','driver'
   );
 
+ALTER TABLE trial_history
+  MODIFY COLUMN service_type ENUM(
+    'babysitting','cleaning','gardening','petcare','tutoring','sports_activities',
+    'eldercare','laundry','property_management','electrician','plumbing',
+    'air_conditioning','gas_technician','drywall','carpentry','home_organization',
+    'event_entertainment','dj','private_chef','painting','waterproofing',
+    'contractor','aluminum','glass_works','locksmith','moving','photographer',
+    'event_decoration','pest_control','handyman','mechanic','metalwork','driver'
+  );
+
 -- Vérification :
 -- SELECT service_type, COUNT(*) FROM service_providers GROUP BY service_type;
