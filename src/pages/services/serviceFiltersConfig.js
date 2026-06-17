@@ -732,6 +732,47 @@ optional: {
         dbField: 'experience_years'
       }
     }
+  },
+
+  driver: {
+    required: {
+      vehicle_type: {
+        label: 'סוג רכב',
+        type: 'checkbox',
+        options: ['5 מקומות', '7 מקומות', '9 מקומות'],
+        dbField: 'service_details->>"$.vehicle_type"'
+      },
+      availability_hours: {
+        label: 'שעות זמינות',
+        type: 'checkbox',
+        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל'],
+        dbField: 'availability_hours'
+      }
+    },
+    optional: {
+      languages: {
+        label: 'שפות מדוברות',
+        type: 'checkbox',
+        options: ['עברית', 'ערבית', 'רוסית', 'אנגלית', 'צרפתית'],
+        dbField: 'languages'
+      },
+      experienceYears: {
+        label: 'שנות ניסיון',
+        type: 'range',
+        min: 0,
+        max: 30,
+        unit: 'שנים',
+        dbField: 'experience_years'
+      },
+      hourlyRate: {
+        label: 'תעריף לשעה (₪)',
+        type: 'range',
+        min: 30,
+        max: 200,
+        unit: '₪/שעה',
+        dbField: 'hourly_rate'
+      }
+    }
   }
 };
 
