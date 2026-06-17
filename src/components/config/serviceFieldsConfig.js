@@ -81,12 +81,6 @@ const serviceFieldsConfig = {
           'גיהוץ בבית הלקוח', 'קיפול כביסה'
         ]
       },
-      { 
-        name: 'frequency', 
-        label: 'serviceFields.cleaning.frequency', 
-        type: 'select',
-        options: ['חד פעמי', 'שבועי', 'דו-שבועי', 'חודשי']
-      },
       {
         name: 'availability_hours',
         label: 'serviceFields.cleaning.availability_hours',

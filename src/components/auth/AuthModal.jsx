@@ -616,8 +616,7 @@ console.log('🔍 serviceDetails object:', serviceDetails);
 
 case 'cleaning':
   if (!serviceDetails.legalStatus) newErrors['serviceDetails.legalStatus'] = t('validation.legalStatusRequired');  if (!serviceDetails.cleaningTypes || serviceDetails.cleaningTypes.length === 0) newErrors['serviceDetails.cleaningTypes'] = t('validation.selectAtLeastOne');
-  if (!serviceDetails.frequency || serviceDetails.frequency.length === 0) newErrors['serviceDetails.frequency'] = t('validation.selectAtLeastOne');
-  if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
+if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
   break;
 case 'gardening':  if (!serviceDetails.services || serviceDetails.services.length === 0) newErrors['serviceDetails.services'] = t('validation.selectAtLeastOne');
   if (!serviceDetails.seasons || serviceDetails.seasons.length === 0) newErrors['serviceDetails.seasons'] = t('validation.selectAtLeastOne');

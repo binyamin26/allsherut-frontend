@@ -138,12 +138,6 @@ export const serviceFiltersConfig = {
         },
         dbField: 'availability->>"$.cleaningTypes"'
       },
-      frequency: {
-        label: 'תדירות זמינה',
-        type: 'checkbox',
-        options: ['חד פעמי', 'שבועי', 'דו שבועי', 'חודשי'],
-        dbField: 'availability->>"$.frequency"'
-      },
       materialsProvided: {
         label: 'אספקת ציוד',
         type: 'select',

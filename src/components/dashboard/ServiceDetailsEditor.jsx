@@ -29,8 +29,6 @@ const fieldToCategoryMapping = {
   legalStatus: 'cleaningLegalStatus',
   cleaningTypes: 'cleaningHome',
   specialCleaning: 'cleaningSpecial',
-  frequency: 'cleaningFrequency',
-  
  // ELDERCARE
   careTypes: 'eldercareTypes',
   specificConditions: 'eldercareConditions',

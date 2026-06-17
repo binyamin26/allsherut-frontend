@@ -102,7 +102,6 @@ export const FILTER_CONFIG = {
       officeCleaning: 'filters.cleaning.officeCleaning',
       specialCleaning: 'filters.cleaning.specialCleaning',
       additionalServices: 'filters.cleaning.additionalServices',
-      frequency: 'filters.cleaning.frequency',
       materialsProvided: 'filters.cleaning.materialsProvided',
       availableDays: 'filters.cleaning.availableDays',
       availableHours: 'filters.cleaning.availableHours'
@@ -141,12 +140,6 @@ export const FILTER_CONFIG = {
       { value: 'ניקוי פאנלים סולאריים', key: 'filters.cleaning.solarPanels' },
       { value: 'גיהוץ בבית הלקוח', key: 'filters.cleaning.ironingAtHome' },
       { value: 'קיפול כביסה', key: 'filters.cleaning.laundryFolding' }
-    ],
-    frequency: [
-      { value: 'חד פעמי', key: 'filters.cleaning.oneTime' },
-      { value: 'שבועי', key: 'filters.cleaning.weekly' },
-      { value: 'דו-שבועי', key: 'filters.cleaning.biweekly' },
-      { value: 'חודשי', key: 'filters.cleaning.monthly' }
     ],
     materialsOptions: [
       { value: '', key: 'filters.cleaning.allOptions' },

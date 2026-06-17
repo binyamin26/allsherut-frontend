@@ -138,13 +138,6 @@ const translationMappings = {
     'גיהוץ בבית הלקוח': 'filters.cleaning.ironingAtHome',
     'קיפול כביסה': 'filters.cleaning.laundryFolding',
   },
-  cleaningFrequency: {
-    'חד פעמי': 'filters.cleaning.oneTime',
-    'שבועי': 'filters.cleaning.weekly',
-    'דו שבועי': 'filters.cleaning.biweekly',
-    'דו-שבועי': 'filters.cleaning.biweekly',  // Variante avec tiret
-    'חודשי': 'filters.cleaning.monthly',
-  },
   cleaningMaterials: {
     'yes': 'filters.cleaning.providesEquipment',
     'no': 'filters.cleaning.noEquipment',

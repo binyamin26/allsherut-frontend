@@ -857,15 +857,7 @@ const CleaningFilters = ({ filters, handleFilterChange, handleCheckboxChange, ha
         </div>
       </div>
 
-      <CheckboxSection 
-        title={t(config.sectionTitles.frequency)}
-        options={config.frequency.map(o => ({ value: o.value, label: t(o.key) }))}
-        filterKey="frequency"
-        filters={filters}
-        onCheckboxChange={handleCheckboxChange}
-      />
-
-      <SelectSection 
+      <SelectSection
         title={t(config.sectionTitles.materialsProvided)}
         options={config.materialsOptions.map(o => ({ value: o.value, label: t(o.key) }))}
         filterKey="materialsProvided"

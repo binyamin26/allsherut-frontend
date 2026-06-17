@@ -340,15 +340,6 @@ case 'qualifications':
         }
         break;
 
-      case 'frequency':
-        const frequencyArray = value.split(',').map(v => v.trim());
-        if (frequencyArray.length > 0) {
-          const placeholders = frequencyArray.map(() => '?').join(',');
-          conditions.push(`JSON_OVERLAPS(sp.availability->'$.frequency', JSON_ARRAY(${placeholders}))`);
-          params.push(...frequencyArray);
-        }
-        break;
-
       case 'materialsProvided':
         conditions.push(`sp.availability->>'$.materialsProvided' = ?`);
         params.push(value);

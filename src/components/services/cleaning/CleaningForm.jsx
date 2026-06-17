@@ -171,28 +171,6 @@ const CleaningForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
 <label className="auth-form-label required">{t('serviceForm.cleaning.availability')}</label>
   
   <div className="availability-subsection">
- <h5 className="subsection-title required">{t('serviceForm.cleaning.frequency')}</h5>
-<div className="checkbox-group">
-  {[
-    { value: 'חד פעמי', label: t('filters.cleaning.oneTime') },
-    { value: 'שבועי', label: t('filters.cleaning.weekly') },
-    { value: 'דו-שבועי', label: t('filters.cleaning.biweekly') },
-    { value: 'חודשי', label: t('filters.cleaning.monthly') }
-  ].map(freq => (
-    <label key={freq.value} className="checkbox-item">
-      <input
-        type="checkbox"
-        checked={serviceDetails.frequency === freq.value}
-        onChange={() => handleServiceDetailsChange('frequency', freq.value)}
-      />
-      {freq.label}
-    </label>
-  ))}
-</div>
-    {errors['serviceDetails.frequency'] && <span className="error-text">{errors['serviceDetails.frequency']}</span>}
-  </div>
-
-  <div className="availability-subsection">
   <h5 className="subsection-title required">{t('serviceForm.cleaning.hours')}</h5>
     <div className="checkbox-group">
      {[

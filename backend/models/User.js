@@ -1053,9 +1053,6 @@ static async updateServiceProviderWithDetails(connection, providerId, serviceTyp
       if (!serviceDetails.cleaningTypes || serviceDetails.cleaningTypes.length === 0) {
         errors.push({ field: 'cleaningTypes', message: 'יש לבחור סוגי ניקיון' });
       }
-      if (!serviceDetails.frequency || serviceDetails.frequency.length === 0) {
-        errors.push({ field: 'frequency', message: 'יש לבחור תדירות' });
-      }
       break;
 
     case 'gardening':

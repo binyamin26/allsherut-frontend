@@ -449,12 +449,7 @@ const handleContact = () => {
 <span>{details.materialsProvided === 'yes' ? t('provider.details.bringsEquipment') : details.materialsProvided === 'no' ? t('provider.details.noEquipment') : t('provider.details.partialEquipment')}</span>
               </div>
             )}
-            {details.frequency && (
-              <div className="detail-item">
-                <strong>{t('provider.details.frequency')}:</strong>
-               <span>{translateValue(details.frequency, 'cleaningFrequency', t)}</span>
-              </div>
-            )}
+
           </>
         )}
 
