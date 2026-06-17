@@ -675,6 +675,14 @@ const searchableServices = [
   { label: 'החלפת מנורות', labelEn: 'Lamp replacement', labelFr: 'Remplacement ampoules', labelRu: 'Замена ламп', href: '/services/handyman', type: 'specialty' },
   { label: 'תליית תמונות', labelEn: 'Picture hanging', labelFr: 'Accrochage tableaux', labelRu: 'Вешание картин', href: '/services/handyman', type: 'specialty' },
   { label: 'תליית אביזרים', labelEn: 'Accessory hanging', labelFr: 'Accrochage accessoires', labelRu: 'Вешание аксессуаров', href: '/services/handyman', type: 'specialty' },
+
+  // DRIVER
+  { label: 'דרייבר', labelEn: 'Driver', labelFr: 'Chauffeur', labelRu: 'Водитель', href: '/services/driver', type: 'service' },
+  { label: 'נסיעות פרטיות', labelEn: 'Private rides', labelFr: 'Trajets privés', labelRu: 'Частные поездки', href: '/services/driver', type: 'specialty' },
+  { label: 'הסעות', labelEn: 'Transfers', labelFr: 'Transferts', labelRu: 'Трансферы', href: '/services/driver', type: 'specialty' },
+  { label: 'נהג פרטי', labelEn: 'Private driver', labelFr: 'Chauffeur privé', labelRu: 'Частный водитель', href: '/services/driver', type: 'specialty' },
+  { label: 'הסעת אורחים', labelEn: 'Guest transportation', labelFr: 'Transport invités', labelRu: 'Перевозка гостей', href: '/services/driver', type: 'specialty' },
+  { label: 'שאטל לשדה תעופה', labelEn: 'Airport shuttle', labelFr: 'Navette aéroport', labelRu: 'Трансфер в аэропорт', href: '/services/driver', type: 'specialty' },
 ];
 
 export default searchableServices;
