@@ -745,7 +745,7 @@ optional: {
       availability_hours: {
         label: 'שעות זמינות',
         type: 'checkbox',
-        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל'],
+        options: ['בוקר', 'אחר הצהריים', 'ערב', 'לילה', '24/6'],
         dbField: 'availability_hours'
       }
     },

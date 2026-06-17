@@ -12,7 +12,7 @@ const AVAILABILITY_HOURS = [
   { value: 'אחר הצהריים',    key: 'hours.afternoon' },
   { value: 'ערב',            key: 'hours.evening' },
   { value: 'לילה',           key: 'hours.night' },
-  { value: '24 שעות',        key: 'hours.twentyFourSeven' },
+  { value: '24/6',           key: 'hours.twentyFourSix' },
 ];
 
 const LANGUAGES_OPTIONS = [
@@ -41,7 +41,7 @@ const DriverForm = ({ serviceDetails, errors, handleServiceDetailsChange, handle
                 <input
                   type="checkbox"
                   checked={serviceDetails.availability_hours?.includes(hour.value) || false}
-                  onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, '24 שעות', ['בוקר', 'אחר הצהריים', 'ערב', 'לילה'])}
+                  onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, '24/6', ['בוקר', 'אחר הצהריים', 'ערב', 'לילה'])}
                 />
                 {t(hour.key)}
               </label>

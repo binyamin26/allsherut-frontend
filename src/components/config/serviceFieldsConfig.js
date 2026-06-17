@@ -1512,7 +1512,7 @@ const serviceFieldsConfig = {
           { value: 'אחר הצהריים', labelKey: 'hours.afternoon' },
           { value: 'ערב',         labelKey: 'hours.evening' },
           { value: 'לילה',        labelKey: 'hours.night' },
-          { value: '24 שעות',     labelKey: 'hours.twentyFourSeven' }
+          { value: '24/6',         labelKey: 'hours.twentyFourSix' }
         ]
       },
       {

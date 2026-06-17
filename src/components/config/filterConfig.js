@@ -1449,7 +1449,7 @@ locksmith: {
       { value: 'אחר הצהריים', key: 'hours.afternoon' },
       { value: 'ערב',         key: 'hours.evening' },
       { value: 'לילה',        key: 'hours.night' },
-      { value: '24 שעות',     key: 'hours.twentyFourSeven' }
+      { value: '24/6',        key: 'hours.twentyFourSix' }
     ]
   }
 };

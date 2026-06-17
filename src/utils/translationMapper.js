@@ -27,6 +27,7 @@ const translationMappings = {
     'לילה': 'hours.night',
     'הכל': 'hours.all',
     '24/7': 'hours.twentyFourSeven',
+    '24/6': 'hours.twentyFourSix',
   },
 
   // ═══════════════════════════════════════════════════════════════
