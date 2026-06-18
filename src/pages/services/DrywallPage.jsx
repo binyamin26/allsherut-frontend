@@ -111,7 +111,7 @@ const DrywallPage = () => {
 
   return (
     <div className="service-page drywall-page">
-      <SEO title="גבס ופלסטיקה בישראל" description="מצאו בעל מקצוע לעבודות גבס בישראל - תקרות גבס, קירות וחיפוי." canonicalPath="/services/drywall" />
+      <SEO title="גבס ופלסטיקה בישראל" description="מצאו בעל מקצוע לעבודות גבס בישראל - תקרות גבס, קירות וחיפוי." canonicalPath="/services/drywall" noindex={!loading && providers.length === 0} />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

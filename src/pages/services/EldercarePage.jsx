@@ -123,7 +123,7 @@ useEffect(() => {
 
   return (
     <div className="service-page eldercare-page">
-      <SEO title="עזרה לקשישים בישראל" description="מצאו מטפל לקשישים בישראל - ליווי, סיוע יומיומי וטיפול מסור בבית." canonicalPath="/services/eldercare" />
+      <SEO title="עזרה לקשישים בישראל" description="מצאו מטפל לקשישים בישראל - ליווי, סיוע יומיומי וטיפול מסור בבית." canonicalPath="/services/eldercare" noindex={!loading && providers.length === 0} />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

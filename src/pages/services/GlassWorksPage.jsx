@@ -110,7 +110,7 @@ const GlassWorksPage = () => {
 
   return (
     <div className="service-page glass-works-page">
-      <SEO title="עבודות זכוכית בישראל" description="מצאו בעל מקצוע לעבודות זכוכית בישראל - חלונות, מראות ומחיצות זכוכית." canonicalPath="/services/glass-works" />
+      <SEO title="עבודות זכוכית בישראל" description="מצאו בעל מקצוע לעבודות זכוכית בישראל - חלונות, מראות ומחיצות זכוכית." canonicalPath="/services/glass-works" noindex={!loading && providers.length === 0} />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

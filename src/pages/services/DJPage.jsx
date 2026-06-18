@@ -102,7 +102,7 @@ const DJPage = () => {
 
   return (
     <div className="service-page dj-page">
-      <SEO title="DJ לאירועים בישראל" description="מצאו DJ מקצועי לאירועים בישראל - חתונות, ימי הולדת ומסיבות." canonicalPath="/services/dj" />
+      <SEO title="DJ לאירועים בישראל" description="מצאו DJ מקצועי לאירועים בישראל - חתונות, ימי הולדת ומסיבות." canonicalPath="/services/dj" noindex={!loading && providers.length === 0} />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

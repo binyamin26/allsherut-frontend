@@ -110,7 +110,7 @@ const WaterproofingPage = () => {
 
   return (
     <div className="service-page waterproofing-page">
-      <SEO title="איטום בישראל" description="מצאו מאטם מקצועי בישראל - איטום גגות, מרפסות ומניעת רטיבות." canonicalPath="/services/waterproofing" />
+      <SEO title="איטום בישראל" description="מצאו מאטם מקצועי בישראל - איטום גגות, מרפסות ומניעת רטיבות." canonicalPath="/services/waterproofing" noindex={!loading && providers.length === 0} />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

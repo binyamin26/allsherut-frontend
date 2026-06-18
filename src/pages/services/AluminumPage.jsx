@@ -110,7 +110,7 @@ const AluminumPage = () => {
 
   return (
     <div className="service-page aluminum-page">
-      <SEO title="עבודות אלומיניום בישראל" description="מצאו בעלי מקצוע לעבודות אלומיניום בישראל - חלונות, דלתות וסגירות מרפסת." canonicalPath="/services/aluminum" />
+      <SEO title="עבודות אלומיניום בישראל" description="מצאו בעלי מקצוע לעבודות אלומיניום בישראל - חלונות, דלתות וסגירות מרפסת." canonicalPath="/services/aluminum" noindex={!loading && providers.length === 0} />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

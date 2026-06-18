@@ -116,7 +116,7 @@ useEffect(() => {
 
   return (
     <div className="service-page gardening-page">
-      <SEO title="גנן בישראל" description="מצאו גנן מקצועי בישראל - עיצוב גינה, גיזום, דשאים ותחזוקת גינה שוטפת." canonicalPath="/services/gardening" />
+      <SEO title="גנן בישראל" description="מצאו גנן מקצועי בישראל - עיצוב גינה, גיזום, דשאים ותחזוקת גינה שוטפת." canonicalPath="/services/gardening" noindex={!loading && providers.length === 0} />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

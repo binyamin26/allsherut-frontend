@@ -110,7 +110,7 @@ const ElectricianPage = () => {
 
   return (
     <div className="service-page electrician-page">
-      <SEO title="חשמלאי בישראל" description="מצאו חשמלאי מוסמך בישראל - תיקונים, התקנות וחיווט חדש בצורה בטוחה ומקצועית." canonicalPath="/services/electrician" />
+      <SEO title="חשמלאי בישראל" description="מצאו חשמלאי מוסמך בישראל - תיקונים, התקנות וחיווט חדש בצורה בטוחה ומקצועית." canonicalPath="/services/electrician" noindex={!loading && providers.length === 0} />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

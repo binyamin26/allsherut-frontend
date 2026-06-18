@@ -18,7 +18,7 @@ const DecorationProviderDetails = ({ provider, t }) => {
 
   return (
     <div className="decoration-provider-details">
-      <SEO title="קישוט אירועים בישראל" description="מצאו מקשטי אירועים מקצועיים בישראל - עיצוב מרהיב לחתונות, ימי הולדת ואירועים." canonicalPath="/services/event-decoration" />
+      <SEO title="קישוט אירועים בישראל" description="מצאו מקשטי אירועים מקצועיים בישראל - עיצוב מרהיב לחתונות, ימי הולדת ואירועים." canonicalPath="/services/event-decoration" noindex={!loading && providers.length === 0} />
       {age && (
         <div className="decoration-detail-row">
           <span className="decoration-detail-label">{t('serviceFields.event_decoration.age')}:</span>

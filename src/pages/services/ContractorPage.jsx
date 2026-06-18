@@ -110,7 +110,7 @@ const ContractorPage = () => {
 
   return (
     <div className="service-page contractor-page">
-      <SEO title="קבלן שיפוצים בישראל" description="מצאו קבלן שיפוצים מקצועי בישראל - שיפוץ דירה, בנייה ועבודות גמר." canonicalPath="/services/contractor" />
+      <SEO title="קבלן שיפוצים בישראל" description="מצאו קבלן שיפוצים מקצועי בישראל - שיפוץ דירה, בנייה ועבודות גמר." canonicalPath="/services/contractor" noindex={!loading && providers.length === 0} />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

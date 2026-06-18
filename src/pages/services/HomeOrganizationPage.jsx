@@ -110,7 +110,7 @@ const HomeOrganizationPage = () => {
 
   return (
     <div className="service-page home-organization-page">
-      <SEO title="ארגון הבית בישראל" description="מצאו מארגן בית מקצועי בישראל - סידור, ארגון ומיון לבית מסודר ויעיל." canonicalPath="/services/home-organization" />
+      <SEO title="ארגון הבית בישראל" description="מצאו מארגן בית מקצועי בישראל - סידור, ארגון ומיון לבית מסודר ויעיל." canonicalPath="/services/home-organization" noindex={!loading && providers.length === 0} />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

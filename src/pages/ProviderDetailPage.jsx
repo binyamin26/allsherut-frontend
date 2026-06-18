@@ -1520,6 +1520,33 @@ const handleContact = () => {
     moving: 'הובלות', driver: 'הסעות', handyman: 'עבודות כלליות',
   }[provider?.service_type] || provider?.service_type || '';
 
+  const avgRating = reviews.length > 0
+    ? (reviews.reduce((sum, r) => sum + parseFloat(r.rating || 0), 0) / reviews.length).toFixed(1)
+    : null;
+
+  const providerJsonLd = provider ? {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    name: `${provider.first_name} ${provider.last_name}`,
+    description: provider.description || serviceNameHe,
+    url: `https://www.allsherut.com/provider/${provider.id}`,
+    ...(provider.profile_images?.[0] && { image: provider.profile_images[0] }),
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: provider.location_city || 'ישראל',
+      addressCountry: 'IL',
+    },
+    ...(avgRating && reviews.length >= 2 && {
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: avgRating,
+        reviewCount: String(reviews.length),
+        bestRating: '5',
+        worstRating: '1',
+      },
+    }),
+  } : null;
+
   return (
     <>
       {provider && (
@@ -1528,6 +1555,7 @@ const handleContact = () => {
           description={provider.description || `${provider.first_name} ${provider.last_name} - ${serviceNameHe} מקצועי${provider.location_city ? ` ב${provider.location_city}` : ''} | AllSherut`}
           canonicalPath={`/provider/${provider.id}`}
           image={provider.profile_images?.[0] || undefined}
+          jsonLd={providerJsonLd}
         />
       )}
     <div className="provider-detail-page">

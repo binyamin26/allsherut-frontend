@@ -85,7 +85,7 @@ const PhotographerPage = () => {
 
   return (
     <div className="service-page photographer-page">
-      <SEO title="צלם מקצועי בישראל" description="מצאו צלם מקצועי בישראל - צילום אירועים, פורטרטים, תדמית ועסקי." canonicalPath="/services/photographer" />
+      <SEO title="צלם מקצועי בישראל" description="מצאו צלם מקצועי בישראל - צילום אירועים, פורטרטים, תדמית ועסקי." canonicalPath="/services/photographer" noindex={!loading && providers.length === 0} />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

@@ -111,7 +111,7 @@ const AirConditioningPage = () => {
 
   return (
     <div className="service-page air-conditioning-page">
-      <SEO title="טכנאי מזגנים בישראל" description="מצאו טכנאי מזגנים מקצועיים בישראל - התקנה, תיקון וניקוי מזגנים בכל הארץ." canonicalPath="/services/airconditioning" />
+      <SEO title="טכנאי מזגנים בישראל" description="מצאו טכנאי מזגנים מקצועיים בישראל - התקנה, תיקון וניקוי מזגנים בכל הארץ." canonicalPath="/services/airconditioning" noindex={!loading && providers.length === 0} />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">
