@@ -1091,6 +1091,12 @@ const handleContact = () => {
         {/* === DRIVER === */}
         {provider.serviceType === 'driver' && (
           <>
+            {details.transportation_type && details.transportation_type.length > 0 && (
+              <div className="detail-item">
+                <strong>{t('serviceFields.driver.transportation_type')}:</strong>
+                <span>{details.transportation_type.join(', ')}</span>
+              </div>
+            )}
             {details.vehicle_type && details.vehicle_type.length > 0 && (
               <div className="detail-item">
                 <strong>{t('serviceForm.driver.vehicleType')}:</strong>
@@ -1585,12 +1591,6 @@ const handleContact = () => {
     </div>
 
     <div className="hero-actions-wrapper">
-      {provider.phone && (
-        <div className="contact-info">
-          <Phone size={16} />
-          <span className="phone-number">{provider.phone}</span>
-        </div>
-      )}
       <div className="hero-buttons-grid">
         <button onClick={() => { const phone = provider.phone; apiService.logContactClick(provider.id, 'call').then(r => console.log('📞 click logged:', r)).catch(e => console.error('📞 click error:', e)).finally(() => { window.location.href = `tel:${phone}`; }); }} className="btn btn-primary btn-large hero-btn">
           <Phone size={18} />
@@ -1948,7 +1948,7 @@ const handleContact = () => {
              <p>{t('provider.contact.directContact')}</p>
                 <a href={`tel:${provider.phone}`} className="btn btn-primary btn-large">
                   <Phone size={18} />
-                  התקשר עכשיו: {provider.phone}
+                  {t('provider.callNow')}
                 </a>
               </div>
             ) : (

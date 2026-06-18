@@ -125,8 +125,7 @@ export const serviceFiltersConfig = {
             'ניקוי וילונות',
             'ניקוי בלחץ מים (טרסות, חזיתות)',
             'ניקוי מזגן',
-'ריסוס (נגד חרקים)',
-'ניקיון גגות רעפים',
+            'ניקיון גגות רעפים',
             'חיטוי וניקיון אחרי נזק (שריפה / הצפה)'
           ],
           'שירותים נוספים': [
@@ -730,10 +729,16 @@ optional: {
 
   driver: {
     required: {
+      transportation_type: {
+        label: 'סוג הסעות',
+        type: 'checkbox',
+        options: ['הסעות לאירועים', 'הסעות תלמידים', 'הסעות טיולים', 'הסעות לנתב"ג'],
+        dbField: 'service_details->>"$.transportation_type"'
+      },
       vehicle_type: {
         label: 'סוג רכב',
         type: 'checkbox',
-        options: ['5 מקומות', '7 מקומות', '9 מקומות'],
+        options: ['5 מקומות', '7 מקומות', '9 מקומות', 'מיניבוס (14-23 מושבים)', 'אוטובוס (50-60 מושבים)'],
         dbField: 'service_details->>"$.vehicle_type"'
       },
       availability_hours: {

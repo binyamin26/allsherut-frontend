@@ -478,7 +478,6 @@
   "filters.cleaning.pressureWashing": "Мойка высоким давлением",
   "filters.cleaning.damageCleanup": "Уборка после аварий",
   "filters.cleaning.acCleaning": "Чистка кондиционеров",
-  "filters.cleaning.pestControl": "Дезинсекция",
   "filters.cleaning.roofCleaning": "Чистка крыши",
   "filters.cleaning.carCleaning": "Мойка авто на дому",
   "filters.cleaning.solarPanels": "Чистка солнечных панелей",
@@ -2717,28 +2716,38 @@
   "serviceFields.metalwork.availability_hours": "Часы работы",
   "serviceFields.metalwork.experience": "Лет опыта",
 
-  "services.driver": "Водитель",
-  "services.driver.desc": "Личный водитель – частные поездки до вашей двери",
-  "services.driver.pageTitle": "Водитель",
+  "services.driver": "הסעות",
+  "services.driver.desc": "Транспортные услуги – мероприятия, ученики, экскурсии и аэропорт Бен-Гурион",
+  "services.driver.pageTitle": "הסעות",
   "services.driver.searching": "Поиск водителей...",
   "services.driver.loading": "Загрузка водителей...",
   "services.driver.loadError": "Ошибка загрузки водителей",
   "services.driver.found": "водителей найдено",
   "services.driver.noResults": "Водители в этом районе не найдены",
 
-  "serviceForm.driver.title": "Данные об услуге водителя",
+  "serviceForm.driver.title": "Данные о транспортной услуге",
   "serviceForm.driver.vehicleType": "Тип автомобиля",
   "serviceForm.driver.seats5": "5 мест",
   "serviceForm.driver.seats7": "7 мест",
   "serviceForm.driver.seats9": "9 мест",
+  "serviceForm.driver.bus": "Автобус (50-60 мест)",
+  "serviceForm.driver.minibus": "Минибус (14-23 места)",
+  "serviceForm.driver.transportationType": "Тип перевозки",
+  "serviceForm.driver.eventTransport": "Транспорт на мероприятия",
+  "serviceForm.driver.studentTransport": "Перевозка учеников",
+  "serviceForm.driver.tripTransport": "Транспорт для экскурсий",
+  "serviceForm.driver.airportTransport": "Транспорт в аэропорт Бен-Гурион",
 
   "filters.driver.vehicleType": "Тип автомобиля",
   "filters.driver.availabilityHours": "Часы работы",
+  "filters.driver.transportationType": "Тип перевозки",
 
   "serviceFields.driver.experience": "Лет опыта",
   "serviceFields.driver.availability_hours": "Часы работы",
   "serviceFields.driver.vehicle_type": "Тип автомобиля",
+  "serviceFields.driver.transportation_type": "Тип перевозки",
   "serviceFields.driver.languages": "Языки общения",
 
-  "provider.details.driverVehicleType": "Тип автомобиля"
+  "provider.details.driverVehicleType": "Тип автомобиля",
+  "provider.details.driverTransportationType": "Тип перевозки"
 }

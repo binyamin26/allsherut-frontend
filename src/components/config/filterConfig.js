@@ -132,7 +132,6 @@ export const FILTER_CONFIG = {
       { value: 'ניקוי בלחץ מים (טרסות, חזיתות)', key: 'filters.cleaning.pressureWashing' },
       { value: 'חיטוי וניקיון אחרי נזק (שריפה / הצפה)', key: 'filters.cleaning.damageCleanup' },
       { value: 'ניקוי מזגן', key: 'filters.cleaning.acCleaning' },
-      { value: 'ריסוס (נגד חרקים)', key: 'filters.cleaning.pestControl' },
       { value: 'ניקיון גגות רעפים', key: 'filters.cleaning.roofCleaning' }
     ],
     additionalServices: [
@@ -1429,13 +1428,22 @@ locksmith: {
   // ═══════════════════════════════════════════════════════════════
   driver: {
     sectionTitles: {
+      transportationType: 'filters.driver.transportationType',
       vehicleType: 'filters.driver.vehicleType',
       availabilityHours: 'filters.driver.availabilityHours'
     },
+    transportationType: [
+      { value: 'הסעות לאירועים', key: 'serviceForm.driver.eventTransport' },
+      { value: 'הסעות תלמידים',  key: 'serviceForm.driver.studentTransport' },
+      { value: 'הסעות טיולים',   key: 'serviceForm.driver.tripTransport' },
+      { value: 'הסעות לנתב"ג',  key: 'serviceForm.driver.airportTransport' }
+    ],
     vehicleType: [
-      { value: '5 מקומות', key: 'serviceForm.driver.seats5' },
-      { value: '7 מקומות', key: 'serviceForm.driver.seats7' },
-      { value: '9 מקומות', key: 'serviceForm.driver.seats9' }
+      { value: '5 מקומות',           key: 'serviceForm.driver.seats5' },
+      { value: '7 מקומות',           key: 'serviceForm.driver.seats7' },
+      { value: '9 מקומות',           key: 'serviceForm.driver.seats9' },
+      { value: 'מיניבוס (14-23 מושבים)', key: 'serviceForm.driver.minibus' },
+      { value: 'אוטובוס (50-60 מושבים)', key: 'serviceForm.driver.bus' }
     ],
     availabilityHours: [
       { value: 'בוקר',        key: 'hours.morning' },

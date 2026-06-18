@@ -2,9 +2,18 @@ import React from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
 
 const VEHICLE_TYPES = [
-  { value: '5 מקומות', key: 'serviceForm.driver.seats5' },
-  { value: '7 מקומות', key: 'serviceForm.driver.seats7' },
-  { value: '9 מקומות', key: 'serviceForm.driver.seats9' },
+  { value: '5 מקומות',           key: 'serviceForm.driver.seats5' },
+  { value: '7 מקומות',           key: 'serviceForm.driver.seats7' },
+  { value: '9 מקומות',           key: 'serviceForm.driver.seats9' },
+  { value: 'מיניבוס (14-23 מושבים)', key: 'serviceForm.driver.minibus' },
+  { value: 'אוטובוס (50-60 מושבים)', key: 'serviceForm.driver.bus' },
+];
+
+const TRANSPORTATION_TYPES = [
+  { value: 'הסעות לאירועים', key: 'serviceForm.driver.eventTransport' },
+  { value: 'הסעות תלמידים',  key: 'serviceForm.driver.studentTransport' },
+  { value: 'הסעות טיולים',   key: 'serviceForm.driver.tripTransport' },
+  { value: 'הסעות לנתב"ג',  key: 'serviceForm.driver.airportTransport' },
 ];
 
 const AVAILABILITY_HOURS = [
@@ -49,6 +58,31 @@ const DriverForm = ({ serviceDetails, errors, handleServiceDetailsChange, handle
           </div>
           {errors['serviceDetails.availability_hours'] && (
             <span className="error-text">{errors['serviceDetails.availability_hours']}</span>
+          )}
+        </div>
+
+        <div className="input-group">
+          <label className="auth-form-label required">{t('serviceForm.driver.transportationType')}</label>
+          <div className="checkbox-group" data-field="transportation_type">
+            {TRANSPORTATION_TYPES.map(type => (
+              <label key={type.value} className="checkbox-item">
+                <input
+                  type="checkbox"
+                  checked={serviceDetails.transportation_type?.includes(type.value) || false}
+                  onChange={(e) => {
+                    const current = serviceDetails.transportation_type || [];
+                    const updated = e.target.checked
+                      ? [...current, type.value]
+                      : current.filter(v => v !== type.value);
+                    handleServiceDetailsChange('transportation_type', updated);
+                  }}
+                />
+                {t(type.key)}
+              </label>
+            ))}
+          </div>
+          {errors['serviceDetails.transportation_type'] && (
+            <span className="error-text">{errors['serviceDetails.transportation_type']}</span>
           )}
         </div>
 

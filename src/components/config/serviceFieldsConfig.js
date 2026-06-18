@@ -74,7 +74,7 @@ const serviceFieldsConfig = {
         options: [
           'ניקיון שוטף', 'ניקיון פסח', 'ניקיון אחרי שיפוץ', 'ניקיון לדירות Airbnb',
           'משרדים', 'חנויות', 'בניינים', 'מוסדות חינוך', 'מפעלים',
-          'ניקוי חלונות', 'ניקוי מזגן', 'ריסוס (נגד חרקים)', 'ניקיון גגות רעפים', 
+          'ניקוי חלונות', 'ניקוי מזגן', 'ניקיון גגות רעפים',
           'ניקוי שטיחים', 'ניקוי ספות', 'ניקוי וילונות', 'ניקוי בלחץ מים (טרסות, חזיתות)', 
           'חיטוי וניקיון אחרי נזק (שריפה / הצפה)',
           'ניקוי רכב בבית הלקוח', 'ניקוי פאנלים סולאריים',
@@ -1510,13 +1510,26 @@ const serviceFieldsConfig = {
         ]
       },
       {
+        name: 'transportation_type',
+        label: 'serviceFields.driver.transportation_type',
+        type: 'checkbox',
+        options: [
+          { value: 'הסעות לאירועים', labelKey: 'serviceForm.driver.eventTransport' },
+          { value: 'הסעות תלמידים',  labelKey: 'serviceForm.driver.studentTransport' },
+          { value: 'הסעות טיולים',   labelKey: 'serviceForm.driver.tripTransport' },
+          { value: 'הסעות לנתב"ג',  labelKey: 'serviceForm.driver.airportTransport' }
+        ]
+      },
+      {
         name: 'vehicle_type',
         label: 'serviceFields.driver.vehicle_type',
         type: 'checkbox',
         options: [
-          { value: '5 מקומות', labelKey: 'serviceForm.driver.seats5' },
-          { value: '7 מקומות', labelKey: 'serviceForm.driver.seats7' },
-          { value: '9 מקומות', labelKey: 'serviceForm.driver.seats9' }
+          { value: '5 מקומות',           labelKey: 'serviceForm.driver.seats5' },
+          { value: '7 מקומות',           labelKey: 'serviceForm.driver.seats7' },
+          { value: '9 מקומות',           labelKey: 'serviceForm.driver.seats9' },
+          { value: 'מיניבוס (14-23 מושבים)', labelKey: 'serviceForm.driver.minibus' },
+          { value: 'אוטובוס (50-60 מושבים)', labelKey: 'serviceForm.driver.bus' }
         ]
       },
       {

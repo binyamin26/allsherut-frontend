@@ -129,7 +129,6 @@ const translationMappings = {
     'ניקוי בלחץ מים (טרסות, חזיתות)': 'filters.cleaning.pressureWashing',
     'חיטוי וניקיון אחרי נזק (שריפה / הצפה)': 'filters.cleaning.damageCleanup',
     'ניקוי מזגן': 'filters.cleaning.acCleaning',
-    'ריסוס (נגד חרקים)': 'filters.cleaning.pestControl',
     'ניקיון גגות רעפים': 'filters.cleaning.roofCleaning',
   },
   cleaningAdditional: {

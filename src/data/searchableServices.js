@@ -30,7 +30,6 @@ const searchableServices = [
   { label: 'ניקוי בלחץ מים (טרסות, חזיתות)', labelEn: 'Pressure washing', labelFr: 'Nettoyage haute pression', labelRu: 'Мойка под давлением', href: '/services/cleaning', type: 'specialty' },
   { label: 'חיטוי וניקיון אחרי נזק (שריפה / הצפה)', labelEn: 'Post-damage disinfection', labelFr: 'Désinfection après sinistre', labelRu: 'Дезинфекция после ущерба', href: '/services/cleaning', type: 'specialty' },
   { label: 'ניקוי מזגן', labelEn: 'AC cleaning', labelFr: 'Nettoyage climatisation', labelRu: 'Чистка кондиционера', href: '/services/cleaning', type: 'specialty' },
-  { label: 'ריסוס (נגד חרקים)', labelEn: 'Pest spraying', labelFr: 'Pulvérisation anti-insectes', labelRu: 'Опрыскивание от насекомых', href: '/services/cleaning', type: 'specialty' },
   { label: 'ניקיון גגות רעפים', labelEn: 'Tile roof cleaning', labelFr: 'Nettoyage toits tuiles', labelRu: 'Чистка черепичных крыш', href: '/services/cleaning', type: 'specialty' },
   { label: 'ניקוי רכב בבית הלקוח', labelEn: 'Mobile car cleaning', labelFr: 'Nettoyage auto à domicile', labelRu: 'Мойка авто на дому', href: '/services/cleaning', type: 'specialty' },
   { label: 'ניקוי פאנלים סולאריים', labelEn: 'Solar panel cleaning', labelFr: 'Nettoyage panneaux solaires', labelRu: 'Чистка солнечных панелей', href: '/services/cleaning', type: 'specialty' },
@@ -676,13 +675,15 @@ const searchableServices = [
   { label: 'תליית תמונות', labelEn: 'Picture hanging', labelFr: 'Accrochage tableaux', labelRu: 'Вешание картин', href: '/services/handyman', type: 'specialty' },
   { label: 'תליית אביזרים', labelEn: 'Accessory hanging', labelFr: 'Accrochage accessoires', labelRu: 'Вешание аксессуаров', href: '/services/handyman', type: 'specialty' },
 
-  // DRIVER
-  { label: 'דרייבר', labelEn: 'Driver', labelFr: 'Chauffeur', labelRu: 'Водитель', href: '/services/driver', type: 'service' },
-  { label: 'נסיעות פרטיות', labelEn: 'Private rides', labelFr: 'Trajets privés', labelRu: 'Частные поездки', href: '/services/driver', type: 'specialty' },
-  { label: 'הסעות', labelEn: 'Transfers', labelFr: 'Transferts', labelRu: 'Трансферы', href: '/services/driver', type: 'specialty' },
+  // DRIVER / הסעות
+  { label: 'הסעות', labelEn: 'הסעות', labelFr: 'הסעות', labelRu: 'הסעות', href: '/services/driver', type: 'service' },
+  { label: 'הסעות לאירועים', labelEn: 'Event transportation', labelFr: 'Transport événementiel', labelRu: 'Транспорт на мероприятия', href: '/services/driver', type: 'specialty' },
+  { label: 'הסעות תלמידים', labelEn: 'Student transportation', labelFr: 'Transport scolaire', labelRu: 'Перевозка учеников', href: '/services/driver', type: 'specialty' },
+  { label: 'הסעות טיולים', labelEn: 'Trip transportation', labelFr: 'Transport excursions', labelRu: 'Транспорт для экскурсий', href: '/services/driver', type: 'specialty' },
+  { label: 'הסעות לנתב"ג', labelEn: 'Ben Gurion Airport transport', labelFr: 'Transport aéroport Ben Gourion', labelRu: 'Трансфер в аэропорт Бен-Гурион', href: '/services/driver', type: 'specialty' },
   { label: 'נהג פרטי', labelEn: 'Private driver', labelFr: 'Chauffeur privé', labelRu: 'Частный водитель', href: '/services/driver', type: 'specialty' },
-  { label: 'הסעת אורחים', labelEn: 'Guest transportation', labelFr: 'Transport invités', labelRu: 'Перевозка гостей', href: '/services/driver', type: 'specialty' },
-  { label: 'שאטל לשדה תעופה', labelEn: 'Airport shuttle', labelFr: 'Navette aéroport', labelRu: 'Трансфер в аэропорт', href: '/services/driver', type: 'specialty' },
+  { label: 'אוטובוס', labelEn: 'Bus', labelFr: 'Bus', labelRu: 'Автобус', href: '/services/driver', type: 'specialty' },
+  { label: 'מיניבוס', labelEn: 'Minibus', labelFr: 'Minibus', labelRu: 'Минибус', href: '/services/driver', type: 'specialty' },
 ];
 
 export default searchableServices;

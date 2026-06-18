@@ -91,7 +91,6 @@ const CleaningForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
   {[
     { value: 'ניקוי חלונות', label: t('filters.cleaning.highWindows') },
     { value: 'ניקוי מזגן', label: t('filters.cleaning.acCleaning') },
-    { value: 'ריסוס (נגד חרקים)', label: t('filters.cleaning.pestControl') },
     { value: 'ניקיון גגות רעפים', label: t('filters.cleaning.roofCleaning') },
     { value: 'ניקוי שטיחים', label: t('filters.cleaning.carpets') },
     { value: 'ניקוי ספות', label: t('filters.cleaning.sofas') },

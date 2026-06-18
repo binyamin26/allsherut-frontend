@@ -3330,6 +3330,14 @@ const DriverFilters = ({ filters, handleFilterChange, handleCheckboxChange, hand
   return (
     <div className="service-panel">
       <CheckboxSection
+        title={t(config.sectionTitles.transportationType)}
+        options={config.transportationType.map(o => ({ value: o.value, label: t(o.key) }))}
+        filterKey="transportation_type"
+        filters={filters}
+        onCheckboxChange={handleCheckboxChange}
+      />
+
+      <CheckboxSection
         title={t(config.sectionTitles.vehicleType)}
         options={config.vehicleType.map(o => ({ value: o.value, label: t(o.key) }))}
         filterKey="vehicle_type"
