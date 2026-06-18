@@ -110,6 +110,7 @@ const GasTechnicianPage = () => {
 
   return (
     <div className="service-page gas-technician-page">
+      <SEO title="טכנאי גז בישראל" description="מצאו טכנאי גז מוסמך בישראל - התקנה, בדיקה ותיקון של מכשירי גז בצורה בטוחה." canonicalPath="/services/gas-technician" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

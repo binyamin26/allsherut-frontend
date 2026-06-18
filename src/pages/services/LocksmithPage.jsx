@@ -112,6 +112,7 @@ const LocksmithPage = () => {
 
   return (
     <div className="service-page locksmith-page">
+      <SEO title="מנעולן בישראל" description="מצאו מנעולן מקצועי בישראל - פתיחת דלתות, החלפת מנעולים והתקנת מערכות אבטחה." canonicalPath="/services/locksmith" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

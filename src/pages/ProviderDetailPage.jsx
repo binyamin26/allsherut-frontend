@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
+import SEO from '../components/common/SEO';
 import { useAuth } from '../context/AuthContext';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import AuthModal from '../components/auth/AuthModal';
@@ -1511,7 +1512,24 @@ const handleContact = () => {
   const paymentConfig = getPaymentConfig(provider.serviceType);
   const serviceIconUrl = getServiceIcon(provider.serviceType);
 
+  const serviceNameHe = {
+    babysitting: 'בייביסיטר', cleaning: 'ניקיון', gardening: 'גינון',
+    petcare: 'שמירת חיות', tutoring: 'שיעורים פרטיים', eldercare: 'עזרה לקשישים',
+    electrician: 'חשמלאי', plumbing: 'אינסטלטור', airconditioning: 'מזגן',
+    carpentry: 'נגר', painting: 'צבעי', locksmith: 'מנעולן',
+    moving: 'הובלות', driver: 'הסעות', handyman: 'עבודות כלליות',
+  }[provider?.service_type] || provider?.service_type || '';
+
   return (
+    <>
+      {provider && (
+        <SEO
+          title={`${provider.first_name} ${provider.last_name} - ${serviceNameHe}${provider.location_city ? ` ב${provider.location_city}` : ''}`}
+          description={provider.description || `${provider.first_name} ${provider.last_name} - ${serviceNameHe} מקצועי${provider.location_city ? ` ב${provider.location_city}` : ''} | AllSherut`}
+          canonicalPath={`/provider/${provider.id}`}
+          image={provider.profile_images?.[0] || undefined}
+        />
+      )}
     <div className="provider-detail-page">
       {/* Header Navigation */}
       <div className="provider-nav">
@@ -1977,6 +1995,7 @@ const handleContact = () => {
         </div>
       )}
     </div>
+    </>
   );
 };
 

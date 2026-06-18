@@ -101,6 +101,7 @@ const MovingPage = () => {
 
   return (
     <div className="service-page moving-page">
+      <SEO title="הובלות בישראל" description="מצאו חברת הובלה מקצועית בישראל - הובלת דירה, משרד וציוד עם צוות מנוסה." canonicalPath="/services/moving" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

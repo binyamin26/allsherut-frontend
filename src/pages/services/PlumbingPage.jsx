@@ -110,6 +110,7 @@ const PlumbingPage = () => {
 
   return (
     <div className="service-page plumbing-page">
+      <SEO title="אינסטלטור בישראל" description="מצאו אינסטלטור מקצועי בישראל - תיקון נזילות, התקנות ועבודות אינסטלציה." canonicalPath="/services/plumbing" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

@@ -110,6 +110,7 @@ const PaintingPage = () => {
 
   return (
     <div className="service-page painting-page">
+      <SEO title="צבעי בישראל" description="מצאו צבעי מקצועי בישראל - צביעת דירות, בתים ומשרדים עם עבודה מדויקת ונקייה." canonicalPath="/services/painting" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

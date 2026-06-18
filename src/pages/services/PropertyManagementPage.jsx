@@ -117,6 +117,7 @@ const PropertyManagementPage = () => {
 
   return (
     <div className="service-page property-management-page">
+      <SEO title="ניהול נכסים בישראל" description="מצאו חברת ניהול נכסים בישראל - טיפול בשוכרים, תחזוקה ומיקסום הכנסה מהנכס." canonicalPath="/services/property-management" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

@@ -127,6 +127,7 @@ useEffect(() => {
 
   return (
     <div className="service-page tutoring-page">
+      <SEO title="שיעורים פרטיים בישראל" description="מצאו מורה פרטי בישראל - חיזוק בכל המקצועות, הכנה לבגרות ולמבחנים." canonicalPath="/services/tutoring" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

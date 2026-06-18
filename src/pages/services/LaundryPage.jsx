@@ -122,6 +122,7 @@ const LaundryPage = () => {
 
   return (
     <div className="service-page laundry-page">
+      <SEO title="כביסה ואיסטניס בישראל" description="מצאו שירות כביסה מקצועי בישראל - כביסה, גיהוץ ועיבוד בגדים עד לבית." canonicalPath="/services/laundry" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

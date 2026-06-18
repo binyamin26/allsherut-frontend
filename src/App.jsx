@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import RecruitmentServicePage from './pages/recruitment/RecruitmentServicePage';
 import RecruitmentListingDetailPage from './pages/recruitment/RecruitmentListingDetailPage';
 import { AuthProvider, useAuth } from './context/AuthContext';
@@ -131,6 +132,7 @@ const ProtectedRoute = ({ children }) => {
 
 function App() {
   return (
+    <HelmetProvider>
     <LanguageProvider>
       <AuthProvider>
         <Router>
@@ -232,7 +234,8 @@ function App() {
           </div>
         </Router>
       </AuthProvider>
-    </LanguageProvider> 
+    </LanguageProvider>
+    </HelmetProvider>
   );
 }
 

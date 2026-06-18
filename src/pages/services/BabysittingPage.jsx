@@ -119,6 +119,7 @@ const response = await apiService.searchProviders(cleanParams);
 
   return (
     <div className="service-page babysitting-page">
+      <SEO title="בייביסיטר בישראל" description="מצאו בייביסיטר מקצועי ואמין בישראל - שמירה על ילדים, ניסיון מוכח ודירוגים אמיתיים." canonicalPath="/services/babysitting" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

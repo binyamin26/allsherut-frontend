@@ -110,6 +110,7 @@ const PrivateChefPage = () => {
 
   return (
     <div className="service-page private-chef-page">
+      <SEO title="שף פרטי בישראל" description="מצאו שף פרטי בישראל - בישול בבית, אירועים פרטיים ותפריטים מותאמים אישית." canonicalPath="/services/private-chef" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

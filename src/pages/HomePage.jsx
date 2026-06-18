@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import SEO from '../components/common/SEO';
 import {
   Search, Star, Users, Clock, Shield, Heart, Baby, Scissors, PawPrint,
   BookOpen, Home, ArrowLeft, CheckCircle, TrendingUp, Award, Smile,
@@ -329,6 +330,11 @@ const HomePage = () => {
 
   return (
     <div className="homepage">
+      <SEO
+        title="כל השירותים לבית בישראל"
+        description="חברו עם ספקי שירות מקצועיים בישראל - בייביסיטר, ניקיון, חשמלאי, אינסטלטור, גינון ועוד 23 קטגוריות שירות. השוו, בחרו, ובקשו הצעת מחיר."
+        canonicalPath="/"
+      />
       {/* Hero Section */}
       <section className="hero-section">
         <div className="container">
