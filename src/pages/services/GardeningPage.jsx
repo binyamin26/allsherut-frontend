@@ -1,4 +1,5 @@
 ﻿import { useNavigate } from 'react-router-dom';import { Scissors, CheckCircle, Star, Phone, Leaf, Droplets, MessageCircle } from 'lucide-react';
+import SEO from '../../components/common/SEO';
 import { useAuth } from '../../context/AuthContext';
 import FilterBar from '../../components/filters/FilterBar';
 import ReviewModal from '../../components/modals/ReviewModal';

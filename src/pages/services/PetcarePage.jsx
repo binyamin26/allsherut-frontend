@@ -1,4 +1,5 @@
 ﻿import { useNavigate } from 'react-router-dom';
+import SEO from '../../components/common/SEO';
 import { PawPrint, CheckCircle, Star, Phone, Heart, Shield, MessageCircle } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import FilterBar from '../../components/filters/FilterBar';

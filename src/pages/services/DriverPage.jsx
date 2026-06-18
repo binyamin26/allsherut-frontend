@@ -1,4 +1,5 @@
 import FilterBar from '../../components/filters/FilterBar';
+import SEO from '../../components/common/SEO';
 import ReviewModal from '../../components/modals/ReviewModal';
 import apiService from '../../services/api';
 import ProviderCard from '../../components/cards/ProviderCard';

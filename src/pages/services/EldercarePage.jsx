@@ -1,4 +1,5 @@
 ﻿import { useNavigate } from 'react-router-dom';
+import SEO from '../../components/common/SEO';
 import { User, CheckCircle, Star, Phone, Heart, Shield, Clock, MessageCircle } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import FilterBar from '../../components/filters/FilterBar';
