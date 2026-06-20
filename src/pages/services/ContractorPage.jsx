@@ -117,7 +117,7 @@ const ContractorPage = () => {
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo kablan.png"
+                src="/images/logo kablan.jpg"
                 alt="Rֳ©novation"
               />
             </div>
