@@ -102,7 +102,7 @@ const serviceImages = {
   aluminum: '/images/logo aluminium.jpg',
   glass_works: '/images/logo verre.jpg',
   locksmith: '/images/logo serrure.jpg',
-  moving: '/images/logo demenagement.jpg',
+  moving: '/images/logo ovala.jpg',
   photographer: '/images/logo photographe.jpg',
   event_decoration: '/images/logo deco.jpg',
   pest_control: '/images/logo desinctisation.jpg',

@@ -107,7 +107,7 @@ const MovingPage = () => {
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon">
-              <img src="/images/logo demenagement.jpg" alt="Dֳ©mֳ©nagement" />
+              <img src="/images/logo ovala.jpg" alt="Déménagement" />
             </div>
             <h1 className="service-title">{t('services.moving.pageTitle')}</h1>
           </div>
