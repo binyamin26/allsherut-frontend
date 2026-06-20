@@ -98,7 +98,7 @@ const serviceImages = {
   private_chef: '/images/logo chef.jpg',
   painting: '/images/logo peinture.jpg',
   waterproofing: '/images/logo itoum.jpg',
-  contractor: '/images/logo kablan.png',
+  contractor: '/images/logo kablan.jpg',
   aluminum: '/images/logo aluminium.jpg',
   glass_works: '/images/logo verre.jpg',
   locksmith: '/images/logo serrure.jpg',

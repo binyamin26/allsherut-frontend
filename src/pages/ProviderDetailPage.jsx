@@ -148,7 +148,7 @@ const ProviderDetailPage = () => {
     event_entertainment: '/images/logo event.png',
     dj: '/images/logo DJ.jpg',
     waterproofing: '/images/logo itoum.jpg',
-    contractor: '/images/logo kablan.png',
+    contractor: '/images/logo kablan.jpg',
     aluminum: '/images/logo aluminium.jpg',
     glass_works: '/images/logo verre.jpg',
     locksmith: '/images/logo serrure.jpg',
