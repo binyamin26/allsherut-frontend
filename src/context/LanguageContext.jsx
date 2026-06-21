@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { loadLanguage } from '../i18n';
+import { buildServicePath as _buildServicePath, buildPath as _buildPath } from '../utils/langUtils';
 
 const LanguageContext = createContext();
 
@@ -96,6 +97,8 @@ export const LanguageProvider = ({ children }) => {
     direction,
     isRTL: direction === 'rtl',
     changeLanguage,
+    buildServicePath: (key) => _buildServicePath(key, currentLanguage),
+    buildPath: (path) => _buildPath(path, currentLanguage),
   };
 
   return (

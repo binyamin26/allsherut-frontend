@@ -3,7 +3,12 @@ import { initReactI18next } from 'react-i18next';
 import he from './locales/he/translation.json';
 
 const STORAGE_KEY = 'homesherut_language';
-const savedLang = localStorage.getItem(STORAGE_KEY) || 'he';
+const SUPPORTED = ['he', 'en', 'fr', 'ru'];
+// URL prefix takes priority over localStorage (enables direct navigation to /fr/...)
+const _urlLang = window.location.pathname.split('/')[1];
+const savedLang = (SUPPORTED.includes(_urlLang) ? _urlLang : null)
+  || localStorage.getItem(STORAGE_KEY)
+  || 'he';
 
 // Vite creates a separate chunk for each of these — loaded only on first switch
 export const languageLoaders = {

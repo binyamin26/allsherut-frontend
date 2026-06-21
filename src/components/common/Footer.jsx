@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
 import { useLanguage } from '../../context/LanguageContext'
-import React, { useState } from 'react'
-import { Home, ChevronDown } from 'lucide-react'
+import { useState } from 'react'
+import { ChevronDown } from 'lucide-react'
+import { buildServicePath } from '../../utils/langUtils'
 
 const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -17,59 +18,59 @@ const Footer = () => {
     { code: 'ru', flag: 'https://flagcdn.com/w40/ru.png', alt: 'Русский' }
   ];
 
-  // Services organisés par catégories
+  // Services organisés par catégories (serviceKey → URL localisée au moment du rendu)
   const serviceCategories = [
     {
       titleKey: 'footer.category.home',
       services: [
-        { nameKey: 'services.cleaning', path: '/services/cleaning' },
-        { nameKey: 'services.gardening', path: '/services/gardening' },
-        { nameKey: 'services.petcare', path: '/services/petcare' },
-        { nameKey: 'services.laundry', path: '/services/laundry' },
-        { nameKey: 'services.property_management', path: '/services/property-management' },
-        { nameKey: 'services.home_organization', path: '/services/home-organization' },
-        { nameKey: 'services.pest_control', path: '/services/pest-control' }
+        { nameKey: 'services.cleaning', serviceKey: 'cleaning' },
+        { nameKey: 'services.gardening', serviceKey: 'gardening' },
+        { nameKey: 'services.petcare', serviceKey: 'petcare' },
+        { nameKey: 'services.laundry', serviceKey: 'laundry' },
+        { nameKey: 'services.property_management', serviceKey: 'property-management' },
+        { nameKey: 'services.home_organization', serviceKey: 'home-organization' },
+        { nameKey: 'services.pest_control', serviceKey: 'pest-control' }
       ]
     },
     {
       titleKey: 'footer.category.people',
       services: [
-        { nameKey: 'services.babysitting', path: '/services/babysitting' },
-        { nameKey: 'services.tutoring', path: '/services/tutoring' },
-        { nameKey: 'services.sports_activities', path: '/services/sports-activities' },
-        { nameKey: 'services.eldercare', path: '/services/eldercare' },
-        { nameKey: 'services.driver', path: '/services/driver' }
+        { nameKey: 'services.babysitting', serviceKey: 'babysitting' },
+        { nameKey: 'services.tutoring', serviceKey: 'tutoring' },
+        { nameKey: 'services.sports_activities', serviceKey: 'sports-activities' },
+        { nameKey: 'services.eldercare', serviceKey: 'eldercare' },
+        { nameKey: 'services.driver', serviceKey: 'driver' }
       ]
     },
     {
       titleKey: 'footer.category.repairs',
       services: [
-        { nameKey: 'services.electrician', path: '/services/electrician' },
-        { nameKey: 'services.plumbing', path: '/services/plumbing' },
-        { nameKey: 'services.air_conditioning', path: '/services/air-conditioning' },
-        { nameKey: 'services.gas_technician', path: '/services/gas-technician' },
-        { nameKey: 'services.drywall', path: '/services/drywall' },
-        { nameKey: 'services.painting', path: '/services/painting' },
-        { nameKey: 'services.carpentry', path: '/services/carpentry' },
-        { nameKey: 'services.waterproofing', path: '/services/waterproofing' },
-        { nameKey: 'services.aluminum', path: '/services/aluminum' },
-        { nameKey: 'services.metalwork', path: '/services/metalwork' },
-        { nameKey: 'services.glass_works', path: '/services/glass-works' },
-        { nameKey: 'services.handyman', path: '/services/handyman' },
-        { nameKey: 'services.mechanic', path: '/services/mechanic' },
-        { nameKey: 'services.contractor', path: '/services/contractor' },
-        { nameKey: 'services.locksmith', path: '/services/locksmith' },
-        { nameKey: 'services.moving', path: '/services/moving' },
-        { nameKey: 'services.photographer', path: '/services/photographer' }
+        { nameKey: 'services.electrician', serviceKey: 'electrician' },
+        { nameKey: 'services.plumbing', serviceKey: 'plumbing' },
+        { nameKey: 'services.air_conditioning', serviceKey: 'air-conditioning' },
+        { nameKey: 'services.gas_technician', serviceKey: 'gas-technician' },
+        { nameKey: 'services.drywall', serviceKey: 'drywall' },
+        { nameKey: 'services.painting', serviceKey: 'painting' },
+        { nameKey: 'services.carpentry', serviceKey: 'carpentry' },
+        { nameKey: 'services.waterproofing', serviceKey: 'waterproofing' },
+        { nameKey: 'services.aluminum', serviceKey: 'aluminum' },
+        { nameKey: 'services.metalwork', serviceKey: 'metalwork' },
+        { nameKey: 'services.glass_works', serviceKey: 'glass-works' },
+        { nameKey: 'services.handyman', serviceKey: 'handyman' },
+        { nameKey: 'services.mechanic', serviceKey: 'mechanic' },
+        { nameKey: 'services.contractor', serviceKey: 'contractor' },
+        { nameKey: 'services.locksmith', serviceKey: 'locksmith' },
+        { nameKey: 'services.moving', serviceKey: 'moving' },
+        { nameKey: 'services.photographer', serviceKey: 'photographer' }
       ]
     },
     {
       titleKey: 'footer.category.events',
       services: [
-        { nameKey: 'services.event_entertainment', path: '/services/event-entertainment' },
-        { nameKey: 'services.dj', path: '/services/dj' },
-        { nameKey: 'services.private_chef', path: '/services/private-chef' },
-        { nameKey: 'services.event_decoration', path: '/services/event-decoration' }
+        { nameKey: 'services.event_entertainment', serviceKey: 'event-entertainment' },
+        { nameKey: 'services.dj', serviceKey: 'dj' },
+        { nameKey: 'services.private_chef', serviceKey: 'private-chef' },
+        { nameKey: 'services.event_decoration', serviceKey: 'event-decoration' }
       ]
     }
   ]
@@ -124,9 +125,9 @@ const quickLinks = [
               </h3>
               <div className="footer-links">
                 {category.services.map((service, index) => (
-                  <Link 
-                    key={index} 
-                    to={service.path} 
+                  <Link
+                    key={index}
+                    to={buildServicePath(service.serviceKey, currentLanguage)}
                     className="footer-link"
                     onClick={scrollToTop}
                   >

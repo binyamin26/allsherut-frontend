@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { Menu, X, Home, Users, Heart, BookOpen, UserCheck, Sparkles, Baby, LogOut, Shirt, Zap, Wrench, Wind, Flame, Package, Layers, Hammer, PartyPopper, ChefHat, Paintbrush, Droplets, HardHat, Frame, Square, Key, Leaf, PawPrint, ChevronDown, Phone, Truck, Camera, Wand2, Bug, Cog, Activity, Dumbbell, Music2, Car, Shield, Navigation } from 'lucide-react'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
+import { Menu, X, Home, Users, BookOpen, UserCheck, Sparkles, Baby, LogOut, Shirt, Zap, Wrench, Wind, Flame, Package, Layers, Hammer, PartyPopper, ChefHat, Paintbrush, Droplets, HardHat, Frame, Square, Key, Leaf, PawPrint, ChevronDown, Phone, Truck, Camera, Wand2, Bug, Cog, Dumbbell, Music2, Car, Shield, Navigation } from 'lucide-react'
 import { useAuth } from '../../context/AuthContext'
 import AuthModal from '../auth/AuthModal'
 import { useLanguage } from '../../context/LanguageContext'
+import { SUPPORTED_LANGS, getLangFromPath, buildServicePath, buildPath, getServiceKeyFromSlug } from '../../utils/langUtils'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -13,8 +14,9 @@ const Header = () => {
   const [showMobileRecruitment, setShowMobileRecruitment] = useState(false)
   const { user, isAuthenticated, logout } = useAuth()
   const navigate = useNavigate()
+  const { pathname } = useLocation()
   const [showLangDropdown, setShowLangDropdown] = useState(false)
-  
+
   // Fermer le dropdown au clic extérieur
   React.useEffect(() => {
     const handleClickOutside = (event) => {
@@ -22,12 +24,36 @@ const Header = () => {
         setShowLangDropdown(false);
       }
     };
-    
+
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [showLangDropdown]);
 
   const { t, changeLanguage, currentLanguage } = useLanguage()
+
+  // Switch de langue avec navigation intelligente vers l'URL localisée
+  const handleLangSwitch = (newLang) => {
+    const curLang = getLangFromPath(pathname);
+    // Sur une page de service → naviguer vers la même page dans la nouvelle langue
+    const serviceMatch = pathname.match(/(?:\/(?:fr|en|ru))?\/services\/([^/]+)$/);
+    if (serviceMatch) {
+      const key = getServiceKeyFromSlug(serviceMatch[1], curLang);
+      if (key) {
+        navigate(buildServicePath(key, newLang));
+        changeLanguage(newLang);
+        return;
+      }
+    }
+    // Sur la home (/ ou /:lang) → naviguer vers la home de la nouvelle langue
+    const parts = pathname.split('/').filter(Boolean);
+    if (parts.length === 0 || (parts.length === 1 && SUPPORTED_LANGS.includes(parts[0]))) {
+      navigate(newLang === 'he' ? '/' : `/${newLang}`);
+      changeLanguage(newLang);
+      return;
+    }
+    // Sinon → changer la langue sans changer l'URL
+    changeLanguage(newLang);
+  };
 
   const languages = [
     { code: 'he', flag: 'https://flagcdn.com/w40/il.png', alt: 'עברית' },
@@ -36,41 +62,41 @@ const Header = () => {
     { code: 'ru', flag: 'https://flagcdn.com/w40/ru.png', alt: 'Русский' }
   ];
 
-  // Services avec traductions
+  // Services avec clé interne pour construire les URLs localisées
   const services = [
-    { icon: <Wrench className="w-5 h-5" />, nameKey: 'services.plumbing', descKey: 'services.plumbing.desc', href: '/services/plumbing' },
-    { icon: <Zap className="w-5 h-5" />, nameKey: 'services.electrician', descKey: 'services.electrician.desc', href: '/services/electrician' },
-    { icon: <Key className="w-5 h-5" />, nameKey: 'services.locksmith', descKey: 'services.locksmith.desc', href: '/services/locksmith' },
-    { icon: <Paintbrush className="w-5 h-5" />, nameKey: 'services.painting', descKey: 'services.painting.desc', href: '/services/painting' },
-    { icon: <Wind className="w-5 h-5" />, nameKey: 'services.air_conditioning', descKey: 'services.air_conditioning.desc', href: '/services/air-conditioning' },
-    { icon: <Layers className="w-5 h-5" />, nameKey: 'services.drywall', descKey: 'services.drywall.desc', href: '/services/drywall' },
-    { icon: <Frame className="w-5 h-5" />, nameKey: 'services.aluminum', descKey: 'services.aluminum.desc', href: '/services/aluminum' },
-    { icon: <Shield className="w-5 h-5" />, nameKey: 'services.metalwork', descKey: 'services.metalwork.desc', href: '/services/metalwork' },
-    { icon: <Square className="w-5 h-5" />, nameKey: 'services.glass_works', descKey: 'services.glass_works.desc', href: '/services/glass-works' },
-    { icon: <Flame className="w-5 h-5" />, nameKey: 'services.gas_technician', descKey: 'services.gas_technician.desc', href: '/services/gas-technician' },
-    { icon: <Droplets className="w-5 h-5" />, nameKey: 'services.waterproofing', descKey: 'services.waterproofing.desc', href: '/services/waterproofing' },
-    { icon: <Hammer className="w-5 h-5" />, nameKey: 'services.carpentry', descKey: 'services.carpentry.desc', href: '/services/carpentry' },
-    { icon: <Cog className="w-5 h-5" />, nameKey: 'services.handyman', descKey: 'services.handyman.desc', href: '/services/handyman' },
-    { icon: <HardHat className="w-5 h-5" />, nameKey: 'services.contractor', descKey: 'services.contractor.desc', href: '/services/contractor' },
-    { icon: <Truck className="w-5 h-5" />, nameKey: 'services.moving', descKey: 'services.moving.desc', href: '/services/moving' },
-    { icon: <Leaf className="w-5 h-5" />, nameKey: 'services.gardening', descKey: 'services.gardening.desc', href: '/services/gardening' },
-    { icon: <Bug className="w-5 h-5" />, nameKey: 'services.pest_control', descKey: 'services.pest_control.desc', href: '/services/pest-control' },
-    { icon: <Sparkles className="w-5 h-5" />, nameKey: 'services.cleaning', descKey: 'services.cleaning.desc', href: '/services/cleaning' },
-    { icon: <Shirt className="w-5 h-5" />, nameKey: 'services.laundry', descKey: 'services.laundry.desc', href: '/services/laundry' },
-    { icon: <Home className="w-5 h-5" />, nameKey: 'services.property_management', descKey: 'services.property_management.desc', href: '/services/property-management' },
-    { icon: <Package className="w-5 h-5" />, nameKey: 'services.home_organization', descKey: 'services.home_organization.desc', href: '/services/home-organization' },
-    { icon: <Wand2 className="w-5 h-5" />, nameKey: 'services.event_decoration', descKey: 'services.event_decoration.desc', href: '/services/event-decoration' },
-    { icon: <PartyPopper className="w-5 h-5" />, nameKey: 'services.event_entertainment', descKey: 'services.event_entertainment.desc', href: '/services/event-entertainment' },
-    { icon: <Music2 className="w-5 h-5" />, nameKey: 'services.dj', descKey: 'services.dj.desc', href: '/services/dj' },
-    { icon: <ChefHat className="w-5 h-5" />, nameKey: 'services.private_chef', descKey: 'services.private_chef.desc', href: '/services/private-chef' },
-    { icon: <Camera className="w-5 h-5" />, nameKey: 'services.photographer', descKey: 'services.photographer.desc', href: '/services/photographer' },
-    { icon: <BookOpen className="w-5 h-5" />, nameKey: 'services.tutoring', descKey: 'services.tutoring.desc', href: '/services/tutoring' },
-    { icon: <Dumbbell className="w-5 h-5" />, nameKey: 'services.sports_activities', descKey: 'services.sports_activities.desc', href: '/services/sports-activities' },
-    { icon: <Baby className="w-5 h-5" />, nameKey: 'services.babysitting', descKey: 'services.babysitting.desc', href: '/services/babysitting' },
-    { icon: <PawPrint className="w-5 h-5" />, nameKey: 'services.petcare', descKey: 'services.petcare.desc', href: '/services/petcare' },
-    { icon: <UserCheck className="w-5 h-5" />, nameKey: 'services.eldercare', descKey: 'services.eldercare.desc', href: '/services/eldercare' },
-    { icon: <Car className="w-5 h-5" />, nameKey: 'services.mechanic', descKey: 'services.mechanic.desc', href: '/services/mechanic' },
-    { icon: <Navigation className="w-5 h-5" />, nameKey: 'services.driver', descKey: 'services.driver.desc', href: '/services/driver' }
+    { icon: <Wrench className="w-5 h-5" />, nameKey: 'services.plumbing', descKey: 'services.plumbing.desc', serviceKey: 'plumbing' },
+    { icon: <Zap className="w-5 h-5" />, nameKey: 'services.electrician', descKey: 'services.electrician.desc', serviceKey: 'electrician' },
+    { icon: <Key className="w-5 h-5" />, nameKey: 'services.locksmith', descKey: 'services.locksmith.desc', serviceKey: 'locksmith' },
+    { icon: <Paintbrush className="w-5 h-5" />, nameKey: 'services.painting', descKey: 'services.painting.desc', serviceKey: 'painting' },
+    { icon: <Wind className="w-5 h-5" />, nameKey: 'services.air_conditioning', descKey: 'services.air_conditioning.desc', serviceKey: 'air-conditioning' },
+    { icon: <Layers className="w-5 h-5" />, nameKey: 'services.drywall', descKey: 'services.drywall.desc', serviceKey: 'drywall' },
+    { icon: <Frame className="w-5 h-5" />, nameKey: 'services.aluminum', descKey: 'services.aluminum.desc', serviceKey: 'aluminum' },
+    { icon: <Shield className="w-5 h-5" />, nameKey: 'services.metalwork', descKey: 'services.metalwork.desc', serviceKey: 'metalwork' },
+    { icon: <Square className="w-5 h-5" />, nameKey: 'services.glass_works', descKey: 'services.glass_works.desc', serviceKey: 'glass-works' },
+    { icon: <Flame className="w-5 h-5" />, nameKey: 'services.gas_technician', descKey: 'services.gas_technician.desc', serviceKey: 'gas-technician' },
+    { icon: <Droplets className="w-5 h-5" />, nameKey: 'services.waterproofing', descKey: 'services.waterproofing.desc', serviceKey: 'waterproofing' },
+    { icon: <Hammer className="w-5 h-5" />, nameKey: 'services.carpentry', descKey: 'services.carpentry.desc', serviceKey: 'carpentry' },
+    { icon: <Cog className="w-5 h-5" />, nameKey: 'services.handyman', descKey: 'services.handyman.desc', serviceKey: 'handyman' },
+    { icon: <HardHat className="w-5 h-5" />, nameKey: 'services.contractor', descKey: 'services.contractor.desc', serviceKey: 'contractor' },
+    { icon: <Truck className="w-5 h-5" />, nameKey: 'services.moving', descKey: 'services.moving.desc', serviceKey: 'moving' },
+    { icon: <Leaf className="w-5 h-5" />, nameKey: 'services.gardening', descKey: 'services.gardening.desc', serviceKey: 'gardening' },
+    { icon: <Bug className="w-5 h-5" />, nameKey: 'services.pest_control', descKey: 'services.pest_control.desc', serviceKey: 'pest-control' },
+    { icon: <Sparkles className="w-5 h-5" />, nameKey: 'services.cleaning', descKey: 'services.cleaning.desc', serviceKey: 'cleaning' },
+    { icon: <Shirt className="w-5 h-5" />, nameKey: 'services.laundry', descKey: 'services.laundry.desc', serviceKey: 'laundry' },
+    { icon: <Home className="w-5 h-5" />, nameKey: 'services.property_management', descKey: 'services.property_management.desc', serviceKey: 'property-management' },
+    { icon: <Package className="w-5 h-5" />, nameKey: 'services.home_organization', descKey: 'services.home_organization.desc', serviceKey: 'home-organization' },
+    { icon: <Wand2 className="w-5 h-5" />, nameKey: 'services.event_decoration', descKey: 'services.event_decoration.desc', serviceKey: 'event-decoration' },
+    { icon: <PartyPopper className="w-5 h-5" />, nameKey: 'services.event_entertainment', descKey: 'services.event_entertainment.desc', serviceKey: 'event-entertainment' },
+    { icon: <Music2 className="w-5 h-5" />, nameKey: 'services.dj', descKey: 'services.dj.desc', serviceKey: 'dj' },
+    { icon: <ChefHat className="w-5 h-5" />, nameKey: 'services.private_chef', descKey: 'services.private_chef.desc', serviceKey: 'private-chef' },
+    { icon: <Camera className="w-5 h-5" />, nameKey: 'services.photographer', descKey: 'services.photographer.desc', serviceKey: 'photographer' },
+    { icon: <BookOpen className="w-5 h-5" />, nameKey: 'services.tutoring', descKey: 'services.tutoring.desc', serviceKey: 'tutoring' },
+    { icon: <Dumbbell className="w-5 h-5" />, nameKey: 'services.sports_activities', descKey: 'services.sports_activities.desc', serviceKey: 'sports-activities' },
+    { icon: <Baby className="w-5 h-5" />, nameKey: 'services.babysitting', descKey: 'services.babysitting.desc', serviceKey: 'babysitting' },
+    { icon: <PawPrint className="w-5 h-5" />, nameKey: 'services.petcare', descKey: 'services.petcare.desc', serviceKey: 'petcare' },
+    { icon: <UserCheck className="w-5 h-5" />, nameKey: 'services.eldercare', descKey: 'services.eldercare.desc', serviceKey: 'eldercare' },
+    { icon: <Car className="w-5 h-5" />, nameKey: 'services.mechanic', descKey: 'services.mechanic.desc', serviceKey: 'mechanic' },
+    { icon: <Navigation className="w-5 h-5" />, nameKey: 'services.driver', descKey: 'services.driver.desc', serviceKey: 'driver' }
   ]
 
   const handleLogout = async () => {
@@ -91,16 +117,6 @@ const Header = () => {
     setIsMenuOpen(false)
   }
 
-  const handleLogoClick = (e) => {
-    e.preventDefault()
-    navigate('/')
-    setIsMenuOpen(false)
-  }
-
-  const handleNavClick = (path) => {
-    navigate(path)
-    setIsMenuOpen(false)
-  }
 
   return (
     <>
@@ -139,7 +155,7 @@ const Header = () => {
           <button
             key={lang.code}
             onClick={() => {
-              changeLanguage(lang.code);
+              handleLangSwitch(lang.code);
               setShowLangDropdown(false);
             }}
             className="header-language-option"
@@ -162,9 +178,9 @@ const Header = () => {
     </div>
     <div className="services-dropdown-menu">
    {services.map((service, index) => (
-  <Link 
-    key={index} 
-    to={service.href} 
+  <Link
+    key={index}
+    to={buildServicePath(service.serviceKey, currentLanguage)}
     className="services-dropdown-item"
     style={{
       display: 'flex',
@@ -205,7 +221,7 @@ const Header = () => {
     </div>
     <div className="services-dropdown-menu">
       {services.map((service, index) => {
-        const recruitHref = service.href.replace('/services/', '/recruitment/');
+        const recruitHref = buildPath(`/recruitment/${service.serviceKey}`, currentLanguage);
         return (
           <Link
             key={index}
@@ -363,7 +379,7 @@ const Header = () => {
                   {services.map((service, index) => (
                     <Link
                       key={index}
-                      to={service.href}
+                      to={buildServicePath(service.serviceKey, currentLanguage)}
                       className="mobile-drawer-service-item"
                       onClick={() => setIsMenuOpen(false)}
                     >
@@ -391,7 +407,7 @@ const Header = () => {
               {showMobileRecruitment && (
                 <div className="mobile-drawer-services-grid">
                   {services.map((service, index) => {
-                    const recruitHref = service.href.replace('/services/', '/recruitment/');
+                    const recruitHref = buildPath(`/recruitment/${service.serviceKey}`, currentLanguage);
                     return (
                       <Link
                         key={index}

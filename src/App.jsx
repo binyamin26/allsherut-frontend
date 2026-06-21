@@ -1,11 +1,12 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useParams } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import RecruitmentServicePage from './pages/recruitment/RecruitmentServicePage';
 import RecruitmentListingDetailPage from './pages/recruitment/RecruitmentListingDetailPage';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { LanguageProvider, useLanguage } from './context/LanguageContext';
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
+import { SUPPORTED_LANGS, getServiceKeyFromSlug } from './utils/langUtils';
 
 // Layout components
 import Header from "./components/common/Header";
@@ -71,9 +72,75 @@ import DriverPage from './pages/services/DriverPage';
 // Page de détails provider
 import ProviderDetailPage from './pages/ProviderDetailPage';
 
+// Mapping interne: clé de service → composant de page
+const SERVICE_PAGE_MAP = {
+  babysitting:           BabysittingPage,
+  cleaning:              CleaningPage,
+  gardening:             GardeningPage,
+  petcare:               PetcarePage,
+  tutoring:              TutoringPage,
+  'sports-activities':   SportsActivitiesPage,
+  eldercare:             EldercarePage,
+  laundry:               LaundryPage,
+  'property-management': PropertyManagementPage,
+  electrician:           ElectricianPage,
+  plumbing:              PlumbingPage,
+  'air-conditioning':    AirConditioningPage,
+  'gas-technician':      GasTechnicianPage,
+  drywall:               DrywallPage,
+  carpentry:             CarpentryPage,
+  'home-organization':   HomeOrganizationPage,
+  'event-entertainment': EventEntertainmentPage,
+  dj:                    DJPage,
+  'private-chef':        PrivateChefPage,
+  painting:              PaintingPage,
+  waterproofing:         WaterproofingPage,
+  contractor:            ContractorPage,
+  aluminum:              AluminumPage,
+  'glass-works':         GlassWorksPage,
+  locksmith:             LocksmithPage,
+  moving:                MovingPage,
+  photographer:          PhotographerPage,
+  'event-decoration':    EventDecorationPage,
+  'pest-control':        PestControlPage,
+  handyman:              HandymanPage,
+  mechanic:              MechanicPage,
+  metalwork:             MetalworkPage,
+  driver:                DriverPage,
+};
+
+// Route universelle pour les pages de service (Hebrew root + /:lang/services/:slug)
+const ServiceRouter = () => {
+  const { lang, slug } = useParams();
+  const { changeLanguage, currentLanguage } = useLanguage();
+  const effectiveLang = (lang && SUPPORTED_LANGS.includes(lang)) ? lang : 'he';
+
+  useEffect(() => {
+    if (effectiveLang !== currentLanguage) changeLanguage(effectiveLang);
+  }, [effectiveLang]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const serviceKey = getServiceKeyFromSlug(slug, effectiveLang);
+  const PageComponent = serviceKey ? SERVICE_PAGE_MAP[serviceKey] : null;
+  if (!PageComponent) return <NotFoundPage />;
+  return <PageComponent />;
+};
+
+// Page d'accueil pour les URLs avec préfixe de langue (/fr, /en, /ru)
+const LangHomePage = () => {
+  const { lang } = useParams();
+  const { changeLanguage, currentLanguage } = useLanguage();
+
+  useEffect(() => {
+    if (SUPPORTED_LANGS.includes(lang) && lang !== currentLanguage) changeLanguage(lang);
+  }, [lang]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  if (!SUPPORTED_LANGS.includes(lang) || lang === 'he') return <NotFoundPage />;
+  return <HomePage />;
+};
+
 // Composant de protection des routes
 const ProtectedRoute = ({ children }) => {
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated } = useAuth();
   const { t } = useLanguage();
 
   // Si pas connecté, affiche un message d'erreur
@@ -149,40 +216,14 @@ function App() {
                 {/* Pages principales */}
                 <Route path="/become-provider" element={<BecomeProviderPage />} />
                 
-                {/* Pages de services spécifiques */}
-                <Route path="/services/babysitting" element={<BabysittingPage />} />
-                <Route path="/services/cleaning" element={<CleaningPage />} />
-                <Route path="/services/gardening" element={<GardeningPage />} />
-                <Route path="/services/petcare" element={<PetcarePage />} />
-                <Route path="/services/tutoring" element={<TutoringPage />} />
-                <Route path="/services/sports-activities" element={<SportsActivitiesPage />} />
-                <Route path="/services/eldercare" element={<EldercarePage />} />
- <Route path="/services/laundry" element={<LaundryPage />} />
- <Route path="/services/property-management" element={<PropertyManagementPage />} />
-  <Route path="/services/electrician" element={<ElectricianPage />} />     
-     <Route path="/services/plumbing" element={<PlumbingPage />} />
-                <Route path="/services/air-conditioning" element={<AirConditioningPage />} />
-                <Route path="/services/gas-technician" element={<GasTechnicianPage />} />
-                <Route path="/services/drywall" element={<DrywallPage />} />
-<Route path="/services/carpentry" element={<CarpentryPage />} />
-<Route path="/services/home-organization" element={<HomeOrganizationPage />} />
-<Route path="/services/event-entertainment" element={<EventEntertainmentPage />} />
-<Route path="/services/dj" element={<DJPage />} />
-<Route path="/services/private-chef" element={<PrivateChefPage />} />
-<Route path="/services/painting" element={<PaintingPage />} />
-<Route path="/services/waterproofing" element={<WaterproofingPage />} />
-<Route path="/services/contractor" element={<ContractorPage />} />
-<Route path="/services/aluminum" element={<AluminumPage />} />
-<Route path="/services/glass-works" element={<GlassWorksPage />} />
-<Route path="/services/locksmith" element={<LocksmithPage />} />
-<Route path="/services/moving" element={<MovingPage />} />
-<Route path="/services/photographer" element={<PhotographerPage />} />
-<Route path="/services/event-decoration" element={<EventDecorationPage />} />
-<Route path="/services/pest-control" element={<PestControlPage />} />
-<Route path="/services/handyman" element={<HandymanPage />} />
-<Route path="/services/mechanic" element={<MechanicPage />} />
-<Route path="/services/metalwork" element={<MetalworkPage />} />
-<Route path="/services/driver" element={<DriverPage />} />
+                {/* Pages de services (hébreu — routes racine inchangées) */}
+                <Route path="/services/:slug" element={<ServiceRouter />} />
+
+                {/* Pages de services avec préfixe de langue (/fr/services/electricien, etc.) */}
+                <Route path="/:lang/services/:slug" element={<ServiceRouter />} />
+
+                {/* Pages d'accueil avec préfixe de langue (/fr, /en, /ru) */}
+                <Route path="/:lang" element={<LangHomePage />} />
 
 
                 {/* Pages recrutement */}
