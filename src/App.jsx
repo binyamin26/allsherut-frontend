@@ -138,6 +138,27 @@ const LangHomePage = () => {
   return <HomePage />;
 };
 
+// Routes recrutement avec préfixe de langue (/fr/recruitment/babysitting)
+const LangRecruitmentRoute = () => {
+  const { lang } = useParams();
+  const { changeLanguage, currentLanguage } = useLanguage();
+  useEffect(() => {
+    if (SUPPORTED_LANGS.includes(lang) && lang !== currentLanguage) changeLanguage(lang);
+  }, [lang]); // eslint-disable-line react-hooks/exhaustive-deps
+  if (!SUPPORTED_LANGS.includes(lang) || lang === 'he') return <NotFoundPage />;
+  return <RecruitmentServicePage />;
+};
+
+const LangRecruitmentListingRoute = () => {
+  const { lang } = useParams();
+  const { changeLanguage, currentLanguage } = useLanguage();
+  useEffect(() => {
+    if (SUPPORTED_LANGS.includes(lang) && lang !== currentLanguage) changeLanguage(lang);
+  }, [lang]); // eslint-disable-line react-hooks/exhaustive-deps
+  if (!SUPPORTED_LANGS.includes(lang) || lang === 'he') return <NotFoundPage />;
+  return <RecruitmentListingDetailPage />;
+};
+
 // Composant de protection des routes
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated } = useAuth();
@@ -226,9 +247,13 @@ function App() {
                 <Route path="/:lang" element={<LangHomePage />} />
 
 
-                {/* Pages recrutement */}
+                {/* Pages recrutement (hébreu) */}
                 <Route path="/recruitment/listing/:id" element={<RecruitmentListingDetailPage />} />
                 <Route path="/recruitment/:service" element={<RecruitmentServicePage />} />
+
+                {/* Pages recrutement avec préfixe de langue (/fr/recruitment/babysitting) */}
+                <Route path="/:lang/recruitment/listing/:id" element={<LangRecruitmentListingRoute />} />
+                <Route path="/:lang/recruitment/:service" element={<LangRecruitmentRoute />} />
 
                 {/* Pages d'authentification */}
                 <Route path="/forgot-password" element={<ForgotPasswordPage />} />

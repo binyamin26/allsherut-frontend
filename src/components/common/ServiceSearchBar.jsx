@@ -1,9 +1,10 @@
-import React, { useState, useRef, useEffect, useMemo } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search } from 'lucide-react';
 import searchableServices from '../../data/searchableServices';
 import { FILTER_CONFIG } from './../config/filterConfig';
 import { useLanguage } from '../../context/LanguageContext';
+import { buildServicePath } from '../../utils/langUtils';
 
 const SERVICE_URLS = {
   babysitting: '/services/babysitting',
@@ -94,17 +95,6 @@ const ServiceSearchBar = ({ style }) => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const getDisplayLabel = (item, detectedLang) => {
-    if (detectedLang === 'he') return item.label;
-    if (detectedLang === 'ru' && item.labelRu) return item.labelRu;
-    if (detectedLang === 'latin') {
-      if (currentLanguage === 'fr' && item.labelFr) return item.labelFr;
-      if (currentLanguage === 'en' && item.labelEn) return item.labelEn;
-      if (item.labelEn) return item.labelEn;
-      if (item.labelFr) return item.labelFr;
-    }
-    return item.label;
-  };
 
  const handleChange = (e) => {
   const value = e.target.value;
@@ -160,7 +150,12 @@ const ServiceSearchBar = ({ style }) => {
   const handleSelect = (item) => {
     setQuery('');
     setIsOpen(false);
-    navigate(item.href);
+    let dest = item.href;
+    if (dest?.startsWith('/services/')) {
+      const key = dest.replace('/services/', '');
+      dest = buildServicePath(key, currentLanguage);
+    }
+    navigate(dest);
   };
 
   const handleKeyDown = (e) => {
