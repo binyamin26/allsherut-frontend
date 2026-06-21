@@ -2715,9 +2715,9 @@
   "serviceFields.metalwork.availability_hours": "Heures disponibles",
   "serviceFields.metalwork.experience": "Années d'expérience",
 
-  "services.driver": "הסעות",
+  "services.driver": "Transport",
   "services.driver.desc": "Services de transport – événements, élèves, excursions & aéroport Ben Gourion",
-  "services.driver.pageTitle": "הסעות",
+  "services.driver.pageTitle": "Transport",
   "services.driver.searching": "Recherche de conducteurs...",
   "services.driver.loading": "Chargement des conducteurs...",
   "services.driver.loadError": "Erreur lors du chargement des conducteurs",

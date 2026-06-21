@@ -2716,9 +2716,9 @@
   "serviceFields.metalwork.availability_hours": "Available hours",
   "serviceFields.metalwork.experience": "Years of experience",
 
-  "services.driver": "הסעות",
+  "services.driver": "Transportation",
   "services.driver.desc": "Transportation services – events, students, trips & Ben Gurion Airport",
-  "services.driver.pageTitle": "הסעות",
+  "services.driver.pageTitle": "Transportation",
   "services.driver.searching": "Searching for transportation drivers...",
   "services.driver.loading": "Loading transportation drivers...",
   "services.driver.loadError": "Error loading transportation drivers",

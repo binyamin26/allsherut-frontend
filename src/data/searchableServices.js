@@ -676,7 +676,7 @@ const searchableServices = [
   { label: 'תליית אביזרים', labelEn: 'Accessory hanging', labelFr: 'Accrochage accessoires', labelRu: 'Вешание аксессуаров', href: '/services/handyman', type: 'specialty' },
 
   // DRIVER / הסעות
-  { label: 'הסעות', labelEn: 'הסעות', labelFr: 'הסעות', labelRu: 'הסעות', href: '/services/driver', type: 'service' },
+  { label: 'הסעות', labelEn: 'Transportation', labelFr: 'Transport', labelRu: 'Перевозки', href: '/services/driver', type: 'service' },
   { label: 'הסעות לאירועים', labelEn: 'Event transportation', labelFr: 'Transport événementiel', labelRu: 'Транспорт на мероприятия', href: '/services/driver', type: 'specialty' },
   { label: 'הסעות תלמידים', labelEn: 'Student transportation', labelFr: 'Transport scolaire', labelRu: 'Перевозка учеников', href: '/services/driver', type: 'specialty' },
   { label: 'הסעות טיולים', labelEn: 'Trip transportation', labelFr: 'Transport excursions', labelRu: 'Транспорт для экскурсий', href: '/services/driver', type: 'specialty' },
