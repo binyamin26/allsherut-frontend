@@ -152,7 +152,7 @@ const ProviderDetailPage = () => {
     aluminum: '/images/logo aluminium.jpg',
     glass_works: '/images/logo verre.jpg',
     locksmith: '/images/logo serrure.jpg',
-    moving: '/images/logo d.jpg',
+    moving: '/images/logo ovala.jpg',
     event_decoration: '/images/logo deco.jpg',
     pest_control: '/images/logo desinctisation.jpg',
     handyman: '/images/logo indimane.jpg',
