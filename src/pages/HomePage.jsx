@@ -1,12 +1,9 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import SEO from '../components/common/SEO';
 import {
-  Search, Star, Users, Clock, Shield, Heart, Baby, Scissors, PawPrint,
-  BookOpen, Home, ArrowLeft, CheckCircle, TrendingUp, Award, Smile,
-  Sparkles, TreePine, Shirt, Building2, Zap, Wrench, Wind, Flame,
-  Layers, Hammer, PartyPopper, ChefHat, Paintbrush, Droplets, HardHat,
-  Box, Square, Key, ChevronLeft, ChevronRight, Wand2
+  Search, Star, Users, Clock, Shield,
+  CheckCircle, TrendingUp, Award,
 } from 'lucide-react';
 import AuthModal from '../components/auth/AuthModal';
 import { useAuth } from '../context/AuthContext';
@@ -18,16 +15,13 @@ import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import ServiceSearchBar from '../components/common/ServiceSearchBar';
-// IMPORT DU NOUVEAU COMPOSANT VIDÉO
-import PromoVideo from '../components/home/PromoVideo';
+import { CATEGORY_DEFINITIONS } from '../data/categories';
 
 const HomePage = () => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [authMode, setAuthMode] = useState('login');
-  const [searchQuery, setSearchQuery] = useState('');
-  const { user, isAuthenticated } = useAuth();
-  const { t, direction } = useLanguage();
-  const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
+  const { t, direction, currentLanguage } = useLanguage();
   const location = useLocation();
 
   useEffect(() => {
@@ -53,281 +47,6 @@ const HomePage = () => {
     setIsAuthModalOpen(true);
   };
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
-    }
-  };
-
-  // Liste des services
-  const services = [
-    {
-      id: 'plumbing',
-      name: t('services.plumbing'),
-      image: '/images/plombier.jpg',
-      description: t('services.plumbing.desc'),
-      color: 'from-teal-500 to-cyan-600',
-      href: '/services/plumbing'
-    },
-    {
-      id: 'electrician',
-      name: t('services.electrician'),
-      image: '/images/electrician.jpg',
-      description: t('services.electrician.desc'),
-      color: 'from-yellow-500 to-orange-600',
-      href: '/services/electrician'
-    },
-    {
-      id: 'locksmith',
-      name: t('services.locksmith'),
-      image: '/images/serrure.png',
-      description: t('services.locksmith.desc'),
-      color: 'from-amber-500 to-yellow-600',
-      href: '/services/locksmith'
-    },
-    {
-      id: 'painting',
-      name: t('services.painting'),
-      image: '/images/peinture.jpg',
-      description: t('services.painting.desc'),
-      color: 'from-violet-500 to-purple-600',
-      href: '/services/painting'
-    },
-    {
-      id: 'air_conditioning',
-      name: t('services.air_conditioning'),
-      image: '/images/clim.png',
-      description: t('services.air_conditioning.desc'),
-      color: 'from-sky-500 to-blue-600',
-      href: '/services/air-conditioning'
-    },
-    {
-      id: 'drywall',
-      name: t('services.drywall'),
-      image: '/images/guevess.jpg',
-      description: t('services.drywall.desc'),
-      color: 'from-gray-500 to-slate-600',
-      href: '/services/drywall'
-    },
-    {
-      id: 'aluminum',
-      name: t('services.aluminum'),
-      image: '/images/aluminium.png',
-      description: t('services.aluminum.desc'),
-      color: 'from-slate-400 to-gray-600',
-      href: '/services/aluminum'
-    },
-    {
-      id: 'metalwork',
-      name: t('services.metalwork'),
-      image: '/images/fer.jpg',
-      description: t('services.metalwork.desc'),
-      color: 'from-zinc-600 to-slate-700',
-      href: '/services/metalwork'
-    },
-    {
-      id: 'glass_works',
-      name: t('services.glass_works'),
-      image: '/images/verre.png',
-      description: t('services.glass_works.desc'),
-      color: 'from-slate-400 to-gray-500',
-      href: '/services/glass-works'
-    },
-    {
-      id: 'gas_technician',
-      name: t('services.gas_technician'),
-      image: '/images/gaz.jpg',
-      description: t('services.gas_technician.desc'),
-      color: 'from-red-500 to-orange-600',
-      href: '/services/gas-technician'
-    },
-    {
-      id: 'waterproofing',
-      name: t('services.waterproofing'),
-      image: '/images/itoum.jpg',
-      description: t('services.waterproofing.desc'),
-      color: 'from-blue-600 to-cyan-700',
-      href: '/services/waterproofing'
-    },
-    {
-      id: 'carpentry',
-      name: t('services.carpentry'),
-      image: '/images/menuisier.png',
-      description: t('services.carpentry.desc'),
-      color: 'from-amber-600 to-brown-700',
-      href: '/services/carpentry'
-    },
-    {
-      id: 'handyman',
-      name: t('services.handyman'),
-      image: '/images/indimane.jpg',
-      description: t('services.handyman.desc'),
-      color: 'from-orange-500 to-red-600',
-      href: '/services/handyman'
-    },
-    {
-      id: 'mechanic',
-      name: t('services.mechanic'),
-      image: '/images/garagiste.jpg',
-      description: t('services.mechanic.desc'),
-      color: 'from-blue-700 to-slate-700',
-      href: '/services/mechanic'
-    },
-    {
-      id: 'contractor',
-      name: t('services.contractor'),
-      image: '/images/kablan.jpg',
-      description: t('services.contractor.desc'),
-      color: 'from-orange-600 to-amber-700',
-      href: '/services/contractor'
-    },
-    {
-      id: 'moving',
-      name: t('services.moving'),
-      image: '/images/demenagement.jpg',
-      description: t('services.moving.desc'),
-      color: 'from-blue-500 to-indigo-600',
-      href: '/services/moving'
-    },
-    {
-      id: 'gardening',
-      name: t('services.gardening'),
-      image: '/images/jardinage.jpg',
-      description: t('services.gardening.desc'),
-      color: 'from-green-500 to-emerald-600',
-      href: '/services/gardening'
-    },
-    {
-      id: 'pest_control',
-      name: t('services.pest_control'),
-      image: '/images/desinctisation.jpg',
-      description: t('services.pest_control.desc'),
-      color: 'from-green-800 to-lime-700',
-      href: '/services/pest-control'
-    },
-    {
-      id: 'cleaning',
-      name: t('services.cleaning'),
-      image: '/images/nikayon.jpg',
-      description: t('services.cleaning.desc'),
-      color: 'from-cyan-500 to-blue-600',
-      href: '/services/cleaning'
-    },
-    {
-      id: 'laundry',
-      name: t('services.laundry'),
-      image: '/images/kvissa.jpg',
-      description: t('services.laundry.desc'),
-      color: 'from-blue-400 to-cyan-600',
-      href: '/services/laundry'
-    },
-    {
-      id: 'property_management',
-      name: t('services.property_management'),
-      image: '/images/nihoul-dirot.jpg',
-      description: t('services.property_management.desc'),
-      color: 'from-indigo-500 to-purple-600',
-      href: '/services/property-management'
-    },
-    {
-      id: 'home_organization',
-      name: t('services.home_organization'),
-      image: '/images/rangement.jpg',
-      description: t('services.home_organization.desc'),
-      color: 'from-violet-500 to-fuchsia-600',
-      href: '/services/home-organization'
-    },
-    {
-      id: 'event_decoration',
-      name: t('services.event_decoration'),
-      image: '/images/deco.jpg',
-      description: t('services.event_decoration.desc'),
-      color: 'from-pink-500 to-fuchsia-600',
-      href: '/services/event-decoration'
-    },
-    {
-      id: 'event_entertainment',
-      name: t('services.event_entertainment'),
-      image: '/images/fetes1.jpg',
-      description: t('services.event_entertainment.desc'),
-      color: 'from-pink-500 to-purple-600',
-      href: '/services/event-entertainment'
-    },
-    {
-      id: 'dj',
-      name: t('services.dj'),
-      image: '/images/DJ.jpg',
-      description: t('services.dj.desc'),
-      color: 'from-purple-600 to-indigo-700',
-      href: '/services/dj'
-    },
-    {
-      id: 'private_chef',
-      name: t('services.private_chef'),
-      image: '/images/traiteur.jpg',
-      description: t('services.private_chef.desc'),
-      color: 'from-amber-500 to-yellow-600',
-      href: '/services/private-chef'
-    },
-    {
-      id: 'photographer',
-      name: t('services.photographer'),
-      image: '/images/photographe1.jpg',
-      description: t('services.photographer.desc'),
-      color: 'from-purple-500 to-violet-600',
-      href: '/services/photographer'
-    },
-    {
-      id: 'tutoring',
-      name: t('services.tutoring'),
-      image: '/images/tutoring.png',
-      description: t('services.tutoring.desc'),
-      color: 'from-blue-500 to-indigo-600',
-      href: '/services/tutoring'
-    },
-    {
-      id: 'sports_activities',
-      name: t('services.sports_activities'),
-      image: '/images/sport.jpg',
-      description: t('services.sports_activities.desc'),
-      color: 'from-green-500 to-emerald-600',
-      href: '/services/sports-activities'
-    },
-    {
-      id: 'babysitting',
-      name: t('services.babysitting'),
-      image: '/images/babysite.jpg',
-      description: t('services.babysitting.desc'),
-      color: 'from-pink-500 to-rose-600',
-      href: '/services/babysitting'
-    },
-    {
-      id: 'petcare',
-      name: t('services.petcare'),
-      image: '/images/chien.jpg',
-      description: t('services.petcare.desc'),
-      color: 'from-orange-500 to-amber-600',
-      href: '/services/petcare'
-    },
-    {
-      id: 'eldercare',
-      name: t('services.eldercare'),
-      image: '/images/eldercare.jpg',
-      description: t('services.eldercare.desc'),
-      color: 'from-purple-500 to-violet-600',
-      href: '/services/eldercare'
-    },
-    {
-      id: 'driver',
-      name: t('services.driver'),
-      image: '/images/driver.jpg',
-      description: t('services.driver.desc'),
-      color: 'from-blue-500 to-indigo-600',
-      href: '/services/driver'
-    },
-  ];
-
   return (
     <div className="homepage">
       <SEO
@@ -350,41 +69,12 @@ const HomePage = () => {
               <div className="animate-fade-in-up delay-300" style={{ marginBottom: '1rem' }}>
                 <ServiceSearchBar style={{ maxWidth: '350px', margin: 0 }} />
               </div>
-              <p className="hero-description animate-fade-in-up delay-400" style={{ marginBottom: '0.5rem' }}>
-                {t('homepage.hero.description2')}
-              </p>
-              {!isAuthenticated && (
-                <button
-                  className="btn btn-primary hero-register-btn text-custom animate-fade-in-up delay-500"
-                  onClick={() => openAuthModal('register')}
-                >
-                  {t('homepage.cta.register')}
-                </button>
-              )}
             </div>
-
-            <div
-              className="hero-visual animate-fade-in-left delay-400"
-              style={{
-                width: '100%',
-                maxWidth: '1000px',
-                margin: '0 auto',
-                display: 'flex',
-                justifyContent: 'center',
-              }}
-            >
-              <PromoVideo
-                services={services}
-                onRegisterClick={() => openAuthModal('register')}
-              />
-            </div>
-
-            {/* ... le reste du code après ... */}
           </div>
         </div>
       </section>
 
-      {/* Services Section */}
+      {/* Categories Section */}
       <section id="services" className="services-section">
         <div className="container">
           <div className="section-header">
@@ -399,36 +89,32 @@ const HomePage = () => {
           <Swiper
             modules={[Navigation]}
             navigation
-            spaceBetween={1}
+            spaceBetween={16}
             slidesPerView={1}
             dir={direction === 'rtl' ? 'rtl' : 'ltr'}
             key={direction}
             breakpoints={{
-              640: { slidesPerView: 2 },
+              480: { slidesPerView: 2 },
               900: { slidesPerView: 3 },
-              1200: { slidesPerView: 4 }
             }}
           >
-            {services.map((service) => (
-              <SwiperSlide key={service.id}>
-                <Link to={service.href} className="service-card-image">
-                  {service.image ? (
+            {CATEGORY_DEFINITIONS.map((cat) => {
+              const name = cat.names[currentLanguage] || cat.names.fr;
+              return (
+                <SwiperSlide key={cat.id}>
+                  <Link to={`/categories/${cat.id}`} className="service-card-image">
                     <img
-                      src={service.image}
-                      alt={service.name}
+                      src={cat.image}
+                      alt={name}
                       className="service-image"
                     />
-                  ) : (
-                    <div className={`service-icon-fallback bg-gradient-to-br ${service.color}`}>
-                      <Star size={48} color="white" /> {/* Fallback icon générique */}
+                    <div className="service-name-overlay">
+                      <h3>{name}</h3>
                     </div>
-                  )}
-                  <div className="service-name-overlay">
-                    <h3>{service.name}</h3>
-                  </div>
-                </Link>
-              </SwiperSlide>
-            ))}
+                  </Link>
+                </SwiperSlide>
+              );
+            })}
           </Swiper>
         </div>
       </section>

@@ -22,6 +22,7 @@ import FloatingWhatsApp from "./components/common/FloatingWhatsApp";
 import HomePage from "./pages/HomePage";
 import DashboardPage from "./pages/DashboardPage";
 import BecomeProviderPage from "./pages/BecomeProviderPage";
+import CategoryPage from "./pages/CategoryPage";
 
 // Pages utilitaires
 import ContactPage from "./pages/ContactPage";
@@ -233,6 +234,7 @@ function App() {
               <Routes>
                 {/* Page d'accueil */}
                 <Route path="/" element={<HomePage />} />
+                <Route path="/categories/:slug" element={<CategoryPage />} />
                 
                 {/* Pages principales */}
                 <Route path="/become-provider" element={<BecomeProviderPage />} />
