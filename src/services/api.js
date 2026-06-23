@@ -187,6 +187,13 @@ class ApiService {
     });
   }
 
+  async notifyWhatsApp(providerPhone, providerName, serviceName) {
+    return this.request('/whatsapp/notify', {
+      method: 'POST',
+      body: JSON.stringify({ providerPhone, providerName, serviceName })
+    });
+  }
+
   async logContactClick(providerId, clickType) {
     return this.request('/contact-clicks', {
       method: 'POST',

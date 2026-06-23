@@ -158,7 +158,15 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
           <Eye size={15} />
           <span>{t('card.viewProfile')}</span>
         </button>
-        <button className="call-provider-btn" onClick={() => { const providerId = provider.provider_id || provider.providerId || provider.id; if (provider.phone) { const phone = provider.phone; apiService.logContactClick(providerId, 'call').catch(e => console.error('📞 click error:', e)); setTimeout(() => { window.location.href = `tel:${phone}`; }, 300); } }}>
+        <button className="call-provider-btn" onClick={() => {
+          const providerId = provider.provider_id || provider.providerId || provider.id;
+          if (provider.phone) {
+            const phone = provider.phone;
+            apiService.logContactClick(providerId, 'call').catch(e => console.error('📞 click error:', e));
+            apiService.notifyWhatsApp(phone, provider.name || provider.full_name, provider.service_name || provider.serviceName || '').catch(e => console.error('📱 whatsapp error:', e));
+            setTimeout(() => { window.location.href = `tel:${phone}`; }, 300);
+          }
+        }}>
           <Phone size={15} />
           <span>{t('card.contact')}</span>
         </button>

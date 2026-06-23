@@ -188,6 +188,7 @@ const uploadLimiter = rateLimit({
 app.use('/api/upload', uploadLimiter, require('./routes/upload'));
 
 app.use('/api/contact-clicks', require('./routes/contactClicks'));
+app.use('/api/whatsapp', require('./routes/whatsapp'));
 
 // =============================================
 // 🆕 ROUTES PREMIUM PROTÉGÉES PAR ABONNEMENT
