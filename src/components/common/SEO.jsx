@@ -12,7 +12,7 @@ function serviceKeyFromCanonical(canonicalPath) {
   return Object.keys(SERVICE_SLUGS).includes(slug) ? slug : null;
 }
 
-export default function SEO({ title, description, canonicalPath, image, noindex = false, jsonLd = null }) {
+export default function SEO({ title, description, canonicalPath, image, noindex = false, jsonLd = null, sameUrlForAllLangs = false }) {
   const { currentLanguage } = useLanguage();
 
   const fullTitle = title ? `${title} | AllSherut` : 'AllSherut - כל השירותים לבית בישראל';
@@ -21,6 +21,7 @@ export default function SEO({ title, description, canonicalPath, image, noindex 
 
   // Build hreflang URLs
   const serviceKey = serviceKeyFromCanonical(canonicalPath);
+  const sameUrl = `${BASE_URL}${canonicalPath || '/'}`;
   const hreflang = serviceKey
     ? {
         he: `${BASE_URL}${buildServicePath(serviceKey, 'he')}`,
@@ -28,6 +29,8 @@ export default function SEO({ title, description, canonicalPath, image, noindex 
         en: `${BASE_URL}${buildServicePath(serviceKey, 'en')}`,
         ru: `${BASE_URL}${buildServicePath(serviceKey, 'ru')}`,
       }
+    : sameUrlForAllLangs
+    ? { he: sameUrl, fr: sameUrl, en: sameUrl, ru: sameUrl }
     : {
         he: `${BASE_URL}${canonicalPath || '/'}`,
         fr: `${BASE_URL}/fr${canonicalPath || '/'}`,

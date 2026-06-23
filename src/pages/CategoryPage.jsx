@@ -23,6 +23,7 @@ const CategoryPage = () => {
   }
 
   const categoryName = category.names[currentLanguage] || category.names.fr;
+  const categoryDescription = category.descriptions?.[currentLanguage] || category.descriptions?.fr || categoryName;
   const BackIcon = direction === 'rtl' ? ArrowRight : ArrowLeft;
 
   const services = category.serviceIds
@@ -33,8 +34,9 @@ const CategoryPage = () => {
     <div className="homepage">
       <SEO
         title={categoryName}
-        description={categoryName}
+        description={categoryDescription}
         canonicalPath={`/categories/${slug}`}
+        sameUrlForAllLangs
       />
 
       <section className="services-section" style={{ paddingTop: '2rem' }}>
