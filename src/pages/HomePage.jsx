@@ -95,7 +95,9 @@ const HomePage = () => {
             key={direction}
             breakpoints={{
               480: { slidesPerView: 2 },
-              900: { slidesPerView: 3 },
+              768: { slidesPerView: 3 },
+              1024: { slidesPerView: 4 },
+              1280: { slidesPerView: 6 },
             }}
           >
             {CATEGORY_DEFINITIONS.map((cat) => {
