@@ -89,7 +89,7 @@ const HomePage = () => {
           <Swiper
             modules={[Navigation]}
             navigation
-            spaceBetween={16}
+            spaceBetween={4}
             slidesPerView={1}
             dir={direction === 'rtl' ? 'rtl' : 'ltr'}
             key={direction}
