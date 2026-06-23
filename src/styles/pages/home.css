@@ -170,6 +170,10 @@
   padding-bottom: 2rem !important;
 }
 
+.services-section .section-header {
+  margin-top: 1.5rem;
+}
+
 /* Espacement spécifique pour la zone que tu as entourée en bleu */
 .features-grid {
   margin-bottom: 60px !important; /* Espace sous les cartes */
