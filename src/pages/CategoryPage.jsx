@@ -31,7 +31,18 @@ const CategoryPage = () => {
     .filter(Boolean);
 
   return (
-    <div className="homepage">
+    <div
+      className="homepage"
+      style={{
+        background: `
+          radial-gradient(at 0% 0%, rgba(15, 42, 68, 0.12) 0px, transparent 55%),
+          radial-gradient(at 100% 0%, rgba(47, 128, 237, 0.18) 0px, transparent 55%),
+          radial-gradient(at 100% 100%, rgba(26, 84, 144, 0.12) 0px, transparent 55%),
+          radial-gradient(at 0% 100%, rgba(47, 128, 237, 0.10) 0px, transparent 55%),
+          #ffffff`,
+        minHeight: '100vh',
+      }}
+    >
       <SEO
         title={categoryName}
         description={categoryDescription}
@@ -39,16 +50,7 @@ const CategoryPage = () => {
         sameUrlForAllLangs
       />
 
-      <section style={{
-        background: `
-          radial-gradient(at 0% 0%, rgba(15, 42, 68, 0.12) 0px, transparent 55%),
-          radial-gradient(at 100% 0%, rgba(47, 128, 237, 0.18) 0px, transparent 55%),
-          radial-gradient(at 100% 100%, rgba(26, 84, 144, 0.12) 0px, transparent 55%),
-          radial-gradient(at 0% 100%, rgba(47, 128, 237, 0.10) 0px, transparent 55%),
-          #ffffff`,
-        paddingTop: '2rem',
-        paddingBottom: '2rem',
-      }}>
+      <section className="services-section">
         <div className="container">
           {/* Back button */}
           <button
@@ -78,9 +80,7 @@ const CategoryPage = () => {
             </p>
           </div>
         </div>
-      </section>
 
-      <section className="services-section">
         {/* Service cards grid */}
         <div
           style={{
