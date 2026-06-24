@@ -2626,7 +2626,7 @@ const galleryImages = (() => {
                   <Loader size={20} className="animate-spin" style={{ margin: '0 auto 0.5rem' }} />
                 </div>
               ) : (
-                <div style={{ background: '#fff', borderRadius: '14px', border: '1px solid #e5e7eb', overflow: 'hidden' }}>
+                <div className="pricing-table-container" style={{ background: '#fff', borderRadius: '14px', border: '1px solid #e5e7eb', overflow: 'hidden' }}>
                   {/* En-tête du tableau */}
                   <div className="pricing-table-header" style={{
                     display: 'grid', gridTemplateColumns: '1fr 180px 80px',
@@ -2666,6 +2666,7 @@ const galleryImages = (() => {
                       </div>
 
                       <div className="pricing-name-cell">
+                        <span className="pricing-field-label">{t('pricing.serviceNameLabel')}</span>
                         <input
                           type="text"
                           value={item.service_name}
@@ -2683,6 +2684,7 @@ const galleryImages = (() => {
                         )}
                       </div>
                       <div className="pricing-price-cell">
+                        <span className="pricing-field-label">{t('pricing.priceLabel')}</span>
                         <div style={{ position: 'relative' }}>
                           <span style={{
                             position: 'absolute', right: '0.7rem', top: '50%', transform: 'translateY(-50%)',

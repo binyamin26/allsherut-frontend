@@ -3013,38 +3013,48 @@ select.inline-edit {
 
 /* ─── Pricing — mobile card layout ───────────────────────────────────── */
 
-/* L'en-tête mobile (numéro + bouton supprimer) est caché sur desktop */
-.pricing-row-mobile-header {
+/* Éléments visibles uniquement sur mobile — cachés par défaut */
+.pricing-row-mobile-header,
+.pricing-field-label {
   display: none;
 }
 
 @media (max-width: 640px) {
+  /* Le conteneur principal devient une liste de cartes avec gaps */
+  .pricing-table-container {
+    background: #f1f5f9 !important;
+    border: none !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    padding: 8px !important;
+  }
+
   /* Masquer l'en-tête de tableau */
   .pricing-table-header {
     display: none !important;
   }
 
-  /* Chaque ligne → carte */
+  /* Chaque ligne → carte flottante */
   .pricing-row {
     display: flex !important;
     flex-direction: column !important;
     padding: 1rem 1rem 1.1rem !important;
-    gap: 0.75rem !important;
-    border-bottom: 2px solid #e5e7eb !important;
-    background: #fff !important;
-    border-radius: 0 !important;
-  }
-
-  .pricing-row:last-child {
+    gap: 0 !important;
     border-bottom: none !important;
+    border-radius: 12px !important;
+    background: #fff !important;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06) !important;
   }
 
-  /* En-tête de carte : badge numéro à droite + bouton ✕ à gauche */
+  /* En-tête de carte : badge numéro + bouton supprimer */
   .pricing-row-mobile-header {
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
-    margin-bottom: 0.1rem !important;
+    margin-bottom: 1rem !important;
   }
 
   /* Badge numéro */
@@ -3052,47 +3062,71 @@ select.inline-edit {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 26px;
-    height: 26px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
     background: linear-gradient(135deg, #0F2A44, #2F80ED);
     color: #fff;
-    font-size: 0.78rem;
+    font-size: 0.8rem;
     font-weight: 700;
     flex-shrink: 0;
   }
 
   /* Bouton supprimer mobile */
   .pricing-delete-mobile {
-    background: #fee2e2;
-    border: none;
+    background: #fff0f0;
+    border: 1px solid #fca5a5;
     border-radius: 8px;
-    padding: 0.45rem 0.7rem;
+    padding: 0.42rem 0.75rem;
     cursor: pointer;
     color: #dc2626;
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 5px;
     font-size: 0.82rem;
     font-weight: 600;
   }
 
-  /* Masquer le bouton supprimer de la colonne desktop */
+  /* Masquer le bouton supprimer desktop */
   .pricing-delete-cell {
     display: none !important;
   }
 
-  /* Champs pleine largeur */
-  .pricing-name-cell,
+  /* Labels visibles au-dessus des champs */
+  .pricing-field-label {
+    display: block !important;
+    font-size: 0.78rem !important;
+    font-weight: 600 !important;
+    color: #6b7280 !important;
+    margin-bottom: 0.35rem !important;
+    letter-spacing: 0.02em !important;
+  }
+
+  /* Champs pleine largeur avec espacement entre eux */
+  .pricing-name-cell {
+    width: 100% !important;
+    margin-bottom: 0.85rem !important;
+  }
+
   .pricing-price-cell {
     width: 100% !important;
   }
 
   .pricing-name-cell input,
   .pricing-price-cell input {
-    font-size: 1rem !important;
-    padding: 0.72rem 0.9rem !important;
+    font-size: 0.97rem !important;
+    padding: 0.75rem 0.9rem !important;
     border-radius: 10px !important;
+    background: #f8fafc !important;
+    border: 1.5px solid #e2e8f0 !important;
+    transition: border-color 0.15s !important;
+  }
+
+  .pricing-name-cell input:focus,
+  .pricing-price-cell input:focus {
+    border-color: #2F80ED !important;
+    background: #fff !important;
+    outline: none !important;
   }
 
   .pricing-price-cell input {
@@ -3101,27 +3135,34 @@ select.inline-edit {
 
   /* Bouton Ajouter — pleine largeur */
   .pricing-add-wrapper {
-    padding: 0.85rem 1rem !important;
+    background: transparent !important;
+    border-top: none !important;
+    padding: 4px 0 0 !important;
   }
 
   .pricing-add-btn {
     width: 100% !important;
     justify-content: center !important;
-    padding: 0.75rem 1rem !important;
+    padding: 0.8rem 1rem !important;
     font-size: 0.95rem !important;
-    border-radius: 10px !important;
+    border-radius: 12px !important;
+    background: #fff !important;
+    border: 1.5px dashed #7dd3fc !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04) !important;
   }
 
   /* Bouton Sauvegarder — pleine largeur */
   .pricing-save-wrapper {
     justify-content: stretch !important;
+    margin-top: 1rem !important;
   }
 
   .pricing-save-wrapper > button {
     width: 100% !important;
     justify-content: center !important;
-    padding: 0.9rem 1rem !important;
+    padding: 0.95rem 1rem !important;
     font-size: 1rem !important;
-    border-radius: 12px !important;
+    border-radius: 14px !important;
+    letter-spacing: 0.01em !important;
   }
 }
