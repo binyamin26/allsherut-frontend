@@ -117,7 +117,8 @@ const ServiceRouter = () => {
   const effectiveLang = (lang && SUPPORTED_LANGS.includes(lang)) ? lang : 'he';
 
   useEffect(() => {
-    if (effectiveLang !== currentLanguage) changeLanguage(effectiveLang);
+    // Only override language when the URL explicitly carries a lang prefix
+    if (lang && effectiveLang !== currentLanguage) changeLanguage(effectiveLang);
   }, [effectiveLang]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const serviceKey = getServiceKeyFromSlug(slug, effectiveLang);

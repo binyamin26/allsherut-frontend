@@ -6,7 +6,7 @@ import SEO from '../components/common/SEO';
 
 const CategoryPage = () => {
   const { slug } = useParams();
-  const { t, currentLanguage, direction } = useLanguage();
+  const { t, currentLanguage, direction, buildServicePath } = useLanguage();
   const navigate = useNavigate();
 
   const category = CATEGORY_DEFINITIONS.find((c) => c.id === slug);
@@ -95,7 +95,7 @@ const CategoryPage = () => {
           {services.map((service) => (
             <Link
               key={service.id}
-              to={service.href}
+              to={buildServicePath(service.id.replace(/_/g, '-'))}
               className="service-card-image"
               style={{ display: 'block', borderRadius: '12px', overflow: 'hidden' }}
             >
