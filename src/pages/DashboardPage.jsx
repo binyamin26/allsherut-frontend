@@ -920,10 +920,10 @@ const handleSaveProfile = async () => {
           : null;
       }
 
-      // Description — sync root value into serviceDetails (not the reverse)
-      if (cleanedData.description !== undefined) {
-        cleanedData.serviceDetails.description = cleanedData.description;
-      }
+      // Description — always take directly from the form textarea
+      const typedDescription = editFormData.description ?? null;
+      cleanedData.description = typedDescription;
+      cleanedData.serviceDetails.description = typedDescription;
 
       // Supprimer les alias stales (déjà fait dans cleanProfileData, double sécurité)
       delete cleanedData.serviceDetails.hourly_rate;
