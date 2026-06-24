@@ -3010,3 +3010,118 @@ select.inline-edit {
     max-width: 100%;
   }
 }
+
+/* ─── Pricing — mobile card layout ───────────────────────────────────── */
+
+/* L'en-tête mobile (numéro + bouton supprimer) est caché sur desktop */
+.pricing-row-mobile-header {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  /* Masquer l'en-tête de tableau */
+  .pricing-table-header {
+    display: none !important;
+  }
+
+  /* Chaque ligne → carte */
+  .pricing-row {
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 1rem 1rem 1.1rem !important;
+    gap: 0.75rem !important;
+    border-bottom: 2px solid #e5e7eb !important;
+    background: #fff !important;
+    border-radius: 0 !important;
+  }
+
+  .pricing-row:last-child {
+    border-bottom: none !important;
+  }
+
+  /* En-tête de carte : badge numéro à droite + bouton ✕ à gauche */
+  .pricing-row-mobile-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    margin-bottom: 0.1rem !important;
+  }
+
+  /* Badge numéro */
+  .pricing-row-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0F2A44, #2F80ED);
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* Bouton supprimer mobile */
+  .pricing-delete-mobile {
+    background: #fee2e2;
+    border: none;
+    border-radius: 8px;
+    padding: 0.45rem 0.7rem;
+    cursor: pointer;
+    color: #dc2626;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+
+  /* Masquer le bouton supprimer de la colonne desktop */
+  .pricing-delete-cell {
+    display: none !important;
+  }
+
+  /* Champs pleine largeur */
+  .pricing-name-cell,
+  .pricing-price-cell {
+    width: 100% !important;
+  }
+
+  .pricing-name-cell input,
+  .pricing-price-cell input {
+    font-size: 1rem !important;
+    padding: 0.72rem 0.9rem !important;
+    border-radius: 10px !important;
+  }
+
+  .pricing-price-cell input {
+    padding-right: 2.2rem !important;
+  }
+
+  /* Bouton Ajouter — pleine largeur */
+  .pricing-add-wrapper {
+    padding: 0.85rem 1rem !important;
+  }
+
+  .pricing-add-btn {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 0.75rem 1rem !important;
+    font-size: 0.95rem !important;
+    border-radius: 10px !important;
+  }
+
+  /* Bouton Sauvegarder — pleine largeur */
+  .pricing-save-wrapper {
+    justify-content: stretch !important;
+  }
+
+  .pricing-save-wrapper > button {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 0.9rem 1rem !important;
+    font-size: 1rem !important;
+    border-radius: 12px !important;
+  }
+}

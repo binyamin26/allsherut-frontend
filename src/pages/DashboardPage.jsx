@@ -2628,7 +2628,7 @@ const galleryImages = (() => {
               ) : (
                 <div style={{ background: '#fff', borderRadius: '14px', border: '1px solid #e5e7eb', overflow: 'hidden' }}>
                   {/* En-tête du tableau */}
-                  <div style={{
+                  <div className="pricing-table-header" style={{
                     display: 'grid', gridTemplateColumns: '1fr 180px 80px',
                     background: 'linear-gradient(135deg, #0F2A44, #2F80ED)',
                     color: '#fff', padding: '0.75rem 1rem', fontWeight: 600, fontSize: '0.85rem',
@@ -2646,13 +2646,26 @@ const galleryImages = (() => {
                     </div>
                   )}
                   {pricingItems.map((item, idx) => (
-                    <div key={item._key} style={{
+                    <div key={item._key} className="pricing-row" style={{
                       display: 'grid', gridTemplateColumns: '1fr 180px 80px',
                       padding: '0.6rem 1rem', gap: '0.5rem', alignItems: 'center',
                       borderBottom: '1px solid #f3f4f6',
                       background: idx % 2 === 0 ? '#fff' : '#fafafa',
                     }}>
-                      <div>
+                      {/* En-tête carte mobile (numéro + supprimer) */}
+                      <div className="pricing-row-mobile-header">
+                        <span className="pricing-row-badge">
+                          {idx + 1}
+                        </span>
+                        <button
+                          onClick={() => handleDeletePricingRow(item._key)}
+                          className="pricing-delete-mobile"
+                        >
+                          <XCircle size={16} />
+                        </button>
+                      </div>
+
+                      <div className="pricing-name-cell">
                         <input
                           type="text"
                           value={item.service_name}
@@ -2669,7 +2682,7 @@ const galleryImages = (() => {
                           <span style={{ color: '#dc2626', fontSize: '0.75rem' }}>{pricingErrors[`${item._key}_service_name`]}</span>
                         )}
                       </div>
-                      <div>
+                      <div className="pricing-price-cell">
                         <div style={{ position: 'relative' }}>
                           <span style={{
                             position: 'absolute', right: '0.7rem', top: '50%', transform: 'translateY(-50%)',
@@ -2692,7 +2705,7 @@ const galleryImages = (() => {
                           <span style={{ color: '#dc2626', fontSize: '0.75rem' }}>{pricingErrors[`${item._key}_price`]}</span>
                         )}
                       </div>
-                      <div style={{ display: 'flex', justifyContent: 'center' }}>
+                      <div className="pricing-delete-cell" style={{ display: 'flex', justifyContent: 'center' }}>
                         <button
                           onClick={() => handleDeletePricingRow(item._key)}
                           title="Supprimer"
@@ -2709,8 +2722,9 @@ const galleryImages = (() => {
                   ))}
 
                   {/* Pied du tableau — bouton Ajouter */}
-                  <div style={{ padding: '0.75rem 1rem', borderTop: '1px solid #f3f4f6' }}>
+                  <div className="pricing-add-wrapper" style={{ padding: '0.75rem 1rem', borderTop: '1px solid #f3f4f6' }}>
                     <button
+                      className="pricing-add-btn"
                       onClick={handleAddPricingRow}
                       style={{
                         display: 'flex', alignItems: 'center', gap: '6px',
@@ -2728,7 +2742,7 @@ const galleryImages = (() => {
               )}
 
               {/* Bouton Sauvegarder */}
-              <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '1.25rem' }}>
+              <div className="pricing-save-wrapper" style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '1.25rem' }}>
                 <button
                   onClick={handleSavePricing}
                   disabled={pricingSaving}
