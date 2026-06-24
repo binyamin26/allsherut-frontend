@@ -462,8 +462,27 @@ const loadMyReviews = async () => {
     }
   };
 
-  const handleDeletePricingRow = (key) => {
-    setPricingItems(prev => prev.filter(item => item._key !== key));
+  const handleDeletePricingRow = async (key) => {
+    const remaining = pricingItems.filter(item => item._key !== key);
+    setPricingItems(remaining);
+    try {
+      const token = localStorage.getItem('homesherut_token');
+      const res = await fetch('/api/pricing/my', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({
+          items: remaining
+            .filter(i => i.service_name?.trim() && i.price?.trim())
+            .map(({ service_name, price }) => ({ service_name, price })),
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setPricingItems(data.data.map(item => ({ ...item, _key: item.id })));
+      }
+    } catch {
+      // silent — UI already reflects the deletion
+    }
   };
 
   const handleSavePricing = async () => {
