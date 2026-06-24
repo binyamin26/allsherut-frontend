@@ -50,7 +50,7 @@ const CategoryPage = () => {
         sameUrlForAllLangs
       />
 
-      <section className="services-section">
+      <section className="services-section" style={{ background: 'transparent' }}>
         <div className="container">
           {/* Back button */}
           <button
