@@ -920,9 +920,9 @@ const handleSaveProfile = async () => {
           : null;
       }
 
-      // Description
-      if (cleanedData.serviceDetails.description !== undefined) {
-        cleanedData.description = cleanedData.serviceDetails.description;
+      // Description — sync root value into serviceDetails (not the reverse)
+      if (cleanedData.description !== undefined) {
+        cleanedData.serviceDetails.description = cleanedData.description;
       }
 
       // Supprimer les alias stales (déjà fait dans cleanProfileData, double sécurité)
