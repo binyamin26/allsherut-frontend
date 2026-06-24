@@ -1236,6 +1236,7 @@
   "provider.yearsExperience": "années d'expérience",
   "provider.callNow": "Appeler maintenant",
   "provider.sendWhatsapp": "Envoyer WhatsApp",
+  "provider.details.personalDescription": "Description personnelle",
   "provider.details.title": "Détails du service",
   "provider.details.hourlyRate": "Tarif horaire",
   "provider.details.experience": "Expérience",
