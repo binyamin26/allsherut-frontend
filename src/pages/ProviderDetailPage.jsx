@@ -373,6 +373,12 @@ const handleContact = () => {
     <div className="service-details-section">
      <h3 className="details-title">{t('provider.details.title')}</h3>
 
+      {(provider.description || details.description) && (
+        <p style={{ color: '#374151', lineHeight: '1.7', marginBottom: '1.25rem', fontSize: '0.97rem' }}>
+          {provider.description || details.description}
+        </p>
+      )}
+
       <div className="details-grid">
         {/* === CHAMPS COMPACTS D'ABORD === */}
         
