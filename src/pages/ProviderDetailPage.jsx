@@ -373,13 +373,13 @@ const handleContact = () => {
     <div className="service-details-section">
      <h3 className="details-title">{t('provider.details.title')}</h3>
 
-      {(provider.description || details.description) && (
+      {provider.description && (
         <div style={{ marginBottom: '1.25rem' }}>
           <h4 style={{ color: '#1f2937', fontWeight: '600', fontSize: '0.95rem', marginBottom: '0.4rem' }}>
             {t('provider.details.personalDescription')}
           </h4>
           <p style={{ color: '#374151', lineHeight: '1.7', fontSize: '0.97rem' }}>
-            {provider.description || details.description}
+            {provider.description}
           </p>
         </div>
       )}
