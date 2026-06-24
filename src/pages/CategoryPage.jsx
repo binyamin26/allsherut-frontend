@@ -39,7 +39,16 @@ const CategoryPage = () => {
         sameUrlForAllLangs
       />
 
-      <section className="services-section" style={{ paddingTop: '2rem' }}>
+      <section style={{
+        background: `
+          radial-gradient(at 0% 0%, rgba(15, 42, 68, 0.12) 0px, transparent 55%),
+          radial-gradient(at 100% 0%, rgba(47, 128, 237, 0.18) 0px, transparent 55%),
+          radial-gradient(at 100% 100%, rgba(26, 84, 144, 0.12) 0px, transparent 55%),
+          radial-gradient(at 0% 100%, rgba(47, 128, 237, 0.10) 0px, transparent 55%),
+          #ffffff`,
+        paddingTop: '2rem',
+        paddingBottom: '2rem',
+      }}>
         <div className="container">
           {/* Back button */}
           <button
@@ -69,7 +78,9 @@ const CategoryPage = () => {
             </p>
           </div>
         </div>
+      </section>
 
+      <section className="services-section">
         {/* Service cards grid */}
         <div
           style={{
