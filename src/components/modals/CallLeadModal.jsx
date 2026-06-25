@@ -7,12 +7,10 @@ const CallLeadModal = ({ isOpen, onClose, providerPhone, providerName, serviceNa
   const { t, isRTL } = useLanguage();
   const [clientPhone, setClientPhone] = useState('');
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
 
   const reset = () => {
     setClientPhone('');
     setError('');
-    setLoading(false);
   };
 
   const handleClose = () => {
@@ -27,7 +25,6 @@ const CallLeadModal = ({ isOpen, onClose, providerPhone, providerName, serviceNa
       return;
     }
 
-    setLoading(true);
     apiService.followupWhatsApp(phone, '', providerName || '', serviceName || '').catch(() => {});
 
     reset();
@@ -45,10 +42,11 @@ const CallLeadModal = ({ isOpen, onClose, providerPhone, providerName, serviceNa
 
   return (
     <div className="modal-overlay" dir={isRTL ? 'rtl' : 'ltr'}>
-      <div className="modal-container" style={{ maxWidth: 400 }}>
+      <div className="modal-container review-modal" onClick={e => e.stopPropagation()}>
+
         <div className="modal-header">
           <h2 className="modal-title" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <Phone size={20} />
+            <Phone size={18} />
             {t('callLead.title')}
           </h2>
           <button className="modal-close-btn" onClick={handleClose}>
@@ -57,7 +55,7 @@ const CallLeadModal = ({ isOpen, onClose, providerPhone, providerName, serviceNa
         </div>
 
         <div className="modal-content">
-          <p style={{ marginBottom: 20, color: '#374151', lineHeight: 1.6 }}>
+          <p style={{ marginBottom: 20, color: 'var(--neutral-600)', lineHeight: 1.6 }}>
             {t('callLead.message')}
           </p>
 
@@ -68,27 +66,32 @@ const CallLeadModal = ({ isOpen, onClose, providerPhone, providerName, serviceNa
               onChange={e => { setClientPhone(e.target.value); setError(''); }}
               onKeyDown={e => e.key === 'Enter' && handleSubmit()}
               placeholder={t('callLead.phonePlaceholder')}
-              className="form-input"
               dir="ltr"
               autoFocus
+              style={{
+                width: '100%',
+                padding: '12px 16px',
+                border: `2px solid ${error ? '#dc2626' : 'var(--neutral-200)'}`,
+                borderRadius: 'var(--radius-xl)',
+                fontSize: 'var(--text-base)',
+                fontFamily: 'var(--font-primary)',
+                outline: 'none',
+                boxSizing: 'border-box',
+              }}
             />
             {error && (
-              <p style={{ color: '#dc2626', fontSize: 13, marginTop: 6 }}>{error}</p>
+              <p style={{ color: '#dc2626', fontSize: 13, margin: '4px 0 0' }}>{error}</p>
             )}
           </div>
 
-          <div style={{ marginTop: 20, display: 'flex', justifyContent: 'flex-end' }}>
-            <button
-              className="btn btn-primary"
-              onClick={handleSubmit}
-              disabled={loading}
-              style={{ minWidth: 120 }}
-            >
+          <div className="response-actions" style={{ marginTop: 24 }}>
+            <button className="btn btn-primary" onClick={handleSubmit} style={{ minWidth: 120 }}>
               <Phone size={16} />
               {t('callLead.submit')}
             </button>
           </div>
         </div>
+
       </div>
     </div>
   );
