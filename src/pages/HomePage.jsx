@@ -78,8 +78,11 @@ const HomePage = () => {
                   width: '100%',
                   height: '420px',
                   objectFit: 'cover',
-                  borderRadius: 'var(--radius-2xl)',
-                  boxShadow: 'var(--shadow-2xl)',
+                  objectPosition: 'center',
+                  maskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 70%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)',
+                  WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 70%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)',
+                  maskComposite: 'intersect',
+                  WebkitMaskComposite: 'source-in',
                 }}
               />
             </div>
