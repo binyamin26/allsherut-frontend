@@ -70,6 +70,19 @@ const HomePage = () => {
                 <ServiceSearchBar style={{ maxWidth: '350px', margin: 0 }} />
               </div>
             </div>
+            <div className="hero-visual animate-fade-in-up delay-200">
+              <img
+                src="/images/image home page.jpg"
+                alt="AllSherut"
+                style={{
+                  width: '100%',
+                  height: '420px',
+                  objectFit: 'cover',
+                  borderRadius: 'var(--radius-2xl)',
+                  boxShadow: 'var(--shadow-2xl)',
+                }}
+              />
+            </div>
           </div>
         </div>
       </section>
