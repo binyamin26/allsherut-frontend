@@ -1422,6 +1422,7 @@
   "callLead.title": "Before you continue...",
   "callLead.message": "Leave your number so we can follow up with you to see if everything went well 😊",
   "callLead.phonePlaceholder": "Your phone number",
+  "callLead.submit": "Continue",
   "callLead.sendCode": "Send verification code",
   "callLead.required": "Please enter your phone number to continue",
   "callLead.otpTitle": "Verify your number",

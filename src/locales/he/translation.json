@@ -1407,6 +1407,7 @@
   "callLead.title": "רגע לפני שממשיכים...",
   "callLead.message": "השאר את מספר הטלפון שלך כדי שנוכל לחזור אליך ולוודא שקיבלת את השירות הטוב ביותר 😊",
   "callLead.phonePlaceholder": "מספר הטלפון שלך",
+  "callLead.submit": "המשך לחיוג",
   "callLead.sendCode": "שלח קוד אימות",
   "callLead.required": "יש להזין מספר טלפון כדי להמשיך",
   "callLead.otpTitle": "אימות מספר טלפון",
