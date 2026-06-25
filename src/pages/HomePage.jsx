@@ -70,7 +70,7 @@ const HomePage = () => {
                 <ServiceSearchBar style={{ maxWidth: '350px', margin: 0 }} />
               </div>
             </div>
-            <div className="hero-visual animate-fade-in-up delay-200">
+            <div className="hero-visual animate-fade-in-up delay-200" style={{ paddingLeft: '10%' }}>
               <img
                 src="/images/image-home-page.jpg"
                 alt="AllSherut"
