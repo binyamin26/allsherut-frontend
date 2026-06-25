@@ -194,6 +194,13 @@ class ApiService {
     });
   }
 
+  async followupWhatsApp(clientPhone, clientName, providerName, serviceName) {
+    return this.request('/whatsapp/followup', {
+      method: 'POST',
+      body: JSON.stringify({ clientPhone, clientName, providerName, serviceName })
+    });
+  }
+
   async logContactClick(providerId, clickType) {
     return this.request('/contact-clicks', {
       method: 'POST',

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Phone, Eye, MapPin } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import apiService from '../../services/api';
+import CallLeadModal from '../modals/CallLeadModal';
 
 const AVATAR_GRADIENTS = [
   'linear-gradient(145deg, #2563EB 0%, #1E3A8A 100%)',
@@ -37,6 +38,7 @@ const ProviderCard = ({ provider, onOpenReviewModal }) => {
   
   const navigate = useNavigate();
   const { t, isRTL } = useLanguage();
+  const [callModal, setCallModal] = useState({ open: false, action: 'call' });
 
   const handleViewProfile = () => {
     navigate(`/provider/${provider.provider_id || provider.providerId || provider.id}`);
@@ -161,10 +163,8 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
         <button className="call-provider-btn" onClick={() => {
           const providerId = provider.provider_id || provider.providerId || provider.id;
           if (provider.phone) {
-            const phone = provider.phone;
-            apiService.logContactClick(providerId, 'call').catch(e => console.error('📞 click error:', e));
-            apiService.notifyWhatsApp(phone, provider.name || provider.full_name, provider.service_name || provider.serviceName || '').catch(e => console.error('📱 whatsapp error:', e));
-            setTimeout(() => { window.location.href = `tel:${phone}`; }, 300);
+            apiService.logContactClick(providerId, 'call').catch(() => {});
+            setCallModal({ open: true, action: 'call' });
           }
         }}>
           <Phone size={15} />
@@ -172,6 +172,15 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
         </button>
       </div>
     </div>
+
+    <CallLeadModal
+      isOpen={callModal.open}
+      onClose={() => setCallModal({ open: false, action: 'call' })}
+      providerPhone={provider.phone}
+      providerName={provider.name || provider.full_name}
+      serviceName={provider.service_name || provider.serviceName || ''}
+      action={callModal.action}
+    />
   </div>
 );
 };
