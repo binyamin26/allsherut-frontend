@@ -201,6 +201,20 @@ class ApiService {
     });
   }
 
+  async sendOtp(phone) {
+    return this.request('/whatsapp/send-otp', {
+      method: 'POST',
+      body: JSON.stringify({ phone })
+    });
+  }
+
+  async verifyOtp(phone, code) {
+    return this.request('/whatsapp/verify-otp', {
+      method: 'POST',
+      body: JSON.stringify({ phone, code })
+    });
+  }
+
   async logContactClick(providerId, clickType) {
     return this.request('/contact-clicks', {
       method: 'POST',

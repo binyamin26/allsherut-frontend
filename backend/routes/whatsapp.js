@@ -4,6 +4,9 @@ const router = express.Router();
 const TOKEN = process.env.WHATSAPP_TOKEN;
 const PHONE_NUMBER_ID = process.env.WHATSAPP_PHONE_NUMBER_ID;
 
+// In-memory OTP store: normalizedPhone → { code, expiresAt }
+const otpStore = new Map();
+
 // Normalize Israeli phone → international format (972XXXXXXXXX)
 function normalizePhone(phone) {
   if (!phone) return null;
@@ -111,6 +114,70 @@ router.post('/followup', async (req, res) => {
     console.error('WhatsApp followup route error:', err);
     return res.status(500).json({ success: false, message: 'Server error' });
   }
+});
+
+// POST /api/whatsapp/send-otp
+router.post('/send-otp', async (req, res) => {
+  try {
+    const { phone } = req.body;
+    if (!phone) return res.status(400).json({ success: false, message: 'phone required' });
+
+    const to = normalizePhone(phone);
+    if (!to) return res.status(400).json({ success: false, message: 'invalid phone' });
+
+    const code = String(Math.floor(100000 + Math.random() * 900000));
+    otpStore.set(to, { code, expiresAt: Date.now() + 10 * 60 * 1000 });
+
+    const payload = {
+      messaging_product: 'whatsapp',
+      to,
+      type: 'text',
+      text: {
+        body: `קוד האימות שלך עבור AllSherut הוא: *${code}*\nהקוד בתוקף ל-10 דקות. 🔐`,
+      },
+    };
+
+    const response = await fetch(
+      `https://graph.facebook.com/v19.0/${PHONE_NUMBER_ID}/messages`,
+      {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${TOKEN}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      }
+    );
+
+    const data = await response.json();
+    if (!response.ok) {
+      console.error('OTP send error:', data);
+      return res.status(500).json({ success: false, message: 'Failed to send OTP', error: data });
+    }
+
+    return res.json({ success: true });
+  } catch (err) {
+    console.error('send-otp error:', err);
+    return res.status(500).json({ success: false, message: 'Server error' });
+  }
+});
+
+// POST /api/whatsapp/verify-otp
+router.post('/verify-otp', (req, res) => {
+  const { phone, code } = req.body;
+  if (!phone || !code) return res.status(400).json({ success: false, message: 'phone and code required' });
+
+  const to = normalizePhone(phone);
+  const entry = otpStore.get(to);
+
+  if (!entry) return res.json({ success: false, message: 'no_otp' });
+  if (Date.now() > entry.expiresAt) {
+    otpStore.delete(to);
+    return res.json({ success: false, message: 'expired' });
+  }
+  if (entry.code !== String(code).trim()) {
+    return res.json({ success: false, message: 'invalid' });
+  }
+
+  otpStore.delete(to);
+  return res.json({ success: true });
 });
 
 module.exports = router;
