@@ -119,6 +119,11 @@ router.post('/followup', async (req, res) => {
 // POST /api/whatsapp/send-otp
 router.post('/send-otp', async (req, res) => {
   try {
+    if (!TOKEN || !PHONE_NUMBER_ID) {
+      console.error('WhatsApp env vars missing: WHATSAPP_TOKEN or WHATSAPP_PHONE_NUMBER_ID not set');
+      return res.status(500).json({ success: false, message: 'whatsapp_not_configured' });
+    }
+
     const { phone } = req.body;
     if (!phone) return res.status(400).json({ success: false, message: 'phone required' });
 
@@ -148,14 +153,19 @@ router.post('/send-otp', async (req, res) => {
 
     const data = await response.json();
     if (!response.ok) {
-      console.error('OTP send error:', data);
-      return res.status(500).json({ success: false, message: 'Failed to send OTP', error: data });
+      console.error('WhatsApp OTP send error:', JSON.stringify(data));
+      return res.status(500).json({
+        success: false,
+        message: 'whatsapp_send_failed',
+        waError: data?.error?.message || 'unknown',
+        waCode: data?.error?.code,
+      });
     }
 
     return res.json({ success: true });
   } catch (err) {
-    console.error('send-otp error:', err);
-    return res.status(500).json({ success: false, message: 'Server error' });
+    console.error('send-otp error:', err.message);
+    return res.status(500).json({ success: false, message: 'server_error' });
   }
 });
 

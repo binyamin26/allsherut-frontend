@@ -1413,6 +1413,7 @@
   "callLead.verify": "Подтвердить и позвонить",
   "callLead.resend": "Отправить снова",
   "callLead.invalidCode": "Неверный или просроченный код, попробуйте снова",
+  "callLead.sendError": "Ошибка отправки кода — проверьте номер и попробуйте снова",
   "callLead.sending": "Отправка...",
   "callLead.verifying": "Проверка...",
   "auth.freeMonth": "Первый месяц бесплатно",

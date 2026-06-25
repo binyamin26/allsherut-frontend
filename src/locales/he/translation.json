@@ -1415,6 +1415,7 @@
   "callLead.verify": "אמת וחייג",
   "callLead.resend": "שלח שוב",
   "callLead.invalidCode": "קוד שגוי או שפג תוקפו, נסה שנית",
+  "callLead.sendError": "שגיאה בשליחת הקוד — בדוק את מספר הטלפון ונסה שוב",
   "callLead.sending": "שולח...",
   "callLead.verifying": "מאמת...",
   "auth.freeMonth": "חודש ראשון חינם",

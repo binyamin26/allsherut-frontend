@@ -50,10 +50,10 @@ const CallLeadModal = ({ isOpen, onClose, providerPhone, providerName, serviceNa
       if (res.success) {
         setStep(2);
       } else {
-        setError(t('callLead.invalidCode'));
+        setError(t('callLead.sendError'));
       }
     } catch {
-      setError(t('callLead.invalidCode'));
+      setError(t('callLead.sendError'));
     } finally {
       setLoading(false);
     }

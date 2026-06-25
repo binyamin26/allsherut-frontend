@@ -1430,6 +1430,7 @@
   "callLead.verify": "Verify & call",
   "callLead.resend": "Resend code",
   "callLead.invalidCode": "Invalid or expired code, please try again",
+  "callLead.sendError": "Failed to send code — please check the number and try again",
   "callLead.sending": "Sending...",
   "callLead.verifying": "Verifying...",
   "auth.freeMonth": "First month free",
