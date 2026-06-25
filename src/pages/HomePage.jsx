@@ -72,7 +72,7 @@ const HomePage = () => {
             </div>
             <div className="hero-visual animate-fade-in-up delay-200">
               <img
-                src="/images/image home page.jpg"
+                src="/images/image-home-page.jpg"
                 alt="AllSherut"
                 style={{
                   width: '100%',
