@@ -70,13 +70,14 @@ const HomePage = () => {
                 <ServiceSearchBar style={{ maxWidth: '350px', margin: 0 }} />
               </div>
             </div>
-            <div className="hero-visual animate-fade-in-up delay-200" style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+            <div className="hero-visual animate-fade-in-up delay-200" style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', overflow: 'visible' }}>
               <img
                 src="/images/image-home-page.jpg"
                 alt="AllSherut"
                 style={{
                   width: '90%',
                   height: 'auto',
+                  transform: 'translateX(18%)',
                   maskImage: 'linear-gradient(to right, transparent 0%, black 15%, black 80%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%)',
                   WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 15%, black 80%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%)',
                   maskComposite: 'intersect',
