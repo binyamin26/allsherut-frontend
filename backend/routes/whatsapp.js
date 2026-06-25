@@ -79,14 +79,35 @@ router.post('/followup', async (req, res) => {
 
     setTimeout(async () => {
       try {
-        const payload = {
-          messaging_product: 'whatsapp',
-          to,
-          type: 'text',
-          text: {
-            body: `שלום ${clientName || ''}! 👋\nשאלה קצרה — האם הצלחת לסגור עסקה עם ${providerName || 'הנותן שירות'} דרך AllSherut?\nנשמח אם תשאיר ביקורת קצרה — זה עוזר ללקוחות אחרים מאוד! ⭐`,
-          },
-        };
+        const TEMPLATE_NAME = process.env.WHATSAPP_FOLLOWUP_TEMPLATE;
+
+        // Use approved template if configured, otherwise fall back to free-form text
+        const payload = TEMPLATE_NAME
+          ? {
+              messaging_product: 'whatsapp',
+              to,
+              type: 'template',
+              template: {
+                name: TEMPLATE_NAME,
+                language: { code: 'he' },
+                components: [
+                  {
+                    type: 'body',
+                    parameters: [
+                      { type: 'text', text: providerName || 'הנותן שירות' },
+                    ],
+                  },
+                ],
+              },
+            }
+          : {
+              messaging_product: 'whatsapp',
+              to,
+              type: 'text',
+              text: {
+                body: `שלום! 👋\nשאלה קצרה — האם הצלחת לסגור עסקה עם ${providerName || 'הנותן שירות'} דרך AllSherut?\nנשמח אם תשאיר ביקורת קצרה — זה עוזר ללקוחות אחרים מאוד! ⭐`,
+              },
+            };
 
         const response = await fetch(
           `https://graph.facebook.com/v19.0/${PHONE_NUMBER_ID}/messages`,
@@ -102,12 +123,12 @@ router.post('/followup', async (req, res) => {
 
         const data = await response.json();
         if (!response.ok) {
-          console.error('WhatsApp followup error:', data);
+          console.error('WhatsApp followup error:', JSON.stringify(data));
         } else {
           console.log(`✅ WhatsApp followup sent to ${to}:`, data.messages?.[0]?.id);
         }
       } catch (err) {
-        console.error('WhatsApp followup send error:', err);
+        console.error('WhatsApp followup send error:', err.message);
       }
     }, delayMs);
   } catch (err) {
