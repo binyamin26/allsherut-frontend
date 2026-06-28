@@ -66,7 +66,7 @@ router.post('/notify', async (req, res) => {
 // Sends a delayed WA to the CLIENT asking if they concluded a deal with the provider
 router.post('/followup', async (req, res) => {
   try {
-    const { clientPhone, clientName, providerName, serviceName, delayMinutes = 30 } = req.body;
+    const { clientPhone, clientName, providerName, serviceName, delayMinutes = 1 } = req.body;
 
     if (!clientPhone) {
       return res.status(400).json({ success: false, message: 'clientPhone required' });
