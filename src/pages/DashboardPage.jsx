@@ -1600,32 +1600,25 @@ const galleryImages = (() => {
         <div className="avatar-actions">
           {!imagePreview ? (
             <>
-              <input
-                type="file"
-                id="profileImageInput"
-                accept="image/jpeg,image/jpg,image/png,image/webp"
-                onChange={handleImageSelect}
-                style={{ display: 'none' }}
-                disabled={uploadingImage}
-              />
-              <label 
-                htmlFor="profileImageInput" 
-                className="btn btn-secondary btn-sm"
-                style={{ cursor: uploadingImage ? 'not-allowed' : 'pointer' }}
-              >
-                <Edit size={14} />
-               {userData?.providerProfile?.profile_image ? t('dashboard.gallery.changePhoto') : t('dashboard.gallery.addPhoto')}
-              </label>
-              
-              {userData?.providerProfile?.profile_image && (
-                <button
-                  onClick={handleDeleteImage}
-                  className="btn btn-danger btn-sm"
-                  disabled={uploadingImage}
-                >
-                  <XCircle size={14} />
-                 {t('dashboard.gallery.removePhoto')}
-                </button>
+              {!userData?.providerProfile?.profile_image && (
+                <>
+                  <input
+                    type="file"
+                    id="profileImageInput"
+                    accept="image/jpeg,image/jpg,image/png,image/webp"
+                    onChange={handleImageSelect}
+                    style={{ display: 'none' }}
+                    disabled={uploadingImage}
+                  />
+                  <label
+                    htmlFor="profileImageInput"
+                    className="btn btn-secondary btn-sm"
+                    style={{ cursor: uploadingImage ? 'not-allowed' : 'pointer' }}
+                  >
+                    <Edit size={14} />
+                    {t('dashboard.gallery.addPhoto')}
+                  </label>
+                </>
               )}
             </>
           ) : (
