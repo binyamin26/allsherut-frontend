@@ -983,39 +983,30 @@ const handleImageSelect = (e) => {
   const file = e.target.files[0];
   if (file) {
     if (file.size > 5 * 1024 * 1024) {
-      setMessage({
-        type: 'error',
-        text: 'הקובץ גדול מדי (מקסימום 5MB)'
-      });
+      setMessage({ type: 'error', text: 'הקובץ גדול מדי (מקסימום 5MB)' });
       return;
     }
-    
     if (!['image/jpeg', 'image/jpg', 'image/png', 'image/webp'].includes(file.type)) {
-      setMessage({
-        type: 'error',
-        text: 'פורמט קובץ לא נתמך (רק JPG, PNG, WebP)'
-      });
+      setMessage({ type: 'error', text: 'פורמט קובץ לא נתמך (רק JPG, PNG, WebP)' });
       return;
     }
-    
     setImageFile(file);
-    
     const reader = new FileReader();
-    reader.onloadend = () => {
-      setImagePreview(reader.result);
-    };
+    reader.onloadend = () => setImagePreview(reader.result);
     reader.readAsDataURL(file);
+    handleUploadImage(file);
   }
 };
 
-const handleUploadImage = async () => {
-  if (!imageFile) return;
-  
+const handleUploadImage = async (fileOverride) => {
+  const file = fileOverride || imageFile;
+  if (!file) return;
+
   setUploadingImage(true);
   setMessage(null);
   
   try {
-    const result = await uploadProfileImage(imageFile, activeService || userData?.serviceType);
+    const result = await uploadProfileImage(file, activeService || userData?.serviceType);
     
     if (result.success) {
       setMessage({
