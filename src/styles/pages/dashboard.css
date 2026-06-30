@@ -79,7 +79,7 @@
   padding: var(--space-2);
   margin-bottom: var(--space-8);
   box-shadow: var(--shadow-sm);
-  overflow-x: auto;
+  overflow: visible;
 }
 
 .tabs-nav-row {
@@ -737,17 +737,15 @@
 
 /* Dropdown */
 .ssc-dropdown {
-  position: absolute;
-  top: calc(100% + 6px);
-  inset-inline-start: 0;
-  inset-inline-end: 0;
+  position: fixed;
   background: white;
   border-radius: 14px;
   border: 1.5px solid #e2e8f0;
   box-shadow: 0 8px 24px rgba(15, 42, 68, 0.14);
-  z-index: 100;
+  z-index: 9999;
   overflow: hidden;
   animation: slide-down 0.2s ease-out;
+  min-width: 220px;
 }
 
 .ssc-option {

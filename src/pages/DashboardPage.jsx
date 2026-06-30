@@ -282,6 +282,7 @@ const userData = useMemo(() => {
     localStorage.getItem('seenServiceTabs') === 'true'
   );
   const [showServiceDropdown, setShowServiceDropdown] = useState(false);
+  const [dropdownPos, setDropdownPos] = useState({ top: 0, left: 0, width: 0 });
   const [hasSeenServiceCard, setHasSeenServiceCard] = useState(() =>
     localStorage.getItem('seenServiceCard') === 'true'
   );
@@ -1460,6 +1461,10 @@ const galleryImages = (() => {
   {userData?.role === 'provider' && userData?.services?.length > 1 && (
     <div className="service-switcher-card" ref={serviceCardRef}>
       <div className="ssc-header" onClick={() => {
+        if (!showServiceDropdown && serviceCardRef.current) {
+          const rect = serviceCardRef.current.getBoundingClientRect();
+          setDropdownPos({ top: rect.bottom + 6, left: rect.left, width: rect.width });
+        }
         setShowServiceDropdown(v => !v);
         if (!hasSeenServiceCard) {
           setHasSeenServiceCard(true);
@@ -1491,7 +1496,7 @@ const galleryImages = (() => {
       )}
 
       {showServiceDropdown && (
-        <div className="ssc-dropdown">
+        <div className="ssc-dropdown" style={{ top: dropdownPos.top, left: dropdownPos.left, width: dropdownPos.width }}>
           {userData.services.map(service => {
             const isActive = (activeService || userData?.serviceType) === service;
             return (
