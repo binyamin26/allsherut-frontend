@@ -1568,7 +1568,23 @@ const galleryImages = (() => {
         <div className="dashboard-content">
           {activeTab === 'overview' && (
             <div className="overview-section">
-              
+
+              {userData?.role === 'provider' && userData?.services?.length > 1 && !hasSeenServiceTabs && (
+                <div className="multi-service-banner">
+                  <span>{t('dashboard.multiServiceBanner', { count: userData.services.length })}</span>
+                  <button
+                    className="multi-service-banner-close"
+                    onClick={() => {
+                      setHasSeenServiceTabs(true);
+                      localStorage.setItem('seenServiceTabs', 'true');
+                    }}
+                    aria-label="סגור"
+                  >
+                    ✕
+                  </button>
+                </div>
+              )}
+
 {userData?.role === 'provider' && (
   <div className="provider-info-card">
     

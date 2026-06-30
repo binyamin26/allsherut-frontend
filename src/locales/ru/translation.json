@@ -23,6 +23,7 @@
   "dashboard.gallery.addPhoto": "Добавить фото",
   "dashboard.gallery.changePhoto": "Изменить фото",
   "dashboard.gallery.removePhoto": "Удалить фото",
+  "dashboard.multiServiceBanner": "💡 У тебя {{count}} активных услуги — нажми кнопки выше, чтобы переключаться между ними",
   "dashboard.gallery.maxSize": "(макс. 2 МБ)",
   "dashboard.gallery.uploadSuccess": "Фото добавлено в галерею",
   "dashboard.gallery.deleteSuccess": "Фото удалено",

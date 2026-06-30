@@ -23,6 +23,7 @@
   "dashboard.gallery.addPhoto": "הוסף תמונה",
   "dashboard.gallery.changePhoto": "שנה תמונה",
   "dashboard.gallery.removePhoto": "הסר תמונה",
+  "dashboard.multiServiceBanner": "💡 יש לך {{count}} שירותים פעילים — לחץ על הכפתורים למעלה כדי לעבור ביניהם",
   "dashboard.gallery.maxSize": "(מקס׳ 2MB)",
   "dashboard.gallery.uploadSuccess": "התמונה הועלתה לגלריה",
   "dashboard.gallery.deleteSuccess": "התמונה נמחקה",
