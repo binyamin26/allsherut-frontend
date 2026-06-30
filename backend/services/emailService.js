@@ -487,7 +487,7 @@ getEmailHeader(subtitle = '') {
   async _sendMail(to, subject, html) {
     try {
       const mailOptions = {
-        from: { name: 'AllSherut', address: process.env.SMTP_FROM || process.env.SMTP_USER },
+        from: { name: 'AllSherut', address: process.env.SMTP_USER },
         to,
         subject,
         html
@@ -523,11 +523,10 @@ getEmailHeader(subtitle = '') {
   }
 
   async sendContactEmail(formData) {
-    const senderEmail = process.env.SMTP_FROM || process.env.SMTP_USER;
-    const adminEmail = process.env.ADMIN_EMAIL || senderEmail;
+    const adminEmail = process.env.ADMIN_EMAIL || process.env.SMTP_USER;
     try {
       const mailOptions = {
-        from: { name: 'AllSherut Contact', address: senderEmail },
+        from: { name: 'AllSherut Contact', address: process.env.SMTP_USER },
         to: adminEmail,
         subject: `AllSherut - פניה חדשה: ${formData.subject}`,
         html: this.getContactEmailTemplate(formData),
