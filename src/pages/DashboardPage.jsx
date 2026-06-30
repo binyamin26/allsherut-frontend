@@ -1015,7 +1015,8 @@ const handleUploadImage = async (fileOverride) => {
       });
       setImageFile(null);
       setImagePreview(null);
-      
+      setShowAvatarActions(false);
+
       // Attendre que Cloudinary propage l'image sur son CDN avant de recharger
       await new Promise(resolve => setTimeout(resolve, 800));
       await switchService(activeService || userData?.serviceType);
@@ -1059,7 +1060,8 @@ const handleDeleteImage = async () => {
         type: 'success',
         text: 'התמונה נמחקה בהצלחה'
       });
-      
+      setShowAvatarActions(false);
+
       console.log('🔴 9. Appel switchService...');
       await switchService(activeService || userData?.serviceType);
       console.log('🔴 10. switchService terminé');
@@ -1600,25 +1602,32 @@ const galleryImages = (() => {
         <div className="avatar-actions">
           {!imagePreview ? (
             <>
-              {!userData?.providerProfile?.profile_image && (
-                <>
-                  <input
-                    type="file"
-                    id="profileImageInput"
-                    accept="image/jpeg,image/jpg,image/png,image/webp"
-                    onChange={handleImageSelect}
-                    style={{ display: 'none' }}
-                    disabled={uploadingImage}
-                  />
-                  <label
-                    htmlFor="profileImageInput"
-                    className="btn btn-secondary btn-sm"
-                    style={{ cursor: uploadingImage ? 'not-allowed' : 'pointer' }}
-                  >
-                    <Edit size={14} />
-                    {t('dashboard.gallery.addPhoto')}
-                  </label>
-                </>
+              <input
+                type="file"
+                id="profileImageInput"
+                accept="image/jpeg,image/jpg,image/png,image/webp"
+                onChange={handleImageSelect}
+                style={{ display: 'none' }}
+                disabled={uploadingImage}
+              />
+              <label
+                htmlFor="profileImageInput"
+                className="btn btn-secondary btn-sm"
+                style={{ cursor: uploadingImage ? 'not-allowed' : 'pointer' }}
+              >
+                <Edit size={14} />
+                {userData?.providerProfile?.profile_image ? t('dashboard.gallery.changePhoto') : t('dashboard.gallery.addPhoto')}
+              </label>
+
+              {userData?.providerProfile?.profile_image && (
+                <button
+                  onClick={handleDeleteImage}
+                  className="btn btn-danger btn-sm"
+                  disabled={uploadingImage}
+                >
+                  <XCircle size={14} />
+                  {t('dashboard.gallery.removePhoto')}
+                </button>
               )}
             </>
           ) : (
