@@ -20,6 +20,7 @@ import {
   Plus,
   Edit,
   BarChart3,
+  ArrowLeftRight,
   Shield,
   Check,
   EyeOff,
@@ -276,6 +277,9 @@ const userData = useMemo(() => {
   const [imagePreview, setImagePreview] = useState(null);
   const [uploadingImage, setUploadingImage] = useState(false);
   const [showAvatarActions, setShowAvatarActions] = useState(false);
+  const [hasSeenServiceTabs, setHasSeenServiceTabs] = useState(() =>
+    localStorage.getItem('seenServiceTabs') === 'true'
+  );
   const [galleryUploading, setGalleryUploading] = useState(false);
 const [galleryError, setGalleryError] = useState('');
 
@@ -1446,13 +1450,21 @@ const galleryImages = (() => {
   {/* Mobile uniquement : barre de services séparée */}
   {userData?.role === 'provider' && userData?.services?.length > 1 && (
     <div className="service-tabs-mobile">
+      <span className="service-tabs-mobile-label">
+        <ArrowLeftRight size={11} />
+        עבור בין שירותיך
+      </span>
       {userData.services.map(service => (
         <button
           key={service}
-          className={`service-tab-btn ${activeService === service ? 'active' : ''}`}
+          className={`service-tab-btn ${activeService === service ? 'active' : ''} ${!hasSeenServiceTabs && activeService !== service ? 'pulse-hint' : ''}`}
           onClick={() => {
             localStorage.setItem('activeService', service);
             setActiveService(service);
+            if (!hasSeenServiceTabs) {
+              setHasSeenServiceTabs(true);
+              localStorage.setItem('seenServiceTabs', 'true');
+            }
           }}
         >
           {getServiceName(service)}
@@ -1464,13 +1476,21 @@ const galleryImages = (() => {
             {/* Desktop uniquement : services intégrés dans la rangée des onglets */}
             {userData?.role === 'provider' && userData?.services?.length > 1 && (
               <div className="service-tabs-desktop">
+                <span className="service-tabs-desktop-label">
+                  <ArrowLeftRight size={12} />
+                  שירותיך
+                </span>
                 {userData.services.map(service => (
                   <button
                     key={service}
-                    className={`tab-btn service-tab-btn ${activeService === service ? 'active' : ''}`}
+                    className={`tab-btn service-tab-btn ${activeService === service ? 'active' : ''} ${!hasSeenServiceTabs && activeService !== service ? 'pulse-hint' : ''}`}
                     onClick={() => {
                       localStorage.setItem('activeService', service);
                       setActiveService(service);
+                      if (!hasSeenServiceTabs) {
+                        setHasSeenServiceTabs(true);
+                        localStorage.setItem('seenServiceTabs', 'true');
+                      }
                     }}
                   >
                     {getServiceName(service)}
