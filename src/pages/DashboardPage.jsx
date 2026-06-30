@@ -21,6 +21,7 @@ import {
   Edit,
   BarChart3,
   ArrowLeftRight,
+  ChevronDown,
   Shield,
   Check,
   EyeOff,
@@ -280,6 +281,11 @@ const userData = useMemo(() => {
   const [hasSeenServiceTabs, setHasSeenServiceTabs] = useState(() =>
     localStorage.getItem('seenServiceTabs') === 'true'
   );
+  const [showServiceDropdown, setShowServiceDropdown] = useState(false);
+  const [hasSeenServiceCard, setHasSeenServiceCard] = useState(() =>
+    localStorage.getItem('seenServiceCard') === 'true'
+  );
+  const serviceCardRef = React.useRef(null);
   const [galleryUploading, setGalleryUploading] = useState(false);
 const [galleryError, setGalleryError] = useState('');
 
@@ -289,6 +295,9 @@ useEffect(() => {
   const handleClickOutside = (e) => {
     if (avatarRef.current && !avatarRef.current.contains(e.target)) {
       setShowAvatarActions(false);
+    }
+    if (serviceCardRef.current && !serviceCardRef.current.contains(e.target)) {
+      setShowServiceDropdown(false);
     }
   };
   document.addEventListener('click', handleClickOutside);
@@ -1449,27 +1458,66 @@ const galleryImages = (() => {
         <div className="dashboard-tabs">
   {/* Mobile uniquement : barre de services séparée */}
   {userData?.role === 'provider' && userData?.services?.length > 1 && (
-    <div className="service-tabs-mobile">
-      <span className="service-tabs-mobile-label">
-        <ArrowLeftRight size={11} />
-        עבור בין שירותיך
-      </span>
-      {userData.services.map(service => (
-        <button
-          key={service}
-          className={`service-tab-btn ${activeService === service ? 'active' : ''} ${!hasSeenServiceTabs && activeService !== service ? 'pulse-hint' : ''}`}
-          onClick={() => {
-            localStorage.setItem('activeService', service);
-            setActiveService(service);
-            if (!hasSeenServiceTabs) {
-              setHasSeenServiceTabs(true);
-              localStorage.setItem('seenServiceTabs', 'true');
-            }
-          }}
-        >
-          {getServiceName(service)}
-        </button>
-      ))}
+    <div className="service-switcher-card" ref={serviceCardRef}>
+      <div className="ssc-header" onClick={() => {
+        setShowServiceDropdown(v => !v);
+        if (!hasSeenServiceCard) {
+          setHasSeenServiceCard(true);
+          localStorage.setItem('seenServiceCard', 'true');
+        }
+      }}>
+        <div className="ssc-icon-wrap">
+          <ServiceIconDisplay svcType={activeService || userData?.serviceType} />
+        </div>
+        <div className="ssc-info">
+          <span className="ssc-label">פרופיל פעיל</span>
+          <span className="ssc-name">{getServiceName(activeService || userData?.serviceType)}</span>
+          <span className="ssc-count">אתה רשום ב-{userData.services.length} שירותים</span>
+        </div>
+        <div className={`ssc-chevron ${showServiceDropdown ? 'open' : ''}`}>
+          <ChevronDown size={20} />
+        </div>
+      </div>
+
+      {!hasSeenServiceCard && (
+        <div className="ssc-tooltip">
+          <span>💡 לחץ כאן כדי לעבור בין השירותים שלך</span>
+          <button onClick={(e) => {
+            e.stopPropagation();
+            setHasSeenServiceCard(true);
+            localStorage.setItem('seenServiceCard', 'true');
+          }}>✕</button>
+        </div>
+      )}
+
+      {showServiceDropdown && (
+        <div className="ssc-dropdown">
+          {userData.services.map(service => {
+            const isActive = (activeService || userData?.serviceType) === service;
+            return (
+              <button
+                key={service}
+                className={`ssc-option ${isActive ? 'active' : ''}`}
+                onClick={() => {
+                  localStorage.setItem('activeService', service);
+                  setActiveService(service);
+                  setShowServiceDropdown(false);
+                  if (!hasSeenServiceTabs) {
+                    setHasSeenServiceTabs(true);
+                    localStorage.setItem('seenServiceTabs', 'true');
+                  }
+                }}
+              >
+                <div className="ssc-option-icon">
+                  <ServiceIconDisplay svcType={service} />
+                </div>
+                <span className="ssc-option-name">{getServiceName(service)}</span>
+                {isActive && <Check size={16} className="ssc-check" />}
+              </button>
+            );
+          })}
+        </div>
+      )}
     </div>
   )}
           <div className="tabs-nav-row">
