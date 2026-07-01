@@ -194,10 +194,10 @@ class ApiService {
     });
   }
 
-  async followupWhatsApp(clientPhone, clientName, providerName, serviceName) {
+  async followupWhatsApp(clientPhone, clientName, providerName, serviceName, action) {
     return this.request('/whatsapp/followup', {
       method: 'POST',
-      body: JSON.stringify({ clientPhone, clientName, providerName, serviceName })
+      body: JSON.stringify({ clientPhone, clientName, providerName, serviceName, action })
     });
   }
 
