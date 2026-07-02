@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const emailService = require('../services/emailService');
 
 const TOKEN = process.env.WHATSAPP_TOKEN;
 const PHONE_NUMBER_ID = process.env.WHATSAPP_PHONE_NUMBER_ID;
@@ -66,7 +67,7 @@ router.post('/notify', async (req, res) => {
 // Sends a delayed WA to the CLIENT asking if they concluded a deal with the provider
 router.post('/followup', async (req, res) => {
   try {
-    const { clientPhone, clientName, providerName, serviceName, delayMinutes = 1 } = req.body;
+    const { clientPhone, clientName, providerName, serviceName, action, delayMinutes = 1 } = req.body;
 
     if (!clientPhone) {
       return res.status(400).json({ success: false, message: 'clientPhone required' });
@@ -76,6 +77,10 @@ router.post('/followup', async (req, res) => {
     const delayMs = Math.min(delayMinutes, 120) * 60 * 1000; // cap at 2h
 
     res.json({ success: true, scheduledIn: `${delayMinutes}min` });
+
+    emailService
+      .sendLeadNotificationEmail({ clientPhone, providerName, serviceName, action })
+      .catch(err => console.error('Lead email error:', err.message));
 
     setTimeout(async () => {
       try {
