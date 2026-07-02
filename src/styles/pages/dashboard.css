@@ -2980,7 +2980,6 @@ select.inline-edit {
   margin-bottom: var(--space-8);
   padding-bottom: var(--space-6);
   padding-top: var(--space-6);
-  border-bottom: 1px solid var(--neutral-200);
   gap: var(--space-6);
 }
 
