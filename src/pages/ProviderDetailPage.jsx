@@ -1988,7 +1988,7 @@ const handleContact = () => {
         onClose={() => setCallModal({ open: false, action: 'call' })}
         providerPhone={provider?.phone}
         providerName={provider?.name || provider?.full_name}
-        serviceName={provider?.service_type || ''}
+        serviceName={serviceNameHe}
         action={callModal.action}
       />
 

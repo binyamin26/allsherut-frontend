@@ -178,7 +178,7 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
       onClose={() => setCallModal({ open: false, action: 'call' })}
       providerPhone={provider.phone}
       providerName={provider.name || provider.full_name}
-      serviceName={provider.service_name || provider.serviceName || ''}
+      serviceName={provider.serviceLabel || provider.service_name || provider.serviceName || provider.service_type || provider.serviceType || ''}
       action={callModal.action}
     />
   </div>

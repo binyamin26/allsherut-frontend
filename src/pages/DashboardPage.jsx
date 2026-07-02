@@ -1822,6 +1822,40 @@ const galleryImages = (() => {
       </div>
     </div>
 
+    {/* Section Description */}
+<div className="info-section">
+  <h3 className="section-title">תיאור אישי</h3>
+  {isEditMode ? (
+    <div className="form-group">
+      <textarea
+        value={editFormData.description || ''}
+        onChange={(e) => {
+          if (e.target.value.length <= 300) {
+            handleEditInputChange('description', e.target.value);
+          }
+        }}
+        className="form-input"
+        placeholder="ספר על עצמך, הניסיון שלך והשירות שאתה מציע..."
+        rows={4}
+        maxLength={300}
+        style={{ resize: 'vertical', minHeight: '100px', width: '100%' }}
+      />
+      <div style={{ textAlign: 'left', fontSize: '0.8rem', color: '#6b7280', marginTop: '4px' }}>
+        {(editFormData.description || '').length}/300
+      </div>
+    </div>
+  ) : (() => {
+    const rawDescription = userData?.serviceDetails?.description;
+    const isAutoPlaceholder = rawDescription && /^ספק\s+\S+\s+מקצועי$/.test(rawDescription.trim());
+    const realDescription = isAutoPlaceholder ? '' : rawDescription;
+    return (
+      <p style={{ color: realDescription ? '#374151' : '#9ca3af', lineHeight: '1.6', margin: 0 }}>
+        {realDescription || 'לא הוסף תיאור עדיין'}
+      </p>
+    );
+  })()}
+</div>
+
     {/* Section contact */}
 <div className="info-section">
       <h3 className="section-title">{t('dashboard.contactDetails')}</h3>
@@ -2062,35 +2096,6 @@ const galleryImages = (() => {
         </>
       )}
     </div>
-
-    {/* Section Description */}
-<div className="info-section">
-  <h3 className="section-title">תיאור אישי</h3>
-  {isEditMode ? (
-    <div className="form-group">
-      <textarea
-        value={editFormData.description || ''}
-        onChange={(e) => {
-          if (e.target.value.length <= 300) {
-            handleEditInputChange('description', e.target.value);
-          }
-        }}
-        className="form-input"
-        placeholder="ספר על עצמך, הניסיון שלך והשירות שאתה מציע..."
-        rows={4}
-        maxLength={300}
-        style={{ resize: 'vertical', minHeight: '100px', width: '100%' }}
-      />
-      <div style={{ textAlign: 'left', fontSize: '0.8rem', color: '#6b7280', marginTop: '4px' }}>
-        {(editFormData.description || '').length}/300
-      </div>
-    </div>
-  ) : (
-    <p style={{ color: userData?.serviceDetails?.description ? '#374151' : '#9ca3af', lineHeight: '1.6', margin: 0 }}>
-      {userData?.serviceDetails?.description || 'לא הוסף תיאור עדיין'}
-    </p>
-  )}
-</div>
 
     {/* ===== GALERIE DE SERVICES ===== */}
 <div className="info-section">
