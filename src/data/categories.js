@@ -74,7 +74,7 @@ export const CATEGORY_DEFINITIONS = [
       en: 'Event services in Israel: DJ, entertainment, decoration, photographer and private chef.',
       ru: 'Услуги для мероприятий в Израиле: DJ, развлечения, декор, фотограф и частный повар.',
     },
-    image: '/images/fetes1.jpg',
+    image: '/images/evenements et services créatifs.jpg',
     gradient: 'from-purple-500 to-violet-600',
     serviceIds: ['dj', 'event_entertainment', 'event_decoration', 'photographer', 'private_chef'],
   },
