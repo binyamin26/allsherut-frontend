@@ -13,7 +13,7 @@ export const CATEGORY_DEFINITIONS = [
       en: 'Find home repair professionals in Israel: electrician, plumber, AC technician, locksmith, painter and more.',
       ru: 'Найдите мастеров для ремонта дома в Израиле: электрик, сантехник, кондиционер, слесарь, маляр и другие.',
     },
-    image: '/images/peinture.jpg',
+    image: '/images/maison et travaux.jpg',
     gradient: 'from-orange-500 to-amber-600',
     serviceIds: [
       'electrician', 'plumbing', 'air_conditioning', 'gas_technician',
