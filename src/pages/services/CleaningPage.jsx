@@ -1,5 +1,6 @@
 ﻿import { useNavigate } from 'react-router-dom';
 import SEO from '../../components/common/SEO';
+import { useLocationFilter } from '../../hooks/useLocationFilter';
 import { Home, CheckCircle, Star, Phone, Sparkles, Clock, Shield, MessageCircle } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import FilterBar from '../../components/filters/FilterBar';
@@ -14,11 +15,7 @@ const CleaningPageClean = () => {
   const { isAuthenticated } = useAuth();
   const { t } = useLanguage();
   
-  const [locationFilter, setLocationFilter] = useState({
-    city: 'ירושלים',
-    neighborhood: '',
-    fullLocation: ''
-  });
+  const [locationFilter, setLocationFilter] = useLocationFilter('cleaning');
   const [activeFilters, setActiveFilters] = useState({});
   const [providers, setProviders] = useState([]);
   const [loading, setLoading] = useState(false);

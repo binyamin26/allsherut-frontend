@@ -1,5 +1,6 @@
 import FilterBar from '../../components/filters/FilterBar';
 import SEO from '../../components/common/SEO';
+import { useLocationFilter } from '../../hooks/useLocationFilter';
 import ReviewModal from '../../components/modals/ReviewModal';
 import apiService from '../../services/api';
 import ProviderCard from '../../components/cards/ProviderCard';
@@ -9,7 +10,7 @@ import React, { useState, useEffect } from 'react';
 const DriverPage = () => {
   const { t } = useLanguage();
 
-  const [locationFilter, setLocationFilter] = useState({ city: 'ירושלים', neighborhood: '', fullLocation: '' });
+  const [locationFilter, setLocationFilter] = useLocationFilter('driver');
   const [activeFilters, setActiveFilters] = useState({});
   const [providers, setProviders] = useState([]);
   const [loading, setLoading] = useState(false);

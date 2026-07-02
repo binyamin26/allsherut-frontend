@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import SEO from '../../components/common/SEO';
+import { useLocationFilter } from '../../hooks/useLocationFilter';
 import { useAuth } from '../../context/AuthContext';
 import FilterBar from '../../components/filters/FilterBar';
 import ReviewModal from '../../components/modals/ReviewModal';
@@ -13,7 +14,7 @@ const MetalworkPage = () => {
   const { isAuthenticated } = useAuth();
   const { t } = useLanguage();
 
-  const [locationFilter, setLocationFilter] = useState({ city: 'ירושלים', neighborhood: '', fullLocation: '' });
+  const [locationFilter, setLocationFilter] = useLocationFilter('metalwork');
   const [activeFilters, setActiveFilters] = useState({});
   const [providers, setProviders] = useState([]);
   const [loading, setLoading] = useState(false);

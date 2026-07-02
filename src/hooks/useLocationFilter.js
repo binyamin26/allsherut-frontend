@@ -1,0 +1,35 @@
+import { useState, useCallback } from 'react';
+
+const DEFAULT_CITY = 'ירושלים';
+
+const defaultFilter = () => ({ city: DEFAULT_CITY, neighborhood: '', fullLocation: '' });
+
+// Persists the location filter per service in sessionStorage so it survives
+// navigating away (e.g. opening a provider profile) and coming back.
+export function useLocationFilter(serviceKey) {
+  const storageKey = `locationFilter:${serviceKey}`;
+
+  const [locationFilter, setLocationFilterState] = useState(() => {
+    try {
+      const saved = sessionStorage.getItem(storageKey);
+      if (saved) return JSON.parse(saved);
+    } catch {
+      // ignore malformed/unavailable storage
+    }
+    return defaultFilter();
+  });
+
+  const setLocationFilter = useCallback((value) => {
+    setLocationFilterState(prev => {
+      const next = typeof value === 'function' ? value(prev) : value;
+      try {
+        sessionStorage.setItem(storageKey, JSON.stringify(next));
+      } catch {
+        // storage unavailable (e.g. private browsing) - ignore
+      }
+      return next;
+    });
+  }, [storageKey]);
+
+  return [locationFilter, setLocationFilter];
+}

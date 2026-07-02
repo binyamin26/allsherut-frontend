@@ -7,17 +7,14 @@ import apiService from '../../services/api';
 import React, { useState, useEffect } from 'react';
 import ProviderCard from '../../components/cards/ProviderCard';
 import { useLanguage } from '../../context/LanguageContext';
+import { useLocationFilter } from '../../hooks/useLocationFilter';
 
 const MovingPage = () => {
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();
   const { t } = useLanguage();
 
-  const [locationFilter, setLocationFilter] = useState({
-    city: 'ירושלים',
-    neighborhood: '',
-    fullLocation: ''
-  });
+  const [locationFilter, setLocationFilter] = useLocationFilter('moving');
   const [activeFilters, setActiveFilters] = useState({});
   const [providers, setProviders] = useState([]);
   const [loading, setLoading] = useState(false);

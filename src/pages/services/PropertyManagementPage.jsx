@@ -1,5 +1,6 @@
 ﻿import { useNavigate } from 'react-router-dom';
 import SEO from '../../components/common/SEO';
+import { useLocationFilter } from '../../hooks/useLocationFilter';
 import { Building2, CheckCircle, Star, Phone, Home, Shield, MessageCircle, Key, FileText, Users, Clock } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import FilterBar from '../../components/filters/FilterBar';
@@ -14,11 +15,7 @@ const PropertyManagementPage = () => {
   const { isAuthenticated } = useAuth();
   const { t } = useLanguage();
   
-  const [locationFilter, setLocationFilter] = useState({
-    city: 'ירושלים',
-    neighborhood: '',
-    fullLocation: ''
-  });
+  const [locationFilter, setLocationFilter] = useLocationFilter('property_management');
   const [activeFilters, setActiveFilters] = useState({});
   const [providers, setProviders] = useState([]);
   const [loading, setLoading] = useState(false);
