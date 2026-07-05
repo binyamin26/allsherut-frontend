@@ -67,35 +67,11 @@ if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
     return true;
   };
 
-  const handleSendVerification = async () => {
+  const handleSendVerification = () => {
+    // ⚠️ Vérification email désactivée temporairement : on passe directement au formulaire d'avis
     if (!validateEmailStep()) return;
-
-    setLoading(true);
     setError('');
-
-    try {
-      console.log('Email envoyé:', JSON.stringify(formData.email), 'Length:', formData.email.length);
-      const response = await apiCall('/reviews/send-verification', 'POST', {
-        name: formData.name,
-      email: formData.email.trim(),
-        providerId,
-        serviceType
-      });
-
-      if (response.success) {
-        setStep('verification-code');
-      } else {
-       setError(response.message || t('review.errors.sendError'));
-      }
-   } catch (error) {
-  // Extraire le message d'erreur spécifique
-  const errorMessage = error?.response?.data?.message || 
-                      error?.message || 
-                      'שגיאה בחיבור לשרת';
-  setError(errorMessage);
-} finally {
-      setLoading(false);
-    }
+    setStep('review-form');
   };
 
 const handleVerifyCode = async () => {
@@ -153,6 +129,7 @@ const handleVerifyCode = async () => {
     try {
       const response = await apiCall('/reviews/create', 'POST', {
         email: formData.email,
+        name: formData.name,
         verificationCode: formData.verificationCode,
         providerId,
         serviceType,

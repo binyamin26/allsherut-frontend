@@ -176,7 +176,7 @@ class Review {
   return transaction(async (connection) => {
     try {
       const {
-        email, verificationCode, providerId, serviceType,
+        email, name, verificationCode, providerId, serviceType,
         qualityRating, priceRating, availabilityRating, professionalismRating,
         rating, title, comment, displayNameOption = 'private'
       } = reviewData;
@@ -202,21 +202,17 @@ if (directMatch.length > 0) {
 }
 console.log(`🔄 Provider ID résolu: ${providerId} → ${actualProviderId}`);
 
-// Vérifier que le token existe et a été utilisé récemment
-const tokens = await connection.execute(`
-  SELECT reviewer_name FROM review_email_tokens 
-  WHERE email = ? AND provider_id = ? AND service_type = ? AND verification_code = ?
-  AND used_at IS NOT NULL AND used_at > DATE_SUB(NOW(), INTERVAL 30 MINUTE)
-`, [email, providerId, serviceType, verificationCode]);
-
-if (tokens[0].length === 0) {
-  return { 
-    success: false, 
-    message: 'אימות נכשל - קוד לא תקין או פג תוקף' 
-  };
+// ⚠️ VÉRIFICATION EMAIL DÉSACTIVÉE TEMPORAIREMENT (pour remettre : git revert de ce commit)
+// Le nom vient directement du formulaire ; fallback sur un éventuel token, sinon anonyme.
+let fullName = (name && name.trim()) || null;
+if (!fullName) {
+  const [byName] = await connection.execute(`
+    SELECT reviewer_name FROM review_email_tokens
+    WHERE email = ? AND provider_id = ? AND service_type = ?
+    ORDER BY created_at DESC LIMIT 1
+  `, [email, providerId, serviceType]);
+  fullName = (byName[0] && byName[0].reviewer_name) || 'לקוח אנונימי';
 }
-
-const fullName = tokens[0][0].reviewer_name || 'לקוח אנונימי';
 
 console.log('🔍 Nom complet récupéré:', fullName);
 console.log('🔍 Option d\'affichage:', displayNameOption);
@@ -276,11 +272,13 @@ if (avgResult.length > 0) {
 }
 // JUSQU'ICI ↑
 
-// Nettoyer le token
-await connection.execute(`
-  DELETE FROM review_email_tokens 
-  WHERE email = ? AND provider_id = ? AND verification_code = ?
-`, [email, providerId, verificationCode]);
+// Nettoyer le token (si un code a été fourni)
+if (verificationCode) {
+  await connection.execute(`
+    DELETE FROM review_email_tokens
+    WHERE email = ? AND provider_id = ? AND verification_code = ?
+  `, [email, providerId, verificationCode]);
+}
 
         // NOUVEAU : Notification au prestataire pour tous les avis
         await Review.notifyProviderNewReview(actualProviderId, {

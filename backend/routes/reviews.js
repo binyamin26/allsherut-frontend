@@ -148,7 +148,7 @@ router.post('/verify-code', async (req, res) => {
     }
     
     console.log(`🔑 Vérification code: ${verificationCode} pour ${email}`);
-    
+
     // Chercher le token valide
     const tokens = await query(`
       SELECT id, expires_at, reviewer_name, used_at
@@ -206,14 +206,14 @@ router.post('/create', async (req, res) => {
     console.log('📝 Création avis avec publication immédiate');
     console.log('📋 Données reçues:', JSON.stringify(req.body, null, 2));
     
-    const { email, verificationCode, providerId, serviceType, qualityRating, priceRating, availabilityRating, professionalismRating, title, comment, displayNameOption } = req.body;
+    const { email, name, verificationCode, providerId, serviceType, qualityRating, priceRating, availabilityRating, professionalismRating, title, comment, displayNameOption } = req.body;
 
-    // Validation des données obligatoires
-    if (!email || !verificationCode || !providerId || !serviceType || !qualityRating || !priceRating || !availabilityRating || !professionalismRating || !comment) {
+    // Validation des données obligatoires (vérification email désactivée temporairement : code non requis)
+    if (!email || !providerId || !serviceType || !qualityRating || !priceRating || !availabilityRating || !professionalismRating || !comment) {
       console.log('❌ ÉCHEC: Données manquantes');
       return res.status(400).json({
         success: false,
-        message: 'נתונים חסרים - נדרש אימייל, קוד, ספק, שירות, כל הדירוגים והערה'
+        message: 'נתונים חסרים - נדרש אימייל, ספק, שירות, כל הדירוגים והערה'
       });
     }
 
@@ -244,6 +244,7 @@ router.post('/create', async (req, res) => {
     // NOUVEAU SYSTÈME : CRÉATION SIMPLIFIÉE avec publication immédiate
     const result = await Review.createReview({
       email,
+      name,
       verificationCode,
       providerId,
       serviceType,
