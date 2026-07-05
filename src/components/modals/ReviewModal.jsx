@@ -7,7 +7,7 @@ const ReviewModal = ({ isOpen, onClose, providerId, providerName, serviceType })
   const { apiCall } = useAuth();
   const { t } = useLanguage();
   
- const [step, setStep] = useState('email-verification'); // 'email-verification' | 'verification-code' | 'review-form' | 'success'
+ const [step, setStep] = useState('review-form'); // 'review-form' | 'success' (étapes email/code désactivées temporairement)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -25,7 +25,7 @@ const ReviewModal = ({ isOpen, onClose, providerId, providerName, serviceType })
   const handleClose = () => {
   const wasSuccess = step === 'success';
 
-  setStep('email-verification');
+  setStep('review-form');
   setFormData({
     name: '',
     email: '',
@@ -114,6 +114,10 @@ const handleVerifyCode = async () => {
 
   const handleSubmitReview = async () => {
     const { qualityRating, priceRating, availabilityRating, professionalismRating } = formData;
+    if (!formData.name.trim()) {
+      setError(t('review.errors.nameRequired'));
+      return;
+    }
     if (!qualityRating || !priceRating || !availabilityRating || !professionalismRating) {
       setError(t('review.errors.ratingRequired'));
       return;
@@ -126,9 +130,12 @@ const handleVerifyCode = async () => {
     setLoading(true);
     setError('');
 
+    // Email technique interne (vérification email désactivée temporairement) : unique par avis
+    const reviewerEmail = formData.email.trim() || `avis-${Date.now()}@allsherut.local`;
+
     try {
       const response = await apiCall('/reviews/create', 'POST', {
-        email: formData.email,
+        email: reviewerEmail,
         name: formData.name,
         verificationCode: formData.verificationCode,
         providerId,
@@ -328,6 +335,21 @@ placeholder={t('review.form.codePlaceholder')}
               </div>
 
               <div className="auth-form">
+                <div className="input-group">
+                  <label className="form-label">{t('review.form.fullName')}</label>
+                  <div className="input-wrapper">
+                    <input
+                      type="text"
+                      value={formData.name}
+                      onChange={(e) => handleInputChange('name', e.target.value)}
+                      placeholder={t('review.form.fullNamePlaceholder')}
+                      className="standard-input"
+                      disabled={loading}
+                    />
+                    <User className="input-icon" size={18} />
+                  </div>
+                </div>
+
                 <div className="rating-categories-section">
                   <label className="form-label">{t('review.form.categoriesTitle')}</label>
                   {renderCategoryRating('qualityRating',        'review.form.qualityRating')}
@@ -416,13 +438,6 @@ placeholder={t('review.form.reviewPlaceholder')}
                 )}
 
                 <div className="step-navigation">
-                <button
-  className="btn-back-green"
-  onClick={() => setStep('verification-code')}
-  disabled={loading}
->
-  {t('common.back')}
-</button>
                   <button
                     className="btn-primary"
                     onClick={handleSubmitReview}
