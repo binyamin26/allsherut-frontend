@@ -34,6 +34,8 @@ const STATIC_ROUTES = [
   { path: '/services/driver',            priority: '0.7', changefreq: 'weekly'  },
   { path: '/services/photographer',      priority: '0.7', changefreq: 'weekly'  },
   { path: '/services/private-chef',      priority: '0.7', changefreq: 'weekly'  },
+  { path: '/services/catering',          priority: '0.7', changefreq: 'weekly'  },
+  { path: '/services/pastry',            priority: '0.7', changefreq: 'weekly'  },
   { path: '/services/dj',                priority: '0.6', changefreq: 'weekly'  },
   { path: '/services/event-entertainment', priority: '0.6', changefreq: 'weekly' },
   { path: '/services/event-decoration',  priority: '0.6', changefreq: 'weekly'  },

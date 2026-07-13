@@ -70,6 +70,8 @@ const Footer = () => {
         { nameKey: 'services.event_entertainment', serviceKey: 'event-entertainment' },
         { nameKey: 'services.dj', serviceKey: 'dj' },
         { nameKey: 'services.private_chef', serviceKey: 'private-chef' },
+        { nameKey: 'services.catering', serviceKey: 'catering' },
+        { nameKey: 'services.pastry', serviceKey: 'pastry' },
         { nameKey: 'services.event_decoration', serviceKey: 'event-decoration' }
       ]
     }

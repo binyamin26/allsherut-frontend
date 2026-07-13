@@ -171,7 +171,9 @@ const services = [
   { key: 'event_decoration', name: t('services.event_decoration'), image: '/images/deco.jpg', gradient: 'event_decoration-gradient' },
   { key: 'event_entertainment', name: t('services.event_entertainment'), image: '/images/fetes1.jpg', gradient: 'event_entertainment-gradient' },
   { key: 'dj', name: t('services.dj'), image: '/images/DJ.jpg', gradient: 'event_entertainment-gradient' },
-  { key: 'private_chef', name: t('services.private_chef'), image: '/images/traiteur.jpg', gradient: 'private_chef-gradient' },
+  { key: 'private_chef', name: t('services.private_chef'), image: '/images/logo chef.jpg', gradient: 'private_chef-gradient' },
+  { key: 'catering', name: t('services.catering'), image: '/images/traiteur.jpg', gradient: 'catering-gradient' },
+  { key: 'pastry', name: t('services.pastry'), image: '/images/patisserie.jpg', gradient: 'pastry-gradient' },
   { key: 'photographer', name: t('services.photographer'), image: '/images/photographe.jpg', gradient: 'photographer-gradient' },
   { key: 'tutoring', name: t('services.tutoring'), icon: '📚', image: '/images/tutoring.png', gradient: 'tutoring-gradient' },
   { key: 'sports_activities', name: t('services.sports_activities'), icon: '⚽', image: '/images/sport.jpg', gradient: 'sports_activities-gradient' },
@@ -857,7 +859,8 @@ case 'home_organization':  if (!serviceDetails.availability_hours || serviceDeta
     }
   break;
 
-case 'private_chef':    if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
+case 'private_chef':
+case 'catering':    if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
       newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
     }
     if (!serviceDetails.work_types || serviceDetails.work_types.length === 0) {
@@ -868,6 +871,15 @@ case 'private_chef':    if (!serviceDetails.availability_hours || serviceDetails
     }
     if (serviceDetails.work_types?.includes('כשרות') && (!serviceDetails.kosher_types || serviceDetails.kosher_types.length === 0)) {
       newErrors['serviceDetails.kosher_types'] = t('validation.selectAtLeastOne');
+    }
+    break;
+
+case 'pastry':
+    if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
+      newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
+    }
+    if (!serviceDetails.product_types || serviceDetails.product_types.length === 0) {
+      newErrors['serviceDetails.product_types'] = t('validation.selectAtLeastOne');
     }
     break;
 

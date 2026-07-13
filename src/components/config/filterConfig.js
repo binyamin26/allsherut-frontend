@@ -799,16 +799,11 @@ laundry: {
   // ═══════════════════════════════════════════════════════════════
   private_chef: {
     sectionTitles: {
-      providerType: 'filters.chef.providerType',
       eventType: 'filters.chef.eventType',
       workTypes: 'filters.chef.workTypes',
       cuisineTypes: 'filters.chef.cuisineType',
       kosherTypes: 'filters.chef.kosherTypes'
     },
-    providerTypes: [
-      { value: 'קייטרינג', key: 'filters.chef.caterer' },
-      { value: 'שף פרטי', key: 'filters.chef.homeChef' }
-    ],
     eventTypes: [
       { value: 'חתונה', key: 'filters.chef.wedding' },
       { value: 'בר מצווה', key: 'filters.chef.barMitsva' },
@@ -839,21 +834,131 @@ laundry: {
       { value: 'בשרי', key: 'filters.chef.meat' },
       { value: 'טבעוני / צמחוני', key: 'filters.chef.vegan' },
       { value: 'לא גלוטן', key: 'filters.chef.glutenFree' },
-      { value: 'קינוחים', key: 'filters.chef.desserts' },
       { value: 'סלטי שבת', key: 'filters.chef.shabbatSalads' },
       { value: 'חלבי', key: 'filters.chef.halavi' },
-      { value: 'מגשי פירות', key: 'filters.chef.fruitPlatters' },
       { value: 'חלות שבת', key: 'filters.chef.shabbatChallah' },
-      { value: 'שוקולדים', key: 'filters.chef.chocolates' },
-      { value: 'מקרון', key: 'filters.chef.macarons' },
-      { value: 'פטיסרי', key: 'filters.chef.patisserie' },
-      { value: 'קופסת עוגות', key: 'filters.chef.cakeBox' },
       { value: 'דגים מעושנים', key: 'filters.chef.smokedFish' },
-      { value: 'הרינג', key: 'filters.chef.herring' },
-      { value: 'עיצובי פירות', key: 'filters.chef.fruitArrangements' }
+      { value: 'הרינג', key: 'filters.chef.herring' }
     ],
     kosherTypes: [
     { value: 'בד"ץ העדה החרדית', key: 'filters.chef.badatzEdaChareidis' },  // ← était badatzEdaCharedit
+      { value: 'בד"ץ בית יוסף', key: 'filters.chef.badatzBeitYosef' },
+      { value: 'בד"ץ יורה דעה (ר׳ שלמה מחפוד)', key: 'filters.chef.badatzYoreDea' },
+      { value: 'בד"ץ מחזיקי הדת – בעלז', key: 'filters.chef.badatzBelz' },
+      { value: 'בד"ץ שארית ישראל', key: 'filters.chef.badatzSheerit' },
+      { value: 'בד"ץ נתיבות כשרות', key: 'filters.chef.badatzNetivot' },
+      { value: 'בד"ץ חוג חתם סופר בני ברק', key: 'filters.chef.badatzChatamBB' },
+      { value: 'בד"ץ חוג חתם סופר פ״ת', key: 'filters.chef.badatzChatamPT' },
+      { value: 'בד"ץ מקווה ישראל', key: 'filters.chef.badatzMikveh' },
+      { value: 'בד"ץ רבני צפת', key: 'filters.chef.badatzTzfat' },
+      { value: 'כשרות הרב לנדא', key: 'filters.chef.rabbiLanda' },
+      { value: 'כשרות הרב רובין', key: 'filters.chef.rabbiRubin' },
+      { value: 'רבנות מהדרין', key: 'filters.chef.rabbinateMethadrin' },
+      { value: 'רבנות', key: 'filters.chef.rabbinate' }
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // CATERING
+  // ═══════════════════════════════════════════════════════════════
+  catering: {
+    sectionTitles: {
+      eventType: 'filters.chef.eventType',
+      workTypes: 'filters.chef.workTypes',
+      cuisineTypes: 'filters.chef.cuisineType',
+      kosherTypes: 'filters.chef.kosherTypes'
+    },
+    eventTypes: [
+      { value: 'חתונה', key: 'filters.chef.wedding' },
+      { value: 'בר מצווה', key: 'filters.chef.barMitsva' },
+      { value: 'בת מצווה', key: 'filters.chef.batMitsva' },
+      { value: 'ברית מילה', key: 'filters.chef.britMila' },
+      { value: 'פדיון הבן', key: 'filters.chef.pidyonHaben' },
+      { value: 'שבע ברכות', key: 'filters.chef.shevaBrahot' },
+      { value: 'יום הולדת / יום שנה', key: 'filters.chef.anniversary' },
+      { value: 'קידוש', key: 'filters.chef.kiddouch' },
+      { value: 'שבת חתן', key: 'filters.chef.shabbatHatan' },
+      { value: 'אירוע עסקי', key: 'filters.chef.corporateEvent' },
+      { value: 'מסיבה פרטית', key: 'filters.chef.privateParty' },
+      { value: 'חגיגה משפחתית', key: 'filters.chef.familyParty' },
+      { value: 'אירוסין', key: 'filters.chef.engagement' },
+      { value: 'סעודות שבת', key: 'filters.chef.shabbatMeals' }
+    ],
+    workTypes: [
+      { value: 'סוג האירוע', key: 'filters.chef.eventType' },
+      { value: 'סוג המטבח', key: 'filters.chef.cuisineType' },
+      { value: 'כשרות', key: 'filters.chef.kashrut' }
+    ],
+    cuisineTypes: [
+      { value: 'פיצות', key: 'filters.chef.pizza' },
+      { value: 'סושי', key: 'filters.chef.sushi' },
+      { value: 'סלטים', key: 'filters.chef.salads' },
+      { value: 'אסייתי', key: 'filters.chef.asian' },
+      { value: 'פסטות', key: 'filters.chef.pasta' },
+      { value: 'בשרי', key: 'filters.chef.meat' },
+      { value: 'טבעוני / צמחוני', key: 'filters.chef.vegan' },
+      { value: 'לא גלוטן', key: 'filters.chef.glutenFree' },
+      { value: 'סלטי שבת', key: 'filters.chef.shabbatSalads' },
+      { value: 'חלבי', key: 'filters.chef.halavi' },
+      { value: 'חלות שבת', key: 'filters.chef.shabbatChallah' },
+      { value: 'דגים מעושנים', key: 'filters.chef.smokedFish' },
+      { value: 'הרינג', key: 'filters.chef.herring' }
+    ],
+    kosherTypes: [
+      { value: 'בד"ץ העדה החרדית', key: 'filters.chef.badatzEdaChareidis' },
+      { value: 'בד"ץ בית יוסף', key: 'filters.chef.badatzBeitYosef' },
+      { value: 'בד"ץ יורה דעה (ר׳ שלמה מחפוד)', key: 'filters.chef.badatzYoreDea' },
+      { value: 'בד"ץ מחזיקי הדת – בעלז', key: 'filters.chef.badatzBelz' },
+      { value: 'בד"ץ שארית ישראל', key: 'filters.chef.badatzSheerit' },
+      { value: 'בד"ץ נתיבות כשרות', key: 'filters.chef.badatzNetivot' },
+      { value: 'בד"ץ חוג חתם סופר בני ברק', key: 'filters.chef.badatzChatamBB' },
+      { value: 'בד"ץ חוג חתם סופר פ״ת', key: 'filters.chef.badatzChatamPT' },
+      { value: 'בד"ץ מקווה ישראל', key: 'filters.chef.badatzMikveh' },
+      { value: 'בד"ץ רבני צפת', key: 'filters.chef.badatzTzfat' },
+      { value: 'כשרות הרב לנדא', key: 'filters.chef.rabbiLanda' },
+      { value: 'כשרות הרב רובין', key: 'filters.chef.rabbiRubin' },
+      { value: 'רבנות מהדרין', key: 'filters.chef.rabbinateMethadrin' },
+      { value: 'רבנות', key: 'filters.chef.rabbinate' }
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PASTRY (GÂTEAUX & PÂTISSERIE)
+  // ═══════════════════════════════════════════════════════════════
+  pastry: {
+    sectionTitles: {
+      eventType: 'filters.chef.eventType',
+      productTypes: 'serviceForm.pastry.productTypes',
+      kosherTypes: 'filters.chef.kosherTypes'
+    },
+    eventTypes: [
+      { value: 'חתונה', key: 'filters.chef.wedding' },
+      { value: 'בר מצווה', key: 'filters.chef.barMitsva' },
+      { value: 'בת מצווה', key: 'filters.chef.batMitsva' },
+      { value: 'ברית מילה', key: 'filters.chef.britMila' },
+      { value: 'פדיון הבן', key: 'filters.chef.pidyonHaben' },
+      { value: 'שבע ברכות', key: 'filters.chef.shevaBrahot' },
+      { value: 'יום הולדת / יום שנה', key: 'filters.chef.anniversary' },
+      { value: 'קידוש', key: 'filters.chef.kiddouch' },
+      { value: 'שבת חתן', key: 'filters.chef.shabbatHatan' },
+      { value: 'אירוע עסקי', key: 'filters.chef.corporateEvent' },
+      { value: 'מסיבה פרטית', key: 'filters.chef.privateParty' },
+      { value: 'חגיגה משפחתית', key: 'filters.chef.familyParty' },
+      { value: 'אירוסין', key: 'filters.chef.engagement' },
+      { value: 'סעודות שבת', key: 'filters.chef.shabbatMeals' }
+    ],
+    productTypes: [
+      { value: 'עוגות', key: 'filters.pastry.cakes' },
+      { value: 'פטיסרי', key: 'filters.pastry.patisserie' },
+      { value: 'שוקולדים', key: 'filters.pastry.chocolates' },
+      { value: 'מקרון', key: 'filters.pastry.macarons' },
+      { value: 'קופסת עוגות', key: 'filters.pastry.cakeBox' },
+      { value: 'עיצובי פירות', key: 'filters.pastry.fruitArrangements' },
+      { value: 'מגשי פירות', key: 'filters.pastry.fruitPlatters' },
+      { value: 'קינוחים', key: 'filters.pastry.desserts' }
+    ],
+    kosherTypes: [
+      { value: 'בד"ץ העדה החרדית', key: 'filters.chef.badatzEdaChareidis' },
       { value: 'בד"ץ בית יוסף', key: 'filters.chef.badatzBeitYosef' },
       { value: 'בד"ץ יורה דעה (ר׳ שלמה מחפוד)', key: 'filters.chef.badatzYoreDea' },
       { value: 'בד"ץ מחזיקי הדת – בעלז', key: 'filters.chef.badatzBelz' },

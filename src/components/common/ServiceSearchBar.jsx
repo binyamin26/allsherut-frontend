@@ -25,6 +25,8 @@ const SERVICE_URLS = {
   home_organization: '/services/home-organization',
   painting: '/services/painting',
   private_chef: '/services/private-chef',
+  catering: '/services/catering',
+  pastry: '/services/pastry',
   event_entertainment: '/services/event-entertainment',
   waterproofing: '/services/waterproofing',
   contractor: '/services/contractor',

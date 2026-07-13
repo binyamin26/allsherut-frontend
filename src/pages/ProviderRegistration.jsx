@@ -25,6 +25,8 @@ import CarpentryForm from '../components/services/carpentry/CarpentryForm';
 import HomeOrganizationForm from '../components/services/home_organization/HomeOrganizationForm';
 import EventEntertainmentForm from '../components/services/event_entertainment/EventEntertainmentForm';
 import PrivateChefForm from '../components/services/private_chef/PrivateChefForm';
+import CateringForm from '../components/services/catering/CateringForm';
+import PastryForm from '../components/services/pastry/PastryForm';
 import PaintingForm from '../components/services/painting/PaintingForm';
 import WaterproofingForm from '../components/services/waterproofing/WaterproofingForm';
 import ContractorForm from '../components/services/contractor/ContractorForm';
@@ -88,6 +90,8 @@ const ProviderRegistration = () => {
     home_organization: 'סידור בית',
     event_entertainment: 'הפעלות ואטרקציות לאירועים',
     private_chef: 'שף פרטי',
+    catering: 'קייטרינג',
+    pastry: 'עוגות ופטיסרי',
     painting: 'עבודות צבע',
     waterproofing: 'איטום',
     contractor: 'קבלן',
@@ -116,6 +120,8 @@ const ProviderRegistration = () => {
     home_organization: HomeOrganizationForm,
     event_entertainment: EventEntertainmentForm,
     private_chef: PrivateChefForm,
+    catering: CateringForm,
+    pastry: PastryForm,
     painting: PaintingForm,
     waterproofing: WaterproofingForm,
     contractor: ContractorForm,

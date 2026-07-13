@@ -22,6 +22,8 @@ export const SERVICE_SLUGS = {
   'event-entertainment':  { he: 'event-entertainment',  en: 'event-entertainment',  fr: 'animation-evenements',     ru: 'animatsiya-meropriyatiy' },
   dj:                     { he: 'dj',                   en: 'dj',                   fr: 'dj',                       ru: 'dj' },
   'private-chef':         { he: 'private-chef',         en: 'private-chef',         fr: 'chef-prive',               ru: 'chastnyy-povar' },
+  catering:               { he: 'catering',             en: 'catering',             fr: 'traiteur',                 ru: 'keytering' },
+  pastry:                 { he: 'pastry',               en: 'pastry',               fr: 'patisserie',               ru: 'konditerskaya' },
   painting:               { he: 'painting',             en: 'painting',             fr: 'peinture',                 ru: 'pokraska' },
   waterproofing:          { he: 'waterproofing',        en: 'waterproofing',        fr: 'etancheite',               ru: 'gidroizolyatsiya' },
   contractor:             { he: 'contractor',           en: 'contractor',           fr: 'entrepreneur',             ru: 'podryadchik' },

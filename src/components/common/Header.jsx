@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
-import { Menu, X, Home, Users, BookOpen, UserCheck, Sparkles, Baby, LogOut, Shirt, Zap, Wrench, Wind, Flame, Package, Layers, Hammer, PartyPopper, ChefHat, Paintbrush, Droplets, HardHat, Frame, Square, Key, Leaf, PawPrint, ChevronDown, Phone, Truck, Camera, Wand2, Bug, Cog, Dumbbell, Music2, Car, Shield, Navigation } from 'lucide-react'
+import { Menu, X, Home, Users, BookOpen, UserCheck, Sparkles, Baby, LogOut, Shirt, Zap, Wrench, Wind, Flame, Package, Layers, Hammer, PartyPopper, ChefHat, Paintbrush, Droplets, HardHat, Frame, Square, Key, Leaf, PawPrint, ChevronDown, Phone, Truck, Camera, Wand2, Bug, Cog, Dumbbell, Music2, Car, Shield, Navigation, Soup, Croissant } from 'lucide-react'
 import { useAuth } from '../../context/AuthContext'
 import AuthModal from '../auth/AuthModal'
 import { useLanguage } from '../../context/LanguageContext'
@@ -89,6 +89,8 @@ const Header = () => {
     { icon: <PartyPopper className="w-5 h-5" />, nameKey: 'services.event_entertainment', descKey: 'services.event_entertainment.desc', serviceKey: 'event-entertainment' },
     { icon: <Music2 className="w-5 h-5" />, nameKey: 'services.dj', descKey: 'services.dj.desc', serviceKey: 'dj' },
     { icon: <ChefHat className="w-5 h-5" />, nameKey: 'services.private_chef', descKey: 'services.private_chef.desc', serviceKey: 'private-chef' },
+    { icon: <Soup className="w-5 h-5" />, nameKey: 'services.catering', descKey: 'services.catering.desc', serviceKey: 'catering' },
+    { icon: <Croissant className="w-5 h-5" />, nameKey: 'services.pastry', descKey: 'services.pastry.desc', serviceKey: 'pastry' },
     { icon: <Camera className="w-5 h-5" />, nameKey: 'services.photographer', descKey: 'services.photographer.desc', serviceKey: 'photographer' },
     { icon: <BookOpen className="w-5 h-5" />, nameKey: 'services.tutoring', descKey: 'services.tutoring.desc', serviceKey: 'tutoring' },
     { icon: <Dumbbell className="w-5 h-5" />, nameKey: 'services.sports_activities', descKey: 'services.sports_activities.desc', serviceKey: 'sports-activities' },

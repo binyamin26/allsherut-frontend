@@ -93,7 +93,7 @@ getEmailHeader(subtitle = '') {
       'laundry': 'כביסה', 'property-management': 'ניהול דירות', 'propertymanagement': 'ניהול דירות', 'electrician': 'חשמלאי',
       'plumbing': 'אינסטלציה', 'air-conditioning': 'מיזוג אוויר', 'airconditioning': 'מיזוג אוויר', 'gas-technician': 'טכנאי גז', 'gastechnician': 'טכנאי גז',
       'drywall': 'גבס', 'carpentry': 'נגרות', 'home-organization': 'סידור בית', 'homeorganization': 'סידור בית',
-      'event-entertainment': 'אירועים', 'evententertainment': 'אירועים', 'private-chef': 'שף פרטי', 'privatechef': 'שף פרטי', 'painting': 'צביעה',
+      'event-entertainment': 'אירועים', 'evententertainment': 'אירועים', 'private-chef': 'שף פרטי', 'privatechef': 'שף פרטי', 'catering': 'קייטרינג', 'pastry': 'עוגות ופטיסרי', 'painting': 'צביעה',
       'waterproofing': 'איטום', 'contractor': 'קבלן', 'aluminum': 'אלומיניום',
       'glass-works': 'זגגות', 'glassworks': 'זגגות', 'locksmith': 'מנעולן'
     };
@@ -143,7 +143,7 @@ getEmailHeader(subtitle = '') {
       'laundry': 'כביסה', 'property-management': 'ניהול דירות', 'propertymanagement': 'ניהול דירות', 'electrician': 'חשמלאי',
       'plumbing': 'אינסטלציה', 'air-conditioning': 'מיזוג אוויר', 'airconditioning': 'מיזוג אוויר', 'gas-technician': 'טכנאי גז', 'gastechnician': 'טכנאי גז',
       'drywall': 'גבס', 'carpentry': 'נגרות', 'home-organization': 'סידור בית', 'homeorganization': 'סידור בית',
-      'event-entertainment': 'אירועים', 'evententertainment': 'אירועים', 'private-chef': 'שף פרטי', 'privatechef': 'שף פרטי', 'painting': 'צביעה',
+      'event-entertainment': 'אירועים', 'evententertainment': 'אירועים', 'private-chef': 'שף פרטי', 'privatechef': 'שף פרטי', 'catering': 'קייטרינג', 'pastry': 'עוגות ופטיסרי', 'painting': 'צביעה',
       'waterproofing': 'איטום', 'contractor': 'קבלן', 'aluminum': 'אלומיניום',
       'glass-works': 'זגגות', 'glassworks': 'זגגות', 'locksmith': 'מנעולן'
     };
@@ -186,7 +186,7 @@ getEmailHeader(subtitle = '') {
       'laundry': 'כביסה', 'property-management': 'ניהול דירות', 'propertymanagement': 'ניהול דירות', 'electrician': 'חשמלאי',
       'plumbing': 'אינסטלציה', 'air-conditioning': 'מיזוג אוויר', 'airconditioning': 'מיזוג אוויר', 'gas-technician': 'טכנאי גז', 'gastechnician': 'טכנאי גז',
       'drywall': 'גבס', 'carpentry': 'נגרות', 'home-organization': 'סידור בית', 'homeorganization': 'סידור בית',
-      'event-entertainment': 'אירועים', 'evententertainment': 'אירועים', 'private-chef': 'שף פרטי', 'privatechef': 'שף פרטי', 'painting': 'צביעה',
+      'event-entertainment': 'אירועים', 'evententertainment': 'אירועים', 'private-chef': 'שף פרטי', 'privatechef': 'שף פרטי', 'catering': 'קייטרינג', 'pastry': 'עוגות ופטיסרי', 'painting': 'צביעה',
       'waterproofing': 'איטום', 'contractor': 'קבלן', 'aluminum': 'אלומיניום',
       'glass-works': 'זגגות', 'glassworks': 'זגגות', 'locksmith': 'מנעולן'
     };

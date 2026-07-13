@@ -653,6 +653,20 @@ const translationMappings = {
   },
 
   // ═══════════════════════════════════════════════════════════════
+  // PASTRY (GÂTEAUX & PÂTISSERIE)
+  // ═══════════════════════════════════════════════════════════════
+  pastryProducts: {
+    'עוגות': 'filters.pastry.cakes',
+    'פטיסרי': 'filters.pastry.patisserie',
+    'שוקולדים': 'filters.pastry.chocolates',
+    'מקרון': 'filters.pastry.macarons',
+    'קופסת עוגות': 'filters.pastry.cakeBox',
+    'עיצובי פירות': 'filters.pastry.fruitArrangements',
+    'מגשי פירות': 'filters.pastry.fruitPlatters',
+    'קינוחים': 'filters.pastry.desserts',
+  },
+
+  // ═══════════════════════════════════════════════════════════════
   // EVENT ENTERTAINMENT
   // ═══════════════════════════════════════════════════════════════
   eventWorkTypes: {

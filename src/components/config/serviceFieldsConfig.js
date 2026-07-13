@@ -910,12 +910,6 @@ const serviceFieldsConfig = {
     fields: [
       { name: 'experience', label: 'serviceFields.private_chef.experience', type: 'number' },
       {
-        name: 'provider_type',
-        label: 'serviceFields.private_chef.provider_type',
-        type: 'checkbox',
-        options: ['קייטרינג', 'שף פרטי']
-      },
-      {
         name: 'availability_hours',
         label: 'serviceFields.private_chef.availability_hours',
         type: 'checkbox',
@@ -941,7 +935,7 @@ const serviceFieldsConfig = {
         name: 'cuisine_types',
         label: 'serviceFields.private_chef.cuisine_types',
         type: 'checkbox',
-        options: ['פיצות', 'סושי', 'סלטים', 'אסייתי', 'פסטות', 'בשרי', 'טבעוני / צמחוני', 'לא גלוטן', 'קינוחים', 'סלטי שבת', 'חלבי', 'מגשי פירות', 'חלות שבת', 'שוקולדים', 'מקרון', 'פטיסרי', 'קופסת עוגות', 'עיצובי פירות']
+        options: ['פיצות', 'סושי', 'סלטים', 'אסייתי', 'פסטות', 'בשרי', 'טבעוני / צמחוני', 'לא גלוטן', 'סלטי שבת', 'חלבי', 'חלות שבת', 'דגים מעושנים', 'הרינג']
       },
       {
         name: 'kosher_types',
@@ -955,6 +949,104 @@ const serviceFieldsConfig = {
         ]
       },
       { name: 'kosher_other', label: 'serviceFields.private_chef.kosher_other', type: 'text' },
+      {
+        name: 'languages',
+        label: 'serviceFields.eldercare.languages',
+        type: 'checkbox',
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+      }
+    ]
+  },
+
+  catering: {
+    fields: [
+      { name: 'experience', label: 'serviceFields.catering.experience', type: 'number' },
+      {
+        name: 'availability_hours',
+        label: 'serviceFields.catering.availability_hours',
+        type: 'checkbox',
+        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+      },
+      {
+        name: 'work_types',
+        label: 'serviceFields.catering.work_types',
+        type: 'checkbox',
+        options: ['סוג האירוע', 'סוג המטבח', 'כשרות']
+      },
+      {
+        name: 'event_types',
+        label: 'serviceFields.catering.event_types',
+        type: 'checkbox',
+        options: [
+          'חתונה', 'בר מצווה', 'בת מצווה', 'ברית מילה', 'פדיון הבן',
+          'שבע ברכות', 'יום הולדת / יום שנה', 'קידוש', 'שבת חתן',
+          'אירוע עסקי', 'מסיבה פרטית', 'חגיגה משפחתית', 'אירוסין', 'סעודות שבת'
+        ]
+      },
+      {
+        name: 'cuisine_types',
+        label: 'serviceFields.catering.cuisine_types',
+        type: 'checkbox',
+        options: ['פיצות', 'סושי', 'סלטים', 'אסייתי', 'פסטות', 'בשרי', 'טבעוני / צמחוני', 'לא גלוטן', 'סלטי שבת', 'חלבי', 'חלות שבת', 'דגים מעושנים', 'הרינג']
+      },
+      {
+        name: 'kosher_types',
+        label: 'serviceFields.catering.kosher_types',
+        type: 'checkbox',
+        options: [
+          'בד"ץ העדה החרדית', 'בד"ץ בית יוסף', 'בד"ץ יורה דעה (ר׳ שלמה מחפוד)',
+          'בד"ץ מחזיקי הדת – בעלז', 'בד"ץ שארית ישראל', 'בד"ץ נתיבות כשרות',
+          'בד"ץ חוג חתם סופר בני ברק', 'בד"ץ חוג חתם סופר פ״ת', 'בד"ץ מקווה ישראל',
+          'בד"ץ רבני צפת', 'כשרות הרב לנדא', 'כשרות הרב רובין', 'רבנות מהדרין', 'רבנות', 'אחר'
+        ]
+      },
+      { name: 'kosher_other', label: 'serviceFields.catering.kosher_other', type: 'text' },
+      {
+        name: 'languages',
+        label: 'serviceFields.eldercare.languages',
+        type: 'checkbox',
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+      }
+    ]
+  },
+
+  pastry: {
+    fields: [
+      { name: 'experience', label: 'serviceFields.pastry.experience', type: 'number' },
+      {
+        name: 'availability_hours',
+        label: 'serviceFields.pastry.availability_hours',
+        type: 'checkbox',
+        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+      },
+      {
+        name: 'product_types',
+        label: 'serviceFields.pastry.product_types',
+        type: 'checkbox',
+        options: ['עוגות', 'פטיסרי', 'שוקולדים', 'מקרון', 'קופסת עוגות', 'עיצובי פירות', 'מגשי פירות', 'קינוחים']
+      },
+      {
+        name: 'event_types',
+        label: 'serviceFields.pastry.event_types',
+        type: 'checkbox',
+        options: [
+          'חתונה', 'בר מצווה', 'בת מצווה', 'ברית מילה', 'פדיון הבן',
+          'שבע ברכות', 'יום הולדת / יום שנה', 'קידוש', 'שבת חתן',
+          'אירוע עסקי', 'מסיבה פרטית', 'חגיגה משפחתית', 'אירוסין', 'סעודות שבת'
+        ]
+      },
+      {
+        name: 'kosher_types',
+        label: 'serviceFields.pastry.kosher_types',
+        type: 'checkbox',
+        options: [
+          'בד"ץ העדה החרדית', 'בד"ץ בית יוסף', 'בד"ץ יורה דעה (ר׳ שלמה מחפוד)',
+          'בד"ץ מחזיקי הדת – בעלז', 'בד"ץ שארית ישראל', 'בד"ץ נתיבות כשרות',
+          'בד"ץ חוג חתם סופר בני ברק', 'בד"ץ חוג חתם סופר פ״ת', 'בד"ץ מקווה ישראל',
+          'בד"ץ רבני צפת', 'כשרות הרב לנדא', 'כשרות הרב רובין', 'רבנות מהדרין', 'רבנות', 'אחר'
+        ]
+      },
+      { name: 'kosher_other', label: 'serviceFields.pastry.kosher_other', type: 'text' },
       {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',

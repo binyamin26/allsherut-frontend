@@ -55,6 +55,8 @@ import HomeOrganizationPage from './pages/services/HomeOrganizationPage';
 import EventEntertainmentPage from './pages/services/EventEntertainmentPage';
 import DJPage from './pages/services/DJPage';
 import PrivateChefPage from './pages/services/PrivateChefPage';
+import CateringPage from './pages/services/CateringPage';
+import PastryPage from './pages/services/PastryPage';
 import PaintingPage from './pages/services/PaintingPage';
 import WaterproofingPage from './pages/services/WaterproofingPage';
 import ContractorPage from './pages/services/ContractorPage';
@@ -94,6 +96,8 @@ const SERVICE_PAGE_MAP = {
   'event-entertainment': EventEntertainmentPage,
   dj:                    DJPage,
   'private-chef':        PrivateChefPage,
+  catering:              CateringPage,
+  pastry:                PastryPage,
   painting:              PaintingPage,
   waterproofing:         WaterproofingPage,
   contractor:            ContractorPage,

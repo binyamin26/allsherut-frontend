@@ -1,15 +1,15 @@
 import React from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
 
-const PrivateChefForm = ({ serviceDetails, errors, handleServiceDetailsChange, handleExclusiveCheckbox }) => {
+const CateringForm = ({ serviceDetails, errors, handleServiceDetailsChange, handleExclusiveCheckbox }) => {
     const { t } = useLanguage();
   return (
     <div className="service-details-form">
-      <h3>{t('serviceForm.chef.title')}</h3>
-      
+      <h3>{t('serviceForm.catering.title')}</h3>
+
       <div className="form-section">
     <h4>{t('serviceForm.common.requiredFields')}</h4>
-        
+
         <div className="input-group">
   <label className="auth-form-label required">{t('serviceForm.common.availabilityHours')}</label>
   <div className="checkbox-group" data-field="availability_hours">
@@ -255,4 +255,4 @@ const PrivateChefForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
   );
 };
 
-export default PrivateChefForm;
+export default CateringForm;

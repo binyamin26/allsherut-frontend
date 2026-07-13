@@ -632,7 +632,7 @@ try {
   'babysitting', 'cleaning', 'gardening', 'petcare', 'tutoring', 'sports_activities', 'eldercare',
   'laundry', 'property_management', 'electrician', 'plumbing', 'air_conditioning',
   'gas_technician', 'drywall', 'carpentry', 'home_organization', 'event_entertainment',
-  'dj', 'private_chef', 'painting', 'waterproofing', 'contractor', 'aluminum',
+  'dj', 'private_chef', 'catering', 'pastry', 'painting', 'waterproofing', 'contractor', 'aluminum',
   'glass_works', 'locksmith', 'moving', 'photographer', 'event_decoration', 'pest_control',
   'handyman', 'mechanic', 'metalwork', 'driver'
 ];
@@ -1290,6 +1290,7 @@ static async updateServiceProviderWithDetails(connection, providerId, serviceTyp
       }
       break;
       case 'private_chef':
+      case 'catering':
       if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
         errors.push({ field: 'availability_hours', message: 'יש לבחור שעות זמינות' });
       }
@@ -1301,6 +1302,15 @@ static async updateServiceProviderWithDetails(connection, providerId, serviceTyp
       }
       if (serviceDetails.work_types?.includes('כשרות') && (!serviceDetails.kosher_types || serviceDetails.kosher_types.length === 0)) {
         errors.push({ field: 'kosher_types', message: 'יש לבחור לפחות סוג כשרות אחד' });
+      }
+      break;
+
+      case 'pastry':
+      if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
+        errors.push({ field: 'availability_hours', message: 'יש לבחור שעות זמינות' });
+      }
+      if (!serviceDetails.product_types || serviceDetails.product_types.length === 0) {
+        errors.push({ field: 'product_types', message: 'יש לבחור לפחות סוג מוצר אחד' });
       }
       break;
 

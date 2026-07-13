@@ -147,6 +147,8 @@ const ProviderDetailPage = () => {
     home_organization: '/images/logo rangement.jpg',
     painting: '/images/logo peinture.jpg',
     private_chef: '/images/logo chef.jpg',
+    catering: '/images/traiteur.jpg',
+    pastry: '/images/patisserie.jpg',
     event_entertainment: '/images/logo event.png',
     dj: '/images/logo DJ.jpg',
     waterproofing: '/images/logo itoum.jpg',
@@ -823,8 +825,8 @@ const handleContact = () => {
           </>
         )}
 
-        {/* === PRIVATE_CHEF === */}
-        {provider.serviceType === 'private_chef' && (
+        {/* === PRIVATE_CHEF / CATERING === */}
+        {(provider.serviceType === 'private_chef' || provider.serviceType === 'catering') && (
           <>
             {details.provider_type && details.provider_type.length > 0 && (
               <div className="detail-item">
@@ -842,6 +844,33 @@ const handleContact = () => {
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <IconLabel icon={ChefHat} color="#EA580C" bg="#FFF7ED">{t('provider.details.cuisineTypes')}:</IconLabel>
               <span>{translateAndJoin(details.cuisine_types, 'chefCuisine', t)}</span>
+              </div>
+            )}
+            {details.kosher_types && details.kosher_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <IconLabel icon={Star} color="#EA580C" bg="#FFF7ED">{t('provider.details.kosherTypes')}:</IconLabel>
+                <span>{translateAndJoin(details.kosher_types, 'chefKosher', t)}</span>
+                {details.kosher_types.includes('אחר') && details.kosher_other && (
+                  <span> ({details.kosher_other})</span>
+                )}
+              </div>
+            )}
+          </>
+        )}
+
+        {/* === PASTRY === */}
+        {provider.serviceType === 'pastry' && (
+          <>
+            {details.product_types && details.product_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <IconLabel icon={ChefHat} color="#EA580C" bg="#FFF7ED">{t('serviceForm.pastry.productTypes')}:</IconLabel>
+                <span>{translateAndJoin(details.product_types, 'pastryProducts', t)}</span>
+              </div>
+            )}
+            {details.event_types && details.event_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <IconLabel icon={Gift} color="#BE185D" bg="#FDF2F8">{t('provider.details.eventTypes')}:</IconLabel>
+                <span>{translateAndJoin(details.event_types, 'chefEventType', t)}</span>
               </div>
             )}
             {details.kosher_types && details.kosher_types.length > 0 && (
