@@ -28,6 +28,7 @@ import CategoryPage from "./pages/CategoryPage";
 import ContactPage from "./pages/ContactPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import ResetPasswordPage from './pages/ResetPasswordPage';
+import AdminVerifyProviderPage from './pages/AdminVerifyProviderPage';
 // PAIEMENT DÉSACTIVÉ - RÉACTIVER QUAND SITE PAYANT
 // import BillingPage from './pages/BillingPage';
 import HowItWorksPage from './pages/HowItWorksPage';
@@ -265,6 +266,7 @@ function App() {
                 {/* Pages d'authentification */}
                 <Route path="/forgot-password" element={<ForgotPasswordPage />} />
                 <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
+                <Route path="/admin/verify-provider/:token" element={<AdminVerifyProviderPage />} />
              
               
                 {/* Page de détails provider */}

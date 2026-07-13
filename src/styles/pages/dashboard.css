@@ -891,6 +891,22 @@
   background: rgba(30, 64, 175, 0.08);
 }
 
+/* Bannière profil refusé */
+.rejected-approval-banner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+  border: 1.5px solid #fca5a5;
+  border-radius: 10px;
+  padding: 0.85rem 1.1rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #b91c1c;
+  animation: slide-down 0.3s ease-out;
+}
+
 /* Responsive dashboard */
 @media (max-width: 768px) {
   .dashboard-header-content {

@@ -420,7 +420,7 @@ const validServices = ['babysitting', 'cleaning', 'gardening', 'petcare', 'tutor
     const offset = (pageNum - 1) * limitNum;
 
     // Construction de la requête WHERE - CONDITIONS DE BASE
-    let whereConditions = [`u.role = 'provider'`, `u.is_active = 1`, `sp.is_active = 1`];
+    let whereConditions = [`u.role = 'provider'`, `u.is_active = 1`, `sp.is_active = 1`, `sp.verification_status = 'verified'`];
     const params = [];
 
     // Application des filtres BASIQUES

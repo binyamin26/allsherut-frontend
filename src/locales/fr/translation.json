@@ -24,6 +24,8 @@
   "dashboard.gallery.changePhoto": "Changer la photo",
   "dashboard.gallery.removePhoto": "Supprimer la photo",
   "dashboard.multiServiceBanner": "💡 Tu as {{count}} services actifs — clique sur les boutons ci-dessus pour passer de l'un à l'autre",
+  "dashboard.pendingApproval": "⏳ Ton profil est en cours de validation. Il apparaîtra sur le site une fois approuvé par un administrateur.",
+  "dashboard.rejectedApproval": "Ton profil n'a pas été approuvé. Contacte-nous pour plus d'informations.",
   "dashboard.gallery.maxSize": "(max 2 Mo)",
   "dashboard.gallery.uploadSuccess": "Photo ajoutée à la galerie",
   "dashboard.gallery.deleteSuccess": "Photo supprimée",

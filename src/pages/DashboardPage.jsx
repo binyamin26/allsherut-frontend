@@ -1642,6 +1642,18 @@ const galleryImages = (() => {
                 </div>
               )}
 
+              {userData?.role === 'provider' && userData?.providerProfile?.verification_status === 'pending' && (
+                <div className="multi-service-banner">
+                  <span>{t('dashboard.pendingApproval')}</span>
+                </div>
+              )}
+
+              {userData?.role === 'provider' && userData?.providerProfile?.verification_status === 'rejected' && (
+                <div className="rejected-approval-banner">
+                  <span>{t('dashboard.rejectedApproval')}</span>
+                </div>
+              )}
+
 {userData?.role === 'provider' && (
   <div className="provider-info-card">
     
