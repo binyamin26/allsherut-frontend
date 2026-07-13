@@ -11,7 +11,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { translateValue, translateAndJoin, translateArrayFromMultipleCategories } from '../utils/translationMapper';
 import { TUTORING_SUBCATEGORIES } from '../data/subcategoriesData';
 import {
-  MapPin, Clock, Phone, Mail, CheckCircle, Award,
+  MapPin, Clock, Phone, Mail, Award,
   Calendar, MessageCircle, ThumbsUp, User, Shield, Heart,
   ChevronLeft, Send, AlertCircle,
   Wrench, HardHat, Snowflake, Palette, RotateCcw, Sofa,
@@ -1720,12 +1720,6 @@ const handleContact = () => {
           style={{ background: getAvatarGradient(provider.name) }}
         >
           {getInitial(provider.name)}
-        </div>
-      )}
-
-      {provider.verified && (
-        <div className="verified-badge">
-          <CheckCircle size={20} />
         </div>
       )}
     </div>
