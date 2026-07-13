@@ -2161,7 +2161,7 @@
   "success.benefits.ratingSystem": "Rating system to build your reputation",
   "success.whatYouGot": "What you got:",
   "success.nextSteps": "Next steps:",
-  "success.profileReady": "Your profile is ready and active! Clients can now find you and contact you directly.",
+  "success.profileReady": "Your profile has been submitted and is under review. It will be visible to clients once approved by our team.",
   "success.autoClose": "This window will close automatically in a few seconds...",
   "success.recruitment.title": "🎉 Your listing is live!",
   "success.recruitment.subtitle": "Hello {userName}, your job listing for {serviceType} has been successfully published",

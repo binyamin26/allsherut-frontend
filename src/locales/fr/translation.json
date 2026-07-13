@@ -2166,7 +2166,7 @@
   "success.benefits.ratingSystem": "Système d'évaluations pour bâtir votre réputation",
   "success.whatYouGot": "Ce que vous avez reçu :",
   "success.nextSteps": "Prochaines étapes :",
-  "success.profileReady": "Votre profil est prêt et actif ! Les clients peuvent maintenant vous trouver et vous contacter directement.",
+  "success.profileReady": "Votre profil a été soumis et est en cours de validation. Il sera visible par les clients une fois approuvé par notre équipe.",
   "success.autoClose": "Cette fenêtre se fermera automatiquement dans quelques secondes...",
   "success.recruitment.title": "🎉 Votre annonce est publiée !",
   "success.recruitment.subtitle": "Bonjour {userName}, votre offre d'emploi en {serviceType} a été publiée avec succès",
