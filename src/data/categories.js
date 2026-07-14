@@ -143,7 +143,7 @@ export const SERVICES_META = {
   event_decoration:   { image: '/images/deco.jpg',            href: '/services/event-decoration',   nameKey: 'services.event_decoration' },
   event_entertainment:{ image: '/images/fetes1.jpg',          href: '/services/event-entertainment',nameKey: 'services.event_entertainment' },
   dj:                 { image: '/images/DJ.jpg',              href: '/services/dj',                 nameKey: 'services.dj' },
-  private_chef:       { image: '/images/logo chef.jpg',       href: '/services/private-chef',       nameKey: 'services.private_chef' },
+  private_chef:       { image: '/images/chef prati.jpg',      href: '/services/private-chef',       nameKey: 'services.private_chef' },
   catering:           { image: '/images/traiteur.jpg',        href: '/services/catering',            nameKey: 'services.catering' },
   pastry:             { image: '/images/patisserie.jpg',      href: '/services/pastry',              nameKey: 'services.pastry' },
   photographer:       { image: '/images/photographe1.jpg',    href: '/services/photographer',       nameKey: 'services.photographer' },

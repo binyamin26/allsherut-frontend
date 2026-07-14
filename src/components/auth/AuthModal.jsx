@@ -171,7 +171,7 @@ const services = [
   { key: 'event_decoration', name: t('services.event_decoration'), image: '/images/deco.jpg', gradient: 'event_decoration-gradient' },
   { key: 'event_entertainment', name: t('services.event_entertainment'), image: '/images/fetes1.jpg', gradient: 'event_entertainment-gradient' },
   { key: 'dj', name: t('services.dj'), image: '/images/DJ.jpg', gradient: 'event_entertainment-gradient' },
-  { key: 'private_chef', name: t('services.private_chef'), image: '/images/logo chef.jpg', gradient: 'private_chef-gradient' },
+  { key: 'private_chef', name: t('services.private_chef'), image: '/images/chef prati.jpg', gradient: 'private_chef-gradient' },
   { key: 'catering', name: t('services.catering'), image: '/images/traiteur.jpg', gradient: 'catering-gradient' },
   { key: 'pastry', name: t('services.pastry'), image: '/images/patisserie.jpg', gradient: 'pastry-gradient' },
   { key: 'photographer', name: t('services.photographer'), image: '/images/photographe.jpg', gradient: 'photographer-gradient' },
