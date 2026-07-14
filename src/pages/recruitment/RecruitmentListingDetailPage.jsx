@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext';
+import Reveal from '../../components/common/Reveal';
 
 const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
@@ -152,7 +153,7 @@ const RecruitmentListingDetailPage = () => {
         <div className="rdp-hero-card">
 
           <div className="rdp-hero-body">
-            <h1 className="rdp-hero-title">{serviceLabel}</h1>
+            <Reveal as="h1" onLoad delay={0} direction="down" className="rdp-hero-title">{serviceLabel}</Reveal>
           </div>
 
 
@@ -302,16 +303,17 @@ const RecruitmentListingDetailPage = () => {
       {similar.length > 0 && (
         <div className="rdp-sim-section">
           <div className="rdp-sim-inner">
-            <h2 className="rdp-sim-heading">{t('recruitment.detail.similarOffers', 'מודעות דומות')}</h2>
+            <Reveal as="h2" direction="down" className="rdp-sim-heading">{t('recruitment.detail.similarOffers', 'מודעות דומות')}</Reveal>
             <div className="rdp-sim-grid">
-              {similar.map(s => (
-                <SimilarCard
-                  key={s.id}
-                  listing={s}
-                  t={t}
-                  isRTL={isRTL}
-                  onNavigate={() => navigate(`/recruitment/listing/${s.id}`)}
-                />
+              {similar.map((s, index) => (
+                <Reveal as="div" key={s.id} delay={index * 100}>
+                  <SimilarCard
+                    listing={s}
+                    t={t}
+                    isRTL={isRTL}
+                    onNavigate={() => navigate(`/recruitment/listing/${s.id}`)}
+                  />
+                </Reveal>
               ))}
             </div>
           </div>

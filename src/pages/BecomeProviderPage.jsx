@@ -23,6 +23,7 @@ import {
 } from 'lucide-react';
 import AuthModal from '../components/auth/AuthModal';
 import { useAuth } from '../context/AuthContext';
+import Reveal from '../components/common/Reveal';
 
 const BecomeProviderPage = () => {
   const [showAuthModal, setShowAuthModal] = useState(false);
@@ -56,7 +57,7 @@ const BecomeProviderPage = () => {
       color: 'from-cyan-500 to-blue-600'
     },
     {
-      key: 'gardening', 
+      key: 'gardening',
       name: 'גינון',
       icon: Scissors,
       description: 'עיצוב וטיפוח גינות',
@@ -148,22 +149,22 @@ const BecomeProviderPage = () => {
         <div className="container">
           <div className="hero-content">
             <div className="hero-text">
-              <div className="hero-badge">
+              <Reveal as="div" onLoad delay={0} className="hero-badge">
                 <Award size={20} />
                 <span>הצטרף לספקי השירות המובילים</span>
-              </div>
-              
-              <h1 className="hero-title">
+              </Reveal>
+
+              <Reveal as="h1" onLoad delay={100} direction="down" className="hero-title">
                 הפוך את הכישורים שלך
                 <span className="text-gradient"> לעסק משתלם</span>
-              </h1>
-              
-              <p className="hero-description">
+              </Reveal>
+
+              <Reveal as="p" onLoad delay={200} className="hero-description">
                 הצטרף ל-AllSherut והתחל להרוויח כסף מהכישורים שלך.
                 אלפי לקוחות מחפשים ספקי שירות איכותיים כמוך.
-              </p>
+              </Reveal>
 
-              <div className="hero-stats">
+              <Reveal as="div" onLoad delay={300} className="hero-stats">
                 <div className="stat-item">
                   <div className="stat-number">10,000+</div>
                   <div className="stat-label">לקוחות פעילים</div>
@@ -176,10 +177,10 @@ const BecomeProviderPage = () => {
                   <div className="stat-number">4.8★</div>
                   <div className="stat-label">דירוג ממוצע</div>
                 </div>
-              </div>
+              </Reveal>
 
-              <div className="hero-actions">
-                <button 
+              <Reveal as="div" onLoad delay={400} className="hero-actions">
+                <button
                   className="btn btn-primary btn-large"
                   onClick={() => setShowAuthModal(true)}
                 >
@@ -189,12 +190,12 @@ const BecomeProviderPage = () => {
                 <Link to="/about" className="btn btn-secondary btn-large">
                   איך זה עובד?
                 </Link>
-              </div>
+              </Reveal>
             </div>
 
-            <div className="hero-image">
-              <img 
-                src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=600&h=400&fit=crop" 
+            <Reveal as="div" onLoad delay={200} className="hero-image">
+              <img
+                src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=600&h=400&fit=crop"
                 alt="ספק שירות מקצועי"
               />
               <div className="image-overlay">
@@ -203,7 +204,7 @@ const BecomeProviderPage = () => {
                   <span>מאומתים ובטוחים</span>
                 </div>
               </div>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -212,18 +213,20 @@ const BecomeProviderPage = () => {
       <section className="services-showcase">
         <div className="container">
           <div className="section-header">
-            <h2 className="section-title">בחר את התחום שלך</h2>
-            <p className="section-subtitle">
+            <Reveal as="h2" direction="down" className="section-title">בחר את התחום שלך</Reveal>
+            <Reveal as="p" delay={100} className="section-subtitle">
               כל תחום מציע הזדמנויות רווח שונות. בחר את התחום שמתאים לך ביותר.
-            </p>
+            </Reveal>
           </div>
 
           <div className="services-grid">
-            {services.map((service) => {
+            {services.map((service, index) => {
               const ServiceIcon = service.icon;
               return (
-                <div 
-                  key={service.key} 
+                <Reveal
+                  as="div"
+                  key={service.key}
+                  delay={(index % 4) * 100}
                   className={`service-card ${selectedService === service.key ? 'selected' : ''}`}
                   onClick={() => handleServiceSelect(service.key)}
                 >
@@ -234,20 +237,20 @@ const BecomeProviderPage = () => {
 
                   <div className="service-content">
                     <p className="service-description">{service.description}</p>
-                    
+
                     <div className="service-stats">
                       <div className="service-stat">
                         <DollarSign size={16} />
                         <span className="stat-label">הכנסה ממוצעת</span>
                         <span className="stat-value">{service.avgIncome}</span>
                       </div>
-                      
+
                       <div className="service-stat">
                         <TrendingUp size={16} />
                         <span className="stat-label">ביקוש</span>
                         <span className="stat-value">{service.demand}</span>
                       </div>
-                      
+
                       <div className="service-stat">
                         <Clock size={16} />
                         <span className="stat-label">גמישות</span>
@@ -264,8 +267,8 @@ const BecomeProviderPage = () => {
                     <div className="service-benefits">
                       <h4>יתרונות:</h4>
                       <ul>
-                        {service.benefits.map((benefit, index) => (
-                          <li key={index}>
+                        {service.benefits.map((benefit, benefitIndex) => (
+                          <li key={benefitIndex}>
                             <CheckCircle size={14} />
                             {benefit}
                           </li>
@@ -273,7 +276,7 @@ const BecomeProviderPage = () => {
                       </ul>
                     </div>
 
-                    <button 
+                    <button
                       className="service-select-btn"
                       onClick={() => handleServiceSelect(service.key)}
                     >
@@ -281,7 +284,7 @@ const BecomeProviderPage = () => {
                       בחר שירות זה
                     </button>
                   </div>
-                </div>
+                </Reveal>
               );
             })}
           </div>
@@ -292,78 +295,78 @@ const BecomeProviderPage = () => {
       <section className="why-choose-us">
         <div className="container">
           <div className="section-header">
-            <h2 className="section-title">למה לבחור ב-AllSherut?</h2>
-            <p className="section-subtitle">
+            <Reveal as="h2" direction="down" className="section-title">למה לבחור ב-AllSherut?</Reveal>
+            <Reveal as="p" delay={100} className="section-subtitle">
               אנחנו הפלטפורמה המובילה לספקי שירות בישראל
-            </p>
+            </Reveal>
           </div>
 
           <div className="benefits-grid">
-            <div className="benefit-card">
+            <Reveal as="div" delay={0} className="benefit-card">
               <div className="benefit-icon">
                 <Shield size={32} />
               </div>
               <h3>בטוח ומוגן</h3>
               <p>
-                כל הספקים עוברים אימות זהות וביקורת. 
+                כל הספקים עוברים אימות זהות וביקורת.
                 הלקוחות שלנו מאומתים ובטוחים.
               </p>
-            </div>
+            </Reveal>
 
-            <div className="benefit-card">
+            <Reveal as="div" delay={100} className="benefit-card">
               <div className="benefit-icon">
                 <Users size={32} />
               </div>
               <h3>קהילה תומכת</h3>
               <p>
-                קבלת עזרה מקהילת ספקי השירות שלנו, 
+                קבלת עזרה מקהילת ספקי השירות שלנו,
                 עצות ותמיכה מקצועית.
               </p>
-            </div>
+            </Reveal>
 
-            <div className="benefit-card">
+            <Reveal as="div" delay={200} className="benefit-card">
               <div className="benefit-icon">
                 <DollarSign size={32} />
               </div>
               <h3>הכנסה יציבה</h3>
               <p>
-                ממוצע של ₪2,500 בחודש לספקים פעילים. 
+                ממוצע של ₪2,500 בחודש לספקים פעילים.
                 תשלומים מהירים וביטוחים.
               </p>
-            </div>
+            </Reveal>
 
-            <div className="benefit-card">
+            <Reveal as="div" delay={0} className="benefit-card">
               <div className="benefit-icon">
                 <Calendar size={32} />
               </div>
               <h3>גמישות מלאה</h3>
               <p>
-                עבוד מתי שמתאים לך. אתה קובע את 
+                עבוד מתי שמתאים לך. אתה קובע את
                 השעות, המחירים וזמינותך.
               </p>
-            </div>
+            </Reveal>
 
-            <div className="benefit-card">
+            <Reveal as="div" delay={100} className="benefit-card">
               <div className="benefit-icon">
                 <Star size={32} />
               </div>
               <h3>בניית מוניטין</h3>
               <p>
-                מערכת ביקורות שעוזרת לך לבנות מוניטין 
+                מערכת ביקורות שעוזרת לך לבנות מוניטין
                 ולהגדיל את ההכנסות שלך.
               </p>
-            </div>
+            </Reveal>
 
-            <div className="benefit-card">
+            <Reveal as="div" delay={200} className="benefit-card">
               <div className="benefit-icon">
                 <Phone size={32} />
               </div>
               <h3>תמיכה 24/7</h3>
               <p>
-                תמיכה טכנית ומקצועית זמינה תמיד. 
+                תמיכה טכנית ומקצועית זמינה תמיד.
                 אנחנו כאן כדי לעזור לך להצליח.
               </p>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -372,56 +375,56 @@ const BecomeProviderPage = () => {
       <section className="how-it-works">
         <div className="container">
           <div className="section-header">
-            <h2 className="section-title">איך זה עובד?</h2>
-            <p className="section-subtitle">
+            <Reveal as="h2" direction="down" className="section-title">איך זה עובד?</Reveal>
+            <Reveal as="p" delay={100} className="section-subtitle">
               4 צעדים פשוטים להתחיל להרוויח כסף
-            </p>
+            </Reveal>
           </div>
 
           <div className="steps-container">
-            <div className="step-item">
+            <Reveal as="div" delay={0} className="step-item">
               <div className="step-number">1</div>
               <div className="step-content">
                 <h3>הרשם בחינם</h3>
                 <p>מלא פרטים בסיסיים ובחר את תחום השירות שלך</p>
               </div>
-            </div>
+            </Reveal>
 
             <div className="step-connector">
               <ArrowRight size={24} />
             </div>
 
-            <div className="step-item">
+            <Reveal as="div" delay={100} className="step-item">
               <div className="step-number">2</div>
               <div className="step-content">
                 <h3>בנה פרופיל</h3>
                 <p>הוסף תמונות, תיאור ופרטי זמינות. קבל אימות זהות.</p>
               </div>
-            </div>
+            </Reveal>
 
             <div className="step-connector">
               <ArrowRight size={24} />
             </div>
 
-            <div className="step-item">
+            <Reveal as="div" delay={200} className="step-item">
               <div className="step-number">3</div>
               <div className="step-content">
                 <h3>קבל פניות</h3>
                 <p>לקוחות יוכלו לראות אותך ולפנות אליך ישירות</p>
               </div>
-            </div>
+            </Reveal>
 
             <div className="step-connector">
               <ArrowRight size={24} />
             </div>
 
-            <div className="step-item">
+            <Reveal as="div" delay={300} className="step-item">
               <div className="step-number">4</div>
               <div className="step-content">
                 <h3>התחל להרוויח</h3>
                 <p>קבל תשלומים בטוחים ובנה מוניטין מקצועי</p>
               </div>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -430,17 +433,17 @@ const BecomeProviderPage = () => {
       <section className="success-stories">
         <div className="container">
           <div className="section-header">
-            <h2 className="section-title">סיפורי הצלחה</h2>
-            <p className="section-subtitle">
+            <Reveal as="h2" direction="down" className="section-title">סיפורי הצלחה</Reveal>
+            <Reveal as="p" delay={100} className="section-subtitle">
               ספקי שירות שהצליחו איתנו
-            </p>
+            </Reveal>
           </div>
 
           <div className="stories-grid">
-            <div className="story-card">
+            <Reveal as="div" delay={0} className="story-card">
               <div className="story-header">
-                <img 
-                  src="https://images.unsplash.com/photo-1494790108755-2616b612b647?w=80&h=80&fit=crop&crop=face" 
+                <img
+                  src="https://images.unsplash.com/photo-1494790108755-2616b612b647?w=80&h=80&fit=crop&crop=face"
                   alt="שרה"
                 />
                 <div>
@@ -463,12 +466,12 @@ const BecomeProviderPage = () => {
                   <span>127 ביקורות</span>
                 </div>
               </div>
-            </div>
+            </Reveal>
 
-            <div className="story-card">
+            <Reveal as="div" delay={100} className="story-card">
               <div className="story-header">
-                <img 
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" 
+                <img
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face"
                   alt="דוד"
                 />
                 <div>
@@ -491,12 +494,12 @@ const BecomeProviderPage = () => {
                   <span>95 ביקורות</span>
                 </div>
               </div>
-            </div>
+            </Reveal>
 
-            <div className="story-card">
+            <Reveal as="div" delay={200} className="story-card">
               <div className="story-header">
-                <img 
-                  src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face" 
+                <img
+                  src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face"
                   alt="מירי"
                 />
                 <div>
@@ -519,7 +522,7 @@ const BecomeProviderPage = () => {
                   <span>156 ביקורות</span>
                 </div>
               </div>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -528,57 +531,57 @@ const BecomeProviderPage = () => {
       <section className="faq-section">
         <div className="container">
           <div className="section-header">
-            <h2 className="section-title">שאלות נפוצות</h2>
+            <Reveal as="h2" direction="down" className="section-title">שאלות נפוצות</Reveal>
           </div>
 
           <div className="faq-grid">
-            <div className="faq-item">
+            <Reveal as="div" delay={0} className="faq-item">
               <h4>כמה זה עולה להצטרף?</h4>
               <p>
                 ההצטרפות חינמית לחלוטין. לבייביסיטר אין עמלה כלל - הלקוחות משלמים.
                 לשירותים אחרים יש חודש חינם, ואז ₪49/חודש.
               </p>
-            </div>
+            </Reveal>
 
-            <div className="faq-item">
+            <Reveal as="div" delay={100} className="faq-item">
               <h4>כמה זמן לוקח לקבל לקוחות?</h4>
               <p>
                 ספקים חדשים מקבלים בדרך כלל את הפנייה הראשונה תוך 48 שעות.
                 עם פרופיל מלא ותמונות איכותיות - עוד יותר מהר.
               </p>
-            </div>
+            </Reveal>
 
-            <div className="faq-item">
+            <Reveal as="div" delay={200} className="faq-item">
               <h4>איך מקבלים תשלומים?</h4>
               <p>
                 תשלומים מועברים ישירות לחשבון הבנק שלך כל יום ראשון.
                 תשלום מהיר, בטוח ושקוף.
               </p>
-            </div>
+            </Reveal>
 
-            <div className="faq-item">
+            <Reveal as="div" delay={0} className="faq-item">
               <h4>מה אם לקוח לא מרוצה?</h4>
               <p>
-                יש לנו מערכת בוררות מקצועית וביטוח מקיף. 
+                יש לנו מערכת בוררות מקצועית וביטוח מקיף.
                 בעיות נפתרות תוך 24 שעות.
               </p>
-            </div>
+            </Reveal>
 
-            <div className="faq-item">
+            <Reveal as="div" delay={100} className="faq-item">
               <h4>איך בונים מוניטין?</h4>
               <p>
-                עם כל עבודה מושלמת תקבל ביקורת. ביקורות חיוביות 
+                עם כל עבודה מושלמת תקבל ביקורת. ביקורות חיוביות
                 מעלות אותך בתוצאות החיפוש.
               </p>
-            </div>
+            </Reveal>
 
-            <div className="faq-item">
+            <Reveal as="div" delay={200} className="faq-item">
               <h4>אפשר לעבוד במספר תחומים?</h4>
               <p>
                 כן! אפשר להציע מספר שירותים באותו חשבון.
                 זה מגדיל את ההזדמנויות והלקוחות.
               </p>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -586,10 +589,10 @@ const BecomeProviderPage = () => {
       {/* CTA Section */}
       <section className="final-cta">
         <div className="container">
-          <div className="cta-content">
+          <Reveal as="div" className="cta-content">
             <h2>מוכן להתחיל?</h2>
             <p>הצטרף עכשיו לאלפי ספקי השירות המצליחים שלנו</p>
-            
+
             <div className="cta-features">
               <div className="cta-feature">
                 <CheckCircle size={20} />
@@ -605,7 +608,7 @@ const BecomeProviderPage = () => {
               </div>
             </div>
 
-            <button 
+            <button
               className="btn btn-primary btn-xl"
               onClick={() => setShowAuthModal(true)}
             >
@@ -616,7 +619,7 @@ const BecomeProviderPage = () => {
             <p className="cta-note">
               * ללא התחייבות, אפשר לבטל בכל עת
             </p>
-          </div>
+          </Reveal>
         </div>
       </section>
 

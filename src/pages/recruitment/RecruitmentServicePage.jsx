@@ -4,6 +4,7 @@ import { SlidersHorizontal, MapPin, ChevronDown, X } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import JobListingCard from '../../components/recruitment/JobListingCard';
 import LocationSelector from '../../components/LocationSelector';
+import Reveal from '../../components/common/Reveal';
 
 const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
@@ -160,13 +161,13 @@ const RecruitmentServicePage = () => {
       {/* Hero */}
       <div className="recruitment-hero">
         <div className="recruitment-hero-inner">
-          <div className="recruitment-hero-badge">{t('recruitment.pageTitle')}</div>
-          <span className="text-recruitment-service">{serviceLabel}</span>
-          <p className="recruitment-hero-subtitle">{t('recruitment.pageSubtitle')} {serviceLabel}</p>
+          <Reveal as="div" onLoad delay={0} className="recruitment-hero-badge">{t('recruitment.pageTitle')}</Reveal>
+          <Reveal as="span" onLoad delay={100} className="text-recruitment-service">{serviceLabel}</Reveal>
+          <Reveal as="p" onLoad delay={200} className="recruitment-hero-subtitle">{t('recruitment.pageSubtitle')} {serviceLabel}</Reveal>
           {!loading && (
-            <span className="recruitment-hero-count">
+            <Reveal as="span" onLoad delay={300} className="recruitment-hero-count">
               {total} {t(total === 1 ? 'recruitment.listing_one' : 'recruitment.listing_other')}
-            </span>
+            </Reveal>
           )}
         </div>
       </div>

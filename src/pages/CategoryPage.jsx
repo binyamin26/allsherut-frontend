@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { CATEGORY_DEFINITIONS, SERVICES_META } from '../data/categories';
 import SEO from '../components/common/SEO';
+import Reveal from '../components/common/Reveal';
 
 const CategoryPage = () => {
   const { slug } = useParams();
@@ -74,10 +75,10 @@ const CategoryPage = () => {
           </button>
 
           <div className="section-header">
-            <h1 className="section-title animate-fade-in-down">{categoryName}</h1>
-            <p className="hero-description text-center mb-16 animate-fade-in-up delay-100">
+            <Reveal as="h1" onLoad delay={0} direction="down" className="section-title">{categoryName}</Reveal>
+            <Reveal as="p" onLoad delay={100} className="hero-description text-center mb-16">
               {services.length} {t('homepage.services.subtitle', 'services disponibles')}
-            </p>
+            </Reveal>
           </div>
         </div>
 
@@ -92,9 +93,11 @@ const CategoryPage = () => {
             padding: '0 1.5rem 3rem',
           }}
         >
-          {services.map((service) => (
-            <Link
+          {services.map((service, index) => (
+            <Reveal
+              as={Link}
               key={service.id}
+              delay={(index % 4) * 100}
               to={buildServicePath(service.id.replace(/_/g, '-'))}
               className="service-card-image"
               style={{ display: 'block', borderRadius: '12px', overflow: 'hidden' }}
@@ -114,7 +117,7 @@ const CategoryPage = () => {
               <div className="service-name-overlay">
                 <h3>{t(service.nameKey)}</h3>
               </div>
-            </Link>
+            </Reveal>
           ))}
         </div>
       </section>
