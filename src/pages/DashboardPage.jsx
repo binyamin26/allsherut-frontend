@@ -1865,7 +1865,7 @@ const galleryImages = (() => {
     const isAutoPlaceholder = rawDescription && /^ספק\s+\S+\s+מקצועי$/.test(rawDescription.trim());
     const realDescription = isAutoPlaceholder ? '' : rawDescription;
     return (
-      <p style={{ color: realDescription ? '#374151' : '#9ca3af', lineHeight: '1.6', margin: 0 }}>
+      <p style={{ color: realDescription ? '#374151' : '#9ca3af', lineHeight: '1.6', margin: 0, whiteSpace: 'pre-line' }}>
         {realDescription || 'לא הוסף תיאור עדיין'}
       </p>
     );

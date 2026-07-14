@@ -382,7 +382,7 @@ const handleContact = () => {
           <h4 style={{ color: '#1f2937', fontWeight: '600', fontSize: '0.95rem', marginBottom: '0.4rem' }}>
             {t('provider.details.personalDescription')}
           </h4>
-          <p style={{ color: '#374151', lineHeight: '1.7', fontSize: '0.97rem' }}>
+          <p style={{ color: '#374151', lineHeight: '1.7', fontSize: '0.97rem', whiteSpace: 'pre-line' }}>
             {provider.description}
           </p>
         </div>
