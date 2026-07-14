@@ -1326,13 +1326,67 @@
   max-width: 640px;
 }
 
-/* Grille des services step 1 */
+/* Recherche + regroupement par catégorie (au-dessus de la grille) */
+.service-search-wrap {
+  position: relative;
+  margin-bottom: var(--space-4);
+}
+
+.service-search-icon {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  transform: translateY(-50%);
+  color: var(--neutral-400);
+  pointer-events: none;
+}
+
+.service-search-input {
+  width: 100%;
+  padding: 12px 44px 12px 14px;
+  border: 1px solid var(--neutral-200);
+  border-radius: var(--radius-xl);
+  font-size: var(--text-base);
+  direction: rtl;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.service-search-input:focus {
+  outline: none;
+  border-color: var(--primary-400);
+  box-shadow: 0 0 0 3px rgba(61, 113, 173, 0.15);
+}
+
+.service-category-group {
+  margin-bottom: var(--space-6);
+}
+
+.service-category-group:last-child {
+  margin-bottom: 0;
+}
+
+.service-category-title {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--neutral-500);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin: 0 0 var(--space-3);
+  direction: rtl;
+}
+
+.service-search-empty {
+  text-align: center;
+  color: var(--neutral-500);
+  padding: var(--space-6) 0;
+}
+
+/* Grille des services step 1 (l'espacement vertical est géré par
+   .service-category-group / .service-category-title désormais) */
 .service-selection {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--space-4);
-  margin-top: var(--space-6);
-  margin-bottom: var(--space-6);
   direction: rtl;
 }
 

@@ -1445,6 +1445,8 @@
   "auth.modal.loginSubtitle": "הכנס את פרטיך כדי להתחבר",
   "auth.modal.step2Subtitle": "השלם את פרטיך האישיים",
   "auth.selectService": "בחר סוג שירות",
+  "auth.searchServicePlaceholder": "חפש את המקצוע שלך...",
+  "auth.noServiceFound": "לא נמצא שירות תואם",
   "auth.processing": "מעבד...",
   "auth.continue": "המשך",
   "auth.alreadyHaveAccount": "כבר יש לך חשבון?",

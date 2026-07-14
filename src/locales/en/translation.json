@@ -1460,6 +1460,8 @@
   "auth.modal.loginSubtitle": "Enter your details to login",
   "auth.modal.step2Subtitle": "Complete your personal details",
   "auth.selectService": "Select service type",
+  "auth.searchServicePlaceholder": "Search for your profession...",
+  "auth.noServiceFound": "No matching service found",
   "auth.processing": "Processing...",
   "auth.continue": "Continue",
   "auth.alreadyHaveAccount": "Already have an account?",

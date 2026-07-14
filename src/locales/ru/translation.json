@@ -1443,6 +1443,8 @@
   "auth.modal.loginSubtitle": "Введите свои данные для входа",
   "auth.modal.step2Subtitle": "Заполните личные данные",
   "auth.selectService": "Выберите тип услуги",
+  "auth.searchServicePlaceholder": "Найдите вашу профессию...",
+  "auth.noServiceFound": "Услуга не найдена",
   "auth.processing": "Обработка...",
   "auth.continue": "Продолжить",
   "auth.alreadyHaveAccount": "Уже есть аккаунт?",

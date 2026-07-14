@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { X, Mail, Lock, User, Phone, Eye, EyeOff, Loader, Upload, CheckCircle, AlertCircle, Zap,
-  Wrench, Sparkles, Users, Briefcase, Layers } from 'lucide-react';
+  Wrench, Sparkles, Users, Briefcase, Layers, Search } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { getAllCities, getNeighborhoodsByCity } from '../../data/israelLocations.js';
@@ -10,7 +10,7 @@ import ServiceDetailsForm from '../services/ServiceDetailsForm';
 import RecruitmentForm from '../recruitment/RecruitmentForm';
 import { useLanguage } from '../../context/LanguageContext';
 import CustomDropdown from '../common/CustomDropdown';
-import { SERVICES_META } from '../../data/categories';
+import { SERVICES_META, CATEGORY_DEFINITIONS } from '../../data/categories';
 
 // Fonction de scroll automatique vers le premier champ en erreur
 const scrollToFirstError = (errors, currentStep = 1) => {
@@ -65,7 +65,7 @@ const scrollToFirstError = (errors, currentStep = 1) => {
 
 const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
   const navigate = useNavigate();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [mode, setMode] = useState(initialMode);
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
@@ -138,6 +138,8 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
     }
   };
 
+  const [serviceSearch, setServiceSearch] = useState('');
+
   const emailCheckTimeout = useRef(null);
   const phoneCheckTimeout = useRef(null);
   const passwordCheckTimeout = useRef(null);
@@ -194,6 +196,20 @@ const services = SERVICE_CARD_DEFS.map(({ key, icon, gradient }) => ({
   image: SERVICES_META[key]?.image,
   gradient
 }));
+
+// Regroupe les 35 services par catégorie (mêmes catégories que la page d'accueil)
+// et filtre selon la recherche, pour éviter une longue grille non-structurée.
+const normalizedServiceSearch = serviceSearch.trim().toLowerCase();
+const groupedServices = CATEGORY_DEFINITIONS
+  .map(category => ({
+    id: category.id,
+    title: category.names[language] || category.names.he,
+    items: services.filter(service =>
+      category.serviceIds.includes(service.key) &&
+      (!normalizedServiceSearch || service.name.toLowerCase().includes(normalizedServiceSearch))
+    )
+  }))
+  .filter(category => category.items.length > 0);
 
 
   useEffect(() => {
@@ -1799,29 +1815,50 @@ const renderWorkingAreasSection = () => {
             <form onSubmit={handleStep1Submit} className="auth-form" autoComplete="off">
               <div className="input-group">
                <label className="auth-form-label required">{t('auth.selectService')}</label>
-                <div className="service-selection">
-                  {services.map(service => (
-                    <button
-                      key={service.key}
-                      type="button"
-                      className={`service-btn ${formData.serviceType === service.key ? 'active' : ''}`}
-                      onClick={() => handleServiceChange(service.key)}
-                    >
-  {service.image ? (
-  <div className="service-card-image-wrapper">
-    <img src={service.image} alt={service.name} className="service-image" loading="lazy" />
-  </div>
-) : (
-  <div className={`service-icon-fallback ${service.gradient}`}>
-    <span style={{ fontSize: '48px' }}>{service.icon}</span>
-  </div>
-)}
-<div className="service-card-label">
-  <h3>{service.name}</h3>
-</div>
-                    </button>
-                  ))}
+
+                <div className="service-search-wrap">
+                  <Search size={18} className="service-search-icon" />
+                  <input
+                    type="text"
+                    className="service-search-input"
+                    placeholder={t('auth.searchServicePlaceholder')}
+                    value={serviceSearch}
+                    onChange={(e) => setServiceSearch(e.target.value)}
+                  />
                 </div>
+
+                {groupedServices.length === 0 ? (
+                  <p className="service-search-empty">{t('auth.noServiceFound')}</p>
+                ) : (
+                  groupedServices.map(category => (
+                    <div key={category.id} className="service-category-group">
+                      <h4 className="service-category-title">{category.title}</h4>
+                      <div className="service-selection">
+                        {category.items.map(service => (
+                          <button
+                            key={service.key}
+                            type="button"
+                            className={`service-btn ${formData.serviceType === service.key ? 'active' : ''}`}
+                            onClick={() => handleServiceChange(service.key)}
+                          >
+                            {service.image ? (
+                              <div className="service-card-image-wrapper">
+                                <img src={service.image} alt={service.name} className="service-image" loading="lazy" />
+                              </div>
+                            ) : (
+                              <div className={`service-icon-fallback ${service.gradient}`}>
+                                <span style={{ fontSize: '48px' }}>{service.icon}</span>
+                              </div>
+                            )}
+                            <div className="service-card-label">
+                              <h3>{service.name}</h3>
+                            </div>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  ))
+                )}
                 {errors.serviceType && <span className="error-text">{errors.serviceType}</span>}
               </div>
 

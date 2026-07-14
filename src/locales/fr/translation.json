@@ -1460,6 +1460,8 @@
   "auth.modal.loginSubtitle": "Entrez vos identifiants pour vous connecter",
   "auth.modal.step2Subtitle": "Complétez vos informations personnelles",
   "auth.selectService": "Sélectionner un type de service",
+  "auth.searchServicePlaceholder": "Recherchez votre métier...",
+  "auth.noServiceFound": "Aucun service correspondant",
   "auth.processing": "Traitement...",
   "auth.continue": "Continuer",
   "auth.alreadyHaveAccount": "Vous avez déjà un compte ?",

@@ -1146,8 +1146,4 @@
   .password-toggle {
     left: var(--space-3);
   }
-  
-  .service-selection {
-    grid-template-columns: 1fr;
-  }
 }
