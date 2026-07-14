@@ -213,6 +213,40 @@
 }
 
 /* ====================================
+   REVEAL — composant Reveal.jsx
+   Fondu + léger déplacement, contrôlé en JS (état "is-visible" ajouté par
+   IntersectionObserver ou au montage). Le délai de la cascade est posé en
+   inline style (transitionDelay) par le composant, pas ici.
+   ==================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  will-change: opacity, transform;
+}
+
+.reveal-down {
+  transform: translateY(-24px);
+}
+
+.reveal-none {
+  transform: none;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ====================================
    ANIMATION CLASSES
    ==================================== */
 

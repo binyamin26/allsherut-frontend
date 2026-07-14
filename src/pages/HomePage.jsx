@@ -16,6 +16,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import ServiceSearchBar from '../components/common/ServiceSearchBar';
 import { CATEGORY_DEFINITIONS } from '../data/categories';
+import Reveal from '../components/common/Reveal';
 
 const HomePage = () => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
@@ -59,18 +60,18 @@ const HomePage = () => {
         <div className="container">
           <div className="hero-content">
             <div className="hero-text">
-              <h1 className="hero-title animate-fade-in-down">
+              <Reveal as="h1" onLoad delay={0} direction="down" className="hero-title">
                 AllSherut – <span className="gradient-text">{t('homepage.hero.tagline')}</span>
-              </h1>
-              <p className="hero-description animate-fade-in-up delay-200" style={{ marginBottom: '0.5rem' }}>
+              </Reveal>
+              <Reveal as="p" onLoad delay={100} className="hero-description" style={{ marginBottom: '0.5rem' }}>
                 {t('homepage.hero.description1')}
-              </p>
+              </Reveal>
               {/* Search Bar */}
-              <div className="animate-fade-in-up delay-300" style={{ marginBottom: '1rem' }}>
+              <Reveal onLoad delay={200} style={{ marginBottom: '1rem' }}>
                 <ServiceSearchBar style={{ maxWidth: '350px', margin: 0 }} />
-              </div>
+              </Reveal>
             </div>
-            <div className="hero-visual animate-fade-in-up delay-200" style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', overflow: 'visible' }}>
+            <Reveal onLoad delay={100} className="hero-visual" style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', overflow: 'visible' }}>
               <img
                 src="/images/image-home-page.jpg"
                 alt="AllSherut"
@@ -84,7 +85,7 @@ const HomePage = () => {
                   WebkitMaskComposite: 'source-in',
                 }}
               />
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -93,14 +94,14 @@ const HomePage = () => {
       <section id="services" className="services-section">
         <div className="container">
           <div className="section-header">
-            <h2 className="section-title animate-fade-in-down">{t('homepage.services.title')}</h2>
-            <p className="hero-description text-center mb-16 animate-fade-in-up delay-100">
+            <Reveal as="h2" direction="down" className="section-title">{t('homepage.services.title')}</Reveal>
+            <Reveal as="p" delay={100} className="hero-description text-center mb-16">
               {t('homepage.services.subtitle')}
-            </p>
+            </Reveal>
           </div>
         </div>
 
-        <div className="services-carousel-container">
+        <Reveal as="div" delay={150} className="services-carousel-container">
           <Swiper
             modules={[Navigation]}
             navigation
@@ -133,21 +134,21 @@ const HomePage = () => {
               );
             })}
           </Swiper>
-        </div>
+        </Reveal>
       </section>
 
       {/* Section Clients */}
       <section className="section">
         <div className="container">
-          <h2 className="section-title animate-fade-in-up">
+          <Reveal as="h2" className="section-title">
             {t('homepage.clients.title')}
-          </h2>
-          <p className="hero-description text-center mb-12 animate-fade-in-up delay-100">
+          </Reveal>
+          <Reveal as="p" delay={100} className="hero-description text-center mb-12">
             {t('homepage.clients.subtitle')}
-          </p>
+          </Reveal>
 
           <div className="features-grid">
-            <div className="feature-card animate-fade-in delay-100">
+            <Reveal as="div" delay={0} className="feature-card">
               <div className="feature-icon">
                 <Star size={24} />
               </div>
@@ -155,9 +156,9 @@ const HomePage = () => {
               <p className="feature-description">
                 {t('homepage.features.verified.description')}
               </p>
-            </div>
+            </Reveal>
 
-            <div className="feature-card animate-fade-in delay-200">
+            <Reveal as="div" delay={100} className="feature-card">
               <div className="feature-icon">
                 <Search size={24} />
               </div>
@@ -165,9 +166,9 @@ const HomePage = () => {
               <p className="feature-description">
                 {t('homepage.features.centralized.description')}
               </p>
-            </div>
+            </Reveal>
 
-            <div className="feature-card animate-fade-in delay-300">
+            <Reveal as="div" delay={200} className="feature-card">
               <div className="feature-icon">
                 <Users size={24} />
               </div>
@@ -175,9 +176,9 @@ const HomePage = () => {
               <p className="feature-description">
                 {t('homepage.features.personal.description')}
               </p>
-            </div>
+            </Reveal>
 
-            <div className="feature-card animate-fade-in delay-400">
+            <Reveal as="div" delay={300} className="feature-card">
               <div className="feature-icon">
                 <Shield size={24} />
               </div>
@@ -185,7 +186,7 @@ const HomePage = () => {
               <p className="feature-description">
                 {t('homepage.features.transparency.description')}
               </p>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -194,15 +195,15 @@ const HomePage = () => {
       {/* Section Prestataires */}
       <section className="section" style={{ background: 'linear-gradient(135deg, var(--primary-25) 0%, var(--accent-25) 100%)' }}>
         <div className="container">
-          <h2 className="section-title animate-fade-in-up">
+          <Reveal as="h2" className="section-title">
             {t('homepage.providers.title')}
-          </h2>
-          <p className="hero-description text-center mb-12 animate-fade-in-up delay-100">
+          </Reveal>
+          <Reveal as="p" delay={100} className="hero-description text-center mb-12">
             {t('homepage.providers.subtitle')}
-          </p>
+          </Reveal>
 
           <div className="features-grid">
-            <div className="feature-card animate-fade-in delay-100">
+            <Reveal as="div" delay={0} className="feature-card">
               <div className="feature-icon">
                 <Users size={24} />
               </div>
@@ -210,9 +211,9 @@ const HomePage = () => {
               <p className="feature-description">
                 {t('homepage.providers.profile.description')}
               </p>
-            </div>
+            </Reveal>
 
-            <div className="feature-card animate-fade-in delay-200">
+            <Reveal as="div" delay={100} className="feature-card">
               <div className="feature-icon">
                 <TrendingUp size={24} />
               </div>
@@ -220,9 +221,9 @@ const HomePage = () => {
               <p className="feature-description">
                 {t('homepage.providers.growth.description')}
               </p>
-            </div>
+            </Reveal>
 
-            <div className="feature-card animate-fade-in delay-300">
+            <Reveal as="div" delay={200} className="feature-card">
               <div className="feature-icon">
                 <Award size={24} />
               </div>
@@ -230,9 +231,9 @@ const HomePage = () => {
               <p className="feature-description">
                 {t('homepage.providers.reputation.description')}
               </p>
-            </div>
+            </Reveal>
 
-            <div className="feature-card animate-fade-in delay-400">
+            <Reveal as="div" delay={300} className="feature-card">
               <div className="feature-icon">
                 <Clock size={24} />
               </div>
@@ -240,7 +241,7 @@ const HomePage = () => {
               <p className="feature-description">
                 {t('homepage.providers.management.description')}
               </p>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -249,14 +250,14 @@ const HomePage = () => {
       <section className="hero-section" style={{ marginTop: 0, marginBottom: 0, paddingTop: 'var(--space-16)', paddingBottom: 'var(--space-16)' }}>
         <div className="container">
           <div className="cta-content text-center">
-            <h2 className="hero-title animate-fade-in-down">{t('homepage.cta.title')}</h2>
-            <p className="hero-description animate-fade-in-up delay-200">
+            <Reveal as="h2" direction="down" className="hero-title">{t('homepage.cta.title')}</Reveal>
+            <Reveal as="p" delay={100} className="hero-description">
               {t('homepage.cta.description')}
-            </p>
+            </Reveal>
 
             {/* Boutons visibles UNIQUEMENT si NON connecté */}
             {!isAuthenticated && (
-              <div className="cta-buttons animate-fade-in-up delay-300">
+              <Reveal delay={200} className="cta-buttons">
                 <button
                   className="btn btn-primary btn-large"
                   onClick={() => openAuthModal('register')}
@@ -269,10 +270,10 @@ const HomePage = () => {
                 >
                   {t('homepage.cta.login')}
                 </button>
-              </div>
+              </Reveal>
             )}
 
-            <div className="cta-features animate-fade-in-up delay-400">
+            <Reveal delay={300} className="cta-features">
               <div className="cta-feature">
                 <CheckCircle size={20} />
                 <span>{t('homepage.cta.features.free')}</span>
@@ -285,7 +286,7 @@ const HomePage = () => {
                 <CheckCircle size={20} />
                 <span>{t('homepage.cta.features.support')}</span>
               </div>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
