@@ -579,11 +579,13 @@
   .role-selection {
     grid-template-columns: 1fr;
   }
-  
+
+  /* 1 colonne sur vrai mobile — voir la règle définitive plus bas
+     (section "CARTES SERVICES STEP 1") pour le détail. */
   .service-selection {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
   }
-  
+
   .service-btn {
     padding: var(--space-3);
   }
@@ -1430,6 +1432,16 @@
   .service-btn.active {
     border: none !important;
     border-color: transparent !important;
+  }
+}
+
+/* VRAI MOBILE : 1 colonne pleine largeur — 2 colonnes devient trop petit
+   une fois la modal repassée à calc(100% - 2rem) (cf. @media max-width:640px
+   sur .modal-content.auth-modal). Les catégories/recherche limitent déjà le
+   nombre de cartes visibles par section, donc pas de souci de scroll. */
+@media (max-width: 640px) {
+  .service-selection {
+    grid-template-columns: 1fr;
   }
 }
 

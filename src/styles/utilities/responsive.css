@@ -1089,11 +1089,7 @@
   .role-selection {
     grid-template-columns: 1fr;
   }
-  
-  .service-selection {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
+
   .service-btn {
     padding: var(--space-3);
   }

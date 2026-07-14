@@ -11,6 +11,7 @@ import RecruitmentForm from '../recruitment/RecruitmentForm';
 import { useLanguage } from '../../context/LanguageContext';
 import CustomDropdown from '../common/CustomDropdown';
 import { SERVICES_META, CATEGORY_DEFINITIONS } from '../../data/categories';
+import { SERVICE_SEARCH_TERMS } from '../../data/serviceSearchTerms';
 
 // Fonction de scroll automatique vers le premier champ en erreur
 const scrollToFirstError = (errors, currentStep = 1) => {
@@ -199,14 +200,20 @@ const services = SERVICE_CARD_DEFS.map(({ key, icon, gradient }) => ({
 
 // Regroupe les 35 services par catégorie (mêmes catégories que la page d'accueil)
 // et filtre selon la recherche, pour éviter une longue grille non-structurée.
+// La recherche matche sur le nom du service dans TOUTES les langues du site
+// (pas seulement la langue active), pour que taper "chef" ou "טבח" marche pareil.
 const normalizedServiceSearch = serviceSearch.trim().toLowerCase();
+const matchesSearch = (key) => {
+  if (!normalizedServiceSearch) return true;
+  const terms = SERVICE_SEARCH_TERMS[key] || [];
+  return terms.some(term => term.toLowerCase().includes(normalizedServiceSearch));
+};
 const groupedServices = CATEGORY_DEFINITIONS
   .map(category => ({
     id: category.id,
     title: category.names[language] || category.names.he,
     items: services.filter(service =>
-      category.serviceIds.includes(service.key) &&
-      (!normalizedServiceSearch || service.name.toLowerCase().includes(normalizedServiceSearch))
+      category.serviceIds.includes(service.key) && matchesSearch(service.key)
     )
   }))
   .filter(category => category.items.length > 0);
