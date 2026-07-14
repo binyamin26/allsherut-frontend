@@ -10,6 +10,7 @@ import ServiceDetailsForm from '../services/ServiceDetailsForm';
 import RecruitmentForm from '../recruitment/RecruitmentForm';
 import { useLanguage } from '../../context/LanguageContext';
 import CustomDropdown from '../common/CustomDropdown';
+import { SERVICES_META } from '../../data/categories';
 
 // Fonction de scroll automatique vers le premier champ en erreur
 const scrollToFirstError = (errors, currentStep = 1) => {
@@ -146,43 +147,53 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
 
   const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
-const services = [
-  { key: 'plumbing', name: t('services.plumbing'), image: '/images/plombier.jpg', gradient: 'plumbing-gradient' },
-  { key: 'electrician', name: t('services.electrician'), image: '/images/electrician.jpg', gradient: 'electrician-gradient' },
-  { key: 'locksmith', name: t('services.locksmith'), image: '/images/serrure.png', gradient: 'locksmith-gradient' },
-  { key: 'painting', name: t('services.painting'), image: '/images/peinture.jpg', gradient: 'painting-gradient' },
-  { key: 'air_conditioning', name: t('services.air_conditioning'), image: '/images/clim.png', gradient: 'air_conditioning-gradient' },
-  { key: 'drywall', name: t('services.drywall'), image: '/images/guevess.jpg', gradient: 'drywall-gradient' },
-  { key: 'aluminum', name: t('services.aluminum'), image: '/images/aluminium.png', gradient: 'aluminum-gradient' },
-  { key: 'metalwork', name: t('services.metalwork'), image: '/images/fer.jpg', gradient: 'metalwork-gradient' },
-  { key: 'glass_works', name: t('services.glass_works'), image: '/images/verre.png', gradient: 'glass_works-gradient' },
-  { key: 'gas_technician', name: t('services.gas_technician'), image: '/images/gaz.jpg', gradient: 'gas_technician-gradient' },
-  { key: 'waterproofing', name: t('services.waterproofing'), image: '/images/itoum.jpg', gradient: 'waterproofing-gradient' },
-  { key: 'carpentry', name: t('services.carpentry'), image: '/images/menuisier.png', gradient: 'carpentry-gradient' },
-  { key: 'handyman', name: t('services.handyman'), image: '/images/indimane.jpg', gradient: 'handyman-gradient' },
-  { key: 'contractor', name: t('services.contractor'), image: '/images/kablan.jpg', gradient: 'contractor-gradient' },
-  { key: 'moving', name: t('services.moving'), image: '/images/demenagement.jpg', gradient: 'moving-gradient' },
-  { key: 'gardening', name: t('services.gardening'), image: '/images/jardinage.jpg', gradient: 'gardening-gradient' },
-  { key: 'pest_control', name: t('services.pest_control'), image: '/images/desinctisation.jpg', gradient: 'pest_control-gradient' },
-  { key: 'cleaning', name: t('services.cleaning'), image: '/images/nikayon.jpg', gradient: 'cleaning-gradient' },
-  { key: 'laundry', name: t('services.laundry'), image: '/images/kvissa.jpg', gradient: 'laundry-gradient' },
-  { key: 'property_management', name: t('services.property_management'), image: '/images/nihoul-dirot.jpg', gradient: 'property_management-gradient' },
-  { key: 'home_organization', name: t('services.home_organization'), image: '/images/rangement.jpg', gradient: 'home_organization-gradient' },
-  { key: 'event_decoration', name: t('services.event_decoration'), image: '/images/deco.jpg', gradient: 'event_decoration-gradient' },
-  { key: 'event_entertainment', name: t('services.event_entertainment'), image: '/images/fetes1.jpg', gradient: 'event_entertainment-gradient' },
-  { key: 'dj', name: t('services.dj'), image: '/images/DJ.jpg', gradient: 'event_entertainment-gradient' },
-  { key: 'private_chef', name: t('services.private_chef'), image: '/images/chef prati.jpg', gradient: 'private_chef-gradient' },
-  { key: 'catering', name: t('services.catering'), image: '/images/traiteur.jpg', gradient: 'catering-gradient' },
-  { key: 'pastry', name: t('services.pastry'), image: '/images/patisserie.jpg', gradient: 'pastry-gradient' },
-  { key: 'photographer', name: t('services.photographer'), image: '/images/photographe.jpg', gradient: 'photographer-gradient' },
-  { key: 'tutoring', name: t('services.tutoring'), icon: '📚', image: '/images/tutoring.png', gradient: 'tutoring-gradient' },
-  { key: 'sports_activities', name: t('services.sports_activities'), icon: '⚽', image: '/images/sport.jpg', gradient: 'sports_activities-gradient' },
-  { key: 'babysitting', name: t('services.babysitting'), icon: '👶', image: '/images/babysite.jpg', gradient: 'babysitting-gradient' },
-  { key: 'petcare', name: t('services.petcare'), image: '/images/chien.jpg', gradient: 'petcare-gradient' },
-  { key: 'eldercare', name: t('services.eldercare'), icon: '👵', image: '/images/eldercare.jpg', gradient: 'eldercare-gradient' },
-  { key: 'mechanic', name: t('services.mechanic'), image: '/images/garagiste.jpg', gradient: 'mechanic-gradient' },
-  { key: 'driver', name: t('services.driver'), image: '/images/driver.jpg', gradient: 'driver-gradient' }
+const SERVICE_CARD_DEFS = [
+  { key: 'plumbing', gradient: 'plumbing-gradient' },
+  { key: 'electrician', gradient: 'electrician-gradient' },
+  { key: 'locksmith', gradient: 'locksmith-gradient' },
+  { key: 'painting', gradient: 'painting-gradient' },
+  { key: 'air_conditioning', gradient: 'air_conditioning-gradient' },
+  { key: 'drywall', gradient: 'drywall-gradient' },
+  { key: 'aluminum', gradient: 'aluminum-gradient' },
+  { key: 'metalwork', gradient: 'metalwork-gradient' },
+  { key: 'glass_works', gradient: 'glass_works-gradient' },
+  { key: 'gas_technician', gradient: 'gas_technician-gradient' },
+  { key: 'waterproofing', gradient: 'waterproofing-gradient' },
+  { key: 'carpentry', gradient: 'carpentry-gradient' },
+  { key: 'handyman', gradient: 'handyman-gradient' },
+  { key: 'contractor', gradient: 'contractor-gradient' },
+  { key: 'moving', gradient: 'moving-gradient' },
+  { key: 'gardening', gradient: 'gardening-gradient' },
+  { key: 'pest_control', gradient: 'pest_control-gradient' },
+  { key: 'cleaning', gradient: 'cleaning-gradient' },
+  { key: 'laundry', gradient: 'laundry-gradient' },
+  { key: 'property_management', gradient: 'property_management-gradient' },
+  { key: 'home_organization', gradient: 'home_organization-gradient' },
+  { key: 'event_decoration', gradient: 'event_decoration-gradient' },
+  { key: 'event_entertainment', gradient: 'event_entertainment-gradient' },
+  { key: 'dj', gradient: 'event_entertainment-gradient' },
+  { key: 'private_chef', gradient: 'private_chef-gradient' },
+  { key: 'catering', gradient: 'catering-gradient' },
+  { key: 'pastry', gradient: 'pastry-gradient' },
+  { key: 'photographer', gradient: 'photographer-gradient' },
+  { key: 'tutoring', icon: '📚', gradient: 'tutoring-gradient' },
+  { key: 'sports_activities', icon: '⚽', gradient: 'sports_activities-gradient' },
+  { key: 'babysitting', icon: '👶', gradient: 'babysitting-gradient' },
+  { key: 'petcare', gradient: 'petcare-gradient' },
+  { key: 'eldercare', icon: '👵', gradient: 'eldercare-gradient' },
+  { key: 'mechanic', gradient: 'mechanic-gradient' },
+  { key: 'driver', gradient: 'driver-gradient' }
 ];
+
+// Réutilise les mêmes images que la page d'accueil / catégories (SERVICES_META)
+// pour éviter que les deux listes divergent (photo différente pour un même service).
+const services = SERVICE_CARD_DEFS.map(({ key, icon, gradient }) => ({
+  key,
+  name: t(`services.${key}`),
+  icon,
+  image: SERVICES_META[key]?.image,
+  gradient
+}));
 
 
   useEffect(() => {
