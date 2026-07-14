@@ -2582,7 +2582,7 @@
   "dashboard.addService.seekingRecruitment": "עובדים (גיוס)",
   "dashboard.addService.seekingBoth": "שניהם",
   "dashboard.addService.confirm": "הוסף שירות",
-  "dashboard.addService.success": "השירות נוסף בהצלחה!",
+  "dashboard.addService.success": "השירות נשלח ונמצא בבדיקה. הוא יוצג ללקוחות לאחר אישור הצוות שלנו.",
   "dashboard.addService.alreadyExists": "שירות זה כבר קיים בחשבונך",
   "recruitment.dashboard.title": "מודעות הגיוס שלי",
   "recruitment.dashboard.activate": "הפעל גיוס",

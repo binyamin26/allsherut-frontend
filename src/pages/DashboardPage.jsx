@@ -1286,7 +1286,7 @@ const handleAddService = async () => {
         await switchService(addServiceType);
         setActiveService(addServiceType);
         localStorage.setItem('activeService', addServiceType);
-        setTimeout(() => resetAddServiceModal(), 1200);
+        setTimeout(() => resetAddServiceModal(), 3000);
       } else {
         setAddServiceMsg({ type: 'error', text: data.message || 'שגיאה' });
       }

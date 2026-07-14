@@ -2580,7 +2580,7 @@
   "dashboard.addService.seekingRecruitment": "Des employés (recrutement)",
   "dashboard.addService.seekingBoth": "Les deux",
   "dashboard.addService.confirm": "Ajouter le service",
-  "dashboard.addService.success": "Service ajouté avec succès !",
+  "dashboard.addService.success": "Ton service a été envoyé et est en cours de validation. Il sera affiché aux clients une fois approuvé par notre équipe.",
   "dashboard.addService.alreadyExists": "Ce service existe déjà dans votre compte",
   "recruitment.dashboard.title": "Mes offres d'emploi",
   "recruitment.dashboard.activate": "Activer le recrutement",

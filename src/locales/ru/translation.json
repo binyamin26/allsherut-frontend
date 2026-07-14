@@ -2575,7 +2575,7 @@
   "dashboard.addService.seekingRecruitment": "Сотрудников (найм)",
   "dashboard.addService.seekingBoth": "Оба варианта",
   "dashboard.addService.confirm": "Добавить услугу",
-  "dashboard.addService.success": "Услуга успешно добавлена!",
+  "dashboard.addService.success": "Ваша услуга отправлена и находится на проверке. Она появится для клиентов после одобрения нашей командой.",
   "dashboard.addService.alreadyExists": "Эта услуга уже есть в вашем аккаунте",
   "recruitment.dashboard.title": "Мои вакансии",
   "recruitment.dashboard.activate": "Активировать найм",

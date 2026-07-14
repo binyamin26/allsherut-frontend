@@ -498,17 +498,18 @@ getEmailHeader(subtitle = '') {
   // ============================================
   // TEMPLATE: New Provider Registration (admin approval)
   // ============================================
-  getNewProviderNotificationTemplate({ name, phone, email, serviceType, approveUrl, rejectUrl }) {
+  getNewProviderNotificationTemplate({ name, phone, email, serviceType, approveUrl, rejectUrl, isAdditionalService }) {
     const timestamp = new Date().toLocaleString('he-IL', {
       timeZone: 'Asia/Jerusalem', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'
     });
 
     return `
-      ${this.getEmailHeader('🆕 ספק חדש נרשם - נדרש אישור')}
+      ${this.getEmailHeader(isAdditionalService ? '🆕 ספק קיים הוסיף תחום שירות - נדרש אישור' : '🆕 ספק חדש נרשם - נדרש אישור')}
           <div style="padding: 40px; direction: rtl;">
             <div style="background: #fffbeb; border-right: 3px solid #f59e0b; color: #92400e; padding: 12px 18px; border-radius: 10px; margin-bottom: 25px; font-size: 14px; font-weight: 600;">
-              📅 נרשם ב: ${timestamp}
+              📅 ${isAdditionalService ? 'תחום נוסף ב' : 'נרשם ב'}: ${timestamp}
             </div>
+            ${isAdditionalService ? `<div style="background: #eff6ff; border-right: 3px solid #2563eb; color: #1e3a8a; padding: 12px 18px; border-radius: 10px; margin-bottom: 25px; font-size: 14px; font-weight: 600;">ℹ️ ספק קיים ומאושר הוסיף תחום שירות נוסף. התחום החדש דורש אישור נפרד לפני שיוצג באתר.</div>` : ''}
 
             ${this._contactField('שם', name)}
             ${this._contactField('טלפון', `<a href="tel:${phone}" style="color: #2F80ED; text-decoration: none; font-weight: 700;">${phone}</a>`)}
@@ -616,7 +617,7 @@ getEmailHeader(subtitle = '') {
     );
   }
 
-  async sendNewProviderNotificationEmail({ providerId, name, phone, email, serviceType }) {
+  async sendNewProviderNotificationEmail({ providerId, name, phone, email, serviceType, isAdditionalService }) {
     const adminEmail = process.env.ADMIN_EMAIL || 'allsherutcontact@gmail.com';
     const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
 
@@ -631,8 +632,8 @@ getEmailHeader(subtitle = '') {
 
     return this._sendMail(
       adminEmail,
-      `🆕 ספק חדש נרשם - ${name}`,
-      this.getNewProviderNotificationTemplate({ name, phone, email, serviceType, approveUrl, rejectUrl })
+      isAdditionalService ? `🆕 ספק קיים הוסיף תחום - ${name}` : `🆕 ספק חדש נרשם - ${name}`,
+      this.getNewProviderNotificationTemplate({ name, phone, email, serviceType, approveUrl, rejectUrl, isAdditionalService })
     );
   }
 

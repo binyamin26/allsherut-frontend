@@ -2575,7 +2575,7 @@
   "dashboard.addService.seekingRecruitment": "Employees (recruitment)",
   "dashboard.addService.seekingBoth": "Both",
   "dashboard.addService.confirm": "Add service",
-  "dashboard.addService.success": "Service added successfully!",
+  "dashboard.addService.success": "Your service was submitted and is under review. It will be shown to clients once approved by our team.",
   "dashboard.addService.alreadyExists": "This service already exists in your account",
   "recruitment.dashboard.title": "My Job Listings",
   "recruitment.dashboard.activate": "Activate Recruitment",
