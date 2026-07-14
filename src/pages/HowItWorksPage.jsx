@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import AuthModal from '../components/auth/AuthModal';
 import { useLanguage } from '../context/LanguageContext';
+import Reveal from '../components/common/Reveal';
 
 const HowItWorksPage = () => {
   const [showAuthModal, setShowAuthModal] = useState(false);
@@ -27,26 +28,28 @@ const HowItWorksPage = () => {
         
         {/* Hero Section */}
         <section className="hero-section">
-          <h1 className="page-title">{t('howItWorks.title')}</h1>
-          <p className="page-subtitle">
+          <Reveal as="h1" onLoad delay={0} className="page-title">{t('howItWorks.title')}</Reveal>
+          <Reveal as="p" onLoad delay={100} className="page-subtitle">
             {t('howItWorks.subtitle')}
-          </p>
+          </Reveal>
         </section>
 
         {/* Provider Section */}
         <section className="info-section provider-section">
           <div className="section-header">
-            <Users size={40} className="section-icon" />
-            <h2 className="section-title">{t('howItWorks.provider.title')}</h2>
-            <p className="section-description">
-              {t('howItWorks.provider.description')}
-            </p>
+            <Reveal as="div">
+              <Users size={40} className="section-icon" />
+              <h2 className="section-title">{t('howItWorks.provider.title')}</h2>
+              <p className="section-description">
+                {t('howItWorks.provider.description')}
+              </p>
+            </Reveal>
           </div>
 
           <div className="features-grid">
-            
+
             {/* Feature 1: Registration */}
-            <div className="feature-card">
+            <Reveal as="div" delay={0} className="feature-card">
               <div className="feature-icon">
                 <UserPlus size={32} />
               </div>
@@ -72,10 +75,10 @@ const HowItWorksPage = () => {
                   <span>{t('howItWorks.provider.registration.item4')}</span>
                 </li>
               </ul>
-            </div>
+            </Reveal>
 
             {/* Feature 2: Dashboard */}
-            <div className="feature-card">
+            <Reveal as="div" delay={100} className="feature-card">
               <div className="feature-icon">
                 <LayoutDashboard size={32} />
               </div>
@@ -101,10 +104,10 @@ const HowItWorksPage = () => {
                   <span>{t('howItWorks.provider.dashboard.item4')}</span>
                 </li>
               </ul>
-            </div>
+            </Reveal>
 
             {/* Feature 3: Profile Management */}
-            <div className="feature-card">
+            <Reveal as="div" delay={200} className="feature-card">
               <div className="feature-icon">
                 <Edit3 size={32} />
               </div>
@@ -130,7 +133,7 @@ const HowItWorksPage = () => {
                   <span>{t('howItWorks.provider.profile.item4')}</span>
                 </li>
               </ul>
-            </div>
+            </Reveal>
 
           </div>
 
@@ -139,17 +142,19 @@ const HowItWorksPage = () => {
         {/* Client Section */}
         <section className="info-section client-section">
           <div className="section-header">
-            <Search size={40} className="section-icon" />
-            <h2 className="section-title">{t('howItWorks.client.title')}</h2>
-            <p className="section-description">
-              {t('howItWorks.client.description')}
-            </p>
+            <Reveal as="div">
+              <Search size={40} className="section-icon" />
+              <h2 className="section-title">{t('howItWorks.client.title')}</h2>
+              <p className="section-description">
+                {t('howItWorks.client.description')}
+              </p>
+            </Reveal>
           </div>
 
           <div className="features-grid">
-            
+
             {/* Feature 1: Free Access */}
-            <div className="feature-card">
+            <Reveal as="div" delay={0} className="feature-card">
               <div className="feature-icon">
                 <Eye size={32} />
               </div>
@@ -175,10 +180,10 @@ const HowItWorksPage = () => {
                   <span>{t('howItWorks.client.freeAccess.item4')}</span>
                 </li>
               </ul>
-            </div>
+            </Reveal>
 
             {/* Feature 2: Reviews */}
-            <div className="feature-card">
+            <Reveal as="div" delay={100} className="feature-card">
               <div className="feature-icon">
                 <Star size={32} />
               </div>
@@ -204,10 +209,10 @@ const HowItWorksPage = () => {
                   <span>{t('howItWorks.client.reviews.item4')}</span>
                 </li>
               </ul>
-            </div>
+            </Reveal>
 
             {/* Feature 3: Email Verification */}
-            <div className="feature-card">
+            <Reveal as="div" delay={200} className="feature-card">
               <div className="feature-icon">
                 <Mail size={32} />
               </div>
@@ -233,11 +238,11 @@ const HowItWorksPage = () => {
                   <span>{t('howItWorks.client.emailVerification.item4')}</span>
                 </li>
               </ul>
-            </div>
+            </Reveal>
 
           </div>
 
-          <div className="info-box">
+          <Reveal as="div" className="info-box">
             <Shield size={32} />
             <div>
               <h3>{t('howItWorks.qualityAssurance.title')}</h3>
@@ -245,20 +250,20 @@ const HowItWorksPage = () => {
                 {t('howItWorks.qualityAssurance.text')}
               </p>
             </div>
-          </div>
+          </Reveal>
 
         </section>
 
         {/* Final CTA Section */}
         <section className="final-cta-section">
-          <div className="cta-content">
+          <Reveal as="div" className="cta-content">
             <MessageSquare size={48} />
             <h2>{t('howItWorks.cta.title')}</h2>
             <p>
               {t('howItWorks.cta.subtitle')}
             </p>
             <div className="cta-buttons">
-              <button 
+              <button
                 onClick={() => setShowAuthModal(true)}
                 className="btn btn-primary btn-large"
               >
@@ -268,7 +273,7 @@ const HowItWorksPage = () => {
                 {t('howItWorks.cta.clientButton')}
               </Link>
             </div>
-          </div>
+          </Reveal>
         </section>
 
       </div>
