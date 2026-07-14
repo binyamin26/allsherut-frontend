@@ -610,10 +610,6 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .service-selection {
-    grid-template-columns: 1fr;
-  }
-
   .area-tag {
     font-size: var(--text-xs);
     padding: var(--space-2) var(--space-4);
@@ -1326,7 +1322,7 @@
 /* Grille des services step 1 */
 .service-selection {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--space-4);
   margin-top: var(--space-6);
   margin-bottom: var(--space-6);
@@ -1337,7 +1333,7 @@
   display: block;
   position: relative;
   width: 100%;
-  height: 240px;
+  aspect-ratio: 3 / 4;
   border-radius: var(--radius-2xl);
   overflow: hidden;
   border: none;
@@ -1349,27 +1345,14 @@
   background: white;
 }
 
-/* MOBILE : 1 colonne pleine largeur */
+/* MOBILE : 2 colonnes, cartes format portrait (cohérent avec le reste du site) */
 @media (max-width: 768px) {
   .service-selection {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-3);
     max-width: 100%;
     margin-left: 0;
     margin-right: 0;
-  }
-
-  .service-btn {
-    height: 28vh !important;;
-  }
-
-  .service-btn .service-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
   }
 
  .service-btn:hover,
