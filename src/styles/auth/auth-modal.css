@@ -1319,6 +1319,13 @@
    🎨 CARTES SERVICES STEP 1 - STYLE HOMEPAGE
    ==================================== */
 
+/* Modal élargie seulement pour l'étape de choix du service : la grille
+   à 2 colonnes a besoin de plus de place que les écrans email/mot de passe.
+   Sans effet sur mobile, où la largeur est déjà forcée à calc(100% - 2rem). */
+.modal-content.auth-modal-service-picker {
+  max-width: 640px;
+}
+
 /* Grille des services step 1 */
 .service-selection {
   display: grid;

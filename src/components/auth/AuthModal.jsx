@@ -1777,7 +1777,7 @@ const renderWorkingAreasSection = () => {
       <div className="modal-overlay">
         <div
           ref={modalRef}
-          className="modal-content auth-modal"
+          className={`modal-content auth-modal${mode === 'register' && step === 1 ? ' auth-modal-service-picker' : ''}`}
           onClick={(e) => e.stopPropagation()}
         >
           <button className="modal-close" onClick={onClose}>
