@@ -1,9 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
+import { FileText, Wallet, MapPin, Calendar, Clock, Award, Car, Languages, MessageCircle, Phone } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import Reveal from '../../components/common/Reveal';
 import CallLeadModal from '../../components/modals/CallLeadModal';
 import apiService from '../../services/api';
+
+const AVATAR_GRADIENTS = [
+  'linear-gradient(145deg, #2563EB 0%, #1E3A8A 100%)',
+  'linear-gradient(145deg, #0D9488 0%, #0F766E 100%)',
+  'linear-gradient(145deg, #EA580C 0%, #C2410C 100%)',
+  'linear-gradient(145deg, #7C3AED 0%, #5B21B6 100%)',
+  'linear-gradient(145deg, #BE185D 0%, #9D174D 100%)',
+  'linear-gradient(145deg, #0369A1 0%, #075985 100%)',
+];
+
+const getAvatarGradient = (name) => {
+  if (!name) return AVATAR_GRADIENTS[0];
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) {
+    hash = name.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  return AVATAR_GRADIENTS[Math.abs(hash) % AVATAR_GRADIENTS.length];
+};
+
+const getInitial = (name) => (name ? (name.trim()[0] || '?').toUpperCase() : '?');
 
 const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
@@ -37,17 +58,17 @@ const SimilarCard = ({ listing, t, isRTL, onNavigate }) => {
 
   return (
     <div className="rdp-sim-card" onClick={onNavigate} dir={isRTL ? 'rtl' : 'ltr'}>
-      <div className="rdp-sim-avatar">
+      <div className="rdp-sim-avatar" style={{ background: listing.profile_image ? undefined : getAvatarGradient(listing.full_name) }}>
         {listing.profile_image
           ? <img src={listing.profile_image} alt={listing.full_name} />
-          : <span>{(listing.full_name || '?')[0].toUpperCase()}</span>}
+          : <span>{getInitial(listing.full_name)}</span>}
       </div>
       <h4 className="rdp-sim-title">{serviceLabel}</h4>
       <div className="rdp-sim-salary">
-        💰 <strong>{salaryDisplay}</strong>
+        <Wallet size={14} /> <strong>{salaryDisplay}</strong>
         {paymentLabel && <span className="rdp-sim-pay"> {paymentLabel}</span>}
       </div>
-      {listing.location_city && <div className="rdp-sim-loc">📍 {listing.location_city}</div>}
+      {listing.location_city && <div className="rdp-sim-loc"><MapPin size={13} /> {listing.location_city}</div>}
       {expLabel && <span className="rdp-sim-exp">{expLabel}</span>}
       <div className="rdp-sim-action">{t('recruitment.card.viewOffer')}</div>
     </div>
@@ -176,71 +197,85 @@ const RecruitmentListingDetailPage = () => {
 
               {contractLabel && (
                 <div className="rdp-detail-row">
-                  <span className="rdp-detail-icon">📄</span>
-                  <span className="rdp-detail-label">{t('recruitment.contractType')}</span>
-                  <span className="rdp-detail-val">{contractLabel}</span>
+                  <span className="rdp-detail-icon"><FileText size={17} /></span>
+                  <div className="rdp-detail-text">
+                    <span className="rdp-detail-label">{t('recruitment.contractType')}</span>
+                    <span className="rdp-detail-val">{contractLabel}</span>
+                  </div>
                 </div>
               )}
 
               {listing.salary && (
                 <div className="rdp-detail-row">
-                  <span className="rdp-detail-icon">💰</span>
-                  <span className="rdp-detail-label">{t('recruitment.salary')}</span>
-                  <span className="rdp-detail-val">
-                    <strong>{salaryDisplay}</strong>
-                    {paymentLabel && <span className="rdp-detail-sub"> · {paymentLabel}</span>}
-                  </span>
+                  <span className="rdp-detail-icon"><Wallet size={17} /></span>
+                  <div className="rdp-detail-text">
+                    <span className="rdp-detail-label">{t('recruitment.salary')}</span>
+                    <span className="rdp-detail-val">
+                      <strong>{salaryDisplay}</strong>
+                      {paymentLabel && <span className="rdp-detail-sub"> · {paymentLabel}</span>}
+                    </span>
+                  </div>
                 </div>
               )}
 
               {listing.location_city && (
                 <div className="rdp-detail-row">
-                  <span className="rdp-detail-icon">📍</span>
-                  <span className="rdp-detail-label">{t('filters.location')}</span>
-                  <span className="rdp-detail-val">
-                    {listing.location_city}
-                    {listing.location_area && listing.location_area !== 'כל העיר'
-                      ? `, ${listing.location_area}`
-                      : listing.location_area === 'כל העיר' ? ` (${t('dashboard.allCity', { city: '' }).trim()})` : ''}
-                  </span>
+                  <span className="rdp-detail-icon"><MapPin size={17} /></span>
+                  <div className="rdp-detail-text">
+                    <span className="rdp-detail-label">{t('filters.location')}</span>
+                    <span className="rdp-detail-val">
+                      {listing.location_city}
+                      {listing.location_area && listing.location_area !== 'כל העיר'
+                        ? `, ${listing.location_area}`
+                        : listing.location_area === 'כל העיר' ? ` (${t('dashboard.allCity', { city: '' }).trim()})` : ''}
+                    </span>
+                  </div>
                 </div>
               )}
 
               {daysDisplay && (
                 <div className="rdp-detail-row">
-                  <span className="rdp-detail-icon">📅</span>
-                  <span className="rdp-detail-label">{t('recruitment.daysTitle')}</span>
-                  <span className="rdp-detail-val">{daysDisplay}</span>
+                  <span className="rdp-detail-icon"><Calendar size={17} /></span>
+                  <div className="rdp-detail-text">
+                    <span className="rdp-detail-label">{t('recruitment.daysTitle')}</span>
+                    <span className="rdp-detail-val">{daysDisplay}</span>
+                  </div>
                 </div>
               )}
 
               {hoursDisplay && (
                 <div className="rdp-detail-row">
-                  <span className="rdp-detail-icon">🕒</span>
-                  <span className="rdp-detail-label">{t('recruitment.hoursTitle')}</span>
-                  <span className="rdp-detail-val">{hoursDisplay}</span>
+                  <span className="rdp-detail-icon"><Clock size={17} /></span>
+                  <div className="rdp-detail-text">
+                    <span className="rdp-detail-label">{t('recruitment.hoursTitle')}</span>
+                    <span className="rdp-detail-val">{hoursDisplay}</span>
+                  </div>
                 </div>
               )}
 
               {expLabel && (
                 <div className="rdp-detail-row">
-                  <span className="rdp-detail-icon">⭐</span>
-                  <span className="rdp-detail-label">{t('recruitment.experienceRequired')}</span>
-                  <span className="rdp-detail-val">{expLabel}</span>
+                  <span className="rdp-detail-icon"><Award size={17} /></span>
+                  <div className="rdp-detail-text">
+                    <span className="rdp-detail-label">{t('recruitment.experienceRequired')}</span>
+                    <span className="rdp-detail-val">{expLabel}</span>
+                  </div>
                 </div>
               )}
 
               {!!listing.driving_license && (
                 <div className="rdp-detail-row">
-                  <span className="rdp-detail-icon">🚗</span>
-                  <span className="rdp-detail-label">{t('recruitment.drivingLicense')}</span>
-                  <span className="rdp-detail-check">✓</span>
+                  <span className="rdp-detail-icon"><Car size={17} /></span>
+                  <div className="rdp-detail-text">
+                    <span className="rdp-detail-label">{t('recruitment.drivingLicense')}</span>
+                    <span className="rdp-detail-val">✓ {t('recruitment.detail.yes', 'כן')}</span>
+                  </div>
                 </div>
               )}
 
               {(listing.languages_required || []).length > 0 && (
                 <div className="rdp-detail-row rdp-detail-row-chips">
-                  <span className="rdp-detail-icon">🗣</span>
+                  <span className="rdp-detail-icon"><Languages size={17} /></span>
                   <span className="rdp-detail-label">{t('recruitment.detail.languages', 'שפות')}</span>
                   <div className="rdp-detail-chips">
                     {(listing.languages_required || []).map(l => (
@@ -266,10 +301,10 @@ const RecruitmentListingDetailPage = () => {
         <div className="rdp-col-side">
           <div className="rdp-recruiter-card">
 
-            <div className="rdp-rec-avatar">
+            <div className="rdp-rec-avatar" style={{ background: listing.profile_image ? undefined : getAvatarGradient(listing.full_name) }}>
               {listing.profile_image
                 ? <img src={listing.profile_image} alt={listing.full_name} />
-                : <span className="text-rdp-av">{(listing.full_name || '?')[0].toUpperCase()}</span>}
+                : <span className="text-rdp-av">{getInitial(listing.full_name)}</span>}
             </div>
 
             <div className="rdp-rec-info">
@@ -287,25 +322,25 @@ const RecruitmentListingDetailPage = () => {
                 {waLink && (
                   <button
                     type="button"
-                    className="rdp-rec-btn-wa"
+                    className="btn btn-success btn-full"
                     onClick={() => {
                       apiService.logContactClick(listing.provider_id, 'whatsapp', 'recruitment').catch(() => {});
                       setCallModal({ open: true, action: 'whatsapp' });
                     }}
                   >
-                    💬 WhatsApp
+                    <MessageCircle size={17} /> WhatsApp
                   </button>
                 )}
                 {telLink && (
                   <button
                     type="button"
-                    className="rdp-rec-btn-call"
+                    className="btn btn-primary btn-full"
                     onClick={() => {
                       apiService.logContactClick(listing.provider_id, 'call', 'recruitment').catch(() => {});
                       setCallModal({ open: true, action: 'call' });
                     }}
                   >
-                    📞 {t('recruitment.detail.call')}
+                    <Phone size={17} /> {t('recruitment.detail.call')}
                   </button>
                 )}
               </div>
@@ -343,25 +378,25 @@ const RecruitmentListingDetailPage = () => {
           {waLink && (
             <button
               type="button"
-              className="rdp-sticky-wa"
+              className="btn btn-success"
               onClick={() => {
                 apiService.logContactClick(listing.provider_id, 'whatsapp', 'recruitment').catch(() => {});
                 setCallModal({ open: true, action: 'whatsapp' });
               }}
             >
-              💬 WhatsApp
+              <MessageCircle size={17} /> WhatsApp
             </button>
           )}
           {telLink && (
             <button
               type="button"
-              className="rdp-sticky-call"
+              className="btn btn-primary"
               onClick={() => {
                 apiService.logContactClick(listing.provider_id, 'call', 'recruitment').catch(() => {});
                 setCallModal({ open: true, action: 'call' });
               }}
             >
-              📞 {t('recruitment.detail.call')}
+              <Phone size={17} /> {t('recruitment.detail.call')}
             </button>
           )}
         </div>
