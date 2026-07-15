@@ -16,17 +16,18 @@ const authenticateToken = (req, res, next) => {
 // POST /api/contact-clicks — public, log a click
 router.post('/', async (req, res) => {
   try {
-    const { provider_id, click_type } = req.body;
+    const { provider_id, click_type, source } = req.body;
     if (!provider_id || !['call', 'whatsapp'].includes(click_type)) {
       return res.status(400).json({ success: false, message: 'Invalid payload' });
     }
+    const clickSource = source === 'recruitment' ? 'recruitment' : 'service';
     await query(
-      'INSERT INTO contact_clicks (provider_id, click_type) VALUES (?, ?)',
-      [provider_id, click_type]
+      'INSERT INTO contact_clicks (provider_id, click_type, source) VALUES (?, ?, ?)',
+      [provider_id, click_type, clickSource]
     );
     const lastId = await query('SELECT LAST_INSERT_ID() as newId');
     const newId = lastId[0]?.newId;
-    console.log(`📞 contact-click: provider=${provider_id} type=${click_type} newId=${newId}`);
+    console.log(`📞 contact-click: provider=${provider_id} type=${click_type} source=${clickSource} newId=${newId}`);
     res.json({ success: true, newId, insertedProviderId: provider_id });
   } catch (error) {
     console.error('❌ contact-clicks POST:', error.message);
@@ -103,7 +104,7 @@ router.get('/my-clicks', authenticateToken, async (req, res) => {
 
     // Paginated clicks
     const clicks = await query(
-      `SELECT id, click_type, clicked_at
+      `SELECT id, click_type, source, clicked_at
        FROM contact_clicks
        WHERE provider_id IN (${inClause}) ${periodWhere}
        ORDER BY clicked_at DESC

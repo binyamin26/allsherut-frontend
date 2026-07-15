@@ -289,7 +289,7 @@ const RecruitmentListingDetailPage = () => {
                     type="button"
                     className="rdp-rec-btn-wa"
                     onClick={() => {
-                      apiService.logContactClick(listing.provider_id, 'whatsapp').catch(() => {});
+                      apiService.logContactClick(listing.provider_id, 'whatsapp', 'recruitment').catch(() => {});
                       setCallModal({ open: true, action: 'whatsapp' });
                     }}
                   >
@@ -301,7 +301,7 @@ const RecruitmentListingDetailPage = () => {
                     type="button"
                     className="rdp-rec-btn-call"
                     onClick={() => {
-                      apiService.logContactClick(listing.provider_id, 'call').catch(() => {});
+                      apiService.logContactClick(listing.provider_id, 'call', 'recruitment').catch(() => {});
                       setCallModal({ open: true, action: 'call' });
                     }}
                   >
@@ -345,7 +345,7 @@ const RecruitmentListingDetailPage = () => {
               type="button"
               className="rdp-sticky-wa"
               onClick={() => {
-                apiService.logContactClick(listing.provider_id, 'whatsapp').catch(() => {});
+                apiService.logContactClick(listing.provider_id, 'whatsapp', 'recruitment').catch(() => {});
                 setCallModal({ open: true, action: 'whatsapp' });
               }}
             >
@@ -357,7 +357,7 @@ const RecruitmentListingDetailPage = () => {
               type="button"
               className="rdp-sticky-call"
               onClick={() => {
-                apiService.logContactClick(listing.provider_id, 'call').catch(() => {});
+                apiService.logContactClick(listing.provider_id, 'call', 'recruitment').catch(() => {});
                 setCallModal({ open: true, action: 'call' });
               }}
             >

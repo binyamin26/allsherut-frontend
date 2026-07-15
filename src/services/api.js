@@ -215,10 +215,10 @@ class ApiService {
     });
   }
 
-  async logContactClick(providerId, clickType) {
+  async logContactClick(providerId, clickType, source = 'service') {
     return this.request('/contact-clicks', {
       method: 'POST',
-      body: JSON.stringify({ provider_id: providerId, click_type: clickType })
+      body: JSON.stringify({ provider_id: providerId, click_type: clickType, source })
     });
   }
 

@@ -2411,6 +2411,7 @@ const galleryImages = (() => {
                     {contactClicks.map((click) => {
                       const date = new Date(click.clicked_at);
                       const isCall = click.click_type === 'call';
+                      const isRecruitment = click.source === 'recruitment';
                       const dateStr = date.toLocaleDateString('he-IL', { day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'Asia/Jerusalem' });
                       const timeStr = date.toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Jerusalem' });
                       return (
@@ -2419,6 +2420,9 @@ const galleryImages = (() => {
                           <div className="contact-click-details">
                             <span className="contact-click-type">
                               {isCall ? t('dashboard.contacts.clickCall') : t('dashboard.contacts.clickWhatsapp')}
+                              <span className={`contact-click-source-badge ${isRecruitment ? 'source-recruitment' : 'source-service'}`}>
+                                {isRecruitment ? t('dashboard.contacts.source.recruitment') : t('dashboard.contacts.source.service')}
+                              </span>
                             </span>
                             <span className="contact-click-time">{dateStr} • {timeStr}</span>
                           </div>

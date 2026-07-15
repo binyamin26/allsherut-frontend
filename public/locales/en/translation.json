@@ -302,6 +302,8 @@
   "dashboard.contacts.noContactsDesc": "When clients click your contact buttons, the clicks will appear here",
   "dashboard.contacts.clickCall": "Phone call",
   "dashboard.contacts.clickWhatsapp": "WhatsApp message",
+  "dashboard.contacts.source.service": "Service inquiry",
+  "dashboard.contacts.source.recruitment": "Recruitment",
   "dashboard.contacts.period.today": "Today",
   "dashboard.contacts.period.week": "7 days",
   "dashboard.contacts.period.month": "This month",

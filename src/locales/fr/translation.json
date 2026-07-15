@@ -310,6 +310,8 @@
   "dashboard.contacts.noContactsDesc": "Quand des clients cliqueront sur vos boutons de contact, les clics apparaîtront ici",
   "dashboard.contacts.clickCall": "Appel téléphonique",
   "dashboard.contacts.clickWhatsapp": "Message WhatsApp",
+  "dashboard.contacts.source.service": "Demande de service",
+  "dashboard.contacts.source.recruitment": "Recrutement",
   "dashboard.contacts.period.today": "Aujourd'hui",
   "dashboard.contacts.period.week": "7 jours",
   "dashboard.contacts.period.month": "Ce mois",

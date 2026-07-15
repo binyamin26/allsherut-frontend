@@ -3349,9 +3349,29 @@ select.inline-edit {
 }
 
 .contact-click-type {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
   font-size: var(--text-sm);
   font-weight: 600;
   color: var(--neutral-800);
+}
+
+.contact-click-source-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.contact-click-source-badge.source-service {
+  background: var(--neutral-100);
+  color: var(--neutral-500);
+}
+
+.contact-click-source-badge.source-recruitment {
+  background: #fef3c7;
+  color: #92400e;
 }
 
 .contact-click-time {
