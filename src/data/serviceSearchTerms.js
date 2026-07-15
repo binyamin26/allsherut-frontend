@@ -31,7 +31,7 @@ export const SERVICE_SEARCH_TERMS = {
   dj: ['תקליטן', 'Disc Jockey', 'DJ', 'Диск-жокей'],
   private_chef: ['שף פרטי', 'Private Chef', 'Chef à domicile', 'Частный повар'],
   catering: ['קייטרינג', 'Catering', 'Traiteur', 'Кейтеринг'],
-  pastry: ['עוגות ופטיסרי', 'Cakes & Pastry', 'Gâteaux & Pâtisserie', 'Торты и выпечка'],
+  pastry: ['פירות ופטיסרי', 'Fruits & Pastry', 'Fruits & Pâtisserie', 'Фрукты и выпечка'],
   photographer: ['צלם', 'Photographer', 'Photographe', 'Фотограф'],
   tutoring: ['שיעורים פרטיים וקורסים', 'Private Tutoring & Courses', 'Cours particuliers', 'Репетиторство и курсы'],
   sports_activities: ['חוגים וספורט', 'Sports & Activities', 'Sports et activités', 'Спорт и занятия'],

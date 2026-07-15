@@ -107,7 +107,7 @@ const PastryPage = () => {
 
   return (
     <div className="service-page pastry-page">
-      <SEO title="עוגות ופטיסרי בישראל" description="מצאו ספקי עוגות ופטיסרי בישראל - עוגות, מאפים וקינוחים מעוצבים לאירועים ולבית." canonicalPath="/services/pastry" noindex={!loading && providers.length === 0} />
+      <SEO title="פירות ופטיסרי בישראל" description="מצאו ספקי פירות ופטיסרי בישראל - פירות, מאפים וקינוחים מעוצבים לאירועים ולבית." canonicalPath="/services/pastry" noindex={!loading && providers.length === 0} />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

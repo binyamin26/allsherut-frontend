@@ -91,7 +91,7 @@ const ProviderRegistration = () => {
     event_entertainment: 'הפעלות ואטרקציות לאירועים',
     private_chef: 'שף פרטי',
     catering: 'קייטרינג',
-    pastry: 'עוגות ופטיסרי',
+    pastry: 'פירות ופטיסרי',
     painting: 'עבודות צבע',
     waterproofing: 'איטום',
     contractor: 'קבלן',

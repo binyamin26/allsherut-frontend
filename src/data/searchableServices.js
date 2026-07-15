@@ -456,8 +456,8 @@ const searchableServices = [
   { label: 'חלבי', labelEn: 'Halavi (Dairy)', labelFr: 'Halavi (Laitier)', labelRu: 'Халави (Молочное)', href: '/services/catering', type: 'specialty' },
   { label: 'חלות שבת', labelEn: 'Shabbat Challah', labelFr: 'Hallotes de Chabbat', labelRu: 'Халы Шаббата', href: '/services/catering', type: 'specialty' },
 
-  // 17c. PASTRY / GÂTEAUX & PÂTISSERIE
-  { label: 'עוגות ופטיסרי', labelEn: 'Cakes & Pastry', labelFr: 'Gâteaux & Pâtisserie', labelRu: 'Торты и выпечка', href: '/services/pastry', type: 'service' },
+  // 17c. PASTRY / FRUITS & PÂTISSERIE
+  { label: 'פירות ופטיסרי', labelEn: 'Fruits & Pastry', labelFr: 'Fruits & Pâtisserie', labelRu: 'Фрукты и выпечка', href: '/services/pastry', type: 'service' },
   { label: 'קינוחים', labelEn: 'Pâtisserie', labelFr: 'Pâtisserie', labelRu: 'Птиссери', href: '/services/pastry', type: 'specialty' },
   { label: 'מגשי פירות', labelEn: 'Fruit Platters', labelFr: 'Plateaux de fruits', labelRu: 'Фруктовые тарелки', href: '/services/pastry', type: 'specialty' },
   { label: 'שוקולדים', labelEn: 'Chocolates', labelFr: 'Chocolats', labelRu: 'Шоколад', href: '/services/pastry', type: 'specialty' },

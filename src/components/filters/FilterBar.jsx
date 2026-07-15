@@ -2022,7 +2022,7 @@ const CateringFilters = ({ filters, handleFilterChange, handleCheckboxChange, ha
   );
 };
 
-// PASTRY (Gâteaux & Pâtisserie)
+// PASTRY (Fruits & Pâtisserie)
 const PastryFilters = ({ filters, handleFilterChange, handleCheckboxChange, handleExclusiveCheckbox }) => {
   const { t } = useLanguage();
   const config = FILTER_CONFIG.pastry;
