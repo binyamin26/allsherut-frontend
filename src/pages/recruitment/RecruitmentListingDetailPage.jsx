@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext';
 import Reveal from '../../components/common/Reveal';
+import CallLeadModal from '../../components/modals/CallLeadModal';
+import apiService from '../../services/api';
 
 const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
@@ -61,6 +63,7 @@ const RecruitmentListingDetailPage = () => {
   const [similar, setSimilar] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error,   setError]   = useState(null);
+  const [callModal, setCallModal] = useState({ open: false, action: 'call' });
 
   useEffect(() => {
     setLoading(true);
@@ -282,14 +285,28 @@ const RecruitmentListingDetailPage = () => {
             {(telLink || waLink) && (
               <div className="rdp-rec-btns">
                 {waLink && (
-                  <a href={waLink} target="_blank" rel="noopener noreferrer" className="rdp-rec-btn-wa">
+                  <button
+                    type="button"
+                    className="rdp-rec-btn-wa"
+                    onClick={() => {
+                      apiService.logContactClick(listing.provider_id, 'whatsapp').catch(() => {});
+                      setCallModal({ open: true, action: 'whatsapp' });
+                    }}
+                  >
                     💬 WhatsApp
-                  </a>
+                  </button>
                 )}
                 {telLink && (
-                  <a href={telLink} className="rdp-rec-btn-call">
+                  <button
+                    type="button"
+                    className="rdp-rec-btn-call"
+                    onClick={() => {
+                      apiService.logContactClick(listing.provider_id, 'call').catch(() => {});
+                      setCallModal({ open: true, action: 'call' });
+                    }}
+                  >
                     📞 {t('recruitment.detail.call')}
-                  </a>
+                  </button>
                 )}
               </div>
             )}
@@ -324,17 +341,40 @@ const RecruitmentListingDetailPage = () => {
       {(telLink || waLink) && (
         <div className="rdp-sticky-bar">
           {waLink && (
-            <a href={waLink} target="_blank" rel="noopener noreferrer" className="rdp-sticky-wa">
+            <button
+              type="button"
+              className="rdp-sticky-wa"
+              onClick={() => {
+                apiService.logContactClick(listing.provider_id, 'whatsapp').catch(() => {});
+                setCallModal({ open: true, action: 'whatsapp' });
+              }}
+            >
               💬 WhatsApp
-            </a>
+            </button>
           )}
           {telLink && (
-            <a href={telLink} className="rdp-sticky-call">
+            <button
+              type="button"
+              className="rdp-sticky-call"
+              onClick={() => {
+                apiService.logContactClick(listing.provider_id, 'call').catch(() => {});
+                setCallModal({ open: true, action: 'call' });
+              }}
+            >
               📞 {t('recruitment.detail.call')}
-            </a>
+            </button>
           )}
         </div>
       )}
+
+      <CallLeadModal
+        isOpen={callModal.open}
+        onClose={() => setCallModal({ open: false, action: 'call' })}
+        providerPhone={rawPhone}
+        providerName={listing.full_name}
+        serviceName={`גיוס - ${serviceLabel}`}
+        action={callModal.action}
+      />
 
     </div>
   );
