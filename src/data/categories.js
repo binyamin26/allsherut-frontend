@@ -145,7 +145,7 @@ export const SERVICES_META = {
   dj:                 { image: '/images/DJ.jpg',              href: '/services/dj',                 nameKey: 'services.dj' },
   private_chef:       { image: '/images/chef prati.jpg',      href: '/services/private-chef',       nameKey: 'services.private_chef' },
   catering:           { image: '/images/traiteur.jpg',        href: '/services/catering',            nameKey: 'services.catering' },
-  pastry:             { image: '/images/patisserie.jpg',      href: '/services/pastry',              nameKey: 'services.pastry' },
+  pastry:             { image: '/images/p et f.jpg',          href: '/services/pastry',              nameKey: 'services.pastry' },
   photographer:       { image: '/images/photographe1.jpg',    href: '/services/photographer',       nameKey: 'services.photographer' },
   tutoring:           { image: '/images/tutoring.png',        href: '/services/tutoring',           nameKey: 'services.tutoring' },
   sports_activities:  { image: '/images/sport.jpg',           href: '/services/sports-activities',  nameKey: 'services.sports_activities' },

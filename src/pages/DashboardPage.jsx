@@ -99,7 +99,7 @@ const serviceImages = {
   dj: '/images/logo DJ.jpg',
   private_chef: '/images/logo chef.jpg',
   catering: '/images/traiteur.jpg',
-  pastry: '/images/patisserie.jpg',
+  pastry: '/images/logo p et f.jpg',
   painting: '/images/logo peinture.jpg',
   waterproofing: '/images/logo itoum.jpg',
   contractor: '/images/logo kablan.jpg',

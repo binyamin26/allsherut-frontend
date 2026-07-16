@@ -148,7 +148,7 @@ const ProviderDetailPage = () => {
     painting: '/images/logo peinture.jpg',
     private_chef: '/images/logo chef.jpg',
     catering: '/images/traiteur.jpg',
-    pastry: '/images/patisserie.jpg',
+    pastry: '/images/logo p et f.jpg',
     event_entertainment: '/images/logo event.png',
     dj: '/images/logo DJ.jpg',
     waterproofing: '/images/logo itoum.jpg',

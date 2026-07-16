@@ -113,7 +113,7 @@ const PastryPage = () => {
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/patisserie.jpg"
+                src="/images/logo p et f.jpg"
                 alt="Pâtisserie"
               />
             </div>
