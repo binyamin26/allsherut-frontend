@@ -123,7 +123,7 @@ const response = await apiService.searchProviders(cleanParams);
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo bébé.png"
+                src="/images/logo bbsit.jpg"
                 alt="baby-sitting"
               />
             </div>

@@ -129,7 +129,7 @@ const ProviderDetailPage = () => {
 
   const getServiceIcon = (serviceType) => {
   const icons = {
-    babysitting: '/images/logo bébé.png',
+    babysitting: '/images/logo bbsit.jpg',
     cleaning: '/images/logo nikayon.jpg',
     gardening: '/images/logo jardinage.jpg',
     petcare: '/images/logo chien.jpg',

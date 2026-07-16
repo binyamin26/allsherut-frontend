@@ -79,7 +79,7 @@ const serviceIcons = {
 
 // Définition des logos de services
 const serviceImages = {
-  babysitting: '/images/logo bébé.png',
+  babysitting: '/images/logo bbsit.jpg',
   cleaning: '/images/logo nikayon.jpg',
   gardening: '/images/logo jardinage.jpg',
   petcare: '/images/logo chien.jpg',
