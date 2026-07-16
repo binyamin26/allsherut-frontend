@@ -35,7 +35,7 @@ export const CATEGORY_DEFINITIONS = [
       en: 'Home cleaning and maintenance services in Israel: cleaning, gardening, laundry, pest control and organization.',
       ru: 'Услуги уборки и обслуживания дома в Израиле: уборка, садоводство, стирка, дезинсекция и организация.',
     },
-    image: '/images/nikayon.jpg',
+    image: '/images/catégorie nettoyage.jpg',
     gradient: 'from-cyan-500 to-blue-600',
     serviceIds: [
       'cleaning', 'laundry', 'gardening',
