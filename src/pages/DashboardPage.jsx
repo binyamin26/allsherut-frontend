@@ -98,7 +98,7 @@ const serviceImages = {
   event_entertainment: '/images/logo event.png',
   dj: '/images/logo DJ.jpg',
   private_chef: '/images/logo chef.jpg',
-  catering: '/images/traiteur.jpg',
+  catering: '/images/logo chef.jpg',
   pastry: '/images/logo p et f.jpg',
   painting: '/images/logo peinture.jpg',
   waterproofing: '/images/logo itoum.jpg',

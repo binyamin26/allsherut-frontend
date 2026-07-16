@@ -113,7 +113,7 @@ const CateringPage = () => {
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/traiteur.jpg"
+                src="/images/logo chef.jpg"
                 alt="Traiteur"
               />
             </div>

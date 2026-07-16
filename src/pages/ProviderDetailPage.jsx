@@ -147,7 +147,7 @@ const ProviderDetailPage = () => {
     home_organization: '/images/logo rangement.jpg',
     painting: '/images/logo peinture.jpg',
     private_chef: '/images/logo chef.jpg',
-    catering: '/images/traiteur.jpg',
+    catering: '/images/logo chef.jpg',
     pastry: '/images/logo p et f.jpg',
     event_entertainment: '/images/logo event.png',
     dj: '/images/logo DJ.jpg',
