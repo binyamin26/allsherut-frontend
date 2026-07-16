@@ -85,7 +85,7 @@ const serviceImages = {
   petcare: '/images/logo chien.jpg',
   tutoring: '/images/logo cours particulier.png',
   sports_activities: '/images/logo sport.jpg',
-  eldercare: '/images/logo kachich.png',
+  eldercare: '/images/logo kashishims.jpg',
   laundry: '/images/logo kvissa.png',
   property_management: '/images/logo nihoul dirot.jpg',
   electrician: '/images/logo electricien.jpg',
