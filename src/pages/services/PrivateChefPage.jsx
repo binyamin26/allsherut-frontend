@@ -114,7 +114,7 @@ const PrivateChefPage = () => {
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo chef.jpg"
+                src="/images/logo chef prati.jpg"
                 alt="Chef Privֳ©"
               />
             </div>

@@ -146,7 +146,7 @@ const ProviderDetailPage = () => {
     property_management: '/images/logo nihoul dirot.jpg',
     home_organization: '/images/logo rangement.jpg',
     painting: '/images/logo peinture.jpg',
-    private_chef: '/images/logo chef.jpg',
+    private_chef: '/images/logo chef prati.jpg',
     catering: '/images/logo chef.jpg',
     pastry: '/images/logo p et f.jpg',
     event_entertainment: '/images/logo event.png',
