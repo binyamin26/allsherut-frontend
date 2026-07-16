@@ -7,7 +7,7 @@ const ReviewModal = ({ isOpen, onClose, providerId, providerName, serviceType })
   const { apiCall } = useAuth();
   const { t } = useLanguage();
   
- const [step, setStep] = useState('review-form'); // 'review-form' | 'success' (étapes email/code désactivées temporairement)
+ const [step, setStep] = useState('email-verification'); // 'email-verification' | 'verification-code' | 'review-form' | 'success'
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -25,7 +25,7 @@ const ReviewModal = ({ isOpen, onClose, providerId, providerName, serviceType })
   const handleClose = () => {
   const wasSuccess = step === 'success';
 
-  setStep('review-form');
+  setStep('email-verification');
   setFormData({
     name: '',
     email: '',
@@ -67,11 +67,43 @@ if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
     return true;
   };
 
-  const handleSendVerification = () => {
-    // ⚠️ Vérification email désactivée temporairement : on passe directement au formulaire d'avis
+  const ADMIN_BYPASS_EMAIL = 'binou.ben26@gmail.com';
+
+  const handleSendVerification = async () => {
     if (!validateEmailStep()) return;
+
+    // Compte admin : publication directe sans code de vérification par email
+    if (formData.email.trim().toLowerCase() === ADMIN_BYPASS_EMAIL) {
+      setStep('review-form');
+      return;
+    }
+
+    setLoading(true);
     setError('');
-    setStep('review-form');
+
+    try {
+      console.log('Email envoyé:', JSON.stringify(formData.email), 'Length:', formData.email.length);
+      const response = await apiCall('/reviews/send-verification', 'POST', {
+        name: formData.name,
+      email: formData.email.trim(),
+        providerId,
+        serviceType
+      });
+
+      if (response.success) {
+        setStep('verification-code');
+      } else {
+       setError(response.message || t('review.errors.sendError'));
+      }
+   } catch (error) {
+  // Extraire le message d'erreur spécifique
+  const errorMessage = error?.response?.data?.message || 
+                      error?.message || 
+                      'שגיאה בחיבור לשרת';
+  setError(errorMessage);
+} finally {
+      setLoading(false);
+    }
   };
 
 const handleVerifyCode = async () => {
@@ -114,10 +146,6 @@ const handleVerifyCode = async () => {
 
   const handleSubmitReview = async () => {
     const { qualityRating, priceRating, availabilityRating, professionalismRating } = formData;
-    if (!formData.name.trim()) {
-      setError(t('review.errors.nameRequired'));
-      return;
-    }
     if (!qualityRating || !priceRating || !availabilityRating || !professionalismRating) {
       setError(t('review.errors.ratingRequired'));
       return;
@@ -130,12 +158,9 @@ const handleVerifyCode = async () => {
     setLoading(true);
     setError('');
 
-    // Email technique interne (vérification email désactivée temporairement) : unique par avis
-    const reviewerEmail = formData.email.trim() || `avis-${Date.now()}@allsherut.local`;
-
     try {
       const response = await apiCall('/reviews/create', 'POST', {
-        email: reviewerEmail,
+        email: formData.email,
         name: formData.name,
         verificationCode: formData.verificationCode,
         providerId,
@@ -335,21 +360,6 @@ placeholder={t('review.form.codePlaceholder')}
               </div>
 
               <div className="auth-form">
-                <div className="input-group">
-                  <label className="form-label">{t('review.form.fullName')}</label>
-                  <div className="input-wrapper">
-                    <input
-                      type="text"
-                      value={formData.name}
-                      onChange={(e) => handleInputChange('name', e.target.value)}
-                      placeholder={t('review.form.fullNamePlaceholder')}
-                      className="standard-input"
-                      disabled={loading}
-                    />
-                    <User className="input-icon" size={18} />
-                  </div>
-                </div>
-
                 <div className="rating-categories-section">
                   <label className="form-label">{t('review.form.categoriesTitle')}</label>
                   {renderCategoryRating('qualityRating',        'review.form.qualityRating')}
@@ -438,6 +448,13 @@ placeholder={t('review.form.reviewPlaceholder')}
                 )}
 
                 <div className="step-navigation">
+                <button
+  className="btn-back-green"
+  onClick={() => setStep(formData.email.trim().toLowerCase() === ADMIN_BYPASS_EMAIL ? 'email-verification' : 'verification-code')}
+  disabled={loading}
+>
+  {t('common.back')}
+</button>
                   <button
                     className="btn-primary"
                     onClick={handleSubmitReview}

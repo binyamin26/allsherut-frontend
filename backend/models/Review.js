@@ -181,6 +181,9 @@ class Review {
         rating, title, comment, displayNameOption = 'private'
       } = reviewData;
 
+      const adminBypassEmail = (process.env.REVIEW_ADMIN_BYPASS_EMAIL || 'binou.ben26@gmail.com').toLowerCase();
+      const isAdminBypass = !!(email && email.trim().toLowerCase() === adminBypassEmail);
+
 // Résolution : priorité à sp.id direct, sinon fallback sur user_id
 let actualProviderId = providerId;
 const [directMatch] = await connection.execute(
@@ -202,16 +205,27 @@ if (directMatch.length > 0) {
 }
 console.log(`🔄 Provider ID résolu: ${providerId} → ${actualProviderId}`);
 
-// ⚠️ VÉRIFICATION EMAIL DÉSACTIVÉE TEMPORAIREMENT (pour remettre : git revert de ce commit)
-// Le nom vient directement du formulaire ; fallback sur un éventuel token, sinon anonyme.
-let fullName = (name && name.trim()) || null;
-if (!fullName) {
-  const [byName] = await connection.execute(`
+// Compte admin : publication directe sans vérification email/code
+let fullName;
+if (isAdminBypass) {
+  console.log('🔓 Avis admin - vérification email ignorée');
+  fullName = (name && name.trim()) || 'AllSherut';
+} else {
+  // Vérifier que le token existe et a été utilisé récemment
+  const tokens = await connection.execute(`
     SELECT reviewer_name FROM review_email_tokens
-    WHERE email = ? AND provider_id = ? AND service_type = ?
-    ORDER BY created_at DESC LIMIT 1
-  `, [email, providerId, serviceType]);
-  fullName = (byName[0] && byName[0].reviewer_name) || 'לקוח אנונימי';
+    WHERE email = ? AND provider_id = ? AND service_type = ? AND verification_code = ?
+    AND used_at IS NOT NULL AND used_at > DATE_SUB(NOW(), INTERVAL 30 MINUTE)
+  `, [email, providerId, serviceType, verificationCode]);
+
+  if (tokens[0].length === 0) {
+    return {
+      success: false,
+      message: 'אימות נכשל - קוד לא תקין או פג תוקף'
+    };
+  }
+
+  fullName = tokens[0][0].reviewer_name || 'לקוח אנונימי';
 }
 
 console.log('🔍 Nom complet récupéré:', fullName);
@@ -272,8 +286,8 @@ if (avgResult.length > 0) {
 }
 // JUSQU'ICI ↑
 
-// Nettoyer le token (si un code a été fourni)
-if (verificationCode) {
+// Nettoyer le token (aucun token créé pour le bypass admin)
+if (!isAdminBypass) {
   await connection.execute(`
     DELETE FROM review_email_tokens
     WHERE email = ? AND provider_id = ? AND verification_code = ?
