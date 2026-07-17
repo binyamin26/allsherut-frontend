@@ -247,11 +247,11 @@ const HomePage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="hero-section" style={{ marginTop: 0, marginBottom: 0, paddingTop: 'var(--space-16)', paddingBottom: 'var(--space-16)' }}>
+      <section className="cta-section">
         <div className="container">
           <div className="cta-content text-center">
-            <Reveal as="h2" direction="down" className="hero-title">{t('homepage.cta.title')}</Reveal>
-            <Reveal as="p" delay={100} className="hero-description">
+            <Reveal as="h2" direction="down" className="cta-title">{t('homepage.cta.title')}</Reveal>
+            <Reveal as="p" delay={100} className="cta-description">
               {t('homepage.cta.description')}
             </Reveal>
 
