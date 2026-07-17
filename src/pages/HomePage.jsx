@@ -68,7 +68,7 @@ const HomePage = () => {
               </Reveal>
               {/* Search Bar */}
               <Reveal onLoad delay={200} style={{ marginBottom: '1rem' }}>
-                <ServiceSearchBar style={{ maxWidth: '350px', margin: 0 }} />
+                <ServiceSearchBar style={{ margin: 0 }} />
               </Reveal>
             </div>
             <Reveal onLoad delay={100} className="hero-visual" style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', overflow: 'visible' }}>
