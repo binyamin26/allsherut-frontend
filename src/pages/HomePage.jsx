@@ -67,7 +67,7 @@ const HomePage = () => {
                 {t('homepage.hero.description1')}
               </Reveal>
               {/* Search Bar */}
-              <Reveal onLoad delay={200} style={{ marginBottom: '1rem' }}>
+              <Reveal onLoad delay={200} style={{ marginBottom: '1rem', width: '100%' }}>
                 <ServiceSearchBar style={{ margin: 0 }} />
               </Reveal>
             </div>
