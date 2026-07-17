@@ -777,11 +777,11 @@ const AccessibilityWidget = () => {
         }
 
         /* Titres HTML avec vos variables */
-        body h1:not(.accessibility-widget h1) { 
-          font-size: calc(var(--text-5xl) * var(--accessibility-font-scale)) !important; 
+        body h1:not(.accessibility-widget h1):not(.homepage h1) {
+          font-size: calc(var(--text-5xl) * var(--accessibility-font-scale)) !important;
         }
-        body h2:not(.accessibility-widget h2) { 
-          font-size: calc(var(--text-4xl) * var(--accessibility-font-scale)) !important; 
+        body h2:not(.accessibility-widget h2):not(.homepage h2) {
+          font-size: calc(var(--text-4xl) * var(--accessibility-font-scale)) !important;
         }
         body h3:not(.accessibility-widget h3) { 
           font-size: calc(var(--text-2xl) * var(--accessibility-font-scale)) !important; 
@@ -797,14 +797,14 @@ const AccessibilityWidget = () => {
         }
 
         /* Classes spéciales de votre typography.css */
-        .hero-title:not(.accessibility-widget .hero-title) { 
-          font-size: calc(var(--text-6xl) * var(--accessibility-font-scale)) !important; 
+        .hero-title:not(.accessibility-widget .hero-title):not(.homepage .hero-title) {
+          font-size: calc(var(--text-6xl) * var(--accessibility-font-scale)) !important;
         }
-        .hero-description:not(.accessibility-widget .hero-description) { 
-          font-size: calc(var(--text-xl) * var(--accessibility-font-scale)) !important; 
+        .hero-description:not(.accessibility-widget .hero-description) {
+          font-size: calc(var(--text-xl) * var(--accessibility-font-scale)) !important;
         }
-        .section-title:not(.accessibility-widget .section-title) { 
-          font-size: calc(var(--text-4xl) * var(--accessibility-font-scale)) !important; 
+        .section-title:not(.accessibility-widget .section-title):not(.homepage .section-title) {
+          font-size: calc(var(--text-4xl) * var(--accessibility-font-scale)) !important;
         }
         .service-name:not(.accessibility-widget .service-name) { 
           font-size: calc(var(--text-2xl) * var(--accessibility-font-scale)) !important; 
@@ -828,15 +828,15 @@ const AccessibilityWidget = () => {
         }
         
         /* Application de l'échelle aux parents contenant du gradient-text */
-        .hero-title:not(.accessibility-widget .hero-title),
-        .section-title:not(.accessibility-widget .section-title),
-        h1:not(.accessibility-widget h1),
-        h2:not(.accessibility-widget h2) {
+        .hero-title:not(.accessibility-widget .hero-title):not(.homepage .hero-title),
+        .section-title:not(.accessibility-widget .section-title):not(.homepage .section-title),
+        h1:not(.accessibility-widget h1):not(.homepage h1),
+        h2:not(.accessibility-widget h2):not(.homepage h2) {
           font-size: calc(var(--text-6xl) * var(--accessibility-font-scale)) !important;
         }
-        
+
         /* Ajustement spécifique pour les h2 avec gradient */
-        h2:not(.accessibility-widget h2) {
+        h2:not(.accessibility-widget h2):not(.homepage h2) {
           font-size: calc(var(--text-4xl) * var(--accessibility-font-scale)) !important;
         }
 
