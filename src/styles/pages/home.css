@@ -26,7 +26,7 @@
 .homepage .section-title,
 .homepage h2.section-title {
   display: block;
-  font-size: clamp(1.875rem, 1.2rem + 2.6vw, 2.75rem) !important;
+  font-size: clamp(1.875rem, 1rem + 3.6vw, 3.5rem) !important;
   font-weight: 800 !important;
   line-height: 1.2;
   letter-spacing: -0.02em;
@@ -160,7 +160,7 @@
 /* Barre de recherche — mise en valeur */
 .homepage .hero-section .service-search-wrapper {
   width: 100%;
-  max-width: 460px;
+  max-width: 550px;
   margin: 0 !important;
 }
 
