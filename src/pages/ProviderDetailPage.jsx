@@ -12,13 +12,16 @@ import { translateValue, translateAndJoin, translateArrayFromMultipleCategories 
 import { TUTORING_SUBCATEGORIES } from '../data/subcategoriesData';
 import {
   MapPin, Clock, Phone, Mail, Award,
-  Calendar, MessageCircle, ThumbsUp, User, Shield, Heart,
+  Calendar, MessageCircle, ThumbsUp, User, Shield,
   ChevronLeft, Send, AlertCircle,
   Wrench, HardHat, Snowflake, Palette, RotateCcw, Sofa,
   TreePine, Home, Package, Sparkles, Headphones, Wind, Star,
   Gift, ChefHat, Paintbrush, Hammer, Zap, Trees, Building2,
   Leaf, Droplets, ArrowDown, Search, Square, Lock, DoorOpen,
-  Settings, Flame, ClipboardList, Bug, BookOpen, Trophy, Sun
+  Settings, Flame, ClipboardList, Bug, BookOpen, Trophy, Sun,
+  Wallet, Globe, Car, Baby, Users, Dog,
+  Stethoscope, PawPrint, HeartHandshake, ListChecks, Truck, PackageOpen,
+  Image as ImageIcon
 } from 'lucide-react';
 
 const AVATAR_GRADIENTS = [
@@ -44,14 +47,9 @@ const getInitial = (name) => {
   return name.trim()[0] || '?';
 };
 
-const IconLabel = ({ icon: Icon, color, bg, children }) => (
-  <strong style={{ display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 600 }}>
-    <span style={{
-      display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-      width: '26px', height: '26px', borderRadius: '7px', background: bg, flexShrink: 0,
-    }}>
-      <Icon size={14} color={color} strokeWidth={2.5} />
-    </span>
+const IconLabel = ({ icon: Icon, children }) => (
+  <strong style={{ display: 'flex', alignItems: 'center', gap: '9px', fontWeight: 600 }}>
+    <Icon size={17} color="#64748b" strokeWidth={1.75} style={{ flexShrink: 0 }} />
     {children}
   </strong>
 );
@@ -85,6 +83,15 @@ const ProviderDetailPage = () => {
     const rounded = Math.round(num * 100) / 100;
     if (rounded % 1 === 0) return String(rounded);
     return rounded.toFixed(2).replace(/0+$/, '');
+  };
+
+  // Catégorie de note (échelle 1-10) → variante visuelle du badge
+  const getScoreTone = (score) => {
+    const num = parseFloat(score);
+    if (isNaN(num)) return 'mid';
+    if (num >= 8) return 'good';
+    if (num >= 5) return 'mid';
+    return 'bad';
   };
 
   // États
@@ -394,7 +401,7 @@ const handleContact = () => {
         {/* Taux horaire */}
         {['babysitting', 'cleaning', 'gardening', 'tutoring', 'sports_activities'].includes(provider.serviceType) && (
           <div className="detail-item">
-            <strong>{t('provider.details.hourlyRate')}:</strong>
+            <IconLabel icon={Wallet}>{t('provider.details.hourlyRate')}:</IconLabel>
             {parseFloat(provider.hourlyRate) > 0 || parseFloat(details.hourlyRate) > 0 || parseFloat(details.rate) > 0
               ? <span className="price-highlight">₪{parseFloat(provider.hourlyRate) > 0 ? provider.hourlyRate : (parseFloat(details.hourlyRate) > 0 ? details.hourlyRate : details.rate)}/שעה</span>
               : <span>{t('dashboard.notSpecified')}</span>
@@ -405,7 +412,7 @@ const handleContact = () => {
         {/* Expérience */}
         {(provider.experienceYears || details.experience || details.experienceYears) && (
           <div className="detail-item">
-           <strong>{t('provider.details.experience')}:</strong>
+           <IconLabel icon={Award}>{t('provider.details.experience')}:</IconLabel>
             <span>{provider.experienceYears || details.experience || details.experienceYears} {t('provider.details.years')}</span>
           </div>
         )}
@@ -413,7 +420,7 @@ const handleContact = () => {
         {/* Spécialisation = nom du service traduit */}
         {provider.serviceType && (
           <div className="detail-item">
-            <strong>{t('provider.details.specialization')}:</strong>
+            <IconLabel icon={Sparkles}>{t('provider.details.specialization')}:</IconLabel>
             <span>{t(`services.${provider.serviceType}`, provider.serviceType)}</span>
           </div>
         )}
@@ -421,7 +428,7 @@ const handleContact = () => {
         {/* Langues */}
         {(details.languages && details.languages.length > 0) && (
           <div className="detail-item">
-            <strong>{t('provider.details.languages')}:</strong>
+            <IconLabel icon={Globe}>{t('provider.details.languages')}:</IconLabel>
          <span>{Array.isArray(details.languages) ? translateAndJoin(details.languages, 'languages', t) : translateValue(details.languages, 'languages', t)}</span>
           </div>
         )}
@@ -431,19 +438,19 @@ const handleContact = () => {
           <>
             {details.age && (
               <div className="detail-item">
-               <strong>{t('provider.details.age')}:</strong>
+               <IconLabel icon={User}>{t('provider.details.age')}:</IconLabel>
                 <span>{details.age} שנים</span>
               </div>
             )}
             {details.religiosity && (
               <div className="detail-item">
-               <strong>{t('provider.details.religiosity')}:</strong>
+               <IconLabel icon={BookOpen}>{t('provider.details.religiosity')}:</IconLabel>
              <span>{translateValue(details.religiosity, 'religiousLevels', t)}</span>
               </div>
             )}
             {details.can_travel_alone !== undefined && (
               <div className="detail-item">
-               <strong>{t('provider.details.canTravelAlone')}:</strong>
+               <IconLabel icon={MapPin}>{t('provider.details.canTravelAlone')}:</IconLabel>
 <span>{details.can_travel_alone ? t('common.yes') : t('common.no')}</span>
               </div>
             )}
@@ -455,13 +462,13 @@ const handleContact = () => {
           <>
             {details.legalStatus && (
               <div className="detail-item">
-              <strong>{t('provider.details.legalStatus')}:</strong>
+              <IconLabel icon={Shield}>{t('provider.details.legalStatus')}:</IconLabel>
              <span>{translateValue(details.legalStatus, 'cleaningLegalStatus', t)}</span>
               </div>
             )}
             {details.materialsProvided && (
               <div className="detail-item">
-                <strong>{t('provider.details.equipment')}:</strong>
+                <IconLabel icon={Package}>{t('provider.details.equipment')}:</IconLabel>
 <span>{details.materialsProvided === 'yes' ? t('provider.details.bringsEquipment') : details.materialsProvided === 'no' ? t('provider.details.noEquipment') : t('provider.details.partialEquipment')}</span>
               </div>
             )}
@@ -474,7 +481,7 @@ const handleContact = () => {
           <>
             {details.seasons && details.seasons.length > 0 && (
               <div className="detail-item">
-                <strong>{t('provider.details.seasons')}:</strong>
+                <IconLabel icon={Sun}>{t('provider.details.seasons')}:</IconLabel>
                <span>{translateAndJoin(details.seasons, 'gardeningSeasons', t)}</span>
               </div>
             )}
@@ -486,7 +493,7 @@ const handleContact = () => {
           <>
             {details.location && (
               <div className="detail-item">
-               <strong>{t('provider.details.careLocation')}:</strong>
+               <IconLabel icon={Home}>{t('provider.details.careLocation')}:</IconLabel>
             <span>{translateValue(details.location, 'petcareLocation', t)}</span>
               </div>
             )}
@@ -498,7 +505,7 @@ const handleContact = () => {
           <>
             {details.teachingMode && (
               <div className="detail-item">
-                <strong>{t('provider.details.teachingMode')}:</strong>
+                <IconLabel icon={BookOpen}>{t('provider.details.teachingMode')}:</IconLabel>
                <span>{translateValue(details.teachingMode, 'tutoringMode', t)}</span>
               </div>
             )}
@@ -510,25 +517,25 @@ const handleContact = () => {
           <>
             {details.certification && (
               <div className="detail-item">
-               <strong>{t('provider.details.certification')}:</strong>
+               <IconLabel icon={Award}>{t('provider.details.certification')}:</IconLabel>
                 <span>{details.certification}</span>
               </div>
             )}
 {details.administrativeHelp && details.administrativeHelp !== 'not_specified' && (
   <div className="detail-item">
-   <strong>{t('provider.details.adminHelp')}:</strong>
+   <IconLabel icon={ClipboardList}>{t('provider.details.adminHelp')}:</IconLabel>
 <span>{details.administrativeHelp === 'yes' ? t('common.yes') : t('common.no')}</span>
   </div>
 )}
 {details.medicalAccompaniment && details.medicalAccompaniment !== 'not_specified' && (
   <div className="detail-item">
-  <strong>{t('provider.details.medicalAccompaniment')}:</strong>
+  <IconLabel icon={Stethoscope}>{t('provider.details.medicalAccompaniment')}:</IconLabel>
 <span>{details.medicalAccompaniment === 'yes' ? t('common.yes') : t('common.no')}</span>
   </div>
 )}
 {details.vehicleForOutings && details.vehicleForOutings !== 'not_specified' && (
   <div className="detail-item">
-   <strong>{t('provider.details.vehicleForOutings')}:</strong>
+   <IconLabel icon={Car}>{t('provider.details.vehicleForOutings')}:</IconLabel>
 <span>{details.vehicleForOutings === 'yes' ? t('common.yes') : t('common.no')}</span>
   </div>
 )}
@@ -540,7 +547,7 @@ const handleContact = () => {
           <>
             {details.pickupService && (
               <div className="detail-item">
-                <strong>{t('provider.details.pickupService')}:</strong>
+                <IconLabel icon={Package}>{t('provider.details.pickupService')}:</IconLabel>
                 <span>{details.pickupService === 'yes' ? t('common.yes') : t('common.no')}</span>
               </div>
             )}
@@ -550,14 +557,14 @@ const handleContact = () => {
 {/* === AGE pour services manquants === */}
         {['tutoring', 'sports_activities', 'petcare', 'eldercare'].includes(provider.serviceType) && details.age && (
           <div className="detail-item">
-            <strong>{t('provider.details.age')}:</strong>
+            <IconLabel icon={User}>{t('provider.details.age')}:</IconLabel>
             <span>{details.age} {t('provider.details.years')}</span>
           </div>
         )}
         {/* Disponibilité jours */}
         {['tutoring', 'sports_activities', 'babysitting', 'petcare', 'eldercare', 'event_entertainment', 'dj'].includes(provider.serviceType) && (details.availableDays || details.availability_days) && (details.availableDays?.length > 0 || details.availability_days?.length > 0) && (
           <div className="detail-item">
-           <strong>{t('provider.details.availableDays')}:</strong>
+           <IconLabel icon={Calendar}>{t('provider.details.availableDays')}:</IconLabel>
         <span>{translateAndJoin(sortDays(details.availableDays || details.availability_days), 'days', t)}</span>
           </div>
         )}
@@ -565,7 +572,7 @@ const handleContact = () => {
         {/* Disponibilité heures */}
         {['tutoring', 'sports_activities', 'babysitting', 'petcare', 'eldercare', 'event_entertainment', 'dj'].includes(provider.serviceType) && (details.availableHours || details.availability_hours) && (details.availableHours?.length > 0 || details.availability_hours?.length > 0) && (
           <div className="detail-item">
-           <strong>{t('provider.details.availableHours')}:</strong>
+           <IconLabel icon={Clock}>{t('provider.details.availableHours')}:</IconLabel>
          <span>{translateAndJoin(details.availableHours || details.availability_hours, 'hours', t)}</span>
           </div>
         )}
@@ -573,7 +580,7 @@ const handleContact = () => {
 {/* Certifications */}
 {details.certifications && details.certifications.length > 0 && provider.serviceType !== 'cleaning' && provider.serviceType !== 'eldercare' && provider.serviceType !== 'laundry' && (
   <div className="detail-item">
-   <strong>{t('provider.details.certifications')}:</strong>
+   <IconLabel icon={Award}>{t('provider.details.certifications')}:</IconLabel>
     <span>{Array.isArray(details.certifications) ? translateAndJoin(details.certifications, 'babysittingCertifications', t) : translateValue(details.certifications, 'babysittingCertifications', t)}</span>
   </div>
 )}
@@ -583,7 +590,7 @@ const handleContact = () => {
         {/* BABYSITTING - Types */}
         {provider.serviceType === 'babysitting' && details.babysitting_types && details.babysitting_types.length > 0 && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-           <strong>{t('provider.details.babysittingTypes')}:</strong>
+           <IconLabel icon={Baby}>{t('provider.details.babysittingTypes')}:</IconLabel>
           <span>{translateAndJoin(details.babysitting_types, 'babysittingTypes', t)}</span>
           </div>
         )}
@@ -591,7 +598,7 @@ const handleContact = () => {
         {/* BABYSITTING - Age groups */}
         {provider.serviceType === 'babysitting' && details.ageGroups && details.ageGroups.length > 0 && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-            <strong>{t('provider.details.ageGroups')}:</strong>
+            <IconLabel icon={Users}>{t('provider.details.ageGroups')}:</IconLabel>
          <span>{translateAndJoin(details.ageGroups, 'babysittingAgeGroups', t)}</span>
           </div>
         )}
@@ -599,7 +606,7 @@ const handleContact = () => {
         {/* CLEANING - Types */}
         {provider.serviceType === 'cleaning' && details.cleaningTypes && details.cleaningTypes.length > 0 && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-          <strong>{t('provider.details.cleaningTypes')}:</strong>
+          <IconLabel icon={Sparkles}>{t('provider.details.cleaningTypes')}:</IconLabel>
        <span>{translateArrayFromMultipleCategories(details.cleaningTypes, ['cleaningHome', 'cleaningOffice', 'cleaningSpecial', 'cleaningAdditional'], t).join(', ')}</span>
           </div>
         )}
@@ -607,7 +614,7 @@ const handleContact = () => {
         {/* GARDENING - Services */}
         {provider.serviceType === 'gardening' && details.services && details.services.length > 0 && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-           <strong>{t('provider.details.gardeningServices')}:</strong>
+           <IconLabel icon={Leaf}>{t('provider.details.gardeningServices')}:</IconLabel>
        <span>{translateAndJoin(details.services, 'gardeningServices', t)}</span>
           </div>
         )}
@@ -615,7 +622,7 @@ const handleContact = () => {
         {/* GARDENING - Equipment */}
         {provider.serviceType === 'gardening' && details.equipment && details.equipment.length > 0 && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-          <strong>{t('provider.details.equipment')}:</strong>
+          <IconLabel icon={Package}>{t('provider.details.equipment')}:</IconLabel>
          <span>{translateAndJoin(details.equipment, 'gardeningEquipment', t)}</span>
           </div>
         )}
@@ -623,7 +630,7 @@ const handleContact = () => {
         {/* GARDENING - Additional Services */}
         {provider.serviceType === 'gardening' && details.additionalServices && details.additionalServices.length > 0 && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-            <strong>{t('provider.details.additionalServices')}:</strong>
+            <IconLabel icon={ListChecks}>{t('provider.details.additionalServices')}:</IconLabel>
           <span>{translateAndJoin(details.additionalServices, 'gardeningAdditional', t)}</span>
           </div>
         )}
@@ -631,7 +638,7 @@ const handleContact = () => {
         {/* PETCARE - Animal types */}
         {provider.serviceType === 'petcare' && details.animalTypes && details.animalTypes.length > 0 && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-           <strong>{t('provider.details.pets')}:</strong>
+           <IconLabel icon={PawPrint}>{t('provider.details.pets')}:</IconLabel>
        <span>{translateAndJoin(details.animalTypes, 'petcareAnimals', t)}</span>
           </div>
         )}
@@ -639,7 +646,7 @@ const handleContact = () => {
         {/* PETCARE - Facilities */}
         {provider.serviceType === 'petcare' && details.facilities && details.facilities.length > 0 && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-          <strong>{t('provider.details.facilities')}:</strong>
+          <IconLabel icon={Home}>{t('provider.details.facilities')}:</IconLabel>
          <span>{translateAndJoin(details.facilities, 'petcareFacilities', t)}</span>
           </div>
         )}
@@ -647,7 +654,7 @@ const handleContact = () => {
         {/* PETCARE - Dog sizes */}
         {provider.serviceType === 'petcare' && details.dogSizes && details.dogSizes.length > 0 && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-            <strong>{t('provider.details.dogSizes')}:</strong>
+            <IconLabel icon={Dog}>{t('provider.details.dogSizes')}:</IconLabel>
           <span>{translateAndJoin(details.dogSizes, 'petcareDogSizes', t)}</span>
           </div>
         )}
@@ -655,7 +662,7 @@ const handleContact = () => {
         {/* PETCARE - Additional Services */}
         {provider.serviceType === 'petcare' && details.additionalServices && details.additionalServices.length > 0 && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-            <strong>{t('provider.details.additionalServices')}:</strong>
+            <IconLabel icon={ListChecks}>{t('provider.details.additionalServices')}:</IconLabel>
           <span>{translateAndJoin(details.additionalServices, 'petcareServices', t)}</span>
           </div>
         )}
@@ -663,7 +670,7 @@ const handleContact = () => {
         {/* PETCARE - Veterinary Services */}
         {provider.serviceType === 'petcare' && details.veterinaryServices && details.veterinaryServices.length > 0 && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-            <strong>{t('provider.details.veterinaryServices')}:</strong>
+            <IconLabel icon={Stethoscope}>{t('provider.details.veterinaryServices')}:</IconLabel>
        <span>{translateAndJoin(details.veterinaryServices, 'petcareVeterinary', t)}</span>
           </div>
         )}
@@ -673,19 +680,19 @@ const handleContact = () => {
           <>
             {details.installation_types && details.installation_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Snowflake} color="#0891B2" bg="#ECFEFF">{t('provider.details.acInstallation')}:</IconLabel>
+                <IconLabel icon={Snowflake}>{t('provider.details.acInstallation')}:</IconLabel>
              <span>{translateAndJoin(details.installation_types, 'acInstallation', t)}</span>
               </div>
             )}
             {details.repair_types && details.repair_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Wrench} color="#2563EB" bg="#EFF6FF">{t('provider.details.acRepair')}:</IconLabel>
+                <IconLabel icon={Wrench}>{t('provider.details.acRepair')}:</IconLabel>
              <span>{translateAndJoin(details.repair_types, 'acRepair', t)}</span>
               </div>
             )}
             {details.disassembly_types && details.disassembly_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={RotateCcw} color="#6366F1" bg="#EEF2FF">{t('provider.details.acDisassembly')}:</IconLabel>
+                <IconLabel icon={RotateCcw}>{t('provider.details.acDisassembly')}:</IconLabel>
              <span>{translateAndJoin(details.disassembly_types, 'acDisassembly', t)}</span>
               </div>
             )}
@@ -697,13 +704,13 @@ const handleContact = () => {
           <>
             {details.design_types && details.design_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Palette} color="#BE185D" bg="#FDF2F8">{t('provider.details.drywallDesigns')}:</IconLabel>
+                <IconLabel icon={Palette}>{t('provider.details.drywallDesigns')}:</IconLabel>
              <span>{translateAndJoin(details.design_types, 'drywallDesign', t)}</span>
               </div>
             )}
             {details.construction_types && details.construction_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={HardHat} color="#7C3AED" bg="#F5F3FF">{t('provider.details.drywallConstruction')}:</IconLabel>
+                <IconLabel icon={HardHat}>{t('provider.details.drywallConstruction')}:</IconLabel>
                <span>{translateAndJoin(details.construction_types, 'drywallConstruction', t)}</span>
               </div>
             )}
@@ -715,37 +722,37 @@ const handleContact = () => {
           <>
             {details.furniture_building_types && details.furniture_building_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Sofa} color="#92400E" bg="#FFFBEB">{t('provider.details.furnitureBuilding')}:</IconLabel>
+                <IconLabel icon={Sofa}>{t('provider.details.furnitureBuilding')}:</IconLabel>
                <span>{translateAndJoin(details.furniture_building_types, 'carpentryFurnitureBuilding', t)}</span>
               </div>
             )}
             {details.furniture_repair_types && details.furniture_repair_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Wrench} color="#2563EB" bg="#EFF6FF">{t('provider.details.furnitureRepair')}:</IconLabel>
+                <IconLabel icon={Wrench}>{t('provider.details.furnitureRepair')}:</IconLabel>
                <span>{translateAndJoin(details.furniture_repair_types, 'carpentryFurnitureRepair', t)}</span>
               </div>
             )}
             {details.other_carpentry_types && details.other_carpentry_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={TreePine} color="#059669" bg="#ECFDF5">{t('provider.details.otherCarpentry')}:</IconLabel>
+                <IconLabel icon={TreePine}>{t('provider.details.otherCarpentry')}:</IconLabel>
                <span>{translateAndJoin(details.other_carpentry_types, 'carpentryOther', t)}</span>
               </div>
             )}
             {details.pergola_types && details.pergola_types.length > 0 && (
                   <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                    <IconLabel icon={TreePine} color="#059669" bg="#ECFDF5">{t('provider.details.pergolas')}:</IconLabel>
+                    <IconLabel icon={TreePine}>{t('provider.details.pergolas')}:</IconLabel>
                     <span>{translateAndJoin(details.pergola_types, 'carpentryPergolas', t)}</span>
                   </div>
                 )}
                 {details.deck_types && details.deck_types.length > 0 && (
                   <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                    <IconLabel icon={TreePine} color="#059669" bg="#ECFDF5">{t('provider.details.decks')}:</IconLabel>
+                    <IconLabel icon={TreePine}>{t('provider.details.decks')}:</IconLabel>
                    <span>{translateAndJoin(details.deck_types, 'carpentryDecks', t)}</span>
                   </div>
                 )}
                 {details.fence_types && details.fence_types.length > 0 && (
                   <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                    <IconLabel icon={Hammer} color="#7C3AED" bg="#F5F3FF">{t('provider.details.fences')}:</IconLabel>
+                    <IconLabel icon={Hammer}>{t('provider.details.fences')}:</IconLabel>
                  <span>{translateAndJoin(details.fence_types, 'carpentryFences', t)}</span>
                   </div>
                 )}
@@ -756,7 +763,7 @@ const handleContact = () => {
         {provider.serviceType === 'home_organization' && (
           <>
             <div className="detail-item">
-              <strong>{t('provider.details.hourlyRate')}:</strong>
+              <IconLabel icon={Wallet}>{t('provider.details.hourlyRate')}:</IconLabel>
               {parseFloat(details.hourlyRate) > 0
                 ? <span className="price-highlight">₪{details.hourlyRate}/שעה</span>
                 : <span>{t('dashboard.notSpecified')}</span>
@@ -764,19 +771,19 @@ const handleContact = () => {
             </div>
             {details.general_organization_types && details.general_organization_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Home} color="#2563EB" bg="#EFF6FF">{t('provider.details.generalOrganization')}:</IconLabel>
+                <IconLabel icon={Home}>{t('provider.details.generalOrganization')}:</IconLabel>
               <span>{translateAndJoin(details.general_organization_types, 'homeOrgGeneral', t)}</span>
               </div>
             )}
             {details.sorting_types && details.sorting_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Package} color="#7C3AED" bg="#F5F3FF">{t('provider.details.sortingOrganization')}:</IconLabel>
+                <IconLabel icon={Package}>{t('provider.details.sortingOrganization')}:</IconLabel>
               <span>{translateAndJoin(details.sorting_types, 'homeOrgSorting', t)}</span>
               </div>
             )}
             {details.professional_organization_types && details.professional_organization_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Sparkles} color="#BE185D" bg="#FDF2F8">{t('provider.details.professionalOrganization')}:</IconLabel>
+                <IconLabel icon={Sparkles}>{t('provider.details.professionalOrganization')}:</IconLabel>
                <span>{translateAndJoin(details.professional_organization_types, 'homeOrgProfessional', t)}</span>
               </div>
             )}
@@ -788,37 +795,37 @@ const handleContact = () => {
           <>
             {details.dj_event_types && details.dj_event_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Headphones} color="#2563EB" bg="#EFF6FF">{t('serviceFields.dj.dj_event_types')}:</IconLabel>
+                <IconLabel icon={Headphones}>{t('serviceFields.dj.dj_event_types')}:</IconLabel>
                 <span>{translateAndJoin(details.dj_event_types, 'chefEventType', t)}</span>
               </div>
             )}
             {details.food_machine_types && details.food_machine_types.length > 0 && (
                   <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                    <IconLabel icon={ChefHat} color="#EA580C" bg="#FFF7ED">{t('provider.details.foodMachines')}:</IconLabel>
+                    <IconLabel icon={ChefHat}>{t('provider.details.foodMachines')}:</IconLabel>
                 <span>{translateAndJoin(details.food_machine_types, 'eventFoodMachines', t)}</span>
                   </div>
                 )}
                 {details.inflatable_game_types && details.inflatable_game_types.length > 0 && (
                   <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                    <IconLabel icon={Star} color="#D97706" bg="#FFFBEB">{t('provider.details.inflatables')}:</IconLabel>
+                    <IconLabel icon={Star}>{t('provider.details.inflatables')}:</IconLabel>
                     <span>{translateAndJoin(details.inflatable_game_types, 'eventInflatableGames', t)}</span>
                   </div>
                 )}
                 {details.effect_machine_types && details.effect_machine_types.length > 0 && (
                   <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                    <IconLabel icon={Wind} color="#0891B2" bg="#ECFEFF">{t('provider.details.effectMachines')}:</IconLabel>
+                    <IconLabel icon={Wind}>{t('provider.details.effectMachines')}:</IconLabel>
 <span>{translateAndJoin(details.effect_machine_types, 'eventEffectMachines', t)}</span>
                   </div>
                 )}
             {details.entertainment_types && details.entertainment_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Star} color="#BE185D" bg="#FDF2F8">{t('provider.details.entertainmentTypes')}:</IconLabel>
+                <IconLabel icon={Star}>{t('provider.details.entertainmentTypes')}:</IconLabel>
                <span>{translateAndJoin(details.entertainment_types, 'eventEntertainment', t)}</span>
               </div>
             )}
             {details.other_types && details.other_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Gift} color="#BE185D" bg="#FDF2F8">{t('provider.details.otherEventServices')}:</IconLabel>
+                <IconLabel icon={Gift}>{t('provider.details.otherEventServices')}:</IconLabel>
               <span>{translateAndJoin(details.other_types, 'eventOther', t)}</span>
               </div>
             )}
@@ -830,25 +837,25 @@ const handleContact = () => {
           <>
             {details.provider_type && details.provider_type.length > 0 && (
               <div className="detail-item">
-                <strong>{t('provider.details.providerType')}:</strong>
+                <IconLabel icon={User}>{t('provider.details.providerType')}:</IconLabel>
                 <span>{translateAndJoin(details.provider_type, 'chefProviderType', t)}</span>
               </div>
             )}
             {details.event_types && details.event_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Gift} color="#BE185D" bg="#FDF2F8">{t('provider.details.eventTypes')}:</IconLabel>
+                <IconLabel icon={Gift}>{t('provider.details.eventTypes')}:</IconLabel>
                 <span>{translateAndJoin(details.event_types, 'chefEventType', t)}</span>
               </div>
             )}
             {details.cuisine_types && details.cuisine_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={ChefHat} color="#EA580C" bg="#FFF7ED">{t('provider.details.cuisineTypes')}:</IconLabel>
+                <IconLabel icon={ChefHat}>{t('provider.details.cuisineTypes')}:</IconLabel>
               <span>{translateAndJoin(details.cuisine_types, 'chefCuisine', t)}</span>
               </div>
             )}
             {details.kosher_types && details.kosher_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Star} color="#EA580C" bg="#FFF7ED">{t('provider.details.kosherTypes')}:</IconLabel>
+                <IconLabel icon={Award}>{t('provider.details.kosherTypes')}:</IconLabel>
                 <span>{translateAndJoin(details.kosher_types, 'chefKosher', t)}</span>
                 {details.kosher_types.includes('אחר') && details.kosher_other && (
                   <span> ({details.kosher_other})</span>
@@ -863,19 +870,19 @@ const handleContact = () => {
           <>
             {details.product_types && details.product_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={ChefHat} color="#EA580C" bg="#FFF7ED">{t('serviceForm.pastry.productTypes')}:</IconLabel>
+                <IconLabel icon={ChefHat}>{t('serviceForm.pastry.productTypes')}:</IconLabel>
                 <span>{translateAndJoin(details.product_types, 'pastryProducts', t)}</span>
               </div>
             )}
             {details.event_types && details.event_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Gift} color="#BE185D" bg="#FDF2F8">{t('provider.details.eventTypes')}:</IconLabel>
+                <IconLabel icon={Gift}>{t('provider.details.eventTypes')}:</IconLabel>
                 <span>{translateAndJoin(details.event_types, 'chefEventType', t)}</span>
               </div>
             )}
             {details.kosher_types && details.kosher_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Star} color="#EA580C" bg="#FFF7ED">{t('provider.details.kosherTypes')}:</IconLabel>
+                <IconLabel icon={Award}>{t('provider.details.kosherTypes')}:</IconLabel>
                 <span>{translateAndJoin(details.kosher_types, 'chefKosher', t)}</span>
                 {details.kosher_types.includes('אחר') && details.kosher_other && (
                   <span> ({details.kosher_other})</span>
@@ -890,7 +897,7 @@ const handleContact = () => {
           <>
             {details.work_types && details.work_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Paintbrush} color="#BE185D" bg="#FDF2F8">{t('provider.details.paintingServices')}:</IconLabel>
+                <IconLabel icon={Paintbrush}>{t('provider.details.paintingServices')}:</IconLabel>
                <span>{translateAndJoin(details.work_types, 'paintingWorkTypes', t)}</span>
               </div>
             )}
@@ -902,31 +909,31 @@ const handleContact = () => {
           <>
             {details.structure_work_types && details.structure_work_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={HardHat} color="#7C3AED" bg="#F5F3FF">{t('provider.details.structureWork')}:</IconLabel>
+                <IconLabel icon={HardHat}>{t('provider.details.structureWork')}:</IconLabel>
                <span>{translateAndJoin(details.structure_work_types, 'contractorStructure', t)}</span>
               </div>
             )}
             {details.general_renovation_types && details.general_renovation_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Hammer} color="#7C3AED" bg="#F5F3FF">{t('provider.details.generalRenovation')}:</IconLabel>
+                <IconLabel icon={Hammer}>{t('provider.details.generalRenovation')}:</IconLabel>
                <span>{translateAndJoin(details.general_renovation_types, 'contractorRenovation', t)}</span>
               </div>
             )}
             {details.electric_plumbing_types && details.electric_plumbing_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Zap} color="#D97706" bg="#FFFBEB">{t('provider.details.electricPlumbing')}:</IconLabel>
+                <IconLabel icon={Zap}>{t('provider.details.electricPlumbing')}:</IconLabel>
 <span>{translateAndJoin(details.electric_plumbing_types, 'contractorElectricPlumbing', t)}</span>
               </div>
             )}
             {details.exterior_work_types && details.exterior_work_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Trees} color="#059669" bg="#ECFDF5">{t('provider.details.exteriorWork')}:</IconLabel>
+                <IconLabel icon={Trees}>{t('provider.details.exteriorWork')}:</IconLabel>
                <span>{translateAndJoin(details.exterior_work_types, 'contractorExterior', t)}</span>
               </div>
             )}
             {details.facade_repair_types && details.facade_repair_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Building2} color="#6366F1" bg="#EEF2FF">{t('provider.details.facadeRepair')}:</IconLabel>
+                <IconLabel icon={Building2}>{t('provider.details.facadeRepair')}:</IconLabel>
                 <span>{translateAndJoin(details.facade_repair_types, 'contractorFacade', t)}</span>
               </div>
             )}
@@ -938,37 +945,37 @@ const handleContact = () => {
           <>
             {details.roof_waterproofing_types && details.roof_waterproofing_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Home} color="#0D9488" bg="#F0FDFA">{t('provider.details.roofWaterproofing')}:</IconLabel>
+                <IconLabel icon={Home}>{t('provider.details.roofWaterproofing')}:</IconLabel>
                <span>{translateAndJoin(details.roof_waterproofing_types, 'waterproofingRoof', t)}</span>
               </div>
             )}
             {details.wall_waterproofing_types && details.wall_waterproofing_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Building2} color="#0D9488" bg="#F0FDFA">{t('provider.details.wallWaterproofing')}:</IconLabel>
+                <IconLabel icon={Building2}>{t('provider.details.wallWaterproofing')}:</IconLabel>
                <span>{translateAndJoin(details.wall_waterproofing_types, 'waterproofingWall', t)}</span>
               </div>
             )}
             {details.balcony_waterproofing_types && details.balcony_waterproofing_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Leaf} color="#059669" bg="#ECFDF5">{t('provider.details.balconyWaterproofing')}:</IconLabel>
+                <IconLabel icon={Leaf}>{t('provider.details.balconyWaterproofing')}:</IconLabel>
                <span>{translateAndJoin(details.balcony_waterproofing_types, 'waterproofingBalcony', t)}</span>
               </div>
             )}
             {details.wet_room_waterproofing_types && details.wet_room_waterproofing_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Droplets} color="#0D9488" bg="#F0FDFA">{t('provider.details.wetRoomWaterproofing')}:</IconLabel>
+                <IconLabel icon={Droplets}>{t('provider.details.wetRoomWaterproofing')}:</IconLabel>
               <span>{translateAndJoin(details.wet_room_waterproofing_types, 'waterproofingWetRoom', t)}</span>
               </div>
             )}
             {details.underground_waterproofing_types && details.underground_waterproofing_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={ArrowDown} color="#6366F1" bg="#EEF2FF">{t('provider.details.undergroundWaterproofing')}:</IconLabel>
+                <IconLabel icon={ArrowDown}>{t('provider.details.undergroundWaterproofing')}:</IconLabel>
                <span>{translateAndJoin(details.underground_waterproofing_types, 'waterproofingUnderground', t)}</span>
               </div>
             )}
             {details.inspection_equipment_types && details.inspection_equipment_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Search} color="#6366F1" bg="#EEF2FF">{t('provider.details.inspectionEquipment')}:</IconLabel>
+                <IconLabel icon={Search}>{t('provider.details.inspectionEquipment')}:</IconLabel>
                <span>{translateAndJoin(details.inspection_equipment_types, 'waterproofingInspection', t)}</span>
               </div>
             )}
@@ -980,25 +987,25 @@ const handleContact = () => {
           <>
             {details.windows_doors_types && details.windows_doors_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Square} color="#2563EB" bg="#EFF6FF">{t('provider.details.aluminumWindowsDoors')}:</IconLabel>
+                <IconLabel icon={Square}>{t('provider.details.aluminumWindowsDoors')}:</IconLabel>
                <span>{translateAndJoin(details.windows_doors_types, 'aluminumWindowsDoors', t)}</span>
               </div>
             )}
             {details.pergolas_outdoor_types && details.pergolas_outdoor_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={TreePine} color="#059669" bg="#ECFDF5">{t('provider.details.aluminumPergolas')}:</IconLabel>
+                <IconLabel icon={TreePine}>{t('provider.details.aluminumPergolas')}:</IconLabel>
                 <span>{translateAndJoin(details.pergolas_outdoor_types, 'aluminumPergolas', t)}</span>
               </div>
             )}
             {details.repairs_service_types && details.repairs_service_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Wrench} color="#2563EB" bg="#EFF6FF">{t('provider.details.aluminumRepairs')}:</IconLabel>
+                <IconLabel icon={Wrench}>{t('provider.details.aluminumRepairs')}:</IconLabel>
                <span>{translateAndJoin(details.repairs_service_types, 'aluminumRepairs', t)}</span>
               </div>
             )}
             {details.cladding_types && details.cladding_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={HardHat} color="#7C3AED" bg="#F5F3FF">{t('provider.details.aluminumCladding')}:</IconLabel>
+                <IconLabel icon={HardHat}>{t('provider.details.aluminumCladding')}:</IconLabel>
                 <span>{translateAndJoin(details.cladding_types, 'aluminumCladding', t)}</span>
               </div>
             )}
@@ -1010,31 +1017,31 @@ const handleContact = () => {
           <>
             {details.shower_glass_types && details.shower_glass_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Droplets} color="#0D9488" bg="#F0FDFA">{t('provider.details.showerGlass')}:</IconLabel>
+                <IconLabel icon={Droplets}>{t('provider.details.showerGlass')}:</IconLabel>
                 <span>{translateAndJoin(details.shower_glass_types, 'glassShower', t)}</span>
               </div>
             )}
             {details.windows_doors_glass_types && details.windows_doors_glass_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Square} color="#2563EB" bg="#EFF6FF">{t('provider.details.windowsDoorsGlass')}:</IconLabel>
+                <IconLabel icon={Square}>{t('provider.details.windowsDoorsGlass')}:</IconLabel>
                <span>{translateAndJoin(details.windows_doors_glass_types, 'glassWindowsDoors', t)}</span>
               </div>
             )}
             {details.kitchen_home_glass_types && details.kitchen_home_glass_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Home} color="#2563EB" bg="#EFF6FF">{t('provider.details.kitchenHomeGlass')}:</IconLabel>
+                <IconLabel icon={Home}>{t('provider.details.kitchenHomeGlass')}:</IconLabel>
                <span>{translateAndJoin(details.kitchen_home_glass_types, 'glassKitchenHome', t)}</span>
               </div>
             )}
             {details.special_safety_glass_types && details.special_safety_glass_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Shield} color="#2563EB" bg="#EFF6FF">{t('provider.details.specialSafetyGlass')}:</IconLabel>
+                <IconLabel icon={Shield}>{t('provider.details.specialSafetyGlass')}:</IconLabel>
                <span>{translateAndJoin(details.special_safety_glass_types, 'glassSpecialSafety', t)}</span>
               </div>
             )}
             {details.repair_custom_types && details.repair_custom_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Wrench} color="#2563EB" bg="#EFF6FF">{t('provider.details.glassRepairCustom')}:</IconLabel>
+                <IconLabel icon={Wrench}>{t('provider.details.glassRepairCustom')}:</IconLabel>
                <span>{translateAndJoin(details.repair_custom_types, 'glassRepairCustom', t)}</span>
               </div>
             )}
@@ -1046,31 +1053,31 @@ const handleContact = () => {
           <>
             {details.lock_replacement_types && details.lock_replacement_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Lock} color="#7C3AED" bg="#F5F3FF">{t('provider.details.lockReplacement')}:</IconLabel>
+                <IconLabel icon={Lock}>{t('provider.details.lockReplacement')}:</IconLabel>
                <span>{translateAndJoin(details.lock_replacement_types, 'locksmithLockReplacement', t)}</span>
               </div>
             )}
             {details.door_opening_types && details.door_opening_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={DoorOpen} color="#6366F1" bg="#EEF2FF">{t('provider.details.doorOpening')}:</IconLabel>
+                <IconLabel icon={DoorOpen}>{t('provider.details.doorOpening')}:</IconLabel>
                 <span>{translateAndJoin(details.door_opening_types, 'locksmithDoorOpening', t)}</span>
               </div>
             )}
             {details.lock_system_installation_types && details.lock_system_installation_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Settings} color="#6366F1" bg="#EEF2FF">{t('provider.details.lockSystemInstallation')}:</IconLabel>
+                <IconLabel icon={Settings}>{t('provider.details.lockSystemInstallation')}:</IconLabel>
                 <span>{translateAndJoin(details.lock_system_installation_types, 'locksmithSystems', t)}</span>
               </div>
             )}
             {details.lock_door_repair_types && details.lock_door_repair_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Wrench} color="#2563EB" bg="#EFF6FF">{t('provider.details.lockDoorRepair')}:</IconLabel>
+                <IconLabel icon={Wrench}>{t('provider.details.lockDoorRepair')}:</IconLabel>
                 <span>{translateAndJoin(details.lock_door_repair_types, 'locksmithRepairs', t)}</span>
               </div>
             )}
             {details.security_services_types && details.security_services_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Shield} color="#2563EB" bg="#EFF6FF">{t('provider.details.securityServices')}:</IconLabel>
+                <IconLabel icon={Shield}>{t('provider.details.securityServices')}:</IconLabel>
                 <span>{translateAndJoin(details.security_services_types, 'locksmithSecurity', t)}</span>
               </div>
             )}
@@ -1082,19 +1089,19 @@ const handleContact = () => {
           <>
             {details.installation_types && details.installation_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Flame} color="#EA580C" bg="#FFF7ED">{t('provider.details.gasInstallation')}:</IconLabel>
+                <IconLabel icon={Flame}>{t('provider.details.gasInstallation')}:</IconLabel>
                <span>{translateAndJoin(details.installation_types, 'gasInstallation', t)}</span>
               </div>
             )}
             {details.repair_types && details.repair_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Wrench} color="#2563EB" bg="#EFF6FF">{t('provider.details.gasRepairs')}:</IconLabel>
+                <IconLabel icon={Wrench}>{t('provider.details.gasRepairs')}:</IconLabel>
               <span>{translateAndJoin(details.repair_types, 'gasRepair', t)}</span>
               </div>
             )}
             {details.license_type && details.license_type.length > 0 && (
               <div className="detail-item">
-                <IconLabel icon={ClipboardList} color="#6366F1" bg="#EEF2FF">{t('provider.details.gasLicenseType')}:</IconLabel>
+                <IconLabel icon={ClipboardList}>{t('provider.details.gasLicenseType')}:</IconLabel>
                 <span>{translateAndJoin(details.license_type, 'gasLicenseTypes', t)}</span>
               </div>
             )}
@@ -1106,7 +1113,7 @@ const handleContact = () => {
           <>
             {details.work_types && details.work_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Wrench} color="#2563EB" bg="#EFF6FF">{t('provider.details.mechanicWorkTypes')}:</IconLabel>
+                <IconLabel icon={Wrench}>{t('provider.details.mechanicWorkTypes')}:</IconLabel>
                 <span>{translateAndJoin(details.work_types, 'mechanicWorkTypes', t)}</span>
               </div>
             )}
@@ -1118,13 +1125,13 @@ const handleContact = () => {
           <>
             {details.work_types && details.work_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Settings} color="#78350F" bg="#FEF3C7">{t('filters.metalwork.workTypes')}:</IconLabel>
+                <IconLabel icon={Settings}>{t('filters.metalwork.workTypes')}:</IconLabel>
                 <span>{translateAndJoin(details.work_types, 'metalworkWorkTypes', t)}</span>
               </div>
             )}
             {details.availability_hours && details.availability_hours.length > 0 && (
               <div className="detail-item">
-                <IconLabel icon={Clock} color="#78350F" bg="#FEF3C7">{t('serviceFields.metalwork.availability_hours')}:</IconLabel>
+                <IconLabel icon={Clock}>{t('serviceFields.metalwork.availability_hours')}:</IconLabel>
                 <span>{translateAndJoin(details.availability_hours, 'hours', t)}</span>
               </div>
             )}
@@ -1136,19 +1143,19 @@ const handleContact = () => {
           <>
             {details.transportation_type && details.transportation_type.length > 0 && (
               <div className="detail-item">
-                <strong>{t('serviceFields.driver.transportation_type')}:</strong>
+                <IconLabel icon={Car}>{t('serviceFields.driver.transportation_type')}:</IconLabel>
                 <span>{details.transportation_type.join(', ')}</span>
               </div>
             )}
             {details.vehicle_type && details.vehicle_type.length > 0 && (
               <div className="detail-item">
-                <strong>{t('serviceForm.driver.vehicleType')}:</strong>
+                <IconLabel icon={Truck}>{t('serviceForm.driver.vehicleType')}:</IconLabel>
                 <span>{translateAndJoin(details.vehicle_type, 'vehicleType', t)}</span>
               </div>
             )}
             {details.availability_hours && details.availability_hours.length > 0 && (
               <div className="detail-item">
-                <strong>{t('filters.driver.availabilityHours')}:</strong>
+                <IconLabel icon={Clock}>{t('filters.driver.availabilityHours')}:</IconLabel>
                 <span>{translateAndJoin(details.availability_hours, 'hours', t)}</span>
               </div>
             )}
@@ -1160,19 +1167,19 @@ const handleContact = () => {
           <>
             {details.certified !== undefined && details.certified !== null && (
               <div className="detail-item">
-                <strong>{t('serviceForm.pest_control.certification')}:</strong>
+                <IconLabel icon={Award}>{t('serviceForm.pest_control.certification')}:</IconLabel>
                 <span>{details.certified === 'yes' || details.certified === true ? t('common.yes') : t('common.no')}</span>
               </div>
             )}
             {details.worksAtHeight !== undefined && details.worksAtHeight !== null && (
               <div className="detail-item">
-                <strong>{t('serviceForm.pest_control.workAtHeight')}:</strong>
+                <IconLabel icon={HardHat}>{t('serviceForm.pest_control.workAtHeight')}:</IconLabel>
                 <span>{details.worksAtHeight === 'yes' || details.worksAtHeight === true ? t('common.yes') : t('common.no')}</span>
               </div>
             )}
             {details.pestTypes && details.pestTypes.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Bug} color="#059669" bg="#ECFDF5">{t('serviceForm.pest_control.pestTypes')}:</IconLabel>
+                <IconLabel icon={Bug}>{t('serviceForm.pest_control.pestTypes')}:</IconLabel>
                 <span>{translateAndJoin(details.pestTypes, 'pestTypes', t)}</span>
               </div>
             )}
@@ -1216,7 +1223,7 @@ const handleContact = () => {
               if (others.length) {
                 elements.push(
                   <div key="other" className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                    <IconLabel icon={BookOpen} color="#2563EB" bg="#EFF6FF">{t('serviceForm.tutoring.subjectsLabel')}:</IconLabel>
+                    <IconLabel icon={BookOpen}>{t('serviceForm.tutoring.subjectsLabel')}:</IconLabel>
                     <span>{others.map((s, i) => <React.Fragment key={i}><bdi>{cleanName(s)}</bdi>{i < others.length - 1 ? ', ' : ''}</React.Fragment>)}</span>
                   </div>
                 );
@@ -1229,7 +1236,7 @@ const handleContact = () => {
         {/* TUTORING - Levels */}
         {provider.serviceType === 'tutoring' && details.levels && details.levels.length > 0 && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-           <strong>{t('provider.details.levels')}:</strong>
+           <IconLabel icon={BookOpen}>{t('provider.details.levels')}:</IconLabel>
           <span>{translateAndJoin(details.levels, 'tutoringLevels', t)}</span>
           </div>
         )}
@@ -1237,7 +1244,7 @@ const handleContact = () => {
 {/* TUTORING - Specializations */}
         {provider.serviceType === 'tutoring' && details.specializations && details.specializations.length > 0 && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-            <strong>{t('provider.details.specializations')}:</strong>
+            <IconLabel icon={Sparkles}>{t('provider.details.specializations')}:</IconLabel>
          <span>{translateAndJoin(details.specializations, 'tutoringSpecializations', t)}</span>
           </div>
         )}
@@ -1245,7 +1252,7 @@ const handleContact = () => {
         {/* TUTORING - Qualifications */}
         {provider.serviceType === 'tutoring' && details.qualifications && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-            <strong>{t('provider.details.qualifications')}:</strong>
+            <IconLabel icon={Award}>{t('provider.details.qualifications')}:</IconLabel>
             <span>{details.qualifications}</span>
           </div>
         )}
@@ -1286,7 +1293,7 @@ const handleContact = () => {
                 if (others.length) {
                   elements.push(
                     <div key="other" className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                      <IconLabel icon={BookOpen} color="#2563EB" bg="#EFF6FF">{t('filters.tutoring.other')}:</IconLabel>
+                      <IconLabel icon={BookOpen}>{t('filters.tutoring.other')}:</IconLabel>
                       <span>{others.map((s, i) => <span key={i}>{cleanName(s)}{i < others.length - 1 ? ', ' : ''}</span>)}</span>
                     </div>
                   );
@@ -1295,7 +1302,7 @@ const handleContact = () => {
               }
               return (
                 <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                  <IconLabel icon={Trophy} color="#D97706" bg="#FFFBEB">{t('serviceForm.sports_activities.subjectsLabel')}:</IconLabel>
+                  <IconLabel icon={Trophy}>{t('serviceForm.sports_activities.subjectsLabel')}:</IconLabel>
                   <span>{details.subjects.map((s, i) => <span key={i}>{cleanName(s)}{i < details.subjects.length - 1 ? ', ' : ''}</span>)}</span>
                 </div>
               );
@@ -1306,7 +1313,7 @@ const handleContact = () => {
         {/* SPORTS_ACTIVITIES - Levels (groupes d'âge) */}
         {provider.serviceType === 'sports_activities' && details.levels && details.levels.length > 0 && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-            <strong>{t('filters.sports_activities.ageGroups')}:</strong>
+            <IconLabel icon={Users}>{t('filters.sports_activities.ageGroups')}:</IconLabel>
             <span>{translateAndJoin(details.levels, 'tutoringLevels', t)}</span>
           </div>
         )}
@@ -1314,7 +1321,7 @@ const handleContact = () => {
         {/* ELDERCARE - Care types */}
         {provider.serviceType === 'eldercare' && details.careTypes && details.careTypes.length > 0 && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-            <strong>{t('provider.details.careTypes')}:</strong>
+            <IconLabel icon={HeartHandshake}>{t('provider.details.careTypes')}:</IconLabel>
           <span>{translateAndJoin(details.careTypes, 'eldercareTypes', t)}</span>
           </div>
         )}
@@ -1322,7 +1329,7 @@ const handleContact = () => {
         {/* ELDERCARE - Specific conditions */}
         {provider.serviceType === 'eldercare' && details.specificConditions && details.specificConditions.length > 0 && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-          <strong>{t('provider.details.specificConditions')}:</strong>
+          <IconLabel icon={ClipboardList}>{t('provider.details.specificConditions')}:</IconLabel>
            <span>{translateAndJoin(details.specificConditions, 'eldercareConditions', t)}</span>
           </div>
         )}
@@ -1330,7 +1337,7 @@ const handleContact = () => {
         {/* LAUNDRY - Types */}
         {provider.serviceType === 'laundry' && details.laundryTypes && details.laundryTypes.length > 0 && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-            <strong>{t('provider.details.laundryTypes')}:</strong>
+            <IconLabel icon={Package}>{t('provider.details.laundryTypes')}:</IconLabel>
          <span>{translateAndJoin(details.laundryTypes, 'laundryServices', t)}</span>
           </div>
         )}
@@ -1351,7 +1358,7 @@ const handleContact = () => {
               
               return selectedLongTerm.length > 0 && (
                 <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                  <IconLabel icon={Home} color="#2563EB" bg="#EFF6FF">{t('provider.details.longTermRental')}:</IconLabel>
+                  <IconLabel icon={Home}>{t('provider.details.longTermRental')}:</IconLabel>
                  <span>{translateAndJoin(selectedLongTerm, 'propertyFullYear', t)}</span>
                 </div>
               );
@@ -1371,7 +1378,7 @@ const handleContact = () => {
               
               return selectedShortTerm.length > 0 && (
                 <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                  <IconLabel icon={Sun} color="#EA580C" bg="#FFF7ED">{t('provider.details.shortTermRental')}:</IconLabel>
+                  <IconLabel icon={Sun}>{t('provider.details.shortTermRental')}:</IconLabel>
                 <span>{translateAndJoin(selectedShortTerm, 'propertyShortTerm', t)}</span>
                 </div>
               );
@@ -1387,7 +1394,7 @@ const handleContact = () => {
             {/* Réparations */}
             {details.repair_types && details.repair_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Wrench} color="#2563EB" bg="#EFF6FF">{t('provider.details.electricianRepairs')}:</IconLabel>
+                <IconLabel icon={Wrench}>{t('provider.details.electricianRepairs')}:</IconLabel>
                <span>{translateAndJoin(details.repair_types, 'electricianRepairs', t)}</span>
               </div>
             )}
@@ -1395,7 +1402,7 @@ const handleContact = () => {
             {/* Installations */}
             {details.installation_types && details.installation_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Zap} color="#D97706" bg="#FFFBEB">{t('provider.details.electricianInstallations')}:</IconLabel>
+                <IconLabel icon={Zap}>{t('provider.details.electricianInstallations')}:</IconLabel>
              <span>{translateAndJoin(details.installation_types, 'electricianInstallations', t)}</span>
               </div>
             )}
@@ -1403,7 +1410,7 @@ const handleContact = () => {
             {/* Gros travaux */}
             {details.large_work_types && details.large_work_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={HardHat} color="#7C3AED" bg="#F5F3FF">{t('provider.details.electricianLargeWork')}:</IconLabel>
+                <IconLabel icon={HardHat}>{t('provider.details.electricianLargeWork')}:</IconLabel>
             <span>{translateAndJoin(details.large_work_types, 'electricianLargeWork', t)}</span>
               </div>
             )}
@@ -1418,7 +1425,7 @@ const handleContact = () => {
             {/* Bouchons/Blocages */}
             {details.blockage_types && details.blockage_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Droplets} color="#0D9488" bg="#F0FDFA">{t('provider.details.plumbingBlockages')}:</IconLabel>
+                <IconLabel icon={Droplets}>{t('provider.details.plumbingBlockages')}:</IconLabel>
           <span>{translateAndJoin(details.blockage_types, 'plumbingBlockages', t)}</span>
               </div>
             )}
@@ -1426,7 +1433,7 @@ const handleContact = () => {
             {/* Réparation tuyauterie */}
             {details.pipe_repair_types && details.pipe_repair_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Wrench} color="#2563EB" bg="#EFF6FF">{t('provider.details.plumbingPipeRepair')}:</IconLabel>
+                <IconLabel icon={Wrench}>{t('provider.details.plumbingPipeRepair')}:</IconLabel>
              <span>{translateAndJoin(details.pipe_repair_types, 'plumbingPipeRepair', t)}</span>
               </div>
             )}
@@ -1434,7 +1441,7 @@ const handleContact = () => {
             {/* Gros travaux */}
             {details.large_work_types && details.large_work_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={HardHat} color="#7C3AED" bg="#F5F3FF">{t('provider.details.plumbingLargeWork')}:</IconLabel>
+                <IconLabel icon={HardHat}>{t('provider.details.plumbingLargeWork')}:</IconLabel>
             <span>{translateAndJoin(details.large_work_types, 'plumbingLargeWork', t)}</span>
               </div>
             )}
@@ -1442,7 +1449,7 @@ const handleContact = () => {
             {/* Équipements sanitaires */}
             {details.fixture_types && details.fixture_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Droplets} color="#0D9488" bg="#F0FDFA">{t('provider.details.plumbingFixtures')}:</IconLabel>
+                <IconLabel icon={Droplets}>{t('provider.details.plumbingFixtures')}:</IconLabel>
            <span>{translateAndJoin(details.fixture_types, 'plumbingFixtures', t)}</span>
               </div>
             )}
@@ -1454,13 +1461,13 @@ const handleContact = () => {
           <>
             {details.decoration_types && details.decoration_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <strong>{t('serviceFields.event_decoration.decoration_types')}:</strong>
+                <IconLabel icon={Gift}>{t('serviceFields.event_decoration.decoration_types')}:</IconLabel>
                 <span>{translateAndJoin(details.decoration_types, 'decorationTypes', t)}</span>
               </div>
             )}
             {details.magnets && (
               <div className="detail-item">
-                <strong>{t('serviceFields.event_decoration.magnets')}:</strong>
+                <IconLabel icon={Gift}>{t('serviceFields.event_decoration.magnets')}:</IconLabel>
                 <span>{t('common.yes')}</span>
               </div>
             )}
@@ -1472,25 +1479,25 @@ const handleContact = () => {
           <>
             {(details.avoda_ivrit === 'עבודה עברית' || (Array.isArray(details.avoda_ivrit) && details.avoda_ivrit.includes('עבודה עברית'))) && (
               <div className="detail-item">
-                <strong>{t('provider.details.avodaIvrit')}:</strong>
+                <IconLabel icon={Shield}>{t('provider.details.avodaIvrit')}:</IconLabel>
                 <span>{t('common.yes')}</span>
               </div>
             )}
             {(details.packing_materials === 'כן' || (Array.isArray(details.packing_materials) && details.packing_materials.includes('כן'))) && (
               <div className="detail-item">
-                <strong>{t('provider.details.packingMaterials')}:</strong>
+                <IconLabel icon={Package}>{t('provider.details.packingMaterials')}:</IconLabel>
                 <span>{t('common.yes')}</span>
               </div>
             )}
             {(details.crane_services === 'כן' || (Array.isArray(details.crane_services) && details.crane_services.includes('כן'))) && (
               <div className="detail-item">
-                <strong>{t('provider.details.craneServices')}:</strong>
+                <IconLabel icon={HardHat}>{t('provider.details.craneServices')}:</IconLabel>
                 <span>{t('common.yes')}</span>
               </div>
             )}
             {(details.cardboard_supply === 'כן' || (Array.isArray(details.cardboard_supply) && details.cardboard_supply.includes('כן'))) && (
               <div className="detail-item">
-                <strong>{t('provider.details.cardboardSupply')}:</strong>
+                <IconLabel icon={PackageOpen}>{t('provider.details.cardboardSupply')}:</IconLabel>
                 <span>{t('common.yes')}</span>
               </div>
             )}
@@ -1500,7 +1507,7 @@ const handleContact = () => {
         {/* Services additionnels (tous services) */}
         {details.additionalServices && details.additionalServices.length > 0 && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-            <strong>{t('provider.details.additionalServices')}:</strong>
+            <IconLabel icon={ListChecks}>{t('provider.details.additionalServices')}:</IconLabel>
             <span>{details.additionalServices.join(', ')}</span>
           </div>
         )}
@@ -1508,7 +1515,7 @@ const handleContact = () => {
         {/* === ZONES DE TRAVAIL - TOUJOURS EN DERNIER === */}
         {provider.workingAreas && provider.workingAreas.length > 0 && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-          <strong>{t('provider.details.workingAreas')}:</strong>
+          <IconLabel icon={MapPin}>{t('provider.details.workingAreas')}:</IconLabel>
             <div className="working-areas-list">
               {provider.workingAreas.map((area, idx) => (
                 <span key={idx} className="area-tag">
@@ -1653,7 +1660,9 @@ const handleContact = () => {
           if (!formatted) return <span className="reviews-count">{count} {t('provider.reviews')}</span>;
           return (
             <div className="text-hero-rating-row">
-              <Star size={18} fill="#dc2626" color="#dc2626" strokeWidth={0} />
+              <span className="hero-star-icon">
+                <Star size={19} fill="#f59e0b" color="#f59e0b" strokeWidth={0} />
+              </span>
               <span className="text-hero-score">{formatted}</span>
               <span className="text-hero-divider">·</span>
               <span className="text-hero-count">{count} {t('provider.reviews')}</span>
@@ -1672,7 +1681,7 @@ const handleContact = () => {
       )}
       {provider.languages && (
         <div className="highlight">
-          <MessageCircle size={16} />
+          <Globe size={16} />
           <span>שפות: {Array.isArray(provider.languages) ? provider.languages.join(', ') : provider.languages}</span>
         </div>
       )}
@@ -1736,19 +1745,19 @@ const handleContact = () => {
             <button
               className={`section-nav-tab${activeSection === 'details' ? ' active' : ''}`}
               onClick={() => scrollToSection(detailsRef)}
-            >{t('provider.navDetails')}</button>
+            ><ClipboardList size={15} />{t('provider.navDetails')}</button>
             <button
               className={`section-nav-tab${activeSection === 'gallery' ? ' active' : ''}`}
               onClick={() => scrollToSection(galleryRef)}
-            >{t('provider.navGallery')}</button>
+            ><ImageIcon size={15} />{t('provider.navGallery')}</button>
             <button
               className={`section-nav-tab${activeSection === 'pricing' ? ' active' : ''}`}
               onClick={() => scrollToSection(pricingRef)}
-            >{t('provider.navPricing')}</button>
+            ><Wallet size={15} />{t('provider.navPricing')}</button>
             <button
               className={`section-nav-tab${activeSection === 'reviews' ? ' active' : ''}`}
               onClick={() => scrollToSection(reviewsRef)}
-            >{t('provider.navReviews')}</button>
+            ><Star size={15} />{t('provider.navReviews')}</button>
           </nav>
         </div>
       </div>
@@ -1836,7 +1845,7 @@ const handleContact = () => {
                             return (
                               <div className="text-overall-rating-block">
                                 <div className="text-overall-score-row">
-                                  <Star size={28} fill="#dc2626" color="#dc2626" strokeWidth={0} />
+                                  <Star size={30} fill="#f59e0b" color="#f59e0b" strokeWidth={0} />
                                   <span className="text-overall-score">{formatRating(avg)}</span>
                                 </div>
                                 <span className="text-overall-count">{reviews.length} {t('provider.reviews')}</span>
@@ -1870,8 +1879,11 @@ const handleContact = () => {
                                 style={{ direction: isHebrew(review.comment) ? 'rtl' : 'ltr' }}
                               >
                                 <div className="review-main-horizontal">
-                                  <div className="reviewer-avatar">
-                                    <User size={20} />
+                                  <div
+                                    className="reviewer-avatar"
+                                    style={{ background: getAvatarGradient(review.reviewerName || t('provider.reviews.customer')) }}
+                                  >
+                                    {getInitial(review.reviewerName || t('provider.reviews.customer'))}
                                   </div>
                                   
                                   <div className="review-content-wrapper">
@@ -1887,7 +1899,7 @@ const handleContact = () => {
                                                 { key: 'availability', score: review.availability_rating },
                                                 { key: 'professionalism', score: review.professionalism_rating },
                                               ].map(({ key, score }) => (
-                                                <span key={key} className="text-cat-badge">
+                                                <span key={key} className={`text-cat-badge tone-${getScoreTone(score)}`}>
                                                   <span className="text-cat-score">{score}</span>
                                                   <span className="text-cat-label">{t(`review.categories.${key}`)}</span>
                                                 </span>

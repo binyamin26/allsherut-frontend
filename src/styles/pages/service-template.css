@@ -415,7 +415,7 @@
 .card-vertical-info .rating-num {
   font-size: var(--text-sm);
   font-weight: 800;
-  color: #b91c1c;
+  color: var(--neutral-900);
 }
 
 .card-vertical-info .rating-lbl {
