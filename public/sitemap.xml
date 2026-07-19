@@ -289,6 +289,28 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://allsherut.com/services/catering</loc>
+    <xhtml:link rel="alternate" hreflang="he-IL" href="https://allsherut.com/services/catering"/>
+    <xhtml:link rel="alternate" hreflang="en-IL" href="https://allsherut.com/en/services/catering"/>
+    <xhtml:link rel="alternate" hreflang="fr-IL" href="https://allsherut.com/fr/services/traiteur"/>
+    <xhtml:link rel="alternate" hreflang="ru-IL" href="https://allsherut.com/ru/services/keytering"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://allsherut.com/services/catering"/>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://allsherut.com/services/pastry</loc>
+    <xhtml:link rel="alternate" hreflang="he-IL" href="https://allsherut.com/services/pastry"/>
+    <xhtml:link rel="alternate" hreflang="en-IL" href="https://allsherut.com/en/services/pastry"/>
+    <xhtml:link rel="alternate" hreflang="fr-IL" href="https://allsherut.com/fr/services/patisserie"/>
+    <xhtml:link rel="alternate" hreflang="ru-IL" href="https://allsherut.com/ru/services/konditerskaya"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://allsherut.com/services/pastry"/>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://allsherut.com/services/painting</loc>
     <xhtml:link rel="alternate" hreflang="he-IL" href="https://allsherut.com/services/painting"/>
     <xhtml:link rel="alternate" hreflang="en-IL" href="https://allsherut.com/en/services/painting"/>

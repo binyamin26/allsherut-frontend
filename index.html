@@ -48,7 +48,10 @@
     <meta name="twitter:description" content="פלטפורמה לחיבור בין לקוחות לספקי שירותים ביתיים בישראל" />
     <meta name="twitter:image" content="https://allsherut.com/images/og-image.jpg" />
     <!-- Canonical & Robots -->
-    <link rel="canonical" href="https://allsherut.com" />
+    <!-- Pas de canonical statique ici : chaque page le définit dynamiquement
+         via le composant <SEO> (react-helmet-async). Un canonical codé en dur
+         pointant toujours vers la home créait un signal "toutes les pages sont
+         des doublons de la home" pour Googlebot avant l'exécution du JS. -->
     <meta name="robots" content="index, follow" />
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
