@@ -43,10 +43,9 @@ const serviceFieldsConfig = {
         type: 'checkbox',
         options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
       },
-      { name: 'hourlyRate', label: 'serviceFields.babysitting.hourlyRate', type: 'number' },
-      { 
-        name: 'certifications', 
-        label: 'serviceFields.babysitting.certifications', 
+      {
+        name: 'certifications',
+        label: 'serviceFields.babysitting.certifications',
         type: 'select',
         options: ['הכשרה בתחום החינוך המיוחד', 'קורס עזרה ראשונה', 'ניסיון בגני ילדים או מעונות']
       },
@@ -88,7 +87,6 @@ const serviceFieldsConfig = {
         options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
       },
       { name: 'experience', label: 'serviceFields.cleaning.experienceYears', type: 'number' },
-      { name: 'hourlyRate', label: 'serviceFields.cleaning.hourlyRate', type: 'number' },
       {
         name: 'materialsProvided',
         label: 'serviceFields.cleaning.materialsProvided',
@@ -143,7 +141,6 @@ const serviceFieldsConfig = {
         options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
       },
       { name: 'experience', label: 'serviceFields.gardening.experienceYears', type: 'number' },
-      { name: 'rate', label: 'serviceFields.gardening.hourlyRate', type: 'number' },
       {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
@@ -268,7 +265,6 @@ const serviceFieldsConfig = {
         type: 'select',
         options: ['פרונטלי בלבד', 'אונליין בלבד', 'שניהם']
       },
-      { name: 'hourlyRate', label: 'serviceFields.tutoring.hourlyRate', type: 'number' },
       {
         name: 'specializations',
         label: 'serviceFields.tutoring.specializations',
@@ -319,7 +315,6 @@ const serviceFieldsConfig = {
         type: 'select',
         options: ['פרונטלי בלבד', 'אונליין בלבד', 'שניהם']
       },
-      { name: 'hourlyRate', label: 'serviceFields.tutoring.hourlyRate', type: 'number' },
       {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',

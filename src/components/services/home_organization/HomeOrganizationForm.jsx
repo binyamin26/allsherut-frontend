@@ -196,22 +196,6 @@ const HomeOrganizationForm = ({ serviceDetails, errors, handleServiceDetailsChan
             data-field="experience"
           />
         </div>
-
-        <div className="input-group">
-          <label>{t('serviceForm.homeOrg.hourlyRate')}</label>
-          <input
-            type="text"
-            autoComplete="off"
-            value={serviceDetails.hourlyRate || ''}
-            onChange={(e) => {
-              const numericValue = e.target.value.replace(/\D/g, '');
-              handleServiceDetailsChange('hourlyRate', numericValue);
-            }}
-            className="standard-input"
-            data-field="hourlyRate"
-            min="0"
-          />
-        </div>
       </div>
     </div>
   );

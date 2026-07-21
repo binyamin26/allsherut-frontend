@@ -210,21 +210,6 @@ const SportsActivitiesForm = ({ serviceDetails, errors, handleServiceDetailsChan
             data-field="experience"
           />
         </div>
-
-        <div className="input-group">
-          <label>{t('serviceForm.tutoring.hourlyRate')}</label>
-          <input
-            type="text"
-            inputMode="numeric"
-            autoComplete="off"
-            value={serviceDetails.hourlyRate || ''}
-            onChange={(e) => {
-              const numericValue = e.target.value.replace(/\D/g, '');
-              handleServiceDetailsChange('hourlyRate', numericValue);
-            }}
-            className="standard-input"
-          />
-        </div>
       </div>
     </div>
   );

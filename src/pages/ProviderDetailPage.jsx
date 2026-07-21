@@ -398,17 +398,6 @@ const handleContact = () => {
       <div className="details-grid">
         {/* === CHAMPS COMPACTS D'ABORD === */}
         
-        {/* Taux horaire */}
-        {['babysitting', 'cleaning', 'gardening', 'tutoring', 'sports_activities'].includes(provider.serviceType) && (
-          <div className="detail-item">
-            <IconLabel icon={Wallet}>{t('provider.details.hourlyRate')}:</IconLabel>
-            {parseFloat(provider.hourlyRate) > 0 || parseFloat(details.hourlyRate) > 0 || parseFloat(details.rate) > 0
-              ? <span className="price-highlight">₪{parseFloat(provider.hourlyRate) > 0 ? provider.hourlyRate : (parseFloat(details.hourlyRate) > 0 ? details.hourlyRate : details.rate)}/שעה</span>
-              : <span>{t('dashboard.notSpecified')}</span>
-            }
-          </div>
-        )}
-        
         {/* Expérience */}
         {(provider.experienceYears || details.experience || details.experienceYears) && (
           <div className="detail-item">
@@ -762,13 +751,6 @@ const handleContact = () => {
         {/* === HOME_ORGANIZATION === */}
         {provider.serviceType === 'home_organization' && (
           <>
-            <div className="detail-item">
-              <IconLabel icon={Wallet}>{t('provider.details.hourlyRate')}:</IconLabel>
-              {parseFloat(details.hourlyRate) > 0
-                ? <span className="price-highlight">₪{details.hourlyRate}/שעה</span>
-                : <span>{t('dashboard.notSpecified')}</span>
-              }
-            </div>
             {details.general_organization_types && details.general_organization_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <IconLabel icon={Home}>{t('provider.details.generalOrganization')}:</IconLabel>

@@ -1347,24 +1347,21 @@ const handleStep2Submit = (e) => {
   if (formData.serviceType === 'babysitting') {
     const ageInput = document.querySelector('[data-field="age"]');
     const experienceInput = document.querySelector('[data-field="experience"]');
-    const hourlyRateInput = document.querySelector('[data-field="hourlyRate"]');
     const canTravelSelect = document.querySelector('[data-field="can_travel_alone"]');
-    
+
     console.log('🎯 LECTURE DIRECTE DU DOM:', {
       age: ageInput?.value,
       experience: experienceInput?.value,
-      hourlyRate: hourlyRateInput?.value,
       can_travel_alone: canTravelSelect?.value,
       can_travel_alone_raw: canTravelSelect
     });
-    
+
     // Mettre à jour formData.serviceDetails avec les VRAIES valeurs du DOM
     setFormData(prev => {
       const newServiceDetails = {
         ...prev.serviceDetails,
         age: ageInput?.value || prev.serviceDetails.age,
         experience: experienceInput?.value || prev.serviceDetails.experience,
-        hourlyRate: hourlyRateInput?.value || prev.serviceDetails.hourlyRate
       };
       
       // ✅ Gérer can_travel_alone séparément

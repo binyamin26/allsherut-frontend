@@ -1299,8 +1299,7 @@ router.put('/update-full-profile',
     body('lastName').optional({ checkFalsy: true }).trim().isLength({ min: 2 }).withMessage('שם משפחה נדרש'),
     body('email').optional().isEmail().toLowerCase().withMessage(MESSAGES.ERROR.VALIDATION.INVALID_EMAIL),
     body('phone').optional(),
-body('experienceYears').optional({ nullable: true, checkFalsy: true }).isInt({ min: 0 }).withMessage('ניסיון חייב להיות מספר חיובי'),
-body('hourlyRate').optional({ nullable: true, checkFalsy: true }).isFloat({ min: 0 }).withMessage('תעריף חייב להיות מספר חיובי')
+body('experienceYears').optional({ nullable: true, checkFalsy: true }).isInt({ min: 0 }).withMessage('ניסיון חייב להיות מספר חיובי')
   ],
   async (req, res) => {
     try {
@@ -1344,7 +1343,6 @@ body('hourlyRate').optional({ nullable: true, checkFalsy: true }).isFloat({ min:
         phone: req.body.phone,
         description: req.body.description,
         experienceYears: req.body.experienceYears,
-        hourlyRate: req.body.hourlyRate,
         availability: req.body.availability,
         languages: req.body.languages,
         workingAreas: req.body.workingAreas,

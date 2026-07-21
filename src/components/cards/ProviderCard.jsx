@@ -29,13 +29,6 @@ const getInitial = (name) => {
 };
 
 const ProviderCard = ({ provider, onOpenReviewModal }) => {
-  console.log('🔍 ProviderCard:', {
-    id: provider.id,
-    city: provider.city,
-    hourlyRate: provider.hourly_rate,
-    price: provider.price
-  });
-  
   const navigate = useNavigate();
   const { t, isRTL } = useLanguage();
   const [callModal, setCallModal] = useState({ open: false, action: 'call' });
@@ -66,13 +59,6 @@ const imageUrl = provider.profile_image
 console.log("ID:", provider.id, "Image calculée:", imageUrl);
 
 // SUPPRIMEZ la ligne 'const fullImageUrl = imagePath...' qui faisait planter le site
-
-  // Prix (seulement si > 0)
-  const hourlyRate = (provider.hourly_rate && provider.hourly_rate > 0) 
-    ? provider.hourly_rate 
-    : (provider.price && provider.price > 0) 
-      ? provider.price 
-      : null;
 
   // Expérience
   const experience = provider.experience_years || provider.experience || 0;

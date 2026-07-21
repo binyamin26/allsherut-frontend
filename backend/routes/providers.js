@@ -629,7 +629,7 @@ serviceDetails: {
  */
 function calculateProfileCompleteness(providerData, details, workingAreas) {
   const requiredFields = [
-    'title', 'description', 'hourly_rate', 'location_city', 'experience_years'
+    'title', 'description', 'location_city', 'experience_years'
   ];
   
   const optionalFields = [

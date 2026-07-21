@@ -8,7 +8,6 @@ const BabysittingForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
   // ✅ REFS pour les champs numériques
   const ageRef = useRef(null);
   const experienceRef = useRef(null);
-  const hourlyRateRef = useRef(null);
 
   // ✅ Forcer le reset des champs au montage SEULEMENT
   useEffect(() => {
@@ -22,11 +21,6 @@ const BabysittingForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
         experienceRef.current.value = '';
         experienceRef.current.setAttribute('autocomplete', 'off');
         experienceRef.current.setAttribute('data-form-type', 'other');
-      }
-      if (hourlyRateRef.current) {
-        hourlyRateRef.current.value = '';
-        hourlyRateRef.current.setAttribute('autocomplete', 'off');
-        hourlyRateRef.current.setAttribute('data-form-type', 'other');
       }
     }, 100);
   }, []); // ← SUPPRIMER TOUTE DÉPENDANCE
@@ -240,23 +234,6 @@ const BabysittingForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
           />
         </div>
 
-        <div className="input-group">
-          <label>{t('serviceForm.babysitting.hourlyRate')}</label>
-          <input
-            ref={hourlyRateRef}
-            type="text"
-            inputMode="numeric"
-            name={`babysitter-rate-new-${Math.random()}`}
-            autoComplete="off"
-            data-lpignore="true"
-            data-form-type="other"
-            onChange={(e) => handleServiceDetailsChange('hourlyRate', e.target.value)}
-            placeholder={t('serviceForm.babysitting.hourlyRatePlaceholder')}
-            className="standard-input"
-            data-field="hourlyRate"
-          />
-        </div>
-        
         <div className="input-group">
           <label>{t('serviceForm.babysitting.certifications')}</label>
           <CustomDropdown

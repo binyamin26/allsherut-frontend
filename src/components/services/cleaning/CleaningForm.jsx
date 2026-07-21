@@ -210,23 +210,6 @@ const CleaningForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
             data-field="experience"
           />
         </div>
-
-        <div className="input-group">
-          <label>{t('serviceForm.cleaning.hourlyRate')}</label>
-          <input
-            type="text"
-            autoComplete="off"
-            inputMode="numeric"
-            value={serviceDetails.hourlyRate || ''}
-            onChange={(e) => {
-              const numericValue = e.target.value.replace(/\D/g, '');
-              handleServiceDetailsChange('hourlyRate', numericValue);
-            }}
-            className="standard-input"
-            data-field="hourlyRate"
-            placeholder={t('serviceForm.cleaning.hourlyRatePlaceholder')}
-          />
-        </div>
       </div>
     </div>
   );

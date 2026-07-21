@@ -48,14 +48,6 @@ export const serviceFiltersConfig = {
         { value: 'מנוסה', label: 'מנוסה' }
       ],
       dbField: 'experience_level'
-    },
-    hourlyRate: {
-      label: 'תעריף שעתי (₪)',
-      type: 'range',
-      min: 20,
-      max: 100,
-      unit: '₪/שעה',
-      dbField: 'hourly_rate'
     }
   },
   optional: {

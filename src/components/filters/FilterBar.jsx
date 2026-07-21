@@ -40,13 +40,11 @@ const FilterBar = ({
     switch (category) {
       case 'location':
         return selectedLocation.city ? 1 : 0;
-      case 'price':
-        return (activeFilters.minPrice || activeFilters.maxPrice) ? 1 : 0;
       case 'experience':
         return activeFilters.experience ? 1 : 0;
       case 'service':
   return Object.keys(activeFilters).filter(key => 
-    !['minPrice', 'maxPrice', 'experience', 'minRating'].includes(key)
+    !['experience', 'minRating'].includes(key)
   ).reduce((total, key) => {
     const val = activeFilters[key];
     return total + (Array.isArray(val) ? val.length : (val ? 1 : 0));
@@ -98,25 +96,6 @@ const FilterBar = ({
             )}
             <ChevronDown size={14} className="filter-pill-arrow" />
           </button>
-
-        {/* Filtre Prix - uniquement pour services avec tarif */}
-          {['babysitting', 'cleaning', 'gardening', 'tutoring', 'home_organization'].includes(serviceType) && (
-            <button
-              className={`filter-pill ${activeFilter === 'price' ? 'active' : ''}`}
-              onClick={() => handleFilterClick('price')}
-            >
-              <span style={{ fontSize: '16px', fontWeight: '600' }}>₪</span>
-              <span className="filter-pill-text">
-                {(activeFilters.minPrice || activeFilters.maxPrice) 
-                  ? `₪${activeFilters.minPrice || 0}-${activeFilters.maxPrice || 500}` 
-                  : t('filters.price')}
-              </span>
-              {getActiveCount('price') > 0 && (
-                <span className="filter-pill-badge">{getActiveCount('price')}</span>
-              )}
-              <ChevronDown size={14} className="filter-pill-arrow" />
-            </button>
-          )}
 
           {/* Filtre Expérience */}
           <button
@@ -187,7 +166,6 @@ const FilterBar = ({
           <div className="filter-sidebar-header">
             <h3 className="filter-sidebar-title">
               {activeFilter === 'location' && t('filters.selectLocation')}
-              {activeFilter === 'price' && t('filters.priceRange')}
               {activeFilter === 'experience' && t('filters.experienceLevel')}
               {activeFilter === 'rating' && t('filters.ratingFilter')}
               {activeFilter === 'service' && t('filters.advancedFilters')}
@@ -205,18 +183,6 @@ const FilterBar = ({
               <LocationPanel 
                 selectedLocation={selectedLocation}
                 onLocationChange={onLocationChange}
-              />
-            )}
-
-            {activeFilter === 'price' && (
-              <PricePanel 
-                minPrice={tempFilters.minPrice || 0}
-                maxPrice={tempFilters.maxPrice || 500}
-                onChange={(min, max) => setTempFilters(prev => ({
-                  ...prev,
-                  minPrice: min,
-                  maxPrice: max
-                }))}
               />
             )}
 
@@ -255,10 +221,6 @@ const FilterBar = ({
               onClick={() => {
                 if (activeFilter === 'location') {
                   onLocationChange({ area: '', city: '', neighborhood: '', fullLocation: '' });
-                } else if (activeFilter === 'price') {
-                  const newFilters = { ...activeFilters, minPrice: undefined, maxPrice: undefined };
-                  setTempFilters(newFilters);
-                  onFiltersChange(newFilters);
                 } else if (activeFilter === 'experience') {
                   const newFilters = { ...activeFilters, experience: undefined };
                   setTempFilters(newFilters);
@@ -292,73 +254,6 @@ const FilterBar = ({
 // ═══════════════════════════════════════════════════════════════════════════
 // COMPOSANTS PANELS COMMUNS
 // ═══════════════════════════════════════════════════════════════════════════
-
-const PricePanel = ({ minPrice, maxPrice, onChange }) => {
-  const { t } = useLanguage();
-  
-  const handleRangeChange = (e) => {
-    const value = parseInt(e.target.value);
-    const isMin = e.target.name === 'min';
-    if (isMin) {
-      onChange(value, maxPrice);
-    } else {
-      onChange(minPrice, value);
-    }
-  };
-
-  return (
-    <div className="price-panel">
-      <div className="price-display">
-        <div className="price-value">
-          <span className="price-label">{t('filters.minimum')}</span>
-          <span className="price-amount">₪{minPrice}</span>
-        </div>
-        <div className="price-separator">-</div>
-        <div className="price-value">
-          <span className="price-label">{t('filters.maximum')}</span>
-          <span className="price-amount">₪{maxPrice}</span>
-        </div>
-      </div>
-
-      <div className="dual-range-slider">
-        <div className="range-track">
-          <div 
-            className="range-fill"
-            style={{
-              left: `${(minPrice / 500) * 100}%`,
-              width: `${((maxPrice - minPrice) / 500) * 100}%`
-            }}
-          />
-        </div>
-        <input
-          type="range"
-          name="min"
-          min="0"
-          max="500"
-          value={minPrice}
-          onChange={handleRangeChange}
-          className="range-input range-min"
-        />
-        <input
-          type="range"
-          name="max"
-          min="0"
-          max="500"
-          value={maxPrice}
-          onChange={handleRangeChange}
-          className="range-input range-max"
-        />
-      </div>
-
-      <div className="price-presets">
-        <button onClick={() => onChange(0, 100)}>₪0-100</button>
-        <button onClick={() => onChange(100, 200)}>₪100-200</button>
-        <button onClick={() => onChange(200, 300)}>₪200-300</button>
-        <button onClick={() => onChange(300, 500)}>₪300+</button>
-      </div>
-    </div>
-  );
-};
 
 const LocationPanel = ({ selectedLocation, onLocationChange }) => {
   return (

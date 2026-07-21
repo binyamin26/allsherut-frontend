@@ -381,8 +381,6 @@ router.get('/providers', async (req, res) => {
       city,
       neighborhood,
       area,
-      minPrice,
-      maxPrice,
       sortBy = 'newest',
       page = 1,
       limit = 10,
@@ -459,16 +457,6 @@ const validServices = ['babysitting', 'cleaning', 'gardening', 'petcare', 'tutor
   whereConditions.push(`EXISTS (SELECT 1 FROM provider_working_areas pwa WHERE pwa.provider_id = sp.id AND pwa.neighborhood LIKE ?)`);
   params.push(`%${neighborhood}%`);
 }
-
-    if (minPrice && !isNaN(parseFloat(minPrice))) {
-      whereConditions.push(`sp.hourly_rate >= ?`);
-      params.push(parseFloat(minPrice));
-    }
-
-    if (maxPrice && !isNaN(parseFloat(maxPrice))) {
-      whereConditions.push(`sp.hourly_rate <= ?`);
-      params.push(parseFloat(maxPrice));
-    }
 
     // Filtres GÉNÉRIQUES
     if (experience) {
@@ -571,8 +559,6 @@ delete advancedFilters.fullLocation;
     let orderClause = `ORDER BY ${SORT_REVIEWS} DESC, sp.average_rating DESC, sp.is_featured DESC, u.created_at DESC`;
 
     if (sortBy === 'oldest')     orderClause = 'ORDER BY u.created_at ASC';
-    if (sortBy === 'price_asc')  orderClause = 'ORDER BY sp.hourly_rate ASC';
-    if (sortBy === 'price_desc') orderClause = 'ORDER BY sp.hourly_rate DESC';
     if (sortBy === 'rating')     orderClause = `ORDER BY ${SORT_REVIEWS} DESC, sp.average_rating DESC`;
     if (sortBy === 'experience') orderClause = 'ORDER BY sp.experience_years DESC';
 
@@ -823,8 +809,6 @@ profileImages: profileImages || [],
         service,
         city,
         neighborhood,
-        minPrice: minPrice ? parseFloat(minPrice) : null,
-        maxPrice: maxPrice ? parseFloat(maxPrice) : null,
         sortBy,
         experience,
         verified: verified === 'true',

@@ -247,22 +247,6 @@ const TutoringForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
           </div>
         </div>
 
-        {/* TARIF HORAIRE */}
-        <div className="input-group">
-          <label>{t('serviceForm.tutoring.hourlyRate')}</label>
-          <input
-            type="text"
-            inputMode="numeric"
-            autoComplete="off"
-            value={serviceDetails.hourlyRate || ''}
-            onChange={(e) => {
-              const numericValue = e.target.value.replace(/\D/g, '');
-              handleServiceDetailsChange('hourlyRate', numericValue);
-            }}
-            className="standard-input"
-          />
-        </div>
-
         {/* SPÉCIALISATIONS */}
         <div className="input-group">
           <label>{t('filters.tutoring.specializations')}</label>

@@ -244,7 +244,6 @@ const userData = useMemo(() => {
     email: '',
     description: '',
     experienceYears: '',
-    hourlyRate: '',
     availability: [],
     languages: [],
     workingAreas: [],
@@ -807,7 +806,6 @@ const response = await changePassword(
         email: userData?.email || '',
         description: userData?.serviceDetails?.description || '',
         experienceYears: userData?.serviceDetails?.experience_years || '',
-        hourlyRate: userData?.serviceDetails?.hourly_rate || '',
         availability: userData?.serviceDetails?.availability || [],
         languages: userData?.serviceDetails?.languages || [],
         workingAreas: areas,
@@ -882,12 +880,6 @@ const cleanProfileData = (data) => {
     cleaned.experienceYears = parseInt(cleaned.experienceYears) || 0;
   }
   
-  if (cleaned.hourlyRate === '' || cleaned.hourlyRate === undefined) {
-    cleaned.hourlyRate = null;
-  } else if (cleaned.hourlyRate !== null) {
-    cleaned.hourlyRate = parseFloat(cleaned.hourlyRate) || 0;
-  }
-  
   if (!Array.isArray(cleaned.availability)) {
     cleaned.availability = [];
   }
@@ -906,9 +898,9 @@ const cleanProfileData = (data) => {
   
   // ✅ Nettoyer les champs numériques dans serviceDetails
   if (cleaned.serviceDetails) {
-    const numericKeys = ['hourlyRate', 'hourly_rate', 'rate', 'experience', 'experience_years', 'experienceYears', 'age'];
+    const numericKeys = ['experience', 'experience_years', 'experienceYears', 'age'];
     Object.keys(cleaned.serviceDetails).forEach(key => {
-      const isNumeric = numericKeys.includes(key) || key.includes('Rate') || key.includes('Years');
+      const isNumeric = numericKeys.includes(key) || key.includes('Years');
       if (isNumeric) {
         if (cleaned.serviceDetails[key] === '' || cleaned.serviceDetails[key] === undefined) {
           cleaned.serviceDetails[key] = null;
@@ -917,12 +909,12 @@ const cleanProfileData = (data) => {
         }
       }
     });
-    // Supprimer les champs de tarif redondants pour éviter les conflits backend
-    // hourlyRate est la source de vérité — hourly_rate et rate sont des alias stales
+    // Champ de tarif horaire retiré : ne plus jamais l'envoyer au backend
+    delete cleaned.serviceDetails.hourlyRate;
     delete cleaned.serviceDetails.hourly_rate;
     delete cleaned.serviceDetails.rate;
   }
-  
+
   return cleaned;
 };
 
@@ -937,13 +929,6 @@ const handleSaveProfile = async () => {
     
     // ✅ Synchroniser les valeurs de serviceDetails vers le niveau root
     if (cleanedData.serviceDetails) {
-      // Tarif horaire — hourlyRate est la seule source de vérité
-      if (cleanedData.serviceDetails.hourlyRate !== undefined) {
-        cleanedData.hourlyRate = cleanedData.serviceDetails.hourlyRate !== null
-          ? parseFloat(cleanedData.serviceDetails.hourlyRate) || 0
-          : null;
-      }
-
       // Années d'expérience
       if (cleanedData.serviceDetails.experience !== undefined) {
         cleanedData.experienceYears = cleanedData.serviceDetails.experience !== null

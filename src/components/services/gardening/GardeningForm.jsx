@@ -139,19 +139,6 @@ const GardeningForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
         </div>
 
         <div className="input-group">
-          <label>{t('serviceForm.gardening.rate')}</label>
-          <input
-            type="text"
-            inputMode="numeric"
-            autoComplete="off"
-            value={serviceDetails.rate || ''}
-            onChange={(e) => handleServiceDetailsChange('rate', e.target.value)}
-            placeholder={t('serviceForm.gardening.ratePlaceholder')}
-            className="standard-input"
-          />
-        </div>
-
-        <div className="input-group">
         <label>{t('serviceForm.gardening.specializations')}</label>
 <div className="checkbox-group">
  {[

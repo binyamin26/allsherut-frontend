@@ -858,7 +858,6 @@ static async updateServiceProviderWithDetails(connection, providerId, serviceTyp
     const baseFields = {
       description: details.description || null,
       experience_years: details.experience || details.experienceYears || 0,
-      hourly_rate: details.hourlyRate || details.rate || 0,
     };
 
     // profile_image : seulement si une image est fournie (colonne optionnelle en prod)
@@ -1559,11 +1558,6 @@ if (this.role === 'provider') {
           providerUpdateValues.push(parseInt(profileData.experienceYears) || 0);
         }
 
-        if (profileData.hourlyRate !== undefined) {
-          providerUpdateFields.push('hourly_rate = ?');
-          providerUpdateValues.push(parseFloat(profileData.hourlyRate) || 0);
-        }
-
         if (profileData.availability !== undefined) {
           providerUpdateFields.push('availability = ?');
           providerUpdateValues.push(JSON.stringify(profileData.availability || []));
@@ -1598,13 +1592,15 @@ const updatedDetails = {
   ...(profileData.serviceDetails || {}),
   // ✅ Synchroniser les colonnes avec le JSON
   experience_years: profileData.experienceYears !== undefined ? parseInt(profileData.experienceYears) || 0 : currentDetails.experience_years,
-  hourly_rate: profileData.hourlyRate !== undefined ? parseFloat(profileData.hourlyRate).toFixed(2) : currentDetails.hourly_rate,
-  hourlyRate: profileData.hourlyRate !== undefined ? profileData.hourlyRate.toString() : currentDetails.hourlyRate,
   description: profileData.description !== undefined ? profileData.description : currentDetails.description,
   // Nom par service : stocké ici pour éviter d'écraser le nom des autres services
   ...(profileData.firstName !== undefined ? { service_first_name: profileData.firstName } : {}),
   ...(profileData.lastName !== undefined ? { service_last_name: profileData.lastName || '' } : {})
 };
+// Champ de tarif horaire retiré : ne plus le reconduire dans le JSON
+delete updatedDetails.hourly_rate;
+delete updatedDetails.hourlyRate;
+delete updatedDetails.rate;
 
 providerUpdateFields.push('service_details = ?');
 providerUpdateValues.push(JSON.stringify(updatedDetails));
