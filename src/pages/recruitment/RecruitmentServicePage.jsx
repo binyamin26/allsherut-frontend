@@ -10,7 +10,7 @@ const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
 const DAY_ORDER     = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
 const HOUR_OPTIONS  = ['morning', 'afternoon', 'evening', 'all'];
-const LANG_OPTIONS  = ['hebrew', 'arabic', 'english', 'french', 'russian'];
+const LANG_OPTIONS  = ['hebrew', 'english', 'french', 'russian'];
 const EXP_OPTIONS   = ['beginner', '1_year', '2_years', '3_plus_years'];
 const PAYMENT_TYPES = ['hourly', 'daily', 'monthly'];
 

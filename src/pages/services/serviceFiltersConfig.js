@@ -64,7 +64,7 @@ export const serviceFiltersConfig = {
     languages: {
       label: 'שפות',
       type: 'checkbox',
-      options: ['עברית', 'ערבית', 'רוסית', 'אנגלית', 'ספרדית', 'צרפתית'],
+      options: ['עברית', 'רוסית', 'אנגלית', 'ספרדית', 'צרפתית'],
       dbField: 'languages'
     },
     religiousLevel: {
@@ -614,7 +614,7 @@ optional: {
       languages: {
         label: 'שפות מדוברות',
         type: 'checkbox',
-        options: ['עברית', 'ערבית', 'רוסית', 'אנגלית', 'צרפתית'],
+        options: ['עברית', 'רוסית', 'אנגלית', 'צרפתית'],
         dbField: 'languages'
       },
       experienceYears: {
@@ -705,7 +705,7 @@ optional: {
       languages: {
         label: 'שפות מדוברות',
         type: 'checkbox',
-        options: ['עברית', 'ערבית', 'רוסית', 'אנגלית', 'צרפתית'],
+        options: ['עברית', 'רוסית', 'אנגלית', 'צרפתית'],
         dbField: 'languages'
       },
       experienceYears: {
@@ -744,7 +744,7 @@ optional: {
       languages: {
         label: 'שפות מדוברות',
         type: 'checkbox',
-        options: ['עברית', 'ערבית', 'רוסית', 'אנגלית', 'צרפתית'],
+        options: ['עברית', 'רוסית', 'אנגלית', 'צרפתית'],
         dbField: 'languages'
       },
       experienceYears: {

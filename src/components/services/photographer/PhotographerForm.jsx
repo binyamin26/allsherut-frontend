@@ -152,8 +152,7 @@ const PhotographerForm = ({ serviceDetails, errors, handleServiceDetailsChange, 
               { value: 'רוסית', label: t('filters.photographer.languageRussian') },
               { value: 'ספרדית', label: t('filters.photographer.languageSpanish') },
               { value: 'עברית', label: t('filters.photographer.languageHebrew') },
-              { value: 'אנגלית', label: t('filters.photographer.languageEnglish') },
-              { value: 'ערבית', label: t('filters.photographer.languageArabic') }
+              { value: 'אנגלית', label: t('filters.photographer.languageEnglish') }
             ].map(lang => (
               <label key={lang.value} className="checkbox-item">
                 <input

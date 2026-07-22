@@ -43,7 +43,6 @@ const SERVICES_WITH_OWN_LANGUAGES = new Set(['babysitting', 'eldercare', 'photog
 
 const LANGUAGES_OPTIONS = [
   { value: 'עברית', key: 'languages.hebrew' },
-  { value: 'ערבית', key: 'languages.arabic' },
   { value: 'רוסית', key: 'languages.russian' },
   { value: 'אנגלית', key: 'languages.english' },
   { value: 'צרפתית', key: 'languages.french' },

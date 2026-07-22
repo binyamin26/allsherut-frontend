@@ -131,7 +131,6 @@ const EldercareForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
           <div className="checkbox-group" data-field="languages">
             {[
               { value: 'עברית', label: t('languages.hebrew') },
-              { value: 'ערבית', label: t('languages.arabic') },
               { value: 'רוסית', label: t('languages.russian') },
               { value: 'אנגלית', label: t('languages.english') },
               { value: 'ספרדית', label: t('languages.spanish') },

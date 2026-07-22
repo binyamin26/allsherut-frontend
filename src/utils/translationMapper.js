@@ -35,7 +35,6 @@ const translationMappings = {
   // ═══════════════════════════════════════════════════════════════
   languages: {
     'עברית': 'languages.hebrew',
-    'ערבית': 'languages.arabic',
     'רוסית': 'languages.russian',
     'אנגלית': 'languages.english',
     'ספרדית': 'languages.spanish',

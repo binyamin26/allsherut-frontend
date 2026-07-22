@@ -41,7 +41,7 @@ const serviceFieldsConfig = {
         name: 'languages', 
         label: 'serviceFields.babysitting.languages', 
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
       },
       {
         name: 'certifications',
@@ -97,7 +97,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
       }
     ]
   },
@@ -145,7 +145,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
       }
     ]
   },
@@ -220,7 +220,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
       }
     ]
   },
@@ -276,7 +276,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
       }
     ]
   },
@@ -319,7 +319,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
       }
     ]
   },
@@ -352,7 +352,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
       },
       {
         name: 'administrativeHelp',
@@ -428,7 +428,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
       }
     ]
   },
@@ -464,7 +464,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
       }
     ]
   },
@@ -506,7 +506,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
       }
     ]
   },
@@ -554,7 +554,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
       }
     ]
   },
@@ -596,7 +596,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
       }
     ]
   },
@@ -638,7 +638,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
       }
     ]
   },
@@ -674,7 +674,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
       }
     ]
   },
@@ -740,7 +740,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
       }
     ]
   },
@@ -782,7 +782,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
       }
     ]
   },
@@ -861,7 +861,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
       }
     ]
   },
@@ -891,7 +891,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.dj.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
       },
       {
         name: 'separated_dancing',
@@ -948,7 +948,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
       }
     ]
   },
@@ -1000,7 +1000,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
       }
     ]
   },
@@ -1046,7 +1046,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
       }
     ]
   },
@@ -1076,7 +1076,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
       }
     ]
   },
@@ -1101,7 +1101,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
       }
     ]
   },
@@ -1136,7 +1136,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
       }
     ]
   },
@@ -1160,7 +1160,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
       }
     ]
   },
@@ -1220,7 +1220,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
       }
     ]
   },
@@ -1274,7 +1274,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
       }
     ]
   },
@@ -1322,7 +1322,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
       }
     ]
   },
@@ -1376,7 +1376,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
       }
     ]
   },
@@ -1430,7 +1430,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
       }
     ]
   },
@@ -1484,7 +1484,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
       }
     ]
   },
@@ -1522,7 +1522,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
       }
     ]
   },
@@ -1576,7 +1576,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'ערבית', 'רוסית']
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
       }
     ]
   },
@@ -1623,7 +1623,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.driver.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ערבית', 'רוסית']
+        options: ['עברית', 'אנגלית', 'צרפתית', 'רוסית']
       }
     ]
   }

@@ -5,7 +5,7 @@ import CustomDropdown from '../common/CustomDropdown';
 
 const DAY_KEYS  = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
 const HOUR_KEYS = ['morning', 'afternoon', 'evening'];
-const LANG_KEYS = ['hebrew', 'arabic', 'english', 'french', 'russian'];
+const LANG_KEYS = ['hebrew', 'english', 'french', 'russian'];
 
 const ALL_CITIES = getAllCities();
 

@@ -29,7 +29,6 @@ export const FILTER_CONFIG = {
     ],
     languages: [
       { value: 'עברית', key: 'languages.hebrew' },
-      { value: 'ערבית', key: 'languages.arabic' },
       { value: 'רוסית', key: 'languages.russian' },
       { value: 'אנגלית', key: 'languages.english' },
       { value: 'צרפתית', key: 'languages.french' }
@@ -70,7 +69,6 @@ export const FILTER_CONFIG = {
     ],
     languages: [
       { value: 'עברית', key: 'languages.hebrew' },
-      { value: 'ערבית', key: 'languages.arabic' },
       { value: 'רוסית', key: 'languages.russian' },
       { value: 'אנגלית', key: 'languages.english' },
       { value: 'ספרדית', key: 'languages.spanish' },
@@ -288,7 +286,6 @@ eldercare: {
     ],
     languages: [
       { value: 'עברית', key: 'languages.hebrew' },
-      { value: 'ערבית', key: 'languages.arabic' },
       { value: 'רוסית', key: 'languages.russian' },
       { value: 'אנגלית', key: 'languages.english' },
       { value: 'ספרדית', key: 'languages.spanish' },
@@ -1385,8 +1382,7 @@ locksmith: {
       { value: 'רוסית', key: 'filters.photographer.languageRussian' },
       { value: 'ספרדית', key: 'filters.photographer.languageSpanish' },
       { value: 'עברית', key: 'filters.photographer.languageHebrew' },
-      { value: 'אנגלית', key: 'filters.photographer.languageEnglish' },
-      { value: 'ערבית', key: 'filters.photographer.languageArabic' }
+      { value: 'אנגלית', key: 'filters.photographer.languageEnglish' }
     ]
   },
 
