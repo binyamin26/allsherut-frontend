@@ -685,6 +685,16 @@
   border: none !important;
 }
 
+/* ID selector guarantees this beats the AccessibilityWidget's global "body h3" override,
+   which otherwise shrinks this title to var(--text-2xl) since it sits outside .service-details-section */
+#provider-reviews-title {
+  font-size: 26px !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.01em;
+  line-height: 1.2 !important;
+  color: var(--neutral-900) !important;
+}
+
 /* Service Details */
 .service-details-section {
   background: white;

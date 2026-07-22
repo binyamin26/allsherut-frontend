@@ -1819,7 +1819,7 @@ const handleContact = () => {
             {/* Section: ביקורות */}
                   <div ref={reviewsRef} data-section="reviews" className="reviews-section-enhanced">
                     <div className="reviews-header">
-                   <h3 className="section-title">{t('provider.reviews.title')}</h3>
+                   <h3 id="provider-reviews-title" className="details-title" style={{ textAlign: 'center', margin: 0 }}>{t('provider.reviews.title')}</h3>
                       <div className="reviews-summary">
                         <div className="rating-overview">
                           {reviews.length > 0 ? (() => {
