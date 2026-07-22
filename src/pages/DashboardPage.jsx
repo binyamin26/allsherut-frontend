@@ -1090,8 +1090,8 @@ const handleGalleryImageUpload = async (e) => {
   if (!file) return;
 
   const gallery = galleryImages || [];
-  if (gallery.length >= 6) {
-    setMessage({ type: 'error', text: 'מקסימום 6 תמונות בגלריה' });
+  if (gallery.length >= 15) {
+    setMessage({ type: 'error', text: 'מקסימום 15 תמונות בגלריה' });
     return;
   }
 
@@ -2104,7 +2104,7 @@ const galleryImages = (() => {
   <LayoutGrid size={20} />
   {t('dashboard.gallery.title')}
   <span style={{ fontSize: '0.8rem', fontWeight: '400', color: '#6b7280' }}>
-    ({galleryImages.length}/6 {t('dashboard.gallery.count')})
+    ({galleryImages.length}/15 {t('dashboard.gallery.count')})
   </span>
 </h3>
   <p style={{ color: '#6b7280', fontSize: '0.9rem', marginBottom: '1rem' }}>
@@ -2141,7 +2141,7 @@ const galleryImages = (() => {
     ))}
 
     {/* Slot d'ajout */}
-    {(galleryImages || []).length < 6 && (
+    {(galleryImages || []).length < 15 && (
       <label style={{
         aspectRatio: '4/3', border: '2px dashed #d1d5db', borderRadius: '8px',
         display: 'flex', flexDirection: 'column', alignItems: 'center',
