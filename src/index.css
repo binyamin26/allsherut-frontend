@@ -53,6 +53,7 @@
 @import './styles/utilities/responsive.css';
 @import './styles/utilities/utilities.css';
 @import './styles/features/provider-detail.css';
+@import './styles/components/provider-gallery.css';
 
 @import './components/modals/delete-service-modal.css';
 

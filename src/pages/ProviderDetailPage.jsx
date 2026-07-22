@@ -6,6 +6,7 @@ import LoadingSpinner from '../components/common/LoadingSpinner';
 import AuthModal from '../components/auth/AuthModal';
 import ReviewModal from '../components/modals/ReviewModal';
 import CallLeadModal from '../components/modals/CallLeadModal';
+import ProviderGallery from '../components/common/ProviderGallery';
 import apiService from '../services/api';
 import { useLanguage } from '../context/LanguageContext';
 import { translateValue, translateAndJoin, translateArrayFromMultipleCategories } from '../utils/translationMapper';
@@ -1771,11 +1772,7 @@ const handleContact = () => {
             <div ref={galleryRef} data-section="gallery" className="service-details-section">
               <h3 className="details-title" style={{ textAlign: 'start' }}>{t('provider.navGallery')}</h3>
               {provider.media?.gallery?.length > 0 ? (
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.75rem' }}>
-                  {provider.media.gallery.map((url, i) => (
-                    <img key={i} src={url} alt={`תמונה ${i + 1}`} style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover', borderRadius: '8px' }} />
-                  ))}
-                </div>
+                <ProviderGallery images={provider.media.gallery} />
               ) : (
                 <div style={{ textAlign: 'center', padding: '3rem 1rem', color: '#9ca3af' }}>
                   <div style={{ fontSize: '3rem', marginBottom: '0.75rem' }}>🖼️</div>
