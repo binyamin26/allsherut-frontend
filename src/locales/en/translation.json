@@ -405,6 +405,7 @@
   "filters.common.availabilityHours": "Available hours",
   "filters.common.age": "Age",
   "filters.common.languages": "Spoken Languages",
+  "filters.languagesPill": "Languages",
   "filters.allOptions": "All options",
   "days.sunday": "Sunday",
   "days.monday": "Monday",

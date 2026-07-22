@@ -2,7 +2,6 @@
 import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import {
   MapPin,
-  Languages,
   Settings,
   ChevronDown,
   X,
@@ -102,9 +101,9 @@ const FilterBar = ({
             className={`filter-pill ${activeFilter === 'languages' ? 'active' : ''}`}
             onClick={() => handleFilterClick('languages')}
           >
-            <Languages size={16} />
+            <span aria-hidden="true">🌐</span>
             <span className="filter-pill-text">
-              {t('filters.common.languages')}
+              {t('filters.languagesPill')}
             </span>
             {getActiveCount('languages') > 0 && (
               <span className="filter-pill-badge">{getActiveCount('languages')}</span>

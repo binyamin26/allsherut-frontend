@@ -410,6 +410,7 @@
   "filters.common.availabilityHours": "Heures disponibles",
   "filters.common.age": "Âge",
   "filters.common.languages": "Langues parlées",
+  "filters.languagesPill": "Langues",
   "filters.allOptions": "Toutes les options",
   "days.sunday": "Dimanche",
   "days.monday": "Lundi",

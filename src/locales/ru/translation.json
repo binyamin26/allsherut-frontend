@@ -410,6 +410,7 @@
   "filters.common.availabilityHours": "Доступные часы",
   "filters.common.age": "Возраст",
   "filters.common.languages": "Разговорные языки",
+  "filters.languagesPill": "Языки",
   "filters.allOptions": "Все варианты",
   "days.sunday": "Воскресенье",
   "days.monday": "Понедельник",
