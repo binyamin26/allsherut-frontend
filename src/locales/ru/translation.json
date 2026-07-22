@@ -29,7 +29,7 @@
   "dashboard.gallery.addPhoto": "Добавить фото",
   "dashboard.gallery.changePhoto": "Изменить фото",
   "dashboard.gallery.removePhoto": "Удалить фото",
-  "dashboard.multiServiceBanner": "💡 У тебя {{count}} активных услуги — нажми кнопки выше, чтобы переключаться между ними",
+  "dashboard.multiServiceBanner": "💡 У тебя {count} активных услуги — нажми кнопки выше, чтобы переключаться между ними",
   "dashboard.pendingApproval": "⏳ Ваш профиль находится на проверке. Он появится на сайте после одобрения администратором.",
   "dashboard.rejectedApproval": "Ваш профиль не был одобрен. Свяжитесь с нами для получения дополнительной информации.",
   "dashboard.gallery.maxSize": "(макс. 2 МБ)",
