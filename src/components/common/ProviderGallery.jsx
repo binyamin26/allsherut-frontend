@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 
@@ -74,7 +75,7 @@ const ProviderGallery = ({ images }) => {
         })}
       </div>
 
-      {isOpen && (
+      {isOpen && createPortal(
         <div
           className="provider-lightbox-overlay"
           onClick={close}
@@ -128,7 +129,8 @@ const ProviderGallery = ({ images }) => {
               <ChevronRight size={28} />
             </button>
           )}
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );
