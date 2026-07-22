@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 
-const GRID_PREVIEW_COUNT = 6;
+const GRID_PREVIEW_COUNT = 3;
 const SWIPE_THRESHOLD = 50;
 
 const ProviderGallery = ({ images }) => {
@@ -112,7 +112,6 @@ const ProviderGallery = ({ images }) => {
             onTouchEnd={handleTouchEnd}
           >
             <img
-              key={activeIndex}
               src={images[activeIndex]}
               alt={t('provider.gallery.imageAlt', { index: activeIndex + 1 })}
               className="provider-lightbox-image"
