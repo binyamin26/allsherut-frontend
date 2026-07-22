@@ -18,7 +18,7 @@
   "provider.gallery.close": "Close",
   "provider.gallery.previous": "Previous photo",
   "provider.gallery.next": "Next photo",
-  "provider.gallery.counter": "{current} of {total}",
+  "provider.gallery.counter": "{current} / {total}",
   "provider.gallery.imageAlt": "Photo {index}",
   "provider.navDetails": "Details",
   "provider.navGallery": "Photos",

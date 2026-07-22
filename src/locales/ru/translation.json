@@ -18,7 +18,7 @@
   "provider.gallery.close": "Закрыть",
   "provider.gallery.previous": "Предыдущее фото",
   "provider.gallery.next": "Следующее фото",
-  "provider.gallery.counter": "{current} из {total}",
+  "provider.gallery.counter": "{current} / {total}",
   "provider.gallery.imageAlt": "Фото {index}",
   "provider.navDetails": "Детали",
   "provider.navGallery": "Фото",

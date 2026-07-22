@@ -18,7 +18,7 @@
   "provider.gallery.close": "סגור",
   "provider.gallery.previous": "התמונה הקודמת",
   "provider.gallery.next": "התמונה הבאה",
-  "provider.gallery.counter": "{current} מתוך {total}",
+  "provider.gallery.counter": "{current} / {total}",
   "provider.gallery.imageAlt": "תמונה {index}",
   "provider.navDetails": "פרטים",
   "provider.navGallery": "תמונות",
