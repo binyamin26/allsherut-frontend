@@ -1,0 +1,12 @@
+{
+  "name": "homesherut-reports",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local-only tooling to turn the provider-completeness CSV into a styled Excel report. Not deployed.",
+  "scripts": {
+    "format": "node format-report.js"
+  },
+  "dependencies": {
+    "exceljs": "^4.4.0"
+  }
+}

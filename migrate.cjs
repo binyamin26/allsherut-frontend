@@ -1,0 +1,103 @@
+// migrate.js — run from repo root: node migrate.js
+const mysql = require('mysql2/promise');
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, 'backend/.env') });
+
+const SQL = [
+  // 0. migrate_dj_service
+  `UPDATE service_providers
+   SET service_type = 'dj'
+   WHERE service_type = 'event_entertainment'
+     AND JSON_CONTAINS(service_details, '"DJ"', '$.work_types');`,
+
+  `UPDATE users
+   SET service_type = 'dj'
+   WHERE service_type = 'event_entertainment'
+     AND id IN (
+       SELECT user_id FROM service_providers WHERE service_type = 'dj'
+     );`,
+
+  // 1. add_recruitment
+  `
+  SET @col = (SELECT COUNT(*) FROM information_schema.COLUMNS
+    WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'service_providers' AND COLUMN_NAME = 'seeking_type');
+  SET @s = IF(@col = 0,
+    'ALTER TABLE service_providers ADD COLUMN seeking_type ENUM(\'clients\',\'recruitment\',\'both\') DEFAULT \'clients\'',
+    'SELECT 1');
+  PREPARE st FROM @s; EXECUTE st; DEALLOCATE PREPARE st;
+  `,
+  `
+  CREAT E TABLE IF NOT EXISTS job_listings (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    provider_id INT NOT NULL,
+    service_type VARCHAR(50) NOT NULL,
+    contract_type ENUM('full_time','part_time','one_time') NOT NULL,
+    salary VARCHAR(100) NOT NULL,
+    payment_type ENUM('hourly','daily','monthly') NOT NULL,
+    availability_days JSON,
+    availability_hours JSON,
+    experience_required VARCHAR(20) NOT NULL DEFAULT 'beginner',
+    languages_required JSON,
+    driving_license BOOLEAN DEFAULT FALSE,
+    description TEXT NOT NULL,
+    location_city VARCHAR(100) NULL,
+    location_area VARCHAR(100) NULL,
+    is_active BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (provider_id) REFERENCES service_providers(id) ON DELETE CASCADE,
+    INDEX idx_service_type (service_type),
+    INDEX idx_provider (provider_id),
+    INDEX idx_active (is_active)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `,
+  `ALTER TABLE job_listings MODIFY COLUMN experience_required VARCHAR(20) NOT NULL DEFAULT 'beginner';`,
+  `ALTER TABLE service_providers MODIFY COLUMN service_type VARCHAR(50) NOT NULL;`,
+
+  // fix_review_52: move review #52 from wrong provider (174) to correct provider (93)
+  `UPDATE reviews SET provider_id = 93 WHERE id = 52 AND provider_id = 174;`,
+  `UPDATE service_providers SET average_rating = (
+     SELECT COALESCE(AVG(rating), 0) FROM reviews WHERE provider_id = 93 AND is_verified = TRUE AND is_published = TRUE
+   ) WHERE id = 93;`,
+  `UPDATE service_providers SET average_rating = (
+     SELECT COALESCE(AVG(rating), 0) FROM reviews WHERE provider_id = 174 AND is_verified = TRUE AND is_published = TRUE
+   ) WHERE id = 174;`,
+];
+
+const LABELS = [
+  'migrate event_entertainment DJ providers → service_type=dj',
+  'migrate users.service_type event_entertainment → dj',
+  'seeking_type column',
+  'job_listings table',
+  'fix experience_required',
+  'fix service_type',
+  'fix review #52 provider_id 174→93',
+  'recalculate average_rating for sp 93',
+  'recalculate average_rating for sp 174',
+];
+
+async function run() {
+  const conn = await mysql.createConnection({
+    host: process.env.DB_HOST,
+    port: parseInt(process.env.DB_PORT) || 3306,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    multipleStatements: true,
+  });
+  console.log('Connected to DB:', process.env.DB_HOST);
+
+  for (let i = 0; i < SQL.length; i++) {
+    try {
+      await conn.query(SQL[i]);
+      console.log('OK:', LABELS[i]);
+    } catch (e) {
+      console.log('SKIP (already done?):', LABELS[i], '-', e.message);
+    }
+  }
+
+  await conn.end();
+  console.log('Done.');
+}
+
+run().catch(e => { console.error(e.message); process.exit(1); });
