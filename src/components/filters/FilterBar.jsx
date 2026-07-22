@@ -1,10 +1,10 @@
 // src/components/search/FilterBar.jsx
 import React, { useState, useCallback, useMemo, useEffect } from 'react';
-import { 
-  MapPin,  
-  Calendar, 
-  Settings, 
-  ChevronDown, 
+import {
+  MapPin,
+  Languages,
+  Settings,
+  ChevronDown,
   X,
   Search,
   Star
@@ -40,11 +40,11 @@ const FilterBar = ({
     switch (category) {
       case 'location':
         return selectedLocation.city ? 1 : 0;
-      case 'experience':
-        return activeFilters.experience ? 1 : 0;
+      case 'languages':
+        return activeFilters.languages?.length || 0;
       case 'service':
-  return Object.keys(activeFilters).filter(key => 
-    !['experience', 'minRating'].includes(key)
+  return Object.keys(activeFilters).filter(key =>
+    !['languages', 'minRating'].includes(key)
   ).reduce((total, key) => {
     const val = activeFilters[key];
     return total + (Array.isArray(val) ? val.length : (val ? 1 : 0));
@@ -97,17 +97,17 @@ const FilterBar = ({
             <ChevronDown size={14} className="filter-pill-arrow" />
           </button>
 
-          {/* Filtre Expérience */}
+          {/* Filtre Langue parlée */}
           <button
-            className={`filter-pill ${activeFilter === 'experience' ? 'active' : ''}`}
-            onClick={() => handleFilterClick('experience')}
+            className={`filter-pill ${activeFilter === 'languages' ? 'active' : ''}`}
+            onClick={() => handleFilterClick('languages')}
           >
-            <Calendar size={16} />
+            <Languages size={16} />
             <span className="filter-pill-text">
-              {activeFilters.experience || t('filters.experience')}
+              {t('filters.common.languages')}
             </span>
-            {getActiveCount('experience') > 0 && (
-              <span className="filter-pill-badge">{getActiveCount('experience')}</span>
+            {getActiveCount('languages') > 0 && (
+              <span className="filter-pill-badge">{getActiveCount('languages')}</span>
             )}
             <ChevronDown size={14} className="filter-pill-arrow" />
           </button>
@@ -166,7 +166,7 @@ const FilterBar = ({
           <div className="filter-sidebar-header">
             <h3 className="filter-sidebar-title">
               {activeFilter === 'location' && t('filters.selectLocation')}
-              {activeFilter === 'experience' && t('filters.experienceLevel')}
+              {activeFilter === 'languages' && t('filters.common.languages')}
               {activeFilter === 'rating' && t('filters.ratingFilter')}
               {activeFilter === 'service' && t('filters.advancedFilters')}
             </h3>
@@ -186,12 +186,12 @@ const FilterBar = ({
               />
             )}
 
-            {activeFilter === 'experience' && (
-              <ExperiencePanel 
-                selected={tempFilters.experience || ''}
+            {activeFilter === 'languages' && (
+              <LanguagePanel
+                selected={tempFilters.languages || []}
                 onChange={(value) => setTempFilters(prev => ({
                   ...prev,
-                  experience: value
+                  languages: value
                 }))}
               />
             )}
@@ -221,8 +221,8 @@ const FilterBar = ({
               onClick={() => {
                 if (activeFilter === 'location') {
                   onLocationChange({ area: '', city: '', neighborhood: '', fullLocation: '' });
-                } else if (activeFilter === 'experience') {
-                  const newFilters = { ...activeFilters, experience: undefined };
+                } else if (activeFilter === 'languages') {
+                  const newFilters = { ...activeFilters, languages: undefined };
                   setTempFilters(newFilters);
                   onFiltersChange(newFilters);
                 } else if (activeFilter === 'rating') {
@@ -268,30 +268,33 @@ const LocationPanel = ({ selectedLocation, onLocationChange }) => {
   );
 };
 
-const ExperiencePanel = ({ selected, onChange }) => {
+const LanguagePanel = ({ selected = [], onChange }) => {
   const { t } = useLanguage();
-  
+
   const options = [
-    { value: '', label: t('filters.allLevels') },
-    { value: '1-2', label: `1-2 ${t('filters.years')}` },
-    { value: '3-5', label: `3-5 ${t('filters.years')}` },
-    { value: '6+', label: `6+ ${t('filters.years')}` }
+    { value: 'עברית', key: 'languages.hebrew' },
+    { value: 'צרפתית', key: 'languages.french' },
+    { value: 'רוסית', key: 'languages.russian' },
+    { value: 'אנגלית', key: 'languages.english' }
   ];
 
+  const toggle = (value) => {
+    const next = selected.includes(value)
+      ? selected.filter(v => v !== value)
+      : [...selected, value];
+    onChange(next);
+  };
+
   return (
-    <div className="experience-panel">
+    <div className="checkbox-grid">
       {options.map(option => (
-        <label key={option.value} className="experience-option">
+        <label key={option.value} className="checkbox-option">
           <input
-            type="radio"
-            name="experience"
-            value={option.value}
-            checked={selected === option.value}
-            onChange={(e) => onChange(e.target.value)}
+            type="checkbox"
+            checked={selected.includes(option.value)}
+            onChange={() => toggle(option.value)}
           />
-          <div className="experience-option-content">
-            <span>{option.label}</span>
-          </div>
+          {t(option.key)}
         </label>
       ))}
     </div>
