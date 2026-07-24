@@ -2122,7 +2122,7 @@ const galleryImages = (() => {
         <img
           src={url}
           alt={`גלריה ${index + 1}`}
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          style={{ width: '100%', height: '100%', objectFit: 'contain' }}
         />
         <button
           onClick={() => handleGalleryImageDelete(url)}
