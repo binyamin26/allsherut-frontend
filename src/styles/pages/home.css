@@ -129,7 +129,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-5);
+  gap: var(--space-6);
 }
 
 .homepage .hero-title {
@@ -454,7 +454,7 @@
 .homepage .feature-icon {
   width: 64px;
   height: 64px;
-  margin: 0 auto var(--space-5);
+  margin: 0 auto var(--space-4);
   border-radius: var(--radius-lg);
   background: linear-gradient(135deg, var(--primary-50) 0%, var(--accent-50) 100%);
   color: var(--primary-600);
