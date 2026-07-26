@@ -51,6 +51,7 @@ import DeleteAccountModal from '../components/modals/DeleteAccountModal';
 // PAIEMENT DÉSACTIVÉ - RÉACTIVER QUAND SITE PAYANT
 // import CancelSubscriptionModal from '../components/modals/CancelSubscriptionModal';
 import ServiceDetailsEditor from '../components/dashboard/ServiceDetailsEditor';
+import ProfileCompletionCard from '../components/dashboard/ProfileCompletionCard';
 import ServiceDetailsForm from '../components/services/ServiceDetailsForm';
 import DeleteServiceModal from '../components/modals/DeleteServiceModal';
 import DeleteListingModal from '../components/modals/DeleteListingModal';
@@ -634,7 +635,7 @@ const loadMyReviews = async () => {
   }, []);
 
   useEffect(() => {
-    if (activeTab === 'my-reviews' && user?.role === 'provider') {
+    if ((activeTab === 'my-reviews' || activeTab === 'overview') && user?.role === 'provider') {
       loadMyReviews();
     }
     if (activeTab === 'recruitment' && user?.role === 'provider') {
@@ -1394,6 +1395,17 @@ const galleryImages = (() => {
   try { return JSON.parse(raw); } catch { return []; }
 })();
 
+const profileCompletionStatus = (() => {
+  const sd = userData?.serviceDetails || {};
+  return {
+    photo: !!userData?.providerProfile?.profile_image,
+    gallery: galleryImages.length > 0,
+    experience: Number(sd.experience_years) > 0,
+    description: !!(sd.description || '').trim(),
+    languages: Array.isArray(sd.languages) && sd.languages.length > 0
+  };
+})();
+
   return (
     <div className="dashboard-page">
       <div className="container">
@@ -1637,6 +1649,10 @@ const galleryImages = (() => {
                 <div className="rejected-approval-banner">
                   <span>{t('dashboard.rejectedApproval')}</span>
                 </div>
+              )}
+
+              {userData?.role === 'provider' && (
+                <ProfileCompletionCard completed={profileCompletionStatus} reviewsCount={myReviews.length} />
               )}
 
 {userData?.role === 'provider' && (
