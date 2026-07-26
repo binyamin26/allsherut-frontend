@@ -29,7 +29,7 @@ const CallLeadModal = ({ isOpen, onClose, providerPhone, providerName, serviceNa
     }
 
     setLoading(true);
-    apiService.followupWhatsApp(phone, '', providerName || '', serviceName || '', action).catch(() => {});
+    apiService.followupWhatsApp(phone, '', providerName || '', serviceName || '', action, providerPhone || '').catch(() => {});
 
     reset();
     onClose();
