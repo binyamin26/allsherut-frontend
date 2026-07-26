@@ -52,6 +52,7 @@ import DeleteAccountModal from '../components/modals/DeleteAccountModal';
 // import CancelSubscriptionModal from '../components/modals/CancelSubscriptionModal';
 import ServiceDetailsEditor from '../components/dashboard/ServiceDetailsEditor';
 import ProfileCompletionCard from '../components/dashboard/ProfileCompletionCard';
+import serviceFieldsConfig from '../components/config/serviceFieldsConfig';
 import ServiceDetailsForm from '../components/services/ServiceDetailsForm';
 import DeleteServiceModal from '../components/modals/DeleteServiceModal';
 import DeleteListingModal from '../components/modals/DeleteListingModal';
@@ -1395,6 +1396,12 @@ const galleryImages = (() => {
   try { return JSON.parse(raw); } catch { return []; }
 })();
 
+// Réutilise le libellé exact du champ "expérience" du métier actif (il varie selon le
+// service — ex: "שנות ניסיון בהוראה" pour tutoring — pour rester identique à la page de profil).
+const activeServiceType = activeService || userData?.serviceType;
+const experienceFieldConfig = serviceFieldsConfig[activeServiceType]?.fields?.find(f => f.name === 'experience');
+const profileCompletionExperienceLabel = experienceFieldConfig ? t(experienceFieldConfig.label) : undefined;
+
 const profileCompletionStatus = (() => {
   const sd = userData?.serviceDetails || {};
   return {
@@ -1652,7 +1659,12 @@ const profileCompletionStatus = (() => {
               )}
 
               {userData?.role === 'provider' && (
-                <ProfileCompletionCard completed={profileCompletionStatus} reviewsCount={myReviews.length} />
+                <ProfileCompletionCard
+                  completed={profileCompletionStatus}
+                  reviewsCount={myReviews.length}
+                  galleryLabel={t('dashboard.gallery.title')}
+                  experienceLabel={profileCompletionExperienceLabel}
+                />
               )}
 
 {userData?.role === 'provider' && (

@@ -1,17 +1,20 @@
 import { Check, Circle } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 
-const CRITERIA = [
-  { key: 'photo', labelKey: 'dashboard.profileCompletion.itemPhoto' },
-  { key: 'gallery', labelKey: 'dashboard.profileCompletion.itemGallery' },
-  { key: 'experience', labelKey: 'dashboard.profileCompletion.itemExperience' },
-  { key: 'description', labelKey: 'dashboard.profileCompletion.itemDescription' },
-  { key: 'languages', labelKey: 'dashboard.profileCompletion.itemLanguages' }
-];
-
 // Chaque critère pèse 20% — pondération égale volontairement simple pour la V1.
-const ProfileCompletionCard = ({ completed, reviewsCount }) => {
+// galleryLabel/experienceLabel : libellés exacts déjà utilisés dans la page de profil
+// (l'intitulé "expérience" varie selon le métier), pour rester identique partout.
+const ProfileCompletionCard = ({ completed, reviewsCount, galleryLabel, experienceLabel }) => {
   const { t } = useLanguage();
+
+  const CRITERIA = [
+    { key: 'photo', label: t('dashboard.profileCompletion.itemPhoto') },
+    { key: 'gallery', label: galleryLabel || t('dashboard.profileCompletion.itemGallery') },
+    { key: 'experience', label: experienceLabel || t('dashboard.profileCompletion.itemExperience') },
+    { key: 'description', label: t('dashboard.profileCompletion.itemDescription') },
+    { key: 'languages', label: t('dashboard.profileCompletion.itemLanguages') }
+  ];
+
   const doneCount = CRITERIA.filter(c => completed[c.key]).length;
   const percent = Math.round((doneCount / CRITERIA.length) * 100);
 
@@ -47,7 +50,7 @@ const ProfileCompletionCard = ({ completed, reviewsCount }) => {
         {CRITERIA.map(c => (
           <li key={c.key} className={completed[c.key] ? 'done' : ''}>
             {completed[c.key] ? <Check size={16} /> : <Circle size={14} />}
-            <span>{t(c.labelKey)}</span>
+            <span>{c.label}</span>
           </li>
         ))}
       </ul>
