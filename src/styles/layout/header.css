@@ -851,6 +851,10 @@ body {
   padding: 12px;
 }
 
+.mobile-drawer-search {
+  margin-bottom: 10px;
+}
+
 .mobile-drawer-link {
   display: flex !important;
   align-items: center;

@@ -3,6 +3,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { Menu, X, Home, Users, BookOpen, UserCheck, Sparkles, Baby, LogOut, Shirt, Zap, Wrench, Wind, Flame, Package, Layers, Hammer, PartyPopper, ChefHat, Paintbrush, Droplets, HardHat, Frame, Square, Key, Leaf, PawPrint, ChevronDown, Phone, Truck, Camera, Wand2, Bug, Cog, Dumbbell, Music2, Car, Shield, Navigation, Soup, Croissant } from 'lucide-react'
 import { useAuth } from '../../context/AuthContext'
 import AuthModal from '../auth/AuthModal'
+import ServiceSearchBar from './ServiceSearchBar'
 import { useLanguage } from '../../context/LanguageContext'
 import { SUPPORTED_LANGS, getLangFromPath, buildServicePath, buildPath, getServiceKeyFromSlug } from '../../utils/langUtils'
 
@@ -357,6 +358,10 @@ const Header = () => {
         {/* Scrollable nav content */}
         <div className="mobile-drawer-content">
           <div className="mobile-drawer-nav">
+
+            <div className="mobile-drawer-search">
+              <ServiceSearchBar style={{ margin: 0, maxWidth: 'none' }} onNavigate={() => setIsMenuOpen(false)} />
+            </div>
 
             <Link to="/" className="mobile-drawer-link" onClick={() => setIsMenuOpen(false)}>
               <Home className="w-5 h-5" />

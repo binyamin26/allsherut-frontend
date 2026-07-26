@@ -45,7 +45,7 @@ const detectLanguage = (text) => {
   return 'latin';
 };
 
-const ServiceSearchBar = ({ style }) => {
+const ServiceSearchBar = ({ style, onNavigate }) => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -158,6 +158,7 @@ const ServiceSearchBar = ({ style }) => {
       dest = buildServicePath(key, currentLanguage);
     }
     navigate(dest);
+    onNavigate?.();
   };
 
   const handleKeyDown = (e) => {
