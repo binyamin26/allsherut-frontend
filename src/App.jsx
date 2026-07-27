@@ -53,6 +53,8 @@ import DrywallPage from './pages/services/DrywallPage';
 import CarpentryPage from './pages/services/CarpentryPage';
 import HomeOrganizationPage from './pages/services/HomeOrganizationPage';
 import EventEntertainmentPage from './pages/services/EventEntertainmentPage';
+import EventEquipmentRentalPage from './pages/services/EventEquipmentRentalPage';
+import EventFoodStandsPage from './pages/services/EventFoodStandsPage';
 import DJPage from './pages/services/DJPage';
 import PrivateChefPage from './pages/services/PrivateChefPage';
 import CateringPage from './pages/services/CateringPage';
@@ -94,6 +96,8 @@ const SERVICE_PAGE_MAP = {
   carpentry:             CarpentryPage,
   'home-organization':   HomeOrganizationPage,
   'event-entertainment': EventEntertainmentPage,
+  'event-equipment-rental': EventEquipmentRentalPage,
+  'event-food-stands':   EventFoodStandsPage,
   dj:                    DJPage,
   'private-chef':        PrivateChefPage,
   catering:              CateringPage,

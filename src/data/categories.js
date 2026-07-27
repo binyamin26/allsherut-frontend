@@ -76,7 +76,7 @@ export const CATEGORY_DEFINITIONS = [
     },
     image: '/images/evenements et services créatifs.jpg',
     gradient: 'from-purple-500 to-violet-600',
-    serviceIds: ['dj', 'event_entertainment', 'event_decoration', 'photographer', 'private_chef', 'catering', 'pastry'],
+    serviceIds: ['dj', 'event_entertainment', 'event_equipment_rental', 'event_food_stands', 'event_decoration', 'photographer', 'private_chef', 'catering', 'pastry'],
   },
   {
     id: 'apprentissage-sport',
@@ -142,6 +142,8 @@ export const SERVICES_META = {
   home_organization:  { image: '/images/rangement.jpg',       href: '/services/home-organization',  nameKey: 'services.home_organization' },
   event_decoration:   { image: '/images/deco.jpg',            href: '/services/event-decoration',   nameKey: 'services.event_decoration' },
   event_entertainment:{ image: '/images/fetes1.jpg',          href: '/services/event-entertainment',nameKey: 'services.event_entertainment' },
+  event_equipment_rental: { icon: '🎪',                       href: '/services/event-equipment-rental', nameKey: 'services.event_equipment_rental' },
+  event_food_stands:  { icon: '🍿',                           href: '/services/event-food-stands',  nameKey: 'services.event_food_stands' },
   dj:                 { image: '/images/DJ.jpg',              href: '/services/dj',                 nameKey: 'services.dj' },
   private_chef:       { image: '/images/chef prati.jpg',      href: '/services/private-chef',       nameKey: 'services.private_chef' },
   catering:           { image: '/images/traiteur.jpg',        href: '/services/catering',            nameKey: 'services.catering' },

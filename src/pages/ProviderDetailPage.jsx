@@ -552,7 +552,7 @@ const handleContact = () => {
           </div>
         )}
         {/* Disponibilité jours */}
-        {['tutoring', 'sports_activities', 'babysitting', 'petcare', 'eldercare', 'event_entertainment', 'dj'].includes(provider.serviceType) && (details.availableDays || details.availability_days) && (details.availableDays?.length > 0 || details.availability_days?.length > 0) && (
+        {['tutoring', 'sports_activities', 'babysitting', 'petcare', 'eldercare', 'event_entertainment', 'event_equipment_rental', 'event_food_stands', 'dj'].includes(provider.serviceType) && (details.availableDays || details.availability_days) && (details.availableDays?.length > 0 || details.availability_days?.length > 0) && (
           <div className="detail-item">
            <IconLabel icon={Calendar}>{t('provider.details.availableDays')}:</IconLabel>
         <span>{translateAndJoin(sortDays(details.availableDays || details.availability_days), 'days', t)}</span>
@@ -560,7 +560,7 @@ const handleContact = () => {
         )}
 
         {/* Disponibilité heures */}
-        {['tutoring', 'sports_activities', 'babysitting', 'petcare', 'eldercare', 'event_entertainment', 'dj'].includes(provider.serviceType) && (details.availableHours || details.availability_hours) && (details.availableHours?.length > 0 || details.availability_hours?.length > 0) && (
+        {['tutoring', 'sports_activities', 'babysitting', 'petcare', 'eldercare', 'event_entertainment', 'event_equipment_rental', 'event_food_stands', 'dj'].includes(provider.serviceType) && (details.availableHours || details.availability_hours) && (details.availableHours?.length > 0 || details.availability_hours?.length > 0) && (
           <div className="detail-item">
            <IconLabel icon={Clock}>{t('provider.details.availableHours')}:</IconLabel>
          <span>{translateAndJoin(details.availableHours || details.availability_hours, 'hours', t)}</span>
@@ -773,7 +773,7 @@ const handleContact = () => {
           </>
         )}
 
-        {/* === EVENT_ENTERTAINMENT === */}
+        {/* === EVENT_ENTERTAINMENT / DJ === */}
         {['event_entertainment', 'dj'].includes(provider.serviceType) && (
           <>
             {details.dj_event_types && details.dj_event_types.length > 0 && (
@@ -782,6 +782,24 @@ const handleContact = () => {
                 <span>{translateAndJoin(details.dj_event_types, 'chefEventType', t)}</span>
               </div>
             )}
+            {details.entertainment_types && details.entertainment_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <IconLabel icon={Star}>{t('provider.details.entertainmentTypes')}:</IconLabel>
+               <span>{translateAndJoin(details.entertainment_types, 'eventEntertainment', t)}</span>
+              </div>
+            )}
+            {details.other_types && details.other_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <IconLabel icon={Gift}>{t('provider.details.otherEventServices')}:</IconLabel>
+              <span>{translateAndJoin(details.other_types, 'eventOther', t)}</span>
+              </div>
+            )}
+          </>
+        )}
+
+        {/* === EVENT_EQUIPMENT_RENTAL === */}
+        {provider.serviceType === 'event_equipment_rental' && (
+          <>
             {details.food_machine_types && details.food_machine_types.length > 0 && (
                   <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                     <IconLabel icon={ChefHat}>{t('provider.details.foodMachines')}:</IconLabel>
@@ -800,19 +818,15 @@ const handleContact = () => {
 <span>{translateAndJoin(details.effect_machine_types, 'eventEffectMachines', t)}</span>
                   </div>
                 )}
-            {details.entertainment_types && details.entertainment_types.length > 0 && (
-              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Star}>{t('provider.details.entertainmentTypes')}:</IconLabel>
-               <span>{translateAndJoin(details.entertainment_types, 'eventEntertainment', t)}</span>
-              </div>
-            )}
-            {details.other_types && details.other_types.length > 0 && (
-              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                <IconLabel icon={Gift}>{t('provider.details.otherEventServices')}:</IconLabel>
-              <span>{translateAndJoin(details.other_types, 'eventOther', t)}</span>
-              </div>
-            )}
           </>
+        )}
+
+        {/* === EVENT_FOOD_STANDS === */}
+        {provider.serviceType === 'event_food_stands' && details.food_stand_types && details.food_stand_types.length > 0 && (
+          <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+            <IconLabel icon={ChefHat}>{t('provider.details.foodStands')}:</IconLabel>
+            <span>{translateAndJoin(details.food_stand_types, 'eventFoodStands', t)}</span>
+          </div>
         )}
 
         {/* === PRIVATE_CHEF / CATERING === */}

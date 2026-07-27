@@ -111,8 +111,10 @@ const CategoryPage = () => {
               ) : (
                 <div
                   className={`service-icon-fallback bg-gradient-to-br ${category.gradient}`}
-                  style={{ height: '180px' }}
-                />
+                  style={{ height: '180px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '48px' }}
+                >
+                  {service.icon}
+                </div>
               )}
               <div className="service-name-overlay">
                 <h3>{t(service.nameKey)}</h3>

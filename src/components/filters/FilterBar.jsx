@@ -504,7 +504,7 @@ const SharedLanguagesSection = ({ filters, onCheckboxChange }) => {
 };
 
 // Services qui ont déjà leur propre section langues
-const SERVICES_WITH_OWN_LANGUAGES = new Set(['babysitting', 'event_entertainment', 'photographer']);
+const SERVICES_WITH_OWN_LANGUAGES = new Set(['babysitting', 'event_entertainment', 'event_equipment_rental', 'event_food_stands', 'photographer']);
 
 // SERVICE PANEL PRINCIPAL
 // ═══════════════════════════════════════════════════════════════════════════
@@ -571,6 +571,8 @@ const ServicePanel = ({ serviceType, filters, onChange }) => {
     catering: CateringFilters,
     pastry: PastryFilters,
     event_entertainment: EventEntertainmentFilters,
+    event_equipment_rental: EventEquipmentRentalFilters,
+    event_food_stands: EventFoodStandsFilters,
     dj: DJFilters,
     waterproofing: WaterproofingFilters,
     contractor: ContractorFilters,
@@ -2027,153 +2029,58 @@ const PastryFilters = ({ filters, handleFilterChange, handleCheckboxChange, hand
 const EventEntertainmentFilters = ({ filters, handleFilterChange, handleCheckboxChange, handleExclusiveCheckbox }) => {
   const { t } = useLanguage();
   const config = FILTER_CONFIG.event_entertainment;
-  
+
   return (
     <div className="service-panel">
-      {/* Work Types principaux */}
+      <CheckboxSection
+        title={t(config.sectionTitles.entertainmentTypes)}
+        options={config.entertainmentTypes.map(o => ({ value: o.value, label: t(o.key) }))}
+        filterKey="entertainment_types"
+        filters={filters}
+        onCheckboxChange={handleCheckboxChange}
+      />
+
+      <CheckboxSection
+        title={t(config.sectionTitles.otherTypes)}
+        options={config.otherTypes.map(o => ({ value: o.value, label: t(o.key) }))}
+        filterKey="other_types"
+        filters={filters}
+        onCheckboxChange={handleCheckboxChange}
+      />
+
+      <AvailabilityDaysSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} />
+      <AvailabilityHoursSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} />
+    </div>
+  );
+};
+
+const EventEquipmentRentalFilters = ({ filters, handleFilterChange, handleCheckboxChange, handleExclusiveCheckbox }) => {
+  const { t } = useLanguage();
+  const config = FILTER_CONFIG.event_equipment_rental;
+
+  return (
+    <div className="service-panel">
       <div className="filter-section">
-        <h4>{t(config.sectionTitles.workTypes)}</h4>
-        
-        {/* השכרת ציוד לאירועים */}
-        <div>
-          <label className="checkbox-option">
-            <input
-              type="checkbox"
-              checked={filters.work_types?.includes('השכרת ציוד לאירועים') || false}
-              onChange={(e) => handleCheckboxChange('work_types', 'השכרת ציוד לאירועים', e.target.checked)}
-            />
-            {t('filters.events.equipmentRental')}
-          </label>
-          
-          {filters.work_types?.includes('השכרת ציוד לאירועים') && (
-            <div style={{ marginRight: '1.5rem', marginTop: '0.5rem', marginBottom: '1rem' }}>
-              {/* מכונות מזון */}
-              <div style={{ marginBottom: '1rem' }}>
-                <label className="checkbox-option" style={{ fontWeight: '600' }}>
-                  <input
-                    type="checkbox"
-                    checked={filters.equipment_rental_types?.includes('🍿 מכונות מזון') || false}
-                    onChange={(e) => handleCheckboxChange('equipment_rental_types', '🍿 מכונות מזון', e.target.checked)}
-                  />
-                  {t('filters.events.foodMachines')}
-                </label>
-                {filters.equipment_rental_types?.includes('🍿 מכונות מזון') && (
-                  <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
-                    {config.foodMachineTypes.map(opt => (
-                      <label key={opt.value} className="checkbox-option">
-                        <input
-                          type="checkbox"
-                          checked={filters.food_machine_types?.includes(opt.value) || false}
-                          onChange={(e) => handleCheckboxChange('food_machine_types', opt.value, e.target.checked)}
-                        />
-                        {t(opt.key)}
-                      </label>
-                    ))}
-                  </div>
-                )}
-              </div>
-              
-              {/* מתנפחים ומשחקים */}
-              <div style={{ marginBottom: '1rem' }}>
-                <label className="checkbox-option" style={{ fontWeight: '600' }}>
-                  <input
-                    type="checkbox"
-                    checked={filters.equipment_rental_types?.includes('🎪 השכרת מתנפחים ומשחקים') || false}
-                    onChange={(e) => handleCheckboxChange('equipment_rental_types', '🎪 השכרת מתנפחים ומשחקים', e.target.checked)}
-                  />
-                  {t('filters.events.inflatables')}
-                </label>
-                {filters.equipment_rental_types?.includes('🎪 השכרת מתנפחים ומשחקים') && (
-                  <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
-                    {config.inflatableGameTypes.map(opt => (
-                      <label key={opt.value} className="checkbox-option">
-                        <input
-                          type="checkbox"
-                          checked={filters.inflatable_game_types?.includes(opt.value) || false}
-                          onChange={(e) => handleCheckboxChange('inflatable_game_types', opt.value, e.target.checked)}
-                        />
-                        {t(opt.key)}
-                      </label>
-                    ))}
-                  </div>
-                )}
-              </div>
-              
-              {/* מכונות אפקטים */}
-              <div style={{ marginBottom: '1rem' }}>
-                <label className="checkbox-option" style={{ fontWeight: '600' }}>
-                  <input
-                    type="checkbox"
-                    checked={filters.equipment_rental_types?.includes('💨 מכונות אפקטים להשכרה') || false}
-                    onChange={(e) => handleCheckboxChange('equipment_rental_types', '💨 מכונות אפקטים להשכרה', e.target.checked)}
-                  />
-                  {t('filters.events.effectMachines')}
-                </label>
-                {filters.equipment_rental_types?.includes('💨 מכונות אפקטים להשכרה') && (
-                  <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
-                    {config.effectMachineTypes.map(opt => (
-                      <label key={opt.value} className="checkbox-option">
-                        <input
-                          type="checkbox"
-                          checked={filters.effect_machine_types?.includes(opt.value) || false}
-                          onChange={(e) => handleCheckboxChange('effect_machine_types', opt.value, e.target.checked)}
-                        />
-                        {t(opt.key)}
-                      </label>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
-        </div>
-        
-        {/* סוגי ההפעלה */}
-        <div>
-          <label className="checkbox-option">
-            <input
-              type="checkbox"
-              checked={filters.work_types?.includes('סוגי ההפעלה') || false}
-              onChange={(e) => handleCheckboxChange('work_types', 'סוגי ההפעלה', e.target.checked)}
-            />
-            {t('filters.events.entertainmentServices')}
-          </label>
-          
-          {filters.work_types?.includes('סוגי ההפעלה') && (
-            <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem', marginBottom: '1rem' }}>
-              {config.entertainmentTypes.map(opt => (
-                <label key={opt.value} className="checkbox-option">
-                  <input
-                    type="checkbox"
-                    checked={filters.entertainment_types?.includes(opt.value) || false}
-                    onChange={(e) => handleCheckboxChange('entertainment_types', opt.value, e.target.checked)}
-                  />
-                  {t(opt.key)}
-                </label>
-              ))}
-            </div>
-          )}
-        </div>
-        
-        {/* דוכני מזון לאירועים */}
-        <div>
-          <label className="checkbox-option">
-            <input
-              type="checkbox"
-              checked={filters.work_types?.includes('דוכני מזון לאירועים') || false}
-              onChange={(e) => handleCheckboxChange('work_types', 'דוכני מזון לאירועים', e.target.checked)}
-            />
-            {t('filters.events.foodStands')}
-          </label>
+        <h4>{t(config.sectionTitles.equipmentRentalTypes)}</h4>
 
-          {filters.work_types?.includes('דוכני מזון לאירועים') && (
-            <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem', marginBottom: '1rem' }}>
-              {config.foodStandTypes.map(opt => (
+        {/* מכונות מזון */}
+        <div style={{ marginBottom: '1rem' }}>
+          <label className="checkbox-option" style={{ fontWeight: '600' }}>
+            <input
+              type="checkbox"
+              checked={filters.equipment_rental_types?.includes('🍿 מכונות מזון') || false}
+              onChange={(e) => handleCheckboxChange('equipment_rental_types', '🍿 מכונות מזון', e.target.checked)}
+            />
+            {t('filters.events.foodMachines')}
+          </label>
+          {filters.equipment_rental_types?.includes('🍿 מכונות מזון') && (
+            <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
+              {config.foodMachineTypes.map(opt => (
                 <label key={opt.value} className="checkbox-option">
                   <input
                     type="checkbox"
-                    checked={filters.food_stand_types?.includes(opt.value) || false}
-                    onChange={(e) => handleCheckboxChange('food_stand_types', opt.value, e.target.checked)}
+                    checked={filters.food_machine_types?.includes(opt.value) || false}
+                    onChange={(e) => handleCheckboxChange('food_machine_types', opt.value, e.target.checked)}
                   />
                   {t(opt.key)}
                 </label>
@@ -2182,25 +2089,24 @@ const EventEntertainmentFilters = ({ filters, handleFilterChange, handleCheckbox
           )}
         </div>
 
-        {/* אחר */}
-        <div>
-          <label className="checkbox-option">
+        {/* מתנפחים ומשחקים */}
+        <div style={{ marginBottom: '1rem' }}>
+          <label className="checkbox-option" style={{ fontWeight: '600' }}>
             <input
               type="checkbox"
-              checked={filters.work_types?.includes('אחר') || false}
-              onChange={(e) => handleCheckboxChange('work_types', 'אחר', e.target.checked)}
+              checked={filters.equipment_rental_types?.includes('🎪 השכרת מתנפחים ומשחקים') || false}
+              onChange={(e) => handleCheckboxChange('equipment_rental_types', '🎪 השכרת מתנפחים ומשחקים', e.target.checked)}
             />
-            {t('filters.events.other')}
+            {t('filters.events.inflatables')}
           </label>
-
-          {filters.work_types?.includes('אחר') && (
-            <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem', marginBottom: '1rem' }}>
-              {config.otherTypes.map(opt => (
+          {filters.equipment_rental_types?.includes('🎪 השכרת מתנפחים ומשחקים') && (
+            <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
+              {config.inflatableGameTypes.map(opt => (
                 <label key={opt.value} className="checkbox-option">
                   <input
                     type="checkbox"
-                    checked={filters.other_types?.includes(opt.value) || false}
-                    onChange={(e) => handleCheckboxChange('other_types', opt.value, e.target.checked)}
+                    checked={filters.inflatable_game_types?.includes(opt.value) || false}
+                    onChange={(e) => handleCheckboxChange('inflatable_game_types', opt.value, e.target.checked)}
                   />
                   {t(opt.key)}
                 </label>
@@ -2209,7 +2115,52 @@ const EventEntertainmentFilters = ({ filters, handleFilterChange, handleCheckbox
           )}
         </div>
 
+        {/* מכונות אפקטים */}
+        <div style={{ marginBottom: '1rem' }}>
+          <label className="checkbox-option" style={{ fontWeight: '600' }}>
+            <input
+              type="checkbox"
+              checked={filters.equipment_rental_types?.includes('💨 מכונות אפקטים להשכרה') || false}
+              onChange={(e) => handleCheckboxChange('equipment_rental_types', '💨 מכונות אפקטים להשכרה', e.target.checked)}
+            />
+            {t('filters.events.effectMachines')}
+          </label>
+          {filters.equipment_rental_types?.includes('💨 מכונות אפקטים להשכרה') && (
+            <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
+              {config.effectMachineTypes.map(opt => (
+                <label key={opt.value} className="checkbox-option">
+                  <input
+                    type="checkbox"
+                    checked={filters.effect_machine_types?.includes(opt.value) || false}
+                    onChange={(e) => handleCheckboxChange('effect_machine_types', opt.value, e.target.checked)}
+                  />
+                  {t(opt.key)}
+                </label>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
+
+      <AvailabilityDaysSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} />
+      <AvailabilityHoursSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} />
+    </div>
+  );
+};
+
+const EventFoodStandsFilters = ({ filters, handleFilterChange, handleCheckboxChange, handleExclusiveCheckbox }) => {
+  const { t } = useLanguage();
+  const config = FILTER_CONFIG.event_food_stands;
+
+  return (
+    <div className="service-panel">
+      <CheckboxSection
+        title={t(config.sectionTitles.foodStandTypes)}
+        options={config.foodStandTypes.map(o => ({ value: o.value, label: t(o.key) }))}
+        filterKey="food_stand_types"
+        filters={filters}
+        onCheckboxChange={handleCheckboxChange}
+      />
 
       <AvailabilityDaysSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} />
       <AvailabilityHoursSection filters={filters} onExclusiveCheckbox={handleExclusiveCheckbox} />

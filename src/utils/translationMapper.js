@@ -714,8 +714,22 @@ const translationMappings = {
   },
   eventOther: {
     'איפור פנים מקצועי': 'filters.events.facePainting',
-    'בלוני קשת': 'filters.events.balloonArch',
     'צילום מגנטים': 'filters.events.photoMagnets',
+  },
+  eventFoodStands: {
+    'פופקורן': 'filters.events.stand.popcorn',
+    'ברבה פאפא': 'filters.events.stand.cottonCandy',
+    'הוט דוג': 'filters.events.stand.hotdog',
+    'גרניטה / סלאש': 'filters.events.stand.granita',
+    'קרפים': 'filters.events.stand.crepe',
+    'וופלים': 'filters.events.stand.waffle',
+    'גלידה': 'filters.events.stand.icecream',
+    'קפה': 'filters.events.stand.coffee',
+    'סוכריות': 'filters.events.stand.candy',
+    'שוקולד': 'filters.events.stand.chocolate',
+    "נאצ'וס": 'filters.events.stand.nachos',
+    'המבורגרים': 'filters.events.stand.burger',
+    'פיצה': 'filters.events.stand.pizza',
   },
 
   // ═══════════════════════════════════════════════════════════════

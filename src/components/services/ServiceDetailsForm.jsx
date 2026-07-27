@@ -19,6 +19,8 @@ import DrywallForm from './drywall/DrywallForm';
 import CarpentryForm from './carpentry/CarpentryForm';
 import HomeOrganizationForm from './home_organization/HomeOrganizationForm';
 import EventEntertainmentForm from './event_entertainment/EventEntertainmentForm';
+import EventEquipmentRentalForm from './event_equipment_rental/EventEquipmentRentalForm';
+import EventFoodStandsForm from './event_food_stands/EventFoodStandsForm';
 import PrivateChefForm from './private_chef/PrivateChefForm';
 import CateringForm from './catering/CateringForm';
 import PastryForm from './pastry/PastryForm';
@@ -77,6 +79,8 @@ const ServiceDetailsForm = ({
     carpentry: CarpentryForm,
     home_organization: HomeOrganizationForm,
     event_entertainment: EventEntertainmentForm,
+    event_equipment_rental: EventEquipmentRentalForm,
+    event_food_stands: EventFoodStandsForm,
     private_chef: PrivateChefForm,
     catering: CateringForm,
     pastry: PastryForm,

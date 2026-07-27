@@ -20,6 +20,8 @@ export const SERVICE_SLUGS = {
   carpentry:              { he: 'carpentry',            en: 'carpentry',            fr: 'menuiserie',               ru: 'plotnik' },
   'home-organization':    { he: 'home-organization',    en: 'home-organization',    fr: 'organisation-maison',      ru: 'organizatsiya-doma' },
   'event-entertainment':  { he: 'event-entertainment',  en: 'event-entertainment',  fr: 'animation-evenements',     ru: 'animatsiya-meropriyatiy' },
+  'event-equipment-rental': { he: 'event-equipment-rental', en: 'event-equipment-rental', fr: 'location-materiel-evenementiel', ru: 'arenda-oborudovaniya' },
+  'event-food-stands':    { he: 'event-food-stands',    en: 'event-food-stands',    fr: 'stands-nourriture-evenementiels', ru: 'stendy-edy-dlya-meropriyatiy' },
   dj:                     { he: 'dj',                   en: 'dj',                   fr: 'dj',                       ru: 'dj' },
   'private-chef':         { he: 'private-chef',         en: 'private-chef',         fr: 'chef-prive',               ru: 'chastnyy-povar' },
   catering:               { he: 'catering',             en: 'catering',             fr: 'traiteur',                 ru: 'keytering' },

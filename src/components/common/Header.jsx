@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
-import { Menu, X, Home, Users, BookOpen, UserCheck, Sparkles, Baby, LogOut, Shirt, Zap, Wrench, Wind, Flame, Package, Layers, Hammer, PartyPopper, ChefHat, Paintbrush, Droplets, HardHat, Frame, Square, Key, Leaf, PawPrint, ChevronDown, Phone, Truck, Camera, Wand2, Bug, Cog, Dumbbell, Music2, Car, Shield, Navigation, Soup, Croissant } from 'lucide-react'
+import { Menu, X, Home, Users, BookOpen, UserCheck, Sparkles, Baby, LogOut, Shirt, Zap, Wrench, Wind, Flame, Package, Layers, Hammer, PartyPopper, ChefHat, Paintbrush, Droplets, HardHat, Frame, Square, Key, Leaf, PawPrint, ChevronDown, Phone, Truck, Camera, Wand2, Bug, Cog, Dumbbell, Music2, Car, Shield, Navigation, Soup, Croissant, Tent, Popcorn } from 'lucide-react'
 import { useAuth } from '../../context/AuthContext'
 import AuthModal from '../auth/AuthModal'
 import ServiceSearchBar from './ServiceSearchBar'
@@ -88,6 +88,8 @@ const Header = () => {
     { icon: <Package className="w-5 h-5" />, nameKey: 'services.home_organization', descKey: 'services.home_organization.desc', serviceKey: 'home-organization' },
     { icon: <Wand2 className="w-5 h-5" />, nameKey: 'services.event_decoration', descKey: 'services.event_decoration.desc', serviceKey: 'event-decoration' },
     { icon: <PartyPopper className="w-5 h-5" />, nameKey: 'services.event_entertainment', descKey: 'services.event_entertainment.desc', serviceKey: 'event-entertainment' },
+    { icon: <Tent className="w-5 h-5" />, nameKey: 'services.event_equipment_rental', descKey: 'services.event_equipment_rental.desc', serviceKey: 'event-equipment-rental' },
+    { icon: <Popcorn className="w-5 h-5" />, nameKey: 'services.event_food_stands', descKey: 'services.event_food_stands.desc', serviceKey: 'event-food-stands' },
     { icon: <Music2 className="w-5 h-5" />, nameKey: 'services.dj', descKey: 'services.dj.desc', serviceKey: 'dj' },
     { icon: <ChefHat className="w-5 h-5" />, nameKey: 'services.private_chef', descKey: 'services.private_chef.desc', serviceKey: 'private-chef' },
     { icon: <Soup className="w-5 h-5" />, nameKey: 'services.catering', descKey: 'services.catering.desc', serviceKey: 'catering' },

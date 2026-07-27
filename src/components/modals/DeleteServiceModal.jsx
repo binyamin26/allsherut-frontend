@@ -40,6 +40,8 @@ const DeleteServiceModal = ({ isOpen, onClose, onConfirm, serviceName, hasOtherS
       carpentry: 'services.carpentry',
       home_organization: 'services.home_organization',
       event_entertainment: 'services.event_entertainment',
+      event_equipment_rental: 'services.event_equipment_rental',
+      event_food_stands: 'services.event_food_stands',
       private_chef: 'services.private_chef',
       painting: 'services.painting',
       waterproofing: 'services.waterproofing',

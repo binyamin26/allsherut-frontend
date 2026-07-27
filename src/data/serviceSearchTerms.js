@@ -28,6 +28,8 @@ export const SERVICE_SEARCH_TERMS = {
   home_organization: ['סידור ואירגון הבית', 'Home Organization', 'Organisation maison', 'Организация дома'],
   event_decoration: ['עיצוב אירועים', 'Event Decoration', "Décoration d'événements", 'Оформление мероприятий'],
   event_entertainment: ['הפעלות לאירועים', 'Event Entertainment', 'Animation événements', 'Развлечения для мероприятий'],
+  event_equipment_rental: ['השכרת ציוד לאירועים', 'Event Equipment Rental', 'Location de matériel événementiel', 'Аренда оборудования для мероприятий'],
+  event_food_stands: ['דוכני מזון לאירועים', 'Event Food Stands', 'Stands de nourriture événementiels', 'Стенды с едой для мероприятий'],
   dj: ['תקליטן', 'Disc Jockey', 'DJ', 'Диск-жокей'],
   private_chef: ['שף פרטי', 'Private Chef', 'Chef à domicile', 'Частный повар'],
   catering: ['קייטרינג', 'Catering', 'Traiteur', 'Кейтеринг'],

@@ -6,10 +6,10 @@ const EventEntertainmentForm = ({ serviceDetails, errors, handleServiceDetailsCh
   return (
     <div className="service-details-form">
      <h3>{t('serviceForm.event.title')}</h3>
-      
+
       <div className="form-section">
   <h4>{t('serviceForm.common.requiredFields')}</h4>
-        
+
         <div className="input-group">
           <label className="auth-form-label required">{t('serviceForm.common.availabilityDays')}</label>
           <div className="checkbox-group" data-field="availability_days">
@@ -58,196 +58,8 @@ const EventEntertainmentForm = ({ serviceDetails, errors, handleServiceDetailsCh
         </div>
 
         <div className="input-group">
-          <label className="auth-form-label required">{t('serviceForm.common.workTypes')}</label>
-          
-          <div style={{marginBottom: '20px'}}>
-            <label className="checkbox-item" style={{fontWeight: 'bold'}}>
-              <input
-                type="checkbox"
-                checked={serviceDetails.work_types?.includes('השכרת ציוד לאירועים') || false}
-                onChange={(e) => {
-                  const current = serviceDetails.work_types || [];
-                  const newTypes = e.target.checked 
-                    ? [...current, 'השכרת ציוד לאירועים']
-                    : current.filter(t => t !== 'השכרת ציוד לאירועים');
-                  handleServiceDetailsChange('work_types', newTypes);
-                }}
-              />
-            {t('serviceForm.event.equipmentRental')}
-            </label>
-            
-            {serviceDetails.work_types?.includes('השכרת ציוד לאירועים') && (
-              <div style={{marginRight: '30px', marginTop: '10px'}}>
-                <div className="checkbox-group" data-field="equipment_rental_types">
-                  
-                  <div style={{marginBottom: '15px'}}>
-                    <label className="checkbox-item" style={{fontWeight: '600'}}>
-                      <input
-                        type="checkbox"
-                        checked={serviceDetails.equipment_rental_types?.includes('🍿 מכונות מזון') || false}
-                        onChange={(e) => {
-                          const current = serviceDetails.equipment_rental_types || [];
-                          const newTypes = e.target.checked 
-                            ? [...current, '🍿 מכונות מזון']
-                            : current.filter(t => t !== '🍿 מכונות מזון');
-                          handleServiceDetailsChange('equipment_rental_types', newTypes);
-                        }}
-                      />
-                     {t('serviceForm.event.foodMachines')}
-                    </label>
-                    
-                    {serviceDetails.equipment_rental_types?.includes('🍿 מכונות מזון') && (
-                      <div style={{marginRight: '30px', marginTop: '8px'}}>
-                        <div className="checkbox-group" data-field="food_machine_types">
-                        {[
-  { value: 'מכונת פופקורן', label: t('filters.events.popcorn') },
-  { value: 'מכונת סוכר-בורי', label: t('filters.events.cottonCandy') },
-  { value: 'מכונת ברד', label: t('filters.events.slushie') },
-  { value: 'מכונת וופל בלגי', label: t('filters.events.waffle') },
-  { value: 'מכונת גרניטה וקפה בר', label: t('filters.events.granita') },
-  { value: 'מכונת גלידה אמריקאית', label: t('filters.events.softServe') },
-  { value: 'מכונת מילקשייק', label: t('filters.events.milkshake') },
-  { value: 'מסחטת מיצים טריים', label: t('filters.events.juicer') },
-  { value: 'מכונת נקניקיות', label: t('filters.events.hotdog') },
-  { value: 'מחבת קרפים', label: t('filters.events.crepe') },
-  { value: 'מזרקת שוקולד', label: t('filters.events.chocolateFountain') }
-].map(type => (
-  <label key={type.value} className="checkbox-item">
-    <input
-      type="checkbox"
-      checked={serviceDetails.food_machine_types?.includes(type.value) || false}
-      onChange={(e) => {
-        const current = serviceDetails.food_machine_types || [];
-        const newTypes = e.target.checked 
-          ? [...current, type.value]
-          : current.filter(t => t !== type.value);
-        handleServiceDetailsChange('food_machine_types', newTypes);
-      }}
-    />
-    {type.label}
-  </label>
-))}
-                        </div>
-                        {errors['serviceDetails.food_machine_types'] && <span className="error-text">{errors['serviceDetails.food_machine_types']}</span>}
-                      </div>
-                    )}
-                  </div>
-
-                  <div style={{marginBottom: '15px'}}>
-                    <label className="checkbox-item" style={{fontWeight: '600'}}>
-                      <input
-                        type="checkbox"
-                        checked={serviceDetails.equipment_rental_types?.includes('🎪 השכרת מתנפחים ומשחקים') || false}
-                        onChange={(e) => {
-                          const current = serviceDetails.equipment_rental_types || [];
-                          const newTypes = e.target.checked 
-                            ? [...current, '🎪 השכרת מתנפחים ומשחקים']
-                            : current.filter(t => t !== '🎪 השכרת מתנפחים ומשחקים');
-                          handleServiceDetailsChange('equipment_rental_types', newTypes);
-                        }}
-                      />
-                    {t('serviceForm.event.inflatables')}
-                    </label>
-                    
-                    {serviceDetails.equipment_rental_types?.includes('🎪 השכרת מתנפחים ומשחקים') && (
-                      <div style={{marginRight: '30px', marginTop: '8px'}}>
-                        <div className="checkbox-group" data-field="inflatable_game_types">
-                        {[
-  { value: 'מתנפחים', label: t('filters.events.bouncyHouses') },
-  { value: 'ג\'ימבורי', label: t('filters.events.gymboree') },
-  { value: 'עמדות משחק', label: t('filters.events.gameStations') }
-].map(type => (
-  <label key={type.value} className="checkbox-item">
-    <input
-      type="checkbox"
-      checked={serviceDetails.inflatable_game_types?.includes(type.value) || false}
-      onChange={(e) => {
-        const current = serviceDetails.inflatable_game_types || [];
-        const newTypes = e.target.checked 
-          ? [...current, type.value]
-          : current.filter(t => t !== type.value);
-        handleServiceDetailsChange('inflatable_game_types', newTypes);
-      }}
-    />
-    {type.label}
-  </label>
-))}
-                        </div>
-                        {errors['serviceDetails.inflatable_game_types'] && <span className="error-text">{errors['serviceDetails.inflatable_game_types']}</span>}
-                      </div>
-                    )}
-                  </div>
-
-                  <div style={{marginBottom: '15px'}}>
-                    <label className="checkbox-item" style={{fontWeight: '600'}}>
-                      <input
-                        type="checkbox"
-                        checked={serviceDetails.equipment_rental_types?.includes('💨 מכונות אפקטים להשכרה') || false}
-                        onChange={(e) => {
-                          const current = serviceDetails.equipment_rental_types || [];
-                          const newTypes = e.target.checked 
-                            ? [...current, '💨 מכונות אפקטים להשכרה']
-                            : current.filter(t => t !== '💨 מכונות אפקטים להשכרה');
-                          handleServiceDetailsChange('equipment_rental_types', newTypes);
-                        }}
-                      />
-                     {t('serviceForm.event.effectMachines')}
-                    </label>
-                    
-                    {serviceDetails.equipment_rental_types?.includes('💨 מכונות אפקטים להשכרה') && (
-                      <div style={{marginRight: '30px', marginTop: '8px'}}>
-                        <div className="checkbox-group" data-field="effect_machine_types">
-                        {[
-  { value: 'מכונת עשן', label: t('filters.events.smokeMachine') },
-  { value: 'מכונת שלג', label: t('filters.events.snowMachine') },
-  { value: 'מכונת בועות', label: t('filters.events.bubbleMachine') }
-].map(type => (
-  <label key={type.value} className="checkbox-item">
-    <input
-      type="checkbox"
-      checked={serviceDetails.effect_machine_types?.includes(type.value) || false}
-      onChange={(e) => {
-        const current = serviceDetails.effect_machine_types || [];
-        const newTypes = e.target.checked 
-          ? [...current, type.value]
-          : current.filter(t => t !== type.value);
-        handleServiceDetailsChange('effect_machine_types', newTypes);
-      }}
-    />
-    {type.label}
-  </label>
-))}
-                        </div>
-                        {errors['serviceDetails.effect_machine_types'] && <span className="error-text">{errors['serviceDetails.effect_machine_types']}</span>}
-                      </div>
-                    )}
-                  </div>
-
-                </div>
-                {errors['serviceDetails.equipment_rental_types'] && <span className="error-text">{errors['serviceDetails.equipment_rental_types']}</span>}
-              </div>
-            )}
-          </div>
-
-          <div style={{marginBottom: '20px'}}>
-            <label className="checkbox-item" style={{fontWeight: 'bold'}}>
-              <input
-                type="checkbox"
-                checked={serviceDetails.work_types?.includes('סוגי ההפעלה') || false}
-                onChange={(e) => {
-                  const current = serviceDetails.work_types || [];
-                  const newTypes = e.target.checked 
-                    ? [...current, 'סוגי ההפעלה']
-                    : current.filter(t => t !== 'סוגי ההפעלה');
-                  handleServiceDetailsChange('work_types', newTypes);
-                }}
-              />
-            {t('serviceForm.event.entertainmentTypes')}
-            </label>
-            
-            {serviceDetails.work_types?.includes('סוגי ההפעלה') && (
-              <div style={{marginRight: '30px', marginTop: '10px'}}>
-                <div className="checkbox-group" data-field="entertainment_types">
+          <label className="auth-form-label required">{t('serviceForm.event.entertainmentTypes')}</label>
+          <div className="checkbox-group" data-field="entertainment_types">
              {[
   { value: 'קוסם ילדים', label: t('filters.event.magician') },
   { value: 'קוסם', label: t('filters.event.magicianGeneral') },
@@ -265,7 +77,7 @@ const EventEntertainmentForm = ({ serviceDetails, errors, handleServiceDetailsCh
       checked={serviceDetails.entertainment_types?.includes(type.value) || false}
       onChange={(e) => {
         const current = serviceDetails.entertainment_types || [];
-        const newTypes = e.target.checked 
+        const newTypes = e.target.checked
           ? [...current, type.value]
           : current.filter(t => t !== type.value);
         handleServiceDetailsChange('entertainment_types', newTypes);
@@ -274,86 +86,17 @@ const EventEntertainmentForm = ({ serviceDetails, errors, handleServiceDetailsCh
     {type.label}
   </label>
 ))}
-                </div>
-                {errors['serviceDetails.entertainment_types'] && <span className="error-text">{errors['serviceDetails.entertainment_types']}</span>}
-              </div>
-            )}
           </div>
+          {errors['serviceDetails.entertainment_types'] && <span className="error-text">{errors['serviceDetails.entertainment_types']}</span>}
+        </div>
+      </div>
 
-          <div style={{marginBottom: '20px'}}>
-            <label className="checkbox-item" style={{fontWeight: 'bold'}}>
-              <input
-                type="checkbox"
-                checked={serviceDetails.work_types?.includes('דוכני מזון לאירועים') || false}
-                onChange={(e) => {
-                  const current = serviceDetails.work_types || [];
-                  const newTypes = e.target.checked
-                    ? [...current, 'דוכני מזון לאירועים']
-                    : current.filter(t => t !== 'דוכני מזון לאירועים');
-                  handleServiceDetailsChange('work_types', newTypes);
-                }}
-              />
-              {t('serviceForm.event.foodStands')}
-            </label>
+      <div className="form-section optional">
+        <h4>{t('serviceForm.common.optionalFields')}</h4>
 
-            {serviceDetails.work_types?.includes('דוכני מזון לאירועים') && (
-              <div style={{marginRight: '30px', marginTop: '10px'}}>
-                <div className="checkbox-group" data-field="food_stand_types">
-                {[
-  { value: 'פופקורן', label: t('filters.events.stand.popcorn') },
-  { value: 'ברבה פאפא', label: t('filters.events.stand.cottonCandy') },
-  { value: 'הוט דוג', label: t('filters.events.stand.hotdog') },
-  { value: 'גרניטה / סלאש', label: t('filters.events.stand.granita') },
-  { value: 'קרפים', label: t('filters.events.stand.crepe') },
-  { value: 'וופלים', label: t('filters.events.stand.waffle') },
-  { value: 'גלידה', label: t('filters.events.stand.icecream') },
-  { value: 'קפה', label: t('filters.events.stand.coffee') },
-  { value: 'סוכריות', label: t('filters.events.stand.candy') },
-  { value: 'שוקולד', label: t('filters.events.stand.chocolate') },
-  { value: 'נאצ\'וס', label: t('filters.events.stand.nachos') },
-  { value: 'המבורגרים', label: t('filters.events.stand.burger') },
-  { value: 'פיצה', label: t('filters.events.stand.pizza') }
-].map(type => (
-  <label key={type.value} className="checkbox-item">
-    <input
-      type="checkbox"
-      checked={serviceDetails.food_stand_types?.includes(type.value) || false}
-      onChange={(e) => {
-        const current = serviceDetails.food_stand_types || [];
-        const newTypes = e.target.checked
-          ? [...current, type.value]
-          : current.filter(t => t !== type.value);
-        handleServiceDetailsChange('food_stand_types', newTypes);
-      }}
-    />
-    {type.label}
-  </label>
-))}
-                </div>
-                {errors['serviceDetails.food_stand_types'] && <span className="error-text">{errors['serviceDetails.food_stand_types']}</span>}
-              </div>
-            )}
-          </div>
-
-          <div style={{marginBottom: '20px'}}>
-            <label className="checkbox-item" style={{fontWeight: 'bold'}}>
-              <input
-                type="checkbox"
-                checked={serviceDetails.work_types?.includes('אחר') || false}
-                onChange={(e) => {
-                  const current = serviceDetails.work_types || [];
-                  const newTypes = e.target.checked
-                    ? [...current, 'אחר']
-                    : current.filter(t => t !== 'אחר');
-                  handleServiceDetailsChange('work_types', newTypes);
-                }}
-              />
-              {t('serviceForm.event.other')}
-            </label>
-
-            {serviceDetails.work_types?.includes('אחר') && (
-              <div style={{marginRight: '30px', marginTop: '10px'}}>
-                <div className="checkbox-group" data-field="other_types">
+        <div className="input-group">
+          <label className="auth-form-label">{t('serviceForm.event.other')}</label>
+          <div className="checkbox-group" data-field="other_types">
                 {[
   { value: 'איפור פנים מקצועי', label: t('filters.event.facePainting') },
   { value: 'צילום מגנטים', label: t('filters.event.magnetPhoto') }
@@ -373,18 +116,8 @@ const EventEntertainmentForm = ({ serviceDetails, errors, handleServiceDetailsCh
     {type.label}
   </label>
 ))}
-                </div>
-                {errors['serviceDetails.other_types'] && <span className="error-text">{errors['serviceDetails.other_types']}</span>}
-              </div>
-            )}
           </div>
-
-          {errors['serviceDetails.work_types'] && <span className="error-text">{errors['serviceDetails.work_types']}</span>}
         </div>
-      </div>
-
-      <div className="form-section optional">
-        <h4>{t('serviceForm.common.optionalFields')}</h4>
 
         <div className="input-group">
           <label className="auth-form-label">{t('serviceForm.common.experience')}</label>

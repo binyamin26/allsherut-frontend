@@ -973,21 +973,37 @@ laundry: {
   },
 
   // ═══════════════════════════════════════════════════════════════
-  // EVENT ENTERTAINMENT
+  // EVENT ENTERTAINMENT (Animations & spectacles)
   // ═══════════════════════════════════════════════════════════════
   event_entertainment: {
     sectionTitles: {
-      workTypes: 'filters.events.workTypes',
-      equipmentRentalTypes: 'filters.events.equipmentRentalTypes',
       entertainmentTypes: 'filters.events.entertainmentTypes',
       otherTypes: 'filters.events.otherTypes'
     },
-    workTypes: [
-      { value: 'השכרת ציוד לאירועים', key: 'filters.events.equipmentRental' },
-      { value: 'סוגי ההפעלה', key: 'filters.events.entertainmentServices' },
-      { value: 'דוכני מזון לאירועים', key: 'filters.events.foodStands' },
-      { value: 'אחר', key: 'filters.events.other' }
+    entertainmentTypes: [
+      { value: 'קוסם ילדים', key: 'filters.events.magician' },
+      { value: 'קוסם', key: 'filters.events.magicianGeneral' },
+      { value: 'ליצן ילדים', key: 'filters.events.clown' },
+      { value: 'בלוני צורות', key: 'filters.events.balloonArt' },
+      { value: 'הפרחת בלונים / ניפוח בלונים במקום', key: 'filters.events.balloonInflation' },
+      { value: 'דמויות ותחפושות', key: 'filters.events.costumes' },
+      { value: 'שעשועונים ומשחקי קבוצה', key: 'filters.events.groupGames' },
+      { value: 'מופע בועות סבון', key: 'filters.events.bubbleShow' },
+      { value: 'הפעלה מוזיקלית / ריקודים', key: 'filters.events.musicDancing' }
     ],
+    otherTypes: [
+      { value: 'איפור פנים מקצועי', key: 'filters.events.facePainting' },
+      { value: 'צילום מגנטים', key: 'filters.events.photoMagnets' }
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // EVENT EQUIPMENT RENTAL (Location de matériel événementiel)
+  // ═══════════════════════════════════════════════════════════════
+  event_equipment_rental: {
+    sectionTitles: {
+      equipmentRentalTypes: 'filters.events.equipmentRentalTypes'
+    },
     equipmentRentalCategories: [
       { value: '🍿 מכונות מזון', key: 'filters.events.foodMachines' },
       { value: '🎪 השכרת מתנפחים ומשחקים', key: 'filters.events.inflatables' },
@@ -1015,7 +1031,16 @@ laundry: {
       { value: 'מכונת עשן', key: 'filters.events.smokeMachine' },
       { value: 'מכונת שלג', key: 'filters.events.snowMachine' },
       { value: 'מכונת בועות', key: 'filters.events.bubbleMachine' }
-    ],
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // EVENT FOOD STANDS (Stands de nourriture pour événements)
+  // ═══════════════════════════════════════════════════════════════
+  event_food_stands: {
+    sectionTitles: {
+      foodStandTypes: 'filters.events.foodStandTypes'
+    },
     foodStandTypes: [
       { value: 'פופקורן', key: 'filters.events.stand.popcorn' },
       { value: 'ברבה פאפא', key: 'filters.events.stand.cottonCandy' },
@@ -1030,21 +1055,6 @@ laundry: {
       { value: 'נאצ\'וס', key: 'filters.events.stand.nachos' },
       { value: 'המבורגרים', key: 'filters.events.stand.burger' },
       { value: 'פיצה', key: 'filters.events.stand.pizza' }
-    ],
-    entertainmentTypes: [
-      { value: 'קוסם ילדים', key: 'filters.events.magician' },
-      { value: 'קוסם', key: 'filters.events.magicianGeneral' },
-      { value: 'ליצן ילדים', key: 'filters.events.clown' },
-      { value: 'בלוני צורות', key: 'filters.events.balloonArt' },
-      { value: 'הפרחת בלונים / ניפוח בלונים במקום', key: 'filters.events.balloonInflation' },
-      { value: 'דמויות ותחפושות', key: 'filters.events.costumes' },
-      { value: 'שעשועונים ומשחקי קבוצה', key: 'filters.events.groupGames' },
-      { value: 'מופע בועות סבון', key: 'filters.events.bubbleShow' },
-      { value: 'הפעלה מוזיקלית / ריקודים', key: 'filters.events.musicDancing' }
-    ],
-    otherTypes: [
-      { value: 'איפור פנים מקצועי', key: 'filters.events.facePainting' },
-      { value: 'צילום מגנטים', key: 'filters.events.photoMagnets' }
     ]
   },
 

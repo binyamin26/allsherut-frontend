@@ -68,6 +68,8 @@ const Footer = () => {
       titleKey: 'footer.category.events',
       services: [
         { nameKey: 'services.event_entertainment', serviceKey: 'event-entertainment' },
+        { nameKey: 'services.event_equipment_rental', serviceKey: 'event-equipment-rental' },
+        { nameKey: 'services.event_food_stands', serviceKey: 'event-food-stands' },
         { nameKey: 'services.dj', serviceKey: 'dj' },
         { nameKey: 'services.private_chef', serviceKey: 'private-chef' },
         { nameKey: 'services.catering', serviceKey: 'catering' },

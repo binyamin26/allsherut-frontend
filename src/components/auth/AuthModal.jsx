@@ -174,6 +174,8 @@ const SERVICE_CARD_DEFS = [
   { key: 'home_organization', gradient: 'home_organization-gradient' },
   { key: 'event_decoration', gradient: 'event_decoration-gradient' },
   { key: 'event_entertainment', gradient: 'event_entertainment-gradient' },
+  { key: 'event_equipment_rental', icon: '🎪', gradient: 'event_entertainment-gradient' },
+  { key: 'event_food_stands', icon: '🍿', gradient: 'event_entertainment-gradient' },
   { key: 'dj', gradient: 'event_entertainment-gradient' },
   { key: 'private_chef', gradient: 'private_chef-gradient' },
   { key: 'catering', gradient: 'catering-gradient' },
@@ -852,12 +854,19 @@ case 'home_organization':  if (!serviceDetails.availability_hours || serviceDeta
   if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
     newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
   }
-  if (!serviceDetails.work_types || serviceDetails.work_types.length === 0) {
-    newErrors['serviceDetails.work_types'] = t('validation.workTypesRequired');
+  if (!serviceDetails.entertainment_types || serviceDetails.entertainment_types.length === 0) {
+    newErrors['serviceDetails.entertainment_types'] = t('validation.selectAtLeastOne');
   }
+  break;
 
-  // Validation השכרת ציוד לאירועים
-  if (serviceDetails.work_types?.includes('השכרת ציוד לאירועים') && (!serviceDetails.equipment_rental_types || serviceDetails.equipment_rental_types.length === 0)) {
+  case 'event_equipment_rental':
+  if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
+    newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
+  }
+  if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
+    newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
+  }
+  if (!serviceDetails.equipment_rental_types || serviceDetails.equipment_rental_types.length === 0) {
     newErrors['serviceDetails.equipment_rental_types'] = t('validation.selectAtLeastOne');
   }
   if (serviceDetails.equipment_rental_types?.includes('🍿 מכונות מזון') && (!serviceDetails.food_machine_types || serviceDetails.food_machine_types.length === 0)) {
@@ -869,15 +878,17 @@ case 'home_organization':  if (!serviceDetails.availability_hours || serviceDeta
   if (serviceDetails.equipment_rental_types?.includes('💨 מכונות אפקטים להשכרה') && (!serviceDetails.effect_machine_types || serviceDetails.effect_machine_types.length === 0)) {
     newErrors['serviceDetails.effect_machine_types'] = t('validation.selectAtLeastOne');
   }
+  break;
 
-  // Validation סוגי ההפעלה
-  if (serviceDetails.work_types?.includes('סוגי ההפעלה') && (!serviceDetails.entertainment_types || serviceDetails.entertainment_types.length === 0)) {
-    newErrors['serviceDetails.entertainment_types'] = t('validation.selectAtLeastOne');
+  case 'event_food_stands':
+  if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) {
+    newErrors['serviceDetails.availability_days'] = t('validation.availabilityDaysRequired');
   }
-
-  // Validation אחר
-  if (serviceDetails.work_types?.includes('אחר') && (!serviceDetails.other_types || serviceDetails.other_types.length === 0)) {
-    newErrors['serviceDetails.other_types'] = t('validation.selectAtLeastOne');
+  if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) {
+    newErrors['serviceDetails.availability_hours'] = t('validation.availabilityHoursRequired');
+  }
+  if (!serviceDetails.food_stand_types || serviceDetails.food_stand_types.length === 0) {
+    newErrors['serviceDetails.food_stand_types'] = t('validation.selectAtLeastOne');
   }
   break;
 

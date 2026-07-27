@@ -789,67 +789,108 @@ const serviceFieldsConfig = {
 
   event_entertainment: {
     fields: [
-      { name: 'age', label: 'serviceFields.event_entertainment.age', type: 'number' },
       { name: 'experience', label: 'serviceFields.event_entertainment.experience', type: 'number' },
-      { 
-        name: 'availability_days', 
-        label: 'serviceFields.event_entertainment.availability_days', 
+      {
+        name: 'availability_days',
+        label: 'serviceFields.event_entertainment.availability_days',
         type: 'checkbox',
         options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע']
       },
-      { 
-        name: 'availability_hours', 
-        label: 'serviceFields.event_entertainment.availability_hours', 
+      {
+        name: 'availability_hours',
+        label: 'serviceFields.event_entertainment.availability_hours',
         type: 'checkbox',
         options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
       },
       {
-        name: 'work_types',
-        label: 'serviceFields.event_entertainment.work_types',
-        type: 'checkbox',
-        options: ['השכרת ציוד לאירועים', 'סוגי ההפעלה', 'דוכני מזון לאירועים', 'אחר']
-      },
-      { 
-        name: 'equipment_rental_types', 
-        label: 'serviceFields.event_entertainment.equipment_rental_types', 
-        type: 'checkbox',
-        options: ['🍿 מכונות מזון', '🎪 השכרת מתנפחים ומשחקים', '💨 מכונות אפקטים להשכרה']
-      },
-      { 
-        name: 'food_machine_types', 
-        label: 'serviceFields.event_entertainment.food_machine_types', 
-        type: 'checkbox',
-        options: ['מכונת פופקורן', 'מכונת סוכר-בורי', 'מכונת ברד', 'מכונת וופל בלגי', 'מכונת גרניטה וקפה בר', 'מכונת גלידה אמריקאית', 'מכונת מילקשייק', 'מסחטת מיצים טריים', 'מכונת נקניקיות', 'מחבת קרפים', 'מזרקת שוקולד']
-      },
-      { 
-        name: 'inflatable_game_types', 
-        label: 'serviceFields.event_entertainment.inflatable_game_types', 
-        type: 'checkbox',
-        options: ['מתנפחים', 'ג\'ימבורי', 'עמדות משחק']
-      },
-      { 
-        name: 'effect_machine_types', 
-        label: 'serviceFields.event_entertainment.effect_machine_types', 
-        type: 'checkbox',
-        options: ['מכונת עשן', 'מכונת שלג', 'מכונת בועות']
-      },
-      { 
-        name: 'entertainment_types', 
-        label: 'serviceFields.event_entertainment.entertainment_types', 
+        name: 'entertainment_types',
+        label: 'serviceFields.event_entertainment.entertainment_types',
         type: 'checkbox',
         options: ['קוסם ילדים', 'קוסם', 'ליצן ילדים', 'בלוני צורות', 'הפרחת בלונים / ניפוח בלונים במקום', 'דמויות ותחפושות', 'שעשועונים ומשחקי קבוצה', 'מופע בועות סבון', 'הפעלה מוזיקלית / ריקודים']
-      },
-      {
-        name: 'food_stand_types',
-        label: 'serviceFields.event_entertainment.food_stand_types',
-        type: 'checkbox',
-        options: ['פופקורן', 'ברבה פאפא', 'הוט דוג', 'גרניטה / סלאש', 'קרפים', 'וופלים', 'גלידה', 'קפה', 'סוכריות', 'שוקולד', 'נאצ\'וס', 'המבורגרים', 'פיצה']
       },
       {
         name: 'other_types',
         label: 'serviceFields.event_entertainment.other_types',
         type: 'checkbox',
         options: ['איפור פנים מקצועי', 'צילום מגנטים']
+      },
+      {
+        name: 'languages',
+        label: 'serviceFields.eldercare.languages',
+        type: 'checkbox',
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+      }
+    ]
+  },
+
+  event_equipment_rental: {
+    fields: [
+      { name: 'experience', label: 'serviceFields.event_equipment_rental.experience', type: 'number' },
+      {
+        name: 'availability_days',
+        label: 'serviceFields.event_equipment_rental.availability_days',
+        type: 'checkbox',
+        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע']
+      },
+      {
+        name: 'availability_hours',
+        label: 'serviceFields.event_equipment_rental.availability_hours',
+        type: 'checkbox',
+        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+      },
+      {
+        name: 'equipment_rental_types',
+        label: 'serviceFields.event_equipment_rental.equipment_rental_types',
+        type: 'checkbox',
+        options: ['🍿 מכונות מזון', '🎪 השכרת מתנפחים ומשחקים', '💨 מכונות אפקטים להשכרה']
+      },
+      {
+        name: 'food_machine_types',
+        label: 'serviceFields.event_equipment_rental.food_machine_types',
+        type: 'checkbox',
+        options: ['מכונת פופקורן', 'מכונת סוכר-בורי', 'מכונת ברד', 'מכונת וופל בלגי', 'מכונת גרניטה וקפה בר', 'מכונת גלידה אמריקאית', 'מכונת מילקשייק', 'מסחטת מיצים טריים', 'מכונת נקניקיות', 'מחבת קרפים', 'מזרקת שוקולד']
+      },
+      {
+        name: 'inflatable_game_types',
+        label: 'serviceFields.event_equipment_rental.inflatable_game_types',
+        type: 'checkbox',
+        options: ['מתנפחים', 'ג\'ימבורי', 'עמדות משחק']
+      },
+      {
+        name: 'effect_machine_types',
+        label: 'serviceFields.event_equipment_rental.effect_machine_types',
+        type: 'checkbox',
+        options: ['מכונת עשן', 'מכונת שלג', 'מכונת בועות']
+      },
+      {
+        name: 'languages',
+        label: 'serviceFields.eldercare.languages',
+        type: 'checkbox',
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+      }
+    ]
+  },
+
+  event_food_stands: {
+    fields: [
+      { name: 'experience', label: 'serviceFields.event_food_stands.experience', type: 'number' },
+      {
+        name: 'availability_days',
+        label: 'serviceFields.event_food_stands.availability_days',
+        type: 'checkbox',
+        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע']
+      },
+      {
+        name: 'availability_hours',
+        label: 'serviceFields.event_food_stands.availability_hours',
+        type: 'checkbox',
+        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+      },
+      {
+        name: 'food_stand_types',
+        label: 'serviceFields.event_food_stands.food_stand_types',
+        type: 'checkbox',
+        options: ['פופקורן', 'ברבה פאפא', 'הוט דוג', 'גרניטה / סלאש', 'קרפים', 'וופלים', 'גלידה', 'קפה', 'סוכריות', 'שוקולד', 'נאצ\'וס', 'המבורגרים', 'פיצה']
       },
       {
         name: 'languages',
