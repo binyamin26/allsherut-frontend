@@ -413,14 +413,15 @@ const searchableServices = [
   { label: 'איפור פנים מקצועי', labelEn: 'Professional face painting', labelFr: 'Maquillage professionnel', labelRu: 'Профессиональный аквагрим', href: '/services/event-entertainment', type: 'specialty' },
   { label: 'בלוני קשת', labelEn: 'Balloon arch', labelFr: 'Arche ballons', labelRu: 'Арка из шаров', href: '/services/event-entertainment', type: 'specialty' },
   { label: 'צילום מגנטים', labelEn: 'Photo magnets', labelFr: 'Photos magnets', labelRu: 'Фотомагниты', href: '/services/event-entertainment', type: 'specialty' },
-  { label: 'DJ', labelEn: 'DJ', labelFr: 'DJ', labelRu: 'DJ', href: '/services/event-entertainment', type: 'specialty' },
-  { label: "דיג'יי", labelEn: 'DJ', labelFr: 'DJ', labelRu: 'ди-джей', href: '/services/event-entertainment', type: 'specialty' },
-  { label: 'DJ לחתונה', labelEn: 'DJ for weddings', labelFr: 'DJ pour mariage', labelRu: 'DJ на свадьбу', href: '/services/event-entertainment', type: 'specialty' },
-  { label: 'DJ לבר מצווה', labelEn: 'DJ for bar mitzvah', labelFr: 'DJ pour bar-mitsva', labelRu: 'DJ на бар-мицву', href: '/services/event-entertainment', type: 'specialty' },
-  { label: 'DJ לבת מצווה', labelEn: 'DJ for bat mitzvah', labelFr: 'DJ pour bat-mitsva', labelRu: 'DJ на бат-мицву', href: '/services/event-entertainment', type: 'specialty' },
-  { label: 'DJ לברית מילה', labelEn: 'DJ for brit milah', labelFr: 'DJ pour brit milah', labelRu: 'DJ на брит-милу', href: '/services/event-entertainment', type: 'specialty' },
-  { label: 'DJ לאירוע עסקי', labelEn: 'DJ for corporate events', labelFr: 'DJ pour événements corporate', labelRu: 'DJ на корпоратив', href: '/services/event-entertainment', type: 'specialty' },
-  { label: 'DJ למסיבה פרטית', labelEn: 'DJ for private parties', labelFr: 'DJ pour fête privée', labelRu: 'DJ на частную вечеринку', href: '/services/event-entertainment', type: 'specialty' },
+  // 16c. DJ
+  { label: 'DJ', labelEn: 'DJ', labelFr: 'DJ', labelRu: 'DJ', href: '/services/dj', type: 'service' },
+  { label: "דיג'יי", labelEn: 'DJ', labelFr: 'DJ', labelRu: 'ди-джей', href: '/services/dj', type: 'specialty' },
+  { label: 'DJ לחתונה', labelEn: 'DJ for weddings', labelFr: 'DJ pour mariage', labelRu: 'DJ на свадьбу', href: '/services/dj', type: 'specialty' },
+  { label: 'DJ לבר מצווה', labelEn: 'DJ for bar mitzvah', labelFr: 'DJ pour bar-mitsva', labelRu: 'DJ на бар-мицву', href: '/services/dj', type: 'specialty' },
+  { label: 'DJ לבת מצווה', labelEn: 'DJ for bat mitzvah', labelFr: 'DJ pour bat-mitsva', labelRu: 'DJ на бат-мицву', href: '/services/dj', type: 'specialty' },
+  { label: 'DJ לברית מילה', labelEn: 'DJ for brit milah', labelFr: 'DJ pour brit milah', labelRu: 'DJ на брит-милу', href: '/services/dj', type: 'specialty' },
+  { label: 'DJ לאירוע עסקי', labelEn: 'DJ for corporate events', labelFr: 'DJ pour événements corporate', labelRu: 'DJ на корпоратив', href: '/services/dj', type: 'specialty' },
+  { label: 'DJ למסיבה פרטית', labelEn: 'DJ for private parties', labelFr: 'DJ pour fête privée', labelRu: 'DJ на частную вечеринку', href: '/services/dj', type: 'specialty' },
 
   // 16b. EVENT DECORATION
   { label: 'עיצוב אירועים', labelEn: 'Event Decoration', labelFr: "Décoration d'événements", labelRu: 'Оформление мероприятий', href: '/services/event-decoration', type: 'service' },
