@@ -852,12 +852,6 @@ const serviceFieldsConfig = {
         options: ['איפור פנים מקצועי', 'בלוני קשת', 'צילום מגנטים']
       },
       {
-        name: 'dj_event_types',
-        label: 'serviceFields.event_entertainment.dj_event_types',
-        type: 'checkbox',
-        options: ['חתונה', 'בר מצווה', 'בת מצווה', 'ברית מילה', 'שבע ברכות', 'יום הולדת / יום שנה', 'אירוע עסקי', 'מסיבה פרטית', 'חגיגה משפחתית', 'אירוסין']
-      },
-      {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
