@@ -14,6 +14,11 @@
 // Result on 2026-07-27: 9 event_equipment_rental created, 1 event_food_stands
 // created, 1 event_entertainment row kept active (id 90), 8 deactivated
 // (ids 89, 93, 307, 312, 359, 407, 416, 488).
+//
+// IMPORTANT: also copies each new listing's provider_working_areas rows from
+// its source listing (separate table, not part of service_providers — missed
+// on the first run, which made every new listing invisible to any
+// city/neighborhood-filtered search until backfilled).
 
 const { transaction, query } = require('/app/config/database');
 
@@ -42,6 +47,19 @@ const PROFILE_COLS = [
         const hasRental = (d.work_types || []).includes('השכרת ציוד לאירועים');
         const hasFoodStands = (d.work_types || []).includes('דוכני מזון לאירועים');
 
+        const copyWorkingAreas = async (sourceProviderId, newProviderId) => {
+          const [areas] = await connection.query(
+            'SELECT city, neighborhood FROM provider_working_areas WHERE provider_id = ?',
+            [sourceProviderId]
+          );
+          for (const area of areas) {
+            await connection.query(
+              'INSERT INTO provider_working_areas (provider_id, city, neighborhood, created_at) VALUES (?, ?, ?, NOW())',
+              [newProviderId, area.city, area.neighborhood]
+            );
+          }
+        };
+
         // mysql2's query() expands raw JS Array bind params into "IN (?)"-style lists,
         // which corrupts a single positional placeholder (esp. empty arrays -> nothing).
         // Stringify any array/object JSON-column values before binding.
@@ -64,6 +82,7 @@ const PROFILE_COLS = [
           const insertSql = `INSERT INTO service_providers (user_id, service_type, ${PROFILE_COLS.join(', ')}, service_details, created_at)
             VALUES (?, 'event_equipment_rental', ${PROFILE_COLS.map(() => '?').join(', ')}, ?, NOW())`;
           const [insertResult] = await connection.query(insertSql, [row.user_id, ...profileValues, JSON.stringify(rentalDetails)]);
+          await copyWorkingAreas(id, insertResult.insertId);
           result.rental_created.push({ source_id: id, new_id: insertResult.insertId, user_id: row.user_id });
         }
 
@@ -77,6 +96,7 @@ const PROFILE_COLS = [
           const insertSql = `INSERT INTO service_providers (user_id, service_type, ${PROFILE_COLS.join(', ')}, service_details, created_at)
             VALUES (?, 'event_food_stands', ${PROFILE_COLS.map(() => '?').join(', ')}, ?, NOW())`;
           const [insertResult] = await connection.query(insertSql, [row.user_id, ...profileValues, JSON.stringify(foodStandDetails)]);
+          await copyWorkingAreas(id, insertResult.insertId);
           result.food_stands_created.push({ source_id: id, new_id: insertResult.insertId, user_id: row.user_id });
         }
 
