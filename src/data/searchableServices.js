@@ -411,7 +411,6 @@ const searchableServices = [
   { label: 'מופע בועות סבון', labelEn: 'Bubble show', labelFr: 'Spectacle bulles', labelRu: 'Шоу мыльных пузырей', href: '/services/event-entertainment', type: 'specialty' },
   { label: 'הפעלה מוזיקלית / ריקודים', labelEn: 'Music/dance entertainment', labelFr: 'Animation musicale/danse', labelRu: 'Музыкальная/танцевальная анимация', href: '/services/event-entertainment', type: 'specialty' },
   { label: 'איפור פנים מקצועי', labelEn: 'Professional face painting', labelFr: 'Maquillage professionnel', labelRu: 'Профессиональный аквагрим', href: '/services/event-entertainment', type: 'specialty' },
-  { label: 'בלוני קשת', labelEn: 'Balloon arch', labelFr: 'Arche ballons', labelRu: 'Арка из шаров', href: '/services/event-entertainment', type: 'specialty' },
   { label: 'צילום מגנטים', labelEn: 'Photo magnets', labelFr: 'Photos magnets', labelRu: 'Фотомагниты', href: '/services/event-entertainment', type: 'specialty' },
   // 16c. DJ
   { label: 'DJ', labelEn: 'DJ', labelFr: 'DJ', labelRu: 'DJ', href: '/services/dj', type: 'service' },
@@ -427,6 +426,7 @@ const searchableServices = [
   { label: 'עיצוב אירועים', labelEn: 'Event Decoration', labelFr: "Décoration d'événements", labelRu: 'Оформление мероприятий', href: '/services/event-decoration', type: 'service' },
   { label: 'מעצב אירועים', labelEn: 'Event Decorator', labelFr: 'Décorateur événementiel', labelRu: 'Декоратор мероприятий', href: '/services/event-decoration', type: 'service' },
   { label: 'קשתות ועיצוב בלונים', labelEn: 'Balloon arches & decoration', labelFr: 'Arches et décoration de ballons', labelRu: 'Арки и оформление шарами', href: '/services/event-decoration', type: 'specialty' },
+  { label: 'בלוני קשת', labelEn: 'Balloon arch', labelFr: 'Arche ballons', labelRu: 'Арка из шаров', href: '/services/event-decoration', type: 'specialty' },
   { label: 'עיצוב שולחנות', labelEn: 'Table decoration', labelFr: 'Décoration de tables', labelRu: 'Оформление столов', href: '/services/event-decoration', type: 'specialty' },
   { label: 'עיצוב אולמות', labelEn: 'Hall decoration', labelFr: 'Décoration de salles', labelRu: 'Оформление залов', href: '/services/event-decoration', type: 'specialty' },
   { label: 'קירות צילום ופינות צילום', labelEn: 'Photo walls & photo corners', labelFr: 'Murs photo et coins photo', labelRu: 'Фотозоны и фотоугол', href: '/services/event-decoration', type: 'specialty' },

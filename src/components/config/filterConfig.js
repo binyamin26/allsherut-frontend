@@ -1044,7 +1044,6 @@ laundry: {
     ],
     otherTypes: [
       { value: 'איפור פנים מקצועי', key: 'filters.events.facePainting' },
-      { value: 'בלוני קשת', key: 'filters.events.balloonArch' },
       { value: 'צילום מגנטים', key: 'filters.events.photoMagnets' }
     ]
   },

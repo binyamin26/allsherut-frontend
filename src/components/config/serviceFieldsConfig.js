@@ -849,7 +849,7 @@ const serviceFieldsConfig = {
         name: 'other_types',
         label: 'serviceFields.event_entertainment.other_types',
         type: 'checkbox',
-        options: ['איפור פנים מקצועי', 'בלוני קשת', 'צילום מגנטים']
+        options: ['איפור פנים מקצועי', 'צילום מגנטים']
       },
       {
         name: 'languages',

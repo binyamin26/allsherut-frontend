@@ -356,7 +356,6 @@ const EventEntertainmentForm = ({ serviceDetails, errors, handleServiceDetailsCh
                 <div className="checkbox-group" data-field="other_types">
                 {[
   { value: 'איפור פנים מקצועי', label: t('filters.event.facePainting') },
-  { value: 'בלוני קשת', label: t('filters.event.balloonArch') },
   { value: 'צילום מגנטים', label: t('filters.event.magnetPhoto') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
