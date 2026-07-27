@@ -19,6 +19,14 @@
 // its source listing (separate table, not part of service_providers — missed
 // on the first run, which made every new listing invisible to any
 // city/neighborhood-filtered search until backfilled).
+//
+// IMPORTANT: if the source listing ends up deactivated (nothing left in
+// entertainment_types/other_types), its reviews (keyed by provider_id, not
+// user) move to the new listing too — otherwise they become invisible along
+// with the deactivated listing. Only moves reviews when the source is fully
+// deactivated AND there's exactly one new listing to move them to (ambiguous
+// otherwise — e.g. a source that spawned both a rental and a food-stand
+// listing needs a manual call on which one the reviews are actually about).
 
 const { transaction, query } = require('/app/config/database');
 
@@ -69,6 +77,9 @@ const PROFILE_COLS = [
           return v;
         });
 
+        let newRentalId = null;
+        let newFoodStandId = null;
+
         // --- Create event_equipment_rental listing ---
         if (hasRental) {
           const rentalDetails = {};
@@ -83,6 +94,7 @@ const PROFILE_COLS = [
             VALUES (?, 'event_equipment_rental', ${PROFILE_COLS.map(() => '?').join(', ')}, ?, NOW())`;
           const [insertResult] = await connection.query(insertSql, [row.user_id, ...profileValues, JSON.stringify(rentalDetails)]);
           await copyWorkingAreas(id, insertResult.insertId);
+          newRentalId = insertResult.insertId;
           result.rental_created.push({ source_id: id, new_id: insertResult.insertId, user_id: row.user_id });
         }
 
@@ -97,6 +109,7 @@ const PROFILE_COLS = [
             VALUES (?, 'event_food_stands', ${PROFILE_COLS.map(() => '?').join(', ')}, ?, NOW())`;
           const [insertResult] = await connection.query(insertSql, [row.user_id, ...profileValues, JSON.stringify(foodStandDetails)]);
           await copyWorkingAreas(id, insertResult.insertId);
+          newFoodStandId = insertResult.insertId;
           result.food_stands_created.push({ source_id: id, new_id: insertResult.insertId, user_id: row.user_id });
         }
 
@@ -127,6 +140,25 @@ const PROFILE_COLS = [
             [JSON.stringify(newDetails), id]
           );
           result.entertainment_deactivated.push(id);
+
+          // Move reviews off the now-deactivated listing so they don't go dark.
+          // Only when unambiguous: exactly one new listing was created for this source.
+          const targetIds = [newRentalId, newFoodStandId].filter(Boolean);
+          if (targetIds.length === 1) {
+            const [target] = targetIds;
+            const newServiceType = target === newRentalId ? 'event_equipment_rental' : 'event_food_stands';
+            const [moved] = await connection.query(
+              'UPDATE reviews SET provider_id = ?, service_type = ? WHERE provider_id = ?',
+              [target, newServiceType, id]
+            );
+            if (moved.affectedRows > 0) {
+              result.reviews_moved = result.reviews_moved || [];
+              result.reviews_moved.push({ source_id: id, new_id: target, count: moved.affectedRows });
+            }
+          } else if (targetIds.length > 1) {
+            result.reviews_needs_manual_call = result.reviews_needs_manual_call || [];
+            result.reviews_needs_manual_call.push({ source_id: id, candidates: targetIds });
+          }
         }
       }
 
