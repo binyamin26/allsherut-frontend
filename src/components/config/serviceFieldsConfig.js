@@ -807,7 +807,7 @@ const serviceFieldsConfig = {
         name: 'work_types',
         label: 'serviceFields.event_entertainment.work_types',
         type: 'checkbox',
-        options: ['השכרת ציוד לאירועים', 'סוגי ההפעלה', 'דוכני מזון לאירועים', 'אחר', 'DJ']
+        options: ['השכרת ציוד לאירועים', 'סוגי ההפעלה', 'דוכני מזון לאירועים', 'אחר']
       },
       { 
         name: 'equipment_rental_types', 

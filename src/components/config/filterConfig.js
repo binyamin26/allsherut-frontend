@@ -986,8 +986,7 @@ laundry: {
       { value: 'השכרת ציוד לאירועים', key: 'filters.events.equipmentRental' },
       { value: 'סוגי ההפעלה', key: 'filters.events.entertainmentServices' },
       { value: 'דוכני מזון לאירועים', key: 'filters.events.foodStands' },
-      { value: 'אחר', key: 'filters.events.other' },
-      { value: 'DJ', key: 'filters.events.dj' }
+      { value: 'אחר', key: 'filters.events.other' }
     ],
     equipmentRentalCategories: [
       { value: '🍿 מכונות מזון', key: 'filters.events.foodMachines' },
