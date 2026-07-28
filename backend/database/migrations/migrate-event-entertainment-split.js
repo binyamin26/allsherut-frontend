@@ -154,6 +154,19 @@ const PROFILE_COLS = [
             if (moved.affectedRows > 0) {
               result.reviews_moved = result.reviews_moved || [];
               result.reviews_moved.push({ source_id: id, new_id: target, count: moved.affectedRows });
+
+              // service_providers.average_rating is a stored column, only ever
+              // recalculated when a review is created (Review.js) — moving rows
+              // directly in SQL leaves the source stuck at its old value and the
+              // target stuck at 0/NULL. Recalculate both sides here.
+              for (const providerId of [id, target]) {
+                const [avgResult] = await connection.query(
+                  `SELECT AVG(rating) as avg_rating FROM reviews WHERE provider_id = ? AND is_verified = TRUE AND is_published = TRUE`,
+                  [providerId]
+                );
+                const avgRating = avgResult[0].avg_rating !== null ? parseFloat(avgResult[0].avg_rating).toFixed(1) : null;
+                await connection.query('UPDATE service_providers SET average_rating = ? WHERE id = ?', [avgRating, providerId]);
+              }
             }
           } else if (targetIds.length > 1) {
             result.reviews_needs_manual_call = result.reviews_needs_manual_call || [];
