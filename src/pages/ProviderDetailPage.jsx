@@ -55,6 +55,14 @@ const IconLabel = ({ icon: Icon, children }) => (
   </strong>
 );
 
+const LANGUAGE_FLAGS = {
+  'עברית': 'il',
+  'רוסית': 'ru',
+  'אנגלית': 'gb',
+  'ספרדית': 'es',
+  'צרפתית': 'fr',
+};
+
 const DAY_ORDER = ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת', 'כל השבוע'];
 const sortDays = (days) => {
   if (!Array.isArray(days)) return days;
@@ -419,7 +427,16 @@ const handleContact = () => {
         {(details.languages && details.languages.length > 0) && (
           <div className="detail-item">
             <IconLabel icon={Globe}>{t('provider.details.languages')}:</IconLabel>
-         <span>{Array.isArray(details.languages) ? translateAndJoin(details.languages, 'languages', t) : translateValue(details.languages, 'languages', t)}</span>
+            <div className="tag-list">
+              {(Array.isArray(details.languages) ? details.languages : [details.languages]).map((lang, idx) => (
+                <span key={idx} className="detail-tag language-tag">
+                  {LANGUAGE_FLAGS[lang] && (
+                    <img src={`https://flagcdn.com/w20/${LANGUAGE_FLAGS[lang]}.png`} alt="" />
+                  )}
+                  {translateValue(lang, 'languages', t)}
+                </span>
+              ))}
+            </div>
           </div>
         )}
 
