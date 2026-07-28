@@ -98,6 +98,8 @@ const serviceImages = {
   carpentry: '/images/logo menuisier.jpg',
   home_organization: '/images/logo rangement.jpg',
   event_entertainment: '/images/logo magicien.jpg',
+  event_equipment_rental: '/images/logo loc.jpg',
+  event_food_stands: '/images/logo stands.jpg',
   dj: '/images/logo DJ.jpg',
   private_chef: '/images/logo chef prati.jpg',
   catering: '/images/logo chef.jpg',

@@ -111,8 +111,11 @@ const EventFoodStandsPage = () => {
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">
-            <div className="service-hero-icon" style={{ fontSize: '3rem', lineHeight: 1 }}>
-              🍿
+            <div className="service-hero-icon">
+              <img
+                src="/images/logo stands.jpg"
+                alt="Stands de nourriture événementiels"
+              />
             </div>
             <h1 className="service-title">{t('services.event_food_stands.pageTitle')}</h1>
           </div>

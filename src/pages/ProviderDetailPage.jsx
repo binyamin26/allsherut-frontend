@@ -167,6 +167,7 @@ const ProviderDetailPage = () => {
     pastry: '/images/logo p et f.jpg',
     event_entertainment: '/images/logo magicien.jpg',
     event_equipment_rental: '/images/logo loc.jpg',
+    event_food_stands: '/images/logo stands.jpg',
     dj: '/images/logo DJ.jpg',
     waterproofing: '/images/logo itoum.jpg',
     contractor: '/images/logo kablan.jpg',
