@@ -141,7 +141,7 @@ export const SERVICES_META = {
   property_management:{ image: '/images/nihoul-dirot.jpg',    href: '/services/property-management',nameKey: 'services.property_management' },
   home_organization:  { image: '/images/rangement.jpg',       href: '/services/home-organization',  nameKey: 'services.home_organization' },
   event_decoration:   { image: '/images/deco.jpg',            href: '/services/event-decoration',   nameKey: 'services.event_decoration' },
-  event_entertainment:{ image: '/images/fetes1.jpg',          href: '/services/event-entertainment',nameKey: 'services.event_entertainment' },
+  event_entertainment:{ image: '/images/animations et spectacles.jpg', href: '/services/event-entertainment',nameKey: 'services.event_entertainment' },
   event_equipment_rental: { icon: '🎪',                       href: '/services/event-equipment-rental', nameKey: 'services.event_equipment_rental' },
   event_food_stands:  { icon: '🍿',                           href: '/services/event-food-stands',  nameKey: 'services.event_food_stands' },
   dj:                 { image: '/images/DJ.jpg',              href: '/services/dj',                 nameKey: 'services.dj' },
