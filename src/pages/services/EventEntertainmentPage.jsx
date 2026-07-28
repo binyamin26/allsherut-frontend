@@ -114,7 +114,7 @@ const EventEntertainmentPage = () => {
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo event.png"
+                src="/images/logo magicien.jpg"
                 alt="ֳ‰vֳ©nementiel"
               />
             </div>

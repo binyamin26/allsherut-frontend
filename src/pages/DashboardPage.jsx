@@ -97,7 +97,7 @@ const serviceImages = {
   drywall: '/images/logo placo.jpg',
   carpentry: '/images/logo menuisier.jpg',
   home_organization: '/images/logo rangement.jpg',
-  event_entertainment: '/images/logo event.png',
+  event_entertainment: '/images/logo magicien.jpg',
   dj: '/images/logo DJ.jpg',
   private_chef: '/images/logo chef prati.jpg',
   catering: '/images/logo chef.jpg',
