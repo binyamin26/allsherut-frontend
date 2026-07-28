@@ -111,8 +111,11 @@ const EventEquipmentRentalPage = () => {
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">
-            <div className="service-hero-icon" style={{ fontSize: '3rem', lineHeight: 1 }}>
-              🎊
+            <div className="service-hero-icon">
+              <img
+                src="/images/logo loc.jpg"
+                alt="Location de matériel événementiel"
+              />
             </div>
             <h1 className="service-title">{t('services.event_equipment_rental.pageTitle')}</h1>
           </div>
