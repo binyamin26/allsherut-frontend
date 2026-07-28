@@ -5,6 +5,7 @@ import { useLanguage } from '../../context/LanguageContext';
 import JobListingCard from '../../components/recruitment/JobListingCard';
 import LocationSelector from '../../components/LocationSelector';
 import Reveal from '../../components/common/Reveal';
+import SEO from '../../components/common/SEO';
 
 const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
@@ -148,6 +149,12 @@ const RecruitmentServicePage = () => {
 
   return (
     <div className="recruitment-page" dir={isRTL ? 'rtl' : 'ltr'}>
+      <SEO
+        title={`${t('recruitment.pageTitle')} - ${serviceLabel}`}
+        description={`${t('recruitment.pageSubtitle')} ${serviceLabel}`}
+        canonicalPath={`/recruitment/${rawService}`}
+        noindex={!loading && filtered.length === 0}
+      />
 
       {/* Breadcrumb */}
       <nav className="recruitment-breadcrumb">

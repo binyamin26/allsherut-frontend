@@ -262,7 +262,29 @@
     <xhtml:link rel="alternate" hreflang="fr-IL" href="https://allsherut.com/fr/services/animation-evenements"/>
     <xhtml:link rel="alternate" hreflang="ru-IL" href="https://allsherut.com/ru/services/animatsiya-meropriyatiy"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://allsherut.com/services/event-entertainment"/>
-    <lastmod>2026-06-21</lastmod>
+    <lastmod>2026-07-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://allsherut.com/services/event-equipment-rental</loc>
+    <xhtml:link rel="alternate" hreflang="he-IL" href="https://allsherut.com/services/event-equipment-rental"/>
+    <xhtml:link rel="alternate" hreflang="en-IL" href="https://allsherut.com/en/services/event-equipment-rental"/>
+    <xhtml:link rel="alternate" hreflang="fr-IL" href="https://allsherut.com/fr/services/location-materiel-evenementiel"/>
+    <xhtml:link rel="alternate" hreflang="ru-IL" href="https://allsherut.com/ru/services/arenda-oborudovaniya"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://allsherut.com/services/event-equipment-rental"/>
+    <lastmod>2026-07-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://allsherut.com/services/event-food-stands</loc>
+    <xhtml:link rel="alternate" hreflang="he-IL" href="https://allsherut.com/services/event-food-stands"/>
+    <xhtml:link rel="alternate" hreflang="en-IL" href="https://allsherut.com/en/services/event-food-stands"/>
+    <xhtml:link rel="alternate" hreflang="fr-IL" href="https://allsherut.com/fr/services/stands-nourriture-evenementiels"/>
+    <xhtml:link rel="alternate" hreflang="ru-IL" href="https://allsherut.com/ru/services/stendy-edy-dlya-meropriyatiy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://allsherut.com/services/event-food-stands"/>
+    <lastmod>2026-07-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
