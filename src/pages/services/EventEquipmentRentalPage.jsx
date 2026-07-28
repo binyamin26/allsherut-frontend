@@ -112,7 +112,7 @@ const EventEquipmentRentalPage = () => {
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon" style={{ fontSize: '3rem', lineHeight: 1 }}>
-              🎪
+              🎊
             </div>
             <h1 className="service-title">{t('services.event_equipment_rental.pageTitle')}</h1>
           </div>

@@ -174,7 +174,7 @@ const SERVICE_CARD_DEFS = [
   { key: 'home_organization', gradient: 'home_organization-gradient' },
   { key: 'event_decoration', gradient: 'event_decoration-gradient' },
   { key: 'event_entertainment', gradient: 'event_entertainment-gradient' },
-  { key: 'event_equipment_rental', icon: '🎪', gradient: 'event_entertainment-gradient' },
+  { key: 'event_equipment_rental', icon: '🎊', gradient: 'event_entertainment-gradient' },
   { key: 'event_food_stands', icon: '🍿', gradient: 'event_entertainment-gradient' },
   { key: 'dj', gradient: 'event_entertainment-gradient' },
   { key: 'private_chef', gradient: 'private_chef-gradient' },
