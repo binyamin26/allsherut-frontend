@@ -143,7 +143,7 @@ export const SERVICES_META = {
   event_decoration:   { image: '/images/deco.jpg',            href: '/services/event-decoration',   nameKey: 'services.event_decoration' },
   event_entertainment:{ image: '/images/animations et spectacles.jpg', href: '/services/event-entertainment',nameKey: 'services.event_entertainment' },
   event_equipment_rental: { image: '/images/loc materiel animation.jpg', icon: '🎊', href: '/services/event-equipment-rental', nameKey: 'services.event_equipment_rental' },
-  event_food_stands:  { icon: '🍿',                           href: '/services/event-food-stands',  nameKey: 'services.event_food_stands' },
+  event_food_stands:  { image: '/images/stands de nourriture.jpg', icon: '🍿', href: '/services/event-food-stands',  nameKey: 'services.event_food_stands' },
   dj:                 { image: '/images/DJ.jpg',              href: '/services/dj',                 nameKey: 'services.dj' },
   private_chef:       { image: '/images/chef prati.jpg',      href: '/services/private-chef',       nameKey: 'services.private_chef' },
   catering:           { image: '/images/traiteur.jpg',        href: '/services/catering',            nameKey: 'services.catering' },
