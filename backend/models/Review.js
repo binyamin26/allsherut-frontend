@@ -40,6 +40,10 @@ class Review {
    * Envoyer un code de vérification par email
    */
   static async sendVerificationCode(name, email, providerId, serviceType) {
+    const trimmedName = (name || '').trim();
+    if (!trimmedName) {
+      throw new Error('שם נדרש לשליחת קוד אימות');
+    }
     return transaction(async (connection) => {
       try {
         const verificationCode = Review.generateVerificationCode();
@@ -47,17 +51,17 @@ class Review {
 
         // Supprimer les anciens tokens pour cette combinaison email/provider
         await connection.execute(`
-          DELETE FROM review_email_tokens 
+          DELETE FROM review_email_tokens
           WHERE email = ? AND provider_id = ?
         `, [email, providerId]);
 
         // Insérer le nouveau token
         await connection.execute(`
           INSERT INTO review_email_tokens (
-            email, provider_id, service_type, verification_code, 
+            email, provider_id, service_type, verification_code,
             reviewer_name, expires_at, created_at
           ) VALUES (?, ?, ?, ?, ?, ?, NOW())
-        `, [email, providerId, serviceType, verificationCode, name, expiresAt]);
+        `, [email, providerId, serviceType, verificationCode, trimmedName, expiresAt]);
 
         // Envoyer l'email de vérification
         const emailResult = await emailService.sendReviewVerificationEmail(
@@ -225,7 +229,17 @@ if (isAdminBypass) {
     };
   }
 
-  fullName = tokens[0][0].reviewer_name || 'לקוח אנונימי';
+  const tokenName = (tokens[0][0].reviewer_name || '').trim();
+  if (!tokenName) {
+    // Ne jamais publier un avis sous "לקוח אנונימי" en silence quand le nom
+    // attendu est manquant -- forcer l'utilisateur à recommencer plutôt que
+    // de lui afficher un nom qu'il n'a pas choisi.
+    return {
+      success: false,
+      message: 'לא נמצא שם תקין לאימות זה - אנא בקש קוד אימות חדש'
+    };
+  }
+  fullName = tokenName;
 }
 
 console.log('🔍 Nom complet récupéré:', fullName);

@@ -56,9 +56,10 @@ router.post('/send-verification', reviewVerificationLimiter, async (req, res) =>
   try {
     console.log('📧 Demande code vérification avis');
     const { name, email, providerId, serviceType } = req.body;
-    
+    const trimmedName = (name || '').trim();
+
     // Validation des données
-    if (!name || !email || !providerId || !serviceType) {
+    if (!trimmedName || !email || !providerId || !serviceType) {
       return res.status(400).json({
         success: false,
         message: 'נתונים חסרים - נדרש שם, אימייל, ספק ושירות'
@@ -101,13 +102,13 @@ if (existingReview) {
         email, provider_id, service_type, verification_code, 
         reviewer_name, expires_at, created_at
       ) VALUES (?, ?, ?, ?, ?, ?, NOW())
-    `, [email, providerId, serviceType, verificationCode, name, expiresAt]);
+    `, [email, providerId, serviceType, verificationCode, trimmedName, expiresAt]);
     
     console.log('💾 Token sauvegardé en base de données');
     
     // Envoyer l'email
     const emailResult = await emailService.sendReviewVerificationEmail(
-      email, verificationCode, name, serviceType
+      email, verificationCode, trimmedName, serviceType
     );
     
     if (emailResult.success) {
