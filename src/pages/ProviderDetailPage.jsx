@@ -166,6 +166,7 @@ const ProviderDetailPage = () => {
     catering: '/images/logo chef.jpg',
     pastry: '/images/logo p et f.jpg',
     event_entertainment: '/images/logo event.png',
+    event_equipment_rental: '/images/logo loc.jpg',
     dj: '/images/logo DJ.jpg',
     waterproofing: '/images/logo itoum.jpg',
     contractor: '/images/logo kablan.jpg',
