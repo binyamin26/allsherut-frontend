@@ -590,16 +590,22 @@ if (field.type === 'select') {
       
   return (
         <div className="checkbox-grid">
-          {field.options.map(option => (
-            <label key={option} className="checkbox-item">
-              <input
-                type="checkbox"
-                checked={(value || []).includes(option)}
-                onChange={(e) => handleCheckboxChange(option, e.target.checked)}
-              />
-              {translateFieldValue(field.name, option)}
-            </label>
-          ))}
+          {field.options.map(option => {
+            const optValue = typeof option === 'object' ? option.value : option;
+            const optLabel = typeof option === 'object' && option.labelKey
+              ? t(option.labelKey)
+              : translateFieldValue(field.name, optValue);
+            return (
+              <label key={optValue} className="checkbox-item">
+                <input
+                  type="checkbox"
+                  checked={(value || []).includes(optValue)}
+                  onChange={(e) => handleCheckboxChange(optValue, e.target.checked)}
+                />
+                {optLabel}
+              </label>
+            );
+          })}
         </div>
       );
     }
