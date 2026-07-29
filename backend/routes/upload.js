@@ -395,6 +395,30 @@ router.delete('/gallery-image', authenticateToken, async (req, res) => {
 });
 
 // ============================================
+// POST /api/upload/cloudinary-signature
+// Signature pour upload direct navigateur → Cloudinary (contourne les
+// requêtes multipart vers fly.dev, parfois bloquées par des filtres réseau
+// côté client — voir la photo de profil bloquée à l'inscription)
+// ============================================
+router.post('/cloudinary-signature', (req, res) => {
+  const timestamp = Math.round(Date.now() / 1000);
+  const folder = req.body.folder === 'gallery' ? 'homesherut/gallery' : 'homesherut/profiles';
+
+  const signature = cloudinary.utils.api_sign_request(
+    { timestamp, folder },
+    process.env.CLOUDINARY_API_SECRET
+  );
+
+  return res.success('חתימה נוצרה', {
+    signature,
+    timestamp,
+    folder,
+    apiKey: process.env.CLOUDINARY_API_KEY,
+    cloudName: process.env.CLOUDINARY_CLOUD_NAME
+  });
+});
+
+// ============================================
 // GET /api/upload/test
 // ============================================
 router.get('/test', (req, res) => {

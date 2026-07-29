@@ -1458,18 +1458,53 @@ if (!isValid) {
     handleFinalSubmit();
   };
 
+ // Upload direct navigateur → Cloudinary (contourne les filtres réseau/antivirus
+ // qui bloquent parfois les requêtes multipart vers fly.dev — voir la photo de
+ // profil qui empêchait l'inscription de driver). Retourne null si ça échoue,
+ // auquel cas on retombe sur l'ancien upload via notre backend.
+ const uploadImageDirectToCloudinary = async (file) => {
+   try {
+     const sigResponse = await fetch(`${API_BASE}/upload/cloudinary-signature`, {
+       method: 'POST',
+       headers: { 'Content-Type': 'application/json' },
+       body: JSON.stringify({ folder: 'profile' })
+     });
+     const sigData = await sigResponse.json();
+     if (!sigData.success) return null;
+
+     const { signature, timestamp, folder, apiKey, cloudName } = sigData.data;
+
+     const cloudinaryFormData = new FormData();
+     cloudinaryFormData.append('file', file);
+     cloudinaryFormData.append('api_key', apiKey);
+     cloudinaryFormData.append('timestamp', timestamp);
+     cloudinaryFormData.append('signature', signature);
+     cloudinaryFormData.append('folder', folder);
+
+     const uploadResponse = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+       method: 'POST',
+       body: cloudinaryFormData
+     });
+     const uploadData = await uploadResponse.json();
+     return uploadData.secure_url || null;
+   } catch (err) {
+     console.warn('⚠️ Upload direct Cloudinary échoué, fallback backend:', err);
+     return null;
+   }
+ };
+
  const handleFinalSubmit = async () => {
   setIsSubmitting(true);
   setSubmitError('');
 
   try {
     let result;
-    
+
     if (mode === 'login') {
       result = await login(formData.email, formData.password);
     } else {
       const registrationFormData = new FormData();
-      
+
       registrationFormData.append('name', formData.name);
       registrationFormData.append('email', formData.email);
       registrationFormData.append('phone', formData.phone.replace(/[\s\-(). /]/g, ''));
@@ -1478,11 +1513,16 @@ if (!isValid) {
       console.log('serviceType:', formData.serviceType);
       registrationFormData.append('serviceType', formData.serviceType);
       registrationFormData.append('seekingType', formData.seekingType);
-      
+
       if (formData.profileImage) {
-        registrationFormData.append('profileImage', formData.profileImage);
+        const directUrl = await uploadImageDirectToCloudinary(formData.profileImage);
+        if (directUrl) {
+          registrationFormData.append('profileImageUrl', directUrl);
+        } else {
+          registrationFormData.append('profileImage', formData.profileImage);
+        }
       }
-      
+
       if (formData.serviceDetails && Object.keys(formData.serviceDetails).length > 0) {
         console.log('📤 ENVOI serviceDetails:', formData.serviceDetails);
         registrationFormData.append('serviceDetails', JSON.stringify(formData.serviceDetails));
