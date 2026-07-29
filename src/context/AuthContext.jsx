@@ -320,13 +320,14 @@ const imageFullUrl = data.data.imageUrl.startsWith('http')
   ? data.data.imageUrl 
   : `https://homesherut-backend.fly.dev${data.data.imageUrl.startsWith('/') ? '' : '/'}${data.data.imageUrl}`;
 
-const updatedUser = { 
-  ...user, 
+const updatedUser = {
+  ...user,
   profileImage: imageFullUrl,
   profile_image: imageFullUrl,
         providerProfile: user.providerProfile ? {
           ...user.providerProfile,
-          profile_image: imageFullUrl
+          profile_image: imageFullUrl,
+          ...(data.data.verificationStatus ? { verification_status: data.data.verificationStatus } : {})
         } : null
       };
       setUser(updatedUser);
@@ -401,7 +402,8 @@ const uploadGalleryImage = async (imageFile, serviceType = null) => {
         ...user,
         providerProfile: user.providerProfile ? {
           ...user.providerProfile,
-          profile_images: data.data.gallery
+          profile_images: data.data.gallery,
+          ...(data.data.verificationStatus ? { verification_status: data.data.verificationStatus } : {})
         } : null
       };
       setUser(updatedUser);

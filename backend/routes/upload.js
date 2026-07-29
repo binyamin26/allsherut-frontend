@@ -119,6 +119,7 @@ router.post('/profile-image', authenticateToken, upload.single('profileImage'), 
     console.log('☁️ Image uploadée sur Cloudinary:', imageUrl);
 
     const { query } = require('../config/database');
+    let verificationStatus;
 
     // Supprimer l'ancienne image de Cloudinary si elle existe
     if (user.role === 'provider') {
@@ -152,6 +153,15 @@ router.post('/profile-image', authenticateToken, upload.single('profileImage'), 
           [imageUrl, req.user.id]
         );
       }
+
+      // ✅ Profil 100% complet → visible immédiatement, sans validation admin
+      const { autoVerifyProviderIfComplete } = require('../utils/profileCompleteness');
+      await autoVerifyProviderIfComplete(query, 'user_id = ? AND service_type = ?', [req.user.id, serviceType]);
+      const statusRows = await query(
+        'SELECT verification_status FROM service_providers WHERE user_id = ? AND service_type = ?',
+        [req.user.id, serviceType]
+      );
+      verificationStatus = statusRows[0]?.verification_status;
     } else {
       const oldResult = await query(
         'SELECT profile_image FROM users WHERE id = ?',
@@ -171,6 +181,7 @@ router.post('/profile-image', authenticateToken, upload.single('profileImage'), 
 
     return res.created(MESSAGES.SUCCESS.UPLOAD.IMAGE_UPLOADED, {
       imageUrl,
+      verificationStatus,
       file: {
         filename: cloudinaryResult.public_id,
         originalName: req.file.originalname,
@@ -321,7 +332,15 @@ router.post('/gallery-image', authenticateToken, upload.single('galleryImage'), 
       [JSON.stringify(gallery), req.user.id, serviceType]
     );
 
-    return res.created('תמונה הועלתה לגלריה', { gallery });
+    // ✅ Profil 100% complet → visible immédiatement, sans validation admin
+    const { autoVerifyProviderIfComplete } = require('../utils/profileCompleteness');
+    await autoVerifyProviderIfComplete(query, 'user_id = ? AND service_type = ?', [req.user.id, serviceType]);
+    const statusRows = await query(
+      'SELECT verification_status FROM service_providers WHERE user_id = ? AND service_type = ?',
+      [req.user.id, serviceType]
+    );
+
+    return res.created('תמונה הועלתה לגלריה', { gallery, verificationStatus: statusRows[0]?.verification_status });
 
   } catch (error) {
     console.error('Gallery upload error:', error);
