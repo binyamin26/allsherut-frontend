@@ -1831,12 +1831,13 @@ const handleContact = () => {
                     <div key={item.id} style={{
                       display: 'flex',
                       alignItems: 'center',
-                      gap: '0.75rem',
+                      justifyContent: 'center',
+                      gap: '0.6rem',
                       margin: idx === 0 ? '0.75rem 1rem 0.5rem' : '1.1rem 1rem 0.5rem',
                     }}>
-                      <div style={{ flex: 1, borderTop: '2px dotted #93C5FD' }} />
+                      <div style={{ width: '2.5rem', borderTop: '2px dotted #93C5FD' }} />
                       <span style={{ fontSize: '0.95rem', color: '#0F2A44', fontWeight: 800, letterSpacing: '0.2px', whiteSpace: 'nowrap' }}>{item.service_name}</span>
-                      <div style={{ flex: 1, borderTop: '2px dotted #93C5FD' }} />
+                      <div style={{ width: '2.5rem', borderTop: '2px dotted #93C5FD' }} />
                     </div>
                   ) : (
                     <div key={item.id} style={{
