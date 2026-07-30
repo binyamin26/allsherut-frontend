@@ -9,6 +9,11 @@ const VEHICLE_TYPES = [
   { value: 'אוטובוס (50-60 מושבים)', key: 'serviceForm.driver.bus' },
 ];
 
+const SERVICE_TYPES = [
+  { value: 'דרייבר', key: 'serviceForm.driver.privateDriver' },
+  { value: 'מונית',  key: 'serviceForm.driver.taxi' },
+];
+
 const TRANSPORTATION_TYPES = [
   { value: 'הסעות לאירועים', key: 'serviceForm.driver.eventTransport' },
   { value: 'הסעות תלמידים',  key: 'serviceForm.driver.studentTransport' },
@@ -57,6 +62,26 @@ const DriverForm = ({ serviceDetails, errors, handleServiceDetailsChange, handle
           </div>
           {errors['serviceDetails.availability_hours'] && (
             <span className="error-text">{errors['serviceDetails.availability_hours']}</span>
+          )}
+        </div>
+
+        <div className="input-group">
+          <label className="auth-form-label required">{t('serviceForm.driver.serviceType')}</label>
+          <div className="checkbox-group" data-field="service_type">
+            {SERVICE_TYPES.map(type => (
+              <label key={type.value} className="checkbox-item">
+                <input
+                  type="radio"
+                  name="service_type"
+                  checked={serviceDetails.service_type === type.value}
+                  onChange={() => handleServiceDetailsChange('service_type', type.value)}
+                />
+                {t(type.key)}
+              </label>
+            ))}
+          </div>
+          {errors['serviceDetails.service_type'] && (
+            <span className="error-text">{errors['serviceDetails.service_type']}</span>
           )}
         </div>
 
