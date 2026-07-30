@@ -141,7 +141,10 @@ const handleVerifyCode = async () => {
 };
 
   const computedGlobal = (formData.qualityRating && formData.priceRating && formData.availabilityRating && formData.professionalismRating)
-    ? ((formData.qualityRating + formData.priceRating + formData.availabilityRating + formData.professionalismRating) / 4).toFixed(1)
+    ? (() => {
+        const avg = (formData.qualityRating + formData.priceRating + formData.availabilityRating + formData.professionalismRating) / 4;
+        return Number.isInteger(avg) ? avg.toString() : avg.toFixed(1);
+      })()
     : null;
 
   const handleSubmitReview = async () => {
