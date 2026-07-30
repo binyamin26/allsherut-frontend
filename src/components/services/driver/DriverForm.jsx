@@ -71,10 +71,9 @@ const DriverForm = ({ serviceDetails, errors, handleServiceDetailsChange, handle
             {SERVICE_TYPES.map(type => (
               <label key={type.value} className="checkbox-item">
                 <input
-                  type="radio"
-                  name="service_type"
+                  type="checkbox"
                   checked={serviceDetails.service_type === type.value}
-                  onChange={() => handleServiceDetailsChange('service_type', type.value)}
+                  onChange={() => handleServiceDetailsChange('service_type', serviceDetails.service_type === type.value ? '' : type.value)}
                 />
                 {t(type.key)}
               </label>

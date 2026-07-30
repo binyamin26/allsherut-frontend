@@ -2832,6 +2832,7 @@
   "serviceForm.driver.tripTransport": "Транспорт для экскурсий",
   "serviceForm.driver.airportTransport": "Транспорт в аэропорт Бен-Гурион",
 
+  "filters.driver.serviceType": "Тип услуги",
   "filters.driver.vehicleType": "Тип автомобиля",
   "filters.driver.availabilityHours": "Часы работы",
   "filters.driver.transportationType": "Тип перевозки",

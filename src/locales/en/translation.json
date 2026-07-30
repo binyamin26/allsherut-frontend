@@ -2832,6 +2832,7 @@
   "serviceForm.driver.tripTransport": "Trip transportation",
   "serviceForm.driver.airportTransport": "Ben Gurion Airport transportation",
 
+  "filters.driver.serviceType": "Service type",
   "filters.driver.vehicleType": "Vehicle type",
   "filters.driver.availabilityHours": "Available hours",
   "filters.driver.transportationType": "Type of transportation",

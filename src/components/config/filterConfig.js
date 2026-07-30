@@ -1525,10 +1525,15 @@ locksmith: {
   // ═══════════════════════════════════════════════════════════════
   driver: {
     sectionTitles: {
+      serviceType: 'filters.driver.serviceType',
       transportationType: 'filters.driver.transportationType',
       vehicleType: 'filters.driver.vehicleType',
       availabilityHours: 'filters.driver.availabilityHours'
     },
+    serviceType: [
+      { value: 'דרייבר', key: 'serviceForm.driver.privateDriver' },
+      { value: 'מונית',  key: 'serviceForm.driver.taxi' }
+    ],
     transportationType: [
       { value: 'הסעות לאירועים', key: 'serviceForm.driver.eventTransport' },
       { value: 'הסעות תלמידים',  key: 'serviceForm.driver.studentTransport' },

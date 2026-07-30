@@ -2831,6 +2831,7 @@
   "serviceForm.driver.tripTransport": "Transport excursions",
   "serviceForm.driver.airportTransport": "Transport aéroport Ben Gourion",
 
+  "filters.driver.serviceType": "Type de service",
   "filters.driver.vehicleType": "Type de véhicule",
   "filters.driver.availabilityHours": "Heures disponibles",
   "filters.driver.transportationType": "Type de transport",
