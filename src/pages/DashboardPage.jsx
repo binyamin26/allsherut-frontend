@@ -471,7 +471,11 @@ const loadMyReviews = async () => {
   };
 
   const handleAddPricingRow = () => {
-    setPricingItems(prev => [...prev, { _key: Date.now(), service_name: '', price: '' }]);
+    setPricingItems(prev => [...prev, { _key: Date.now(), service_name: '', price: '', is_title: false }]);
+  };
+
+  const handleAddPricingTitle = () => {
+    setPricingItems(prev => [...prev, { _key: Date.now(), service_name: '', price: '', is_title: true }]);
   };
 
   const handlePricingRowChange = (key, field, value) => {
@@ -491,8 +495,8 @@ const loadMyReviews = async () => {
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({
           items: remaining
-            .filter(i => i.service_name?.trim() && i.price?.trim())
-            .map(({ service_name, price }) => ({ service_name, price })),
+            .filter(i => i.service_name?.trim() && (i.is_title || i.price?.trim()))
+            .map(({ service_name, price, is_title }) => ({ service_name, price, is_title: !!is_title })),
         }),
       });
       const data = await res.json();
@@ -507,8 +511,12 @@ const loadMyReviews = async () => {
   const handleSavePricing = async () => {
     const errs = {};
     pricingItems.forEach(item => {
-      if (!item.service_name?.trim()) errs[`${item._key}_service_name`] = t('pricing.validation.nameRequired');
-      if (!item.price?.trim()) errs[`${item._key}_price`] = t('pricing.validation.priceRequired');
+      if (item.is_title) {
+        if (!item.service_name?.trim()) errs[`${item._key}_service_name`] = t('pricing.validation.titleRequired');
+      } else {
+        if (!item.service_name?.trim()) errs[`${item._key}_service_name`] = t('pricing.validation.nameRequired');
+        if (!item.price?.trim()) errs[`${item._key}_price`] = t('pricing.validation.priceRequired');
+      }
     });
     if (Object.keys(errs).length > 0) {
       setPricingErrors(errs);
@@ -521,7 +529,7 @@ const loadMyReviews = async () => {
       const res = await fetch('/api/pricing/my', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-        body: JSON.stringify({ items: pricingItems.map(({ service_name, price }) => ({ service_name, price })) })
+        body: JSON.stringify({ items: pricingItems.map(({ service_name, price, is_title }) => ({ service_name, price, is_title: !!is_title })) })
       });
       const data = await res.json();
       if (data.success) {
@@ -2788,7 +2796,42 @@ const profileCompletionStatus = (() => {
                       {t('pricing.empty')}
                     </div>
                   )}
-                  {pricingItems.map((item, idx) => (
+                  {pricingItems.map((item, idx) => item.is_title ? (
+                    <div key={item._key} className="pricing-row pricing-title-row" style={{
+                      display: 'flex', alignItems: 'center', gap: '0.5rem',
+                      padding: '0.7rem 1rem', borderBottom: '1px solid #f3f4f6',
+                      background: '#eef4fb',
+                    }}>
+                      <div style={{ flex: 1 }}>
+                        <input
+                          type="text"
+                          value={item.service_name}
+                          onChange={e => handlePricingRowChange(item._key, 'service_name', e.target.value)}
+                          placeholder={t('pricing.titlePlaceholder')}
+                          style={{
+                            width: '100%', padding: '0.5rem 0.7rem',
+                            border: `1px solid ${pricingErrors[`${item._key}_service_name`] ? '#f87171' : '#bfdbfe'}`,
+                            borderRadius: '6px', fontSize: '1.05rem', fontWeight: 700, color: '#0F2A44',
+                            outline: 'none', background: '#fff',
+                          }}
+                        />
+                        {pricingErrors[`${item._key}_service_name`] && (
+                          <span style={{ color: '#dc2626', fontSize: '0.75rem' }}>{pricingErrors[`${item._key}_service_name`]}</span>
+                        )}
+                      </div>
+                      <button
+                        onClick={() => handleDeletePricingRow(item._key)}
+                        title="Supprimer"
+                        style={{
+                          background: '#fee2e2', border: 'none', borderRadius: '6px',
+                          padding: '0.4rem 0.6rem', cursor: 'pointer', color: '#dc2626',
+                          display: 'flex', alignItems: 'center', flexShrink: 0,
+                        }}
+                      >
+                        <XCircle size={15} />
+                      </button>
+                    </div>
+                  ) : (
                     <div key={item._key} className="pricing-row" style={{
                       display: 'grid', gridTemplateColumns: '1fr 180px 80px',
                       padding: '0.6rem 1rem', gap: '0.5rem', alignItems: 'center',
@@ -2866,8 +2909,22 @@ const profileCompletionStatus = (() => {
                     </div>
                   ))}
 
-                  {/* Pied du tableau — bouton Ajouter */}
-                  <div className="pricing-add-wrapper" style={{ padding: '0.75rem 1rem', borderTop: '1px solid #f3f4f6' }}>
+                  {/* Pied du tableau — boutons Ajouter */}
+                  <div className="pricing-add-wrapper" style={{ padding: '0.75rem 1rem', borderTop: '1px solid #f3f4f6', display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
+                    <button
+                      className="pricing-add-btn"
+                      onClick={handleAddPricingTitle}
+                      style={{
+                        display: 'flex', alignItems: 'center', gap: '6px',
+                        padding: '0.5rem 1rem', borderRadius: '8px',
+                        background: '#eef4fb', color: '#0F2A44',
+                        border: '1px dashed #93b7e0', cursor: 'pointer',
+                        fontWeight: 700, fontSize: '0.88rem',
+                      }}
+                    >
+                      <Plus size={15} />
+                      {t('pricing.addTitle')}
+                    </button>
                     <button
                       className="pricing-add-btn"
                       onClick={handleAddPricingRow}
