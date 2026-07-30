@@ -1829,12 +1829,14 @@ const handleContact = () => {
                   </div>
                   {pricing.map((item, idx) => item.is_title ? (
                     <div key={item.id} style={{
-                      padding: '0.7rem 1rem',
-                      marginTop: idx === 0 ? 0 : '0.5rem',
-                      borderBottom: idx < pricing.length - 1 ? '1px solid #f3f4f6' : 'none',
-                      background: 'linear-gradient(135deg, #0F2A44, #1A5490)',
+                      margin: idx === 0 ? '0.75rem 0.75rem 0.5rem' : '1.1rem 0.75rem 0.5rem',
+                      padding: '0.55rem 0.85rem',
+                      borderRadius: '8px',
+                      background: '#F8FBFF',
+                      border: '1px solid #E7EEF8',
+                      borderInlineStart: '4px solid #2F80ED',
                     }}>
-                      <span style={{ fontSize: '1rem', color: '#fff', fontWeight: 800, letterSpacing: '0.2px' }}>{item.service_name}</span>
+                      <span style={{ fontSize: '0.95rem', color: '#0F2A44', fontWeight: 700, letterSpacing: '0.2px' }}>{item.service_name}</span>
                     </div>
                   ) : (
                     <div key={item.id} style={{
