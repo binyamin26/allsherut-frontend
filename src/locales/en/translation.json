@@ -2627,7 +2627,7 @@
   "pricing.description": "Create your pricing list. It will be displayed on your public page.",
   "pricing.addService": "+ Add a service",
   "pricing.addTitle": "+ Add a title",
-  "pricing.titlePlaceholder": "E.g.: 5-seat car",
+  "pricing.titlePlaceholder": "Title for this price group",
   "pricing.serviceNameLabel": "Service",
   "pricing.priceLabel": "Rate",
   "pricing.actionsLabel": "Actions",

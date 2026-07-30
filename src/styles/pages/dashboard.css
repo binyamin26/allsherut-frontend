@@ -3479,6 +3479,12 @@ select.inline-edit {
   }
 }
 
+/* ─── Pricing — title rows (section headers) ─────────────────────────── */
+.pricing-title-input::placeholder {
+  color: rgba(255, 255, 255, 0.55);
+  font-weight: 600;
+}
+
 /* ─── Pricing — mobile card layout ───────────────────────────────────── */
 
 /* Éléments visibles uniquement sur mobile — cachés par défaut */

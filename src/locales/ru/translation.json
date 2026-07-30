@@ -2627,7 +2627,7 @@
   "pricing.description": "Создайте свой прайс-лист. Он будет отображаться на вашей публичной странице.",
   "pricing.addService": "+ Добавить услугу",
   "pricing.addTitle": "+ Добавить заголовок",
-  "pricing.titlePlaceholder": "Напр.: Автомобиль на 5 мест",
+  "pricing.titlePlaceholder": "Заголовок для этой группы тарифов",
   "pricing.serviceNameLabel": "Услуга",
   "pricing.priceLabel": "Тариф",
   "pricing.actionsLabel": "Действия",

@@ -2632,7 +2632,7 @@
   "pricing.description": "Créez votre grille tarifaire. Elle sera affichée sur votre page publique.",
   "pricing.addService": "+ Ajouter un service",
   "pricing.addTitle": "+ Ajouter un titre",
-  "pricing.titlePlaceholder": "Ex : Voiture 5 places",
+  "pricing.titlePlaceholder": "Titre de ce groupe de tarifs",
   "pricing.serviceNameLabel": "Service",
   "pricing.priceLabel": "Tarif",
   "pricing.actionsLabel": "Actions",

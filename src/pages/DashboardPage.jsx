@@ -2797,34 +2797,37 @@ const profileCompletionStatus = (() => {
                     </div>
                   )}
                   {pricingItems.map((item, idx) => item.is_title ? (
-                    <div key={item._key} className="pricing-row pricing-title-row" style={{
+                    <div key={item._key} className="pricing-title-row" style={{
                       display: 'flex', alignItems: 'center', gap: '0.5rem',
-                      padding: '0.7rem 1rem', borderBottom: '1px solid #f3f4f6',
-                      background: '#eef4fb',
+                      padding: '0.85rem 1.1rem', borderRadius: '10px',
+                      marginTop: idx === 0 ? 0 : '0.6rem', marginBottom: '0.1rem',
+                      background: 'linear-gradient(135deg, #0F2A44, #1A5490)',
                     }}>
                       <div style={{ flex: 1 }}>
                         <input
                           type="text"
+                          className="pricing-title-input"
                           value={item.service_name}
                           onChange={e => handlePricingRowChange(item._key, 'service_name', e.target.value)}
                           placeholder={t('pricing.titlePlaceholder')}
                           style={{
-                            width: '100%', padding: '0.5rem 0.7rem',
-                            border: `1px solid ${pricingErrors[`${item._key}_service_name`] ? '#f87171' : '#bfdbfe'}`,
-                            borderRadius: '6px', fontSize: '1.05rem', fontWeight: 700, color: '#0F2A44',
-                            outline: 'none', background: '#fff',
+                            width: '100%', padding: '0.3rem 0.1rem',
+                            border: 'none',
+                            borderBottom: `2px solid ${pricingErrors[`${item._key}_service_name`] ? '#f87171' : 'rgba(255,255,255,0.35)'}`,
+                            borderRadius: 0, fontSize: '1.05rem', fontWeight: 800, color: '#fff',
+                            letterSpacing: '0.2px', outline: 'none', background: 'transparent',
                           }}
                         />
                         {pricingErrors[`${item._key}_service_name`] && (
-                          <span style={{ color: '#dc2626', fontSize: '0.75rem' }}>{pricingErrors[`${item._key}_service_name`]}</span>
+                          <span style={{ color: '#fecaca', fontSize: '0.75rem' }}>{pricingErrors[`${item._key}_service_name`]}</span>
                         )}
                       </div>
                       <button
                         onClick={() => handleDeletePricingRow(item._key)}
                         title="Supprimer"
                         style={{
-                          background: '#fee2e2', border: 'none', borderRadius: '6px',
-                          padding: '0.4rem 0.6rem', cursor: 'pointer', color: '#dc2626',
+                          background: 'rgba(255,255,255,0.12)', border: 'none', borderRadius: '6px',
+                          padding: '0.4rem 0.6rem', cursor: 'pointer', color: '#fff',
                           display: 'flex', alignItems: 'center', flexShrink: 0,
                         }}
                       >
