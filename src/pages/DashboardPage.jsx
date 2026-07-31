@@ -2777,12 +2777,12 @@ const profileCompletionStatus = (() => {
                   <Loader size={20} className="animate-spin" style={{ margin: '0 auto 0.5rem' }} />
                 </div>
               ) : (
-                <div className="pricing-table-container" style={{ background: '#fff', borderRadius: '14px', border: '1px solid #e5e7eb', overflow: 'hidden' }}>
+                <div className="pricing-table-container" style={{ background: '#fff', borderRadius: '16px', border: '1px solid #EEF2F6', boxShadow: '0 1px 2px rgba(15, 42, 68, 0.03)', overflow: 'hidden' }}>
                   {/* En-tête du tableau */}
                   <div className="pricing-table-header" style={{
                     display: 'grid', gridTemplateColumns: '1fr 180px 80px',
-                    background: 'linear-gradient(135deg, #0F2A44, #2F80ED)',
-                    color: '#fff', padding: '0.75rem 1rem', fontWeight: 600, fontSize: '0.85rem',
+                    background: '#F8FAFC',
+                    color: '#0F2A44', padding: '0.6rem 1.25rem', fontWeight: 600, fontSize: '0.8rem',
                     gap: '0.5rem'
                   }}>
                     <span>{t('pricing.serviceNameLabel')}</span>
@@ -2798,36 +2798,37 @@ const profileCompletionStatus = (() => {
                   )}
                   {pricingItems.map((item, idx) => item.is_title ? (
                     <div key={item._key} className="pricing-title-row" style={{
-                      display: 'flex', alignItems: 'center', gap: '0.5rem',
-                      padding: '0.85rem 1.1rem', borderRadius: '10px',
-                      marginTop: idx === 0 ? 0 : '0.6rem', marginBottom: '0.1rem',
-                      background: 'linear-gradient(135deg, #0F2A44, #1A5490)',
+                      display: 'flex', alignItems: 'center', gap: '1rem',
+                      margin: idx === 0 ? '1.25rem 1.25rem 1.25rem' : '2.5rem 1.25rem 1.25rem',
                     }}>
-                      <div style={{ flex: 1 }}>
+                      <div style={{ flex: '0 1 28%', borderTop: '1px solid #BFDBFE' }} />
+                      <div style={{ flexShrink: 0 }}>
                         <input
                           type="text"
                           className="pricing-title-input"
                           value={item.service_name}
                           onChange={e => handlePricingRowChange(item._key, 'service_name', e.target.value)}
                           placeholder={t('pricing.titlePlaceholder')}
+                          size={Math.max((item.service_name || '').length, 14)}
                           style={{
-                            width: '100%', padding: '0.3rem 0.1rem',
+                            padding: '0.2rem 0.1rem', textAlign: 'center',
                             border: 'none',
-                            borderBottom: `2px solid ${pricingErrors[`${item._key}_service_name`] ? '#f87171' : 'rgba(255,255,255,0.35)'}`,
-                            borderRadius: 0, fontSize: '1.05rem', fontWeight: 800, color: '#fff',
+                            borderBottom: `2px solid ${pricingErrors[`${item._key}_service_name`] ? '#f87171' : 'transparent'}`,
+                            borderRadius: 0, fontSize: '1.05rem', fontWeight: 800, color: '#0F2A44',
                             letterSpacing: '0.2px', outline: 'none', background: 'transparent',
                           }}
                         />
                         {pricingErrors[`${item._key}_service_name`] && (
-                          <span style={{ color: '#fecaca', fontSize: '0.75rem' }}>{pricingErrors[`${item._key}_service_name`]}</span>
+                          <div style={{ color: '#dc2626', fontSize: '0.75rem', textAlign: 'center' }}>{pricingErrors[`${item._key}_service_name`]}</div>
                         )}
                       </div>
+                      <div style={{ flex: '0 1 28%', borderTop: '1px solid #BFDBFE' }} />
                       <button
                         onClick={() => handleDeletePricingRow(item._key)}
                         title="Supprimer"
                         style={{
-                          background: 'rgba(255,255,255,0.12)', border: 'none', borderRadius: '6px',
-                          padding: '0.4rem 0.6rem', cursor: 'pointer', color: '#fff',
+                          background: '#fee2e2', border: 'none', borderRadius: '6px',
+                          padding: '0.4rem 0.6rem', cursor: 'pointer', color: '#dc2626',
                           display: 'flex', alignItems: 'center', flexShrink: 0,
                         }}
                       >
@@ -2837,9 +2838,9 @@ const profileCompletionStatus = (() => {
                   ) : (
                     <div key={item._key} className="pricing-row" style={{
                       display: 'grid', gridTemplateColumns: '1fr 180px 80px',
-                      padding: '0.6rem 1rem', gap: '0.5rem', alignItems: 'center',
-                      borderBottom: '1px solid #f3f4f6',
-                      background: idx % 2 === 0 ? '#fff' : '#fafafa',
+                      padding: '0.85rem 1.1rem', gap: '0.5rem', alignItems: 'center',
+                      borderBottom: (idx < pricingItems.length - 1 && !pricingItems[idx + 1]?.is_title) ? '1px solid #F1F5F9' : 'none',
+                      background: '#fff',
                     }}>
                       {/* En-tête carte mobile (numéro + supprimer) */}
                       <div className="pricing-row-mobile-header">
@@ -2863,8 +2864,8 @@ const profileCompletionStatus = (() => {
                           placeholder={t('pricing.serviceNamePlaceholder')}
                           style={{
                             width: '100%', padding: '0.45rem 0.7rem',
-                            border: `1px solid ${pricingErrors[`${item._key}_service_name`] ? '#f87171' : '#e5e7eb'}`,
-                            borderRadius: '6px', fontSize: '0.9rem', outline: 'none',
+                            border: `1px solid ${pricingErrors[`${item._key}_service_name`] ? '#f87171' : '#EEF2F6'}`,
+                            borderRadius: '6px', fontSize: '0.95rem', color: '#334155', fontWeight: 500, outline: 'none',
                             background: 'transparent',
                           }}
                         />
@@ -2886,9 +2887,9 @@ const profileCompletionStatus = (() => {
                             placeholder={t('pricing.pricePlaceholder')}
                             style={{
                               width: '100%', padding: '0.45rem 1.8rem 0.45rem 0.7rem',
-                              border: `1px solid ${pricingErrors[`${item._key}_price`] ? '#f87171' : '#e5e7eb'}`,
-                              borderRadius: '6px', fontSize: '0.9rem', outline: 'none',
-                              background: 'transparent', direction: 'ltr',
+                              border: `1px solid ${pricingErrors[`${item._key}_price`] ? '#f87171' : '#EEF2F6'}`,
+                              borderRadius: '6px', fontSize: '0.95rem', color: '#0F2A44', fontWeight: 700, outline: 'none',
+                              background: '#F8FAFC', direction: 'ltr',
                             }}
                           />
                         </div>

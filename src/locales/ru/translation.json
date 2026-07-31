@@ -2631,7 +2631,7 @@
   "pricing.serviceNameLabel": "Услуга",
   "pricing.priceLabel": "Тариф",
   "pricing.actionsLabel": "Действия",
-  "pricing.serviceNamePlaceholder": "Напр.: Помощь на дому",
+  "pricing.serviceNamePlaceholder": "Название услуги",
   "pricing.pricePlaceholder": "Напр.: ₪60 / час",
   "pricing.save": "Сохранить тарифы",
   "pricing.saving": "Сохранение...",

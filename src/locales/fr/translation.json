@@ -2636,7 +2636,7 @@
   "pricing.serviceNameLabel": "Service",
   "pricing.priceLabel": "Tarif",
   "pricing.actionsLabel": "Actions",
-  "pricing.serviceNamePlaceholder": "Ex : Aide à domicile",
+  "pricing.serviceNamePlaceholder": "Nom du service",
   "pricing.pricePlaceholder": "Ex : 60 ₪ / heure",
   "pricing.save": "Enregistrer mes tarifs",
   "pricing.saving": "Enregistrement...",

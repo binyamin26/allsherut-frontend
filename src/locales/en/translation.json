@@ -2631,7 +2631,7 @@
   "pricing.serviceNameLabel": "Service",
   "pricing.priceLabel": "Rate",
   "pricing.actionsLabel": "Actions",
-  "pricing.serviceNamePlaceholder": "E.g.: Home assistance",
+  "pricing.serviceNamePlaceholder": "Service name",
   "pricing.pricePlaceholder": "E.g.: ₪60 / hour",
   "pricing.save": "Save my rates",
   "pricing.saving": "Saving...",

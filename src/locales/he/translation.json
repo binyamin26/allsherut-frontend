@@ -2638,7 +2638,7 @@
   "pricing.serviceNameLabel": "שירות",
   "pricing.priceLabel": "מחיר",
   "pricing.actionsLabel": "פעולות",
-  "pricing.serviceNamePlaceholder": "לדוגמה: עזרה בבית",
+  "pricing.serviceNamePlaceholder": "שם השירות",
   "pricing.pricePlaceholder": "לדוגמה: 60 ₪ / שעה",
   "pricing.save": "שמור מחירון",
   "pricing.saving": "שומר...",
