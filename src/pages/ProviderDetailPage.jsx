@@ -1818,11 +1818,11 @@ const handleContact = () => {
             <div ref={pricingRef} data-section="pricing" className="service-details-section">
               <h3 className="details-title" style={{ textAlign: 'start' }}>{t('provider.navPricing')}</h3>
               {pricing.length > 0 ? (
-                <div style={{ border: '1px solid #e5e7eb', borderRadius: '10px', overflow: 'hidden' }}>
+                <div style={{ borderRadius: '16px', overflow: 'hidden', border: '1px solid #EEF2F6', boxShadow: '0 1px 2px rgba(15, 42, 68, 0.03)' }}>
                   <div style={{
                     display: 'grid', gridTemplateColumns: '1fr auto',
-                    background: 'linear-gradient(135deg, #0F2A44, #2F80ED)',
-                    color: '#fff', padding: '0.6rem 1rem', fontWeight: 600, fontSize: '0.85rem', gap: '1rem'
+                    background: '#F8FAFC',
+                    color: '#0F2A44', padding: '0.6rem 1.25rem', fontWeight: 600, fontSize: '0.8rem', gap: '1rem'
                   }}>
                     <span>{t('pricing.serviceNameLabel')}</span>
                     <span>{t('pricing.priceLabel')}</span>
@@ -1832,22 +1832,31 @@ const handleContact = () => {
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      gap: '0.6rem',
-                      margin: idx === 0 ? '0.75rem 1rem 0.5rem' : '1.1rem 1rem 0.5rem',
+                      gap: '0.85rem',
+                      margin: idx === 0 ? '1.5rem 1.25rem 1.15rem' : '2.5rem 1.25rem 1.15rem',
                     }}>
-                      <div style={{ width: '2.5rem', borderTop: '2px dotted #93C5FD' }} />
-                      <span style={{ fontSize: '0.95rem', color: '#0F2A44', fontWeight: 800, letterSpacing: '0.2px', whiteSpace: 'nowrap' }}>{item.service_name}</span>
-                      <div style={{ width: '2.5rem', borderTop: '2px dotted #93C5FD' }} />
+                      <div style={{ width: '3rem', borderTop: '1px solid #BFDBFE' }} />
+                      <span style={{ fontSize: '1.05rem', color: '#0F2A44', fontWeight: 800, letterSpacing: '0.2px', whiteSpace: 'nowrap' }}>{item.service_name}</span>
+                      <div style={{ width: '3rem', borderTop: '1px solid #BFDBFE' }} />
                     </div>
                   ) : (
                     <div key={item.id} style={{
                       display: 'grid', gridTemplateColumns: '1fr auto',
-                      padding: '0.65rem 1rem', gap: '1rem', alignItems: 'center',
-                      borderBottom: idx < pricing.length - 1 ? '1px solid #f3f4f6' : 'none',
-                      background: idx % 2 === 0 ? '#fff' : '#fafafa',
+                      padding: '1rem 1.25rem', gap: '1rem', alignItems: 'center',
+                      borderBottom: (idx < pricing.length - 1 && !pricing[idx + 1]?.is_title) ? '1px solid #F1F5F9' : 'none',
+                      background: '#fff',
                     }}>
-                      <span style={{ fontSize: '0.92rem', color: '#374151' }}>{item.service_name}</span>
-                      <span style={{ fontSize: '0.92rem', color: '#0F2A44', fontWeight: 600, whiteSpace: 'nowrap' }}>₪{item.price}</span>
+                      <span style={{ fontSize: '0.95rem', color: '#334155', fontWeight: 500 }}>{item.service_name}</span>
+                      <span style={{
+                        display: 'inline-block',
+                        background: '#F1F5F9',
+                        color: '#0F2A44',
+                        fontWeight: 600,
+                        fontSize: '0.9rem',
+                        padding: '0.35rem 0.9rem',
+                        borderRadius: '10px',
+                        whiteSpace: 'nowrap',
+                      }}>₪{item.price}</span>
                     </div>
                   ))}
                 </div>
