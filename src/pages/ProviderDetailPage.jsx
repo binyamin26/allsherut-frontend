@@ -1832,12 +1832,12 @@ const handleContact = () => {
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      gap: '0.85rem',
-                      margin: idx === 0 ? '1.5rem 1.25rem 1.15rem' : '2.5rem 1.25rem 1.15rem',
+                      gap: '1rem',
+                      margin: idx === 0 ? '1.5rem 1.25rem 1.25rem' : '3rem 1.25rem 1.25rem',
                     }}>
-                      <div style={{ width: '3rem', borderTop: '1px solid #BFDBFE' }} />
-                      <span style={{ fontSize: '1.05rem', color: '#0F2A44', fontWeight: 800, letterSpacing: '0.2px', whiteSpace: 'nowrap' }}>{item.service_name}</span>
-                      <div style={{ width: '3rem', borderTop: '1px solid #BFDBFE' }} />
+                      <div style={{ flex: '0 1 32%', borderTop: '1px solid #BFDBFE' }} />
+                      <span style={{ fontSize: '1.125rem', color: '#0F2A44', fontWeight: 800, letterSpacing: '0.2px', whiteSpace: 'nowrap' }}>{item.service_name}</span>
+                      <div style={{ flex: '0 1 32%', borderTop: '1px solid #BFDBFE' }} />
                     </div>
                   ) : (
                     <div key={item.id} style={{
@@ -1848,13 +1848,12 @@ const handleContact = () => {
                     }}>
                       <span style={{ fontSize: '0.95rem', color: '#334155', fontWeight: 500 }}>{item.service_name}</span>
                       <span style={{
-                        display: 'inline-block',
-                        background: '#F1F5F9',
                         color: '#0F2A44',
-                        fontWeight: 600,
-                        fontSize: '0.9rem',
-                        padding: '0.35rem 0.9rem',
-                        borderRadius: '10px',
+                        fontWeight: 700,
+                        fontSize: '0.95rem',
+                        background: '#F8FAFC',
+                        padding: '0.2rem 0.5rem',
+                        borderRadius: '6px',
                         whiteSpace: 'nowrap',
                       }}>₪{item.price}</span>
                     </div>
