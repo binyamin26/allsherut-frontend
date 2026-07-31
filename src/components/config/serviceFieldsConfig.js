@@ -1632,6 +1632,15 @@ const serviceFieldsConfig = {
         ]
       },
       {
+        name: 'service_type',
+        label: 'serviceForm.driver.serviceType',
+        type: 'select',
+        options: [
+          { value: 'דרייבר', labelKey: 'serviceForm.driver.privateDriver' },
+          { value: 'מונית',  labelKey: 'serviceForm.driver.taxi' }
+        ]
+      },
+      {
         name: 'transportation_type',
         label: 'serviceFields.driver.transportation_type',
         type: 'checkbox',
