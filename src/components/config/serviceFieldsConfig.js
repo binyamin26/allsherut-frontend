@@ -1634,7 +1634,7 @@ const serviceFieldsConfig = {
       {
         name: 'service_type',
         label: 'serviceForm.driver.serviceType',
-        type: 'select',
+        type: 'radio',
         options: [
           { value: 'דרייבר', labelKey: 'serviceForm.driver.privateDriver' },
           { value: 'מונית',  labelKey: 'serviceForm.driver.taxi' }

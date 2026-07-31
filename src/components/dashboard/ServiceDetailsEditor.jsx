@@ -507,6 +507,30 @@ if (field.type === 'select') {
       );
     }
 
+    // Choix unique affiché en pilules (comme les checkbox-group, mais exclusif)
+    if (field.type === 'radio') {
+      return (
+        <div className="checkbox-grid">
+          {field.options.map(option => {
+            const optValue = typeof option === 'object' ? option.value : option;
+            const optLabel = typeof option === 'object' && option.labelKey
+              ? t(option.labelKey)
+              : translateFieldValue(field.name, optValue);
+            return (
+              <label key={optValue} className="checkbox-item">
+                <input
+                  type="checkbox"
+                  checked={value === optValue}
+                  onChange={() => onFieldChange(field.name, value === optValue ? '' : optValue)}
+                />
+                {optLabel}
+              </label>
+            );
+          })}
+        </div>
+      );
+    }
+
     // Groupe de booléens (ex: moving_flags) — chaque option est un champ individuel
     if (field.type === 'boolean-group') {
       const checkedValues = field.options
