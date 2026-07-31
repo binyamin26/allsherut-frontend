@@ -650,7 +650,7 @@ if (field.type === 'select') {
         {config.fields.filter(field => !excludeFields.includes(field.name)).map(field => (
           <div
             key={field.name}
-            className={`professional-item ${field.type === 'json-array' || field.type === 'checkbox' || (serviceType === 'tutoring' && field.name === 'subjects') ? 'full-width' : ''}`}
+            className={`professional-item ${field.type === 'json-array' || field.type === 'checkbox' || field.type === 'radio' || (serviceType === 'tutoring' && field.name === 'subjects') ? 'full-width' : ''}`}
           >
             <label>{t(field.label)}:</label>
             {renderField(field)}
