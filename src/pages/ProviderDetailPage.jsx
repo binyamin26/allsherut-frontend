@@ -22,7 +22,7 @@ import {
   Settings, Flame, ClipboardList, Bug, BookOpen, Trophy, Sun,
   Wallet, Globe, Car, Baby, Users, Dog,
   Stethoscope, PawPrint, HeartHandshake, ListChecks, Truck, PackageOpen,
-  Image as ImageIcon
+  Image as ImageIcon, Tag
 } from 'lucide-react';
 
 const AVATAR_GRADIENTS = [
@@ -1157,6 +1157,12 @@ const handleContact = () => {
         {/* === DRIVER === */}
         {provider.serviceType === 'driver' && (
           <>
+            {details.service_type && (
+              <div className="detail-item">
+                <IconLabel icon={Tag}>{t('serviceForm.driver.serviceType')}:</IconLabel>
+                <span>{translateValue(details.service_type, 'driverServiceType', t)}</span>
+              </div>
+            )}
             {details.transportation_type && details.transportation_type.length > 0 && (
               <div className="detail-item">
                 <IconLabel icon={Car}>{t('serviceFields.driver.transportation_type')}:</IconLabel>
