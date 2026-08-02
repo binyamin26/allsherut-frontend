@@ -2580,6 +2580,8 @@
   "pricing.title": "My rates",
   "pricing.description": "Create your pricing list. It will be displayed on your public page.",
   "pricing.addService": "+ Add a service",
+  "pricing.addTitle": "+ Add category",
+  "pricing.titlePlaceholder": "Category name",
   "pricing.serviceNameLabel": "Service",
   "pricing.priceLabel": "Rate",
   "pricing.actionsLabel": "Actions",

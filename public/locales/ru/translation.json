@@ -2580,6 +2580,8 @@
   "pricing.title": "Мои тарифы",
   "pricing.description": "Создайте свой прайс-лист. Он будет отображаться на вашей публичной странице.",
   "pricing.addService": "+ Добавить услугу",
+  "pricing.addTitle": "+ Добавить категорию",
+  "pricing.titlePlaceholder": "Название категории",
   "pricing.serviceNameLabel": "Услуга",
   "pricing.priceLabel": "Тариф",
   "pricing.actionsLabel": "Действия",

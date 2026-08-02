@@ -2808,13 +2808,14 @@ const profileCompletionStatus = (() => {
                             value={item.service_name}
                             onChange={e => handlePricingRowChange(item._key, 'service_name', e.target.value)}
                             placeholder={t('pricing.titlePlaceholder')}
-                            size={Math.max((item.service_name || '').length, 14)}
                             style={{
                               padding: '0.2rem 0.1rem', textAlign: 'center',
                               border: 'none',
                               borderBottom: `2px solid ${pricingErrors[`${item._key}_service_name`] ? '#f87171' : 'transparent'}`,
                               borderRadius: 0, fontSize: '1.1rem', fontWeight: 800, color: '#0F2A44',
                               letterSpacing: '0.2px', outline: 'none', background: 'transparent',
+                              width: `${Math.max((item.service_name || '').length + 2, 22)}ch`,
+                              minWidth: '150px', maxWidth: '100%', boxSizing: 'border-box',
                             }}
                           />
                           {pricingErrors[`${item._key}_service_name`] && (
