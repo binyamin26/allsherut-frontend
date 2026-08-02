@@ -471,11 +471,11 @@ const loadMyReviews = async () => {
   };
 
   const handleAddPricingRow = () => {
-    setPricingItems(prev => [...prev, { _key: Date.now(), service_name: '', price: '', is_title: false }]);
+    setPricingItems(prev => [...prev, { _key: Date.now(), service_name: '', price: '', is_title: false, _isNew: true }]);
   };
 
   const handleAddPricingTitle = () => {
-    setPricingItems(prev => [...prev, { _key: Date.now(), service_name: '', price: '', is_title: true }]);
+    setPricingItems(prev => [...prev, { _key: Date.now(), service_name: '', price: '', is_title: true, _isNew: true }]);
   };
 
   const handlePricingRowChange = (key, field, value) => {
@@ -2754,8 +2754,8 @@ const profileCompletionStatus = (() => {
             <div className="overview-section">
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem', flexWrap: 'wrap', gap: '0.75rem' }}>
                 <div>
-                  <h3 className="section-subtitle" style={{ margin: 0 }}>{t('pricing.title')}</h3>
-                  <p style={{ color: '#6b7280', fontSize: '0.9rem', marginTop: '0.35rem' }}>{t('pricing.description')}</p>
+                  <h3 className="section-subtitle pricing-section-title" style={{ margin: 0 }}>{t('pricing.title')}</h3>
+                  <p style={{ color: '#94a3b8', fontSize: '0.82rem', marginTop: '0.5rem' }}>{t('pricing.description')}</p>
                 </div>
               </div>
 
@@ -2781,8 +2781,7 @@ const profileCompletionStatus = (() => {
                   {/* En-tête du tableau */}
                   <div className="pricing-table-header" style={{
                     display: 'grid', gridTemplateColumns: '1fr 180px 80px',
-                    background: '#F8FAFC',
-                    color: '#0F2A44', padding: '0.6rem 1.25rem', fontWeight: 600, fontSize: '0.8rem',
+                    color: '#0F2A44', padding: '0.85rem 1.25rem', fontWeight: 600, fontSize: '0.8rem',
                     gap: '0.5rem'
                   }}>
                     <span>{t('pricing.serviceNameLabel')}</span>
@@ -2798,49 +2797,47 @@ const profileCompletionStatus = (() => {
                   )}
                   {pricingItems.map((item, idx) => item.is_title ? (
                     <div key={item._key} className="pricing-title-row" style={{
-                      display: 'flex', alignItems: 'center', gap: '1rem',
-                      margin: idx === 0 ? '1.25rem 1.25rem 1.25rem' : '2.5rem 1.25rem 1.25rem',
+                      margin: idx === 0 ? '1.5rem 1.25rem 1.5rem' : '3rem 1.25rem 1.75rem',
                     }}>
-                      <div style={{ flex: '0 1 28%', borderTop: '1px solid #BFDBFE' }} />
-                      <div style={{ flexShrink: 0 }}>
-                        <input
-                          type="text"
-                          className="pricing-title-input"
-                          value={item.service_name}
-                          onChange={e => handlePricingRowChange(item._key, 'service_name', e.target.value)}
-                          placeholder={t('pricing.titlePlaceholder')}
-                          size={Math.max((item.service_name || '').length, 14)}
-                          style={{
-                            padding: '0.2rem 0.1rem', textAlign: 'center',
-                            border: 'none',
-                            borderBottom: `2px solid ${pricingErrors[`${item._key}_service_name`] ? '#f87171' : 'transparent'}`,
-                            borderRadius: 0, fontSize: '1.05rem', fontWeight: 800, color: '#0F2A44',
-                            letterSpacing: '0.2px', outline: 'none', background: 'transparent',
-                          }}
-                        />
-                        {pricingErrors[`${item._key}_service_name`] && (
-                          <div style={{ color: '#dc2626', fontSize: '0.75rem', textAlign: 'center' }}>{pricingErrors[`${item._key}_service_name`]}</div>
-                        )}
+                      <div className="pricing-title-row-content">
+                        <div className="pricing-title-line" />
+                        <div style={{ flexShrink: 0 }}>
+                          <input
+                            type="text"
+                            className="pricing-title-input"
+                            value={item.service_name}
+                            onChange={e => handlePricingRowChange(item._key, 'service_name', e.target.value)}
+                            placeholder={t('pricing.titlePlaceholder')}
+                            size={Math.max((item.service_name || '').length, 14)}
+                            style={{
+                              padding: '0.2rem 0.1rem', textAlign: 'center',
+                              border: 'none',
+                              borderBottom: `2px solid ${pricingErrors[`${item._key}_service_name`] ? '#f87171' : 'transparent'}`,
+                              borderRadius: 0, fontSize: '1.1rem', fontWeight: 800, color: '#0F2A44',
+                              letterSpacing: '0.2px', outline: 'none', background: 'transparent',
+                            }}
+                          />
+                          {pricingErrors[`${item._key}_service_name`] && (
+                            <div style={{ color: '#dc2626', fontSize: '0.75rem', textAlign: 'center' }}>{pricingErrors[`${item._key}_service_name`]}</div>
+                          )}
+                        </div>
+                        <div className="pricing-title-line" />
                       </div>
-                      <div style={{ flex: '0 1 28%', borderTop: '1px solid #BFDBFE' }} />
                       <button
                         onClick={() => handleDeletePricingRow(item._key)}
                         title="Supprimer"
-                        style={{
-                          background: '#fee2e2', border: 'none', borderRadius: '6px',
-                          padding: '0.4rem 0.6rem', cursor: 'pointer', color: '#dc2626',
-                          display: 'flex', alignItems: 'center', flexShrink: 0,
-                        }}
+                        className="pricing-delete-btn"
+                        style={{ flexShrink: 0 }}
                       >
                         <XCircle size={15} />
                       </button>
                     </div>
                   ) : (
-                    <div key={item._key} className="pricing-row" style={{
+                    <div key={item._key} className={`pricing-row${item._isNew ? ' pricing-row-new' : ''}`} style={{
                       display: 'grid', gridTemplateColumns: '1fr 180px 80px',
-                      padding: '0.85rem 1.1rem', gap: '0.5rem', alignItems: 'center',
+                      padding: '1rem 1.1rem', gap: '0.5rem', alignItems: 'center',
                       borderBottom: (idx < pricingItems.length - 1 && !pricingItems[idx + 1]?.is_title) ? '1px solid #F1F5F9' : 'none',
-                      background: '#fff',
+                      background: item._isNew ? undefined : '#fff',
                     }}>
                       {/* En-tête carte mobile (numéro + supprimer) */}
                       <div className="pricing-row-mobile-header">
@@ -2877,8 +2874,8 @@ const profileCompletionStatus = (() => {
                         <span className="pricing-field-label">{t('pricing.priceLabel')}</span>
                         <div style={{ position: 'relative' }}>
                           <span style={{
-                            position: 'absolute', right: '0.7rem', top: '50%', transform: 'translateY(-50%)',
-                            color: '#6b7280', fontSize: '0.9rem', pointerEvents: 'none', userSelect: 'none',
+                            position: 'absolute', left: '0.75rem', top: '50%', transform: 'translateY(-50%)',
+                            color: '#64748b', fontSize: '0.9rem', fontWeight: 700, pointerEvents: 'none', userSelect: 'none',
                           }}>₪</span>
                           <input
                             type="text"
@@ -2886,10 +2883,10 @@ const profileCompletionStatus = (() => {
                             onChange={e => handlePricingRowChange(item._key, 'price', e.target.value)}
                             placeholder={t('pricing.pricePlaceholder')}
                             style={{
-                              width: '100%', padding: '0.45rem 1.8rem 0.45rem 0.7rem',
+                              width: '100%', padding: '0.45rem 0.7rem 0.45rem 1.9rem',
                               border: `1px solid ${pricingErrors[`${item._key}_price`] ? '#f87171' : '#EEF2F6'}`,
                               borderRadius: '6px', fontSize: '0.95rem', color: '#0F2A44', fontWeight: 700, outline: 'none',
-                              background: '#F8FAFC', direction: 'ltr',
+                              background: '#F8FAFC', direction: 'ltr', textAlign: 'left',
                             }}
                           />
                         </div>
@@ -2901,11 +2898,7 @@ const profileCompletionStatus = (() => {
                         <button
                           onClick={() => handleDeletePricingRow(item._key)}
                           title="Supprimer"
-                          style={{
-                            background: '#fee2e2', border: 'none', borderRadius: '6px',
-                            padding: '0.4rem 0.6rem', cursor: 'pointer', color: '#dc2626',
-                            display: 'flex', alignItems: 'center',
-                          }}
+                          className="pricing-delete-btn"
                         >
                           <XCircle size={15} />
                         </button>
@@ -2952,13 +2945,15 @@ const profileCompletionStatus = (() => {
                 <button
                   onClick={handleSavePricing}
                   disabled={pricingSaving}
+                  className="pricing-save-btn"
                   style={{
                     display: 'flex', alignItems: 'center', gap: '8px',
-                    padding: '0.7rem 2rem', borderRadius: '10px',
+                    padding: '0.75rem 2.25rem', borderRadius: '10px',
                     background: 'linear-gradient(135deg, #0F2A44, #2F80ED)',
                     color: '#fff', border: 'none', cursor: pricingSaving ? 'not-allowed' : 'pointer',
-                    fontWeight: 700, fontSize: '0.95rem',
+                    fontWeight: 700, fontSize: '0.97rem',
                     opacity: pricingSaving ? 0.7 : 1,
+                    boxShadow: '0 2px 10px rgba(47, 128, 237, 0.25)',
                   }}
                 >
                   {pricingSaving
