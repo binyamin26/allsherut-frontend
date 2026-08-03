@@ -113,7 +113,7 @@ useEffect(() => {
 
   return (
     <div className="service-page petcare-page">
-      <SEO title="שמירת חיות מחמד בישראל" description="מצאו שומר חיות מחמד מקצועי בישראל - כלבים, חתולים ועוד, בבית המטפל או אצלכם." canonicalPath="/services/petcare" noindex={!loading && providers.length === 0} />
+      <SEO title="שמירת חיות מחמד בישראל" description="מצאו שומר חיות מחמד מקצועי בישראל - כלבים, חתולים ועוד, בבית המטפל או אצלכם." canonicalPath="/services/petcare" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

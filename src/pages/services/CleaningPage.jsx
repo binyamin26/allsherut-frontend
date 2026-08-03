@@ -115,7 +115,7 @@ useEffect(() => {
 
   return (
     <div className="service-page cleaning-page">
-      <SEO title="ניקיון בית בישראל" description="מצאו עוזרת בית ומנקה מקצועי בישראל - ניקיון שוטף, לפני ואחרי אירועים ועוד." canonicalPath="/services/cleaning" noindex={!loading && providers.length === 0} />
+      <SEO title="ניקיון בית בישראל" description="מצאו עוזרת בית ומנקה מקצועי בישראל - ניקיון שוטף, לפני ואחרי אירועים ועוד." canonicalPath="/services/cleaning" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

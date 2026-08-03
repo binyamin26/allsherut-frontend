@@ -94,7 +94,7 @@ const PestControlPage = () => {
 
   return (
     <div className="service-page pest-control-page">
-      <SEO title="הדברה בישראל" description="מצאו מדביר מקצועי בישראל - הדברת מכרסמים, חרקים ומזיקים בצורה בטוחה." canonicalPath="/services/pest-control" noindex={!loading && providers.length === 0} />
+      <SEO title="הדברה בישראל" description="מצאו מדביר מקצועי בישראל - הדברת מכרסמים, חרקים ומזיקים בצורה בטוחה." canonicalPath="/services/pest-control" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

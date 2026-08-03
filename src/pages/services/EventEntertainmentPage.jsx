@@ -108,7 +108,7 @@ const EventEntertainmentPage = () => {
 
   return (
     <div className="service-page event-entertainment-page">
-      <SEO title="בידור לאירועים בישראל" description="מצאו אמני בידור לאירועים בישראל - ליצנים, קוסמים ואמנים לכל גיל." canonicalPath="/services/event-entertainment" noindex={!loading && providers.length === 0} />
+      <SEO title="בידור לאירועים בישראל" description="מצאו אמני בידור לאירועים בישראל - ליצנים, קוסמים ואמנים לכל גיל." canonicalPath="/services/event-entertainment" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

@@ -108,7 +108,7 @@ const CarpentryPage = () => {
 
   return (
     <div className="service-page carpentry-page">
-      <SEO title="נגר בישראל" description="מצאו נגר מקצועי בישראל - ריהוט מותאם אישית, תיקונים ועבודות עץ איכותיות." canonicalPath="/services/carpentry" noindex={!loading && providers.length === 0} />
+      <SEO title="נגר בישראל" description="מצאו נגר מקצועי בישראל - ריהוט מותאם אישית, תיקונים ועבודות עץ איכותיות." canonicalPath="/services/carpentry" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

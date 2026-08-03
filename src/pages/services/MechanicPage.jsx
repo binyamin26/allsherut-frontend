@@ -57,7 +57,7 @@ const MechanicPage = () => {
 
   return (
     <div className="service-page mechanic-page">
-      <SEO title="מכונאי רכב בישראל" description="מצאו מכונאי רכב מקצועי בישראל - תיקונים, טיפולים ואבחון תקלות." canonicalPath="/services/mechanic" noindex={!loading && providers.length === 0} />
+      <SEO title="מכונאי רכב בישראל" description="מצאו מכונאי רכב מקצועי בישראל - תיקונים, טיפולים ואבחון תקלות." canonicalPath="/services/mechanic" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

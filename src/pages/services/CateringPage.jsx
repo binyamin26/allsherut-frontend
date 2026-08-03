@@ -107,7 +107,7 @@ const CateringPage = () => {
 
   return (
     <div className="service-page catering-page">
-      <SEO title="קייטרינג בישראל" description="מצאו ספקי קייטרינג בישראל - קייטרינג לאירועים, ארוחות עסקיות ותפריטים מותאמים אישית." canonicalPath="/services/catering" noindex={!loading && providers.length === 0} />
+      <SEO title="קייטרינג בישראל" description="מצאו ספקי קייטרינג בישראל - קייטרינג לאירועים, ארוחות עסקיות ותפריטים מותאמים אישית." canonicalPath="/services/catering" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

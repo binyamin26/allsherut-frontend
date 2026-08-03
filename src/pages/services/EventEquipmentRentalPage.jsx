@@ -107,7 +107,7 @@ const EventEquipmentRentalPage = () => {
 
   return (
     <div className="service-page event-equipment-rental-page">
-      <SEO title="השכרת ציוד לאירועים בישראל" description="השכירו ציוד לאירועים בישראל - מכונות מזון, מתנפחים ומכונות אפקטים." canonicalPath="/services/event-equipment-rental" noindex={!loading && providers.length === 0} />
+      <SEO title="השכרת ציוד לאירועים בישראל" description="השכירו ציוד לאירועים בישראל - מכונות מזון, מתנפחים ומכונות אפקטים." canonicalPath="/services/event-equipment-rental" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

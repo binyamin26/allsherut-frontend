@@ -107,7 +107,7 @@ const EventFoodStandsPage = () => {
 
   return (
     <div className="service-page event-food-stands-page">
-      <SEO title="דוכני מזון לאירועים בישראל" description="מצאו דוכני מזון מאוישים לאירועים בישראל - פופקורן, ברבה פאפא, המבורגרים ועוד." canonicalPath="/services/event-food-stands" noindex={!loading && providers.length === 0} />
+      <SEO title="דוכני מזון לאירועים בישראל" description="מצאו דוכני מזון מאוישים לאירועים בישראל - פופקורן, ברבה פאפא, המבורגרים ועוד." canonicalPath="/services/event-food-stands" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

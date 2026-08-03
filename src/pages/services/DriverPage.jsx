@@ -53,7 +53,7 @@ const DriverPage = () => {
 
   return (
     <div className="service-page driver-page">
-      <SEO title="נהג הסעות בישראל" description="מצאו נהג הסעות מקצועי בישראל - הסעות לשדה התעופה, אירועים ונסיעות פרטיות." canonicalPath="/services/driver" noindex={!loading && providers.length === 0} />
+      <SEO title="נהג הסעות בישראל" description="מצאו נהג הסעות מקצועי בישראל - הסעות לשדה התעופה, אירועים ונסיעות פרטיות." canonicalPath="/services/driver" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

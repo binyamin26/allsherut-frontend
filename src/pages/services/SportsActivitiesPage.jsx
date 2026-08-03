@@ -99,7 +99,7 @@ const SportsActivitiesPage = () => {
 
   return (
     <div className="service-page tutoring-page">
-      <SEO title="פעילויות ספורט ופנאי בישראל" description="מצאו מדריכי ספורט ופנאי בישראל - אימונים אישיים, כדורגל, שחייה ועוד." canonicalPath="/services/sports" noindex={!loading && providers.length === 0} />
+      <SEO title="פעילויות ספורט ופנאי בישראל" description="מצאו מדריכי ספורט ופנאי בישראל - אימונים אישיים, כדורגל, שחייה ועוד." canonicalPath="/services/sports" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

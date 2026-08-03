@@ -99,7 +99,7 @@ const HandymanPage = () => {
 
   return (
     <div className="service-page handyman-page">
-      <SEO title="הנדימן - עבודות כלליות בישראל" description="מצאו הנדימן מקצועי בישראל - תיקונים קטנים, עבודות כלליות ותחזוקת בית." canonicalPath="/services/handyman" noindex={!loading && providers.length === 0} />
+      <SEO title="הנדימן - עבודות כלליות בישראל" description="מצאו הנדימן מקצועי בישראל - תיקונים קטנים, עבודות כלליות ותחזוקת בית." canonicalPath="/services/handyman" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

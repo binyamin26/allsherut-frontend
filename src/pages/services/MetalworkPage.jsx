@@ -57,7 +57,7 @@ const MetalworkPage = () => {
 
   return (
     <div className="service-page metalwork-page">
-      <SEO title="עבודות מתכת בישראל" description="מצאו בעל מקצוע לעבודות מתכת בישראל - ברזל, נירוסטה ושערים." canonicalPath="/services/metalwork" noindex={!loading && providers.length === 0} />
+      <SEO title="עבודות מתכת בישראל" description="מצאו בעל מקצוע לעבודות מתכת בישראל - ברזל, נירוסטה ושערים." canonicalPath="/services/metalwork" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">
