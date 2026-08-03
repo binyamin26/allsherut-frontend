@@ -6,3 +6,4 @@ Disallow: /dashboard
 Disallow: /api/
 
 Sitemap: https://allsherut.com/sitemap.xml
+Sitemap: https://allsherut.com/sitemap-providers.xml

@@ -21,6 +21,10 @@
       "destination": "https://homesherut-backend.fly.dev/api/:path*"
     },
     {
+      "source": "/sitemap-providers.xml",
+      "destination": "https://homesherut-backend.fly.dev/sitemap-providers.xml"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
