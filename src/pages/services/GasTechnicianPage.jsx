@@ -108,7 +108,19 @@ const GasTechnicianPage = () => {
 
   return (
     <div className="service-page gas-technician-page">
-      <SEO title="טכנאי גז בישראל" description="מצאו טכנאי גז מוסמך בישראל - התקנה, בדיקה ותיקון של מכשירי גז בצורה בטוחה." canonicalPath="/services/gas-technician" />
+      <SEO
+        title="טכנאי גז בישראל"
+        description="מצאו טכנאי גז מוסמך בישראל - התקנה, בדיקה ותיקון של מכשירי גז בצורה בטוחה."
+        canonicalPath="/services/gas-technician"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: 'טכנאי גז בישראל',
+          description: 'מצאו טכנאי גז מוסמך בישראל - התקנה, בדיקה ותיקון של מכשירי גז בצורה בטוחה.',
+          areaServed: { '@type': 'Country', name: 'ישראל' },
+          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
+        }}
+      />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

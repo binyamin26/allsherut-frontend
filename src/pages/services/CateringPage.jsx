@@ -107,7 +107,19 @@ const CateringPage = () => {
 
   return (
     <div className="service-page catering-page">
-      <SEO title="קייטרינג בישראל" description="מצאו ספקי קייטרינג בישראל - קייטרינג לאירועים, ארוחות עסקיות ותפריטים מותאמים אישית." canonicalPath="/services/catering" />
+      <SEO
+        title="קייטרינג בישראל"
+        description="מצאו ספקי קייטרינג בישראל - קייטרינג לאירועים, ארוחות עסקיות ותפריטים מותאמים אישית."
+        canonicalPath="/services/catering"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: 'קייטרינג בישראל',
+          description: 'מצאו ספקי קייטרינג בישראל - קייטרינג לאירועים, ארוחות עסקיות ותפריטים מותאמים אישית.',
+          areaServed: { '@type': 'Country', name: 'ישראל' },
+          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
+        }}
+      />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

@@ -53,7 +53,19 @@ const DriverPage = () => {
 
   return (
     <div className="service-page driver-page">
-      <SEO title="נהג הסעות בישראל" description="מצאו נהג הסעות מקצועי בישראל - הסעות לשדה התעופה, אירועים ונסיעות פרטיות." canonicalPath="/services/driver" />
+      <SEO
+        title="נהג הסעות בישראל"
+        description="מצאו נהג הסעות מקצועי בישראל - הסעות לשדה התעופה, אירועים ונסיעות פרטיות."
+        canonicalPath="/services/driver"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: 'נהג הסעות בישראל',
+          description: 'מצאו נהג הסעות מקצועי בישראל - הסעות לשדה התעופה, אירועים ונסיעות פרטיות.',
+          areaServed: { '@type': 'Country', name: 'ישראל' },
+          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
+        }}
+      />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

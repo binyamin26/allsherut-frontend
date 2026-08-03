@@ -108,7 +108,19 @@ const GlassWorksPage = () => {
 
   return (
     <div className="service-page glass-works-page">
-      <SEO title="עבודות זכוכית בישראל" description="מצאו בעל מקצוע לעבודות זכוכית בישראל - חלונות, מראות ומחיצות זכוכית." canonicalPath="/services/glass-works" />
+      <SEO
+        title="עבודות זכוכית בישראל"
+        description="מצאו בעל מקצוע לעבודות זכוכית בישראל - חלונות, מראות ומחיצות זכוכית."
+        canonicalPath="/services/glass-works"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: 'עבודות זכוכית בישראל',
+          description: 'מצאו בעל מקצוע לעבודות זכוכית בישראל - חלונות, מראות ומחיצות זכוכית.',
+          areaServed: { '@type': 'Country', name: 'ישראל' },
+          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
+        }}
+      />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

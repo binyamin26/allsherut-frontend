@@ -100,7 +100,19 @@ const DJPage = () => {
 
   return (
     <div className="service-page dj-page">
-      <SEO title="DJ לאירועים בישראל" description="מצאו DJ מקצועי לאירועים בישראל - חתונות, ימי הולדת ומסיבות." canonicalPath="/services/dj" />
+      <SEO
+        title="DJ לאירועים בישראל"
+        description="מצאו DJ מקצועי לאירועים בישראל - חתונות, ימי הולדת ומסיבות."
+        canonicalPath="/services/dj"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: 'DJ לאירועים בישראל',
+          description: 'מצאו DJ מקצועי לאירועים בישראל - חתונות, ימי הולדת ומסיבות.',
+          areaServed: { '@type': 'Country', name: 'ישראל' },
+          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
+        }}
+      />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

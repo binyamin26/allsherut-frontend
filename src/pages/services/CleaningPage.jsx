@@ -115,7 +115,19 @@ useEffect(() => {
 
   return (
     <div className="service-page cleaning-page">
-      <SEO title="ניקיון בית בישראל" description="מצאו עוזרת בית ומנקה מקצועי בישראל - ניקיון שוטף, לפני ואחרי אירועים ועוד." canonicalPath="/services/cleaning" />
+      <SEO
+        title="ניקיון בית בישראל"
+        description="מצאו עוזרת בית ומנקה מקצועי בישראל - ניקיון שוטף, לפני ואחרי אירועים ועוד."
+        canonicalPath="/services/cleaning"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: 'ניקיון בית בישראל',
+          description: 'מצאו עוזרת בית ומנקה מקצועי בישראל - ניקיון שוטף, לפני ואחרי אירועים ועוד.',
+          areaServed: { '@type': 'Country', name: 'ישראל' },
+          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
+        }}
+      />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

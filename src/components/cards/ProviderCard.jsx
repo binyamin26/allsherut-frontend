@@ -101,6 +101,7 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
             src={imageUrl}
             alt={provider.name || provider.full_name}
             className="provider-avatar-img"
+            loading="lazy"
             onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }}
           />
         ) : null}

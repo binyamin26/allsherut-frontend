@@ -108,7 +108,19 @@ const ContractorPage = () => {
 
   return (
     <div className="service-page contractor-page">
-      <SEO title="קבלן שיפוצים בישראל" description="מצאו קבלן שיפוצים מקצועי בישראל - שיפוץ דירה, בנייה ועבודות גמר." canonicalPath="/services/contractor" />
+      <SEO
+        title="קבלן שיפוצים בישראל"
+        description="מצאו קבלן שיפוצים מקצועי בישראל - שיפוץ דירה, בנייה ועבודות גמר."
+        canonicalPath="/services/contractor"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: 'קבלן שיפוצים בישראל',
+          description: 'מצאו קבלן שיפוצים מקצועי בישראל - שיפוץ דירה, בנייה ועבודות גמר.',
+          areaServed: { '@type': 'Country', name: 'ישראל' },
+          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
+        }}
+      />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

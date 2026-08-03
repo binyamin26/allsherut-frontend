@@ -115,7 +115,19 @@ const PropertyManagementPage = () => {
 
   return (
     <div className="service-page property-management-page">
-      <SEO title="ניהול נכסים בישראל" description="מצאו חברת ניהול נכסים בישראל - טיפול בשוכרים, תחזוקה ומיקסום הכנסה מהנכס." canonicalPath="/services/property-management" />
+      <SEO
+        title="ניהול נכסים בישראל"
+        description="מצאו חברת ניהול נכסים בישראל - טיפול בשוכרים, תחזוקה ומיקסום הכנסה מהנכס."
+        canonicalPath="/services/property-management"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: 'ניהול נכסים בישראל',
+          description: 'מצאו חברת ניהול נכסים בישראל - טיפול בשוכרים, תחזוקה ומיקסום הכנסה מהנכס.',
+          areaServed: { '@type': 'Country', name: 'ישראל' },
+          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
+        }}
+      />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

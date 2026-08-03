@@ -109,7 +109,19 @@ const AirConditioningPage = () => {
 
   return (
     <div className="service-page air-conditioning-page">
-      <SEO title="טכנאי מזגנים בישראל" description="מצאו טכנאי מזגנים מקצועיים בישראל - התקנה, תיקון וניקוי מזגנים בכל הארץ." canonicalPath="/services/airconditioning" />
+      <SEO
+        title="טכנאי מזגנים בישראל"
+        description="מצאו טכנאי מזגנים מקצועיים בישראל - התקנה, תיקון וניקוי מזגנים בכל הארץ."
+        canonicalPath="/services/airconditioning"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: 'טכנאי מזגנים בישראל',
+          description: 'מצאו טכנאי מזגנים מקצועיים בישראל - התקנה, תיקון וניקוי מזגנים בכל הארץ.',
+          areaServed: { '@type': 'Country', name: 'ישראל' },
+          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
+        }}
+      />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

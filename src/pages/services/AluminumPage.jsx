@@ -108,7 +108,19 @@ const AluminumPage = () => {
 
   return (
     <div className="service-page aluminum-page">
-      <SEO title="עבודות אלומיניום בישראל" description="מצאו בעלי מקצוע לעבודות אלומיניום בישראל - חלונות, דלתות וסגירות מרפסת." canonicalPath="/services/aluminum" />
+      <SEO
+        title="עבודות אלומיניום בישראל"
+        description="מצאו בעלי מקצוע לעבודות אלומיניום בישראל - חלונות, דלתות וסגירות מרפסת."
+        canonicalPath="/services/aluminum"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: 'עבודות אלומיניום בישראל',
+          description: 'מצאו בעלי מקצוע לעבודות אלומיניום בישראל - חלונות, דלתות וסגירות מרפסת.',
+          areaServed: { '@type': 'Country', name: 'ישראל' },
+          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
+        }}
+      />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

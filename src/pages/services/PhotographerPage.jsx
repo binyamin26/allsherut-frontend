@@ -83,7 +83,19 @@ const PhotographerPage = () => {
 
   return (
     <div className="service-page photographer-page">
-      <SEO title="צלם מקצועי בישראל" description="מצאו צלם מקצועי בישראל - צילום אירועים, פורטרטים, תדמית ועסקי." canonicalPath="/services/photographer" />
+      <SEO
+        title="צלם מקצועי בישראל"
+        description="מצאו צלם מקצועי בישראל - צילום אירועים, פורטרטים, תדמית ועסקי."
+        canonicalPath="/services/photographer"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: 'צלם מקצועי בישראל',
+          description: 'מצאו צלם מקצועי בישראל - צילום אירועים, פורטרטים, תדמית ועסקי.',
+          areaServed: { '@type': 'Country', name: 'ישראל' },
+          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
+        }}
+      />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

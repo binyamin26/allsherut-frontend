@@ -114,7 +114,19 @@ useEffect(() => {
 
   return (
     <div className="service-page gardening-page">
-      <SEO title="גנן בישראל" description="מצאו גנן מקצועי בישראל - עיצוב גינה, גיזום, דשאים ותחזוקת גינה שוטפת." canonicalPath="/services/gardening" />
+      <SEO
+        title="גנן בישראל"
+        description="מצאו גנן מקצועי בישראל - עיצוב גינה, גיזום, דשאים ותחזוקת גינה שוטפת."
+        canonicalPath="/services/gardening"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: 'גנן בישראל',
+          description: 'מצאו גנן מקצועי בישראל - עיצוב גינה, גיזום, דשאים ותחזוקת גינה שוטפת.',
+          areaServed: { '@type': 'Country', name: 'ישראל' },
+          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
+        }}
+      />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Home, Search, ArrowLeft, AlertTriangle } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import SEO from '../components/common/SEO';
 
 const NotFoundPage = () => {
   const { t, language } = useLanguage();
@@ -9,6 +10,7 @@ const NotFoundPage = () => {
 
   return (
     <div className="not-found-page" dir={isRTL ? 'rtl' : 'ltr'}>
+      <SEO title={t('notFound.title')} description={t('notFound.message')} noindex sameUrlForAllLangs />
       <div className="container">
         <div className="not-found-content">
           {/* Icône d'erreur */}

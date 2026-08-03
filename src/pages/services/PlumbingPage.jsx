@@ -108,7 +108,19 @@ const PlumbingPage = () => {
 
   return (
     <div className="service-page plumbing-page">
-      <SEO title="אינסטלטור בישראל" description="מצאו אינסטלטור מקצועי בישראל - תיקון נזילות, התקנות ועבודות אינסטלציה." canonicalPath="/services/plumbing" />
+      <SEO
+        title="אינסטלטור בישראל"
+        description="מצאו אינסטלטור מקצועי בישראל - תיקון נזילות, התקנות ועבודות אינסטלציה."
+        canonicalPath="/services/plumbing"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: 'אינסטלטור בישראל',
+          description: 'מצאו אינסטלטור מקצועי בישראל - תיקון נזילות, התקנות ועבודות אינסטלציה.',
+          areaServed: { '@type': 'Country', name: 'ישראל' },
+          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
+        }}
+      />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

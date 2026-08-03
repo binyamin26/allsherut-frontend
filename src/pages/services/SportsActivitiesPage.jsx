@@ -99,7 +99,19 @@ const SportsActivitiesPage = () => {
 
   return (
     <div className="service-page tutoring-page">
-      <SEO title="פעילויות ספורט ופנאי בישראל" description="מצאו מדריכי ספורט ופנאי בישראל - אימונים אישיים, כדורגל, שחייה ועוד." canonicalPath="/services/sports" />
+      <SEO
+        title="פעילויות ספורט ופנאי בישראל"
+        description="מצאו מדריכי ספורט ופנאי בישראל - אימונים אישיים, כדורגל, שחייה ועוד."
+        canonicalPath="/services/sports"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: 'פעילויות ספורט ופנאי בישראל',
+          description: 'מצאו מדריכי ספורט ופנאי בישראל - אימונים אישיים, כדורגל, שחייה ועוד.',
+          areaServed: { '@type': 'Country', name: 'ישראל' },
+          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
+        }}
+      />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

@@ -120,7 +120,19 @@ const LaundryPage = () => {
 
   return (
     <div className="service-page laundry-page">
-      <SEO title="כביסה ואיסטניס בישראל" description="מצאו שירות כביסה מקצועי בישראל - כביסה, גיהוץ ועיבוד בגדים עד לבית." canonicalPath="/services/laundry" />
+      <SEO
+        title="כביסה ואיסטניס בישראל"
+        description="מצאו שירות כביסה מקצועי בישראל - כביסה, גיהוץ ועיבוד בגדים עד לבית."
+        canonicalPath="/services/laundry"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: 'כביסה ואיסטניס בישראל',
+          description: 'מצאו שירות כביסה מקצועי בישראל - כביסה, גיהוץ ועיבוד בגדים עד לבית.',
+          areaServed: { '@type': 'Country', name: 'ישראל' },
+          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
+        }}
+      />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

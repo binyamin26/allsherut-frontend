@@ -94,7 +94,19 @@ const PestControlPage = () => {
 
   return (
     <div className="service-page pest-control-page">
-      <SEO title="הדברה בישראל" description="מצאו מדביר מקצועי בישראל - הדברת מכרסמים, חרקים ומזיקים בצורה בטוחה." canonicalPath="/services/pest-control" />
+      <SEO
+        title="הדברה בישראל"
+        description="מצאו מדביר מקצועי בישראל - הדברת מכרסמים, חרקים ומזיקים בצורה בטוחה."
+        canonicalPath="/services/pest-control"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: 'הדברה בישראל',
+          description: 'מצאו מדביר מקצועי בישראל - הדברת מכרסמים, חרקים ומזיקים בצורה בטוחה.',
+          areaServed: { '@type': 'Country', name: 'ישראל' },
+          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
+        }}
+      />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

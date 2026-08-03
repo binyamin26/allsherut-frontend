@@ -57,7 +57,19 @@ const MetalworkPage = () => {
 
   return (
     <div className="service-page metalwork-page">
-      <SEO title="עבודות מתכת בישראל" description="מצאו בעל מקצוע לעבודות מתכת בישראל - ברזל, נירוסטה ושערים." canonicalPath="/services/metalwork" />
+      <SEO
+        title="עבודות מתכת בישראל"
+        description="מצאו בעל מקצוע לעבודות מתכת בישראל - ברזל, נירוסטה ושערים."
+        canonicalPath="/services/metalwork"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: 'עבודות מתכת בישראל',
+          description: 'מצאו בעל מקצוע לעבודות מתכת בישראל - ברזל, נירוסטה ושערים.',
+          areaServed: { '@type': 'Country', name: 'ישראל' },
+          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
+        }}
+      />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

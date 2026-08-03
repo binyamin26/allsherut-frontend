@@ -108,7 +108,19 @@ const PaintingPage = () => {
 
   return (
     <div className="service-page painting-page">
-      <SEO title="צבעי בישראל" description="מצאו צבעי מקצועי בישראל - צביעת דירות, בתים ומשרדים עם עבודה מדויקת ונקייה." canonicalPath="/services/painting" />
+      <SEO
+        title="צבעי בישראל"
+        description="מצאו צבעי מקצועי בישראל - צביעת דירות, בתים ומשרדים עם עבודה מדויקת ונקייה."
+        canonicalPath="/services/painting"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: 'צבעי בישראל',
+          description: 'מצאו צבעי מקצועי בישראל - צביעת דירות, בתים ומשרדים עם עבודה מדויקת ונקייה.',
+          areaServed: { '@type': 'Country', name: 'ישראל' },
+          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
+        }}
+      />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

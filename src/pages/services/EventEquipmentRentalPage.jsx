@@ -107,7 +107,19 @@ const EventEquipmentRentalPage = () => {
 
   return (
     <div className="service-page event-equipment-rental-page">
-      <SEO title="השכרת ציוד לאירועים בישראל" description="השכירו ציוד לאירועים בישראל - מכונות מזון, מתנפחים ומכונות אפקטים." canonicalPath="/services/event-equipment-rental" />
+      <SEO
+        title="השכרת ציוד לאירועים בישראל"
+        description="השכירו ציוד לאירועים בישראל - מכונות מזון, מתנפחים ומכונות אפקטים."
+        canonicalPath="/services/event-equipment-rental"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: 'השכרת ציוד לאירועים בישראל',
+          description: 'השכירו ציוד לאירועים בישראל - מכונות מזון, מתנפחים ומכונות אפקטים.',
+          areaServed: { '@type': 'Country', name: 'ישראל' },
+          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
+        }}
+      />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

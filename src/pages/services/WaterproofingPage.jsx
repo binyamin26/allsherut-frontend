@@ -108,7 +108,19 @@ const WaterproofingPage = () => {
 
   return (
     <div className="service-page waterproofing-page">
-      <SEO title="איטום בישראל" description="מצאו מאטם מקצועי בישראל - איטום גגות, מרפסות ומניעת רטיבות." canonicalPath="/services/waterproofing" />
+      <SEO
+        title="איטום בישראל"
+        description="מצאו מאטם מקצועי בישראל - איטום גגות, מרפסות ומניעת רטיבות."
+        canonicalPath="/services/waterproofing"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: 'איטום בישראל',
+          description: 'מצאו מאטם מקצועי בישראל - איטום גגות, מרפסות ומניעת רטיבות.',
+          areaServed: { '@type': 'Country', name: 'ישראל' },
+          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
+        }}
+      />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

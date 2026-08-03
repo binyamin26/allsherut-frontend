@@ -107,7 +107,19 @@ const PastryPage = () => {
 
   return (
     <div className="service-page pastry-page">
-      <SEO title="פירות ופטיסרי בישראל" description="מצאו ספקי פירות ופטיסרי בישראל - פירות, מאפים וקינוחים מעוצבים לאירועים ולבית." canonicalPath="/services/pastry" />
+      <SEO
+        title="פירות ופטיסרי בישראל"
+        description="מצאו ספקי פירות ופטיסרי בישראל - פירות, מאפים וקינוחים מעוצבים לאירועים ולבית."
+        canonicalPath="/services/pastry"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: 'פירות ופטיסרי בישראל',
+          description: 'מצאו ספקי פירות ופטיסרי בישראל - פירות, מאפים וקינוחים מעוצבים לאירועים ולבית.',
+          areaServed: { '@type': 'Country', name: 'ישראל' },
+          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
+        }}
+      />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

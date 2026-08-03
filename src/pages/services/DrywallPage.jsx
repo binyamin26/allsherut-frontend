@@ -109,7 +109,19 @@ const DrywallPage = () => {
 
   return (
     <div className="service-page drywall-page">
-      <SEO title="גבס ופלסטיקה בישראל" description="מצאו בעל מקצוע לעבודות גבס בישראל - תקרות גבס, קירות וחיפוי." canonicalPath="/services/drywall" />
+      <SEO
+        title="גבס ופלסטיקה בישראל"
+        description="מצאו בעל מקצוע לעבודות גבס בישראל - תקרות גבס, קירות וחיפוי."
+        canonicalPath="/services/drywall"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: 'גבס ופלסטיקה בישראל',
+          description: 'מצאו בעל מקצוע לעבודות גבס בישראל - תקרות גבס, קירות וחיפוי.',
+          areaServed: { '@type': 'Country', name: 'ישראל' },
+          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
+        }}
+      />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

@@ -20,7 +20,19 @@ const DecorationProviderDetails = ({ provider, t }) => {
 
   return (
     <div className="decoration-provider-details">
-      <SEO title="קישוט אירועים בישראל" description="מצאו מקשטי אירועים מקצועיים בישראל - עיצוב מרהיב לחתונות, ימי הולדת ואירועים." canonicalPath="/services/event-decoration" />
+      <SEO
+        title="קישוט אירועים בישראל"
+        description="מצאו מקשטי אירועים מקצועיים בישראל - עיצוב מרהיב לחתונות, ימי הולדת ואירועים."
+        canonicalPath="/services/event-decoration"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: 'קישוט אירועים בישראל',
+          description: 'מצאו מקשטי אירועים מקצועיים בישראל - עיצוב מרהיב לחתונות, ימי הולדת ואירועים.',
+          areaServed: { '@type': 'Country', name: 'ישראל' },
+          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
+        }}
+      />
       {age && (
         <div className="decoration-detail-row">
           <span className="decoration-detail-label">{t('serviceFields.event_decoration.age')}:</span>

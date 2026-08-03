@@ -108,7 +108,19 @@ const PrivateChefPage = () => {
 
   return (
     <div className="service-page private-chef-page">
-      <SEO title="שף פרטי בישראל" description="מצאו שף פרטי בישראל - בישול בבית, אירועים פרטיים ותפריטים מותאמים אישית." canonicalPath="/services/private-chef" />
+      <SEO
+        title="שף פרטי בישראל"
+        description="מצאו שף פרטי בישראל - בישול בבית, אירועים פרטיים ותפריטים מותאמים אישית."
+        canonicalPath="/services/private-chef"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: 'שף פרטי בישראל',
+          description: 'מצאו שף פרטי בישראל - בישול בבית, אירועים פרטיים ותפריטים מותאמים אישית.',
+          areaServed: { '@type': 'Country', name: 'ישראל' },
+          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
+        }}
+      />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

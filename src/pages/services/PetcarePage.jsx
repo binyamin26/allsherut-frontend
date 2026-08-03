@@ -113,7 +113,19 @@ useEffect(() => {
 
   return (
     <div className="service-page petcare-page">
-      <SEO title="שמירת חיות מחמד בישראל" description="מצאו שומר חיות מחמד מקצועי בישראל - כלבים, חתולים ועוד, בבית המטפל או אצלכם." canonicalPath="/services/petcare" />
+      <SEO
+        title="שמירת חיות מחמד בישראל"
+        description="מצאו שומר חיות מחמד מקצועי בישראל - כלבים, חתולים ועוד, בבית המטפל או אצלכם."
+        canonicalPath="/services/petcare"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: 'שמירת חיות מחמד בישראל',
+          description: 'מצאו שומר חיות מחמד מקצועי בישראל - כלבים, חתולים ועוד, בבית המטפל או אצלכם.',
+          areaServed: { '@type': 'Country', name: 'ישראל' },
+          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
+        }}
+      />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

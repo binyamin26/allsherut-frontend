@@ -107,7 +107,19 @@ const EventFoodStandsPage = () => {
 
   return (
     <div className="service-page event-food-stands-page">
-      <SEO title="דוכני מזון לאירועים בישראל" description="מצאו דוכני מזון מאוישים לאירועים בישראל - פופקורן, ברבה פאפא, המבורגרים ועוד." canonicalPath="/services/event-food-stands" />
+      <SEO
+        title="דוכני מזון לאירועים בישראל"
+        description="מצאו דוכני מזון מאוישים לאירועים בישראל - פופקורן, ברבה פאפא, המבורגרים ועוד."
+        canonicalPath="/services/event-food-stands"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: 'דוכני מזון לאירועים בישראל',
+          description: 'מצאו דוכני מזון מאוישים לאירועים בישראל - פופקורן, ברבה פאפא, המבורגרים ועוד.',
+          areaServed: { '@type': 'Country', name: 'ישראל' },
+          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
+        }}
+      />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

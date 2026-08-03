@@ -1583,13 +1583,7 @@ const handleContact = () => {
   const paymentConfig = getPaymentConfig(provider.serviceType);
   const serviceIconUrl = getServiceIcon(provider.serviceType);
 
-  const serviceNameHe = {
-    babysitting: 'בייביסיטר', cleaning: 'ניקיון', gardening: 'גינון',
-    petcare: 'שמירת חיות', tutoring: 'שיעורים פרטיים', eldercare: 'עזרה לקשישים',
-    electrician: 'חשמלאי', plumbing: 'אינסטלטור', airconditioning: 'מזגן',
-    carpentry: 'נגר', painting: 'צבעי', locksmith: 'מנעולן',
-    moving: 'הובלות', driver: 'הסעות', handyman: 'עבודות כלליות',
-  }[provider?.service_type] || provider?.service_type || '';
+  const serviceNameHe = t(`services.${provider?.serviceType}`, provider?.serviceType || '');
 
   const avgRating = reviews.length > 0
     ? (reviews.reduce((sum, r) => sum + parseFloat(r.rating || 0), 0) / reviews.length).toFixed(1)
@@ -1597,25 +1591,37 @@ const handleContact = () => {
 
   const providerJsonLd = provider ? {
     '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    name: `${provider.first_name} ${provider.last_name}`,
-    description: provider.description || serviceNameHe,
-    url: `https://www.allsherut.com/provider/${provider.id}`,
-    ...(provider.profile_images?.[0] && { image: provider.profile_images[0] }),
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: provider.location_city || 'ישראל',
-      addressCountry: 'IL',
-    },
-    ...(avgRating && reviews.length >= 2 && {
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: avgRating,
-        reviewCount: String(reviews.length),
-        bestRating: '5',
-        worstRating: '1',
+    '@graph': [
+      {
+        '@type': 'LocalBusiness',
+        name: `${provider.first_name} ${provider.last_name}`,
+        description: provider.description || serviceNameHe,
+        url: `https://allsherut.com/provider/${provider.id}`,
+        ...(provider.profile_images?.[0] && { image: provider.profile_images[0] }),
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: provider.location_city || 'ישראל',
+          addressCountry: 'IL',
+        },
+        ...(avgRating && reviews.length >= 2 && {
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: avgRating,
+            reviewCount: String(reviews.length),
+            bestRating: '5',
+            worstRating: '1',
+          },
+        }),
       },
-    }),
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: t('provider.home'), item: 'https://allsherut.com/' },
+          { '@type': 'ListItem', position: 2, name: serviceNameHe, item: `https://allsherut.com/services/${provider.serviceType}` },
+          { '@type': 'ListItem', position: 3, name: `${provider.first_name} ${provider.last_name}` },
+        ],
+      },
+    ],
   } : null;
 
   return (

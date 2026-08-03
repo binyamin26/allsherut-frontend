@@ -108,7 +108,19 @@ const EventEntertainmentPage = () => {
 
   return (
     <div className="service-page event-entertainment-page">
-      <SEO title="בידור לאירועים בישראל" description="מצאו אמני בידור לאירועים בישראל - ליצנים, קוסמים ואמנים לכל גיל." canonicalPath="/services/event-entertainment" />
+      <SEO
+        title="בידור לאירועים בישראל"
+        description="מצאו אמני בידור לאירועים בישראל - ליצנים, קוסמים ואמנים לכל גיל."
+        canonicalPath="/services/event-entertainment"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: 'בידור לאירועים בישראל',
+          description: 'מצאו אמני בידור לאירועים בישראל - ליצנים, קוסמים ואמנים לכל גיל.',
+          areaServed: { '@type': 'Country', name: 'ישראל' },
+          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
+        }}
+      />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">

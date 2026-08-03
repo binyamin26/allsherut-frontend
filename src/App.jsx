@@ -1,11 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, useParams } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import RecruitmentServicePage from './pages/recruitment/RecruitmentServicePage';
-import RecruitmentListingDetailPage from './pages/recruitment/RecruitmentListingDetailPage';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { LanguageProvider, useLanguage } from './context/LanguageContext';
-import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import { SUPPORTED_LANGS, getServiceKeyFromSlug } from './utils/langUtils';
 
 // Layout components
@@ -18,64 +15,74 @@ import ServiceTitleFitter from "./components/common/ServiceTitleFitter";
 import AccessibilityWidget from "./components/common/AccessibilityWidget";
 import FloatingWhatsApp from "./components/common/FloatingWhatsApp";
 
-// Pages principales
+// Pages principales (chargées immédiatement : page d'accueil + 404 utilisées de façon synchrone ailleurs)
 import HomePage from "./pages/HomePage";
-import DashboardPage from "./pages/DashboardPage";
-import CategoryPage from "./pages/CategoryPage";
-
-// Pages utilitaires
-import ContactPage from "./pages/ContactPage";
 import NotFoundPage from "./pages/NotFoundPage";
-import ResetPasswordPage from './pages/ResetPasswordPage';
-import AdminVerifyProviderPage from './pages/AdminVerifyProviderPage';
+
+// Pages chargées à la demande (code-splitting par route)
+const RecruitmentServicePage = lazy(() => import('./pages/recruitment/RecruitmentServicePage'));
+const RecruitmentListingDetailPage = lazy(() => import('./pages/recruitment/RecruitmentListingDetailPage'));
+const ForgotPasswordPage = lazy(() => import('./pages/ForgotPasswordPage'));
+const DashboardPage = lazy(() => import('./pages/DashboardPage'));
+const CategoryPage = lazy(() => import('./pages/CategoryPage'));
+const ContactPage = lazy(() => import('./pages/ContactPage'));
+const ResetPasswordPage = lazy(() => import('./pages/ResetPasswordPage'));
+const AdminVerifyProviderPage = lazy(() => import('./pages/AdminVerifyProviderPage'));
 // PAIEMENT DÉSACTIVÉ - RÉACTIVER QUAND SITE PAYANT
 // import BillingPage from './pages/BillingPage';
-import HowItWorksPage from './pages/HowItWorksPage';
+const HowItWorksPage = lazy(() => import('./pages/HowItWorksPage'));
 // import PricingPage from './pages/PricingPage';
-import TermsOfService from './pages/TermsOfService';
-import PrivacyPolicy from './pages/PrivacyPolicy';
+const TermsOfService = lazy(() => import('./pages/TermsOfService'));
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 
 // Pages de services
-import BabysittingPage from "./pages/services/BabysittingPage";
-import CleaningPage from "./pages/services/CleaningPage";
-import GardeningPage from "./pages/services/GardeningPage";
-import PetcarePage from "./pages/services/PetcarePage";
-import TutoringPage from "./pages/services/TutoringPage";
-import SportsActivitiesPage from "./pages/services/SportsActivitiesPage";
-import EldercarePage from "./pages/services/EldercarePage";
-import LaundryPage from "./pages/services/LaundryPage";
-import PropertyManagementPage from "./pages/services/PropertyManagementPage";
-import ElectricianPage from './pages/services/ElectricianPage';
-import PlumbingPage from './pages/services/PlumbingPage';
-import AirConditioningPage from './pages/services/AirConditioningPage';
-import GasTechnicianPage from './pages/services/GasTechnicianPage';
-import DrywallPage from './pages/services/DrywallPage';
-import CarpentryPage from './pages/services/CarpentryPage';
-import HomeOrganizationPage from './pages/services/HomeOrganizationPage';
-import EventEntertainmentPage from './pages/services/EventEntertainmentPage';
-import EventEquipmentRentalPage from './pages/services/EventEquipmentRentalPage';
-import EventFoodStandsPage from './pages/services/EventFoodStandsPage';
-import DJPage from './pages/services/DJPage';
-import PrivateChefPage from './pages/services/PrivateChefPage';
-import CateringPage from './pages/services/CateringPage';
-import PastryPage from './pages/services/PastryPage';
-import PaintingPage from './pages/services/PaintingPage';
-import WaterproofingPage from './pages/services/WaterproofingPage';
-import ContractorPage from './pages/services/ContractorPage';
-import AluminumPage from './pages/services/AluminumPage';
-import GlassWorksPage from './pages/services/GlassWorksPage';
-import LocksmithPage from './pages/services/LocksmithPage';
-import MovingPage from './pages/services/MovingPage';
-import PhotographerPage from './pages/services/PhotographerPage';
-import EventDecorationPage from './pages/services/EventDecorationPage';
-import PestControlPage from './pages/services/PestControlPage';
-import HandymanPage from './pages/services/HandymanPage';
-import MechanicPage from './pages/services/MechanicPage';
-import MetalworkPage from './pages/services/MetalworkPage';
-import DriverPage from './pages/services/DriverPage';
+const BabysittingPage = lazy(() => import("./pages/services/BabysittingPage"));
+const CleaningPage = lazy(() => import("./pages/services/CleaningPage"));
+const GardeningPage = lazy(() => import("./pages/services/GardeningPage"));
+const PetcarePage = lazy(() => import("./pages/services/PetcarePage"));
+const TutoringPage = lazy(() => import("./pages/services/TutoringPage"));
+const SportsActivitiesPage = lazy(() => import("./pages/services/SportsActivitiesPage"));
+const EldercarePage = lazy(() => import("./pages/services/EldercarePage"));
+const LaundryPage = lazy(() => import("./pages/services/LaundryPage"));
+const PropertyManagementPage = lazy(() => import("./pages/services/PropertyManagementPage"));
+const ElectricianPage = lazy(() => import('./pages/services/ElectricianPage'));
+const PlumbingPage = lazy(() => import('./pages/services/PlumbingPage'));
+const AirConditioningPage = lazy(() => import('./pages/services/AirConditioningPage'));
+const GasTechnicianPage = lazy(() => import('./pages/services/GasTechnicianPage'));
+const DrywallPage = lazy(() => import('./pages/services/DrywallPage'));
+const CarpentryPage = lazy(() => import('./pages/services/CarpentryPage'));
+const HomeOrganizationPage = lazy(() => import('./pages/services/HomeOrganizationPage'));
+const EventEntertainmentPage = lazy(() => import('./pages/services/EventEntertainmentPage'));
+const EventEquipmentRentalPage = lazy(() => import('./pages/services/EventEquipmentRentalPage'));
+const EventFoodStandsPage = lazy(() => import('./pages/services/EventFoodStandsPage'));
+const DJPage = lazy(() => import('./pages/services/DJPage'));
+const PrivateChefPage = lazy(() => import('./pages/services/PrivateChefPage'));
+const CateringPage = lazy(() => import('./pages/services/CateringPage'));
+const PastryPage = lazy(() => import('./pages/services/PastryPage'));
+const PaintingPage = lazy(() => import('./pages/services/PaintingPage'));
+const WaterproofingPage = lazy(() => import('./pages/services/WaterproofingPage'));
+const ContractorPage = lazy(() => import('./pages/services/ContractorPage'));
+const AluminumPage = lazy(() => import('./pages/services/AluminumPage'));
+const GlassWorksPage = lazy(() => import('./pages/services/GlassWorksPage'));
+const LocksmithPage = lazy(() => import('./pages/services/LocksmithPage'));
+const MovingPage = lazy(() => import('./pages/services/MovingPage'));
+const PhotographerPage = lazy(() => import('./pages/services/PhotographerPage'));
+const EventDecorationPage = lazy(() => import('./pages/services/EventDecorationPage'));
+const PestControlPage = lazy(() => import('./pages/services/PestControlPage'));
+const HandymanPage = lazy(() => import('./pages/services/HandymanPage'));
+const MechanicPage = lazy(() => import('./pages/services/MechanicPage'));
+const MetalworkPage = lazy(() => import('./pages/services/MetalworkPage'));
+const DriverPage = lazy(() => import('./pages/services/DriverPage'));
 
 // Page de détails provider
-import ProviderDetailPage from './pages/ProviderDetailPage';
+const ProviderDetailPage = lazy(() => import('./pages/ProviderDetailPage'));
+
+// Fallback affiché pendant le chargement d'une page en lazy-loading
+const RouteLoadingFallback = () => (
+  <div className="provider-detail-loading">
+    <div className="spinner spinner-lg spinner-primary"></div>
+  </div>
+);
 
 // Mapping interne: clé de service → composant de page
 const SERVICE_PAGE_MAP = {
@@ -240,6 +247,7 @@ function App() {
             <Header />
             
             <main className="main-content">
+              <Suspense fallback={<RouteLoadingFallback />}>
               <Routes>
                 {/* Page d'accueil */}
                 <Route path="/" element={<HomePage />} />
@@ -299,6 +307,7 @@ function App() {
                 {/* Page 404 */}
                 <Route path="*" element={<NotFoundPage />} />
               </Routes>
+              </Suspense>
             </main>
             
             <Footer />

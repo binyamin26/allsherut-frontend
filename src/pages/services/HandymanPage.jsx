@@ -99,7 +99,19 @@ const HandymanPage = () => {
 
   return (
     <div className="service-page handyman-page">
-      <SEO title="הנדימן - עבודות כלליות בישראל" description="מצאו הנדימן מקצועי בישראל - תיקונים קטנים, עבודות כלליות ותחזוקת בית." canonicalPath="/services/handyman" />
+      <SEO
+        title="הנדימן - עבודות כלליות בישראל"
+        description="מצאו הנדימן מקצועי בישראל - תיקונים קטנים, עבודות כלליות ותחזוקת בית."
+        canonicalPath="/services/handyman"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: 'הנדימן - עבודות כלליות בישראל',
+          description: 'מצאו הנדימן מקצועי בישראל - תיקונים קטנים, עבודות כלליות ותחזוקת בית.',
+          areaServed: { '@type': 'Country', name: 'ישראל' },
+          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
+        }}
+      />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">
