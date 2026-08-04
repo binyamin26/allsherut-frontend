@@ -1,6 +1,6 @@
 import React from 'react';
 
-const WA_NUMBER = '972583290896';
+const WA_NUMBER = '972586613260';
 
 export default function FloatingWhatsApp() {
   return (
