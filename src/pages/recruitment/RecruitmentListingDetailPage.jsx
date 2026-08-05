@@ -5,6 +5,7 @@ import { useLanguage } from '../../context/LanguageContext';
 import Reveal from '../../components/common/Reveal';
 import CallLeadModal from '../../components/modals/CallLeadModal';
 import apiService from '../../services/api';
+import { formatWhatsAppNumber } from '../../utils/phoneUtils';
 
 const AVATAR_GRADIENTS = [
   'linear-gradient(145deg, #2563EB 0%, #1E3A8A 100%)',
@@ -155,7 +156,7 @@ const RecruitmentListingDetailPage = () => {
   /* Phone / WhatsApp */
   const rawPhone = listing.phone || '';
   const telLink  = rawPhone ? `tel:${rawPhone}` : null;
-  const waPhone  = rawPhone.startsWith('0') ? `972${rawPhone.slice(1)}` : rawPhone;
+  const waPhone  = formatWhatsAppNumber(rawPhone);
   const waLink   = rawPhone ? `https://wa.me/${waPhone}` : null;
 
   const memberSince = listing.created_at ? new Date(listing.created_at).getFullYear() : null;

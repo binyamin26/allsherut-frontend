@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import { X, Phone } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import apiService from '../../services/api';
+import { formatWhatsAppNumber } from '../../utils/phoneUtils';
 
 const CallLeadModal = ({ isOpen, onClose, providerPhone, providerName, serviceName, action }) => {
   const { t, isRTL } = useLanguage();
@@ -35,7 +36,7 @@ const CallLeadModal = ({ isOpen, onClose, providerPhone, providerName, serviceNa
     onClose();
 
     if (action === 'whatsapp') {
-      const waNumber = `972${providerPhone?.replace(/^0/, '')}`;
+      const waNumber = formatWhatsAppNumber(providerPhone);
       setTimeout(() => window.open(`https://wa.me/${waNumber}`, '_blank'), 100);
     } else {
       setTimeout(() => { window.location.href = `tel:${providerPhone}`; }, 100);
