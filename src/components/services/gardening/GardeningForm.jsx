@@ -2,7 +2,8 @@ import React from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
 
 const GardeningForm = ({ serviceDetails, errors, handleServiceDetailsChange, handleExclusiveCheckbox }) => {
-    const { t } = useLanguage();
+
+  const { t } = useLanguage();
   return (
     <div className="service-details-form">
      <h3>{t('serviceForm.gardening.title')}</h3>

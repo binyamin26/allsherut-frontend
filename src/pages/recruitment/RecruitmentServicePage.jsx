@@ -153,7 +153,6 @@ const RecruitmentServicePage = () => {
         title={`${t('recruitment.pageTitle')} - ${serviceLabel}`}
         description={`${t('recruitment.pageSubtitle')} ${serviceLabel}`}
         canonicalPath={`/recruitment/${rawService}`}
-        noindex={!loading && filtered.length === 0}
       />
 
       {/* Breadcrumb */}
