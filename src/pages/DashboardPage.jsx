@@ -52,6 +52,7 @@ import DeleteAccountModal from '../components/modals/DeleteAccountModal';
 // import CancelSubscriptionModal from '../components/modals/CancelSubscriptionModal';
 import ServiceDetailsEditor from '../components/dashboard/ServiceDetailsEditor';
 import ProfileCompletionCard from '../components/dashboard/ProfileCompletionCard';
+import ShareReviewLinkCard from '../components/dashboard/ShareReviewLinkCard';
 import serviceFieldsConfig from '../components/config/serviceFieldsConfig';
 import ServiceDetailsForm from '../components/services/ServiceDetailsForm';
 import DeleteServiceModal from '../components/modals/DeleteServiceModal';
@@ -1677,6 +1678,10 @@ const profileCompletionStatus = (() => {
                   galleryLabel={t('dashboard.gallery.title')}
                   experienceLabel={profileCompletionExperienceLabel}
                 />
+              )}
+
+              {userData?.role === 'provider' && (
+                <ShareReviewLinkCard providerId={userData?.providerProfile?.id} />
               )}
 
 {userData?.role === 'provider' && (

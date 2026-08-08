@@ -77,6 +77,9 @@ const DriverPage = lazy(() => import('./pages/services/DriverPage'));
 // Page de détails provider
 const ProviderDetailPage = lazy(() => import('./pages/ProviderDetailPage'));
 
+// Page de demande d'avis (lien public indépendant de la visibilité du profil)
+const ReviewRequestPage = lazy(() => import('./pages/ReviewRequestPage'));
+
 // Fallback affiché pendant le chargement d'une page en lazy-loading
 const RouteLoadingFallback = () => (
   <div className="provider-detail-loading">
@@ -279,6 +282,9 @@ function App() {
               
                 {/* Page de détails provider */}
                 <Route path="/provider/:id" element={<ProviderDetailPage />} />
+
+                {/* Page de demande d'avis - fonctionne même si le profil n'est pas encore publié */}
+                <Route path="/review/:id" element={<ReviewRequestPage />} />
             
              {/* Pages informatives */}
                 {/* PAIEMENT DÉSACTIVÉ - RÉACTIVER QUAND SITE PAYANT
