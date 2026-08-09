@@ -660,6 +660,26 @@ const translationMappings = {
   },
 
   // ═══════════════════════════════════════════════════════════════
+  // PHOTOGRAPHER
+  // ═══════════════════════════════════════════════════════════════
+  photographerEventTypes: {
+    'בר מצווה': 'filters.photographer.barMitsva',
+    'בת מצווה': 'filters.photographer.batMitsva',
+    'חתונה': 'filters.photographer.wedding',
+    'אירוסין': 'filters.photographer.engagement',
+    'תספורת': 'filters.photographer.haircut',
+    'שוטינג פוטו': 'filters.photographer.photoShoot',
+    'אירועים פרטיים': 'filters.photographer.privateEvents',
+    'ברית מילה': 'filters.photographer.britMila',
+  },
+  photographerWorkTypes: {
+    'סוג האירוע': 'filters.photographer.eventTypes',
+    'אלבום צילום': 'filters.photographer.photoAlbum',
+    'מגנט': 'filters.photographer.magnet',
+    'קמרמן': 'filters.photographer.cameraman',
+  },
+
+  // ═══════════════════════════════════════════════════════════════
   // PASTRY (GÂTEAUX & PÂTISSERIE)
   // ═══════════════════════════════════════════════════════════════
   pastryProducts: {

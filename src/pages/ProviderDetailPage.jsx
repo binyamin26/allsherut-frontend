@@ -848,6 +848,24 @@ const handleContact = () => {
           </div>
         )}
 
+        {/* === PHOTOGRAPHER === */}
+        {provider.serviceType === 'photographer' && (
+          <>
+            {details.event_types && details.event_types.length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <IconLabel icon={Gift}>{t('provider.details.eventTypes')}:</IconLabel>
+                <span>{translateAndJoin(details.event_types, 'photographerEventTypes', t)}</span>
+              </div>
+            )}
+            {details.work_types && details.work_types.filter(w => w !== 'סוג האירוע').length > 0 && (
+              <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <IconLabel icon={ImageIcon}>{t('serviceForm.common.workTypes')}:</IconLabel>
+                <span>{translateAndJoin(details.work_types.filter(w => w !== 'סוג האירוע'), 'photographerWorkTypes', t)}</span>
+              </div>
+            )}
+          </>
+        )}
+
         {/* === PRIVATE_CHEF / CATERING === */}
         {(provider.serviceType === 'private_chef' || provider.serviceType === 'catering') && (
           <>
