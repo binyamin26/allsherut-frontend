@@ -1,4 +1,4 @@
-import { useEffect, Suspense, lazy } from 'react';
+import { useEffect, useState, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, useParams } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { AuthProvider, useAuth } from './context/AuthContext';
@@ -14,6 +14,7 @@ import ServiceTitleFitter from "./components/common/ServiceTitleFitter";
 // Import du Widget d'Accessibilité
 import AccessibilityWidget from "./components/common/AccessibilityWidget";
 import FloatingWhatsApp from "./components/common/FloatingWhatsApp";
+import AuthModal from "./components/auth/AuthModal";
 
 // Pages principales (chargées immédiatement : page d'accueil + 404 utilisées de façon synchrone ailleurs)
 import HomePage from "./pages/HomePage";
@@ -183,6 +184,7 @@ const LangRecruitmentListingRoute = () => {
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated } = useAuth();
   const { t } = useLanguage();
+  const [showAuthModal, setShowAuthModal] = useState(false);
 
   // Si pas connecté, affiche un message d'erreur
   if (!isAuthenticated) {
@@ -216,12 +218,26 @@ const ProtectedRoute = ({ children }) => {
           gap: '15px',
           marginTop: '20px'
         }}>
-          <a
-            href="/"
+          <button
+            onClick={() => setShowAuthModal(true)}
             style={{
               padding: '12px 24px',
               background: 'linear-gradient(135deg, #3b82f6 0%, #10b981 100%)',
               color: 'white',
+              border: 'none',
+              cursor: 'pointer',
+              borderRadius: '8px',
+              fontWeight: '600'
+            }}
+          >
+            {t('auth.login')}
+          </button>
+          <a
+            href="/"
+            style={{
+              padding: '12px 24px',
+              background: '#e5e7eb',
+              color: '#111827',
               textDecoration: 'none',
               borderRadius: '8px',
               fontWeight: '600'
@@ -230,6 +246,13 @@ const ProtectedRoute = ({ children }) => {
             {t('notFound.backHome')}
           </a>
         </div>
+        {showAuthModal && (
+          <AuthModal
+            isOpen={showAuthModal}
+            onClose={() => setShowAuthModal(false)}
+            initialMode="login"
+          />
+        )}
       </div>
     );
   }
