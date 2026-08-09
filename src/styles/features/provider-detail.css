@@ -94,22 +94,22 @@
 }
 
 /* Responsive mobile */
-@media (max-width: 768px) {
+@media (max-width: 1023px) {
   .provider-detail-page .provider-main-info {
     flex-direction: column;
     text-align: center;
   }
-  
+
   .hero-service-logo {
     order: -1;
     width: 100px;
   }
-  
+
   .hero-service-logo img {
     width: 100px;
     height: 100px;
   }
-  
+
   .hero-center-content .contact-actions {
     flex-direction: column;
     width: 100%;
@@ -169,7 +169,7 @@
   direction: rtl;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1023px) {
   .provider-main-info {
     flex-direction: column;
     text-align: center;
@@ -632,7 +632,7 @@
   box-shadow: 0 4px 12px -2px rgba(47, 128, 237, 0.4);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1023px) {
   .provider-section-nav {
     top: 60px; /* mobile header is shorter */
   }
@@ -1387,7 +1387,7 @@ text-align: start;
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 1023px) {
   .provider-hero {
     padding: var(--space-8) 0;
   }
@@ -1626,7 +1626,7 @@ text-align: start;
 }
 
 /* Mobile : colonne, whatsapp au milieu */
-@media (max-width: 768px) {
+@media (max-width: 1023px) {
   .hero-buttons-grid {
     flex-direction: column;
     align-items: stretch;

@@ -124,7 +124,7 @@
 /* ====================================
    TABLET (768px - 1023px)
    ==================================== */
-@media (max-width: 768px) {
+@media (max-width: 1023px) {
   /* Container adjustments */
   .container {
     padding: 0 var(--space-4);

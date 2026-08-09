@@ -369,30 +369,30 @@ nav {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1023px) {
   header .container {
     height: 90px;
   }
-  
+
   nav {
     display: none;
   }
-  
+
   .mobile-menu-button {
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  
+
   .logo-main {
     font-size: var(--text-xl);
   }
-  
+
   .logo-icon {
     width: 40px;
     height: 40px;
   }
-  
+
   .logo-icon svg {
     width: 20px;
     height: 20px;
@@ -409,7 +409,7 @@ nav {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1023px) {
   .logo-sub {
     font-size: 11px;
     white-space: normal;
@@ -417,7 +417,7 @@ nav {
     line-height: 0.9;
      margin-top: 1px;
   }
-  
+
   .logo-icon {
     width: 90px;
     height: 90px;
@@ -447,7 +447,7 @@ nav {
 /* ====================================
    MOBILE MENU - CORRECTIONS
    ==================================== */
-@media (max-width: 768px) {
+@media (max-width: 1023px) {
   /* Cacher les boutons CTA desktop */
   header .container > .flex.items-center {
     gap: var(--space-2);
@@ -550,7 +550,7 @@ body {
   padding-top: 80px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1023px) {
   body {
     padding-top: 90px;
   }
@@ -685,7 +685,7 @@ body {
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (max-width: 1023px) {
   .header-language-dropdown {
     margin-left: 0.5rem;
     margin-right: 0.5rem;
@@ -706,7 +706,7 @@ body {
   display: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1023px) {
   /* Cacher le dropdown dans le nav (car le nav est caché) */
   nav .header-language-dropdown {
     display: none !important;
@@ -1095,7 +1095,7 @@ body {
 }
 
 /* Cacher overlay/drawer sur desktop */
-@media (min-width: 769px) {
+@media (min-width: 1024px) {
   .mobile-overlay {
     display: none !important;
   }
