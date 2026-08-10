@@ -2871,6 +2871,9 @@
   "provider.details.driverVehicleType": "סוג רכב",
   "provider.details.driverTransportationType": "סוג הסעות",
 
+  "services.faqSectionTitle": "שאלות נפוצות",
+  "services.faqSectionSubtitle": "התשובות לשאלות שהכי מטרידות לקוחות לפני שהם פונים לספק",
+  "services.infoSectionTitle": "מידע שימושי",
   "services.babysitting.intro": "אנחנו מחברים בין הורים לבין שמרטפים ומטפלות שעברו הליך אימות בסיסי, כדי שתוכלו למצוא ליווי אמין לילדים בכל שעה שתצטרכו - מבייביסיטר לערב חד פעמי ועד ליווי קבוע אחר הצהריים. השירות פעיל בכל הארץ, מירושלים ותל אביב ועד הפריפריה, כך שתוכלו לסנן לפי עיר, שכונה וגיל הילדים.",
   "services.babysitting.highlight1": "שמירה חד פעמית לערבים ואירועים",
   "services.babysitting.highlight2": "ליווי קבוע אחר הצהריים וימי לימודים",
