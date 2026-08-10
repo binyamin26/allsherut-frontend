@@ -9,6 +9,12 @@ import apiService from '../../services/api';
 import ProviderCard from '../../components/cards/ProviderCard';
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
+import ServiceBreadcrumb from '../../components/services/ServiceBreadcrumb';
+import ServiceIntro from '../../components/services/ServiceIntro';
+import ServiceFaq from '../../components/services/ServiceFaq';
+import { buildServicePageJsonLd } from '../../utils/seoJsonLd';
+import { SERVICE_PAGE_META } from '../../data/servicePageMeta';
+import { buildServicePath, serviceTypeToKey } from '../../utils/langUtils';
 
 const PrivateChefPage = () => {
   const navigate = useNavigate();
@@ -109,31 +115,27 @@ const PrivateChefPage = () => {
   return (
     <div className="service-page private-chef-page">
       <SEO
-        title="שף פרטי בישראל"
-        description="מצאו שף פרטי בישראל - בישול בבית, אירועים פרטיים ותפריטים מותאמים אישית."
-        canonicalPath="/services/private-chef"
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'Service',
-          name: 'שף פרטי בישראל',
-          description: 'מצאו שף פרטי בישראל - בישול בבית, אירועים פרטיים ותפריטים מותאמים אישית.',
-          areaServed: { '@type': 'Country', name: 'ישראל' },
-          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
-        }}
+  title={SERVICE_PAGE_META.private_chef.title}
+  description={SERVICE_PAGE_META.private_chef.description}
+  canonicalPath={buildServicePath(serviceTypeToKey('private_chef'), 'he')}
+  jsonLd={buildServicePageJsonLd({ serviceId: 'private_chef', name: SERVICE_PAGE_META.private_chef.title, description: SERVICE_PAGE_META.private_chef.description, t })}
       />
+      <ServiceBreadcrumb serviceId="private_chef" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo chef prati.jpg"
-                alt="Chef Privֳ©"
+                src={SERVICE_PAGE_META.private_chef.heroImage}
+                alt={SERVICE_PAGE_META.private_chef.heroAlt}
               />
             </div>
             <h1 className="service-title">{t('services.private_chef.pageTitle')}</h1>
           </div>
         </div>
       </section>
+
+      <ServiceIntro serviceId="private_chef" />
 
       <FilterBar 
         serviceType="private_chef"
@@ -199,6 +201,8 @@ const PrivateChefPage = () => {
           )}
         </div>
       </div>
+
+      <ServiceFaq serviceId="private_chef" />
 
       <ReviewModal 
         isOpen={reviewModal.isOpen}

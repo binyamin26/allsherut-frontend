@@ -9,6 +9,12 @@ import apiService from '../../services/api';
 import ProviderCard from '../../components/cards/ProviderCard';
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
+import ServiceBreadcrumb from '../../components/services/ServiceBreadcrumb';
+import ServiceIntro from '../../components/services/ServiceIntro';
+import ServiceFaq from '../../components/services/ServiceFaq';
+import { buildServicePageJsonLd } from '../../utils/seoJsonLd';
+import { SERVICE_PAGE_META } from '../../data/servicePageMeta';
+import { buildServicePath, serviceTypeToKey } from '../../utils/langUtils';
 
 const PlumbingPage = () => {
   const navigate = useNavigate();
@@ -109,31 +115,27 @@ const PlumbingPage = () => {
   return (
     <div className="service-page plumbing-page">
       <SEO
-        title="אינסטלטור בישראל"
-        description="מצאו אינסטלטור מקצועי בישראל - תיקון נזילות, התקנות ועבודות אינסטלציה."
-        canonicalPath="/services/plumbing"
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'Service',
-          name: 'אינסטלטור בישראל',
-          description: 'מצאו אינסטלטור מקצועי בישראל - תיקון נזילות, התקנות ועבודות אינסטלציה.',
-          areaServed: { '@type': 'Country', name: 'ישראל' },
-          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
-        }}
+  title={SERVICE_PAGE_META.plumbing.title}
+  description={SERVICE_PAGE_META.plumbing.description}
+  canonicalPath={buildServicePath(serviceTypeToKey('plumbing'), 'he')}
+  jsonLd={buildServicePageJsonLd({ serviceId: 'plumbing', name: SERVICE_PAGE_META.plumbing.title, description: SERVICE_PAGE_META.plumbing.description, t })}
       />
+      <ServiceBreadcrumb serviceId="plumbing" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo plomberie.jpg"
-                alt="Plomberie"
+                src={SERVICE_PAGE_META.plumbing.heroImage}
+                alt={SERVICE_PAGE_META.plumbing.heroAlt}
               />
             </div>
             <h1 className="service-title">{t('services.plumbing.pageTitle')}</h1>
           </div>
         </div>
       </section>
+
+      <ServiceIntro serviceId="plumbing" />
 
       <FilterBar 
         serviceType="plumbing"
@@ -199,6 +201,8 @@ const PlumbingPage = () => {
           )}
         </div>
       </div>
+
+      <ServiceFaq serviceId="plumbing" />
 
       <ReviewModal 
         isOpen={reviewModal.isOpen}

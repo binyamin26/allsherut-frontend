@@ -8,6 +8,12 @@ import ReviewModal from '../../components/modals/ReviewModal';
 import apiService from '../../services/api';
 import ProviderCard from '../../components/cards/ProviderCard';
 import { useLanguage } from '../../context/LanguageContext';
+import ServiceBreadcrumb from '../../components/services/ServiceBreadcrumb';
+import ServiceIntro from '../../components/services/ServiceIntro';
+import ServiceFaq from '../../components/services/ServiceFaq';
+import { buildServicePageJsonLd } from '../../utils/seoJsonLd';
+import { SERVICE_PAGE_META } from '../../data/servicePageMeta';
+import { buildServicePath, serviceTypeToKey } from '../../utils/langUtils';
 import React, { useState, useEffect } from 'react';
 
 const GlassWorksPage = () => {
@@ -109,31 +115,27 @@ const GlassWorksPage = () => {
   return (
     <div className="service-page glass-works-page">
       <SEO
-        title="עבודות זכוכית בישראל"
-        description="מצאו בעל מקצוע לעבודות זכוכית בישראל - חלונות, מראות ומחיצות זכוכית."
-        canonicalPath="/services/glass-works"
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'Service',
-          name: 'עבודות זכוכית בישראל',
-          description: 'מצאו בעל מקצוע לעבודות זכוכית בישראל - חלונות, מראות ומחיצות זכוכית.',
-          areaServed: { '@type': 'Country', name: 'ישראל' },
-          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
-        }}
+  title={SERVICE_PAGE_META.glass_works.title}
+  description={SERVICE_PAGE_META.glass_works.description}
+  canonicalPath={buildServicePath(serviceTypeToKey('glass_works'), 'he')}
+  jsonLd={buildServicePageJsonLd({ serviceId: 'glass_works', name: SERVICE_PAGE_META.glass_works.title, description: SERVICE_PAGE_META.glass_works.description, t })}
       />
+      <ServiceBreadcrumb serviceId="glass_works" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo verre.jpg"
-                alt="Vitrerie"
+                src={SERVICE_PAGE_META.glass_works.heroImage}
+                alt={SERVICE_PAGE_META.glass_works.heroAlt}
               />
             </div>
             <h1 className="service-title">{t('services.glass_works.pageTitle')}</h1>
           </div>
         </div>
       </section>
+
+      <ServiceIntro serviceId="glass_works" />
 
       <FilterBar 
         serviceType="glass_works"
@@ -200,6 +202,8 @@ const GlassWorksPage = () => {
           )}
         </div>
       </div>
+
+      <ServiceFaq serviceId="glass_works" />
 
       <ReviewModal 
         isOpen={reviewModal.isOpen}

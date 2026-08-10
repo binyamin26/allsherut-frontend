@@ -9,6 +9,12 @@ import apiService from '../../services/api';
 import React, { useState, useEffect } from 'react';
 import ProviderCard from '../../components/cards/ProviderCard';
 import { useLanguage } from '../../context/LanguageContext';
+import ServiceBreadcrumb from '../../components/services/ServiceBreadcrumb';
+import ServiceIntro from '../../components/services/ServiceIntro';
+import ServiceFaq from '../../components/services/ServiceFaq';
+import { buildServicePageJsonLd } from '../../utils/seoJsonLd';
+import { SERVICE_PAGE_META } from '../../data/servicePageMeta';
+import { buildServicePath, serviceTypeToKey } from '../../utils/langUtils';
 
 const BabysittingPageClean = () => {
   const navigate = useNavigate();
@@ -114,29 +120,22 @@ const response = await apiService.searchProviders(cleanParams);
     loadProviders();
   };
 
-
   return (
     <div className="service-page babysitting-page">
       <SEO
-        title="בייביסיטר בישראל"
-        description="מצאו בייביסיטר מקצועי ואמין בישראל - שמירה על ילדים, ניסיון מוכח ודירוגים אמיתיים."
-        canonicalPath="/services/babysitting"
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'Service',
-          name: 'בייביסיטר בישראל',
-          description: 'מצאו בייביסיטר מקצועי ואמין בישראל - שמירה על ילדים, ניסיון מוכח ודירוגים אמיתיים.',
-          areaServed: { '@type': 'Country', name: 'ישראל' },
-          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
-        }}
+  title={SERVICE_PAGE_META.babysitting.title}
+  description={SERVICE_PAGE_META.babysitting.description}
+  canonicalPath={buildServicePath(serviceTypeToKey('babysitting'), 'he')}
+  jsonLd={buildServicePageJsonLd({ serviceId: 'babysitting', name: SERVICE_PAGE_META.babysitting.title, description: SERVICE_PAGE_META.babysitting.description, t })}
       />
+      <ServiceBreadcrumb serviceId="babysitting" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo bbsit.jpg"
-                alt="baby-sitting"
+                src={SERVICE_PAGE_META.babysitting.heroImage}
+                alt={SERVICE_PAGE_META.babysitting.heroAlt}
               />
             </div>
             <h1 className="service-title">{t('services.babysitting.pageTitle')}</h1>
@@ -145,6 +144,8 @@ const response = await apiService.searchProviders(cleanParams);
       </section>
 
       {/* FilterBar */}
+      <ServiceIntro serviceId="babysitting" />
+
       <FilterBar 
         serviceType="babysitting"
         onFiltersChange={handleFiltersChange}
@@ -212,6 +213,8 @@ const response = await apiService.searchProviders(cleanParams);
       </div>
 
       {/* Modal d'avis */}
+      <ServiceFaq serviceId="babysitting" />
+
       <ReviewModal 
         isOpen={reviewModal.isOpen}
         onClose={handleCloseReviewModal}

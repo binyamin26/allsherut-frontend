@@ -8,6 +8,12 @@ import apiService from '../../services/api';
 import React, { useState, useEffect } from 'react';
 import ProviderCard from '../../components/cards/ProviderCard';
 import { useLanguage } from '../../context/LanguageContext';
+import ServiceBreadcrumb from '../../components/services/ServiceBreadcrumb';
+import ServiceIntro from '../../components/services/ServiceIntro';
+import ServiceFaq from '../../components/services/ServiceFaq';
+import { buildServicePageJsonLd } from '../../utils/seoJsonLd';
+import { SERVICE_PAGE_META } from '../../data/servicePageMeta';
+import { buildServicePath, serviceTypeToKey } from '../../utils/langUtils';
 import { useLocationFilter } from '../../hooks/useLocationFilter';
 
 const ContractorPage = () => {
@@ -109,31 +115,27 @@ const ContractorPage = () => {
   return (
     <div className="service-page contractor-page">
       <SEO
-        title="קבלן שיפוצים בישראל"
-        description="מצאו קבלן שיפוצים מקצועי בישראל - שיפוץ דירה, בנייה ועבודות גמר."
-        canonicalPath="/services/contractor"
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'Service',
-          name: 'קבלן שיפוצים בישראל',
-          description: 'מצאו קבלן שיפוצים מקצועי בישראל - שיפוץ דירה, בנייה ועבודות גמר.',
-          areaServed: { '@type': 'Country', name: 'ישראל' },
-          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
-        }}
+  title={SERVICE_PAGE_META.contractor.title}
+  description={SERVICE_PAGE_META.contractor.description}
+  canonicalPath={buildServicePath(serviceTypeToKey('contractor'), 'he')}
+  jsonLd={buildServicePageJsonLd({ serviceId: 'contractor', name: SERVICE_PAGE_META.contractor.title, description: SERVICE_PAGE_META.contractor.description, t })}
       />
+      <ServiceBreadcrumb serviceId="contractor" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo kablan.jpg"
-                alt="Rֳ©novation"
+                src={SERVICE_PAGE_META.contractor.heroImage}
+                alt={SERVICE_PAGE_META.contractor.heroAlt}
               />
             </div>
             <h1 className="service-title">{t('services.contractor.pageTitle')}</h1>
           </div>
         </div>
       </section>
+
+      <ServiceIntro serviceId="contractor" />
 
       <FilterBar 
         serviceType="contractor"
@@ -199,6 +201,8 @@ const ContractorPage = () => {
           )}
         </div>
       </div>
+
+      <ServiceFaq serviceId="contractor" />
 
       <ReviewModal 
         isOpen={reviewModal.isOpen}

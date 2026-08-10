@@ -8,6 +8,12 @@ import apiService from '../../services/api';
 import React, { useState, useEffect } from 'react';
 import ProviderCard from '../../components/cards/ProviderCard';
 import { useLanguage } from '../../context/LanguageContext';
+import ServiceBreadcrumb from '../../components/services/ServiceBreadcrumb';
+import ServiceIntro from '../../components/services/ServiceIntro';
+import ServiceFaq from '../../components/services/ServiceFaq';
+import { buildServicePageJsonLd } from '../../utils/seoJsonLd';
+import { SERVICE_PAGE_META } from '../../data/servicePageMeta';
+import { buildServicePath, serviceTypeToKey } from '../../utils/langUtils';
 
 const PhotographerPage = () => {
   const navigate = useNavigate();
@@ -84,28 +90,25 @@ const PhotographerPage = () => {
   return (
     <div className="service-page photographer-page">
       <SEO
-        title="צלם מקצועי בישראל"
-        description="מצאו צלם מקצועי בישראל - צילום אירועים, פורטרטים, תדמית ועסקי."
-        canonicalPath="/services/photographer"
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'Service',
-          name: 'צלם מקצועי בישראל',
-          description: 'מצאו צלם מקצועי בישראל - צילום אירועים, פורטרטים, תדמית ועסקי.',
-          areaServed: { '@type': 'Country', name: 'ישראל' },
-          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
-        }}
+  title={SERVICE_PAGE_META.photographer.title}
+  description={SERVICE_PAGE_META.photographer.description}
+  canonicalPath={buildServicePath(serviceTypeToKey('photographer'), 'he')}
+  jsonLd={buildServicePageJsonLd({ serviceId: 'photographer', name: SERVICE_PAGE_META.photographer.title, description: SERVICE_PAGE_META.photographer.description, t })}
       />
+      <ServiceBreadcrumb serviceId="photographer" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon">
-              <img src="/images/logo%20photographe.jpg" alt="Photographe" />
+              <img src={SERVICE_PAGE_META.photographer.heroImage}
+                alt={SERVICE_PAGE_META.photographer.heroAlt} />
             </div>
             <h1 className="service-title">{t('services.photographer.pageTitle')}</h1>
           </div>
         </div>
       </section>
+
+      <ServiceIntro serviceId="photographer" />
 
       <FilterBar
         serviceType="photographer"
@@ -169,6 +172,8 @@ const PhotographerPage = () => {
           )}
         </div>
       </div>
+
+      <ServiceFaq serviceId="photographer" />
 
       <ReviewModal
         isOpen={reviewModal.isOpen}

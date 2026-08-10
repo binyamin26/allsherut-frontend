@@ -9,6 +9,12 @@ import apiService from '../../services/api';
 import ProviderCard from '../../components/cards/ProviderCard';
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
+import ServiceBreadcrumb from '../../components/services/ServiceBreadcrumb';
+import ServiceIntro from '../../components/services/ServiceIntro';
+import ServiceFaq from '../../components/services/ServiceFaq';
+import { buildServicePageJsonLd } from '../../utils/seoJsonLd';
+import { SERVICE_PAGE_META } from '../../data/servicePageMeta';
+import { buildServicePath, serviceTypeToKey } from '../../utils/langUtils';
 
 const WaterproofingPage = () => {
   const navigate = useNavigate();
@@ -109,31 +115,27 @@ const WaterproofingPage = () => {
   return (
     <div className="service-page waterproofing-page">
       <SEO
-        title="איטום בישראל"
-        description="מצאו מאטם מקצועי בישראל - איטום גגות, מרפסות ומניעת רטיבות."
-        canonicalPath="/services/waterproofing"
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'Service',
-          name: 'איטום בישראל',
-          description: 'מצאו מאטם מקצועי בישראל - איטום גגות, מרפסות ומניעת רטיבות.',
-          areaServed: { '@type': 'Country', name: 'ישראל' },
-          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
-        }}
+  title={SERVICE_PAGE_META.waterproofing.title}
+  description={SERVICE_PAGE_META.waterproofing.description}
+  canonicalPath={buildServicePath(serviceTypeToKey('waterproofing'), 'he')}
+  jsonLd={buildServicePageJsonLd({ serviceId: 'waterproofing', name: SERVICE_PAGE_META.waterproofing.title, description: SERVICE_PAGE_META.waterproofing.description, t })}
       />
+      <ServiceBreadcrumb serviceId="waterproofing" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo itoum.jpg"
-                alt="ֳ‰tanchֳ©itֳ©"
+                src={SERVICE_PAGE_META.waterproofing.heroImage}
+                alt={SERVICE_PAGE_META.waterproofing.heroAlt}
               />
             </div>
             <h1 className="service-title">{t('services.waterproofing.pageTitle')}</h1>
           </div>
         </div>
       </section>
+
+      <ServiceIntro serviceId="waterproofing" />
 
       <FilterBar 
         serviceType="waterproofing"
@@ -199,6 +201,8 @@ const WaterproofingPage = () => {
           )}
         </div>
       </div>
+
+      <ServiceFaq serviceId="waterproofing" />
 
       <ReviewModal 
         isOpen={reviewModal.isOpen}

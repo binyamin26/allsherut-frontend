@@ -8,8 +8,13 @@ import ReviewModal from '../../components/modals/ReviewModal';
 import apiService from '../../services/api';
 import ProviderCard from '../../components/cards/ProviderCard';
 import { useLanguage } from '../../context/LanguageContext';
+import ServiceBreadcrumb from '../../components/services/ServiceBreadcrumb';
+import ServiceIntro from '../../components/services/ServiceIntro';
+import ServiceFaq from '../../components/services/ServiceFaq';
+import { buildServicePageJsonLd } from '../../utils/seoJsonLd';
+import { SERVICE_PAGE_META } from '../../data/servicePageMeta';
+import { buildServicePath, serviceTypeToKey } from '../../utils/langUtils';
 import React, { useState, useEffect } from 'react';
-
 
 const LaundryPage = () => {
   const navigate = useNavigate();
@@ -121,31 +126,27 @@ const LaundryPage = () => {
   return (
     <div className="service-page laundry-page">
       <SEO
-        title="כביסה ואיסטניס בישראל"
-        description="מצאו שירות כביסה מקצועי בישראל - כביסה, גיהוץ ועיבוד בגדים עד לבית."
-        canonicalPath="/services/laundry"
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'Service',
-          name: 'כביסה ואיסטניס בישראל',
-          description: 'מצאו שירות כביסה מקצועי בישראל - כביסה, גיהוץ ועיבוד בגדים עד לבית.',
-          areaServed: { '@type': 'Country', name: 'ישראל' },
-          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
-        }}
+  title={SERVICE_PAGE_META.laundry.title}
+  description={SERVICE_PAGE_META.laundry.description}
+  canonicalPath={buildServicePath(serviceTypeToKey('laundry'), 'he')}
+  jsonLd={buildServicePageJsonLd({ serviceId: 'laundry', name: SERVICE_PAGE_META.laundry.title, description: SERVICE_PAGE_META.laundry.description, t })}
       />
+      <ServiceBreadcrumb serviceId="laundry" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo kvissa.png"
-                alt="Pressing"
+                src={SERVICE_PAGE_META.laundry.heroImage}
+                alt={SERVICE_PAGE_META.laundry.heroAlt}
               />
             </div>
             <h1 className="service-title">{t('services.laundry.pageTitle')}</h1>
           </div>
         </div>
       </section>
+
+      <ServiceIntro serviceId="laundry" />
 
       <FilterBar 
         serviceType="laundry"
@@ -213,6 +214,8 @@ const LaundryPage = () => {
       </div>
 
       {/* Modal d'avis */}
+      <ServiceFaq serviceId="laundry" />
+
       <ReviewModal 
         isOpen={reviewModal.isOpen}
         onClose={handleCloseReviewModal}

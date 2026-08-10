@@ -8,6 +8,12 @@ import ReviewModal from '../../components/modals/ReviewModal';
 import apiService from '../../services/api';
 import ProviderCard from '../../components/cards/ProviderCard';
 import { useLanguage } from '../../context/LanguageContext';
+import ServiceBreadcrumb from '../../components/services/ServiceBreadcrumb';
+import ServiceIntro from '../../components/services/ServiceIntro';
+import ServiceFaq from '../../components/services/ServiceFaq';
+import { buildServicePageJsonLd } from '../../utils/seoJsonLd';
+import { SERVICE_PAGE_META } from '../../data/servicePageMeta';
+import { buildServicePath, serviceTypeToKey } from '../../utils/langUtils';
 import React, { useState, useEffect } from 'react';
 
 const HomeOrganizationPage = () => {
@@ -109,31 +115,27 @@ const HomeOrganizationPage = () => {
   return (
     <div className="service-page home-organization-page">
       <SEO
-        title="ארגון הבית בישראל"
-        description="מצאו מארגן בית מקצועי בישראל - סידור, ארגון ומיון לבית מסודר ויעיל."
-        canonicalPath="/services/home-organization"
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'Service',
-          name: 'ארגון הבית בישראל',
-          description: 'מצאו מארגן בית מקצועי בישראל - סידור, ארגון ומיון לבית מסודר ויעיל.',
-          areaServed: { '@type': 'Country', name: 'ישראל' },
-          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
-        }}
+  title={SERVICE_PAGE_META.home_organization.title}
+  description={SERVICE_PAGE_META.home_organization.description}
+  canonicalPath={buildServicePath(serviceTypeToKey('home_organization'), 'he')}
+  jsonLd={buildServicePageJsonLd({ serviceId: 'home_organization', name: SERVICE_PAGE_META.home_organization.title, description: SERVICE_PAGE_META.home_organization.description, t })}
       />
+      <ServiceBreadcrumb serviceId="home_organization" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo rangement.jpg"
-                alt="Rangement"
+                src={SERVICE_PAGE_META.home_organization.heroImage}
+                alt={SERVICE_PAGE_META.home_organization.heroAlt}
               />
             </div>
             <h1 className="service-title">{t('services.home_organization.pageTitle')}</h1>
           </div>
         </div>
       </section>
+
+      <ServiceIntro serviceId="home_organization" />
 
       <FilterBar 
         serviceType="home_organization"
@@ -199,6 +201,8 @@ const HomeOrganizationPage = () => {
           )}
         </div>
       </div>
+
+      <ServiceFaq serviceId="home_organization" />
 
       <ReviewModal 
         isOpen={reviewModal.isOpen}

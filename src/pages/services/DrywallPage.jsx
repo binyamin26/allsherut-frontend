@@ -9,6 +9,12 @@ import apiService from '../../services/api';
 import React, { useState, useEffect } from 'react';
 import ProviderCard from '../../components/cards/ProviderCard';
 import { useLanguage } from '../../context/LanguageContext';
+import ServiceBreadcrumb from '../../components/services/ServiceBreadcrumb';
+import ServiceIntro from '../../components/services/ServiceIntro';
+import ServiceFaq from '../../components/services/ServiceFaq';
+import { buildServicePageJsonLd } from '../../utils/seoJsonLd';
+import { SERVICE_PAGE_META } from '../../data/servicePageMeta';
+import { buildServicePath, serviceTypeToKey } from '../../utils/langUtils';
 
 const DrywallPage = () => {
   const navigate = useNavigate();
@@ -106,35 +112,30 @@ const DrywallPage = () => {
     loadProviders();
   };
 
-
   return (
     <div className="service-page drywall-page">
       <SEO
-        title="גבס ופלסטיקה בישראל"
-        description="מצאו בעל מקצוע לעבודות גבס בישראל - תקרות גבס, קירות וחיפוי."
-        canonicalPath="/services/drywall"
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'Service',
-          name: 'גבס ופלסטיקה בישראל',
-          description: 'מצאו בעל מקצוע לעבודות גבס בישראל - תקרות גבס, קירות וחיפוי.',
-          areaServed: { '@type': 'Country', name: 'ישראל' },
-          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
-        }}
+  title={SERVICE_PAGE_META.drywall.title}
+  description={SERVICE_PAGE_META.drywall.description}
+  canonicalPath={buildServicePath(serviceTypeToKey('drywall'), 'he')}
+  jsonLd={buildServicePageJsonLd({ serviceId: 'drywall', name: SERVICE_PAGE_META.drywall.title, description: SERVICE_PAGE_META.drywall.description, t })}
       />
+      <ServiceBreadcrumb serviceId="drywall" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo placo.jpg"
-                alt="Plֳ¢tre"
+                src={SERVICE_PAGE_META.drywall.heroImage}
+                alt={SERVICE_PAGE_META.drywall.heroAlt}
               />
             </div>
             <h1 className="service-title">{t('services.drywall.pageTitle')}</h1>
           </div>
         </div>
       </section>
+
+      <ServiceIntro serviceId="drywall" />
 
       <FilterBar 
         serviceType="drywall"
@@ -200,6 +201,8 @@ const DrywallPage = () => {
           )}
         </div>
       </div>
+
+      <ServiceFaq serviceId="drywall" />
 
       <ReviewModal 
         isOpen={reviewModal.isOpen}

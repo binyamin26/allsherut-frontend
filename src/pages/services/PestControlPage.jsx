@@ -8,6 +8,12 @@ import apiService from '../../services/api';
 import React, { useState, useEffect } from 'react';
 import ProviderCard from '../../components/cards/ProviderCard';
 import { useLanguage } from '../../context/LanguageContext';
+import ServiceBreadcrumb from '../../components/services/ServiceBreadcrumb';
+import ServiceIntro from '../../components/services/ServiceIntro';
+import ServiceFaq from '../../components/services/ServiceFaq';
+import { buildServicePageJsonLd } from '../../utils/seoJsonLd';
+import { SERVICE_PAGE_META } from '../../data/servicePageMeta';
+import { buildServicePath, serviceTypeToKey } from '../../utils/langUtils';
 
 const PestControlPage = () => {
   const navigate = useNavigate();
@@ -95,31 +101,27 @@ const PestControlPage = () => {
   return (
     <div className="service-page pest-control-page">
       <SEO
-        title="הדברה בישראל"
-        description="מצאו מדביר מקצועי בישראל - הדברת מכרסמים, חרקים ומזיקים בצורה בטוחה."
-        canonicalPath="/services/pest-control"
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'Service',
-          name: 'הדברה בישראל',
-          description: 'מצאו מדביר מקצועי בישראל - הדברת מכרסמים, חרקים ומזיקים בצורה בטוחה.',
-          areaServed: { '@type': 'Country', name: 'ישראל' },
-          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
-        }}
+  title={SERVICE_PAGE_META.pest_control.title}
+  description={SERVICE_PAGE_META.pest_control.description}
+  canonicalPath={buildServicePath(serviceTypeToKey('pest_control'), 'he')}
+  jsonLd={buildServicePageJsonLd({ serviceId: 'pest_control', name: SERVICE_PAGE_META.pest_control.title, description: SERVICE_PAGE_META.pest_control.description, t })}
       />
+      <ServiceBreadcrumb serviceId="pest_control" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo desinctisation.jpg"
-                alt="׳”׳“׳‘׳¨׳”"
+                src={SERVICE_PAGE_META.pest_control.heroImage}
+                alt={SERVICE_PAGE_META.pest_control.heroAlt}
               />
             </div>
             <h1 className="service-title">{t('services.pest_control.pageTitle')}</h1>
           </div>
         </div>
       </section>
+
+      <ServiceIntro serviceId="pest_control" />
 
       <FilterBar
         serviceType="pest_control"
@@ -185,6 +187,8 @@ const PestControlPage = () => {
           )}
         </div>
       </div>
+
+      <ServiceFaq serviceId="pest_control" />
 
       <ReviewModal
         isOpen={reviewModal.isOpen}

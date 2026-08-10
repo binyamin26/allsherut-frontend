@@ -9,6 +9,12 @@ import apiService from '../../services/api';
 import React, { useState, useEffect } from 'react';
 import ProviderCard from '../../components/cards/ProviderCard';
 import { useLanguage } from '../../context/LanguageContext';
+import ServiceBreadcrumb from '../../components/services/ServiceBreadcrumb';
+import ServiceIntro from '../../components/services/ServiceIntro';
+import ServiceFaq from '../../components/services/ServiceFaq';
+import { buildServicePageJsonLd } from '../../utils/seoJsonLd';
+import { SERVICE_PAGE_META } from '../../data/servicePageMeta';
+import { buildServicePath, serviceTypeToKey } from '../../utils/langUtils';
 
 const CarpentryPage = () => {
   const navigate = useNavigate();
@@ -109,31 +115,27 @@ const CarpentryPage = () => {
   return (
     <div className="service-page carpentry-page">
       <SEO
-        title="נגר בישראל"
-        description="מצאו נגר מקצועי בישראל - ריהוט מותאם אישית, תיקונים ועבודות עץ איכותיות."
-        canonicalPath="/services/carpentry"
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'Service',
-          name: 'נגר בישראל',
-          description: 'מצאו נגר מקצועי בישראל - ריהוט מותאם אישית, תיקונים ועבודות עץ איכותיות.',
-          areaServed: { '@type': 'Country', name: 'ישראל' },
-          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
-        }}
+  title={SERVICE_PAGE_META.carpentry.title}
+  description={SERVICE_PAGE_META.carpentry.description}
+  canonicalPath={buildServicePath(serviceTypeToKey('carpentry'), 'he')}
+  jsonLd={buildServicePageJsonLd({ serviceId: 'carpentry', name: SERVICE_PAGE_META.carpentry.title, description: SERVICE_PAGE_META.carpentry.description, t })}
       />
+      <ServiceBreadcrumb serviceId="carpentry" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo menuisier.jpg"
-                alt="Menuiserie"
+                src={SERVICE_PAGE_META.carpentry.heroImage}
+                alt={SERVICE_PAGE_META.carpentry.heroAlt}
               />
             </div>
             <h1 className="service-title">{t('services.carpentry.pageTitle')}</h1>
           </div>
         </div>
       </section>
+
+      <ServiceIntro serviceId="carpentry" />
 
       <FilterBar 
         serviceType="carpentry"
@@ -199,6 +201,8 @@ const CarpentryPage = () => {
           )}
         </div>
       </div>
+
+      <ServiceFaq serviceId="carpentry" />
 
       <ReviewModal 
         isOpen={reviewModal.isOpen}

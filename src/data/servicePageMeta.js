@@ -1,0 +1,231 @@
+// Single source of truth for each /services/:slug page's title, meta description,
+// and hero image — used by both the live React page (via <SEO>) and the build-time
+// prerender script (scripts/prerender-static-pages.mjs), so the two can never drift
+// apart. canonicalPath is deliberately NOT stored here: it's derived from
+// SERVICE_SLUGS at render time (see langUtils.buildServicePath) to avoid the class of
+// bug this file replaced — two pages (air_conditioning, sports_activities) previously
+// had a hand-typed canonicalPath that didn't match their actual route.
+export const SERVICE_PAGE_META = {
+  air_conditioning: {
+    title: 'טכנאי מזגנים בישראל',
+    description: 'מצאו טכנאי מזגנים מקצועיים בישראל - התקנה, תיקון וניקוי מזגנים בכל הארץ.',
+    heroImage: '/images/logo clim.jpg',
+    heroAlt: 'מיזוג אוויר',
+  },
+  aluminum: {
+    title: 'עבודות אלומיניום בישראל',
+    description: 'מצאו בעלי מקצוע לעבודות אלומיניום בישראל - חלונות, דלתות וסגירות מרפסת.',
+    heroImage: '/images/logo aluminium.jpg',
+    heroAlt: 'אלומיניום',
+  },
+  babysitting: {
+    title: 'בייביסיטר בישראל',
+    description: 'מצאו בייביסיטר מקצועי ואמין בישראל - שמירה על ילדים, ניסיון מוכח ודירוגים אמיתיים.',
+    heroImage: '/images/logo bbsit.jpg',
+    heroAlt: 'בייביסיטר',
+  },
+  carpentry: {
+    title: 'נגר בישראל',
+    description: 'מצאו נגר מקצועי בישראל - ריהוט מותאם אישית, תיקונים ועבודות עץ איכותיות.',
+    heroImage: '/images/logo menuisier.jpg',
+    heroAlt: 'נגרות',
+  },
+  catering: {
+    title: 'קייטרינג בישראל',
+    description: 'מצאו ספקי קייטרינג בישראל - קייטרינג לאירועים, ארוחות עסקיות ותפריטים מותאמים אישית.',
+    heroImage: '/images/logo chef.jpg',
+    heroAlt: 'קייטרינג',
+  },
+  cleaning: {
+    title: 'ניקיון בית בישראל',
+    description: 'מצאו עוזרת בית ומנקה מקצועי בישראל - ניקיון שוטף, לפני ואחרי אירועים ועוד.',
+    heroImage: '/images/logo nikayon.jpg',
+    heroAlt: 'ניקיון',
+  },
+  contractor: {
+    title: 'קבלן שיפוצים בישראל',
+    description: 'מצאו קבלן שיפוצים מקצועי בישראל - שיפוץ דירה, בנייה ועבודות גמר.',
+    heroImage: '/images/logo kablan.jpg',
+    heroAlt: 'קבלן שיפוצים',
+  },
+  dj: {
+    title: 'DJ לאירועים בישראל',
+    description: 'מצאו DJ מקצועי לאירועים בישראל - חתונות, ימי הולדת ומסיבות.',
+    heroImage: '/images/logo DJ.jpg',
+    heroAlt: 'די ג’יי',
+  },
+  driver: {
+    title: 'נהג הסעות בישראל',
+    description: 'מצאו נהג הסעות מקצועי בישראל - הסעות לשדה התעופה, אירועים ונסיעות פרטיות.',
+    heroImage: '/images/logo driver.jpg',
+    heroAlt: 'נהג הסעות',
+  },
+  drywall: {
+    title: 'גבס ופלסטיקה בישראל',
+    description: 'מצאו בעל מקצוע לעבודות גבס בישראל - תקרות גבס, קירות וחיפוי.',
+    heroImage: '/images/logo placo.jpg',
+    heroAlt: 'עבודות גבס',
+  },
+  eldercare: {
+    title: 'עזרה לקשישים בישראל',
+    description: 'מצאו מטפל לקשישים בישראל - ליווי, סיוע יומיומי וטיפול מסור בבית.',
+    heroImage: '/images/logo kashishims.jpg',
+    heroAlt: 'עזרה לקשישים',
+  },
+  electrician: {
+    title: 'חשמלאי בישראל',
+    description: 'מצאו חשמלאי מוסמך בישראל - תיקונים, התקנות וחיווט חדש בצורה בטוחה ומקצועית.',
+    heroImage: '/images/logo electricien.jpg',
+    heroAlt: 'חשמלאי',
+  },
+  event_decoration: {
+    title: 'קישוט אירועים בישראל',
+    description: 'מצאו מקשטי אירועים מקצועיים בישראל - עיצוב מרהיב לחתונות, ימי הולדת ואירועים.',
+    heroImage: '/images/logo deco.jpg',
+    heroAlt: 'עיצוב אירועים',
+  },
+  event_entertainment: {
+    title: 'בידור לאירועים בישראל',
+    description: 'מצאו אמני בידור לאירועים בישראל - ליצנים, קוסמים ואמנים לכל גיל.',
+    heroImage: '/images/logo magicien.jpg',
+    heroAlt: 'בידור לאירועים',
+  },
+  event_equipment_rental: {
+    title: 'השכרת ציוד לאירועים בישראל',
+    description: 'השכירו ציוד לאירועים בישראל - מכונות מזון, מתנפחים ומכונות אפקטים.',
+    heroImage: '/images/logo loc.jpg',
+    heroAlt: 'השכרת ציוד לאירועים',
+  },
+  event_food_stands: {
+    title: 'דוכני מזון לאירועים בישראל',
+    description: 'מצאו דוכני מזון מאוישים לאירועים בישראל - פופקורן, ברבה פאפא, המבורגרים ועוד.',
+    heroImage: '/images/logo stands.jpg',
+    heroAlt: 'דוכני מזון לאירועים',
+  },
+  gardening: {
+    title: 'גנן בישראל',
+    description: 'מצאו גנן מקצועי בישראל - עיצוב גינה, גיזום, דשאים ותחזוקת גינה שוטפת.',
+    heroImage: '/images/logo jardinage.jpg',
+    heroAlt: 'גינון',
+  },
+  gas_technician: {
+    title: 'טכנאי גז בישראל',
+    description: 'מצאו טכנאי גז מוסמך בישראל - התקנה, בדיקה ותיקון של מכשירי גז בצורה בטוחה.',
+    heroImage: '/images/logo gaz.jpg',
+    heroAlt: 'טכנאי גז',
+  },
+  glass_works: {
+    title: 'עבודות זכוכית בישראל',
+    description: 'מצאו בעל מקצוע לעבודות זכוכית בישראל - חלונות, מראות ומחיצות זכוכית.',
+    heroImage: '/images/logo verre.jpg',
+    heroAlt: 'זגגות',
+  },
+  handyman: {
+    title: 'הנדימן - עבודות כלליות בישראל',
+    description: 'מצאו הנדימן מקצועי בישראל - תיקונים קטנים, עבודות כלליות ותחזוקת בית.',
+    heroImage: '/images/logo indimane.jpg',
+    heroAlt: 'הנדימן',
+  },
+  home_organization: {
+    title: 'ארגון הבית בישראל',
+    description: 'מצאו מארגן בית מקצועי בישראל - סידור, ארגון ומיון לבית מסודר ויעיל.',
+    heroImage: '/images/logo rangement.jpg',
+    heroAlt: 'ארגון הבית',
+  },
+  laundry: {
+    title: 'כביסה ואיסטניס בישראל',
+    description: 'מצאו שירות כביסה מקצועי בישראל - כביסה, גיהוץ ועיבוד בגדים עד לבית.',
+    heroImage: '/images/logo kvissa.png',
+    heroAlt: 'שירותי כביסה',
+  },
+  locksmith: {
+    title: 'מנעולן בישראל',
+    description: 'מצאו מנעולן מקצועי בישראל - פתיחת דלתות, החלפת מנעולים והתקנת מערכות אבטחה.',
+    heroImage: '/images/logo serrure.jpg',
+    heroAlt: 'מנעולן',
+  },
+  mechanic: {
+    title: 'מכונאי רכב בישראל',
+    description: 'מצאו מכונאי רכב מקצועי בישראל - תיקונים, טיפולים ואבחון תקלות.',
+    heroImage: '/images/logo garagiste.jpg',
+    heroAlt: 'מכונאי רכב',
+  },
+  metalwork: {
+    title: 'עבודות מתכת בישראל',
+    description: 'מצאו בעל מקצוע לעבודות מתכת בישראל - ברזל, נירוסטה ושערים.',
+    heroImage: '/images/logo fer.jpg',
+    heroAlt: 'מסגרות',
+  },
+  moving: {
+    title: 'הובלות בישראל',
+    description: 'מצאו חברת הובלה מקצועית בישראל - הובלת דירה, משרד וציוד עם צוות מנוסה.',
+    heroImage: '/images/logo ovala.jpg',
+    heroAlt: 'הובלות',
+  },
+  painting: {
+    title: 'צבעי בישראל',
+    description: 'מצאו צבעי מקצועי בישראל - צביעת דירות, בתים ומשרדים עם עבודה מדויקת ונקייה.',
+    heroImage: '/images/logo peinture.jpg',
+    heroAlt: 'צבעי',
+  },
+  pastry: {
+    title: 'פירות ופטיסרי בישראל',
+    description: 'מצאו ספקי פירות ופטיסרי בישראל - פירות, מאפים וקינוחים מעוצבים לאירועים ולבית.',
+    heroImage: '/images/logo p et f.jpg',
+    heroAlt: 'קונדיטוריה',
+  },
+  pest_control: {
+    title: 'הדברה בישראל',
+    description: 'מצאו מדביר מקצועי בישראל - הדברת מכרסמים, חרקים ומזיקים בצורה בטוחה.',
+    heroImage: '/images/logo desinctisation.jpg',
+    heroAlt: 'הדברה',
+  },
+  petcare: {
+    title: 'שמירת חיות מחמד בישראל',
+    description: 'מצאו שומר חיות מחמד מקצועי בישראל - כלבים, חתולים ועוד, בבית המטפל או אצלכם.',
+    heroImage: '/images/logo chien.jpg',
+    heroAlt: 'טיפול בחיות מחמד',
+  },
+  photographer: {
+    title: 'צלם מקצועי בישראל',
+    description: 'מצאו צלם מקצועי בישראל - צילום אירועים, פורטרטים, תדמית ועסקי.',
+    heroImage: '/images/logo%20photographe.jpg',
+    heroAlt: 'צלם',
+  },
+  plumbing: {
+    title: 'אינסטלטור בישראל',
+    description: 'מצאו אינסטלטור מקצועי בישראל - תיקון נזילות, התקנות ועבודות אינסטלציה.',
+    heroImage: '/images/logo plomberie.jpg',
+    heroAlt: 'אינסטלטור',
+  },
+  private_chef: {
+    title: 'שף פרטי בישראל',
+    description: 'מצאו שף פרטי בישראל - בישול בבית, אירועים פרטיים ותפריטים מותאמים אישית.',
+    heroImage: '/images/logo chef prati.jpg',
+    heroAlt: 'שף פרטי',
+  },
+  property_management: {
+    title: 'ניהול נכסים בישראל',
+    description: 'מצאו חברת ניהול נכסים בישראל - טיפול בשוכרים, תחזוקה ומיקסום הכנסה מהנכס.',
+    heroImage: '/images/logo nihoul dirot.jpg',
+    heroAlt: 'ניהול נכסים',
+  },
+  sports_activities: {
+    title: 'פעילויות ספורט ופנאי בישראל',
+    description: 'מצאו מדריכי ספורט ופנאי בישראל - אימונים אישיים, כדורגל, שחייה ועוד.',
+    heroImage: '/images/logo sport.jpg',
+    heroAlt: 'חוגים וספורט',
+  },
+  tutoring: {
+    title: 'שיעורים פרטיים בישראל',
+    description: 'מצאו מורה פרטי בישראל - חיזוק בכל המקצועות, הכנה לבגרות ולמבחנים.',
+    heroImage: '/images/logo cours particulier.jpg',
+    heroAlt: 'שיעורים פרטיים',
+  },
+  waterproofing: {
+    title: 'איטום בישראל',
+    description: 'מצאו מאטם מקצועי בישראל - איטום גגות, מרפסות ומניעת רטיבות.',
+    heroImage: '/images/logo itoum.jpg',
+    heroAlt: 'איטום',
+  },
+};

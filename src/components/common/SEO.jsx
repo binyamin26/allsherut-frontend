@@ -12,11 +12,25 @@ function serviceKeyFromCanonical(canonicalPath) {
   return Object.keys(SERVICE_SLUGS).includes(slug) ? slug : null;
 }
 
+// Google truncates titles/descriptions past these lengths in the SERP — keep our own
+// tags under the limit rather than let Google rewrite them unpredictably.
+const MAX_TITLE_LENGTH = 65;
+const MAX_DESCRIPTION_LENGTH = 160;
+
+function truncate(str, maxLength) {
+  if (!str || str.length <= maxLength) return str;
+  return `${str.slice(0, maxLength - 1).trimEnd()}…`;
+}
+
 export default function SEO({ title, description, canonicalPath, image, noindex = false, jsonLd = null, sameUrlForAllLangs = false }) {
   const { currentLanguage } = useLanguage();
 
-  const fullTitle = title ? `${title} | AllSherut` : 'AllSherut - כל השירותים לבית בישראל';
-  const fullDescription = description || 'חברו עם ספקי שירות מקצועיים בישראל - בייביסיטר, ניקיון, חשמלאי, אינסטלטור, גינון ועוד 23 קטגוריות שירות.';
+  const rawTitle = title ? `${title} | AllSherut` : 'AllSherut - כל השירותים לבית בישראל';
+  const fullTitle = truncate(rawTitle, MAX_TITLE_LENGTH);
+  const fullDescription = truncate(
+    description || 'חברו עם ספקי שירות מקצועיים בישראל - בייביסיטר, ניקיון, חשמלאי, אינסטלטור, גינון ועוד 23 קטגוריות שירות.',
+    MAX_DESCRIPTION_LENGTH
+  );
   const ogImage = image || DEFAULT_IMAGE;
 
   // Build hreflang URLs

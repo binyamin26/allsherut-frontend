@@ -8,6 +8,12 @@ import apiService from '../../services/api';
 import React, { useState, useEffect } from 'react';
 import ProviderCard from '../../components/cards/ProviderCard';
 import { useLanguage } from '../../context/LanguageContext';
+import ServiceBreadcrumb from '../../components/services/ServiceBreadcrumb';
+import ServiceIntro from '../../components/services/ServiceIntro';
+import ServiceFaq from '../../components/services/ServiceFaq';
+import { buildServicePageJsonLd } from '../../utils/seoJsonLd';
+import { SERVICE_PAGE_META } from '../../data/servicePageMeta';
+import { buildServicePath, serviceTypeToKey } from '../../utils/langUtils';
 
 const DecorationProviderDetails = ({ provider, t }) => {
   const details = provider.service_details || {};
@@ -20,19 +26,6 @@ const DecorationProviderDetails = ({ provider, t }) => {
 
   return (
     <div className="decoration-provider-details">
-      <SEO
-        title="קישוט אירועים בישראל"
-        description="מצאו מקשטי אירועים מקצועיים בישראל - עיצוב מרהיב לחתונות, ימי הולדת ואירועים."
-        canonicalPath="/services/event-decoration"
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'Service',
-          name: 'קישוט אירועים בישראל',
-          description: 'מצאו מקשטי אירועים מקצועיים בישראל - עיצוב מרהיב לחתונות, ימי הולדת ואירועים.',
-          areaServed: { '@type': 'Country', name: 'ישראל' },
-          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
-        }}
-      />
       {age && (
         <div className="decoration-detail-row">
           <span className="decoration-detail-label">{t('serviceFields.event_decoration.age')}:</span>
@@ -110,16 +103,26 @@ const EventDecorationPage = () => {
 
   return (
     <div className="service-page event-decoration-page">
+      <SEO
+        title={SERVICE_PAGE_META.event_decoration.title}
+        description={SERVICE_PAGE_META.event_decoration.description}
+        canonicalPath={buildServicePath(serviceTypeToKey('event_decoration'), 'he')}
+        jsonLd={buildServicePageJsonLd({ serviceId: 'event_decoration', name: SERVICE_PAGE_META.event_decoration.title, description: SERVICE_PAGE_META.event_decoration.description, t })}
+      />
+      <ServiceBreadcrumb serviceId="event_decoration" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon">
-              <img src="/images/logo deco.jpg" alt="Event Decoration" />
+              <img src={SERVICE_PAGE_META.event_decoration.heroImage}
+                alt={SERVICE_PAGE_META.event_decoration.heroAlt} />
             </div>
             <h1 className="service-title">{t('services.event_decoration.pageTitle')}</h1>
           </div>
         </div>
       </section>
+
+      <ServiceIntro serviceId="event_decoration" />
 
       <FilterBar
         serviceType="event_decoration"
@@ -180,6 +183,8 @@ const EventDecorationPage = () => {
           )}
         </div>
       </div>
+
+      <ServiceFaq serviceId="event_decoration" />
 
       <ReviewModal
         isOpen={reviewModal.isOpen}

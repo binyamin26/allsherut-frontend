@@ -9,6 +9,12 @@ import apiService from '../../services/api';
 import React, { useState, useEffect } from 'react';
 import ProviderCard from '../../components/cards/ProviderCard';
 import { useLanguage } from '../../context/LanguageContext';
+import ServiceBreadcrumb from '../../components/services/ServiceBreadcrumb';
+import ServiceIntro from '../../components/services/ServiceIntro';
+import ServiceFaq from '../../components/services/ServiceFaq';
+import { buildServicePageJsonLd } from '../../utils/seoJsonLd';
+import { SERVICE_PAGE_META } from '../../data/servicePageMeta';
+import { buildServicePath, serviceTypeToKey } from '../../utils/langUtils';
 
 const LocksmithPage = () => {
   const navigate = useNavigate();
@@ -106,36 +112,30 @@ const LocksmithPage = () => {
     loadProviders();
   };
 
-
-
   return (
     <div className="service-page locksmith-page">
       <SEO
-        title="מנעולן בישראל"
-        description="מצאו מנעולן מקצועי בישראל - פתיחת דלתות, החלפת מנעולים והתקנת מערכות אבטחה."
-        canonicalPath="/services/locksmith"
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'Service',
-          name: 'מנעולן בישראל',
-          description: 'מצאו מנעולן מקצועי בישראל - פתיחת דלתות, החלפת מנעולים והתקנת מערכות אבטחה.',
-          areaServed: { '@type': 'Country', name: 'ישראל' },
-          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
-        }}
+  title={SERVICE_PAGE_META.locksmith.title}
+  description={SERVICE_PAGE_META.locksmith.description}
+  canonicalPath={buildServicePath(serviceTypeToKey('locksmith'), 'he')}
+  jsonLd={buildServicePageJsonLd({ serviceId: 'locksmith', name: SERVICE_PAGE_META.locksmith.title, description: SERVICE_PAGE_META.locksmith.description, t })}
       />
+      <ServiceBreadcrumb serviceId="locksmith" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo serrure.jpg"
-                alt="Serrurier"
+                src={SERVICE_PAGE_META.locksmith.heroImage}
+                alt={SERVICE_PAGE_META.locksmith.heroAlt}
               />
             </div>
             <h1 className="service-title">{t('services.locksmith.pageTitle')}</h1>
           </div>
         </div>
       </section>
+
+      <ServiceIntro serviceId="locksmith" />
 
       <FilterBar 
         serviceType="locksmith"
@@ -201,6 +201,8 @@ const LocksmithPage = () => {
           )}
         </div>
       </div>
+
+      <ServiceFaq serviceId="locksmith" />
 
       <ReviewModal 
         isOpen={reviewModal.isOpen}

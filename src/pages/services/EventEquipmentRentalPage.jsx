@@ -7,6 +7,12 @@ import ReviewModal from '../../components/modals/ReviewModal';
 import apiService from '../../services/api';
 import ProviderCard from '../../components/cards/ProviderCard';
 import { useLanguage } from '../../context/LanguageContext';
+import ServiceBreadcrumb from '../../components/services/ServiceBreadcrumb';
+import ServiceIntro from '../../components/services/ServiceIntro';
+import ServiceFaq from '../../components/services/ServiceFaq';
+import { buildServicePageJsonLd } from '../../utils/seoJsonLd';
+import { SERVICE_PAGE_META } from '../../data/servicePageMeta';
+import { buildServicePath, serviceTypeToKey } from '../../utils/langUtils';
 import React, { useState, useEffect } from 'react';
 
 const EventEquipmentRentalPage = () => {
@@ -108,31 +114,27 @@ const EventEquipmentRentalPage = () => {
   return (
     <div className="service-page event-equipment-rental-page">
       <SEO
-        title="השכרת ציוד לאירועים בישראל"
-        description="השכירו ציוד לאירועים בישראל - מכונות מזון, מתנפחים ומכונות אפקטים."
-        canonicalPath="/services/event-equipment-rental"
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'Service',
-          name: 'השכרת ציוד לאירועים בישראל',
-          description: 'השכירו ציוד לאירועים בישראל - מכונות מזון, מתנפחים ומכונות אפקטים.',
-          areaServed: { '@type': 'Country', name: 'ישראל' },
-          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
-        }}
+  title={SERVICE_PAGE_META.event_equipment_rental.title}
+  description={SERVICE_PAGE_META.event_equipment_rental.description}
+  canonicalPath={buildServicePath(serviceTypeToKey('event_equipment_rental'), 'he')}
+  jsonLd={buildServicePageJsonLd({ serviceId: 'event_equipment_rental', name: SERVICE_PAGE_META.event_equipment_rental.title, description: SERVICE_PAGE_META.event_equipment_rental.description, t })}
       />
+      <ServiceBreadcrumb serviceId="event_equipment_rental" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo loc.jpg"
-                alt="Location de matériel événementiel"
+                src={SERVICE_PAGE_META.event_equipment_rental.heroImage}
+                alt={SERVICE_PAGE_META.event_equipment_rental.heroAlt}
               />
             </div>
             <h1 className="service-title">{t('services.event_equipment_rental.pageTitle')}</h1>
           </div>
         </div>
       </section>
+
+      <ServiceIntro serviceId="event_equipment_rental" />
 
       <FilterBar
         serviceType="event_equipment_rental"
@@ -198,6 +200,8 @@ const EventEquipmentRentalPage = () => {
           )}
         </div>
       </div>
+
+      <ServiceFaq serviceId="event_equipment_rental" />
 
       <ReviewModal
         isOpen={reviewModal.isOpen}

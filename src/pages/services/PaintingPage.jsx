@@ -9,6 +9,12 @@ import apiService from '../../services/api';
 import ProviderCard from '../../components/cards/ProviderCard';
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
+import ServiceBreadcrumb from '../../components/services/ServiceBreadcrumb';
+import ServiceIntro from '../../components/services/ServiceIntro';
+import ServiceFaq from '../../components/services/ServiceFaq';
+import { buildServicePageJsonLd } from '../../utils/seoJsonLd';
+import { SERVICE_PAGE_META } from '../../data/servicePageMeta';
+import { buildServicePath, serviceTypeToKey } from '../../utils/langUtils';
 
 const PaintingPage = () => {
   const navigate = useNavigate();
@@ -109,31 +115,27 @@ const PaintingPage = () => {
   return (
     <div className="service-page painting-page">
       <SEO
-        title="צבעי בישראל"
-        description="מצאו צבעי מקצועי בישראל - צביעת דירות, בתים ומשרדים עם עבודה מדויקת ונקייה."
-        canonicalPath="/services/painting"
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'Service',
-          name: 'צבעי בישראל',
-          description: 'מצאו צבעי מקצועי בישראל - צביעת דירות, בתים ומשרדים עם עבודה מדויקת ונקייה.',
-          areaServed: { '@type': 'Country', name: 'ישראל' },
-          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
-        }}
+  title={SERVICE_PAGE_META.painting.title}
+  description={SERVICE_PAGE_META.painting.description}
+  canonicalPath={buildServicePath(serviceTypeToKey('painting'), 'he')}
+  jsonLd={buildServicePageJsonLd({ serviceId: 'painting', name: SERVICE_PAGE_META.painting.title, description: SERVICE_PAGE_META.painting.description, t })}
       />
+      <ServiceBreadcrumb serviceId="painting" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo peinture.jpg"
-                alt="Peinture"
+                src={SERVICE_PAGE_META.painting.heroImage}
+                alt={SERVICE_PAGE_META.painting.heroAlt}
               />
             </div>
             <h1 className="service-title">{t('services.painting.pageTitle')}</h1>
           </div>
         </div>
       </section>
+
+      <ServiceIntro serviceId="painting" />
 
       <FilterBar 
         serviceType="painting"
@@ -199,6 +201,8 @@ const PaintingPage = () => {
           )}
         </div>
       </div>
+
+      <ServiceFaq serviceId="painting" />
 
       <ReviewModal 
         isOpen={reviewModal.isOpen}

@@ -42,6 +42,12 @@ export const SERVICE_SLUGS = {
   driver:                 { he: 'driver',               en: 'transportation',       fr: 'transport',                ru: 'perevozki' },
 };
 
+// Normalize a raw API service_type (snake_case, e.g. "event_decoration") into the
+// internal SERVICE_SLUGS key (hyphenated, e.g. "event-decoration")
+export function serviceTypeToKey(serviceType) {
+  return serviceType ? serviceType.replace(/_/g, '-') : serviceType;
+}
+
 // Build the path for a service in a given language
 // Hebrew uses root /services/:slug, others use /:lang/services/:slug
 export function buildServicePath(serviceKey, lang) {

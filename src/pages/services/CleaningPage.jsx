@@ -9,6 +9,12 @@ import apiService from '../../services/api';
 import React, { useState, useEffect } from 'react';
 import ProviderCard from '../../components/cards/ProviderCard';
 import { useLanguage } from '../../context/LanguageContext';
+import ServiceBreadcrumb from '../../components/services/ServiceBreadcrumb';
+import ServiceIntro from '../../components/services/ServiceIntro';
+import ServiceFaq from '../../components/services/ServiceFaq';
+import { buildServicePageJsonLd } from '../../utils/seoJsonLd';
+import { SERVICE_PAGE_META } from '../../data/servicePageMeta';
+import { buildServicePath, serviceTypeToKey } from '../../utils/langUtils';
 
 const CleaningPageClean = () => {
   const navigate = useNavigate();
@@ -116,31 +122,27 @@ useEffect(() => {
   return (
     <div className="service-page cleaning-page">
       <SEO
-        title="ניקיון בית בישראל"
-        description="מצאו עוזרת בית ומנקה מקצועי בישראל - ניקיון שוטף, לפני ואחרי אירועים ועוד."
-        canonicalPath="/services/cleaning"
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'Service',
-          name: 'ניקיון בית בישראל',
-          description: 'מצאו עוזרת בית ומנקה מקצועי בישראל - ניקיון שוטף, לפני ואחרי אירועים ועוד.',
-          areaServed: { '@type': 'Country', name: 'ישראל' },
-          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
-        }}
+  title={SERVICE_PAGE_META.cleaning.title}
+  description={SERVICE_PAGE_META.cleaning.description}
+  canonicalPath={buildServicePath(serviceTypeToKey('cleaning'), 'he')}
+  jsonLd={buildServicePageJsonLd({ serviceId: 'cleaning', name: SERVICE_PAGE_META.cleaning.title, description: SERVICE_PAGE_META.cleaning.description, t })}
       />
+      <ServiceBreadcrumb serviceId="cleaning" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo nikayon.jpg"
-                alt="Mֳ©nage"
+                src={SERVICE_PAGE_META.cleaning.heroImage}
+                alt={SERVICE_PAGE_META.cleaning.heroAlt}
               />
             </div>
             <h1 className="service-title">{t('services.cleaning.pageTitle')}</h1>
           </div>
         </div>
       </section>
+
+      <ServiceIntro serviceId="cleaning" />
 
       <FilterBar 
         serviceType="cleaning"
@@ -208,6 +210,8 @@ useEffect(() => {
       </div>
 
       {/* Modal d'avis */}
+      <ServiceFaq serviceId="cleaning" />
+
       <ReviewModal 
         isOpen={reviewModal.isOpen}
         onClose={handleCloseReviewModal}

@@ -10,6 +10,7 @@ import ProviderGallery from '../components/common/ProviderGallery';
 import apiService from '../services/api';
 import { useLanguage } from '../context/LanguageContext';
 import { translateValue, translateAndJoin, translateArrayFromMultipleCategories } from '../utils/translationMapper';
+import { buildServicePath, serviceTypeToKey } from '../utils/langUtils';
 import { TUTORING_SUBCATEGORIES } from '../data/subcategoriesData';
 import {
   MapPin, Clock, Phone, Mail, Award,
@@ -1602,6 +1603,8 @@ const handleContact = () => {
   const serviceIconUrl = getServiceIcon(provider.serviceType);
 
   const serviceNameHe = t(`services.${provider?.serviceType}`, provider?.serviceType || '');
+  const servicePath = provider ? buildServicePath(serviceTypeToKey(provider.serviceType), 'he') : null;
+  const providerImage = provider ? (provider.media?.profileImage || provider.profile_image || provider.media?.gallery?.[0] || undefined) : undefined;
 
   const avgRating = reviews.length > 0
     ? (reviews.reduce((sum, r) => sum + parseFloat(r.rating || 0), 0) / reviews.length).toFixed(1)
@@ -1613,14 +1616,19 @@ const handleContact = () => {
       {
         '@type': 'LocalBusiness',
         name: `${provider.first_name} ${provider.last_name}`,
-        description: provider.description || serviceNameHe,
+        description: provider.description || `${serviceNameHe}${provider.location_city ? ` ב${provider.location_city}` : ''}`,
         url: `https://allsherut.com/provider/${provider.id}`,
-        ...(provider.profile_images?.[0] && { image: provider.profile_images[0] }),
+        ...(providerImage && { image: providerImage }),
+        ...((provider.phone || provider.contact?.phone) && { telephone: provider.phone || provider.contact.phone }),
+        ...(provider.serviceDetails?.hourly_rate && { priceRange: `₪${provider.serviceDetails.hourly_rate}` }),
         address: {
           '@type': 'PostalAddress',
-          addressLocality: provider.location_city || 'ישראל',
+          ...(provider.location_city && { addressLocality: provider.location_city }),
           addressCountry: 'IL',
         },
+        ...(provider.workingAreas?.length > 0 && {
+          areaServed: provider.workingAreas.map(a => ({ '@type': 'City', name: a.city })),
+        }),
         ...(avgRating && reviews.length >= 2 && {
           aggregateRating: {
             '@type': 'AggregateRating',
@@ -1635,7 +1643,7 @@ const handleContact = () => {
         '@type': 'BreadcrumbList',
         itemListElement: [
           { '@type': 'ListItem', position: 1, name: t('provider.home'), item: 'https://allsherut.com/' },
-          { '@type': 'ListItem', position: 2, name: serviceNameHe, item: `https://allsherut.com/services/${provider.serviceType}` },
+          { '@type': 'ListItem', position: 2, name: serviceNameHe, item: `https://allsherut.com${servicePath}` },
           { '@type': 'ListItem', position: 3, name: `${provider.first_name} ${provider.last_name}` },
         ],
       },
@@ -1649,8 +1657,9 @@ const handleContact = () => {
           title={`${provider.first_name} ${provider.last_name} - ${serviceNameHe}${provider.location_city ? ` ב${provider.location_city}` : ''}`}
           description={provider.description || `${provider.first_name} ${provider.last_name} - ${serviceNameHe} מקצועי${provider.location_city ? ` ב${provider.location_city}` : ''} | AllSherut`}
           canonicalPath={`/provider/${provider.id}`}
-          image={provider.profile_images?.[0] || undefined}
+          image={providerImage}
           jsonLd={providerJsonLd}
+          sameUrlForAllLangs
         />
       )}
     <div className="provider-detail-page">
@@ -1667,7 +1676,7 @@ const handleContact = () => {
           <div className="breadcrumb">
            <Link to="/">{t('provider.home')}</Link>
             <span>/</span>
-            <Link to={`/services/${provider.serviceType}`}>
+            <Link to={servicePath}>
               {t(`services.${provider.serviceType}`)}
             </Link>
             <span>/</span>

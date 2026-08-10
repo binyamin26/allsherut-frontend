@@ -7,6 +7,12 @@ import apiService from '../../services/api';
 import React, { useState, useEffect } from 'react';
 import ProviderCard from '../../components/cards/ProviderCard';
 import { useLanguage } from '../../context/LanguageContext';
+import ServiceBreadcrumb from '../../components/services/ServiceBreadcrumb';
+import ServiceIntro from '../../components/services/ServiceIntro';
+import ServiceFaq from '../../components/services/ServiceFaq';
+import { buildServicePageJsonLd } from '../../utils/seoJsonLd';
+import { SERVICE_PAGE_META } from '../../data/servicePageMeta';
+import { buildServicePath, serviceTypeToKey } from '../../utils/langUtils';
 import { useLocationFilter } from '../../hooks/useLocationFilter';
 
 const MovingPage = () => {
@@ -100,28 +106,25 @@ const MovingPage = () => {
   return (
     <div className="service-page moving-page">
       <SEO
-        title="הובלות בישראל"
-        description="מצאו חברת הובלה מקצועית בישראל - הובלת דירה, משרד וציוד עם צוות מנוסה."
-        canonicalPath="/services/moving"
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'Service',
-          name: 'הובלות בישראל',
-          description: 'מצאו חברת הובלה מקצועית בישראל - הובלת דירה, משרד וציוד עם צוות מנוסה.',
-          areaServed: { '@type': 'Country', name: 'ישראל' },
-          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
-        }}
+  title={SERVICE_PAGE_META.moving.title}
+  description={SERVICE_PAGE_META.moving.description}
+  canonicalPath={buildServicePath(serviceTypeToKey('moving'), 'he')}
+  jsonLd={buildServicePageJsonLd({ serviceId: 'moving', name: SERVICE_PAGE_META.moving.title, description: SERVICE_PAGE_META.moving.description, t })}
       />
+      <ServiceBreadcrumb serviceId="moving" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon">
-              <img src="/images/logo ovala.jpg" alt="Déménagement" />
+              <img src={SERVICE_PAGE_META.moving.heroImage}
+                alt={SERVICE_PAGE_META.moving.heroAlt} />
             </div>
             <h1 className="service-title">{t('services.moving.pageTitle')}</h1>
           </div>
         </div>
       </section>
+
+      <ServiceIntro serviceId="moving" />
 
       <FilterBar
         serviceType="moving"
@@ -187,6 +190,8 @@ const MovingPage = () => {
           )}
         </div>
       </div>
+
+      <ServiceFaq serviceId="moving" />
 
       <ReviewModal
         isOpen={reviewModal.isOpen}

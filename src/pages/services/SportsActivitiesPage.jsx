@@ -8,6 +8,12 @@ import apiService from '../../services/api';
 import ProviderCard from '../../components/cards/ProviderCard';
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
+import ServiceBreadcrumb from '../../components/services/ServiceBreadcrumb';
+import ServiceIntro from '../../components/services/ServiceIntro';
+import ServiceFaq from '../../components/services/ServiceFaq';
+import { buildServicePageJsonLd } from '../../utils/seoJsonLd';
+import { SERVICE_PAGE_META } from '../../data/servicePageMeta';
+import { buildServicePath, serviceTypeToKey } from '../../utils/langUtils';
 
 const SportsActivitiesPage = () => {
   const navigate = useNavigate();
@@ -100,28 +106,25 @@ const SportsActivitiesPage = () => {
   return (
     <div className="service-page tutoring-page">
       <SEO
-        title="פעילויות ספורט ופנאי בישראל"
-        description="מצאו מדריכי ספורט ופנאי בישראל - אימונים אישיים, כדורגל, שחייה ועוד."
-        canonicalPath="/services/sports"
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'Service',
-          name: 'פעילויות ספורט ופנאי בישראל',
-          description: 'מצאו מדריכי ספורט ופנאי בישראל - אימונים אישיים, כדורגל, שחייה ועוד.',
-          areaServed: { '@type': 'Country', name: 'ישראל' },
-          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
-        }}
+  title={SERVICE_PAGE_META.sports_activities.title}
+  description={SERVICE_PAGE_META.sports_activities.description}
+  canonicalPath={buildServicePath(serviceTypeToKey('sports_activities'), 'he')}
+  jsonLd={buildServicePageJsonLd({ serviceId: 'sports_activities', name: SERVICE_PAGE_META.sports_activities.title, description: SERVICE_PAGE_META.sports_activities.description, t })}
       />
+      <ServiceBreadcrumb serviceId="sports_activities" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon">
-              <img src="/images/logo sport.jpg" alt="חוגים וספורט" />
+              <img src={SERVICE_PAGE_META.sports_activities.heroImage}
+                alt={SERVICE_PAGE_META.sports_activities.heroAlt} />
             </div>
             <h1 className="service-title">{t('services.sports_activities.pageTitle')}</h1>
           </div>
         </div>
       </section>
+
+      <ServiceIntro serviceId="sports_activities" />
 
       <FilterBar
         serviceType="sports_activities"
@@ -187,6 +190,8 @@ const SportsActivitiesPage = () => {
           )}
         </div>
       </div>
+
+      <ServiceFaq serviceId="sports_activities" />
 
       <ReviewModal
         isOpen={reviewModal.isOpen}

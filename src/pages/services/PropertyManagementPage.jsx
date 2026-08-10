@@ -9,6 +9,12 @@ import apiService from '../../services/api';
 import ProviderCard from '../../components/cards/ProviderCard';
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
+import ServiceBreadcrumb from '../../components/services/ServiceBreadcrumb';
+import ServiceIntro from '../../components/services/ServiceIntro';
+import ServiceFaq from '../../components/services/ServiceFaq';
+import { buildServicePageJsonLd } from '../../utils/seoJsonLd';
+import { SERVICE_PAGE_META } from '../../data/servicePageMeta';
+import { buildServicePath, serviceTypeToKey } from '../../utils/langUtils';
 
 const PropertyManagementPage = () => {
   const navigate = useNavigate();
@@ -116,31 +122,27 @@ const PropertyManagementPage = () => {
   return (
     <div className="service-page property-management-page">
       <SEO
-        title="ניהול נכסים בישראל"
-        description="מצאו חברת ניהול נכסים בישראל - טיפול בשוכרים, תחזוקה ומיקסום הכנסה מהנכס."
-        canonicalPath="/services/property-management"
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'Service',
-          name: 'ניהול נכסים בישראל',
-          description: 'מצאו חברת ניהול נכסים בישראל - טיפול בשוכרים, תחזוקה ומיקסום הכנסה מהנכס.',
-          areaServed: { '@type': 'Country', name: 'ישראל' },
-          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
-        }}
+  title={SERVICE_PAGE_META.property_management.title}
+  description={SERVICE_PAGE_META.property_management.description}
+  canonicalPath={buildServicePath(serviceTypeToKey('property_management'), 'he')}
+  jsonLd={buildServicePageJsonLd({ serviceId: 'property_management', name: SERVICE_PAGE_META.property_management.title, description: SERVICE_PAGE_META.property_management.description, t })}
       />
+      <ServiceBreadcrumb serviceId="property_management" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo nihoul dirot.jpg"
-                alt="Gestion Immobiliֳ¨re"
+                src={SERVICE_PAGE_META.property_management.heroImage}
+                alt={SERVICE_PAGE_META.property_management.heroAlt}
               />
             </div>
             <h1 className="service-title">{t('services.property_management.pageTitle')}</h1>
           </div>
         </div>
       </section>
+
+      <ServiceIntro serviceId="property_management" />
 
       <FilterBar 
         serviceType="property_management"
@@ -208,6 +210,8 @@ const PropertyManagementPage = () => {
       </div>
 
       {/* Modal d'avis */}
+      <ServiceFaq serviceId="property_management" />
+
       <ReviewModal 
         isOpen={reviewModal.isOpen}
         onClose={handleCloseReviewModal}

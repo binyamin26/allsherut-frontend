@@ -8,8 +8,13 @@ import ReviewModal from '../../components/modals/ReviewModal';
 import apiService from '../../services/api';
 import ProviderCard from '../../components/cards/ProviderCard';
 import { useLanguage } from '../../context/LanguageContext';
+import ServiceBreadcrumb from '../../components/services/ServiceBreadcrumb';
+import ServiceIntro from '../../components/services/ServiceIntro';
+import ServiceFaq from '../../components/services/ServiceFaq';
+import { buildServicePageJsonLd } from '../../utils/seoJsonLd';
+import { SERVICE_PAGE_META } from '../../data/servicePageMeta';
+import { buildServicePath, serviceTypeToKey } from '../../utils/langUtils';
 import React, { useState, useEffect } from 'react';
-
 
 const EldercarePageClean = () => {
   const navigate = useNavigate();
@@ -122,31 +127,27 @@ useEffect(() => {
   return (
     <div className="service-page eldercare-page">
       <SEO
-        title="עזרה לקשישים בישראל"
-        description="מצאו מטפל לקשישים בישראל - ליווי, סיוע יומיומי וטיפול מסור בבית."
-        canonicalPath="/services/eldercare"
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'Service',
-          name: 'עזרה לקשישים בישראל',
-          description: 'מצאו מטפל לקשישים בישראל - ליווי, סיוע יומיומי וטיפול מסור בבית.',
-          areaServed: { '@type': 'Country', name: 'ישראל' },
-          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
-        }}
+  title={SERVICE_PAGE_META.eldercare.title}
+  description={SERVICE_PAGE_META.eldercare.description}
+  canonicalPath={buildServicePath(serviceTypeToKey('eldercare'), 'he')}
+  jsonLd={buildServicePageJsonLd({ serviceId: 'eldercare', name: SERVICE_PAGE_META.eldercare.title, description: SERVICE_PAGE_META.eldercare.description, t })}
       />
+      <ServiceBreadcrumb serviceId="eldercare" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo kashishims.jpg"
-                alt="Aide aux aֳ®nֳ©s"
+                src={SERVICE_PAGE_META.eldercare.heroImage}
+                alt={SERVICE_PAGE_META.eldercare.heroAlt}
               />
             </div>
             <h1 className="service-title">{t('services.eldercare.pageTitle')}</h1>
           </div>
         </div>
       </section>
+
+      <ServiceIntro serviceId="eldercare" />
 
       <FilterBar 
         serviceType="eldercare"
@@ -214,6 +215,8 @@ useEffect(() => {
       </div>
 
       {/* Modal d'avis */}
+      <ServiceFaq serviceId="eldercare" />
+
       <ReviewModal 
         isOpen={reviewModal.isOpen}
         onClose={handleCloseReviewModal}

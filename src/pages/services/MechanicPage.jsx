@@ -7,6 +7,12 @@ import ReviewModal from '../../components/modals/ReviewModal';
 import apiService from '../../services/api';
 import ProviderCard from '../../components/cards/ProviderCard';
 import { useLanguage } from '../../context/LanguageContext';
+import ServiceBreadcrumb from '../../components/services/ServiceBreadcrumb';
+import ServiceIntro from '../../components/services/ServiceIntro';
+import ServiceFaq from '../../components/services/ServiceFaq';
+import { buildServicePageJsonLd } from '../../utils/seoJsonLd';
+import { SERVICE_PAGE_META } from '../../data/servicePageMeta';
+import { buildServicePath, serviceTypeToKey } from '../../utils/langUtils';
 import React, { useState, useEffect } from 'react';
 
 const MechanicPage = () => {
@@ -58,28 +64,25 @@ const MechanicPage = () => {
   return (
     <div className="service-page mechanic-page">
       <SEO
-        title="מכונאי רכב בישראל"
-        description="מצאו מכונאי רכב מקצועי בישראל - תיקונים, טיפולים ואבחון תקלות."
-        canonicalPath="/services/mechanic"
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'Service',
-          name: 'מכונאי רכב בישראל',
-          description: 'מצאו מכונאי רכב מקצועי בישראל - תיקונים, טיפולים ואבחון תקלות.',
-          areaServed: { '@type': 'Country', name: 'ישראל' },
-          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
-        }}
+  title={SERVICE_PAGE_META.mechanic.title}
+  description={SERVICE_PAGE_META.mechanic.description}
+  canonicalPath={buildServicePath(serviceTypeToKey('mechanic'), 'he')}
+  jsonLd={buildServicePageJsonLd({ serviceId: 'mechanic', name: SERVICE_PAGE_META.mechanic.title, description: SERVICE_PAGE_META.mechanic.description, t })}
       />
+      <ServiceBreadcrumb serviceId="mechanic" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon">
-              <img src="/images/logo garagiste.jpg" alt="מכונאי רכב" />
+              <img src={SERVICE_PAGE_META.mechanic.heroImage}
+                alt={SERVICE_PAGE_META.mechanic.heroAlt} />
             </div>
             <h1 className="service-title">{t('services.mechanic.pageTitle')}</h1>
           </div>
         </div>
       </section>
+
+      <ServiceIntro serviceId="mechanic" />
 
       <FilterBar
         serviceType="mechanic"
@@ -143,6 +146,8 @@ const MechanicPage = () => {
           )}
         </div>
       </div>
+
+      <ServiceFaq serviceId="mechanic" />
 
       <ReviewModal
         isOpen={reviewModal.isOpen}

@@ -8,6 +8,12 @@ import ReviewModal from '../../components/modals/ReviewModal';
 import apiService from '../../services/api';
 import ProviderCard from '../../components/cards/ProviderCard';
 import { useLanguage } from '../../context/LanguageContext';
+import ServiceBreadcrumb from '../../components/services/ServiceBreadcrumb';
+import ServiceIntro from '../../components/services/ServiceIntro';
+import ServiceFaq from '../../components/services/ServiceFaq';
+import { buildServicePageJsonLd } from '../../utils/seoJsonLd';
+import { SERVICE_PAGE_META } from '../../data/servicePageMeta';
+import { buildServicePath, serviceTypeToKey } from '../../utils/langUtils';
 import React, { useState, useEffect } from 'react';
 
 const DJPage = () => {
@@ -101,28 +107,25 @@ const DJPage = () => {
   return (
     <div className="service-page dj-page">
       <SEO
-        title="DJ לאירועים בישראל"
-        description="מצאו DJ מקצועי לאירועים בישראל - חתונות, ימי הולדת ומסיבות."
-        canonicalPath="/services/dj"
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'Service',
-          name: 'DJ לאירועים בישראל',
-          description: 'מצאו DJ מקצועי לאירועים בישראל - חתונות, ימי הולדת ומסיבות.',
-          areaServed: { '@type': 'Country', name: 'ישראל' },
-          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
-        }}
+  title={SERVICE_PAGE_META.dj.title}
+  description={SERVICE_PAGE_META.dj.description}
+  canonicalPath={buildServicePath(serviceTypeToKey('dj'), 'he')}
+  jsonLd={buildServicePageJsonLd({ serviceId: 'dj', name: SERVICE_PAGE_META.dj.title, description: SERVICE_PAGE_META.dj.description, t })}
       />
+      <ServiceBreadcrumb serviceId="dj" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon">
-              <img src="/images/logo DJ.jpg" alt="DJ" />
+              <img src={SERVICE_PAGE_META.dj.heroImage}
+                alt={SERVICE_PAGE_META.dj.heroAlt} />
             </div>
             <h1 className="service-title">{t('services.dj.pageTitle')}</h1>
           </div>
         </div>
       </section>
+
+      <ServiceIntro serviceId="dj" />
 
       <FilterBar
         serviceType="dj"
@@ -188,6 +191,8 @@ const DJPage = () => {
           )}
         </div>
       </div>
+
+      <ServiceFaq serviceId="dj" />
 
       <ReviewModal
         isOpen={reviewModal.isOpen}

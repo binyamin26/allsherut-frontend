@@ -5,6 +5,12 @@ import ReviewModal from '../../components/modals/ReviewModal';
 import apiService from '../../services/api';
 import ProviderCard from '../../components/cards/ProviderCard';
 import { useLanguage } from '../../context/LanguageContext';
+import ServiceBreadcrumb from '../../components/services/ServiceBreadcrumb';
+import ServiceIntro from '../../components/services/ServiceIntro';
+import ServiceFaq from '../../components/services/ServiceFaq';
+import { buildServicePageJsonLd } from '../../utils/seoJsonLd';
+import { SERVICE_PAGE_META } from '../../data/servicePageMeta';
+import { buildServicePath, serviceTypeToKey } from '../../utils/langUtils';
 import React, { useState, useEffect } from 'react';
 
 const DriverPage = () => {
@@ -54,28 +60,25 @@ const DriverPage = () => {
   return (
     <div className="service-page driver-page">
       <SEO
-        title="נהג הסעות בישראל"
-        description="מצאו נהג הסעות מקצועי בישראל - הסעות לשדה התעופה, אירועים ונסיעות פרטיות."
-        canonicalPath="/services/driver"
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'Service',
-          name: 'נהג הסעות בישראל',
-          description: 'מצאו נהג הסעות מקצועי בישראל - הסעות לשדה התעופה, אירועים ונסיעות פרטיות.',
-          areaServed: { '@type': 'Country', name: 'ישראל' },
-          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
-        }}
+  title={SERVICE_PAGE_META.driver.title}
+  description={SERVICE_PAGE_META.driver.description}
+  canonicalPath={buildServicePath(serviceTypeToKey('driver'), 'he')}
+  jsonLd={buildServicePageJsonLd({ serviceId: 'driver', name: SERVICE_PAGE_META.driver.title, description: SERVICE_PAGE_META.driver.description, t })}
       />
+      <ServiceBreadcrumb serviceId="driver" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon">
-              <img src="/images/logo driver.jpg" alt="דרייבר" />
+              <img src={SERVICE_PAGE_META.driver.heroImage}
+                alt={SERVICE_PAGE_META.driver.heroAlt} />
             </div>
             <h1 className="service-title">{t('services.driver.pageTitle')}</h1>
           </div>
         </div>
       </section>
+
+      <ServiceIntro serviceId="driver" />
 
       <FilterBar
         serviceType="driver"
@@ -139,6 +142,8 @@ const DriverPage = () => {
           )}
         </div>
       </div>
+
+      <ServiceFaq serviceId="driver" />
 
       <ReviewModal
         isOpen={reviewModal.isOpen}

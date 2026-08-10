@@ -9,6 +9,12 @@ import apiService from '../../services/api';
 import React, { useState, useEffect } from 'react';
 import ProviderCard from '../../components/cards/ProviderCard';
 import { useLanguage } from '../../context/LanguageContext';
+import ServiceBreadcrumb from '../../components/services/ServiceBreadcrumb';
+import ServiceIntro from '../../components/services/ServiceIntro';
+import ServiceFaq from '../../components/services/ServiceFaq';
+import { buildServicePageJsonLd } from '../../utils/seoJsonLd';
+import { SERVICE_PAGE_META } from '../../data/servicePageMeta';
+import { buildServicePath, serviceTypeToKey } from '../../utils/langUtils';
 
 const AluminumPage = () => {
   const navigate = useNavigate();
@@ -109,31 +115,27 @@ const AluminumPage = () => {
   return (
     <div className="service-page aluminum-page">
       <SEO
-        title="עבודות אלומיניום בישראל"
-        description="מצאו בעלי מקצוע לעבודות אלומיניום בישראל - חלונות, דלתות וסגירות מרפסת."
-        canonicalPath="/services/aluminum"
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'Service',
-          name: 'עבודות אלומיניום בישראל',
-          description: 'מצאו בעלי מקצוע לעבודות אלומיניום בישראל - חלונות, דלתות וסגירות מרפסת.',
-          areaServed: { '@type': 'Country', name: 'ישראל' },
-          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
-        }}
+  title={SERVICE_PAGE_META.aluminum.title}
+  description={SERVICE_PAGE_META.aluminum.description}
+  canonicalPath={buildServicePath(serviceTypeToKey('aluminum'), 'he')}
+  jsonLd={buildServicePageJsonLd({ serviceId: 'aluminum', name: SERVICE_PAGE_META.aluminum.title, description: SERVICE_PAGE_META.aluminum.description, t })}
       />
+      <ServiceBreadcrumb serviceId="aluminum" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo aluminium.jpg"
-                alt="Aluminium"
+                src={SERVICE_PAGE_META.aluminum.heroImage}
+                alt={SERVICE_PAGE_META.aluminum.heroAlt}
               />
             </div>
             <h1 className="service-title">{t('services.aluminum.pageTitle')}</h1>
           </div>
         </div>
       </section>
+
+      <ServiceIntro serviceId="aluminum" />
 
       <FilterBar 
         serviceType="aluminum"
@@ -200,6 +202,8 @@ const AluminumPage = () => {
           )}
         </div>
       </div>
+
+      <ServiceFaq serviceId="aluminum" />
 
       <ReviewModal 
         isOpen={reviewModal.isOpen}

@@ -9,6 +9,12 @@ import apiService from '../../services/api';
 import ProviderCard from '../../components/cards/ProviderCard';
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
+import ServiceBreadcrumb from '../../components/services/ServiceBreadcrumb';
+import ServiceIntro from '../../components/services/ServiceIntro';
+import ServiceFaq from '../../components/services/ServiceFaq';
+import { buildServicePageJsonLd } from '../../utils/seoJsonLd';
+import { SERVICE_PAGE_META } from '../../data/servicePageMeta';
+import { buildServicePath, serviceTypeToKey } from '../../utils/langUtils';
 
 const TutoringPageClean = () => {
   const navigate = useNavigate();
@@ -126,31 +132,27 @@ useEffect(() => {
   return (
     <div className="service-page tutoring-page">
       <SEO
-        title="שיעורים פרטיים בישראל"
-        description="מצאו מורה פרטי בישראל - חיזוק בכל המקצועות, הכנה לבגרות ולמבחנים."
-        canonicalPath="/services/tutoring"
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'Service',
-          name: 'שיעורים פרטיים בישראל',
-          description: 'מצאו מורה פרטי בישראל - חיזוק בכל המקצועות, הכנה לבגרות ולמבחנים.',
-          areaServed: { '@type': 'Country', name: 'ישראל' },
-          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
-        }}
+  title={SERVICE_PAGE_META.tutoring.title}
+  description={SERVICE_PAGE_META.tutoring.description}
+  canonicalPath={buildServicePath(serviceTypeToKey('tutoring'), 'he')}
+  jsonLd={buildServicePageJsonLd({ serviceId: 'tutoring', name: SERVICE_PAGE_META.tutoring.title, description: SERVICE_PAGE_META.tutoring.description, t })}
       />
+      <ServiceBreadcrumb serviceId="tutoring" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo cours particulier.jpg"
-                alt="Soutien scolaire"
+                src={SERVICE_PAGE_META.tutoring.heroImage}
+                alt={SERVICE_PAGE_META.tutoring.heroAlt}
               />
             </div>
             <h1 className="service-title">{t('services.tutoring.pageTitle')}</h1>
           </div>
         </div>
       </section>
+
+      <ServiceIntro serviceId="tutoring" />
 
       <FilterBar 
         serviceType="tutoring"
@@ -218,6 +220,8 @@ useEffect(() => {
       </div>
 
       {/* Modal d'avis */}
+      <ServiceFaq serviceId="tutoring" />
+
       <ReviewModal 
         isOpen={reviewModal.isOpen}
         onClose={handleCloseReviewModal}

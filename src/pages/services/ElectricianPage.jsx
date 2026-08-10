@@ -8,6 +8,12 @@ import ReviewModal from '../../components/modals/ReviewModal';
 import apiService from '../../services/api';
 import ProviderCard from '../../components/cards/ProviderCard';
 import { useLanguage } from '../../context/LanguageContext';
+import ServiceBreadcrumb from '../../components/services/ServiceBreadcrumb';
+import ServiceIntro from '../../components/services/ServiceIntro';
+import ServiceFaq from '../../components/services/ServiceFaq';
+import { buildServicePageJsonLd } from '../../utils/seoJsonLd';
+import { SERVICE_PAGE_META } from '../../data/servicePageMeta';
+import { buildServicePath, serviceTypeToKey } from '../../utils/langUtils';
 import React, { useState, useEffect } from 'react';
 
 const ElectricianPage = () => {
@@ -109,31 +115,27 @@ const ElectricianPage = () => {
   return (
     <div className="service-page electrician-page">
       <SEO
-        title="חשמלאי בישראל"
-        description="מצאו חשמלאי מוסמך בישראל - תיקונים, התקנות וחיווט חדש בצורה בטוחה ומקצועית."
-        canonicalPath="/services/electrician"
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'Service',
-          name: 'חשמלאי בישראל',
-          description: 'מצאו חשמלאי מוסמך בישראל - תיקונים, התקנות וחיווט חדש בצורה בטוחה ומקצועית.',
-          areaServed: { '@type': 'Country', name: 'ישראל' },
-          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
-        }}
+  title={SERVICE_PAGE_META.electrician.title}
+  description={SERVICE_PAGE_META.electrician.description}
+  canonicalPath={buildServicePath(serviceTypeToKey('electrician'), 'he')}
+  jsonLd={buildServicePageJsonLd({ serviceId: 'electrician', name: SERVICE_PAGE_META.electrician.title, description: SERVICE_PAGE_META.electrician.description, t })}
       />
+      <ServiceBreadcrumb serviceId="electrician" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo electricien.jpg"
-                alt="ֳ‰lectricitֳ©"
+                src={SERVICE_PAGE_META.electrician.heroImage}
+                alt={SERVICE_PAGE_META.electrician.heroAlt}
               />
             </div>
             <h1 className="service-title">{t('services.electrician.pageTitle')}</h1>
           </div>
         </div>
       </section>
+
+      <ServiceIntro serviceId="electrician" />
 
       <FilterBar 
         serviceType="electrician"
@@ -199,6 +201,8 @@ const ElectricianPage = () => {
           )}
         </div>
       </div>
+
+      <ServiceFaq serviceId="electrician" />
 
       <ReviewModal 
         isOpen={reviewModal.isOpen}

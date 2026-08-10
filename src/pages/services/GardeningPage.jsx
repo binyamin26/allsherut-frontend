@@ -7,8 +7,13 @@ import ReviewModal from '../../components/modals/ReviewModal';
 import apiService from '../../services/api';
 import ProviderCard from '../../components/cards/ProviderCard';
 import { useLanguage } from '../../context/LanguageContext';
+import ServiceBreadcrumb from '../../components/services/ServiceBreadcrumb';
+import ServiceIntro from '../../components/services/ServiceIntro';
+import ServiceFaq from '../../components/services/ServiceFaq';
+import { buildServicePageJsonLd } from '../../utils/seoJsonLd';
+import { SERVICE_PAGE_META } from '../../data/servicePageMeta';
+import { buildServicePath, serviceTypeToKey } from '../../utils/langUtils';
 import React, { useState, useEffect } from 'react';
-
 
 const GardeningPageClean = () => {
   const navigate = useNavigate();
@@ -115,31 +120,27 @@ useEffect(() => {
   return (
     <div className="service-page gardening-page">
       <SEO
-        title="גנן בישראל"
-        description="מצאו גנן מקצועי בישראל - עיצוב גינה, גיזום, דשאים ותחזוקת גינה שוטפת."
-        canonicalPath="/services/gardening"
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'Service',
-          name: 'גנן בישראל',
-          description: 'מצאו גנן מקצועי בישראל - עיצוב גינה, גיזום, דשאים ותחזוקת גינה שוטפת.',
-          areaServed: { '@type': 'Country', name: 'ישראל' },
-          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
-        }}
+  title={SERVICE_PAGE_META.gardening.title}
+  description={SERVICE_PAGE_META.gardening.description}
+  canonicalPath={buildServicePath(serviceTypeToKey('gardening'), 'he')}
+  jsonLd={buildServicePageJsonLd({ serviceId: 'gardening', name: SERVICE_PAGE_META.gardening.title, description: SERVICE_PAGE_META.gardening.description, t })}
       />
+      <ServiceBreadcrumb serviceId="gardening" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo jardinage.jpg"
-                alt="Jardinage"
+                src={SERVICE_PAGE_META.gardening.heroImage}
+                alt={SERVICE_PAGE_META.gardening.heroAlt}
               />
             </div>
             <h1 className="service-title">{t('services.gardening.pageTitle')}</h1>
           </div>
         </div>
       </section>
+
+      <ServiceIntro serviceId="gardening" />
 
       <FilterBar 
         serviceType="gardening"
@@ -207,6 +208,8 @@ useEffect(() => {
       </div>
 
       {/* Modal d'avis */}
+      <ServiceFaq serviceId="gardening" />
+
       <ReviewModal 
         isOpen={reviewModal.isOpen}
         onClose={handleCloseReviewModal}

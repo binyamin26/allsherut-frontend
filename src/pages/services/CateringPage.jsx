@@ -8,6 +8,12 @@ import apiService from '../../services/api';
 import ProviderCard from '../../components/cards/ProviderCard';
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
+import ServiceBreadcrumb from '../../components/services/ServiceBreadcrumb';
+import ServiceIntro from '../../components/services/ServiceIntro';
+import ServiceFaq from '../../components/services/ServiceFaq';
+import { buildServicePageJsonLd } from '../../utils/seoJsonLd';
+import { SERVICE_PAGE_META } from '../../data/servicePageMeta';
+import { buildServicePath, serviceTypeToKey } from '../../utils/langUtils';
 
 const CateringPage = () => {
   const navigate = useNavigate();
@@ -108,31 +114,27 @@ const CateringPage = () => {
   return (
     <div className="service-page catering-page">
       <SEO
-        title="קייטרינג בישראל"
-        description="מצאו ספקי קייטרינג בישראל - קייטרינג לאירועים, ארוחות עסקיות ותפריטים מותאמים אישית."
-        canonicalPath="/services/catering"
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'Service',
-          name: 'קייטרינג בישראל',
-          description: 'מצאו ספקי קייטרינג בישראל - קייטרינג לאירועים, ארוחות עסקיות ותפריטים מותאמים אישית.',
-          areaServed: { '@type': 'Country', name: 'ישראל' },
-          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
-        }}
+  title={SERVICE_PAGE_META.catering.title}
+  description={SERVICE_PAGE_META.catering.description}
+  canonicalPath={buildServicePath(serviceTypeToKey('catering'), 'he')}
+  jsonLd={buildServicePageJsonLd({ serviceId: 'catering', name: SERVICE_PAGE_META.catering.title, description: SERVICE_PAGE_META.catering.description, t })}
       />
+      <ServiceBreadcrumb serviceId="catering" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo chef.jpg"
-                alt="Traiteur"
+                src={SERVICE_PAGE_META.catering.heroImage}
+                alt={SERVICE_PAGE_META.catering.heroAlt}
               />
             </div>
             <h1 className="service-title">{t('services.catering.pageTitle')}</h1>
           </div>
         </div>
       </section>
+
+      <ServiceIntro serviceId="catering" />
 
       <FilterBar
         serviceType="catering"
@@ -198,6 +200,8 @@ const CateringPage = () => {
           )}
         </div>
       </div>
+
+      <ServiceFaq serviceId="catering" />
 
       <ReviewModal
         isOpen={reviewModal.isOpen}

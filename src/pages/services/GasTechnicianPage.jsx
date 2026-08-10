@@ -8,6 +8,12 @@ import ReviewModal from '../../components/modals/ReviewModal';
 import apiService from '../../services/api';
 import ProviderCard from '../../components/cards/ProviderCard';
 import { useLanguage } from '../../context/LanguageContext';
+import ServiceBreadcrumb from '../../components/services/ServiceBreadcrumb';
+import ServiceIntro from '../../components/services/ServiceIntro';
+import ServiceFaq from '../../components/services/ServiceFaq';
+import { buildServicePageJsonLd } from '../../utils/seoJsonLd';
+import { SERVICE_PAGE_META } from '../../data/servicePageMeta';
+import { buildServicePath, serviceTypeToKey } from '../../utils/langUtils';
 import React, { useState, useEffect } from 'react';
 
 const GasTechnicianPage = () => {
@@ -109,31 +115,27 @@ const GasTechnicianPage = () => {
   return (
     <div className="service-page gas-technician-page">
       <SEO
-        title="טכנאי גז בישראל"
-        description="מצאו טכנאי גז מוסמך בישראל - התקנה, בדיקה ותיקון של מכשירי גז בצורה בטוחה."
-        canonicalPath="/services/gas-technician"
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'Service',
-          name: 'טכנאי גז בישראל',
-          description: 'מצאו טכנאי גז מוסמך בישראל - התקנה, בדיקה ותיקון של מכשירי גז בצורה בטוחה.',
-          areaServed: { '@type': 'Country', name: 'ישראל' },
-          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
-        }}
+  title={SERVICE_PAGE_META.gas_technician.title}
+  description={SERVICE_PAGE_META.gas_technician.description}
+  canonicalPath={buildServicePath(serviceTypeToKey('gas_technician'), 'he')}
+  jsonLd={buildServicePageJsonLd({ serviceId: 'gas_technician', name: SERVICE_PAGE_META.gas_technician.title, description: SERVICE_PAGE_META.gas_technician.description, t })}
       />
+      <ServiceBreadcrumb serviceId="gas_technician" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo gaz.jpg"
-                alt="Gaz"
+                src={SERVICE_PAGE_META.gas_technician.heroImage}
+                alt={SERVICE_PAGE_META.gas_technician.heroAlt}
               />
             </div>
             <h1 className="service-title">{t('services.gas_technician.pageTitle')}</h1>
           </div>
         </div>
       </section>
+
+      <ServiceIntro serviceId="gas_technician" />
 
       <FilterBar 
         serviceType="gas_technician"
@@ -199,6 +201,8 @@ const GasTechnicianPage = () => {
           )}
         </div>
       </div>
+
+      <ServiceFaq serviceId="gas_technician" />
 
       <ReviewModal 
         isOpen={reviewModal.isOpen}

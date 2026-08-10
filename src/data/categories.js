@@ -116,6 +116,11 @@ export const CATEGORY_DEFINITIONS = [
   },
 ];
 
+// Find the parent category definition for a given service id (e.g. 'electrician')
+export function getCategoryForService(serviceId) {
+  return CATEGORY_DEFINITIONS.find(cat => cat.serviceIds.includes(serviceId)) || null;
+}
+
 // All individual services with their metadata
 export const SERVICES_META = {
   plumbing:           { image: '/images/plombier.jpg',        href: '/services/plumbing',           nameKey: 'services.plumbing' },

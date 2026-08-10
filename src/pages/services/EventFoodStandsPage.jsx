@@ -7,6 +7,12 @@ import ReviewModal from '../../components/modals/ReviewModal';
 import apiService from '../../services/api';
 import ProviderCard from '../../components/cards/ProviderCard';
 import { useLanguage } from '../../context/LanguageContext';
+import ServiceBreadcrumb from '../../components/services/ServiceBreadcrumb';
+import ServiceIntro from '../../components/services/ServiceIntro';
+import ServiceFaq from '../../components/services/ServiceFaq';
+import { buildServicePageJsonLd } from '../../utils/seoJsonLd';
+import { SERVICE_PAGE_META } from '../../data/servicePageMeta';
+import { buildServicePath, serviceTypeToKey } from '../../utils/langUtils';
 import React, { useState, useEffect } from 'react';
 
 const EventFoodStandsPage = () => {
@@ -108,31 +114,27 @@ const EventFoodStandsPage = () => {
   return (
     <div className="service-page event-food-stands-page">
       <SEO
-        title="דוכני מזון לאירועים בישראל"
-        description="מצאו דוכני מזון מאוישים לאירועים בישראל - פופקורן, ברבה פאפא, המבורגרים ועוד."
-        canonicalPath="/services/event-food-stands"
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'Service',
-          name: 'דוכני מזון לאירועים בישראל',
-          description: 'מצאו דוכני מזון מאוישים לאירועים בישראל - פופקורן, ברבה פאפא, המבורגרים ועוד.',
-          areaServed: { '@type': 'Country', name: 'ישראל' },
-          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
-        }}
+  title={SERVICE_PAGE_META.event_food_stands.title}
+  description={SERVICE_PAGE_META.event_food_stands.description}
+  canonicalPath={buildServicePath(serviceTypeToKey('event_food_stands'), 'he')}
+  jsonLd={buildServicePageJsonLd({ serviceId: 'event_food_stands', name: SERVICE_PAGE_META.event_food_stands.title, description: SERVICE_PAGE_META.event_food_stands.description, t })}
       />
+      <ServiceBreadcrumb serviceId="event_food_stands" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo stands.jpg"
-                alt="Stands de nourriture événementiels"
+                src={SERVICE_PAGE_META.event_food_stands.heroImage}
+                alt={SERVICE_PAGE_META.event_food_stands.heroAlt}
               />
             </div>
             <h1 className="service-title">{t('services.event_food_stands.pageTitle')}</h1>
           </div>
         </div>
       </section>
+
+      <ServiceIntro serviceId="event_food_stands" />
 
       <FilterBar
         serviceType="event_food_stands"
@@ -198,6 +200,8 @@ const EventFoodStandsPage = () => {
           )}
         </div>
       </div>
+
+      <ServiceFaq serviceId="event_food_stands" />
 
       <ReviewModal
         isOpen={reviewModal.isOpen}

@@ -8,6 +8,12 @@ import apiService from '../../services/api';
 import ProviderCard from '../../components/cards/ProviderCard';
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
+import ServiceBreadcrumb from '../../components/services/ServiceBreadcrumb';
+import ServiceIntro from '../../components/services/ServiceIntro';
+import ServiceFaq from '../../components/services/ServiceFaq';
+import { buildServicePageJsonLd } from '../../utils/seoJsonLd';
+import { SERVICE_PAGE_META } from '../../data/servicePageMeta';
+import { buildServicePath, serviceTypeToKey } from '../../utils/langUtils';
 
 const PastryPage = () => {
   const navigate = useNavigate();
@@ -108,31 +114,27 @@ const PastryPage = () => {
   return (
     <div className="service-page pastry-page">
       <SEO
-        title="פירות ופטיסרי בישראל"
-        description="מצאו ספקי פירות ופטיסרי בישראל - פירות, מאפים וקינוחים מעוצבים לאירועים ולבית."
-        canonicalPath="/services/pastry"
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'Service',
-          name: 'פירות ופטיסרי בישראל',
-          description: 'מצאו ספקי פירות ופטיסרי בישראל - פירות, מאפים וקינוחים מעוצבים לאירועים ולבית.',
-          areaServed: { '@type': 'Country', name: 'ישראל' },
-          provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
-        }}
+  title={SERVICE_PAGE_META.pastry.title}
+  description={SERVICE_PAGE_META.pastry.description}
+  canonicalPath={buildServicePath(serviceTypeToKey('pastry'), 'he')}
+  jsonLd={buildServicePageJsonLd({ serviceId: 'pastry', name: SERVICE_PAGE_META.pastry.title, description: SERVICE_PAGE_META.pastry.description, t })}
       />
+      <ServiceBreadcrumb serviceId="pastry" />
       <section className="service-header">
         <div className="container">
           <div className="service-title-section">
             <div className="service-hero-icon">
               <img
-                src="/images/logo p et f.jpg"
-                alt="Pâtisserie"
+                src={SERVICE_PAGE_META.pastry.heroImage}
+                alt={SERVICE_PAGE_META.pastry.heroAlt}
               />
             </div>
             <h1 className="service-title">{t('services.pastry.pageTitle')}</h1>
           </div>
         </div>
       </section>
+
+      <ServiceIntro serviceId="pastry" />
 
       <FilterBar
         serviceType="pastry"
@@ -198,6 +200,8 @@ const PastryPage = () => {
           )}
         </div>
       </div>
+
+      <ServiceFaq serviceId="pastry" />
 
       <ReviewModal
         isOpen={reviewModal.isOpen}
