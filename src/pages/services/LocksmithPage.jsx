@@ -132,10 +132,9 @@ const LocksmithPage = () => {
             </div>
             <h1 className="service-title">{t('services.locksmith.pageTitle')}</h1>
           </div>
+          <p className="service-header-subtitle">{t('services.locksmith.intro', '')}</p>
         </div>
       </section>
-
-      <ServiceIntro serviceId="locksmith" />
 
       <FilterBar 
         serviceType="locksmith"
@@ -201,6 +200,8 @@ const LocksmithPage = () => {
           )}
         </div>
       </div>
+
+      <ServiceIntro serviceId="locksmith" />
 
       <ServiceFaq serviceId="locksmith" />
 

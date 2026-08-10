@@ -75,10 +75,9 @@ const DriverPage = () => {
             </div>
             <h1 className="service-title">{t('services.driver.pageTitle')}</h1>
           </div>
+          <p className="service-header-subtitle">{t('services.driver.intro', '')}</p>
         </div>
       </section>
-
-      <ServiceIntro serviceId="driver" />
 
       <FilterBar
         serviceType="driver"
@@ -142,6 +141,8 @@ const DriverPage = () => {
           )}
         </div>
       </div>
+
+      <ServiceIntro serviceId="driver" />
 
       <ServiceFaq serviceId="driver" />
 

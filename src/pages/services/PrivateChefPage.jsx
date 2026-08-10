@@ -132,10 +132,9 @@ const PrivateChefPage = () => {
             </div>
             <h1 className="service-title">{t('services.private_chef.pageTitle')}</h1>
           </div>
+          <p className="service-header-subtitle">{t('services.private_chef.intro', '')}</p>
         </div>
       </section>
-
-      <ServiceIntro serviceId="private_chef" />
 
       <FilterBar 
         serviceType="private_chef"
@@ -201,6 +200,8 @@ const PrivateChefPage = () => {
           )}
         </div>
       </div>
+
+      <ServiceIntro serviceId="private_chef" />
 
       <ServiceFaq serviceId="private_chef" />
 

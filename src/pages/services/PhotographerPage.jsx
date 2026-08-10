@@ -105,10 +105,9 @@ const PhotographerPage = () => {
             </div>
             <h1 className="service-title">{t('services.photographer.pageTitle')}</h1>
           </div>
+          <p className="service-header-subtitle">{t('services.photographer.intro', '')}</p>
         </div>
       </section>
-
-      <ServiceIntro serviceId="photographer" />
 
       <FilterBar
         serviceType="photographer"
@@ -172,6 +171,8 @@ const PhotographerPage = () => {
           )}
         </div>
       </div>
+
+      <ServiceIntro serviceId="photographer" />
 
       <ServiceFaq serviceId="photographer" />
 

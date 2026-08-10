@@ -118,10 +118,9 @@ const PestControlPage = () => {
             </div>
             <h1 className="service-title">{t('services.pest_control.pageTitle')}</h1>
           </div>
+          <p className="service-header-subtitle">{t('services.pest_control.intro', '')}</p>
         </div>
       </section>
-
-      <ServiceIntro serviceId="pest_control" />
 
       <FilterBar
         serviceType="pest_control"
@@ -187,6 +186,8 @@ const PestControlPage = () => {
           )}
         </div>
       </div>
+
+      <ServiceIntro serviceId="pest_control" />
 
       <ServiceFaq serviceId="pest_control" />
 

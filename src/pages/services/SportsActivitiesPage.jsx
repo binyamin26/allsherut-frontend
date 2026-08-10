@@ -121,10 +121,9 @@ const SportsActivitiesPage = () => {
             </div>
             <h1 className="service-title">{t('services.sports_activities.pageTitle')}</h1>
           </div>
+          <p className="service-header-subtitle">{t('services.sports_activities.intro', '')}</p>
         </div>
       </section>
-
-      <ServiceIntro serviceId="sports_activities" />
 
       <FilterBar
         serviceType="sports_activities"
@@ -190,6 +189,8 @@ const SportsActivitiesPage = () => {
           )}
         </div>
       </div>
+
+      <ServiceIntro serviceId="sports_activities" />
 
       <ServiceFaq serviceId="sports_activities" />
 

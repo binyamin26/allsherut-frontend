@@ -132,10 +132,9 @@ const AirConditioningPage = () => {
             </div>
             <h1 className="service-title">{t('services.air_conditioning.pageTitle')}</h1>
           </div>
+          <p className="service-header-subtitle">{t('services.air_conditioning.intro', '')}</p>
         </div>
       </section>
-
-      <ServiceIntro serviceId="air_conditioning" />
 
       <FilterBar 
         serviceType="air_conditioning"
@@ -201,6 +200,8 @@ const AirConditioningPage = () => {
           )}
         </div>
       </div>
+
+      <ServiceIntro serviceId="air_conditioning" />
 
       <ServiceFaq serviceId="air_conditioning" />
 

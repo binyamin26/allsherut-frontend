@@ -132,10 +132,9 @@ const GlassWorksPage = () => {
             </div>
             <h1 className="service-title">{t('services.glass_works.pageTitle')}</h1>
           </div>
+          <p className="service-header-subtitle">{t('services.glass_works.intro', '')}</p>
         </div>
       </section>
-
-      <ServiceIntro serviceId="glass_works" />
 
       <FilterBar 
         serviceType="glass_works"
@@ -202,6 +201,8 @@ const GlassWorksPage = () => {
           )}
         </div>
       </div>
+
+      <ServiceIntro serviceId="glass_works" />
 
       <ServiceFaq serviceId="glass_works" />
 

@@ -132,10 +132,9 @@ const WaterproofingPage = () => {
             </div>
             <h1 className="service-title">{t('services.waterproofing.pageTitle')}</h1>
           </div>
+          <p className="service-header-subtitle">{t('services.waterproofing.intro', '')}</p>
         </div>
       </section>
-
-      <ServiceIntro serviceId="waterproofing" />
 
       <FilterBar 
         serviceType="waterproofing"
@@ -201,6 +200,8 @@ const WaterproofingPage = () => {
           )}
         </div>
       </div>
+
+      <ServiceIntro serviceId="waterproofing" />
 
       <ServiceFaq serviceId="waterproofing" />
 

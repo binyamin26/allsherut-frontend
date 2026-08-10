@@ -168,12 +168,14 @@ function renderServiceBody(serviceId) {
           </div>
           <h1 class="service-title">${escapeHtml(pageTitle)}</h1>
         </div>
+        ${intro ? `<p class="service-header-subtitle">${escapeHtml(intro)}</p>` : ''}
       </div>
     </section>`;
 
   const introSection = (intro || highlights.length > 0) ? `
     <section class="service-intro-section">
       <div class="container">
+        <span class="service-intro-eyebrow">${escapeHtml(t('services.infoSectionTitle', 'מידע שימושי'))}</span>
         ${intro ? `<p class="service-intro-text">${escapeHtml(intro)}</p>` : ''}
         ${highlights.length > 0 ? `<ul class="service-highlights">${highlights.map(h => `<li>${escapeHtml(h)}</li>`).join('')}</ul>` : ''}
       </div>
@@ -182,7 +184,10 @@ function renderServiceBody(serviceId) {
   const faqSection = faqItems.length > 0 ? `
     <section class="service-faq-section">
       <div class="container">
-        <h2 class="service-faq-title">${escapeHtml(t('services.faqSectionTitle', 'שאלות נפוצות'))}</h2>
+        <div class="service-faq-header">
+          <h2 class="service-faq-title">${escapeHtml(t('services.faqSectionTitle', 'שאלות נפוצות'))}</h2>
+          <p class="service-faq-subtitle">${escapeHtml(t('services.faqSectionSubtitle', 'התשובות לשאלות שהכי מטרידות לקוחות לפני שהם פונים לספק'))}</p>
+        </div>
         <div class="service-faq-list">
           ${faqItems.map(item => `
           <details class="service-faq-item">

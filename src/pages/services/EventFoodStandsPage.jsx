@@ -131,10 +131,9 @@ const EventFoodStandsPage = () => {
             </div>
             <h1 className="service-title">{t('services.event_food_stands.pageTitle')}</h1>
           </div>
+          <p className="service-header-subtitle">{t('services.event_food_stands.intro', '')}</p>
         </div>
       </section>
-
-      <ServiceIntro serviceId="event_food_stands" />
 
       <FilterBar
         serviceType="event_food_stands"
@@ -200,6 +199,8 @@ const EventFoodStandsPage = () => {
           )}
         </div>
       </div>
+
+      <ServiceIntro serviceId="event_food_stands" />
 
       <ServiceFaq serviceId="event_food_stands" />
 

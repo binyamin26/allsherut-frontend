@@ -137,10 +137,9 @@ useEffect(() => {
             </div>
             <h1 className="service-title">{t('services.gardening.pageTitle')}</h1>
           </div>
+          <p className="service-header-subtitle">{t('services.gardening.intro', '')}</p>
         </div>
       </section>
-
-      <ServiceIntro serviceId="gardening" />
 
       <FilterBar 
         serviceType="gardening"
@@ -207,7 +206,8 @@ useEffect(() => {
         </div>
       </div>
 
-      {/* Modal d'avis */}
+      <ServiceIntro serviceId="gardening" />
+
       <ServiceFaq serviceId="gardening" />
 
       <ReviewModal 

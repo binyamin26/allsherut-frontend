@@ -132,10 +132,9 @@ const ElectricianPage = () => {
             </div>
             <h1 className="service-title">{t('services.electrician.pageTitle')}</h1>
           </div>
+          <p className="service-header-subtitle">{t('services.electrician.intro', '')}</p>
         </div>
       </section>
-
-      <ServiceIntro serviceId="electrician" />
 
       <FilterBar 
         serviceType="electrician"
@@ -201,6 +200,8 @@ const ElectricianPage = () => {
           )}
         </div>
       </div>
+
+      <ServiceIntro serviceId="electrician" />
 
       <ServiceFaq serviceId="electrician" />
 

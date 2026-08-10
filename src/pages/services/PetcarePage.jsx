@@ -137,10 +137,9 @@ useEffect(() => {
             </div>
             <h1 className="service-title">{t('services.petcare.pageTitle')}</h1>
           </div>
+          <p className="service-header-subtitle">{t('services.petcare.intro', '')}</p>
         </div>
       </section>
-
-      <ServiceIntro serviceId="petcare" />
 
       <FilterBar 
         serviceType="petcare"
@@ -207,7 +206,8 @@ useEffect(() => {
         </div>
       </div>
 
-      {/* Modal d'avis */}
+      <ServiceIntro serviceId="petcare" />
+
       <ServiceFaq serviceId="petcare" />
 
       <ReviewModal 

@@ -35,7 +35,7 @@ const HowItWorksPage = () => {
         </section>
 
         {/* Provider Section */}
-        <section className="info-section provider-section">
+        <section id="providers" className="info-section provider-section">
           <div className="section-header">
             <Reveal as="div">
               <Users size={40} className="section-icon" />

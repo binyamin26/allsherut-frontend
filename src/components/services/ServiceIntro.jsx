@@ -15,6 +15,7 @@ const ServiceIntro = ({ serviceId }) => {
   return (
     <section className="service-intro-section">
       <div className="container">
+        <span className="service-intro-eyebrow">{t('services.infoSectionTitle', 'מידע שימושי')}</span>
         {intro && <p className="service-intro-text">{intro}</p>}
         {highlights.length > 0 && (
           <ul className="service-highlights">

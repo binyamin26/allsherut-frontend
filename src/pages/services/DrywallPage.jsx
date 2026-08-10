@@ -132,10 +132,9 @@ const DrywallPage = () => {
             </div>
             <h1 className="service-title">{t('services.drywall.pageTitle')}</h1>
           </div>
+          <p className="service-header-subtitle">{t('services.drywall.intro', '')}</p>
         </div>
       </section>
-
-      <ServiceIntro serviceId="drywall" />
 
       <FilterBar 
         serviceType="drywall"
@@ -201,6 +200,8 @@ const DrywallPage = () => {
           )}
         </div>
       </div>
+
+      <ServiceIntro serviceId="drywall" />
 
       <ServiceFaq serviceId="drywall" />
 

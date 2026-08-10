@@ -132,10 +132,9 @@ const PaintingPage = () => {
             </div>
             <h1 className="service-title">{t('services.painting.pageTitle')}</h1>
           </div>
+          <p className="service-header-subtitle">{t('services.painting.intro', '')}</p>
         </div>
       </section>
-
-      <ServiceIntro serviceId="painting" />
 
       <FilterBar 
         serviceType="painting"
@@ -201,6 +200,8 @@ const PaintingPage = () => {
           )}
         </div>
       </div>
+
+      <ServiceIntro serviceId="painting" />
 
       <ServiceFaq serviceId="painting" />
 

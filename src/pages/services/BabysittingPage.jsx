@@ -140,11 +140,9 @@ const response = await apiService.searchProviders(cleanParams);
             </div>
             <h1 className="service-title">{t('services.babysitting.pageTitle')}</h1>
           </div>
+          <p className="service-header-subtitle">{t('services.babysitting.intro', '')}</p>
         </div>
       </section>
-
-      {/* FilterBar */}
-      <ServiceIntro serviceId="babysitting" />
 
       <FilterBar 
         serviceType="babysitting"
@@ -212,7 +210,8 @@ const response = await apiService.searchProviders(cleanParams);
         </div>
       </div>
 
-      {/* Modal d'avis */}
+      <ServiceIntro serviceId="babysitting" />
+
       <ServiceFaq serviceId="babysitting" />
 
       <ReviewModal 

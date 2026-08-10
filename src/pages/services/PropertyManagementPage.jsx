@@ -139,10 +139,9 @@ const PropertyManagementPage = () => {
             </div>
             <h1 className="service-title">{t('services.property_management.pageTitle')}</h1>
           </div>
+          <p className="service-header-subtitle">{t('services.property_management.intro', '')}</p>
         </div>
       </section>
-
-      <ServiceIntro serviceId="property_management" />
 
       <FilterBar 
         serviceType="property_management"
@@ -209,7 +208,8 @@ const PropertyManagementPage = () => {
         </div>
       </div>
 
-      {/* Modal d'avis */}
+      <ServiceIntro serviceId="property_management" />
+
       <ServiceFaq serviceId="property_management" />
 
       <ReviewModal 

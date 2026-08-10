@@ -143,10 +143,9 @@ const LaundryPage = () => {
             </div>
             <h1 className="service-title">{t('services.laundry.pageTitle')}</h1>
           </div>
+          <p className="service-header-subtitle">{t('services.laundry.intro', '')}</p>
         </div>
       </section>
-
-      <ServiceIntro serviceId="laundry" />
 
       <FilterBar 
         serviceType="laundry"
@@ -213,7 +212,8 @@ const LaundryPage = () => {
         </div>
       </div>
 
-      {/* Modal d'avis */}
+      <ServiceIntro serviceId="laundry" />
+
       <ServiceFaq serviceId="laundry" />
 
       <ReviewModal 

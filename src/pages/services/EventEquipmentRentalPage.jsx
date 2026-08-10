@@ -131,10 +131,9 @@ const EventEquipmentRentalPage = () => {
             </div>
             <h1 className="service-title">{t('services.event_equipment_rental.pageTitle')}</h1>
           </div>
+          <p className="service-header-subtitle">{t('services.event_equipment_rental.intro', '')}</p>
         </div>
       </section>
-
-      <ServiceIntro serviceId="event_equipment_rental" />
 
       <FilterBar
         serviceType="event_equipment_rental"
@@ -200,6 +199,8 @@ const EventEquipmentRentalPage = () => {
           )}
         </div>
       </div>
+
+      <ServiceIntro serviceId="event_equipment_rental" />
 
       <ServiceFaq serviceId="event_equipment_rental" />
 
