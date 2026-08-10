@@ -1894,7 +1894,8 @@ const handleContact = () => {
                         padding: '0.2rem 0.5rem',
                         borderRadius: '6px',
                         whiteSpace: 'nowrap',
-                      }}>₪{item.price}</span>
+                        unicodeBidi: 'plaintext',
+                      }}>{/₪|ש["״]?ח|שקל/.test(item.price || '') ? item.price : `₪${item.price}`}</span>
                     </div>
                   ))}
                 </div>
