@@ -1324,7 +1324,7 @@ LOCATION SELECTOR - VERSION PLEINE LARGEUR
   line-height: 1.5;
   text-align: center;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -1466,6 +1466,16 @@ LOCATION SELECTOR - VERSION PLEINE LARGEUR
   font-weight: 700;
   color: var(--neutral-900);
   text-align: right;
+  transition: background-color 0.2s ease;
+}
+
+.service-faq-question:hover {
+  background-color: var(--primary-25, #eff6ff);
+}
+
+.service-faq-question:focus-visible {
+  outline: 2px solid var(--primary-400);
+  outline-offset: -2px;
 }
 
 .service-faq-chevron {

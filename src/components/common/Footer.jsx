@@ -59,9 +59,9 @@ const Footer = () => {
 
             <p className="footer-description">{t('footer.description')}</p>
 
-            <a href="mailto:support@allsherut.com" className="footer-contact-link">
+            <a href="mailto:allsherutcontact@gmail.com" className="footer-contact-link">
               <Mail size={16} />
-              <span>support@allsherut.com</span>
+              <span>allsherutcontact@gmail.com</span>
             </a>
 
             <div className="footer-language-flags">

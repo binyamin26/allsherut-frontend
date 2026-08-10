@@ -10,6 +10,7 @@ import ProviderCard from '../../components/cards/ProviderCard';
 import { useLanguage } from '../../context/LanguageContext';
 import ServiceBreadcrumb from '../../components/services/ServiceBreadcrumb';
 import ServiceIntro from '../../components/services/ServiceIntro';
+import ServiceHeaderSubtitle from '../../components/services/ServiceHeaderSubtitle';
 import ServiceFaq from '../../components/services/ServiceFaq';
 import { buildServicePageJsonLd } from '../../utils/seoJsonLd';
 import { SERVICE_PAGE_META } from '../../data/servicePageMeta';
@@ -119,7 +120,7 @@ const EventDecorationPage = () => {
             </div>
             <h1 className="service-title">{t('services.event_decoration.pageTitle')}</h1>
           </div>
-          <p className="service-header-subtitle">{t('services.event_decoration.intro', '')}</p>
+          <ServiceHeaderSubtitle serviceId="event_decoration" />
         </div>
       </section>
 

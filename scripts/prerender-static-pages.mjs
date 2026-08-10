@@ -51,6 +51,7 @@ import { CATEGORY_DEFINITIONS, SERVICES_META, getCategoryForService } from '../s
 import { buildServicePath, serviceTypeToKey } from '../src/utils/langUtils.js';
 import { SERVICE_PAGE_META } from '../src/data/servicePageMeta.js';
 import { buildServicePageJsonLd, getServiceFaqItems } from '../src/utils/seoJsonLd.js';
+import { getFirstSentence } from '../src/utils/textUtils.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
@@ -168,7 +169,7 @@ function renderServiceBody(serviceId) {
           </div>
           <h1 class="service-title">${escapeHtml(pageTitle)}</h1>
         </div>
-        ${intro ? `<p class="service-header-subtitle">${escapeHtml(intro)}</p>` : ''}
+        ${intro ? `<p class="service-header-subtitle">${escapeHtml(getFirstSentence(intro))}</p>` : ''}
       </div>
     </section>`;
 
