@@ -69,7 +69,6 @@
   align-items: center;
   position: relative;
   z-index: 2;
-  overflow: hidden;
 
   background:
     radial-gradient(at 15% 20%, rgba(47, 128, 237, 0.10) 0px, transparent 50%),
