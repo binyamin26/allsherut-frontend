@@ -56,7 +56,7 @@ export const CATEGORY_DEFINITIONS = [
       en: 'Family care services in Israel: babysitting, pet care and elder care.',
       ru: 'Семейные услуги в Израиле: няня, уход за животными и уход за пожилыми.',
     },
-    image: '/images/catégorie aides familles.jpg',
+    image: '/images/catégorie aides familles.jpeg',
     gradient: 'from-pink-500 to-rose-600',
     serviceIds: ['babysitting', 'petcare', 'eldercare'],
   },
