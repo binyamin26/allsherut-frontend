@@ -1330,12 +1330,14 @@ LOCATION SELECTOR - VERSION PLEINE LARGEUR
 }
 
 /* Info section — moved below the results grid, styled as an editorial block rather
-   than a wall of SEO text */
+   than a wall of SEO text. Direction is deliberately NOT hardcoded here (unlike other
+   legacy blocks in this file) — it follows document.documentElement.dir, which
+   LanguageContext already sets correctly per language, so EN/FR/RU render properly
+   left-to-right instead of being forced into RTL. */
 .service-intro-section {
   background: white;
   padding: var(--space-12) 0;
-  direction: rtl;
-  text-align: right;
+  text-align: start;
   border-top: 1px solid var(--neutral-100);
 }
 
@@ -1369,14 +1371,14 @@ LOCATION SELECTOR - VERSION PLEINE LARGEUR
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-3) var(--space-6);
   max-width: 820px;
-  margin: 0;
+  margin: 0 0 var(--space-8);
   padding: 0;
   list-style: none;
 }
 
 .service-highlights li {
   position: relative;
-  padding-right: var(--space-6);
+  padding-inline-start: var(--space-6);
   font-size: var(--text-base);
   color: var(--neutral-700);
   line-height: 1.5;
@@ -1385,14 +1387,131 @@ LOCATION SELECTOR - VERSION PLEINE LARGEUR
 .service-highlights li::before {
   content: '✓';
   position: absolute;
-  right: 0;
+  inset-inline-start: 0;
   top: 0;
   color: var(--primary-600);
   font-weight: 700;
 }
 
+/* Cards — "Services et interventions courantes". A real product section, not a
+   bulleted SEO list: icon + short title + one-line description per card. */
+.service-cards-title {
+  font-size: var(--text-xl);
+  font-weight: 800;
+  color: var(--neutral-900);
+  margin: 0 0 var(--space-4);
+}
+
+.service-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-4);
+  margin: 0 0 var(--space-8);
+}
+
+.service-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+  background: var(--neutral-25);
+  border: 1px solid var(--neutral-100);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+
+.service-card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--radius-md);
+  background: var(--primary-50, #eff6ff);
+  color: var(--primary-600);
+  flex-shrink: 0;
+}
+
+.service-card-title {
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--neutral-900);
+  margin: 0;
+}
+
+.service-card-desc {
+  font-size: var(--text-sm);
+  color: var(--neutral-600);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Optional "À vérifier avant de choisir" checklist — subtle brand tint, never forced
+   when a service has no meaningfully distinct checklist content. */
+.service-checklist {
+  background: var(--primary-25, #eff6ff);
+  border: 1px solid var(--primary-100, #dbeafe);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  margin: 0 0 var(--space-6);
+}
+
+.service-checklist-title {
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--neutral-900);
+  margin: 0 0 var(--space-3);
+}
+
+.service-checklist-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-2) var(--space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.service-checklist-list li {
+  position: relative;
+  padding-inline-start: var(--space-6);
+  font-size: var(--text-sm);
+  color: var(--neutral-700);
+  line-height: 1.5;
+}
+
+.service-checklist-list li::before {
+  content: '✓';
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0;
+  color: var(--primary-600);
+  font-weight: 700;
+}
+
+.service-intro-transition {
+  max-width: 820px;
+  margin: 0;
+  font-size: var(--text-base);
+  color: var(--neutral-500);
+  line-height: 1.6;
+}
+
 @media (max-width: 640px) {
   .service-highlights {
+    grid-template-columns: 1fr;
+  }
+
+  .service-cards-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: var(--space-3);
+  }
+
+  .service-card {
+    padding: var(--space-4);
+  }
+
+  .service-checklist-list {
     grid-template-columns: 1fr;
   }
 
@@ -1401,12 +1520,13 @@ LOCATION SELECTOR - VERSION PLEINE LARGEUR
   }
 }
 
-/* FAQ — animated accordion, narrower width, rounded corners consistent with cards */
+/* FAQ — animated accordion, narrower width, rounded corners consistent with cards.
+   Direction follows document.documentElement.dir (see .service-intro-section note
+   above) instead of being forced to RTL. */
 .service-faq-section {
   background: var(--neutral-25);
   padding: var(--space-12) 0 var(--space-16);
-  direction: rtl;
-  text-align: right;
+  text-align: start;
   border-top: 1px solid var(--neutral-100);
 }
 
@@ -1465,7 +1585,7 @@ LOCATION SELECTOR - VERSION PLEINE LARGEUR
   font-size: var(--text-base);
   font-weight: 700;
   color: var(--neutral-900);
-  text-align: right;
+  text-align: start;
   transition: background-color 0.2s ease;
 }
 
@@ -1541,7 +1661,7 @@ LOCATION SELECTOR - VERSION PLEINE LARGEUR
 .service-faq-item summary::before {
   content: '+';
   display: inline-block;
-  margin-left: var(--space-3);
+  margin-inline-end: var(--space-3);
   color: var(--primary-600);
   font-weight: 700;
   width: 1em;

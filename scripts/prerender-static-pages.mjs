@@ -52,6 +52,7 @@ import { buildServicePath, serviceTypeToKey } from '../src/utils/langUtils.js';
 import { SERVICE_PAGE_META } from '../src/data/servicePageMeta.js';
 import { buildServicePageJsonLd, getServiceFaqItems } from '../src/utils/seoJsonLd.js';
 import { getFirstSentence } from '../src/utils/textUtils.js';
+import { getServiceCards, getServiceChecklist, getServiceTransition } from '../src/utils/serviceUsefulInfo.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
@@ -149,7 +150,12 @@ function renderServiceBody(serviceId) {
   const pageTitle = t(`services.${serviceId}.pageTitle`, meta.title);
   const category = getCategoryForService(serviceId);
   const intro = t(`services.${serviceId}.intro`, '');
-  const highlights = [1, 2, 3, 4].map(n => t(`services.${serviceId}.highlight${n}`, '')).filter(Boolean);
+  const cards = getServiceCards(serviceId, t);
+  const highlights = cards.length === 0
+    ? [1, 2, 3, 4].map(n => t(`services.${serviceId}.highlight${n}`, '')).filter(Boolean)
+    : [];
+  const checklist = getServiceChecklist(serviceId, t);
+  const transition = getServiceTransition(serviceId, t);
   const faqItems = getServiceFaqItems(serviceId, t);
 
   const breadcrumb = `
@@ -173,12 +179,30 @@ function renderServiceBody(serviceId) {
       </div>
     </section>`;
 
-  const introSection = (intro || highlights.length > 0) ? `
+  const introSection = (intro || cards.length > 0 || highlights.length > 0) ? `
     <section class="service-intro-section">
       <div class="container">
         <span class="service-intro-eyebrow">${escapeHtml(t('services.infoSectionTitle', 'מידע שימושי'))}</span>
         ${intro ? `<p class="service-intro-text">${escapeHtml(intro)}</p>` : ''}
+        ${cards.length > 0 ? `
+        <h2 class="service-cards-title">${escapeHtml(t('services.cardsSectionTitle', 'שירותים ופעולות נפוצות'))}</h2>
+        <div class="service-cards-grid">
+          ${cards.map(card => `
+          <div class="service-card">
+            <div class="service-card-icon" aria-hidden="true"></div>
+            <h3 class="service-card-title">${escapeHtml(card.title)}</h3>
+            <p class="service-card-desc">${escapeHtml(card.desc)}</p>
+          </div>`).join('')}
+        </div>` : ''}
         ${highlights.length > 0 ? `<ul class="service-highlights">${highlights.map(h => `<li>${escapeHtml(h)}</li>`).join('')}</ul>` : ''}
+        ${checklist.length > 0 ? `
+        <div class="service-checklist">
+          <h3 class="service-checklist-title">${escapeHtml(t('services.checklistSectionTitle', 'לפני שפונים לבעל מקצוע'))}</h3>
+          <ul class="service-checklist-list">
+            ${checklist.map(item => `<li>${escapeHtml(item)}</li>`).join('')}
+          </ul>
+        </div>` : ''}
+        ${transition ? `<p class="service-intro-transition">${escapeHtml(transition)}</p>` : ''}
       </div>
     </section>` : '';
 
