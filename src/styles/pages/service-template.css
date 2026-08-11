@@ -1360,7 +1360,7 @@ LOCATION SELECTOR - VERSION PLEINE LARGEUR
 
 .service-intro-text {
   max-width: 820px;
-  margin: 0 0 var(--space-6);
+  margin: 0 0 var(--space-8);
   font-size: var(--text-lg);
   line-height: 1.7;
   color: var(--neutral-700);
@@ -1407,6 +1407,12 @@ LOCATION SELECTOR - VERSION PLEINE LARGEUR
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: var(--space-4);
   margin: 0 0 var(--space-8);
+}
+
+/* Exactly-4-card services: widen the min column so only 2 fit at desktop width
+   instead of 3 — avoids a lone 4th card stranded alone on its own row. */
+.service-cards-grid--four {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
 .service-card {
@@ -1472,6 +1478,12 @@ LOCATION SELECTOR - VERSION PLEINE LARGEUR
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+/* Same fix as .service-cards-grid--four, for the checklist: exactly 4 items would
+   otherwise resolve to 3 columns and strand the 4th item alone on its own row. */
+.service-checklist-list--four {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
 
 .service-checklist-list li {
@@ -1633,6 +1645,15 @@ LOCATION SELECTOR - VERSION PLEINE LARGEUR
   padding: 0 var(--space-5) var(--space-5);
   color: var(--neutral-600);
   line-height: 1.65;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-faq-item,
+  .service-faq-question,
+  .service-faq-chevron,
+  .service-faq-answer-wrap {
+    transition-duration: 0.01ms !important;
+  }
 }
 
 @media (max-width: 640px) {

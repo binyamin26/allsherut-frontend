@@ -186,7 +186,7 @@ function renderServiceBody(serviceId) {
         ${intro ? `<p class="service-intro-text">${escapeHtml(intro)}</p>` : ''}
         ${cards.length > 0 ? `
         <h2 class="service-cards-title">${escapeHtml(t('services.cardsSectionTitle', 'שירותים ופעולות נפוצות'))}</h2>
-        <div class="service-cards-grid">
+        <div class="service-cards-grid${cards.length === 4 ? ' service-cards-grid--four' : ''}">
           ${cards.map(card => `
           <div class="service-card">
             <div class="service-card-icon" aria-hidden="true"></div>
@@ -198,7 +198,7 @@ function renderServiceBody(serviceId) {
         ${checklist.length > 0 ? `
         <div class="service-checklist">
           <h3 class="service-checklist-title">${escapeHtml(t('services.checklistSectionTitle', 'לפני שפונים לבעל מקצוע'))}</h3>
-          <ul class="service-checklist-list">
+          <ul class="service-checklist-list${checklist.length === 4 ? ' service-checklist-list--four' : ''}">
             ${checklist.map(item => `<li>${escapeHtml(item)}</li>`).join('')}
           </ul>
         </div>` : ''}

@@ -30,7 +30,13 @@ const ServiceIntro = ({ serviceId }) => {
         {cards.length > 0 && (
           <>
             <h2 className="service-cards-title">{t('services.cardsSectionTitle', 'שירותים ופעולות נפוצות')}</h2>
-            <div className="service-cards-grid">
+            {/* At the desktop container width (820px), the base 220px-min auto-fit rule
+               always resolves to 3 columns. That's exactly right for counts of 3 and 6
+               (one or two full rows) but leaves a single orphaned card alone on its own
+               row for the 15 services with exactly 4 cards. Widening the min-width just
+               for that count forces a clean 2x2 grid instead, while still degrading to
+               1 column on mobile via the existing media query. */}
+            <div className={`service-cards-grid${cards.length === 4 ? ' service-cards-grid--four' : ''}`}>
               {cards.map((card, i) => {
                 const Icon = getServiceCardIcon(serviceId, i);
                 return (
@@ -58,7 +64,12 @@ const ServiceIntro = ({ serviceId }) => {
         {checklist.length > 0 && (
           <div className="service-checklist">
             <h3 className="service-checklist-title">{t('services.checklistSectionTitle', 'לפני שפונים לבעל מקצוע')}</h3>
-            <ul className="service-checklist-list">
+            {/* Same orphan-row issue as the cards grid, same fix: the base 200px-min
+               rule resolves to 3 columns at desktop width, which is exactly right for
+               3 items (one row) and 5 (a 3+2 split most viewers read as intentional),
+               but leaves a lone item on its own row for the ~24 services with exactly
+               4 checklist items. Force a clean 2x2 there instead. */}
+            <ul className={`service-checklist-list${checklist.length === 4 ? ' service-checklist-list--four' : ''}`}>
               {checklist.map((item, i) => (
                 <li key={i}>{item}</li>
               ))}
