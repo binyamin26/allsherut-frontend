@@ -1415,7 +1415,7 @@ LOCATION SELECTOR - VERSION PLEINE LARGEUR
   align-items: flex-start;
   gap: var(--space-2);
   background: var(--neutral-25);
-  border: 1px solid var(--neutral-100);
+  border: 1px solid var(--neutral-200);
   border-radius: var(--radius-lg);
   padding: var(--space-5);
 }
@@ -1437,6 +1437,7 @@ LOCATION SELECTOR - VERSION PLEINE LARGEUR
   font-weight: 700;
   color: var(--neutral-900);
   margin: 0;
+  overflow-wrap: break-word;
 }
 
 .service-card-desc {
@@ -1444,6 +1445,7 @@ LOCATION SELECTOR - VERSION PLEINE LARGEUR
   color: var(--neutral-600);
   line-height: 1.5;
   margin: 0;
+  overflow-wrap: break-word;
 }
 
 /* Optional "À vérifier avant de choisir" checklist — subtle brand tint, never forced
@@ -1478,6 +1480,7 @@ LOCATION SELECTOR - VERSION PLEINE LARGEUR
   font-size: var(--text-sm);
   color: var(--neutral-700);
   line-height: 1.5;
+  overflow-wrap: break-word;
 }
 
 .service-checklist-list li::before {
@@ -1502,8 +1505,11 @@ LOCATION SELECTOR - VERSION PLEINE LARGEUR
     grid-template-columns: 1fr;
   }
 
+  /* Full-sentence descriptions, not short labels — a forced 2-column grid here
+     would squeeze each card to ~140px and wrap text onto 8+ lines. Stack instead;
+     the auto-fit(220px) base rule already gives 2-3 columns from ~480px up. */
   .service-cards-grid {
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    grid-template-columns: 1fr;
     gap: var(--space-3);
   }
 
