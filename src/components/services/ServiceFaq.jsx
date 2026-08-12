@@ -13,7 +13,7 @@ import { getServiceFaqItems } from '../../utils/seoJsonLd';
 const ServiceFaq = ({ serviceId }) => {
   const { t } = useLanguage();
   const items = getServiceFaqItems(serviceId, t);
-  const [openIndex, setOpenIndex] = useState(0);
+  const [openIndex, setOpenIndex] = useState(-1);
 
   if (items.length === 0) return null;
 

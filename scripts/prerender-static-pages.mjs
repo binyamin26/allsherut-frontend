@@ -198,7 +198,7 @@ function renderServiceBody(serviceId) {
         ${checklist.length > 0 ? `
         <div class="service-checklist">
           <h3 class="service-checklist-title">${escapeHtml(t('services.checklistSectionTitle', 'לפני שפונים לבעל מקצוע'))}</h3>
-          <ul class="service-checklist-list${checklist.length === 4 ? ' service-checklist-list--four' : ''}">
+          <ul class="service-checklist-list${checklist.length === 4 ? ' service-checklist-list--four' : checklist.length === 5 ? ' service-checklist-list--five' : ''}">
             ${checklist.map(item => `<li>${escapeHtml(item)}</li>`).join('')}
           </ul>
         </div>` : ''}

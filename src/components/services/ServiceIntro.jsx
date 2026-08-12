@@ -69,7 +69,7 @@ const ServiceIntro = ({ serviceId }) => {
                3 items (one row) and 5 (a 3+2 split most viewers read as intentional),
                but leaves a lone item on its own row for the ~24 services with exactly
                4 checklist items. Force a clean 2x2 there instead. */}
-            <ul className={`service-checklist-list${checklist.length === 4 ? ' service-checklist-list--four' : ''}`}>
+            <ul className={`service-checklist-list${checklist.length === 4 ? ' service-checklist-list--four' : checklist.length === 5 ? ' service-checklist-list--five' : ''}`}>
               {checklist.map((item, i) => (
                 <li key={i}>{item}</li>
               ))}

@@ -1460,21 +1460,21 @@ LOCATION SELECTOR - VERSION PLEINE LARGEUR
   background: var(--primary-25, #eff6ff);
   border: 1px solid var(--primary-100, #dbeafe);
   border-radius: var(--radius-lg);
-  padding: var(--space-6);
-  margin: 0 0 var(--space-6);
+  padding: var(--space-5) var(--space-6);
+  margin: 0 0 var(--space-5);
 }
 
 .service-checklist-title {
   font-size: var(--text-base);
   font-weight: 700;
   color: var(--neutral-900);
-  margin: 0 0 var(--space-3);
+  margin: 0 0 var(--space-2);
 }
 
 .service-checklist-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--space-2) var(--space-6);
+  gap: var(--space-1) var(--space-6);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -1484,6 +1484,22 @@ LOCATION SELECTOR - VERSION PLEINE LARGEUR
    otherwise resolve to 3 columns and strand the 4th item alone on its own row. */
 .service-checklist-list--four {
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+/* Exactly-5-item services: a 3+2 grid leaves the last row's 2 items pinned to the
+   start side, reading as unbalanced rather than intentional. Flexbox + wrap +
+   justify-content:center fixes this for free — a full row centers same as before,
+   an incomplete last row centers its items instead of hugging one side. */
+.service-checklist-list--five {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-1) var(--space-6);
+}
+
+.service-checklist-list--five li {
+  flex: 1 1 220px;
+  max-width: calc(33.333% - var(--space-6) * 2 / 3);
 }
 
 .service-checklist-list li {
@@ -1507,7 +1523,8 @@ LOCATION SELECTOR - VERSION PLEINE LARGEUR
 .service-intro-transition {
   max-width: 820px;
   margin: 0;
-  font-size: var(--text-base);
+  font-size: var(--text-sm);
+  font-style: italic;
   color: var(--neutral-500);
   line-height: 1.6;
 }
@@ -1533,6 +1550,11 @@ LOCATION SELECTOR - VERSION PLEINE LARGEUR
     grid-template-columns: 1fr;
   }
 
+  .service-checklist-list--five li {
+    max-width: 100%;
+    flex-basis: 100%;
+  }
+
   .service-intro-section {
     padding: var(--space-8) 0;
   }
@@ -1555,8 +1577,8 @@ LOCATION SELECTOR - VERSION PLEINE LARGEUR
 }
 
 .service-faq-title {
-  font-size: var(--text-2xl);
-  font-weight: 800;
+  font-size: var(--text-xl);
+  font-weight: 700;
   color: var(--neutral-900);
   margin: 0 0 var(--space-2);
 }
