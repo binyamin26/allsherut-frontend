@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Phone, Eye, MapPin } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
-import apiService from '../../services/api';
 import CallLeadModal from '../modals/CallLeadModal';
 
 const AVATAR_GRADIENTS = [
@@ -148,9 +147,7 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
           <span>{t('card.viewProfile')}</span>
         </button>
         <button className="call-provider-btn" onClick={() => {
-          const providerId = provider.provider_id || provider.providerId || provider.id;
           if (provider.phone) {
-            apiService.logContactClick(providerId, 'call').catch(() => {});
             setCallModal({ open: true, action: 'call' });
           }
         }}>
@@ -163,6 +160,7 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
     <CallLeadModal
       isOpen={callModal.open}
       onClose={() => setCallModal({ open: false, action: 'call' })}
+      providerId={provider.provider_id || provider.providerId || provider.id}
       providerPhone={provider.phone}
       providerName={provider.name || provider.full_name}
       serviceName={provider.serviceLabel || provider.service_name || provider.serviceName || provider.service_type || provider.serviceType || ''}
