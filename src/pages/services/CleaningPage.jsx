@@ -123,10 +123,10 @@ useEffect(() => {
   return (
     <div className="service-page cleaning-page">
       <SEO
-  title={SERVICE_PAGE_META.cleaning.title}
-  description={SERVICE_PAGE_META.cleaning.description}
+  title={t('services.cleaning.pageTitle', SERVICE_PAGE_META.cleaning.title)}
+  description={t('services.cleaning.desc', SERVICE_PAGE_META.cleaning.description)}
   canonicalPath={buildServicePath(serviceTypeToKey('cleaning'), 'he')}
-  jsonLd={buildServicePageJsonLd({ serviceId: 'cleaning', name: SERVICE_PAGE_META.cleaning.title, description: SERVICE_PAGE_META.cleaning.description, t })}
+  jsonLd={buildServicePageJsonLd({ serviceId: 'cleaning', name: t('services.cleaning.pageTitle', SERVICE_PAGE_META.cleaning.title), description: t('services.cleaning.desc', SERVICE_PAGE_META.cleaning.description), t })}
       />
       <ServiceBreadcrumb serviceId="cleaning" />
       <section className="service-header">

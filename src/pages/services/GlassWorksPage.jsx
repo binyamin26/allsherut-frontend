@@ -116,10 +116,10 @@ const GlassWorksPage = () => {
   return (
     <div className="service-page glass-works-page">
       <SEO
-  title={SERVICE_PAGE_META.glass_works.title}
-  description={SERVICE_PAGE_META.glass_works.description}
+  title={t('services.glass_works.pageTitle', SERVICE_PAGE_META.glass_works.title)}
+  description={t('services.glass_works.desc', SERVICE_PAGE_META.glass_works.description)}
   canonicalPath={buildServicePath(serviceTypeToKey('glass_works'), 'he')}
-  jsonLd={buildServicePageJsonLd({ serviceId: 'glass_works', name: SERVICE_PAGE_META.glass_works.title, description: SERVICE_PAGE_META.glass_works.description, t })}
+  jsonLd={buildServicePageJsonLd({ serviceId: 'glass_works', name: t('services.glass_works.pageTitle', SERVICE_PAGE_META.glass_works.title), description: t('services.glass_works.desc', SERVICE_PAGE_META.glass_works.description), t })}
       />
       <ServiceBreadcrumb serviceId="glass_works" />
       <section className="service-header">

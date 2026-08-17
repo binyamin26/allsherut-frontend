@@ -124,10 +124,10 @@ const response = await apiService.searchProviders(cleanParams);
   return (
     <div className="service-page babysitting-page">
       <SEO
-  title={SERVICE_PAGE_META.babysitting.title}
-  description={SERVICE_PAGE_META.babysitting.description}
+  title={t('services.babysitting.pageTitle', SERVICE_PAGE_META.babysitting.title)}
+  description={t('services.babysitting.desc', SERVICE_PAGE_META.babysitting.description)}
   canonicalPath={buildServicePath(serviceTypeToKey('babysitting'), 'he')}
-  jsonLd={buildServicePageJsonLd({ serviceId: 'babysitting', name: SERVICE_PAGE_META.babysitting.title, description: SERVICE_PAGE_META.babysitting.description, t })}
+  jsonLd={buildServicePageJsonLd({ serviceId: 'babysitting', name: t('services.babysitting.pageTitle', SERVICE_PAGE_META.babysitting.title), description: t('services.babysitting.desc', SERVICE_PAGE_META.babysitting.description), t })}
       />
       <ServiceBreadcrumb serviceId="babysitting" />
       <section className="service-header">

@@ -59,8 +59,24 @@ const ROOT = resolve(__dirname, '..');
 const DIST = resolve(ROOT, 'dist');
 const BASE_URL = 'https://allsherut.com';
 
-const translations = JSON.parse(readFileSync(resolve(ROOT, 'src/locales/he/translation.json'), 'utf-8'));
-const t = (key, fallback = '') => translations[key] ?? fallback;
+// All 4 locales get their own prerendered static HTML per service page (see LANGS
+// below) — not just Hebrew. Previously only /services/:slug (Hebrew) was prerendered;
+// /en/, /fr/, /ru/ variants fell through Vercel's SPA rewrite to the generic empty
+// index.html shell. Googlebot's non-JS crawl then saw the same thin/duplicate shell
+// for every locale variant of every service page and overrode the JS-declared
+// self-referential canonical, consolidating them into the Hebrew page (Search Console:
+// "Duplicate, Google chose different canonical than user"). Prerendering every locale
+// gives each URL real, distinct content in the very first HTTP response, matching what
+// already works for the Hebrew pages.
+const LANGS = {
+  he: { dir: 'rtl', translations: JSON.parse(readFileSync(resolve(ROOT, 'src/locales/he/translation.json'), 'utf-8')) },
+  en: { dir: 'ltr', translations: JSON.parse(readFileSync(resolve(ROOT, 'src/locales/en/translation.json'), 'utf-8')) },
+  fr: { dir: 'ltr', translations: JSON.parse(readFileSync(resolve(ROOT, 'src/locales/fr/translation.json'), 'utf-8')) },
+  ru: { dir: 'ltr', translations: JSON.parse(readFileSync(resolve(ROOT, 'src/locales/ru/translation.json'), 'utf-8')) },
+};
+const makeT = (translations) => (key, fallback = '') => translations[key] ?? fallback;
+const translations = LANGS.he.translations;
+const t = makeT(translations);
 
 const baseHtml = readFileSync(resolve(DIST, 'index.html'), 'utf-8');
 
@@ -92,7 +108,7 @@ function escapeAttr(str = '') {
 // here is exactly the hreflang-404 bug already fixed once on ProviderDetailPage —
 // this mirrors SEO.jsx's real per-language logic instead of naively prefixing
 // /fr, /en, /ru onto the Hebrew path.
-function buildHead({ title, description, canonicalPath, jsonLd, hreflangPaths }) {
+function buildHead({ title, description, canonicalPath, jsonLd, hreflangPaths, lang = 'he' }) {
   const fullTitle = `${title} | AllSherut`;
   const canonical = `${BASE_URL}${canonicalPath}`;
   const paths = hreflangPaths || { he: canonicalPath, fr: canonicalPath, en: canonicalPath, ru: canonicalPath };
@@ -105,6 +121,12 @@ function buildHead({ title, description, canonicalPath, jsonLd, hreflangPaths })
   ].join('\n    ');
 
   let html = baseHtml;
+
+  // Base template is hardcoded <html lang="he" dir="rtl">; swap for non-Hebrew pages so
+  // the raw HTTP response (before any JS runs) already has the right direction/lang,
+  // exactly like LanguageContext's applyDirection() sets it post-hydration.
+  const dir = LANGS[lang]?.dir || 'rtl';
+  html = html.replace(/<html lang="he" dir="rtl">/, `<html lang="${lang}" dir="${dir}">`);
 
   html = html.replace(/<title>[^<]*<\/title>/, `<title>${escapeHtml(fullTitle)}</title>`);
   html = html.replace(
@@ -145,7 +167,7 @@ function writePage(routePath, headHtml, bodyInnerHtml) {
 }
 
 // --- 2. Service pages ----------------------------------------------------------------
-function renderServiceBody(serviceId) {
+function renderServiceBody(serviceId, lang, t) {
   const meta = SERVICE_PAGE_META[serviceId];
   const pageTitle = t(`services.${serviceId}.pageTitle`, meta.title);
   const category = getCategoryForService(serviceId);
@@ -158,11 +180,14 @@ function renderServiceBody(serviceId) {
   const transition = getServiceTransition(serviceId, t);
   const faqItems = getServiceFaqItems(serviceId, t);
 
+  // Category links always point at the (Hebrew-only, unlocalized) /categories/:id URL —
+  // there is no /:lang/categories/:id route — but the visible label follows the current
+  // locale, mirroring ServiceBreadcrumb.jsx's `category.names?.[currentLanguage] || category.names?.he`.
   const breadcrumb = `
     <div class="breadcrumb service-page-breadcrumb">
       <a href="/">${escapeHtml(t('provider.home', 'בית'))}</a>
       <span>/</span>
-      ${category ? `<a href="/categories/${category.id}">${escapeHtml(category.names.he)}</a><span>/</span>` : ''}
+      ${category ? `<a href="/categories/${category.id}">${escapeHtml(category.names?.[lang] || category.names.he)}</a><span>/</span>` : ''}
       <span>${escapeHtml(pageTitle)}</span>
     </div>`;
 
@@ -230,25 +255,35 @@ let serviceCount = 0;
 for (const serviceId of Object.keys(SERVICE_PAGE_META)) {
   const meta = SERVICE_PAGE_META[serviceId];
   const key = serviceTypeToKey(serviceId);
-  const canonicalPath = buildServicePath(key, 'he');
   const hreflangPaths = {
     he: buildServicePath(key, 'he'),
     fr: buildServicePath(key, 'fr'),
     en: buildServicePath(key, 'en'),
     ru: buildServicePath(key, 'ru'),
   };
-  const jsonLd = buildServicePageJsonLd({ serviceId, name: meta.title, description: meta.description, t });
 
-  const head = buildHead({
-    title: meta.title,
-    description: meta.description,
-    canonicalPath,
-    jsonLd,
-    hreflangPaths,
-  });
-  const body = renderServiceBody(serviceId);
-  writePage(canonicalPath, head, body);
-  serviceCount++;
+  // One prerendered page per locale (not just Hebrew) — mirrors the live <SEO> title/
+  // description fix: t('services.<id>.pageTitle'/'desc', <Hebrew fallback>), so title
+  // tags are genuinely distinct per language instead of always Hebrew.
+  for (const lang of Object.keys(LANGS)) {
+    const localeT = makeT(LANGS[lang].translations);
+    const title = localeT(`services.${serviceId}.pageTitle`, meta.title);
+    const description = localeT(`services.${serviceId}.desc`, meta.description);
+    const canonicalPath = hreflangPaths[lang];
+    const jsonLd = buildServicePageJsonLd({ serviceId, name: title, description, t: localeT });
+
+    const head = buildHead({
+      title,
+      description,
+      canonicalPath,
+      jsonLd,
+      hreflangPaths,
+      lang,
+    });
+    const body = renderServiceBody(serviceId, lang, localeT);
+    writePage(canonicalPath, head, body);
+    serviceCount++;
+  }
 }
 
 // --- 3. Category pages -----------------------------------------------------------------

@@ -115,10 +115,10 @@ const EventEquipmentRentalPage = () => {
   return (
     <div className="service-page event-equipment-rental-page">
       <SEO
-  title={SERVICE_PAGE_META.event_equipment_rental.title}
-  description={SERVICE_PAGE_META.event_equipment_rental.description}
+  title={t('services.event_equipment_rental.pageTitle', SERVICE_PAGE_META.event_equipment_rental.title)}
+  description={t('services.event_equipment_rental.desc', SERVICE_PAGE_META.event_equipment_rental.description)}
   canonicalPath={buildServicePath(serviceTypeToKey('event_equipment_rental'), 'he')}
-  jsonLd={buildServicePageJsonLd({ serviceId: 'event_equipment_rental', name: SERVICE_PAGE_META.event_equipment_rental.title, description: SERVICE_PAGE_META.event_equipment_rental.description, t })}
+  jsonLd={buildServicePageJsonLd({ serviceId: 'event_equipment_rental', name: t('services.event_equipment_rental.pageTitle', SERVICE_PAGE_META.event_equipment_rental.title), description: t('services.event_equipment_rental.desc', SERVICE_PAGE_META.event_equipment_rental.description), t })}
       />
       <ServiceBreadcrumb serviceId="event_equipment_rental" />
       <section className="service-header">
