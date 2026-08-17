@@ -4,7 +4,6 @@ import { FileText, Wallet, MapPin, Calendar, Clock, Award, Car, Languages, Messa
 import { useLanguage } from '../../context/LanguageContext';
 import Reveal from '../../components/common/Reveal';
 import CallLeadModal from '../../components/modals/CallLeadModal';
-import apiService from '../../services/api';
 import { formatWhatsAppNumber } from '../../utils/phoneUtils';
 
 const AVATAR_GRADIENTS = [
@@ -324,10 +323,7 @@ const RecruitmentListingDetailPage = () => {
                   <button
                     type="button"
                     className="btn btn-success btn-full"
-                    onClick={() => {
-                      apiService.logContactClick(listing.provider_id, 'whatsapp', 'recruitment').catch(() => {});
-                      setCallModal({ open: true, action: 'whatsapp' });
-                    }}
+                    onClick={() => setCallModal({ open: true, action: 'whatsapp' })}
                   >
                     <MessageCircle size={17} /> WhatsApp
                   </button>
@@ -336,10 +332,7 @@ const RecruitmentListingDetailPage = () => {
                   <button
                     type="button"
                     className="btn btn-primary btn-full"
-                    onClick={() => {
-                      apiService.logContactClick(listing.provider_id, 'call', 'recruitment').catch(() => {});
-                      setCallModal({ open: true, action: 'call' });
-                    }}
+                    onClick={() => setCallModal({ open: true, action: 'call' })}
                   >
                     <Phone size={17} /> {t('recruitment.detail.call')}
                   </button>
@@ -380,10 +373,7 @@ const RecruitmentListingDetailPage = () => {
             <button
               type="button"
               className="btn btn-success"
-              onClick={() => {
-                apiService.logContactClick(listing.provider_id, 'whatsapp', 'recruitment').catch(() => {});
-                setCallModal({ open: true, action: 'whatsapp' });
-              }}
+              onClick={() => setCallModal({ open: true, action: 'whatsapp' })}
             >
               <MessageCircle size={17} /> WhatsApp
             </button>
@@ -392,10 +382,7 @@ const RecruitmentListingDetailPage = () => {
             <button
               type="button"
               className="btn btn-primary"
-              onClick={() => {
-                apiService.logContactClick(listing.provider_id, 'call', 'recruitment').catch(() => {});
-                setCallModal({ open: true, action: 'call' });
-              }}
+              onClick={() => setCallModal({ open: true, action: 'call' })}
             >
               <Phone size={17} /> {t('recruitment.detail.call')}
             </button>
@@ -406,10 +393,12 @@ const RecruitmentListingDetailPage = () => {
       <CallLeadModal
         isOpen={callModal.open}
         onClose={() => setCallModal({ open: false, action: 'call' })}
+        providerId={listing.provider_id}
         providerPhone={rawPhone}
         providerName={listing.full_name}
         serviceName={`גיוס - ${serviceLabel}`}
         action={callModal.action}
+        source="recruitment"
       />
 
     </div>

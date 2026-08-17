@@ -2455,6 +2455,11 @@ const profileCompletionStatus = (() => {
                               </span>
                             </span>
                             <span className="contact-click-time">{dateStr} • {timeStr}</span>
+                            {click.client_phone && (
+                              <a href={`tel:${click.client_phone}`} className="contact-click-phone" dir="ltr">
+                                {t('dashboard.contacts.clientPhone')} {click.client_phone}
+                              </a>
+                            )}
                           </div>
                         </div>
                       );

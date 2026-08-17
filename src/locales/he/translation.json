@@ -332,6 +332,7 @@
   "dashboard.contacts.noContactsDesc": "כאשר לקוחות ילחצו על כפתור ההתקשרות או הוואטסאפ, הפניות יופיעו כאן",
   "dashboard.contacts.clickCall": "שיחת טלפון",
   "dashboard.contacts.clickWhatsapp": "הודעת וואטסאפ",
+  "dashboard.contacts.clientPhone": "מספר הלקוח:",
   "dashboard.contacts.source.service": "קריאה לשירות",
   "dashboard.contacts.source.recruitment": "גיוס",
   "dashboard.contacts.period.today": "היום",

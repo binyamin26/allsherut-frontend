@@ -5,7 +5,7 @@ import { useLanguage } from '../../context/LanguageContext';
 import apiService from '../../services/api';
 import { formatWhatsAppNumber } from '../../utils/phoneUtils';
 
-const CallLeadModal = ({ isOpen, onClose, providerId, providerPhone, providerName, serviceName, action }) => {
+const CallLeadModal = ({ isOpen, onClose, providerId, providerPhone, providerName, serviceName, action, source = 'service' }) => {
   const { t, isRTL } = useLanguage();
   const [clientPhone, setClientPhone] = useState('');
   const [error, setError] = useState('');
@@ -31,7 +31,7 @@ const CallLeadModal = ({ isOpen, onClose, providerId, providerPhone, providerNam
 
     setLoading(true);
     if (providerId) {
-      apiService.logContactClick(providerId, action).catch(() => {});
+      apiService.logContactClick(providerId, action, source, phone).catch(() => {});
     }
     apiService.followupWhatsApp(phone, '', providerName || '', serviceName || '', action, providerPhone || '').catch(() => {});
 

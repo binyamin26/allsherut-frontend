@@ -363,6 +363,7 @@
   "dashboard.contacts.noContactsDesc": "Quand des clients cliqueront sur vos boutons de contact, les clics apparaîtront ici",
   "dashboard.contacts.clickCall": "Appel téléphonique",
   "dashboard.contacts.clickWhatsapp": "Message WhatsApp",
+  "dashboard.contacts.clientPhone": "Numéro du client :",
   "dashboard.contacts.source.service": "Demande de service",
   "dashboard.contacts.source.recruitment": "Recrutement",
   "dashboard.contacts.period.today": "Aujourd'hui",

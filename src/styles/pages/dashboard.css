@@ -3551,6 +3551,18 @@ select.inline-edit {
   color: var(--neutral-400);
 }
 
+.contact-click-phone {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--primary-600, #2563eb);
+  text-decoration: none;
+  width: fit-content;
+}
+
+.contact-click-phone:hover {
+  text-decoration: underline;
+}
+
 @media (max-width: 640px) {
   .contacts-tab-section {
     padding: var(--space-4);

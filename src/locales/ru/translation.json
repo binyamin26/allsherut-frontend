@@ -363,6 +363,7 @@
   "dashboard.contacts.noContactsDesc": "Когда клиенты нажмут на кнопки контакта, клики появятся здесь",
   "dashboard.contacts.clickCall": "Звонок",
   "dashboard.contacts.clickWhatsapp": "WhatsApp",
+  "dashboard.contacts.clientPhone": "Номер клиента:",
   "dashboard.contacts.source.service": "Запрос услуги",
   "dashboard.contacts.source.recruitment": "Набор персонала",
   "dashboard.contacts.period.today": "Сегодня",
