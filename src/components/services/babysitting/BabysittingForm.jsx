@@ -209,9 +209,6 @@ const BabysittingForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
           {errors['serviceDetails.languages'] && <span className="error-text">{errors['serviceDetails.languages']}</span>}
         </div>
 
-      </div>
-
-      <div className="form-section">
         <div className="input-group">
           <label className="auth-form-label required">{t('serviceForm.common.experience')}</label>
           <input

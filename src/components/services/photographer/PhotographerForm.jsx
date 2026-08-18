@@ -123,9 +123,6 @@ const PhotographerForm = ({ serviceDetails, errors, handleServiceDetailsChange, 
           {errors['serviceDetails.work_types'] && <span className="error-text">{errors['serviceDetails.work_types']}</span>}
         </div>
 
-      </div>
-
-      <div className="form-section">
         <div className="input-group">
           <label className="auth-form-label required">{t('serviceForm.common.experience')}</label>
           <input

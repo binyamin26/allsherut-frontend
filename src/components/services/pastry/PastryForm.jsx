@@ -200,9 +200,6 @@ const PastryForm = ({ serviceDetails, errors, handleServiceDetailsChange, handle
             </div>
           )}
         </div>
-      </div>
-
-      <div className="form-section">
         <div className="input-group">
           <label className="auth-form-label required">{t('serviceForm.common.experience')}</label>
           <input
@@ -218,6 +215,33 @@ const PastryForm = ({ serviceDetails, errors, handleServiceDetailsChange, handle
             data-field="experience"
           />
           {errors['serviceDetails.experience'] && <span className="error-text">{errors['serviceDetails.experience']}</span>}
+        </div>
+        <div className="input-group">
+          <label className="auth-form-label required">{t('filters.common.languages')}</label>
+          <div className="checkbox-group" data-field="languages">
+            {[
+              { value: 'עברית', label: t('languages.hebrew') },
+              { value: 'רוסית', label: t('languages.russian') },
+              { value: 'אנגלית', label: t('languages.english') },
+              { value: 'צרפתית', label: t('languages.french') }
+            ].map(lang => (
+              <label key={lang.value} className="checkbox-item">
+                <input
+                  type="checkbox"
+                  checked={serviceDetails.languages?.includes(lang.value) || false}
+                  onChange={(e) => {
+                    const current = serviceDetails.languages || [];
+                    const newLangs = e.target.checked
+                      ? [...current, lang.value]
+                      : current.filter(l => l !== lang.value);
+                    handleServiceDetailsChange('languages', newLangs);
+                  }}
+                />
+                {lang.label}
+              </label>
+            ))}
+          </div>
+          {errors['serviceDetails.languages'] && <span className="error-text">{errors['serviceDetails.languages']}</span>}
         </div>
       </div>
     </div>

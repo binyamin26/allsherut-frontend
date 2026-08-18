@@ -155,9 +155,6 @@ const EldercareForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
           {errors['serviceDetails.languages'] && <span className="error-text">{errors['serviceDetails.languages']}</span>}
         </div>
 
-      </div>
-
-      <div className="form-section">
         <div className="input-group">
           <label className="auth-form-label required">{t('serviceForm.eldercare.experience')}</label>
           <input

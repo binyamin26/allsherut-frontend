@@ -1,5 +1,4 @@
 import React from 'react';
-import { useLanguage } from '../../context/LanguageContext';
 
 // Import tous les 23 formulaires
 import BabysittingForm from './babysitting/BabysittingForm';
@@ -40,26 +39,13 @@ import MechanicForm from './mechanic/MechanicForm';
 import MetalworkForm from './metalwork/MetalworkForm';
 import DriverForm from './driver/DriverForm';
 
-// Services qui gèrent déjà les langues dans leur propre formulaire
-const SERVICES_WITH_OWN_LANGUAGES = new Set(['babysitting', 'eldercare', 'photographer', 'driver']);
-
-const LANGUAGES_OPTIONS = [
-  { value: 'עברית', key: 'languages.hebrew' },
-  { value: 'רוסית', key: 'languages.russian' },
-  { value: 'אנגלית', key: 'languages.english' },
-  { value: 'צרפתית', key: 'languages.french' },
-];
-
 const ServiceDetailsForm = ({
   serviceType,
   serviceDetails,
   errors,
   handleServiceDetailsChange,
-  handleExclusiveCheckbox,
-  hideLanguages = false
+  handleExclusiveCheckbox
 }) => {
-  const { t } = useLanguage();
-
   // Mapping des formulaires
   const serviceFormComponents = {
     babysitting: BabysittingForm,
@@ -113,42 +99,14 @@ const ServiceDetailsForm = ({
     );
   }
 
-  // Rendre le formulaire approprié
+  // Rendre le formulaire approprié (chaque formulaire gère ses propres champs, y compris langues)
   return (
-    <>
-      <FormComponent
-        serviceDetails={serviceDetails}
-        errors={errors}
-        handleServiceDetailsChange={handleServiceDetailsChange}
-        handleExclusiveCheckbox={handleExclusiveCheckbox}
-      />
-      {!hideLanguages && !SERVICES_WITH_OWN_LANGUAGES.has(serviceType) && (
-        <div className="form-section">
-          <div className="input-group">
-            <label className="auth-form-label required">{t('filters.common.languages')}</label>
-            <div className="checkbox-group" data-field="languages">
-              {LANGUAGES_OPTIONS.map(lang => (
-                <label key={lang.value} className="checkbox-item">
-                  <input
-                    type="checkbox"
-                    checked={serviceDetails.languages?.includes(lang.value) || false}
-                    onChange={(e) => {
-                      const current = serviceDetails.languages || [];
-                      const newLangs = e.target.checked
-                        ? [...current, lang.value]
-                        : current.filter(l => l !== lang.value);
-                      handleServiceDetailsChange('languages', newLangs);
-                    }}
-                  />
-                  {t(lang.key)}
-                </label>
-              ))}
-            </div>
-            {errors?.['serviceDetails.languages'] && <span className="error-text">{errors['serviceDetails.languages']}</span>}
-          </div>
-        </div>
-      )}
-    </>
+    <FormComponent
+      serviceDetails={serviceDetails}
+      errors={errors}
+      handleServiceDetailsChange={handleServiceDetailsChange}
+      handleExclusiveCheckbox={handleExclusiveCheckbox}
+    />
   );
 };
 

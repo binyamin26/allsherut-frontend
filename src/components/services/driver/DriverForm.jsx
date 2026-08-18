@@ -133,9 +133,6 @@ const DriverForm = ({ serviceDetails, errors, handleServiceDetailsChange, handle
             <span className="error-text">{errors['serviceDetails.vehicle_type']}</span>
           )}
         </div>
-      </div>
-
-      <div className="form-section">
         <div className="input-group">
           <label className="auth-form-label required">{t('serviceForm.common.experience')}</label>
           <input
