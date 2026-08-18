@@ -14,6 +14,7 @@ router.get('/', async (req, res) => {
        FROM service_providers sp
        JOIN users u ON sp.user_id = u.id
        WHERE sp.is_active = TRUE AND u.is_active = TRUE AND sp.verification_status = 'verified'
+         AND JSON_LENGTH(sp.service_details, '$.languages') > 0
        ORDER BY sp.updated_at DESC
        LIMIT 5000`
     );

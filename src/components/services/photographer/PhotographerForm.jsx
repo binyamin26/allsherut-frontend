@@ -145,7 +145,7 @@ const PhotographerForm = ({ serviceDetails, errors, handleServiceDetailsChange, 
         </div>
 
         <div className="input-group">
-          <label className="auth-form-label">{t('serviceForm.photographer.languages')}</label>
+          <label className="auth-form-label required">{t('serviceForm.photographer.languages')}</label>
           <div className="checkbox-group" data-field="languages">
             {[
               { value: 'צרפתית', label: t('filters.photographer.languageFrench') },
@@ -170,6 +170,7 @@ const PhotographerForm = ({ serviceDetails, errors, handleServiceDetailsChange, 
               </label>
             ))}
           </div>
+          {errors['serviceDetails.languages'] && <span className="error-text">{errors['serviceDetails.languages']}</span>}
         </div>
 
         <div className="input-group">

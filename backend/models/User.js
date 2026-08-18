@@ -1023,6 +1023,11 @@ static async updateServiceProviderWithDetails(connection, providerId, serviceTyp
     return errors;
   }
 
+  // Langues parlées : obligatoire pour tous les services (au moins une langue)
+  if (!serviceDetails.languages || serviceDetails.languages.length === 0) {
+    errors.push({ field: 'languages', message: 'יש לבחור לפחות שפה אחת' });
+  }
+
   // Validation par service
   switch (serviceType) {
     case 'babysitting':

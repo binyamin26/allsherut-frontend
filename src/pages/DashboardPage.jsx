@@ -932,10 +932,16 @@ const cleanProfileData = (data) => {
 };
 
 const handleSaveProfile = async () => {
+  const currentLanguages = editFormData.serviceDetails?.languages ?? editFormData.languages;
+  if (!Array.isArray(currentLanguages) || currentLanguages.length === 0) {
+    setMessage({ type: 'error', text: t('validation.selectAtLeastOne') });
+    return;
+  }
+
   setEditLoading(true);
   setMessage(null);
-  
-  try {  
+
+  try {
     const cleanedData = cleanProfileData(editFormData);
     
     cleanedData.activeServiceType = activeService || userData?.serviceType;
@@ -1254,6 +1260,10 @@ const resetAddServiceModal = () => {
 const handleAddService = async () => {
   if (!addServiceType) {
     setAddServiceMsg({ type: 'error', text: t('dashboard.addService.selectService') });
+    return;
+  }
+  if (addServiceSeeking !== 'recruitment' && (!addServiceDetails.languages || addServiceDetails.languages.length === 0)) {
+    setAddServiceMsg({ type: 'error', text: t('validation.selectAtLeastOne') });
     return;
   }
   setAddServiceLoading(true);
@@ -3500,7 +3510,6 @@ placeholder={t('dashboard.security.newPasswordPlaceholder')}
                       errors={{}}
                       handleServiceDetailsChange={handleAddServiceFieldChange}
                       handleExclusiveCheckbox={handleAddServiceExclusiveCheckbox}
-                      hideLanguages={true}
                     />
                   )}
 

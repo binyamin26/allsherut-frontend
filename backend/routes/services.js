@@ -892,6 +892,10 @@ router.post('/add', authenticateToken, async (req, res) => {
 
     const validSeekingType = ['clients', 'recruitment'].includes(seekingType) ? seekingType : 'clients';
 
+    if (validSeekingType === 'clients' && (!serviceDetails?.languages || serviceDetails.languages.length === 0)) {
+      return res.status(400).json({ success: false, message: 'יש לבחור לפחות שפה אחת' });
+    }
+
     let newProviderId;
 
     await transaction(async (connection) => {

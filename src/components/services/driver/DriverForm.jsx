@@ -155,7 +155,7 @@ const DriverForm = ({ serviceDetails, errors, handleServiceDetailsChange, handle
         </div>
 
         <div className="input-group">
-          <label className="auth-form-label">{t('filters.common.languages')}</label>
+          <label className="auth-form-label required">{t('filters.common.languages')}</label>
           <div className="checkbox-group" data-field="languages">
             {LANGUAGES_OPTIONS.map(lang => (
               <label key={lang.value} className="checkbox-item">
@@ -174,6 +174,7 @@ const DriverForm = ({ serviceDetails, errors, handleServiceDetailsChange, handle
               </label>
             ))}
           </div>
+          {errors['serviceDetails.languages'] && <span className="error-text">{errors['serviceDetails.languages']}</span>}
         </div>
       </div>
     </div>
