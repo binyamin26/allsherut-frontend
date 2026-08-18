@@ -207,11 +207,9 @@ const EventEquipmentRentalForm = ({ serviceDetails, errors, handleServiceDetails
         </div>
       </div>
 
-      <div className="form-section optional">
-        <h4>{t('serviceForm.common.optionalFields')}</h4>
-
+      <div className="form-section">
         <div className="input-group">
-          <label className="auth-form-label">{t('serviceForm.common.experience')}</label>
+          <label className="auth-form-label required">{t('serviceForm.common.experience')}</label>
           <input
             type="text"
             inputMode="numeric"
@@ -224,6 +222,7 @@ const EventEquipmentRentalForm = ({ serviceDetails, errors, handleServiceDetails
             className="standard-input"
             data-field="experience"
           />
+          {errors['serviceDetails.experience'] && <span className="error-text">{errors['serviceDetails.experience']}</span>}
         </div>
       </div>
     </div>

@@ -643,6 +643,11 @@ console.log('🔍 serviceDetails object:', serviceDetails);
       newErrors['serviceDetails.languages'] = t('validation.selectAtLeastOne');
     }
 
+    // Années d'expérience : obligatoire pour s'inscrire
+    if (!serviceDetails.experience) {
+      newErrors['serviceDetails.experience'] = t('validation.experienceRequired');
+    }
+
     switch (formData.serviceType) {
       case 'babysitting':
         if (!serviceDetails.age) {

@@ -1028,6 +1028,11 @@ static async updateServiceProviderWithDetails(connection, providerId, serviceTyp
     errors.push({ field: 'languages', message: 'יש לבחור לפחות שפה אחת' });
   }
 
+  // Années d'expérience : obligatoire pour s'inscrire
+  if (!serviceDetails.experience) {
+    errors.push({ field: 'experience', message: 'שנות ניסיון נדרשות' });
+  }
+
   // Validation par service
   switch (serviceType) {
     case 'babysitting':
