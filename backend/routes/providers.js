@@ -510,7 +510,6 @@ router.get('/:id', async (req, res) => {
     AND sp.is_active = TRUE
     AND u.is_active = TRUE
     AND sp.verification_status = 'verified'
-    AND JSON_LENGTH(sp.service_details, '$.languages') > 0
 
   GROUP BY sp.id, u.id
 `;

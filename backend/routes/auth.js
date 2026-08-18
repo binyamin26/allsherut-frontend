@@ -1339,14 +1339,6 @@ body('experienceYears').optional({ nullable: true, checkFalsy: true }).isInt({ m
         return res.forbidden('insufficient');
       }
 
-      // Langues parlées : obligatoire pour tout profil provider mis à jour
-      if (user.role === 'provider' && req.body.serviceDetails) {
-        const sdLanguages = req.body.serviceDetails.languages;
-        if (!sdLanguages || sdLanguages.length === 0) {
-          return res.status(400).json({ success: false, message: 'יש לבחור לפחות שפה אחת' });
-        }
-      }
-
       // Vérifier unicité du nouvel email
       if (req.body.email && req.body.email !== user.email) {
         const existing = await query(

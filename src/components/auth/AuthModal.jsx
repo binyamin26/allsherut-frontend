@@ -638,11 +638,6 @@ console.log('🔍 serviceDetails object:', serviceDetails);
       return Object.keys(newErrors).length === 0;
     }
 
-    // Langues parlées : obligatoire pour tous les services (au moins une langue)
-    if (!serviceDetails.languages || serviceDetails.languages.length === 0) {
-      newErrors['serviceDetails.languages'] = t('validation.selectAtLeastOne');
-    }
-
     switch (formData.serviceType) {
       case 'babysitting':
         if (!serviceDetails.age) {

@@ -652,7 +652,7 @@ if (field.type === 'select') {
             key={field.name}
             className={`professional-item ${field.type === 'json-array' || field.type === 'checkbox' || field.type === 'radio' || (serviceType === 'tutoring' && field.name === 'subjects') ? 'full-width' : ''}`}
           >
-            <label>{t(field.label)}{field.name === 'languages' ? ' *' : ''}:</label>
+            <label>{t(field.label)}:</label>
             {renderField(field)}
           </div>
         ))}

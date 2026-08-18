@@ -152,7 +152,6 @@ const EldercareForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
               </label>
             ))}
           </div>
-          {errors['serviceDetails.languages'] && <span className="error-text">{errors['serviceDetails.languages']}</span>}
         </div>
 
       </div>
