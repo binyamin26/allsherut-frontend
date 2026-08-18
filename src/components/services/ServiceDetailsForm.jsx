@@ -123,9 +123,9 @@ const ServiceDetailsForm = ({
         handleExclusiveCheckbox={handleExclusiveCheckbox}
       />
       {!hideLanguages && !SERVICES_WITH_OWN_LANGUAGES.has(serviceType) && (
-        <div className="form-section optional">
+        <div className="form-section">
           <div className="input-group">
-            <label className="auth-form-label">{t('filters.common.languages')}</label>
+            <label className="auth-form-label required">{t('filters.common.languages')}</label>
             <div className="checkbox-group" data-field="languages">
               {LANGUAGES_OPTIONS.map(lang => (
                 <label key={lang.value} className="checkbox-item">
@@ -144,6 +144,7 @@ const ServiceDetailsForm = ({
                 </label>
               ))}
             </div>
+            {errors?.['serviceDetails.languages'] && <span className="error-text">{errors['serviceDetails.languages']}</span>}
           </div>
         </div>
       )}
