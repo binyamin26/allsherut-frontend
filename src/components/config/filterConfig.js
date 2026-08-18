@@ -130,7 +130,8 @@ export const FILTER_CONFIG = {
       { value: 'ניקוי בלחץ מים (טרסות, חזיתות)', key: 'filters.cleaning.pressureWashing' },
       { value: 'חיטוי וניקיון אחרי נזק (שריפה / הצפה)', key: 'filters.cleaning.damageCleanup' },
       { value: 'ניקוי מזגן', key: 'filters.cleaning.acCleaning' },
-      { value: 'ניקיון גגות רעפים', key: 'filters.cleaning.roofCleaning' }
+      { value: 'ניקיון גגות רעפים', key: 'filters.cleaning.roofCleaning' },
+      { value: 'ניקוי ותחזוקת אקווריומים', key: 'filters.cleaning.aquariumCleaning' }
     ],
     additionalServices: [
       { value: 'ניקוי רכב בבית הלקוח', key: 'filters.cleaning.carCleaning' },

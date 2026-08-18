@@ -129,6 +129,7 @@ const translationMappings = {
     'חיטוי וניקיון אחרי נזק (שריפה / הצפה)': 'filters.cleaning.damageCleanup',
     'ניקוי מזגן': 'filters.cleaning.acCleaning',
     'ניקיון גגות רעפים': 'filters.cleaning.roofCleaning',
+    'ניקוי ותחזוקת אקווריומים': 'filters.cleaning.aquariumCleaning',
   },
   cleaningAdditional: {
     'ניקוי רכב בבית הלקוח': 'filters.cleaning.carCleaning',

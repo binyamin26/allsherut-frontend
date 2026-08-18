@@ -96,7 +96,8 @@ const CleaningForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
     { value: 'ניקוי ספות', label: t('filters.cleaning.sofas') },
     { value: 'ניקוי וילונות', label: t('filters.cleaning.curtains') },
     { value: 'ניקוי בלחץ מים (טרסות, חזיתות)', label: t('filters.cleaning.pressureWashing') },
-    { value: 'חיטוי וניקיון אחרי נזק (שריפה / הצפה)', label: t('filters.cleaning.damageCleanup') }
+    { value: 'חיטוי וניקיון אחרי נזק (שריפה / הצפה)', label: t('filters.cleaning.damageCleanup') },
+    { value: 'ניקוי ותחזוקת אקווריומים', label: t('filters.cleaning.aquariumCleaning') }
   ].map(type => (
     <label key={type.value} className="checkbox-item">
       <input

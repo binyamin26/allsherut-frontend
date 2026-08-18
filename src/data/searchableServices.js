@@ -31,6 +31,7 @@ const searchableServices = [
   { label: 'חיטוי וניקיון אחרי נזק (שריפה / הצפה)', labelEn: 'Post-damage disinfection', labelFr: 'Désinfection après sinistre', labelRu: 'Дезинфекция после ущерба', href: '/services/cleaning', type: 'specialty' },
   { label: 'ניקוי מזגן', labelEn: 'AC cleaning', labelFr: 'Nettoyage climatisation', labelRu: 'Чистка кондиционера', href: '/services/cleaning', type: 'specialty' },
   { label: 'ניקיון גגות רעפים', labelEn: 'Tile roof cleaning', labelFr: 'Nettoyage toits tuiles', labelRu: 'Чистка черепичных крыш', href: '/services/cleaning', type: 'specialty' },
+  { label: 'ניקוי ותחזוקת אקווריומים', labelEn: 'Aquarium Cleaning & Maintenance', labelFr: "Entretien et nettoyage d'aquariums", labelRu: 'Чистка и обслуживание аквариумов', href: '/services/cleaning', type: 'specialty' },
   { label: 'ניקוי רכב בבית הלקוח', labelEn: 'Mobile car cleaning', labelFr: 'Nettoyage auto à domicile', labelRu: 'Мойка авто на дому', href: '/services/cleaning', type: 'specialty' },
   { label: 'ניקוי פאנלים סולאריים', labelEn: 'Solar panel cleaning', labelFr: 'Nettoyage panneaux solaires', labelRu: 'Чистка солнечных панелей', href: '/services/cleaning', type: 'specialty' },
   { label: 'גיהוץ בבית הלקוח', labelEn: 'Ironing at home', labelFr: 'Repassage à domicile', labelRu: 'Глажка на дому', href: '/services/cleaning', type: 'specialty' },
