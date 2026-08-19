@@ -458,7 +458,9 @@ const loadMyReviews = async () => {
     setPricingLoading(true);
     try {
       const token = localStorage.getItem('homesherut_token');
-      const res = await fetch('/api/pricing/my', {
+      const activeProviderId = userData?.providerProfile?.id;
+      const url = activeProviderId ? `/api/pricing/my?providerId=${activeProviderId}` : '/api/pricing/my';
+      const res = await fetch(url, {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await res.json();
@@ -497,6 +499,7 @@ const loadMyReviews = async () => {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({
+          providerId: userData?.providerProfile?.id,
           items: remaining
             .filter(i => i.service_name?.trim() && (i.is_title || i.price?.trim()))
             .map(({ service_name, price, is_title }) => ({ service_name, price, is_title: !!is_title })),
@@ -532,7 +535,10 @@ const loadMyReviews = async () => {
       const res = await fetch('/api/pricing/my', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-        body: JSON.stringify({ items: pricingItems.map(({ service_name, price, is_title }) => ({ service_name, price, is_title: !!is_title })) })
+        body: JSON.stringify({
+          providerId: userData?.providerProfile?.id,
+          items: pricingItems.map(({ service_name, price, is_title }) => ({ service_name, price, is_title: !!is_title })),
+        })
       });
       const data = await res.json();
       if (data.success) {
