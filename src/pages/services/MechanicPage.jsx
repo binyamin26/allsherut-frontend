@@ -6,6 +6,7 @@ import FilterBar from '../../components/filters/FilterBar';
 import ReviewModal from '../../components/modals/ReviewModal';
 import apiService from '../../services/api';
 import ProviderCard from '../../components/cards/ProviderCard';
+import { useSpecialtyFilter } from '../../hooks/useSpecialtyFilter';
 import { useLanguage } from '../../context/LanguageContext';
 import ServiceBreadcrumb from '../../components/services/ServiceBreadcrumb';
 import ServiceIntro from '../../components/services/ServiceIntro';
@@ -27,6 +28,7 @@ const MechanicPage = () => {
   const [loading, setLoading] = useState(false);
   const [resultsCount, setResultsCount] = useState(0);
   const [error, setError] = useState(null);
+  const { filteredProviders, specialty } = useSpecialtyFilter(providers);
 
   const [reviewModal, setReviewModal] = useState({ isOpen: false, providerId: null, providerName: '' });
 
@@ -102,7 +104,7 @@ const MechanicPage = () => {
                 <div className="error-text">{error}</div>
               ) : (
                 <div className="results-count">
-                  <strong>{resultsCount}</strong> {t('services.mechanic.found')}
+                  <strong>{specialty ? filteredProviders.length : resultsCount}</strong> {t('services.mechanic.found')}
                   {locationFilter.neighborhood && <span> {t('common.in')} <strong style={{color:'#dc2626',fontSize:'1.15em'}}>{locationFilter.neighborhood}</strong></span>}
                   {!locationFilter.neighborhood && locationFilter.city && <span> {t('common.in')} <strong style={{color:'#dc2626',fontSize:'1.15em'}}>{locationFilter.city}</strong></span>}
                 </div>
@@ -121,9 +123,9 @@ const MechanicPage = () => {
               <p>{error}</p>
               <button onClick={loadProviders} className="retry-btn">{t('common.tryAgain')}</button>
             </div>
-          ) : providers.length > 0 ? (
+          ) : filteredProviders.length > 0 ? (
             <div className="providers-grid">
-              {providers.map(provider => (
+              {filteredProviders.map(provider => (
                 <ProviderCard
                   key={provider.id}
                   provider={provider}

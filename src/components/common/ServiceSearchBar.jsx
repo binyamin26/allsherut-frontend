@@ -157,6 +157,12 @@ const ServiceSearchBar = ({ style, onNavigate }) => {
       const key = dest.replace('/services/', '');
       dest = buildServicePath(key, currentLanguage);
     }
+    // Pour un résultat de spécialité (ex: "aquarium"), on transmet la valeur
+    // à la page de service via ?specialty= pour que la liste des prestataires
+    // y soit déjà filtrée sur ce service précis.
+    if ((item.type === 'specialty' || item.type === 'filter') && item.label) {
+      dest += `?specialty=${encodeURIComponent(item.label)}`;
+    }
     navigate(dest);
     onNavigate?.();
   };
