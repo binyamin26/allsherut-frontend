@@ -37,7 +37,8 @@ const ShareReviewLinkCard = ({ providerId }) => {
         </div>
       </div>
 
-      <div className="share-review-link-pill">
+      <div className="share-review-link-display">
+        <Link2 size={14} className="share-review-link-display-icon" aria-hidden="true" />
         <input
           type="text"
           readOnly
@@ -45,6 +46,9 @@ const ShareReviewLinkCard = ({ providerId }) => {
           className="share-review-link-input"
           onFocus={(e) => e.target.select()}
         />
+      </div>
+
+      <div className="share-review-actions">
         <button
           type="button"
           className={`share-review-copy-btn${copied ? ' is-copied' : ''}`}
@@ -53,12 +57,12 @@ const ShareReviewLinkCard = ({ providerId }) => {
           {copied ? <Check size={16} /> : <Copy size={16} />}
           <span>{copied ? t('dashboard.shareReview.copied') : t('dashboard.shareReview.copyButton')}</span>
         </button>
-      </div>
 
-      <button type="button" className="share-review-whatsapp-btn" onClick={handleWhatsappShare}>
-        <MessageCircle size={18} />
-        <span>{t('dashboard.shareReview.whatsappButton')}</span>
-      </button>
+        <button type="button" className="share-review-whatsapp-btn" onClick={handleWhatsappShare}>
+          <MessageCircle size={18} />
+          <span>{t('dashboard.shareReview.whatsappButton')}</span>
+        </button>
+      </div>
     </div>
   );
 };
