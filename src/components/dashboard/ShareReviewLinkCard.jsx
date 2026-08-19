@@ -28,21 +28,35 @@ const ShareReviewLinkCard = ({ providerId }) => {
   return (
     <div className="share-review-card">
       <div className="share-review-header">
-        <Link2 size={18} />
-        <h3 className="share-review-title">{t('dashboard.shareReview.title')}</h3>
+        <span className="share-review-icon-badge" aria-hidden="true">
+          <Link2 size={18} />
+        </span>
+        <div className="share-review-heading">
+          <h3 className="share-review-title">{t('dashboard.shareReview.title')}</h3>
+          <p className="share-review-description">{t('dashboard.shareReview.description')}</p>
+        </div>
       </div>
-      <p className="share-review-description">{t('dashboard.shareReview.description')}</p>
 
-      <div className="share-review-link-row">
-        <input type="text" readOnly value={reviewLink} className="share-review-link-input" onFocus={(e) => e.target.select()} />
-        <button type="button" className="share-review-copy-btn" onClick={handleCopy}>
+      <div className="share-review-link-pill">
+        <input
+          type="text"
+          readOnly
+          value={reviewLink}
+          className="share-review-link-input"
+          onFocus={(e) => e.target.select()}
+        />
+        <button
+          type="button"
+          className={`share-review-copy-btn${copied ? ' is-copied' : ''}`}
+          onClick={handleCopy}
+        >
           {copied ? <Check size={16} /> : <Copy size={16} />}
           <span>{copied ? t('dashboard.shareReview.copied') : t('dashboard.shareReview.copyButton')}</span>
         </button>
       </div>
 
       <button type="button" className="share-review-whatsapp-btn" onClick={handleWhatsappShare}>
-        <MessageCircle size={16} />
+        <MessageCircle size={18} />
         <span>{t('dashboard.shareReview.whatsappButton')}</span>
       </button>
     </div>
