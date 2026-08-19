@@ -60,6 +60,7 @@ import DeleteListingModal from '../components/modals/DeleteListingModal';
 import { useLanguage } from '../context/LanguageContext';
 import RecruitmentForm from '../components/recruitment/RecruitmentForm';
 import CustomDropdown from '../components/common/CustomDropdown';
+import { getServiceDetailsErrors } from '../utils/serviceDetailsValidation';
 
 const ALL_SERVICE_KEYS = [
   'plumbing','electrician','locksmith','painting','air_conditioning','drywall',
@@ -208,6 +209,7 @@ const userData = useMemo(() => {
   const [addServiceDetails, setAddServiceDetails] = useState({});
   const [addServiceLoading, setAddServiceLoading] = useState(false);
   const [addServiceMsg, setAddServiceMsg] = useState({ type: '', text: '' });
+  const [addServiceErrors, setAddServiceErrors] = useState({});
 
   // Tarifs
   const [pricingItems, setPricingItems] = useState([]);
@@ -1249,6 +1251,7 @@ const resetAddServiceModal = () => {
   setAddServiceSeeking('clients');
   setAddServiceDetails({});
   setAddServiceMsg({ type: '', text: '' });
+  setAddServiceErrors({});
 };
 
 const handleAddService = async () => {
@@ -1256,6 +1259,21 @@ const handleAddService = async () => {
     setAddServiceMsg({ type: 'error', text: t('dashboard.addService.selectService') });
     return;
   }
+
+  // Mêmes champs obligatoires qu'à l'inscription initiale (AuthModal)
+  if (addServiceSeeking !== 'recruitment') {
+    const serviceDetailsErrors = getServiceDetailsErrors(addServiceType, addServiceDetails, t);
+    if (Object.keys(serviceDetailsErrors).length > 0) {
+      const prefixedErrors = Object.fromEntries(
+        Object.entries(serviceDetailsErrors).map(([field, message]) => [`serviceDetails.${field}`, message])
+      );
+      setAddServiceErrors(prefixedErrors);
+      setAddServiceMsg({ type: 'error', text: t('dashboard.addService.missingRequiredFields') });
+      return;
+    }
+    setAddServiceErrors({});
+  }
+
   setAddServiceLoading(true);
   setAddServiceMsg({ type: '', text: '' });
   try {
@@ -3497,7 +3515,7 @@ placeholder={t('dashboard.security.newPasswordPlaceholder')}
                     <ServiceDetailsForm
                       serviceType={addServiceType}
                       serviceDetails={addServiceDetails}
-                      errors={{}}
+                      errors={addServiceErrors}
                       handleServiceDetailsChange={handleAddServiceFieldChange}
                       handleExclusiveCheckbox={handleAddServiceExclusiveCheckbox}
                       hideLanguages={true}

@@ -3325,6 +3325,7 @@
   "dashboard.addService.confirm": "Ajouter le service",
   "dashboard.addService.success": "Ton service a été envoyé et est en cours de validation. Il sera affiché aux clients une fois approuvé par notre équipe.",
   "dashboard.addService.alreadyExists": "Ce service existe déjà dans votre compte",
+  "dashboard.addService.missingRequiredFields": "Merci de remplir tous les champs obligatoires",
   "recruitment.dashboard.title": "Mes offres d'emploi",
   "recruitment.dashboard.activate": "Activer le recrutement",
   "recruitment.dashboard.activateDesc": "Publiez une offre pour trouver des employés pour votre service",

@@ -3320,6 +3320,7 @@
   "dashboard.addService.confirm": "Добавить услугу",
   "dashboard.addService.success": "Ваша услуга отправлена и находится на проверке. Она появится для клиентов после одобрения нашей командой.",
   "dashboard.addService.alreadyExists": "Эта услуга уже есть в вашем аккаунте",
+  "dashboard.addService.missingRequiredFields": "Пожалуйста, заполните все обязательные поля",
   "recruitment.dashboard.title": "Мои вакансии",
   "recruitment.dashboard.activate": "Активировать найм",
   "recruitment.dashboard.activateDesc": "Разместите вакансию, чтобы найти сотрудников",

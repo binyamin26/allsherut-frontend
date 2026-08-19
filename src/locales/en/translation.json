@@ -3320,6 +3320,7 @@
   "dashboard.addService.confirm": "Add service",
   "dashboard.addService.success": "Your service was submitted and is under review. It will be shown to clients once approved by our team.",
   "dashboard.addService.alreadyExists": "This service already exists in your account",
+  "dashboard.addService.missingRequiredFields": "Please fill in all the required fields",
   "recruitment.dashboard.title": "My Job Listings",
   "recruitment.dashboard.activate": "Activate Recruitment",
   "recruitment.dashboard.activateDesc": "Post a job listing to find employees for your service",
