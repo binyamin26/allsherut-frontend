@@ -2187,11 +2187,11 @@ const profileCompletionStatus = (() => {
   }}>
     {/* Images existantes */}
     {(galleryImages || []).map((url, index) => (
-      <div key={index} style={{ position: 'relative', aspectRatio: '4/3', borderRadius: '8px', overflow: 'hidden', background: '#f3f4f6' }}>
+      <div key={index} style={{ position: 'relative', aspectRatio: '1/1', borderRadius: '8px', overflow: 'hidden', background: 'var(--neutral-100)' }}>
         <img
           src={url}
           alt={`גלריה ${index + 1}`}
-          style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+          style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center' }}
         />
         <button
           onClick={() => handleGalleryImageDelete(url)}
@@ -2212,7 +2212,7 @@ const profileCompletionStatus = (() => {
     {/* Slot d'ajout */}
     {(galleryImages || []).length < 15 && (
       <label style={{
-        aspectRatio: '4/3', border: '2px dashed #d1d5db', borderRadius: '8px',
+        aspectRatio: '1/1', border: '2px dashed #d1d5db', borderRadius: '8px',
         display: 'flex', flexDirection: 'column', alignItems: 'center',
         justifyContent: 'center', cursor: galleryUploading ? 'not-allowed' : 'pointer',
         background: '#f9fafb', gap: '6px', color: '#9ca3af'
