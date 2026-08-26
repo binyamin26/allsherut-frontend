@@ -74,6 +74,7 @@ const HandymanPage = lazy(() => import('./pages/services/HandymanPage'));
 const MechanicPage = lazy(() => import('./pages/services/MechanicPage'));
 const MetalworkPage = lazy(() => import('./pages/services/MetalworkPage'));
 const DriverPage = lazy(() => import('./pages/services/DriverPage'));
+const DoulaPage = lazy(() => import('./pages/services/DoulaPage'));
 
 // Page de détails provider
 const ProviderDetailPage = lazy(() => import('./pages/ProviderDetailPage'));
@@ -127,6 +128,7 @@ const SERVICE_PAGE_MAP = {
   mechanic:              MechanicPage,
   metalwork:             MetalworkPage,
   driver:                DriverPage,
+  doula:                 DoulaPage,
 };
 
 // Route universelle pour les pages de service (Hebrew root + /:lang/services/:slug)

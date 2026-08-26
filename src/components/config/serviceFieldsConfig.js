@@ -324,6 +324,30 @@ const serviceFieldsConfig = {
     ]
   },
 
+  doula: {
+    fields: [
+      {
+        name: 'availability_hours',
+        label: 'serviceForm.common.availabilityHours',
+        type: 'checkbox',
+        options: ['בוקר', 'אחר הצהריים', 'ערב', 'לילה', '24/7']
+      },
+      {
+        name: 'work_types',
+        label: 'serviceForm.common.workTypes',
+        type: 'checkbox',
+        options: ['הכנה ללידה', 'ליווי בלידה', 'ליווי לאחר לידה', 'תמיכה בהנקה']
+      },
+      { name: 'experience', label: 'serviceForm.common.experience', type: 'number' },
+      {
+        name: 'languages',
+        label: 'serviceFields.eldercare.languages',
+        type: 'checkbox',
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+      }
+    ]
+  },
+
   eldercare: {
     fields: [
       { name: 'age', label: 'serviceForm.common.age', type: 'number' },

@@ -188,7 +188,8 @@ const SERVICE_CARD_DEFS = [
   { key: 'petcare', gradient: 'petcare-gradient' },
   { key: 'eldercare', icon: '👵', gradient: 'eldercare-gradient' },
   { key: 'mechanic', gradient: 'mechanic-gradient' },
-  { key: 'driver', gradient: 'driver-gradient' }
+  { key: 'driver', gradient: 'driver-gradient' },
+  { key: 'doula', icon: '🤰', gradient: 'eldercare-gradient' }
 ];
 
 // Réutilise les mêmes images que la page d'accueil / catégories (SERVICES_META)

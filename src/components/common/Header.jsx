@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
-import { Menu, X, Home, Users, BookOpen, UserCheck, Sparkles, Baby, LogOut, Shirt, Zap, Wrench, Wind, Flame, Package, Layers, Hammer, PartyPopper, ChefHat, Paintbrush, Droplets, HardHat, Frame, Square, Key, Leaf, PawPrint, ChevronDown, Phone, Truck, Camera, Wand2, Bug, Cog, Dumbbell, Music2, Car, Shield, Navigation, Soup, Croissant, Castle, Popcorn } from 'lucide-react'
+import { Menu, X, Home, Users, BookOpen, UserCheck, Sparkles, Baby, LogOut, Shirt, Zap, Wrench, Wind, Flame, Package, Layers, Hammer, PartyPopper, ChefHat, Paintbrush, Droplets, HardHat, Frame, Square, Key, Leaf, PawPrint, ChevronDown, Phone, Truck, Camera, Wand2, Bug, Cog, Dumbbell, Music2, Car, Shield, Navigation, Soup, Croissant, Castle, Popcorn, HeartPulse } from 'lucide-react'
 import { useAuth } from '../../context/AuthContext'
 import AuthModal from '../auth/AuthModal'
 import ServiceSearchBar from './ServiceSearchBar'
@@ -101,7 +101,8 @@ const Header = () => {
     { icon: <PawPrint className="w-5 h-5" />, nameKey: 'services.petcare', descKey: 'services.petcare.desc', serviceKey: 'petcare' },
     { icon: <UserCheck className="w-5 h-5" />, nameKey: 'services.eldercare', descKey: 'services.eldercare.desc', serviceKey: 'eldercare' },
     { icon: <Car className="w-5 h-5" />, nameKey: 'services.mechanic', descKey: 'services.mechanic.desc', serviceKey: 'mechanic' },
-    { icon: <Navigation className="w-5 h-5" />, nameKey: 'services.driver', descKey: 'services.driver.desc', serviceKey: 'driver' }
+    { icon: <Navigation className="w-5 h-5" />, nameKey: 'services.driver', descKey: 'services.driver.desc', serviceKey: 'driver' },
+    { icon: <HeartPulse className="w-5 h-5" />, nameKey: 'services.doula', descKey: 'services.doula.desc', serviceKey: 'doula' }
   ]
 
   const handleLogout = async () => {

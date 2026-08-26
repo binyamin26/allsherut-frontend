@@ -279,6 +279,11 @@ export const getServiceDetailsErrors = (serviceType, serviceDetails, t) => {
       if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) errors.availability_hours = t('validation.availabilityHoursRequired');
       break;
 
+    case 'doula':
+      if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) errors.availability_hours = t('validation.availabilityHoursRequired');
+      if (!serviceDetails.work_types || serviceDetails.work_types.length === 0) errors.work_types = t('validation.workTypesRequired');
+      break;
+
     default:
       break;
   }

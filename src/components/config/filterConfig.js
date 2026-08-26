@@ -310,6 +310,29 @@ eldercare: {
   },
 
   // ═══════════════════════════════════════════════════════════════
+  // DOULA
+  // ═══════════════════════════════════════════════════════════════
+  doula: {
+    sectionTitles: {
+      availability: 'serviceForm.common.availabilityHours',
+      workTypes: 'serviceForm.common.workTypes'
+    },
+    availability: [
+      { value: 'בוקר', key: 'hours.morning' },
+      { value: 'אחר הצהריים', key: 'hours.afternoon' },
+      { value: 'ערב', key: 'hours.evening' },
+      { value: 'לילה', key: 'hours.night' },
+      { value: '24/7', key: 'hours.twentyFourSeven' }
+    ],
+    workTypes: [
+      { value: 'הכנה ללידה', key: 'serviceForm.doula.workTypes.birthPreparation' },
+      { value: 'ליווי בלידה', key: 'serviceForm.doula.workTypes.birthSupport' },
+      { value: 'ליווי לאחר לידה', key: 'serviceForm.doula.workTypes.postpartumSupport' },
+      { value: 'תמיכה בהנקה', key: 'serviceForm.doula.workTypes.breastfeedingSupport' }
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════════════
   // TUTORING
   // ═══════════════════════════════════════════════════════════════
 tutoring: {

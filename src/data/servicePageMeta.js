@@ -72,6 +72,12 @@ export const SERVICE_PAGE_META = {
     heroImage: '/images/logo kashishims.jpg',
     heroAlt: 'עזרה לקשישים',
   },
+  doula: {
+    title: 'דולות בישראל',
+    description: 'מצאו דולה מקצועית בישראל - הכנה ללידה, ליווי בלידה וליווי לאחר הלידה.',
+    heroImage: '/images/logo doula.jpg',
+    heroAlt: 'דולה',
+  },
   electrician: {
     title: 'חשמלאי בישראל',
     description: 'מצאו חשמלאי מוסמך בישראל - תיקונים, התקנות וחיווט חדש בצורה בטוחה ומקצועית.',

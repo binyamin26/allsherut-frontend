@@ -61,6 +61,24 @@ export const CATEGORY_DEFINITIONS = [
     serviceIds: ['babysitting', 'petcare', 'eldercare'],
   },
   {
+    id: 'medecine-soins',
+    names: {
+      fr: 'Médecine & Soins',
+      he: 'רפואה וטיפול',
+      en: 'Medicine & Care',
+      ru: 'Медицина и уход',
+    },
+    descriptions: {
+      fr: 'Services médicaux et de soins à domicile en Israël.',
+      he: 'שירותי רפואה וטיפול בבית בישראל.',
+      en: 'Medical and care services at home in Israel.',
+      ru: 'Медицинские услуги и уход на дому в Израиле.',
+    },
+    image: '/images/catégorie médecine et soins.jpg',
+    gradient: 'from-teal-500 to-cyan-600',
+    serviceIds: ['doula'],
+  },
+  {
     id: 'evenements-creation',
     names: {
       fr: 'Événements & Services créatifs',
@@ -160,4 +178,5 @@ export const SERVICES_META = {
   petcare:            { image: '/images/chien.jpg',           href: '/services/petcare',            nameKey: 'services.petcare' },
   eldercare:          { image: '/images/eldercare.jpg',       href: '/services/eldercare',          nameKey: 'services.eldercare' },
   driver:             { image: '/images/driver.jpg',          href: '/services/driver',             nameKey: 'services.driver' },
+  doula:              { image: '/images/doula.jpg',           href: '/services/doula',              nameKey: 'services.doula' },
 };

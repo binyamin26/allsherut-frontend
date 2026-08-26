@@ -40,6 +40,7 @@ export const SERVICE_SLUGS = {
   mechanic:               { he: 'mechanic',             en: 'mechanic',             fr: 'mecanicien',               ru: 'mekhanik' },
   metalwork:              { he: 'metalwork',            en: 'metalwork',            fr: 'ferronnerie',              ru: 'metalloraboty' },
   driver:                 { he: 'driver',               en: 'transportation',       fr: 'transport',                ru: 'perevozki' },
+  doula:                  { he: 'doula',                en: 'doula',                fr: 'doula',                    ru: 'doula' },
 };
 
 // Normalize a raw API service_type (snake_case, e.g. "event_decoration") into the

@@ -38,6 +38,7 @@ import DJForm from './dj/DJForm';
 import MechanicForm from './mechanic/MechanicForm';
 import MetalworkForm from './metalwork/MetalworkForm';
 import DriverForm from './driver/DriverForm';
+import DoulaForm from './doula/DoulaForm';
 
 const ServiceDetailsForm = ({
   serviceType,
@@ -84,7 +85,8 @@ const ServiceDetailsForm = ({
     dj: DJForm,
     mechanic: MechanicForm,
     metalwork: MetalworkForm,
-    driver: DriverForm
+    driver: DriverForm,
+    doula: DoulaForm
   };
 
   // Récupérer le bon composant

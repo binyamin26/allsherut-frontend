@@ -557,6 +557,7 @@ const ServicePanel = ({ serviceType, filters, onChange }) => {
     tutoring: TutoringFilters,
     sports_activities: SportsActivitiesFilters,
     eldercare: EldercareFilters,
+    doula: DoulaFilters,
     laundry: LaundryFilters,
     electrician: ElectricianFilters,
     plumbing: PlumbingFilters,
@@ -931,6 +932,31 @@ const EldercareFilters = ({ filters, handleFilterChange, handleCheckboxChange })
         onFilterChange={handleFilterChange}
       />
       <AgeRangeSection filters={filters} onFilterChange={handleFilterChange} />
+    </div>
+  );
+};
+
+// DOULA
+const DoulaFilters = ({ filters, handleCheckboxChange }) => {
+  const { t } = useLanguage();
+  const config = FILTER_CONFIG.doula;
+
+  return (
+    <div className="service-panel">
+      <CheckboxSection
+        title={t(config.sectionTitles.availability)}
+        options={config.availability.map(o => ({ value: o.value, label: t(o.key) }))}
+        filterKey="availability_hours"
+        filters={filters}
+        onCheckboxChange={handleCheckboxChange}
+      />
+      <CheckboxSection
+        title={t(config.sectionTitles.workTypes)}
+        options={config.workTypes.map(o => ({ value: o.value, label: t(o.key) }))}
+        filterKey="work_types"
+        filters={filters}
+        onCheckboxChange={handleCheckboxChange}
+      />
     </div>
   );
 };

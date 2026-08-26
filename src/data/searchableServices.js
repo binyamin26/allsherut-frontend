@@ -713,6 +713,13 @@ const searchableServices = [
   { label: 'נהג פרטי', labelEn: 'Private driver', labelFr: 'Chauffeur privé', labelRu: 'Частный водитель', href: '/services/driver', type: 'specialty' },
   { label: 'אוטובוס', labelEn: 'Bus', labelFr: 'Bus', labelRu: 'Автобус', href: '/services/driver', type: 'specialty' },
   { label: 'מיניבוס', labelEn: 'Minibus', labelFr: 'Minibus', labelRu: 'Минибус', href: '/services/driver', type: 'specialty' },
+
+  // DOULA
+  { label: 'דולה', labelEn: 'Doula', labelFr: 'Doula', labelRu: 'Доула', href: '/services/doula', type: 'service' },
+  { label: 'הכנה ללידה', labelEn: 'Birth Preparation', labelFr: "Préparation à l'accouchement", labelRu: 'Подготовка к родам', href: '/services/doula', type: 'specialty' },
+  { label: 'ליווי בלידה', labelEn: 'Birth Support', labelFr: "Accompagnement à l'accouchement", labelRu: 'Сопровождение при родах', href: '/services/doula', type: 'specialty' },
+  { label: 'ליווי לאחר לידה', labelEn: 'Postpartum Support', labelFr: 'Accompagnement post-partum', labelRu: 'Послеродовая поддержка', href: '/services/doula', type: 'specialty' },
+  { label: 'תמיכה בהנקה', labelEn: 'Breastfeeding Support', labelFr: "Soutien à l'allaitement", labelRu: 'Поддержка при грудном вскармливании', href: '/services/doula', type: 'specialty' },
 ];
 
 export default searchableServices;

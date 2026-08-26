@@ -36,7 +36,8 @@ const SERVICE_URLS = {
   locksmith: '/services/locksmith',
   handyman: '/services/handyman',
   mechanic: '/services/mechanic',
-  driver: '/services/driver'
+  driver: '/services/driver',
+  doula: '/services/doula'
 };
 
 const detectLanguage = (text) => {
