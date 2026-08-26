@@ -73,7 +73,7 @@ export const SERVICE_PAGE_META = {
     heroAlt: 'עזרה לקשישים',
   },
   doula: {
-    title: 'דולות בישראל',
+    title: 'דולות',
     description: 'מצאו דולה מקצועית בישראל - הכנה ללידה, ליווי בלידה וליווי לאחר הלידה.',
     heroImage: '/images/logo doula.jpg',
     heroAlt: 'דולה',
