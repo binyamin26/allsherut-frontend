@@ -2555,7 +2555,7 @@
   "review.errors.sendError": "Ошибка отправки email подтверждения",
   "review.errors.codeRequired": "Требуется код подтверждения",
   "review.errors.codeInvalid": "Неверный код подтверждения",
-  "review.errors.ratingRequired": "Требуется оценка",
+  "review.errors.ratingRequired": "Оцените хотя бы одну категорию",
   "review.errors.commentRequired": "Требуется отзыв",
   "review.errors.createError": "Ошибка создания отзыва",
   "review.form.categoriesTitle": "Оцените исполнителя по 4 критериям (1-10)",

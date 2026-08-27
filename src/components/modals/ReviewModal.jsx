@@ -140,16 +140,21 @@ const handleVerifyCode = async () => {
   }
 };
 
-  const computedGlobal = (formData.qualityRating && formData.priceRating && formData.availabilityRating && formData.professionalismRating)
-    ? (() => {
-        const avg = (formData.qualityRating + formData.priceRating + formData.availabilityRating + formData.professionalismRating) / 4;
-        return Number.isInteger(avg) ? avg.toString() : avg.toFixed(1);
-      })()
-    : null;
+  const computedGlobal = (() => {
+    const scores = [
+      formData.qualityRating,
+      formData.priceRating,
+      formData.availabilityRating,
+      formData.professionalismRating
+    ].filter(n => n > 0);
+    if (scores.length === 0) return null;
+    const avg = scores.reduce((a, b) => a + b, 0) / scores.length;
+    return Number.isInteger(avg) ? avg.toString() : avg.toFixed(1);
+  })();
 
   const handleSubmitReview = async () => {
     const { qualityRating, priceRating, availabilityRating, professionalismRating } = formData;
-    if (!qualityRating || !priceRating || !availabilityRating || !professionalismRating) {
+    if (!qualityRating && !priceRating && !availabilityRating && !professionalismRating) {
       setError(t('review.errors.ratingRequired'));
       return;
     }
@@ -168,10 +173,10 @@ const handleVerifyCode = async () => {
         verificationCode: formData.verificationCode,
         providerId,
         serviceType,
-        qualityRating,
-        priceRating,
-        availabilityRating,
-        professionalismRating,
+        qualityRating: qualityRating || null,
+        priceRating: priceRating || null,
+        availabilityRating: availabilityRating || null,
+        professionalismRating: professionalismRating || null,
         comment: formData.comment,
         displayNameOption: formData.displayNameOption
       });

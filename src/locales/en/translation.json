@@ -2581,7 +2581,7 @@
   "review.errors.sendError": "Error sending verification email",
   "review.errors.codeRequired": "Verification code is required",
   "review.errors.codeInvalid": "Invalid verification code",
-  "review.errors.ratingRequired": "Rating is required",
+  "review.errors.ratingRequired": "Please rate at least one category",
   "review.errors.commentRequired": "Review is required",
   "review.errors.createError": "Error creating review",
   "review.form.categoriesTitle": "Rate the provider in 4 categories (1-10)",

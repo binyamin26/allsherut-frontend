@@ -1863,7 +1863,7 @@
   "review.errors.sendError": "שגיאה בשליחת אימייל אימות",
   "review.errors.codeRequired": "קוד אימות נדרש",
   "review.errors.codeInvalid": "קוד אימות שגוי",
-  "review.errors.ratingRequired": "דירוג נדרש",
+  "review.errors.ratingRequired": "יש לדרג לפחות קטגוריה אחת",
   "review.errors.commentRequired": "חוות דעת נדרשת",
   "review.errors.createError": "שגיאה ביצירת הביקורת",
   "review.form.categoriesTitle": "דרג את הספק בארבע קטגוריות (1-10)",
