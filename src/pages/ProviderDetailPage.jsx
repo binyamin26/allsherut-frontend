@@ -274,12 +274,25 @@ const ProviderDetailPage = () => {
 
  const loadProviderData = async () => {
   console.log('🔍 Provider ID:', id);
-  
+
   try {
     setLoading(true);
+    setError(null);
     console.log('🔍 Loading provider with ID:', id);
-    
-    const providerResponse = await apiService.getProvider(id);
+
+    // Certaines requêtes échouent de façon transitoire (cold start Fly.io,
+    // réseau instable, filtre de contenu). On réessaie avant d'afficher
+    // "ספק לא נמצא", sauf si le backend confirme un vrai 404 (PROVIDER_NOT_FOUND).
+    let providerResponse;
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      providerResponse = await apiService.getProvider(id);
+      if (providerResponse.success || providerResponse.code === 'PROVIDER_NOT_FOUND') break;
+      if (attempt < 3) {
+        console.warn(`⚠️ Provider fetch failed (tentative ${attempt}/3), nouvel essai…`, providerResponse);
+        await new Promise(resolve => setTimeout(resolve, attempt * 800));
+      }
+    }
+
     if (providerResponse.success) {
       console.log('✅ Provider data:', providerResponse.data);
       console.log('📸 FULL RESPONSE DATA:', providerResponse.data);
@@ -298,8 +311,10 @@ const ProviderDetailPage = () => {
           .catch(() => {});
       }
     } else {
-        console.error('❌ Provider API failed:', providerResponse);
-        setError('ספק השירות לא נמצא');
+        console.error('❌ Provider API failed after retries:', providerResponse);
+        setError(providerResponse.code === 'PROVIDER_NOT_FOUND'
+          ? 'ספק השירות לא נמצא'
+          : 'שגיאה בטעינת פרטי הספק');
       }
       
     } catch (error) {
