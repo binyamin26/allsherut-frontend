@@ -2586,7 +2586,7 @@
   "review.errors.sendError": "Erreur lors de l'envoi de l'email de vérification",
   "review.errors.codeRequired": "Le code de vérification est requis",
   "review.errors.codeInvalid": "Code de vérification invalide",
-  "review.errors.ratingRequired": "La note est requise",
+  "review.errors.ratingRequired": "Notez au moins un critère",
   "review.errors.commentRequired": "L'avis est requis",
   "review.errors.createError": "Erreur lors de la création de l'avis",
   "review.form.categoriesTitle": "Notez le prestataire sur 4 catégories (1-10)",

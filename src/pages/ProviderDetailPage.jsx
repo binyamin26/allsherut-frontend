@@ -1964,14 +1964,14 @@ const handleContact = () => {
                                       <div className="reviewer-info-horizontal">
                                   <h5 className="reviewer-name">{review.reviewerName || t('provider.reviews.customer')}</h5>
                                         <div className="review-rating">
-                                          {review.quality_rating ? (
+                                          {(review.quality_rating || review.price_rating || review.availability_rating || review.professionalism_rating) ? (
                                             <div className="text-review-cats">
                                               {[
                                                 { key: 'quality', score: review.quality_rating },
                                                 { key: 'price', score: review.price_rating },
                                                 { key: 'availability', score: review.availability_rating },
                                                 { key: 'professionalism', score: review.professionalism_rating },
-                                              ].map(({ key, score }) => (
+                                              ].filter(({ score }) => score).map(({ key, score }) => (
                                                 <span key={key} className={`text-cat-badge tone-${getScoreTone(score)}`}>
                                                   <span className="text-cat-score">{score}</span>
                                                   <span className="text-cat-label">{t(`review.categories.${key}`)}</span>
