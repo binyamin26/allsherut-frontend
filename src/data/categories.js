@@ -62,6 +62,9 @@ export const CATEGORY_DEFINITIONS = [
   },
   {
     id: 'medecine-soins',
+    // Section masquée temporairement (jusqu'à nouvel ordre) — ne rien supprimer.
+    // Pour la réafficher : retirer `hidden: true` ci-dessous, c'est le seul interrupteur.
+    hidden: true,
     names: {
       fr: 'Médecine & Soins',
       he: 'רפואה וטיפול',
@@ -138,6 +141,19 @@ export const CATEGORY_DEFINITIONS = [
 export function getCategoryForService(serviceId) {
   return CATEGORY_DEFINITIONS.find(cat => cat.serviceIds.includes(serviceId)) || null;
 }
+
+// Catégories/services masqués (flag `hidden: true` sur la catégorie).
+// Rien n'est supprimé : ces listes servent juste à filtrer l'affichage partout.
+export const HIDDEN_CATEGORY_IDS = CATEGORY_DEFINITIONS
+  .filter(cat => cat.hidden)
+  .map(cat => cat.id);
+
+export const HIDDEN_SERVICE_IDS = CATEGORY_DEFINITIONS
+  .filter(cat => cat.hidden)
+  .flatMap(cat => cat.serviceIds);
+
+// Catégories visibles uniquement (à utiliser pour tout affichage public).
+export const VISIBLE_CATEGORY_DEFINITIONS = CATEGORY_DEFINITIONS.filter(cat => !cat.hidden);
 
 // All individual services with their metadata
 export const SERVICES_META = {

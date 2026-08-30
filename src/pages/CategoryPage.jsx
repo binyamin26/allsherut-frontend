@@ -10,7 +10,8 @@ const CategoryPage = () => {
   const { t, currentLanguage, direction, buildServicePath } = useLanguage();
   const navigate = useNavigate();
 
-  const category = CATEGORY_DEFINITIONS.find((c) => c.id === slug);
+  // Une catégorie masquée (hidden) se comporte comme introuvable.
+  const category = CATEGORY_DEFINITIONS.find((c) => c.id === slug && !c.hidden);
 
   if (!category) {
     return (

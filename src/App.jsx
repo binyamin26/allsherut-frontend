@@ -4,6 +4,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { LanguageProvider, useLanguage } from './context/LanguageContext';
 import { SUPPORTED_LANGS, getServiceKeyFromSlug } from './utils/langUtils';
+import { HIDDEN_SERVICE_IDS } from './data/categories';
 
 // Layout components
 import Header from "./components/common/Header";
@@ -143,6 +144,8 @@ const ServiceRouter = () => {
   }, [effectiveLang]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const serviceKey = getServiceKeyFromSlug(slug, effectiveLang);
+  // Service rattaché à une catégorie masquée → 404 (masqué jusqu'à nouvel ordre).
+  if (serviceKey && HIDDEN_SERVICE_IDS.includes(serviceKey.replace(/-/g, '_'))) return <NotFoundPage />;
   const PageComponent = serviceKey ? SERVICE_PAGE_MAP[serviceKey] : null;
   if (!PageComponent) return <NotFoundPage />;
   return <PageComponent />;

@@ -2,6 +2,7 @@ import { useState, useRef, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search } from 'lucide-react';
 import searchableServices from '../../data/searchableServices';
+import { HIDDEN_SERVICE_IDS } from '../../data/categories';
 import { FILTER_CONFIG } from './../config/filterConfig';
 import { useLanguage } from '../../context/LanguageContext';
 import { buildServicePath } from '../../utils/langUtils';
@@ -39,6 +40,9 @@ const SERVICE_URLS = {
   driver: '/services/driver',
   doula: '/services/doula'
 };
+
+// Chemins des services appartenant à une catégorie masquée — exclus de la recherche.
+const HIDDEN_SERVICE_PATHS = new Set(HIDDEN_SERVICE_IDS.map((id) => `/services/${id}`));
 
 const detectLanguage = (text) => {
   if (/[\u0590-\u05FF]/.test(text)) return 'he';
@@ -79,7 +83,9 @@ const ServiceSearchBar = ({ style, onNavigate }) => {
   }, []);
 
   const allSearchableItems = useMemo(() => {
-    return [...searchableServices, ...filterConfigItems];
+    return [...searchableServices, ...filterConfigItems].filter(
+      (item) => !HIDDEN_SERVICE_PATHS.has(item.href)
+    );
   }, [filterConfigItems]);
 
   useEffect(() => {

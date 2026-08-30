@@ -213,6 +213,7 @@ const matchesSearch = (key) => {
   return terms.some(term => term.toLowerCase().includes(normalizedServiceSearch));
 };
 const groupedServices = CATEGORY_DEFINITIONS
+  .filter(category => !category.hidden)
   .map(category => ({
     id: category.id,
     title: category.names[language] || category.names.he,

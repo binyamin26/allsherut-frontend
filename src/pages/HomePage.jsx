@@ -15,7 +15,7 @@ import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import ServiceSearchBar from '../components/common/ServiceSearchBar';
-import { CATEGORY_DEFINITIONS } from '../data/categories';
+import { VISIBLE_CATEGORY_DEFINITIONS } from '../data/categories';
 import Reveal from '../components/common/Reveal';
 
 const HomePage = () => {
@@ -116,7 +116,7 @@ const HomePage = () => {
               1280: { slidesPerView: 4 },
             }}
           >
-            {CATEGORY_DEFINITIONS.map((cat) => {
+            {VISIBLE_CATEGORY_DEFINITIONS.map((cat) => {
               const name = cat.names[currentLanguage] || cat.names.fr;
               return (
                 <SwiperSlide key={cat.id}>

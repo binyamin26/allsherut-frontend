@@ -6,6 +6,7 @@ import AuthModal from '../auth/AuthModal'
 import ServiceSearchBar from './ServiceSearchBar'
 import { useLanguage } from '../../context/LanguageContext'
 import { SUPPORTED_LANGS, getLangFromPath, buildServicePath, buildPath, getServiceKeyFromSlug } from '../../utils/langUtils'
+import { HIDDEN_SERVICE_IDS } from '../../data/categories'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -103,7 +104,7 @@ const Header = () => {
     { icon: <Car className="w-5 h-5" />, nameKey: 'services.mechanic', descKey: 'services.mechanic.desc', serviceKey: 'mechanic' },
     { icon: <Navigation className="w-5 h-5" />, nameKey: 'services.driver', descKey: 'services.driver.desc', serviceKey: 'driver' },
     { icon: <HeartPulse className="w-5 h-5" />, nameKey: 'services.doula', descKey: 'services.doula.desc', serviceKey: 'doula' }
-  ]
+  ].filter(s => !HIDDEN_SERVICE_IDS.includes(s.serviceKey.replace(/-/g, '_')))
 
   const handleLogout = async () => {
     await logout()

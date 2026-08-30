@@ -47,7 +47,7 @@ import { readFileSync, writeFileSync, mkdirSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
-import { CATEGORY_DEFINITIONS, SERVICES_META, getCategoryForService } from '../src/data/categories.js';
+import { CATEGORY_DEFINITIONS, SERVICES_META, getCategoryForService, HIDDEN_SERVICE_IDS } from '../src/data/categories.js';
 import { buildServicePath, serviceTypeToKey } from '../src/utils/langUtils.js';
 import { SERVICE_PAGE_META } from '../src/data/servicePageMeta.js';
 import { buildServicePageJsonLd, getServiceFaqItems } from '../src/utils/seoJsonLd.js';
@@ -253,6 +253,8 @@ function renderServiceBody(serviceId, lang, t) {
 
 let serviceCount = 0;
 for (const serviceId of Object.keys(SERVICE_PAGE_META)) {
+  // Services rattachés à une catégorie masquée : pas de page prérendue.
+  if (HIDDEN_SERVICE_IDS.includes(serviceId)) continue;
   const meta = SERVICE_PAGE_META[serviceId];
   const key = serviceTypeToKey(serviceId);
   const hreflangPaths = {
@@ -316,6 +318,7 @@ function renderCategoryBody(category) {
 
 let categoryCount = 0;
 for (const category of CATEGORY_DEFINITIONS) {
+  if (category.hidden) continue; // catégorie masquée jusqu'à nouvel ordre
   const canonicalPath = `/categories/${category.id}`;
   const head = buildHead({
     title: category.names.he,
