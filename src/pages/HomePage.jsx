@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/common/SEO';
 import {
@@ -8,7 +8,6 @@ import {
 import AuthModal from '../components/auth/AuthModal';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
-import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
@@ -24,6 +23,32 @@ const HomePage = () => {
   const { isAuthenticated } = useAuth();
   const { t, direction, currentLanguage } = useLanguage();
   const location = useLocation();
+
+  // En mode portable, on remonte "Événements" en premier et on renvoie
+  // "Maison & Travaux" en dernier. Sur desktop, l'ordre d'origine est conservé.
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const orderedCategories = useMemo(() => {
+    if (!isMobile) return VISIBLE_CATEGORY_DEFINITIONS;
+    const first = 'evenements-creation';
+    const last = 'maison-travaux';
+    const firstCat = VISIBLE_CATEGORY_DEFINITIONS.find((c) => c.id === first);
+    const lastCat = VISIBLE_CATEGORY_DEFINITIONS.find((c) => c.id === last);
+    const middle = VISIBLE_CATEGORY_DEFINITIONS.filter(
+      (c) => c.id !== first && c.id !== last
+    );
+    return [
+      ...(firstCat ? [firstCat] : []),
+      ...middle,
+      ...(lastCat ? [lastCat] : []),
+    ];
+  }, [isMobile]);
 
   useEffect(() => {
     if (location.hash === '#services') {
@@ -108,7 +133,7 @@ const HomePage = () => {
             spaceBetween={4}
             slidesPerView={1}
             dir={direction === 'rtl' ? 'rtl' : 'ltr'}
-            key={direction}
+            key={`${direction}-${isMobile ? 'm' : 'd'}`}
             breakpoints={{
               480: { slidesPerView: 2 },
               768: { slidesPerView: 3 },
@@ -116,7 +141,7 @@ const HomePage = () => {
               1280: { slidesPerView: 4 },
             }}
           >
-            {VISIBLE_CATEGORY_DEFINITIONS.map((cat) => {
+            {orderedCategories.map((cat) => {
               const name = cat.names[currentLanguage] || cat.names.fr;
               return (
                 <SwiperSlide key={cat.id}>
