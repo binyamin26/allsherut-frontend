@@ -66,20 +66,6 @@ const Header = () => {
 
   // Services avec clé interne pour construire les URLs localisées
   const services = [
-    { icon: <Wrench className="w-5 h-5" />, nameKey: 'services.plumbing', descKey: 'services.plumbing.desc', serviceKey: 'plumbing' },
-    { icon: <Zap className="w-5 h-5" />, nameKey: 'services.electrician', descKey: 'services.electrician.desc', serviceKey: 'electrician' },
-    { icon: <Key className="w-5 h-5" />, nameKey: 'services.locksmith', descKey: 'services.locksmith.desc', serviceKey: 'locksmith' },
-    { icon: <Paintbrush className="w-5 h-5" />, nameKey: 'services.painting', descKey: 'services.painting.desc', serviceKey: 'painting' },
-    { icon: <Wind className="w-5 h-5" />, nameKey: 'services.air_conditioning', descKey: 'services.air_conditioning.desc', serviceKey: 'air-conditioning' },
-    { icon: <Layers className="w-5 h-5" />, nameKey: 'services.drywall', descKey: 'services.drywall.desc', serviceKey: 'drywall' },
-    { icon: <Frame className="w-5 h-5" />, nameKey: 'services.aluminum', descKey: 'services.aluminum.desc', serviceKey: 'aluminum' },
-    { icon: <Shield className="w-5 h-5" />, nameKey: 'services.metalwork', descKey: 'services.metalwork.desc', serviceKey: 'metalwork' },
-    { icon: <Square className="w-5 h-5" />, nameKey: 'services.glass_works', descKey: 'services.glass_works.desc', serviceKey: 'glass-works' },
-    { icon: <Flame className="w-5 h-5" />, nameKey: 'services.gas_technician', descKey: 'services.gas_technician.desc', serviceKey: 'gas-technician' },
-    { icon: <Droplets className="w-5 h-5" />, nameKey: 'services.waterproofing', descKey: 'services.waterproofing.desc', serviceKey: 'waterproofing' },
-    { icon: <Hammer className="w-5 h-5" />, nameKey: 'services.carpentry', descKey: 'services.carpentry.desc', serviceKey: 'carpentry' },
-    { icon: <Cog className="w-5 h-5" />, nameKey: 'services.handyman', descKey: 'services.handyman.desc', serviceKey: 'handyman' },
-    { icon: <HardHat className="w-5 h-5" />, nameKey: 'services.contractor', descKey: 'services.contractor.desc', serviceKey: 'contractor' },
     { icon: <Truck className="w-5 h-5" />, nameKey: 'services.moving', descKey: 'services.moving.desc', serviceKey: 'moving' },
     { icon: <Leaf className="w-5 h-5" />, nameKey: 'services.gardening', descKey: 'services.gardening.desc', serviceKey: 'gardening' },
     { icon: <Bug className="w-5 h-5" />, nameKey: 'services.pest_control', descKey: 'services.pest_control.desc', serviceKey: 'pest-control' },
@@ -103,7 +89,22 @@ const Header = () => {
     { icon: <UserCheck className="w-5 h-5" />, nameKey: 'services.eldercare', descKey: 'services.eldercare.desc', serviceKey: 'eldercare' },
     { icon: <Car className="w-5 h-5" />, nameKey: 'services.mechanic', descKey: 'services.mechanic.desc', serviceKey: 'mechanic' },
     { icon: <Navigation className="w-5 h-5" />, nameKey: 'services.driver', descKey: 'services.driver.desc', serviceKey: 'driver' },
-    { icon: <HeartPulse className="w-5 h-5" />, nameKey: 'services.doula', descKey: 'services.doula.desc', serviceKey: 'doula' }
+    { icon: <HeartPulse className="w-5 h-5" />, nameKey: 'services.doula', descKey: 'services.doula.desc', serviceKey: 'doula' },
+    // Bloc "Maison & Travaux" déplacé en dernier (de plombier à kablan/contractor)
+    { icon: <Wrench className="w-5 h-5" />, nameKey: 'services.plumbing', descKey: 'services.plumbing.desc', serviceKey: 'plumbing' },
+    { icon: <Zap className="w-5 h-5" />, nameKey: 'services.electrician', descKey: 'services.electrician.desc', serviceKey: 'electrician' },
+    { icon: <Key className="w-5 h-5" />, nameKey: 'services.locksmith', descKey: 'services.locksmith.desc', serviceKey: 'locksmith' },
+    { icon: <Paintbrush className="w-5 h-5" />, nameKey: 'services.painting', descKey: 'services.painting.desc', serviceKey: 'painting' },
+    { icon: <Wind className="w-5 h-5" />, nameKey: 'services.air_conditioning', descKey: 'services.air_conditioning.desc', serviceKey: 'air-conditioning' },
+    { icon: <Layers className="w-5 h-5" />, nameKey: 'services.drywall', descKey: 'services.drywall.desc', serviceKey: 'drywall' },
+    { icon: <Frame className="w-5 h-5" />, nameKey: 'services.aluminum', descKey: 'services.aluminum.desc', serviceKey: 'aluminum' },
+    { icon: <Shield className="w-5 h-5" />, nameKey: 'services.metalwork', descKey: 'services.metalwork.desc', serviceKey: 'metalwork' },
+    { icon: <Square className="w-5 h-5" />, nameKey: 'services.glass_works', descKey: 'services.glass_works.desc', serviceKey: 'glass-works' },
+    { icon: <Flame className="w-5 h-5" />, nameKey: 'services.gas_technician', descKey: 'services.gas_technician.desc', serviceKey: 'gas-technician' },
+    { icon: <Droplets className="w-5 h-5" />, nameKey: 'services.waterproofing', descKey: 'services.waterproofing.desc', serviceKey: 'waterproofing' },
+    { icon: <Hammer className="w-5 h-5" />, nameKey: 'services.carpentry', descKey: 'services.carpentry.desc', serviceKey: 'carpentry' },
+    { icon: <Cog className="w-5 h-5" />, nameKey: 'services.handyman', descKey: 'services.handyman.desc', serviceKey: 'handyman' },
+    { icon: <HardHat className="w-5 h-5" />, nameKey: 'services.contractor', descKey: 'services.contractor.desc', serviceKey: 'contractor' }
   ].filter(s => !HIDDEN_SERVICE_IDS.includes(s.serviceKey.replace(/-/g, '_')))
 
   const handleLogout = async () => {
