@@ -8,6 +8,7 @@
     "start": "node server.js",
     "dev": "nodemon server.js",
     "migrate": "node scripts/runMigrations.js",
+    "seed:france-geo": "node scripts/seedFranceGeo.js",
     "setup": "node scripts/setupProduction.js",
     "test-payments": "node scripts/testPayments.js",
     "lint": "eslint .",

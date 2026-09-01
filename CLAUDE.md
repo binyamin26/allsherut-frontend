@@ -31,7 +31,7 @@ npm run lint       # ESLint
 ### Local Database (Docker)
 
 ```bash
-docker-compose up -d   # MySQL 8.0 on port 3307 + phpMyAdmin on port 9091
+docker-compose up -d   # MySQL 8.0 on port 3309 + phpMyAdmin on port 9092
 ```
 
 ## Architecture
@@ -81,7 +81,7 @@ claudec### Monorepo Layout
 - Connection pool via `backend/config/database.js`, timezone `+03:00`, charset `utf8mb4`
 - Key tables: `users`, `service_providers`, `services`, `reviews`, `subscriptions`, `trial_history`, `locations`
 - User roles: `user`, `client`, `provider`, `admin`
-- Subscription plans: trial (1 free listing per new provider), monthly ₪79, yearly ₪790
+- Subscription plans: trial (1 free listing per new provider), monthly €79, yearly €790
 
 ### Important Implementation Notes
 

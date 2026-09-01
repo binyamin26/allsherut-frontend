@@ -31,10 +31,8 @@ const Footer = () => {
   const { changeLanguage, currentLanguage, t } = useLanguage();
 
   const languages = [
-    { code: 'he', flag: 'https://flagcdn.com/w40/il.png', alt: 'עברית' },
-    { code: 'en', flag: 'https://flagcdn.com/w40/gb.png', alt: 'English' },
     { code: 'fr', flag: 'https://flagcdn.com/w40/fr.png', alt: 'Français' },
-    { code: 'ru', flag: 'https://flagcdn.com/w40/ru.png', alt: 'Русский' }
+    { code: 'en', flag: 'https://flagcdn.com/w40/gb.png', alt: 'English' }
   ];
 
   return (

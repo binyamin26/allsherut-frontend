@@ -12,8 +12,7 @@
     "preview": "vite preview",
     "translate": "node scripts/translate-with-deepl.mjs",
     "translate:en": "node scripts/translate-with-deepl.mjs --lang=en",
-    "translate:fr": "node scripts/translate-with-deepl.mjs --lang=fr",
-    "translate:ru": "node scripts/translate-with-deepl.mjs --lang=ru"
+    "translate:fr": "node scripts/translate-with-deepl.mjs --lang=fr"
   },
   "dependencies": {
     "@capacitor/android": "^8.0.2",

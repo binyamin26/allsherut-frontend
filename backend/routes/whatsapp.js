@@ -10,13 +10,13 @@ const PHONE_NUMBER_ID = process.env.WHATSAPP_PHONE_NUMBER_ID;
 // In-memory OTP store: normalizedPhone → { code, expiresAt }
 const otpStore = new Map();
 
-// Normalize Israeli phone → international format (972XXXXXXXXX)
+// Normalize French phone → international format (33XXXXXXXXX)
 function normalizePhone(phone) {
   if (!phone) return null;
   const digits = phone.replace(/\D/g, '');
-  if (digits.startsWith('972')) return digits;
-  if (digits.startsWith('0')) return '972' + digits.slice(1);
-  return '972' + digits;
+  if (digits.startsWith('33')) return digits;
+  if (digits.startsWith('0')) return '33' + digits.slice(1);
+  return '33' + digits;
 }
 
 // POST /api/whatsapp/notify

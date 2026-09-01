@@ -80,7 +80,7 @@ services: {
     secure: false, // true pour 465, false pour autres ports
     user: process.env.SMTP_USER, // ✅ CORRIGÉ : SMTP_USER au lieu d'EMAIL_USER
     password: process.env.SMTP_PASS, // ✅ CORRIGÉ : SMTP_PASS au lieu d'EMAIL_PASSWORD
-    from: process.env.SMTP_FROM || 'noreply@homesherut.co.il' // ✅ CORRIGÉ : SMTP_FROM
+    from: process.env.SMTP_FROM || 'noreply@allsherut.com' // ✅ CORRIGÉ : SMTP_FROM
   },
 
   // Limites de rate limiting

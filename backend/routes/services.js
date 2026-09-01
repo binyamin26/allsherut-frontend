@@ -22,7 +22,7 @@ const SERVICES_CONFIG = {
     description: 'טיפול מקצועי בילדים ותינוקות בבטיחות מלאה',
     icon: 'baby',
     category: 'family',
-    priceRange: { min: 35, max: 80, currency: 'ILS' },
+    priceRange: { min: 35, max: 80, currency: 'EUR' },
     demand: 'גבוה מאוד',
     payingModel: 'clients_pay', // הלקוחות משלמים
     freeMonth: false,
@@ -48,7 +48,7 @@ const SERVICES_CONFIG = {
     description: 'שירותי ניקיון מקצועיים לבתים פרטיים ומשרדים',
     icon: 'home',
     category: 'household',
-    priceRange: { min: 40, max: 65, currency: 'ILS' },
+    priceRange: { min: 40, max: 65, currency: 'EUR' },
     demand: 'גבוה',
     payingModel: 'provider_pays', // הספק משלם עמלה
     freeMonth: true, // חודש ראשון חינם
@@ -74,7 +74,7 @@ const SERVICES_CONFIG = {
     description: 'עיצוב, טיפוח ותחזוקת גינות פרטיות וציבוריות',
     icon: 'scissors',
     category: 'outdoor',
-    priceRange: { min: 50, max: 90, currency: 'ILS' },
+    priceRange: { min: 50, max: 90, currency: 'EUR' },
     demand: 'בינוני-גבוה',
     payingModel: 'provider_pays',
     freeMonth: true,
@@ -100,7 +100,7 @@ const SERVICES_CONFIG = {
     description: 'טיפול אוהב ומקצועי בכלבים, חתולים וחיות מחמד',
     icon: 'pawprint',
     category: 'animals',
-    priceRange: { min: 25, max: 55, currency: 'ILS' },
+    priceRange: { min: 25, max: 55, currency: 'EUR' },
     demand: 'בינוני',
     payingModel: 'provider_pays',
     freeMonth: true,
@@ -126,7 +126,7 @@ const SERVICES_CONFIG = {
     description: 'הוראה פרטית וחיזוק לימודי בכל הגילאים ובכל המקצועות',
     icon: 'book',
     category: 'education',
-    priceRange: { min: 60, max: 120, currency: 'ILS' },
+    priceRange: { min: 60, max: 120, currency: 'EUR' },
     demand: 'גבוה מאוד',
     payingModel: 'provider_pays',
     freeMonth: true,
@@ -152,7 +152,7 @@ const SERVICES_CONFIG = {
     description: 'טיפול מסור ולווי אישי לאנשים מבוגרים וקשישים',
     icon: 'user',
     category: 'healthcare',
-    priceRange: { min: 45, max: 75, currency: 'ILS' },
+    priceRange: { min: 45, max: 75, currency: 'EUR' },
     demand: 'גבוה',
     payingModel: 'clients_pay',
     freeMonth: false,
@@ -178,7 +178,7 @@ const SERVICES_CONFIG = {
     description: 'שירותי כביסה, גיהוץ וניקוי יבש מקצועיים',
     icon: 'shirt',
     category: 'household',
-    priceRange: { min: 30, max: 70, currency: 'ILS' },
+    priceRange: { min: 30, max: 70, currency: 'EUR' },
     demand: 'בינוני-גבוה',
     payingModel: 'provider_pays',
     freeMonth: true,
@@ -204,7 +204,7 @@ const SERVICES_CONFIG = {
     description: 'שירותי הדברה, ריסוס והרחקת מזיקים מקצועיים',
     icon: 'bug',
     category: 'household',
-    priceRange: { min: 200, max: 800, currency: 'ILS' },
+    priceRange: { min: 200, max: 800, currency: 'EUR' },
     demand: 'גבוה',
     payingModel: 'provider_pays',
     freeMonth: true,
@@ -315,7 +315,7 @@ router.get('/available', async (req, res) => {
     // Formatage final pour la réponse
     const formattedServices = services.map(service => ({
       ...service,
-      priceDisplay: `${service.priceRange.min}-${service.priceRange.max} ₪/שעה`,
+      priceDisplay: `${service.priceRange.min}-${service.priceRange.max} €/שעה`,
       isPopular: ['babysitting', 'tutoring', 'cleaning'].includes(service.key),
       marketPosition: getMarketPosition(service.key),
       estimatedEarnings: calculateEstimatedEarnings(service.priceRange, service.demand)
@@ -671,9 +671,9 @@ function calculateEstimatedEarnings(priceRange, demand) {
   const monthlyEarnings = Math.round(avgRate * weeklyHours * 4 * multiplier);
   
   return {
-    hourly: `${priceRange.min}-${priceRange.max} ₪`,
-    monthly: `${Math.round(monthlyEarnings * 0.7)}-${monthlyEarnings} ₪`,
-    annual: `${Math.round(monthlyEarnings * 8.4)}-${Math.round(monthlyEarnings * 12)} ₪`
+    hourly: `${priceRange.min}-${priceRange.max} €`,
+    monthly: `${Math.round(monthlyEarnings * 0.7)}-${monthlyEarnings} €`,
+    annual: `${Math.round(monthlyEarnings * 8.4)}-${Math.round(monthlyEarnings * 12)} €`
   };
 }
 
@@ -712,7 +712,7 @@ function getServiceFAQ(serviceType) {
     tutoring: [
       { q: 'באילו מקצועות אני יכול ללמד?', a: 'כל המקצועות! ממתמטיקה ואנגלית ועד מוזיקה ואמנות.' },
       { q: 'האם אני צריך תואר להוראה?', a: 'לא חובה, אבל ידע מקצועי מוכח בתחום כן נדרש.' },
-      { q: 'כמה אני יכול לגבות בשעה?', a: 'בין 60-120 ₪ בהתאם לרמה, מקצוע וניסיון.' }
+      { q: 'כמה אני יכול לגבות בשעה?', a: 'בין 60-120 € בהתאם לרמה, מקצוע וניסיון.' }
     ],
     cleaning: [
       { q: 'האם אני צריך לספק ציוד?', a: 'תלוי בלקוח - חלק מספקים וחלק מעדיפים שתביא איתך.' },
@@ -732,17 +732,17 @@ function getSuccessStory(serviceType) {
     babysitting: {
       name: 'שרה מ.',
       story: 'התחלתי כבייביסיטר במקביל ללימודי. תוך חצי שנה בניתי בסיס לקוחות קבועים ועבדתי 25 שעות בשבוע. הרווחתי מספיק כדי לממן את הלימודים ועוד!',
-      monthlyEarning: '4,500 ₪'
+      monthlyEarning: '4,500 €'
     },
     tutoring: {
       name: 'דוד כ.',
       story: 'אחרי השחרור מהצבא התחלתי ללמד מתמטיקה. היום יש לי 12 תלמידים קבועים ואני מרוויח יותר ממורים במשרה מלאה!',
-      monthlyEarning: '8,200 ₪'
+      monthlyEarning: '8,200 €'
     },
     cleaning: {
       name: 'מירב ל.',
       story: 'עבדתי בניקיון במשך שנים אצל חברות. כאן אני עצמאית, קובעת מחירים ובוחרת לקוחות. הכנסתי עלתה ב-40%!',
-      monthlyEarning: '5,800 ₪'
+      monthlyEarning: '5,800 €'
     }
   };
   
@@ -916,7 +916,7 @@ router.post('/add', authenticateToken, async (req, res) => {
 
       // Copier les zones de travail du service existant pour que le prestataire apparaisse dans les recherches
       const [existingAreas] = await connection.execute(
-        `SELECT DISTINCT pwa.city, pwa.neighborhood
+        `SELECT DISTINCT pwa.city, pwa.neighborhood, pwa.coverage_type, pwa.department_code, pwa.city_insee_code
          FROM provider_working_areas pwa
          JOIN service_providers sp ON pwa.provider_id = sp.id
          WHERE sp.user_id = ? AND sp.id != ?
@@ -925,13 +925,12 @@ router.post('/add', authenticateToken, async (req, res) => {
       );
 
       if (existingAreas && existingAreas.length > 0) {
-        for (const area of existingAreas) {
-          await connection.execute(
-            `INSERT IGNORE INTO provider_working_areas (provider_id, city, neighborhood, created_at)
-             VALUES (?, ?, ?, NOW())`,
-            [newProviderId, area.city, area.neighborhood]
-          );
-        }
+        await User.insertWorkingAreas(connection, newProviderId, existingAreas.map(area => ({
+          label: area.city,
+          coverageType: area.coverage_type,
+          departmentCode: area.department_code,
+          cityInseeCode: area.city_insee_code,
+        })));
         console.log(`✅ ${existingAreas.length} zones de travail copiées vers le nouveau service`);
       }
     });

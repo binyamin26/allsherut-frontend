@@ -392,7 +392,7 @@ router.get('/pricing', async (req, res) => {
       monthly: {
         name: 'מנוי חודשי',
         price: 79,
-        currency: 'ILS',
+        currency: 'EUR',
         duration: 'חודש',
         features: [
           'כל היתרונות של החינמי',
@@ -404,7 +404,7 @@ router.get('/pricing', async (req, res) => {
       yearly: {
         name: 'מנוי שנתי',
         price: 790,
-        currency: 'ILS',
+        currency: 'EUR',
         duration: 'שנה',
         originalPrice: 948, // 79 * 12
         savings: 158,
@@ -423,7 +423,7 @@ router.get('/pricing', async (req, res) => {
       message: 'מחירי המנויים נטענו בהצלחה',
       data: {
         pricing,
-        currency: 'ILS',
+        currency: 'EUR',
         vatIncluded: true,
         trialDuration: 30
       }

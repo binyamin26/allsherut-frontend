@@ -77,7 +77,7 @@ class ErrorHandler {
     [ErrorHandler.CODES.VALIDATION_FAILED]: 'נתונים לא תקינים',
     [ErrorHandler.CODES.REQUIRED_FIELD]: 'שדה חובה חסר',
     [ErrorHandler.CODES.INVALID_FORMAT]: 'פורמט לא תקין',
-    [ErrorHandler.CODES.INVALID_PHONE]: 'מספר טלפון לא תקין (05xxxxxxxx)',
+    [ErrorHandler.CODES.INVALID_PHONE]: 'מספר טלפון לא תקין (0X XX XX XX XX)',
     [ErrorHandler.CODES.INVALID_EMAIL]: 'כתובת אימייל לא תקינה',
     
     // Ressources  

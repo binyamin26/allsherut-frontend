@@ -386,7 +386,7 @@ async function testSearch() {
   recordTest(
     'Filtrage par prix',
     priceFilterResult.success,
-    `Filtré entre 30-60₪: ${priceFilterResult.data?.providers?.length || 0} résultats`,
+    `Filtré entre 30-60€: ${priceFilterResult.data?.providers?.length || 0} résultats`,
     'Filtrage fonctionnel',
     `${priceFilterResult.data?.providers?.length || 0} résultats`
   );

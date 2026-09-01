@@ -1,69 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import { MapPin } from 'lucide-react';
-import { getAllCities, getNeighborhoodsByCity, getCityInfo } from '../data/israelLocations';
-import CustomDropdown from './common/CustomDropdown';
+import { useState } from 'react';
+import { MapPin, X } from 'lucide-react';
+import ZoneAutocomplete from './common/ZoneAutocomplete';
 import { useLanguage } from '../context/LanguageContext';
 
-const LocationSelector = ({ 
-  onLocationChange, 
-  initialCity = '', 
-  initialNeighborhood = '',
+// Sélecteur de ville (mono-sélection) pour la recherche client — recherche par
+// commune uniquement (pas de département côté client, pour rester simple).
+// Conserve le contrat de sortie {city, neighborhood, fullLocation} existant
+// (consommé par RecruitmentServicePage) et ajoute cityInsee/departmentCode
+// pour le matching France (voir backend/routes/search.js).
+const LocationSelector = ({
+  onLocationChange,
+  initialCity = '',
   className = '',
-  showAreaFilter = false 
 }) => {
-  const [selectedArea, setSelectedArea] = useState('');
   const [selectedCity, setSelectedCity] = useState(initialCity);
-  const [selectedNeighborhood, setSelectedNeighborhood] = useState(initialNeighborhood);
-  const [availableCities, setAvailableCities] = useState(getAllCities());
-  const [availableNeighborhoods, setAvailableNeighborhoods] = useState([]);
   const { t } = useLanguage();
 
-  useEffect(() => {
-    if (selectedCity) {
-      const neighborhoods = getNeighborhoodsByCity(selectedCity);
-      setAvailableNeighborhoods(neighborhoods);
-      if (selectedNeighborhood && !neighborhoods.includes(selectedNeighborhood)) {
-        setSelectedNeighborhood('');
-      }
-      const cityInfo = getCityInfo(selectedCity);
-      setSelectedArea(cityInfo?.area || '');
-    } else {
-      setAvailableNeighborhoods([]);
-      setSelectedNeighborhood('');
-      setSelectedArea('');
-    }
-  }, [selectedCity]);
-
-  useEffect(() => {
-    if (initialCity === '' && selectedCity !== '') {
-      setSelectedCity('');
-      setSelectedNeighborhood('');
-    }
-  }, [initialCity]);
-
-  useEffect(() => {
+  const emit = (next) => {
     onLocationChange({
-      area: selectedArea,
-      city: selectedCity,
-      neighborhood: selectedNeighborhood,
-      fullLocation: getFullLocationString()
+      city: next?.name || '',
+      cityInsee: next?.inseeCode || '',
+      departmentCode: next?.departmentCode || '',
+      neighborhood: '',
+      fullLocation: next?.name || '',
     });
-  }, [selectedArea, selectedCity, selectedNeighborhood]);
-
-  const getFullLocationString = () => {
-    const parts = [];
-    if (selectedNeighborhood) parts.push(selectedNeighborhood);
-    if (selectedCity) parts.push(selectedCity);
-    if (selectedArea && !selectedCity) parts.push(selectedArea);
-    return parts.join(', ');
   };
 
-  const handleCityChange = (e) => {
-    setSelectedCity(e.target.value);
+  const handleSelect = (zone) => {
+    setSelectedCity(zone.name);
+    emit(zone);
   };
 
-  const handleNeighborhoodChange = (e) => {
-    setSelectedNeighborhood(e.target.value);
+  const handleClear = () => {
+    setSelectedCity('');
+    emit(null);
   };
 
   return (
@@ -77,38 +47,26 @@ const LocationSelector = ({
 
       <div className="location-dropdowns-container">
         <div className="location-dropdowns">
-          {/* Sélection de ville */}
           <div className="dropdown-group">
             <label>{t('location.city')}</label>
-            <CustomDropdown
-              name="city"
-              options={availableCities}
-              value={selectedCity}
-              onChange={handleCityChange}
+            <ZoneAutocomplete
+              onSelect={handleSelect}
+              resultTypes={['city']}
               placeholder={t('auth.selectCity')}
             />
           </div>
-
-          {/* Sélection de quartier - CONDITIONNEL */}
-          {selectedCity && availableNeighborhoods.length > 0 && (
-            <div className="dropdown-group">
-              <label>{t('location.neighborhood')}</label>
-              <CustomDropdown
-                name="neighborhood"
-                options={availableNeighborhoods}
-                value={selectedNeighborhood}
-                onChange={handleNeighborhoodChange}
-                placeholder={t('location.allNeighborhoods', { city: selectedCity })}
-              />
-            </div>
-          )}
         </div>
       </div>
 
-      {getFullLocationString() && (
+      {selectedCity && (
         <div className="selected-location-display">
           <div className="selected-location-label">{t('location.selected')}</div>
-          <div className="selected-location-value">{getFullLocationString()}</div>
+          <div className="selected-location-value">
+            {selectedCity}
+            <button type="button" className="clear-location-btn" onClick={handleClear} aria-label="Effacer">
+              <X size={14} />
+            </button>
+          </div>
         </div>
       )}
     </div>

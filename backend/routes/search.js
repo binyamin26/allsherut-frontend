@@ -412,8 +412,7 @@ router.get('/providers', async (req, res) => {
     const {
       service,
       city,
-      neighborhood,
-      area,
+      cityInsee,
       sortBy = 'newest',
       page = 1,
       limit = 10,
@@ -461,34 +460,28 @@ const validServices = ['babysitting', 'cleaning', 'gardening', 'petcare', 'tutor
   console.log(DEV_LOGS.API.REQUEST_RECEIVED, `Filtre service: ${service}`);
 }
 
-   if (city && neighborhood) {
-  // Quartier sélectionné : ce quartier + toute la ville + tout le région + tout Israël
+   if (cityInsee) {
+  // Ville recherchée par code INSEE : matche un prestataire ayant sélectionné
+  // exactement cette commune, OU tout le département auquel elle appartient.
+  // Jamais l'inverse (une ville sélectionnée par un prestataire ne couvre pas son département).
   whereConditions.push(`EXISTS (
     SELECT 1 FROM provider_working_areas pwa
     WHERE pwa.provider_id = sp.id
     AND (
-      (pwa.city LIKE ? AND (pwa.neighborhood LIKE ? OR pwa.neighborhood IN ('כל העיר', 'כל השכונות')))
-      OR (? != '' AND pwa.city = ? AND pwa.neighborhood = 'כל האזור')
-      OR pwa.neighborhood = 'כל ישראל'
-      OR pwa.city = 'ישראל'
+      (pwa.coverage_type = 'city' AND pwa.city_insee_code = ?)
+      OR (pwa.coverage_type = 'department' AND pwa.department_code = (
+        SELECT department_code FROM fr_communes WHERE insee_code = ? LIMIT 1
+      ))
     )
   )`);
-  params.push(`%${city}%`, `%${neighborhood}%`, area || '', area || '');
+  params.push(cityInsee, cityInsee);
 } else if (city) {
-  // Ville sélectionnée : uniquement cette ville + tout Israël (pas les "כל האזור" d'autres villes)
+  // Repli défensif (lien externe/ancien favori sans code INSEE) : recherche par nom.
   whereConditions.push(`EXISTS (
     SELECT 1 FROM provider_working_areas pwa
-    WHERE pwa.provider_id = sp.id
-    AND (
-      pwa.city LIKE ?
-      OR pwa.neighborhood = 'כל ישראל'
-      OR pwa.city = 'ישראל'
-    )
+    WHERE pwa.provider_id = sp.id AND pwa.coverage_type = 'city' AND pwa.city LIKE ?
   )`);
   params.push(`%${city}%`);
-} else if (neighborhood) {
-  whereConditions.push(`EXISTS (SELECT 1 FROM provider_working_areas pwa WHERE pwa.provider_id = sp.id AND pwa.neighborhood LIKE ?)`);
-  params.push(`%${neighborhood}%`);
 }
 
     // Filtres GÉNÉRIQUES
@@ -567,24 +560,25 @@ delete advancedFilters.fullLocation;
 
     const whereClause = `WHERE ${whereConditions.join(' AND ')}`;
 
-    // Sous-requêtes location : si ville filtrée, on affiche en priorité cette ville
+    // Sous-requête location : si une ville est recherchée, on affiche en priorité la
+    // zone du prestataire qui matche cette recherche (ville exacte ou département).
     const selectParams = [];
-    let locationCitySubquery, locationAreaSubquery;
-    if (city) {
+    let locationCitySubquery;
+    if (cityInsee) {
       locationCitySubquery = `COALESCE(
-        (SELECT pwa.city FROM provider_working_areas pwa WHERE pwa.provider_id = sp.id AND pwa.city LIKE ? LIMIT 1),
-        (SELECT 'כל ישראל' FROM provider_working_areas pwa WHERE pwa.provider_id = sp.id AND (pwa.neighborhood = 'כל ישראל' OR pwa.city = 'ישראל') LIMIT 1),
+        (SELECT pwa.city FROM provider_working_areas pwa WHERE pwa.provider_id = sp.id AND pwa.coverage_type = 'city' AND pwa.city_insee_code = ? LIMIT 1),
+        (SELECT pwa.city FROM provider_working_areas pwa WHERE pwa.provider_id = sp.id AND pwa.coverage_type = 'department' AND pwa.department_code = (SELECT department_code FROM fr_communes WHERE insee_code = ? LIMIT 1) LIMIT 1),
         (SELECT pwa.city FROM provider_working_areas pwa WHERE pwa.provider_id = sp.id LIMIT 1)
       )`;
-      locationAreaSubquery = `COALESCE(
-        (SELECT pwa.neighborhood FROM provider_working_areas pwa WHERE pwa.provider_id = sp.id AND pwa.city LIKE ? LIMIT 1),
-        (SELECT pwa.neighborhood FROM provider_working_areas pwa WHERE pwa.provider_id = sp.id AND (pwa.neighborhood = 'כל ישראל' OR pwa.city = 'ישראל') LIMIT 1),
-        (SELECT pwa.neighborhood FROM provider_working_areas pwa WHERE pwa.provider_id = sp.id LIMIT 1)
+      selectParams.push(cityInsee, cityInsee);
+    } else if (city) {
+      locationCitySubquery = `COALESCE(
+        (SELECT pwa.city FROM provider_working_areas pwa WHERE pwa.provider_id = sp.id AND pwa.city LIKE ? LIMIT 1),
+        (SELECT pwa.city FROM provider_working_areas pwa WHERE pwa.provider_id = sp.id LIMIT 1)
       )`;
-      selectParams.push(`%${city}%`, `%${city}%`);
+      selectParams.push(`%${city}%`);
     } else {
       locationCitySubquery = `(SELECT pwa.city FROM provider_working_areas pwa WHERE pwa.provider_id = sp.id LIMIT 1)`;
-      locationAreaSubquery = `(SELECT pwa.neighborhood FROM provider_working_areas pwa WHERE pwa.provider_id = sp.id LIMIT 1)`;
     }
 
     // Définition du tri — par défaut : avis vérifiés en premier
@@ -615,7 +609,7 @@ sp.profile_image as provider_profile_image,
     sp.hourly_rate,
     sp.currency,
    ${locationCitySubquery} as location_city,
-   ${locationAreaSubquery} as location_area,
+   NULL as location_area,
     sp.experience_years,
     sp.verification_status,
     sp.is_featured,
@@ -762,7 +756,7 @@ sp.profile_image as provider_profile_image,
         hourlyRate: provider.hourly_rate || 0,
         hourly_rate: provider.hourly_rate || 0,
         price: provider.hourly_rate || 0,
-        currency: provider.currency || 'ILS',
+        currency: provider.currency || 'EUR',
         experience: provider.experience_years || 0,
         experience_years: provider.experience_years || 0,
         experienceYears: provider.experience_years || 0,
@@ -841,7 +835,7 @@ profileImages: profileImages || [],
       filters: {
         service,
         city,
-        neighborhood,
+        cityInsee,
         sortBy,
         experience,
         verified: verified === 'true',

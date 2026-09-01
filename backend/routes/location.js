@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const LocationController = require('../controllers/locationController');
+const GeoFrance = require('../models/GeoFrance');
 const ErrorHandler = require('../utils/ErrorHandler');
 const { MESSAGES, DEV_LOGS } = require('../constants/messages');
 const ResponseHelper = require('../utils/responseHelper');
@@ -12,6 +13,33 @@ const { authenticateToken, optionalAuth, requireRole } = require('../middleware/
 // =============================================
 // ROUTES PUBLIQUES (pas d'auth requise)
 // =============================================
+
+/**
+ * GET /api/location/fr/zones/search
+ * Autocomplete des zones d'intervention France (départements + communes)
+ *
+ * Query params:
+ * - q: terme recherché (minimum 2 caractères)
+ * - limit: nombre max de suggestions (défaut: 8, max: 15)
+ */
+router.get('/fr/zones/search', async (req, res) => {
+  try {
+    const { q, limit = 8 } = req.query;
+
+    if (!q || q.trim().length < 2) {
+      return res.success('OK', { zones: [] });
+    }
+
+    const limitNum = Math.min(15, Math.max(1, parseInt(limit) || 8));
+    const zones = await GeoFrance.searchZones(q, limitNum);
+
+    res.success('OK', { zones, query: q.trim() });
+  } catch (error) {
+    console.error(DEV_LOGS.API.ERROR_OCCURRED, 'location/fr/zones/search', error.message);
+    const { errorResponse, statusCode } = ErrorHandler.serverError(error);
+    res.status(statusCode).json(errorResponse);
+  }
+});
 
 /**
  * GET /api/location/search/:serviceType

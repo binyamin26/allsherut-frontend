@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS job_listings (
   contract_type ENUM('full_time', 'part_time', 'one_time') NOT NULL,
 
   -- Rémunération
-  salary VARCHAR(100) NOT NULL        COMMENT 'Ex: 50₪/heure ou 8000₪/mois',
+  salary VARCHAR(100) NOT NULL        COMMENT 'Ex: 50€/heure ou 8000€/mois',
   payment_type ENUM('hourly', 'daily', 'monthly') NOT NULL,
 
   -- Disponibilité

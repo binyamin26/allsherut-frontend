@@ -188,7 +188,7 @@
   color: var(--primary-400);
 }
 
-/* Support LTR (français / anglais / russe) — l'icône et le padding
+/* Support LTR (français / anglais) — l'icône et le padding
    de la barre de recherche sont physiques par défaut dans le composant,
    il faut les inverser explicitement hors hébreu. */
 [dir="ltr"] .homepage .hero-section .service-search-wrapper {

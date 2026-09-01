@@ -532,7 +532,10 @@ router.get('/:id', async (req, res) => {
     const workingAreasQuery = `
       SELECT DISTINCT
         pwa.city,
-        pwa.neighborhood
+        pwa.neighborhood,
+        pwa.coverage_type,
+        pwa.department_code,
+        pwa.city_insee_code
       FROM provider_working_areas pwa
       WHERE pwa.provider_id = ?
       ORDER BY pwa.city, pwa.neighborhood
@@ -594,7 +597,10 @@ router.get('/:id', async (req, res) => {
       // Zones de travail
       workingAreas: workingAreas.map(area => ({
         city: area.city,
-        neighborhood: area.neighborhood || null
+        neighborhood: area.neighborhood || null,
+        coverageType: area.coverage_type,
+        departmentCode: area.department_code,
+        cityInseeCode: area.city_insee_code
       })),
       
    // ✅ NOUVEAU - Parser avec colonnes babysitting

@@ -1,8 +1,8 @@
 import { useState, useCallback } from 'react';
 
-const DEFAULT_CITY = 'ירושלים';
-
-const defaultFilter = () => ({ city: DEFAULT_CITY, neighborhood: '', fullLocation: '' });
+// Pas de ville par défaut : tous les prestataires France s'affichent tant que
+// le client n'a pas fait de recherche par ville.
+const defaultFilter = () => ({ city: '', cityInsee: '', departmentCode: '', neighborhood: '', fullLocation: '' });
 
 // Persists the location filter per service in sessionStorage so it survives
 // navigating away (e.g. opening a provider profile) and coming back.

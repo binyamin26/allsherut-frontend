@@ -16,7 +16,7 @@ export function buildServiceBreadcrumbItems(serviceId, serviceName) {
     items.push({
       '@type': 'ListItem',
       position: items.length + 1,
-      name: category.names?.he,
+      name: category.names?.fr,
       item: `https://allsherut.com/categories/${category.id}`,
     });
   }
@@ -24,7 +24,7 @@ export function buildServiceBreadcrumbItems(serviceId, serviceName) {
     '@type': 'ListItem',
     position: items.length + 1,
     name: serviceName,
-    item: `https://allsherut.com${buildServicePath(serviceTypeToKey(serviceId), 'he')}`,
+    item: `https://allsherut.com${buildServicePath(serviceTypeToKey(serviceId), 'fr')}`,
   });
   return items;
 }
@@ -52,7 +52,7 @@ export function buildServicePageJsonLd({ serviceId, name, description, t }) {
       name,
       description,
       serviceType: name,
-      areaServed: { '@type': 'Country', name: 'ישראל' },
+      areaServed: { '@type': 'Country', name: 'France' },
       provider: { '@type': 'Organization', name: 'AllSherut', url: 'https://allsherut.com' },
     },
     {

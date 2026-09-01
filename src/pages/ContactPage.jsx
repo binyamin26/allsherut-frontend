@@ -81,7 +81,7 @@ const ContactPage = () => {
       newErrors.message = t('contact.errors.messageRequired');
     }
     
-    if (formData.phone && !/^05\d{8}$/.test(formData.phone.replace(/[\s-]/g, ''))) {
+    if (formData.phone && !/^0[1-9]\d{8}$/.test(formData.phone.replace(/[\s-]/g, ''))) {
       newErrors.phone = t('contact.errors.phoneInvalid');
     }
     

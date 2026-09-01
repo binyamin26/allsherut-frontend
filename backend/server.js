@@ -377,6 +377,28 @@ const runMigrations = async () => {
       INDEX idx_review_id (review_id),
       INDEX idx_published (is_published)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`],
+    ['fr_departments table', `CREATE TABLE IF NOT EXISTS fr_departments (
+      code VARCHAR(3) PRIMARY KEY,
+      name VARCHAR(100) NOT NULL,
+      region_code VARCHAR(3),
+      communes_count INT DEFAULT 0,
+      INDEX idx_name (name)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`],
+    ['fr_communes table', `CREATE TABLE IF NOT EXISTS fr_communes (
+      insee_code VARCHAR(5) PRIMARY KEY,
+      name VARCHAR(150) NOT NULL,
+      department_code VARCHAR(3) NOT NULL,
+      postal_codes VARCHAR(255),
+      population INT DEFAULT 0,
+      FOREIGN KEY (department_code) REFERENCES fr_departments(code),
+      INDEX idx_name (name),
+      INDEX idx_department (department_code)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`],
+    ['provider_working_areas coverage_type column', `ALTER TABLE provider_working_areas ADD COLUMN coverage_type ENUM('city','department') NULL AFTER neighborhood`],
+    ['provider_working_areas department_code column', `ALTER TABLE provider_working_areas ADD COLUMN department_code VARCHAR(3) NULL AFTER coverage_type`],
+    ['provider_working_areas city_insee_code column', `ALTER TABLE provider_working_areas ADD COLUMN city_insee_code VARCHAR(5) NULL AFTER department_code`],
+    ['provider_working_areas department_code index', `ALTER TABLE provider_working_areas ADD INDEX idx_department_code (department_code)`],
+    ['provider_working_areas city_insee_code index', `ALTER TABLE provider_working_areas ADD INDEX idx_city_insee (city_insee_code)`],
   ];
 
   for (const [label, sql] of steps) {
@@ -454,8 +476,8 @@ cronService.start();
       
       console.log('\n💰 Subscription Features:');
       console.log('   ✅ Trial period: 1 מונה חינם לכל ספק חדש');
-      console.log('   ✅ Monthly plan: ₪79/חודש');
-      console.log('   ✅ Yearly plan: ₪790/שנה (חיסכון 17%)');
+      console.log('   ✅ Monthly plan: €79/חודש');
+      console.log('   ✅ Yearly plan: €790/שנה (חיסכון 17%)');
       console.log('   ✅ Auto-renewal and billing');
       console.log('   ✅ Subscription status checking');
       console.log('   ✅ Provider restrictions for expired subs');

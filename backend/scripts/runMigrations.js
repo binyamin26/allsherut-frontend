@@ -13,6 +13,7 @@ const migrations = [
   'fix_average_rating_decimal.sql',
   'add_provider_pricing.sql',
   'add_pricing_is_title.sql',
+  'add_france_geo_zones.sql',
 ];
 
 async function run() {

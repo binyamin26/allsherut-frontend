@@ -241,17 +241,57 @@ CREATE TABLE IF NOT EXISTS service_provider_details (
 -- =============================================
 -- NOUVELLE TABLE - Zones de travail prestataires
 -- =============================================
+-- city/neighborhood : libellé humain affiché ("Épinay-sur-Seine" ou
+--   "Tout le département — Seine-Saint-Denis (93)"). neighborhood n'est plus
+--   utilisé pour les nouvelles lignes (France) — conservé pour compatibilité.
+-- coverage_type/department_code/city_insee_code : IDs géographiques France,
+--   voir fr_departments/fr_communes. Une zone 'city' couvre uniquement cette
+--   commune ; une zone 'department' couvre toutes les communes du département
+--   (jamais l'inverse). Une ligne 'city' renseigne aussi department_code
+--   (dénormalisé) pour savoir sans jointure quels départements sont couverts.
 CREATE TABLE IF NOT EXISTS provider_working_areas (
   id INT PRIMARY KEY AUTO_INCREMENT,
   provider_id INT NOT NULL,
   city VARCHAR(100) NOT NULL,
   neighborhood VARCHAR(100),
+  coverage_type ENUM('city', 'department') NULL,
+  department_code VARCHAR(3) NULL,
+  city_insee_code VARCHAR(5) NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  
+
   FOREIGN KEY (provider_id) REFERENCES service_providers(id) ON DELETE CASCADE,
   INDEX idx_provider_id (provider_id),
   INDEX idx_city (city),
-  INDEX idx_neighborhood (neighborhood)
+  INDEX idx_neighborhood (neighborhood),
+  INDEX idx_department_code (department_code),
+  INDEX idx_city_insee (city_insee_code)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- =============================================
+-- NOUVELLES TABLES - Référentiel géographique France
+-- =============================================
+-- Peuplées une fois via backend/scripts/seedFranceGeo.js (API officielle
+-- geo.api.gouv.fr). Jamais chargées côté navigateur — uniquement interrogées
+-- via l'API d'autocomplete GET /api/location/fr/zones/search.
+CREATE TABLE IF NOT EXISTS fr_departments (
+  code VARCHAR(3) PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  region_code VARCHAR(3),
+  communes_count INT DEFAULT 0,
+
+  INDEX idx_name (name)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS fr_communes (
+  insee_code VARCHAR(5) PRIMARY KEY,
+  name VARCHAR(150) NOT NULL,
+  department_code VARCHAR(3) NOT NULL,
+  postal_codes VARCHAR(255),
+  population INT DEFAULT 0,
+
+  FOREIGN KEY (department_code) REFERENCES fr_departments(code),
+  INDEX idx_name (name),
+  INDEX idx_department (department_code)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- =============================================
@@ -409,12 +449,14 @@ INSERT IGNORE INTO locations (city_name_he, city_name_en, region_he, region_en, 
 -- =============================================
 -- Index composites pour optimiser les recherches
 -- =============================================
-CREATE INDEX IF NOT EXISTS idx_provider_service_location ON service_providers(service_type, location_city, is_active);
-CREATE INDEX IF NOT EXISTS idx_provider_rating ON service_providers(service_type, verification_status, is_active);
-CREATE INDEX IF NOT EXISTS idx_reviews_provider_rating ON reviews(provider_id, rating, is_published);
-CREATE INDEX IF NOT EXISTS idx_subscriptions_active ON subscriptions(user_id, service_type, status, expires_at);
-CREATE INDEX IF NOT EXISTS idx_reviews_with_responses ON reviews(provider_id, is_published, created_at);
-CREATE INDEX IF NOT EXISTS idx_provider_responses_review ON provider_responses(review_id, is_published);
+-- Note: MySQL ne supporte pas IF NOT EXISTS sur CREATE INDEX (contrairement à MariaDB) ;
+-- ces index sont donc créés une seule fois lors de l'exécution initiale de ce script.
+CREATE INDEX idx_provider_service_location ON service_providers(service_type, location_city, is_active);
+CREATE INDEX idx_provider_rating ON service_providers(service_type, verification_status, is_active);
+CREATE INDEX idx_reviews_provider_rating ON reviews(provider_id, rating, is_published);
+CREATE INDEX idx_subscriptions_active ON subscriptions(user_id, service_type, status, expires_at);
+CREATE INDEX idx_reviews_with_responses ON reviews(provider_id, is_published, created_at);
+CREATE INDEX idx_provider_responses_review ON provider_responses(review_id, is_published);
 
 -- =============================================
 -- NETTOYAGE - Supprimer les anciens utilisateurs de test si nécessaires
@@ -443,13 +485,12 @@ ORDER BY r.created_at DESC;
 
 -- Vue pour profils prestataires complets
 CREATE OR REPLACE VIEW providers_complete AS
-SELECT 
-  u.id as user_id,
+SELECT
+  u.id as base_user_id,
   u.email,
   u.first_name,
   u.last_name,
   u.phone,
-  u.service_type,
   sp.*,
   spd.hourly_rate as details_rate,
   spd.experience_description,

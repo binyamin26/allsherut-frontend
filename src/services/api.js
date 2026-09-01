@@ -81,6 +81,12 @@ class ApiService {
     }
   }
 
+  async searchFranceZones(q, limit = 8) {
+    const queryParams = new URLSearchParams({ q, limit }).toString();
+    const result = await this.request("/location/fr/zones/search?" + queryParams);
+    return result.success ? (result.data?.zones || []) : [];
+  }
+
   async getProvider(id) {
     return this.request("/providers/" + id);
   }

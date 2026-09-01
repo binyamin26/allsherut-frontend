@@ -915,7 +915,7 @@ static async updateServiceProviderWithDetails(connection, providerId, serviceTyp
 }
 
   // =============================================
-  // INSERTION ZONES DE TRAVAIL - VERSION CORRIGÉE
+  // INSERTION ZONES DE TRAVAIL (France : ville ou département)
   // =============================================
   static async insertWorkingAreas(connection, providerId, workingAreas) {
     if (!workingAreas || workingAreas.length === 0) {
@@ -925,23 +925,59 @@ static async updateServiceProviderWithDetails(connection, providerId, serviceTyp
 
     try {
       const sql = `
-        INSERT INTO provider_working_areas (provider_id, city, neighborhood, created_at)
-        VALUES (?, ?, ?, NOW())
+        INSERT INTO provider_working_areas
+          (provider_id, city, neighborhood, coverage_type, department_code, city_insee_code, created_at)
+        VALUES (?, ?, NULL, ?, ?, ?, NOW())
       `;
 
+      // Dédup : une zone identique (même type + mêmes codes géo) ne doit pas créer 2 lignes.
+      const seen = new Set();
+
       for (const area of workingAreas) {
+        const coverageType = area.coverageType;
+        const departmentCode = area.departmentCode || null;
+        const cityInseeCode = coverageType === 'city' ? (area.cityInseeCode || null) : null;
+
+        if (!coverageType || !departmentCode) continue;
+        if (coverageType === 'city' && !cityInseeCode) continue;
+
+        const dedupKey = `${coverageType}:${departmentCode}:${cityInseeCode || ''}`;
+        if (seen.has(dedupKey)) continue;
+        seen.add(dedupKey);
+
         await connection.execute(sql, [
-          providerId, 
-          area.city, 
-          area.neighborhood
+          providerId,
+          area.label || area.city,
+          coverageType,
+          departmentCode,
+          cityInseeCode,
         ]);
-        console.log(`✅ Zone ajoutée: ${area.neighborhood}, ${area.city}`);
+        console.log(`✅ Zone ajoutée: ${area.label || area.city}`);
       }
 
     } catch (error) {
       console.error('❌ Erreur insertion zones de travail:', error);
       throw error;
     }
+  }
+
+  // =============================================
+  // LECTURE ZONES DE TRAVAIL - forme partagée par les lectures de profil
+  // =============================================
+  static async getWorkingAreas(providerId) {
+    const rows = await query(
+      `SELECT DISTINCT city, neighborhood, coverage_type, department_code, city_insee_code
+       FROM provider_working_areas WHERE provider_id = ?`,
+      [providerId]
+    );
+
+    return rows.map(row => ({
+      city: row.city,
+      neighborhood: row.neighborhood,
+      coverageType: row.coverage_type,
+      departmentCode: row.department_code,
+      cityInseeCode: row.city_insee_code,
+    }));
   }
 
   // =============================================
@@ -1012,9 +1048,18 @@ static async updateServiceProviderWithDetails(connection, providerId, serviceTyp
  static validateProviderStep2(serviceType, serviceDetails, workingAreas) {
   const errors = [];
 
-  // Validation zones de travail
+  // Validation zones de travail (France : ville ou département, au moins une zone)
   if (!workingAreas || workingAreas.length === 0) {
-    errors.push({ field: 'workingAreas', message: 'יש לבחור לפחות אזור עבודה אחד' });
+    errors.push({ field: 'workingAreas', message: 'Veuillez sélectionner au moins une zone d\'intervention' });
+  } else {
+    const hasInvalidZone = workingAreas.some(area =>
+      !area || !area.departmentCode ||
+      (area.coverageType !== 'city' && area.coverageType !== 'department') ||
+      (area.coverageType === 'city' && !area.cityInseeCode)
+    );
+    if (hasInvalidZone) {
+      errors.push({ field: 'workingAreas', message: 'Zone d\'intervention invalide' });
+    }
   }
 
   // Validation basique pour tous les services
@@ -1647,12 +1692,7 @@ providerUpdateValues.push(JSON.stringify(updatedDetails));
 
           // Insérer les nouvelles zones
           if (profileData.workingAreas.length > 0) {
-            for (const area of profileData.workingAreas) {
-              await connection.execute(
-                'INSERT INTO provider_working_areas (provider_id, city, neighborhood, created_at) VALUES (?, ?, ?, NOW())',
-                [providerId, area.city, area.neighborhood]
-              );
-            }
+            await User.insertWorkingAreas(connection, providerId, profileData.workingAreas);
             console.log('✅ Nouvelles zones insérées:', profileData.workingAreas.length);
           }
         }
@@ -1706,10 +1746,7 @@ async getFullProviderProfile() {
     const profile = profiles[0];
 
     // 2. Récupérer les zones de travail
-    const workingAreas = await query(
-      'SELECT DISTINCT city, neighborhood FROM provider_working_areas WHERE provider_id = ?',
-      [profile.id]
-    );
+    const workingAreas = await User.getWorkingAreas(profile.id);
     console.log('✅ Zones de travail récupérées:', workingAreas.length);
 
     // 3. Parser les données JSON - AVEC VÉRIFICATION DES CHAÎNES VIDES
@@ -1844,10 +1881,7 @@ async getProviderProfileForService(serviceType) {
     console.log('✅ Profil de base récupéré pour', serviceType);
 
     // 2. Récupérer les zones de travail
-    const workingAreas = await query(
-      'SELECT DISTINCT city, neighborhood FROM provider_working_areas WHERE provider_id = ?',
-      [profile.id]
-    );
+    const workingAreas = await User.getWorkingAreas(profile.id);
     console.log('✅ Zones de travail récupérées:', workingAreas.length);
 
     // 3. Parser les données JSON

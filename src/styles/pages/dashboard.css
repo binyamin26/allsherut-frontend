@@ -3415,6 +3415,14 @@ select.inline-edit {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    /* La bulle s'adapte au texte au lieu d'être bloquée à la largeur de l'avatar */
+    width: max-content;
+    max-width: 88vw;
+  }
+
+  /* .btn a overflow:hidden par défaut → le libellé se faisait rogner */
+  .provider-header-new .avatar-actions .btn-sm {
+    overflow: visible;
   }
 
   .provider-header-new .avatar-actions .btn-sm {
@@ -3444,6 +3452,29 @@ select.inline-edit {
     width: 100%;
     flex-wrap: wrap;
     justify-content: center;
+    width: 100%;
+  }
+
+  /* .btn a overflow:hidden → le « e » de « domaine » se faisait couper */
+  .provider-header-actions .btn {
+    overflow: visible;
+  }
+}
+
+/* ====================================
+   GALERIE PHOTOS DU DASHBOARD
+   ==================================== */
+.dashboard-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+/* Sur mobile : 2 colonnes (vignettes ~150px) au lieu de 3 (~95px, trop petites).
+   La galerie publique n'est pas touchée. */
+@media (max-width: 768px) {
+  .dashboard-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   /* .btn a overflow:hidden -> le min-width auto d'un flex-item tombe à 0,

@@ -67,7 +67,7 @@ const MESSAGES = {
     VALIDATION: {
       REQUIRED_FIELD: 'שדה חובה חסר',
       INVALID_EMAIL: 'כתובת אימייל לא תקינה',
-      INVALID_PHONE: 'מספר טלפון לא תקין (05xxxxxxxx)',
+      INVALID_PHONE: 'מספר טלפון לא תקין (0X XX XX XX XX)',
       INVALID_FORMAT: 'פורמט לא תקין',
       DATA_INVALID: 'נתונים לא תקינים',
       PASSWORD_COMPLEXITY: 'הסיסמה חייבת להכיל לפחות אות גדולה, אות קטנה וספרה',

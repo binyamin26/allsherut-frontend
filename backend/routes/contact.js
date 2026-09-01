@@ -26,7 +26,7 @@ const validateContactForm = (data) => {
     errors.push({ field: 'message', message: 'הודעה חייבת להכיל לפחות 10 תווים' });
   }
   
-  if (data.phone && !/^05\d{8}$/.test(data.phone.replace(/[\s-]/g, ''))) {
+  if (data.phone && !/^0[1-9]\d{8}$/.test(data.phone.replace(/[\s-]/g, ''))) {
     errors.push({ field: 'phone', message: MESSAGES.ERROR.VALIDATION.INVALID_PHONE });
   }
   

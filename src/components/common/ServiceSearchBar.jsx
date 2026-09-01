@@ -46,7 +46,6 @@ const HIDDEN_SERVICE_PATHS = new Set(HIDDEN_SERVICE_IDS.map((id) => `/services/$
 
 const detectLanguage = (text) => {
   if (/[\u0590-\u05FF]/.test(text)) return 'he';
-  if (/[\u0400-\u04FF]/.test(text)) return 'ru';
   return 'latin';
 };
 
@@ -125,10 +124,6 @@ const ServiceSearchBar = ({ style, onNavigate }) => {
     if (detectedLang === 'he') {
       if (item.label && item.label.split(' ').some(word => word.startsWith(value))) {
         matches.push({ ...item, displayLabel: item.label });
-      }
-    } else if (detectedLang === 'ru') {
-      if (item.labelRu && item.labelRu.toLowerCase().split(' ').some(word => word.startsWith(lowerValue))) {
-        matches.push({ ...item, displayLabel: item.labelRu });
       }
     } else if (detectedLang === 'latin') {
       const enMatch = item.labelEn && item.labelEn.toLowerCase().split(' ').some(word => word.startsWith(lowerValue));
