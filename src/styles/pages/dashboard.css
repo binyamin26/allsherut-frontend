@@ -3427,18 +3427,22 @@ select.inline-edit {
   }
 
   .provider-header-actions {
+    width: 100%;
     flex-wrap: wrap;
     justify-content: center;
   }
 
-  /* .btn a overflow:hidden -> le min-width auto d'un flex-item tombe à 0
-     et le texte se fait rogner. On empêche le rétrécissement pour forcer
-     le retour à la ligne au lieu de couper le libellé. */
+  /* .btn a overflow:hidden -> le min-width auto d'un flex-item tombe à 0,
+     le bouton rétrécit sous la taille de son texte et le libellé se fait
+     rogner ("domaine" -> "domai"). On rétablit overflow:visible sur ces
+     boutons et on empêche le rétrécissement : ils passent à la ligne au
+     lieu d'être coupés. */
   .provider-header-actions .btn {
     flex-shrink: 0;
+    overflow: visible;
     max-width: 100%;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 18px;
+    padding-right: 18px;
   }
 }
 
