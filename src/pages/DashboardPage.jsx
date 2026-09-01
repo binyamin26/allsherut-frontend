@@ -2181,11 +2181,7 @@ const profileCompletionStatus = (() => {
    {t('dashboard.gallery.description')}
   </p>
 
-  <div style={{
-    display: 'grid',
-    gridTemplateColumns: 'repeat(3, 1fr)',
-    gap: '0.75rem'
-  }}>
+  <div className="dashboard-gallery-grid">
     {/* Images existantes */}
     {(galleryImages || []).map((url, index) => (
       <div key={index} style={{ position: 'relative', aspectRatio: '1/1', borderRadius: '8px', overflow: 'hidden', background: 'var(--neutral-100)' }}>
