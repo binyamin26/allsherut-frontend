@@ -12,7 +12,7 @@ const ServiceBreadcrumb = ({ serviceId }) => {
 
   return (
     <div className="breadcrumb service-page-breadcrumb">
-      <Link to="/">{t('provider.home', 'בית')}</Link>
+      <Link to="/">{t('provider.home', 'Accueil')}</Link>
       <span>/</span>
       {category && (
         <>

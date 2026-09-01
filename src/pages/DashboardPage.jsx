@@ -46,7 +46,7 @@ import {
 import { useAuth } from '../context/AuthContext';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import ResponseModal from '../components/modals/ResponseModal';
-import { getAllCities, getNeighborhoodsByCity } from '../data/israelLocations.js';
+import WorkingAreasField from '../components/common/WorkingAreasField';
 import DeleteAccountModal from '../components/modals/DeleteAccountModal';
 // PAIEMENT DÉSACTIVÉ - RÉACTIVER QUAND SITE PAYANT
 // import CancelSubscriptionModal from '../components/modals/CancelSubscriptionModal';
@@ -259,30 +259,6 @@ const userData = useMemo(() => {
   });
   const [editLoading, setEditLoading] = useState(false);
 
-  const [cities, setCities] = useState([]);
-  const [selectedCity, setSelectedCity] = useState('');
-  const [availableNeighborhoods, setAvailableNeighborhoods] = useState([]);
-  const [locationMode, setLocationMode] = useState('');
-
-  const ezorim = ['מרכז', 'שרון', 'שפלה', 'ירושלים', 'צפון', 'חיפה', 'דרום', 'יהודה ושומרון'];
-  const locationModes = [
-    { value: 'israel',       label: 'כל ישראל' },
-    { value: 'ezor',         label: 'לפי אזור' },
-    { value: 'city',         label: 'לפי עיר' },
-    { value: 'neighborhood', label: 'לפי שכונה' },
-  ];
-
-  const handleLocationModeChange = (newMode) => {
-    setLocationMode(newMode);
-    setSelectedCity('');
-    setAvailableNeighborhoods([]);
-    if (newMode === 'israel') {
-      handleEditInputChange('workingAreas', [{ city: 'ישראל', neighborhood: 'כל ישראל' }]);
-    } else {
-      handleEditInputChange('workingAreas', []);
-    }
-  };
-
   const [imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [uploadingImage, setUploadingImage] = useState(false);
@@ -323,20 +299,6 @@ useEffect(() => {
   console.log('🔍 userData:', userData);
   }, [isAuthenticated, navigate]);
 
-  useEffect(() => {
-    const israeliCities = getAllCities();
-    setCities(israeliCities);
-  }, []);
-
-  useEffect(() => {
-    if (selectedCity) {
-      const neighborhoods = getNeighborhoodsByCity(selectedCity);
-      setAvailableNeighborhoods(neighborhoods);
-    } else {
-      setAvailableNeighborhoods([]);
-    }
-  }, [selectedCity]);
-
   const mockStats = {
     client: {
       totalContacts: 12,
@@ -355,13 +317,13 @@ useEffect(() => {
 
   const mockRecentActivity = {
     client: [
-      { type: 'contact', provider: 'שרה כהן', service: 'בייביסיטר', date: '2025-08-22', status: 'completed' },
-      { type: 'review', provider: 'מירי אבן', service: 'ניקיון', rating: 5, date: '2025-08-20' },
-      { type: 'favorite', provider: 'אחמד מחמוד', service: 'גינון', date: '2025-08-18' }
+      { type: 'contact', provider: 'Sarah Cohen', service: 'Baby-sitting', date: '2025-08-22', status: 'completed' },
+      { type: 'review', provider: 'Marie Even', service: 'Ménage', rating: 5, date: '2025-08-20' },
+      { type: 'favorite', provider: 'Ahmed Mahmoud', service: 'Jardinage', date: '2025-08-18' }
     ],
     provider: [
-      { type: 'contact_received', client: 'רות לוי', service: userData?.serviceType, date: '2025-08-23', status: 'responded' },
-      { type: 'review_received', client: 'דוד כהן', rating: 5, date: '2025-08-21' },
+      { type: 'contact_received', client: 'Ruth Levy', service: userData?.serviceType, date: '2025-08-23', status: 'responded' },
+      { type: 'review_received', client: 'David Cohen', rating: 5, date: '2025-08-21' },
       { type: 'profile_view', count: 12, date: '2025-08-20' }
     ]
   };
@@ -595,10 +557,10 @@ const loadMyReviews = async () => {
         loadMyListings();
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
-        setRecruitmentMsg({ type: 'error', text: data.message || 'שגיאה' });
+        setRecruitmentMsg({ type: 'error', text: data.message || 'Erreur' });
       }
     } catch (err) {
-      setRecruitmentMsg({ type: 'error', text: 'שגיאה בשמירה' });
+      setRecruitmentMsg({ type: 'error', text: "Erreur lors de l'enregistrement" });
     } finally {
       setRecruitmentSaving(false);
     }
@@ -618,7 +580,7 @@ const loadMyReviews = async () => {
         loadMyListings();
       }
     } catch (err) {
-      setRecruitmentMsg({ type: 'error', text: 'שגיאה במחיקה' });
+      setRecruitmentMsg({ type: 'error', text: 'Erreur lors de la suppression' });
     } finally {
       setRecruitmentDeleting(false);
     }
@@ -763,7 +725,7 @@ const response = await changePassword(
         });
       }
     } catch (err) {
-      console.error('שגיאה בשינוי סיסמה:', err);
+      console.error('Erreur lors du changement de mot de passe :', err);
       setMessage({
         type: 'error',
         text: t('dashboard.messages.passwordChangeError')
@@ -833,12 +795,6 @@ const response = await changePassword(
         workingAreas: areas,
         serviceDetails: userData?.serviceDetails || {}
       });
-      // Détecte le mode actuel
-      if (areas.some(a => a.neighborhood === 'כל ישראל')) setLocationMode('israel');
-      else if (areas.some(a => a.neighborhood === 'כל האזור')) setLocationMode('ezor');
-      else if (areas.some(a => a.neighborhood === 'כל העיר')) setLocationMode('city');
-      else if (areas.length > 0) setLocationMode('neighborhood');
-      else setLocationMode('');
     }
     setIsEditMode(!isEditMode);
     setMessage(null);
@@ -874,24 +830,6 @@ const response = await changePassword(
     }
   };
 
-  const handleWorkingAreasChange = (neighborhood) => {
-    setEditFormData(prev => {
-      const currentAreas = prev.workingAreas || [];
-      const isSelected = currentAreas.some(area => area.neighborhood === neighborhood && area.city === selectedCity);
-      
-      let newAreas;
-      if (isSelected) {
-        newAreas = currentAreas.filter(area => !(area.neighborhood === neighborhood && area.city === selectedCity));
-      } else {
-        newAreas = [...currentAreas, { city: selectedCity, neighborhood }];
-      }
-      
-      return {
-        ...prev,
-        workingAreas: newAreas
-      };
-    });
-  };
 
 const cleanProfileData = (data) => {
   const cleaned = { ...data };
@@ -992,10 +930,10 @@ const handleSaveProfile = async () => {
         });
     }
   } catch (err) {
-    console.error('שגיאה בעדכון פרופיל:', err);
+    console.error('Erreur lors de la mise à jour du profil :', err);
     setMessage({
       type: 'error',
-      text: 'שגיאה בעדכון הפרופיל'
+      text: 'Erreur lors de la mise à jour du profil'
     });
   } finally {
     setEditLoading(false);
@@ -1006,11 +944,11 @@ const handleImageSelect = (e) => {
   const file = e.target.files[0];
   if (file) {
     if (file.size > 5 * 1024 * 1024) {
-      setMessage({ type: 'error', text: 'הקובץ גדול מדי (מקסימום 5MB)' });
+      setMessage({ type: 'error', text: 'Fichier trop volumineux (maximum 5 Mo)' });
       return;
     }
     if (!['image/jpeg', 'image/jpg', 'image/png', 'image/webp'].includes(file.type)) {
-      setMessage({ type: 'error', text: 'פורמט קובץ לא נתמך (רק JPG, PNG, WebP)' });
+      setMessage({ type: 'error', text: 'Format de fichier non pris en charge (JPG, PNG, WebP uniquement)' });
       return;
     }
     setImageFile(file);
@@ -1034,7 +972,7 @@ const handleUploadImage = async (fileOverride) => {
     if (result.success) {
       setMessage({
         type: 'success',
-        text: 'התמונה הועלתה בהצלחה'
+        text: 'Photo téléchargée avec succès'
       });
       setImageFile(null);
       setImagePreview(null);
@@ -1046,14 +984,14 @@ const handleUploadImage = async (fileOverride) => {
     } else {
       setMessage({
         type: 'error',
-        text: result.message || 'שגיאה בהעלאת התמונה'
+        text: result.message || 'Erreur lors du téléchargement de la photo'
       });
     }
   } catch (error) {
-    console.error('שגיאה בהעלאת תמונה:', error);
+    console.error('Erreur lors du téléchargement de la photo :', error);
     setMessage({
       type: 'error',
-      text: 'שגיאה בהעלאת התמונה'
+      text: 'Erreur lors du téléchargement de la photo'
     });
   } finally {
     setUploadingImage(false);
@@ -1081,7 +1019,7 @@ const handleDeleteImage = async () => {
       console.log('🔴 8. Succès, mise à jour message');
       setMessage({
         type: 'success',
-        text: 'התמונה נמחקה בהצלחה'
+        text: 'Photo supprimée avec succès'
       });
       setShowAvatarActions(false);
 
@@ -1092,14 +1030,14 @@ const handleDeleteImage = async () => {
       console.log('🔴 11. Échec:', result.message);
       setMessage({
         type: 'error',
-        text: result.message || 'שגיאה במחיקת התמונה'
+        text: result.message || 'Erreur lors de la suppression de la photo'
       });
     }
   } catch (error) {
     console.error('🔴 12. ERREUR CATCHÉE:', error);
     setMessage({
       type: 'error',
-      text: 'שגיאה במחיקת התמונה'
+      text: 'Erreur lors de la suppression de la photo'
     });
   } finally {
     console.log('🔴 13. Finally - fin de la fonction');
@@ -1113,7 +1051,7 @@ const handleGalleryImageUpload = async (e) => {
 
   const gallery = galleryImages || [];
   if (gallery.length >= 15) {
-    setMessage({ type: 'error', text: 'מקסימום 15 תמונות בגלריה' });
+    setMessage({ type: 'error', text: 'Maximum 15 photos dans la galerie' });
     return;
   }
 
@@ -1124,13 +1062,13 @@ const handleGalleryImageUpload = async (e) => {
     const compressed = await imageCompression(file, { maxSizeMB: 1, maxWidthOrHeight: 1200, useWebWorker: true });
     const result = await uploadGalleryImage(compressed, activeService || userData?.serviceType);
     if (result.success) {
-      setMessage({ type: 'success', text: 'התמונה הועלתה לגלריה' });
+      setMessage({ type: 'success', text: 'Photo ajoutée à la galerie' });
       await switchService(activeService || userData?.serviceType);
     } else {
-      setMessage({ type: 'error', text: result.message || 'שגיאה בהעלאת התמונה' });
+      setMessage({ type: 'error', text: result.message || 'Erreur lors du téléchargement de la photo' });
     }
   } catch (err) {
-    setMessage({ type: 'error', text: 'שגיאה בהעלאת התמונה' });
+    setMessage({ type: 'error', text: 'Erreur lors du téléchargement de la photo' });
   } finally {
     setGalleryUploading(false);
     e.target.value = '';
@@ -1142,13 +1080,13 @@ const handleGalleryImageDelete = async (imageUrl) => {
   try {
     const result = await deleteGalleryImage(imageUrl, activeService || userData?.serviceType);
     if (result.success) {
-      setMessage({ type: 'success', text: 'התמונה נמחקה' });
+      setMessage({ type: 'success', text: 'Photo supprimée' });
       await switchService(activeService || userData?.serviceType);
     } else {
       setMessage({ type: 'error', text: result.message });
     }
   } catch (err) {
-    setMessage({ type: 'error', text: 'שגיאה במחיקת התמונה' });
+    setMessage({ type: 'error', text: 'Erreur lors de la suppression de la photo' });
   } finally {
     setGalleryUploading(false);
   }
@@ -1166,20 +1104,20 @@ const handleDeleteAccount = async () => {
       
       setMessage({
         type: 'success',
-        text: 'החשבון נמחק בהצלחה. מעביר אותך לדף הבית...'
+        text: "Compte supprimé avec succès. Redirection vers l'accueil..."
       });
 
       setTimeout(() => {
         window.location.href = '/'; // ✅ Utiliser href au lieu de navigate + reload
       }, 2000);
     } else {
-      throw new Error(response.message || 'שגיאה במחיקת החשבון');
+      throw new Error(response.message || 'Erreur lors de la suppression du compte');
     }
   } catch (error) {
-    console.error('שגיאה במחיקת חשבון:', error);
+    console.error('Erreur lors de la suppression du compte :', error);
     setMessage({
       type: 'error',
-      text: 'שגיאה במחיקת החשבון'
+      text: 'Erreur lors de la suppression du compte'
     });
   }
 };
@@ -1194,7 +1132,7 @@ const handleDeleteService = async (serviceType) => {
     if (result.accountDeleted) {
       setMessage({
         type: 'success',
-        text: 'החשבון נמחק לצמיתות. מעביר לדף הבית...'
+        text: "Compte définitivement supprimé. Redirection vers l'accueil..."
       });
       
       setTimeout(() => {
@@ -1210,14 +1148,14 @@ const handleDeleteService = async (serviceType) => {
   
   setMessage({
     type: 'success',
-    text: `השירות נמחק בהצלחה`
+    text: `Service supprimé avec succès`
   });
 }
   } catch (error) {
-    console.error('שגיאה במחיקת שירות:', error);
+    console.error('Erreur lors de la suppression du service :', error);
     setMessage({
       type: 'error',
-      text: error.message || 'שגיאה במחיקת השירות'
+      text: error.message || 'Erreur lors de la suppression du service'
     });
     setDeleteServiceModal({ isOpen: false, serviceType: null });
   }
@@ -1295,7 +1233,7 @@ const handleAddService = async () => {
           setActiveTab('recruitment');
         }, 1200);
       } else {
-        setAddServiceMsg({ type: 'error', text: data.message || 'שגיאה' });
+        setAddServiceMsg({ type: 'error', text: data.message || 'Erreur' });
       }
     } else {
       // Soumettre le service (chercher des clients)
@@ -1311,11 +1249,11 @@ const handleAddService = async () => {
         localStorage.setItem('activeService', addServiceType);
         setTimeout(() => resetAddServiceModal(), 3000);
       } else {
-        setAddServiceMsg({ type: 'error', text: data.message || 'שגיאה' });
+        setAddServiceMsg({ type: 'error', text: data.message || 'Erreur' });
       }
     }
   } catch {
-    setAddServiceMsg({ type: 'error', text: 'שגיאה בהוספת השירות' });
+    setAddServiceMsg({ type: 'error', text: "Erreur lors de l'ajout du service" });
   } finally {
     setAddServiceLoading(false);
   }
@@ -1331,7 +1269,7 @@ const handleCancelSubscription = async (serviceType) => {
     if (response.success) {
       setMessage({
         type: 'success',
-        text: `המנוי עבור ${getServiceName(serviceType)} בוטל בהצלחה.`
+        text: `L'abonnement pour ${getServiceName(serviceType)} a été annulé avec succès.`
       });
       
       setCancelSubscriptionModal({ isOpen: false, serviceType: null });
@@ -1340,13 +1278,13 @@ const handleCancelSubscription = async (serviceType) => {
         window.location.reload();
       }, 2000);
     } else {
-      throw new Error(response.message || 'שגיאה בביטול המנוי');
+      throw new Error(response.message || "Erreur lors de l'annulation de l'abonnement");
     }
   } catch (error) {
-    console.error('שגיאה בביטול מנוי:', error);
+    console.error("Erreur lors de l'annulation de l'abonnement :", error);
     setMessage({
       type: 'error',
-      text: error.message || 'שגיאה בביטול המנוי'
+      text: error.message || "Erreur lors de l'annulation de l'abonnement"
     });
     setCancelSubscriptionModal({ isOpen: false, serviceType: null });
   }
@@ -1360,17 +1298,17 @@ const handleCancelDeletion = async () => {
     if (response.success) {
       setMessage({
         type: 'success',
-        text: 'בקשת המחיקה בוטלה בהצלחה. המנוי שלך ממשיך!'
+        text: 'Demande de suppression annulée avec succès. Votre abonnement continue !'
       });
       setTimeout(() => window.location.reload(), 2000);
     } else {
-      throw new Error(response.message || 'שגיאה בביטול בקשת המחיקה');
+      throw new Error(response.message || "Erreur lors de l'annulation de la demande de suppression");
     }
   } catch (error) {
-    console.error('שגיאה בביטול מחיקה:', error);
+    console.error("Erreur lors de l'annulation de la suppression :", error);
     setMessage({
       type: 'error',
-      text: error.message || 'שגיאה בביטול בקשת המחיקה'
+      text: error.message || "Erreur lors de l'annulation de la demande de suppression"
     });
   }
 };
@@ -1435,7 +1373,7 @@ const galleryImages = (() => {
 })();
 
 // Réutilise le libellé exact du champ "expérience" du métier actif (il varie selon le
-// service — ex: "שנות ניסיון בהוראה" pour tutoring — pour rester identique à la page de profil).
+// service — ex: "années d'expérience dans l'enseignement" pour tutoring — pour rester identique à la page de profil).
 const activeServiceType = activeService || userData?.serviceType;
 const experienceFieldConfig = serviceFieldsConfig[activeServiceType]?.fields?.find(f => f.name === 'experience');
 const profileCompletionExperienceLabel = experienceFieldConfig ? t(experienceFieldConfig.label) : undefined;
@@ -1521,9 +1459,9 @@ const profileCompletionStatus = (() => {
           <ServiceIconDisplay svcType={activeService || userData?.serviceType} />
         </div>
         <div className="ssc-info">
-          <span className="ssc-label">פרופיל פעיל</span>
+          <span className="ssc-label">Profil actif</span>
           <span className="ssc-name">{getServiceName(activeService || userData?.serviceType)}</span>
-          <span className="ssc-count">אתה רשום ב-{userData.services.length} שירותים</span>
+          <span className="ssc-count">Vous êtes inscrit à {userData.services.length} services</span>
         </div>
         <div className={`ssc-chevron ${showServiceDropdown ? 'open' : ''}`}>
           <ChevronDown size={20} />
@@ -1532,7 +1470,7 @@ const profileCompletionStatus = (() => {
 
       {!hasSeenServiceCard && (
         <div className="ssc-tooltip">
-          <span>💡 לחץ כאן כדי לעבור בין השירותים שלך</span>
+          <span>💡 Cliquez ici pour basculer entre vos services</span>
           <button onClick={(e) => {
             e.stopPropagation();
             setHasSeenServiceCard(true);
@@ -1577,7 +1515,7 @@ const profileCompletionStatus = (() => {
               <div className="service-tabs-desktop">
                 <span className="service-tabs-desktop-label">
                   <ArrowLeftRight size={12} />
-                  שירותיך
+                  Vos services
                 </span>
                 {userData.services.map(service => (
                   <button
@@ -1677,7 +1615,7 @@ const profileCompletionStatus = (() => {
                       setHasSeenServiceTabs(true);
                       localStorage.setItem('seenServiceTabs', 'true');
                     }}
-                    aria-label="סגור"
+                    aria-label="Fermer"
                   >
                     ✕
                   </button>
@@ -1750,7 +1688,7 @@ const profileCompletionStatus = (() => {
               </svg>
               <div className="avatar-upload-hint">
                 <Camera size={22} />
-                <span>הוסף תמונה</span>
+                <span>Ajouter une photo</span>
               </div>
             </div>
             <div className="avatar-camera-badge">
@@ -1831,14 +1769,14 @@ const profileCompletionStatus = (() => {
               value={editFormData.firstName}
               onChange={(e) => handleEditInputChange('firstName', e.target.value)}
               className="form-input inline-edit"
-              placeholder="שם פרטי"
+              placeholder="Prénom"
             />
             <input
               type="text"
               value={editFormData.lastName}
               onChange={(e) => handleEditInputChange('lastName', e.target.value)}
               className="form-input inline-edit"
-              placeholder="שם משפחה"
+              placeholder="Nom"
             />
           </div>
         ) : (
@@ -1895,7 +1833,7 @@ const profileCompletionStatus = (() => {
 
     {/* Section Description */}
 <div className="info-section">
-  <h3 className="section-title">תיאור אישי</h3>
+  <h3 className="section-title">Description personnelle</h3>
   {isEditMode ? (
     <div className="form-group">
       <textarea
@@ -1906,7 +1844,7 @@ const profileCompletionStatus = (() => {
           }
         }}
         className="form-input"
-        placeholder="ספר על עצמך, הניסיון שלך והשירות שאתה מציע..."
+        placeholder="Parlez de vous, de votre expérience et du service que vous proposez..."
         rows={4}
         maxLength={300}
         style={{ resize: 'vertical', minHeight: '100px', width: '100%' }}
@@ -1917,11 +1855,11 @@ const profileCompletionStatus = (() => {
     </div>
   ) : (() => {
     const rawDescription = userData?.serviceDetails?.description;
-    const isAutoPlaceholder = rawDescription && /^ספק\s+\S+\s+מקצועי$/.test(rawDescription.trim());
+    const isAutoPlaceholder = rawDescription && /^(Prestataire\s+.+\s+professionnel|ספק\s+\S+\s+מקצועי)$/.test(rawDescription.trim());
     const realDescription = isAutoPlaceholder ? '' : rawDescription;
     return (
       <p style={{ color: realDescription ? '#374151' : '#9ca3af', lineHeight: '1.6', margin: 0, whiteSpace: 'pre-line' }}>
-        {realDescription || 'לא הוסף תיאור עדיין'}
+        {realDescription || 'Aucune description ajoutée pour le moment'}
       </p>
     );
   })()}
@@ -1979,7 +1917,7 @@ const profileCompletionStatus = (() => {
           </div>
         <div className="contact-details">
             <label>{t('dashboard.joined')}:</label>
-<span>{userData?.serviceCreatedAt ? new Date(userData.serviceCreatedAt).toLocaleDateString('he-IL') : userData?.createdAt ? new Date(userData.createdAt).toLocaleDateString('he-IL') : 'לא זמין'}</span>
+<span>{userData?.serviceCreatedAt ? new Date(userData.serviceCreatedAt).toLocaleDateString('fr-FR') : userData?.createdAt ? new Date(userData.createdAt).toLocaleDateString('fr-FR') : 'Non disponible'}</span>
           </div>
         </div>
       </div>
@@ -1995,161 +1933,15 @@ const profileCompletionStatus = (() => {
   onArrayChange={handleServiceDetailArrayChange}
 />
 
-   {/* Section Zones de travail */}
+   {/* Section Zones d'intervention */}
  <div className="info-section">
       <h3 className="section-title">{t('dashboard.workingAreas')}</h3>
-      
+
       {isEditMode ? (
-        <>
-          {/* Sélecteur de mode */}
-          <div className="location-mode-selector" style={{ marginBottom: '1rem' }}>
-            {locationModes.map(({ value, label }) => (
-              <label key={value} className={`location-mode-option${locationMode === value ? ' selected' : ''}`}>
-                <input
-                  type="radio"
-                  name="dashboardLocationMode"
-                  value={value}
-                  checked={locationMode === value}
-                  onChange={() => handleLocationModeChange(value)}
-                />
-                <span>{label}</span>
-              </label>
-            ))}
-          </div>
-
-          {/* Mode: לפי אזור */}
-          {locationMode === 'ezor' && (
-            <div className="ezor-grid" style={{ marginBottom: '1rem' }}>
-              {ezorim.map(ezor => {
-                const isChecked = editFormData.workingAreas?.some(a => a.city === ezor && a.neighborhood === 'כל האזור');
-                return (
-                  <label key={ezor} className={`ezor-option${isChecked ? ' selected' : ''}`}>
-                    <input
-                      type="checkbox"
-                      value={ezor}
-                      checked={isChecked}
-                      onChange={() => {
-                        const alreadySelected = editFormData.workingAreas?.some(a => a.city === ezor && a.neighborhood === 'כל האזור');
-                        const newAreas = alreadySelected
-                          ? editFormData.workingAreas.filter(a => !(a.city === ezor && a.neighborhood === 'כל האזור'))
-                          : [...(editFormData.workingAreas || []), { city: ezor, neighborhood: 'כל האזור' }];
-                        handleEditInputChange('workingAreas', newAreas);
-                      }}
-                    />
-                    {ezor}
-                  </label>
-                );
-              })}
-            </div>
-          )}
-
-          {/* Mode: לפי עיר */}
-          {locationMode === 'city' && (
-            <div className="form-group" style={{ marginBottom: '1rem' }}>
-              <CustomDropdown
-                name="city"
-                options={cities}
-                value={selectedCity}
-                onChange={(e) => {
-                  const city = e.target.value;
-                  setSelectedCity(city);
-                  if (city) {
-                    const other = (editFormData.workingAreas || []).filter(a => a.city !== city);
-                    handleEditInputChange('workingAreas', [...other, { city, neighborhood: 'כל העיר' }]);
-                  } else {
-                    handleEditInputChange('workingAreas', []);
-                  }
-                }}
-                placeholder="בחר עיר"
-              />
-            </div>
-          )}
-
-          {/* Mode: לפי שכונה */}
-          {locationMode === 'neighborhood' && (
-            <div style={{ marginBottom: '1rem' }}>
-              <div className="form-group" style={{ marginBottom: '0.75rem' }}>
-                <CustomDropdown
-                  name="city"
-                  options={cities}
-                  value={selectedCity}
-                  onChange={(e) => {
-                    setSelectedCity(e.target.value);
-                    handleEditInputChange('workingAreas', (editFormData.workingAreas || []).filter(a => a.city !== e.target.value));
-                  }}
-                  placeholder="בחר עיר"
-                />
-              </div>
-              {selectedCity && (
-                <>
-                  <div style={{ marginBottom: '0.5rem', padding: '0.75rem', backgroundColor: '#f0fdf4', borderRadius: '8px', border: '1px solid #22c55e' }}>
-                    <label className="checkbox-item" style={{ fontWeight: '600' }}>
-                      <input
-                        type="checkbox"
-                        checked={editFormData.workingAreas?.some(a => a.city === selectedCity && a.neighborhood === 'כל השכונות')}
-                        onChange={(e) => {
-                          if (e.target.checked) {
-                            const other = (editFormData.workingAreas || []).filter(a => a.city !== selectedCity);
-                            handleEditInputChange('workingAreas', [...other, { city: selectedCity, neighborhood: 'כל השכונות' }]);
-                          } else {
-                            handleEditInputChange('workingAreas', (editFormData.workingAreas || []).filter(a => !(a.city === selectedCity && a.neighborhood === 'כל השכונות')));
-                          }
-                        }}
-                      />
-                      כל השכונות ב{selectedCity}
-                    </label>
-                  </div>
-                  {!editFormData.workingAreas?.some(a => a.city === selectedCity && a.neighborhood === 'כל השכונות') && availableNeighborhoods.length > 0 && (
-                    <div className="checkbox-grid">
-                      {availableNeighborhoods.map(neighborhood => (
-                        <label key={neighborhood} className="checkbox-item">
-                          <input
-                            type="checkbox"
-                            checked={editFormData.workingAreas?.some(a => a.neighborhood === neighborhood && a.city === selectedCity) || false}
-                            onChange={() => handleWorkingAreasChange(neighborhood)}
-                          />
-                          {neighborhood}
-                        </label>
-                      ))}
-                    </div>
-                  )}
-                </>
-              )}
-            </div>
-          )}
-
-          {/* Tags des zones sélectionnées */}
-          {editFormData.workingAreas && editFormData.workingAreas.length > 0 && (
-            <div className="selected-areas">
-              <h5>{t('dashboard.selectedAreas')}:</h5>
-              <div className="working-areas-grid">
-                {editFormData.workingAreas.map((area, index) => (
-                  <div key={index} className="area-tag">
-                    <MapPin size={14} />
-                    <span>
-                      {area.neighborhood === 'כל ישראל' ? 'כל ישראל' :
-                       area.neighborhood === 'כל האזור' ? `אזור ${area.city}` :
-                       area.neighborhood === 'כל העיר' ? `${area.city} - כל העיר` :
-                       area.neighborhood === 'כל השכונות' ? `${area.city} - כל השכונות` :
-                       `${area.city} - ${area.neighborhood}`}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        const newAreas = editFormData.workingAreas.filter((_, i) => i !== index);
-                        handleEditInputChange('workingAreas', newAreas);
-                        if (newAreas.length === 0) setLocationMode('');
-                      }}
-                      className="remove-area-btn"
-                    >
-                      ×
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-        </>
+        <WorkingAreasField
+          value={editFormData.workingAreas || []}
+          onChange={(areas) => handleEditInputChange('workingAreas', areas)}
+        />
       ) : (
         <>
           {userData?.workingAreas && userData.workingAreas.length > 0 ? (
@@ -2157,7 +1949,7 @@ const profileCompletionStatus = (() => {
               {userData.workingAreas.map((area, index) => (
                 <div key={index} className="area-tag">
                   <MapPin size={14} />
-                  <span>{area.neighborhood}, {area.city}</span>
+                  <span>{area.city}</span>
                 </div>
               ))}
             </div>
@@ -2187,7 +1979,7 @@ const profileCompletionStatus = (() => {
       <div key={index} style={{ position: 'relative', aspectRatio: '1/1', borderRadius: '8px', overflow: 'hidden', background: 'var(--neutral-100)' }}>
         <img
           src={url}
-          alt={`גלריה ${index + 1}`}
+          alt={`Galerie ${index + 1}`}
           style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center' }}
         />
         <button
@@ -2266,7 +2058,7 @@ const profileCompletionStatus = (() => {
           disabled={editLoading}
         >
           <X size={18} />
-          ביטול
+          Annuler
         </button>
       </div>
     )}
@@ -2337,7 +2129,7 @@ const profileCompletionStatus = (() => {
     <div className="review-header">
       <div className="review-author">
         <div className="author-info">
-          <h4>{review.reviewerName || review.reviewer_name || 'לקוח'}</h4>
+          <h4>{review.reviewerName || review.reviewer_name || 'Client'}</h4>
           <div className="review-date">
             <Clock size={14} />
             {new Date(review.createdAt || review.created_at).toLocaleDateString('he-IL')}
@@ -2908,7 +2700,7 @@ const profileCompletionStatus = (() => {
                           <span style={{
                             position: 'absolute', left: '0.75rem', top: '50%', transform: 'translateY(-50%)',
                             color: '#64748b', fontSize: '0.9rem', fontWeight: 700, pointerEvents: 'none', userSelect: 'none',
-                          }}>₪</span>
+                          }}>€</span>
                           <input
                             type="text"
                             value={item.price}
@@ -3003,29 +2795,29 @@ const profileCompletionStatus = (() => {
               <div className="settings-card" style={{ marginBottom: '1.5rem' }}>
                 <div className="settings-card-header">
                   <User size={24} />
-                  <h4>פרטים אישיים</h4>
+                  <h4>Informations personnelles</h4>
                 </div>
                 <div className="settings-content">
                   {isEditingName ? (
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                       <div className="form-group">
-                        <label>שם פרטי</label>
+                        <label>Prénom</label>
                         <input
                           type="text"
                           value={nameFormData.firstName}
                           onChange={(e) => setNameFormData(prev => ({ ...prev, firstName: e.target.value }))}
                           className="form-input"
-                          placeholder="שם פרטי"
+                          placeholder="Prénom"
                         />
                       </div>
                       <div className="form-group">
-                        <label>שם משפחה</label>
+                        <label>Nom</label>
                         <input
                           type="text"
                           value={nameFormData.lastName}
                           onChange={(e) => setNameFormData(prev => ({ ...prev, lastName: e.target.value }))}
                           className="form-input"
-                          placeholder="שם משפחה"
+                          placeholder="Nom"
                         />
                       </div>
                       <div style={{ display: 'flex', gap: '0.75rem' }}>
@@ -3068,7 +2860,7 @@ const profileCompletionStatus = (() => {
                         className="btn btn-secondary"
                         style={{ flexShrink: 0 }}
                       >
-                        <Edit size={16} />שנה שם
+                        <Edit size={16} />Modifier le nom
                       </button>
                     </div>
                   )}
@@ -3495,7 +3287,7 @@ placeholder={t('dashboard.security.newPasswordPlaceholder')}
                         fontWeight: 600,
                       }}
                     >
-                      {t('common.next') || 'הבא'}
+                      {t('common.next') || 'Suivant'}
                     </button>
                   </div>
                 </>

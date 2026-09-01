@@ -96,7 +96,7 @@ const ServiceDetailsForm = ({
   if (!FormComponent) {
     return (
       <div className="service-details-form">
-        <p>אנא בחר סוג שירות</p>
+        <p>Veuillez choisir un type de service</p>
       </div>
     );
   }

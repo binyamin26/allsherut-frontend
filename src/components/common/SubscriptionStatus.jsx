@@ -39,7 +39,7 @@ const SubscriptionStatus = ({ showDetails = true, compact = false }) => {
           setSubscriptionData(response.data);
         } else {
           // Cas où l'utilisateur n'a pas d'abonnement
-          if (response.message.includes('לא נמצא מנוי') || response.code === 'NO_SUBSCRIPTION') {
+          if (response.message.includes('Aucun abonnement') || response.code === 'NO_SUBSCRIPTION') {
             setSubscriptionData({
               hasSubscription: false,
               needsUpgrade: true
@@ -49,8 +49,8 @@ const SubscriptionStatus = ({ showDetails = true, compact = false }) => {
           }
         }
       } catch (err) {
-        console.error('שגיאה בטעינת מנוי:', err);
-        setError('שגיאה בטעינת נתוני המנוי');
+        console.error('Erreur lors du chargement de l’abonnement :', err);
+        setError('Erreur lors du chargement des données d’abonnement');
       } finally {
         setLoading(false);
       }
@@ -67,7 +67,7 @@ const SubscriptionStatus = ({ showDetails = true, compact = false }) => {
     return (
       <div className={`subscription-status loading ${compact ? 'compact' : ''}`}>
         <LoadingSpinner size="small" />
-        <span>טוען סטטוס מנוי...</span>
+        <span>Chargement du statut de l’abonnement...</span>
       </div>
     );
   }
@@ -90,23 +90,23 @@ const SubscriptionStatus = ({ showDetails = true, compact = false }) => {
           <AlertTriangle size={20} />
           <div className="status-info">
             <div className="status-title">
-              <span className="plan-name">אין מנוי פעיל</span>
+              <span className="plan-name">Aucun abonnement actif</span>
             </div>
-            <div className="status-text">התחל מנוי כדי לקבל פניות מלקוחות</div>
+            <div className="status-text">Souscrivez un abonnement pour recevoir des demandes de clients</div>
           </div>
         </div>
         {!compact && (
           <div className="status-actions">
             <Link to="/billing" className="btn btn-primary">
               <Crown size={16} />
-              התחל מנוי
+              Souscrire un abonnement
             </Link>
           </div>
         )}
         {compact && (
           <Link to="/billing" className="upgrade-btn">
             <TrendingUp size={14} />
-            התחל
+            Souscrire
           </Link>
         )}
       </div>
@@ -136,27 +136,27 @@ const SubscriptionStatus = ({ showDetails = true, compact = false }) => {
 
   const getStatusText = () => {
     if (!isActive) {
-      return `המנוי פג לפני ${Math.abs(daysRemaining)} ימים`;
+      return `L’abonnement a expiré il y a ${Math.abs(daysRemaining)} jours`;
     }
     
     if (subscription.planType === 'trial') {
       return daysRemaining > 0 
-        ? `ניסיון חינם - ${daysRemaining} ימים נותרו`
-        : 'ניסיון חינם מסתיים היום';
+        ? `Essai gratuit - ${daysRemaining} jours restants`
+        : 'L’essai gratuit se termine aujourd’hui';
     }
 
     if (warnings?.expiringSoon) {
-      return `המנוי מסתיים בעוד ${daysRemaining} ימים`;
+      return `L’abonnement se termine dans ${daysRemaining} jours`;
     }
 
-    return subscription.planType === 'monthly' ? 'מנוי חודשי פעיל' : 'מנוי שנתי פעיל';
+    return subscription.planType === 'monthly' ? 'Abonnement mensuel actif' : 'Abonnement annuel actif';
   };
 
   const getPlanDisplayName = () => {
     switch (subscription.planType) {
-      case 'trial': return 'ניסיון חינם';
-      case 'monthly': return 'חודשי';
-      case 'yearly': return 'שנתי';
+      case 'trial': return 'Essai gratuit';
+      case 'monthly': return 'Mensuel';
+      case 'yearly': return 'Annuel';
       default: return subscription.planType;
     }
   };
@@ -180,7 +180,7 @@ const SubscriptionStatus = ({ showDetails = true, compact = false }) => {
           <div className="status-title">
             <span className="plan-name">{getPlanDisplayName()}</span>
             <span className={`status-badge ${getStatusBadgeColor()}`}>
-              {subscription.status === 'active' ? 'פעיל' : subscription.status}
+              {subscription.status === 'active' ? 'Actif' : subscription.status}
             </span>
           </div>
           <div className="status-text">{getStatusText()}</div>
@@ -194,7 +194,7 @@ const SubscriptionStatus = ({ showDetails = true, compact = false }) => {
             <div className="detail-item">
               <Calendar size={16} />
               <div className="detail-content">
-                <label>מסתיים ב:</label>
+                <label>Se termine le :</label>
                 <span>{new Date(subscription.expiresAt).toLocaleDateString('he-IL')}</span>
               </div>
             </div>
@@ -203,8 +203,8 @@ const SubscriptionStatus = ({ showDetails = true, compact = false }) => {
               <div className="detail-item">
                 <CreditCard size={16} />
                 <div className="detail-content">
-                  <label>מחיר:</label>
-                  <span>₪{subscription.amountMonthly}/חודש</span>
+                  <label>Prix :</label>
+                  <span>€{subscription.amountMonthly}/mois</span>
                 </div>
               </div>
             )}
@@ -213,7 +213,7 @@ const SubscriptionStatus = ({ showDetails = true, compact = false }) => {
               <div className="detail-item">
                 <TrendingUp size={16} />
                 <div className="detail-content">
-                  <label>חיוב הבא:</label>
+                  <label>Prochain prélèvement :</label>
                   <span>{new Date(subscription.nextBillingDate).toLocaleDateString('he-IL')}</span>
                 </div>
               </div>
@@ -225,27 +225,27 @@ const SubscriptionStatus = ({ showDetails = true, compact = false }) => {
             {!isActive && (
               <Link to="/billing" className="btn btn-primary">
                 <Crown size={16} />
-                חדש מנוי
+                Renouveler l’abonnement
               </Link>
             )}
 
             {isActive && subscription.planType === 'trial' && daysRemaining <= 7 && (
               <Link to="/billing" className="btn btn-primary">
                 <TrendingUp size={16} />
-                שדרג למנוי בתשלום
+                Passer à un abonnement payant
               </Link>
             )}
 
             {isActive && warnings?.expiringSoon && subscription.planType !== 'trial' && (
               <Link to="/billing" className="btn btn-secondary">
                 <CreditCard size={16} />
-                חדש מנוי
+                Renouveler l’abonnement
               </Link>
             )}
 
             <Link to="/billing" className="btn btn-outline">
               <Settings size={16} />
-              נהל מנוי
+              Gérer l’abonnement
             </Link>
           </div>
         </div>
@@ -255,7 +255,7 @@ const SubscriptionStatus = ({ showDetails = true, compact = false }) => {
       {compact && subscriptionData.needsUpgrade && (
         <Link to="/billing" className="upgrade-btn">
           <TrendingUp size={14} />
-          שדרג
+          Mettre à niveau
         </Link>
       )}
     </div>

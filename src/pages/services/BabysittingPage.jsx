@@ -31,7 +31,7 @@ const BabysittingPageClean = () => {
   const [error, setError] = useState(null);
   const { filteredProviders, specialty } = useSpecialtyFilter(providers);
 
-  // ֳ‰tat pour modal d'avis
+  // État pour la modale d’avis
   const [reviewModal, setReviewModal] = useState({
     isOpen: false,
     providerId: null,
@@ -52,7 +52,7 @@ const BabysittingPageClean = () => {
         limit: 100
       };
 
-      // Nettoyer les paramֳ¨tres vides
+      // Nettoyer les paramètres vides
       const cleanParams = Object.fromEntries(
         Object.entries(searchParams).filter(([key, value]) => 
           value !== '' && value !== null && value !== undefined
@@ -118,7 +118,7 @@ const response = await apiService.searchProviders(cleanParams);
     });
   };
 
-  // Fonction pour rafraֳ®chir aprֳ¨s crֳ©ation d'avis
+  // Fonction pour rafraîchir après création d’avis
   const handleReviewCreated = () => {
     loadProviders();
   };
@@ -155,7 +155,7 @@ const response = await apiService.searchProviders(cleanParams);
         selectedLocation={locationFilter}
       />
 
-      {/* Section rֳ©sultats */}
+      {/* Section résultats */}
       <div className="results-section">
         <div className="results-container">
           <div className="results-summary">

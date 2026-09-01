@@ -76,8 +76,8 @@ const HomePage = () => {
   return (
     <div className="homepage">
       <SEO
-        title="כל השירותים לבית בישראל"
-        description="חברו עם ספקי שירות מקצועיים בישראל - בייביסיטר, ניקיון, חשמלאי, אינסטלטור, גינון ועוד 23 קטגוריות שירות. השוו, בחרו, ובקשו הצעת מחיר."
+        title="Tous les services à domicile en France"
+        description="Trouvez des prestataires de services professionnels en France : baby-sitting, ménage, électricien, plombier, jardinage et plus de 23 catégories de services. Comparez, choisissez et demandez un devis."
         canonicalPath="/"
       />
       {/* Hero Section */}

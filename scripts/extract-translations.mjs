@@ -19,7 +19,7 @@ const objectStr = raw.slice(start + 'const translations = '.length, end + 1);
 // eslint-disable-next-line no-new-func
 const translations = new Function(`return ${objectStr}`)();
 
-const langs = ['he', 'en', 'ru', 'fr'];
+const langs = ['en', 'fr'];
 for (const lang of langs) {
   mkdirSync(`public/locales/${lang}`, { recursive: true });
   writeFileSync(

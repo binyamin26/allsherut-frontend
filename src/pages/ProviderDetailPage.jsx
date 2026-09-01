@@ -299,12 +299,12 @@ const ProviderDetailPage = () => {
       }
     } else {
         console.error('❌ Provider API failed:', providerResponse);
-        setError('ספק השירות לא נמצא');
+        setError('Prestataire introuvable');
       }
       
     } catch (error) {
       console.error('❌ Erreur chargement provider:', error);
-      setError('שגיאה בטעינת פרטי הספק');
+      setError('Erreur lors du chargement des informations du prestataire');
     } finally {
       setLoading(false);
     }
@@ -449,7 +449,7 @@ const handleContact = () => {
             {details.age && (
               <div className="detail-item">
                <IconLabel icon={User}>{t('provider.details.age')}:</IconLabel>
-                <span>{details.age} שנים</span>
+                <span>{details.age} ans</span>
               </div>
             )}
             {details.religiosity && (
@@ -1602,7 +1602,7 @@ const handleContact = () => {
   const paymentConfig = getPaymentConfig(provider.serviceType);
   const serviceIconUrl = getServiceIcon(provider.serviceType);
 
-  const serviceNameHe = t(`services.${provider?.serviceType}`, provider?.serviceType || '');
+  const serviceName = t(`services.${provider?.serviceType}`, provider?.serviceType || '');
   const servicePath = provider ? buildServicePath(serviceTypeToKey(provider.serviceType), 'he') : null;
   const providerImage = provider ? (provider.media?.profileImage || provider.profile_image || provider.media?.gallery?.[0] || undefined) : undefined;
 
@@ -1616,7 +1616,7 @@ const handleContact = () => {
       {
         '@type': 'LocalBusiness',
         name: `${provider.first_name} ${provider.last_name}`,
-        description: provider.description || `${serviceNameHe}${provider.location_city ? ` ב${provider.location_city}` : ''}`,
+        description: provider.description || `${serviceName}${provider.location_city ? ` à ${provider.location_city}` : ''}`,
         url: `https://allsherut.com/provider/${provider.id}`,
         ...(providerImage && { image: providerImage }),
         ...((provider.phone || provider.contact?.phone) && { telephone: provider.phone || provider.contact.phone }),
@@ -1643,7 +1643,7 @@ const handleContact = () => {
         '@type': 'BreadcrumbList',
         itemListElement: [
           { '@type': 'ListItem', position: 1, name: t('provider.home'), item: 'https://allsherut.com/' },
-          { '@type': 'ListItem', position: 2, name: serviceNameHe, item: `https://allsherut.com${servicePath}` },
+          { '@type': 'ListItem', position: 2, name: serviceName, item: `https://allsherut.com${servicePath}` },
           { '@type': 'ListItem', position: 3, name: `${provider.first_name} ${provider.last_name}` },
         ],
       },
@@ -1654,8 +1654,8 @@ const handleContact = () => {
     <>
       {provider && (
         <SEO
-          title={`${provider.first_name} ${provider.last_name} - ${serviceNameHe}${provider.location_city ? ` ב${provider.location_city}` : ''}`}
-          description={provider.description || `${provider.first_name} ${provider.last_name} - ${serviceNameHe} מקצועי${provider.location_city ? ` ב${provider.location_city}` : ''} | AllSherut`}
+          title={`${provider.first_name} ${provider.last_name} - ${serviceName}${provider.location_city ? ` à ${provider.location_city}` : ''}`}
+          description={provider.description || `${provider.first_name} ${provider.last_name} - ${serviceName} professionnel${provider.location_city ? ` à ${provider.location_city}` : ''} | AllSherut`}
           canonicalPath={`/provider/${provider.id}`}
           image={providerImage}
           jsonLd={providerJsonLd}
@@ -1737,7 +1737,7 @@ const handleContact = () => {
       {provider.languages && (
         <div className="highlight">
           <Globe size={16} />
-          <span>שפות: {Array.isArray(provider.languages) ? provider.languages.join(', ') : provider.languages}</span>
+          <span>Langues : {Array.isArray(provider.languages) ? provider.languages.join(', ') : provider.languages}</span>
         </div>
       )}
     </div>
@@ -1822,12 +1822,12 @@ const handleContact = () => {
         <div className="container">
           <div className="main-content">
 
-            {/* Section: פרטים */}
+            {/* Section : Détails */}
             <div ref={detailsRef} data-section="details">
               {renderServiceDetails()}
               {provider.certifications && provider.certifications.length > 0 && provider.serviceType !== 'eldercare' && provider.serviceType !== 'laundry' && (
                 <div className="certifications-section" style={{ marginTop: 'var(--space-8)' }}>
-                  <h3 className="section-title">הכשרות ותעודות</h3>
+                  <h3 className="section-title">Qualifications et certifications</h3>
                   <div className="certifications-list">
                     {provider.certifications.map((cert, index) => (
                       <div key={index} className="certification-item">
@@ -1840,7 +1840,7 @@ const handleContact = () => {
               )}
             </div>
 
-            {/* Section: תמונות */}
+            {/* Section : Photos */}
             <div ref={galleryRef} data-section="gallery" className="service-details-section">
               <h3 className="details-title" style={{ textAlign: 'start' }}>{t('provider.navGallery')}</h3>
               {provider.media?.gallery?.length > 0 ? (
@@ -1853,7 +1853,7 @@ const handleContact = () => {
               )}
             </div>
 
-            {/* Section: מחירים */}
+            {/* Section : Tarifs */}
             <div ref={pricingRef} data-section="pricing" className="service-details-section">
               <h3 className="details-title" style={{ textAlign: 'start' }}>{t('provider.navPricing')}</h3>
               {pricing.length > 0 ? (
@@ -1894,7 +1894,7 @@ const handleContact = () => {
                         padding: '0.2rem 0.5rem',
                         borderRadius: '6px',
                         whiteSpace: 'nowrap',
-                      }}>{/₪|ש["״]?ח|שקל/.test(item.price || '')
+                      }}>{/€/.test(item.price || '')
                         ? item.price
                         : <span dir="ltr">{`₪${item.price}`}</span>}</span>
                     </div>
@@ -1907,7 +1907,7 @@ const handleContact = () => {
               )}
             </div>
 
-            {/* Section: ביקורות */}
+            {/* Section : Avis */}
                   <div ref={reviewsRef} data-section="reviews" className="reviews-section-enhanced">
                     <div className="reviews-header">
                    <h3 id="provider-reviews-title" className="details-title" style={{ textAlign: 'center', margin: 0 }}>{t('provider.reviews.title')}</h3>
@@ -2097,7 +2097,7 @@ const handleContact = () => {
         providerId={provider?.id}
         providerPhone={provider?.phone}
         providerName={provider?.name || provider?.full_name}
-        serviceName={serviceNameHe}
+        serviceName={serviceName}
         action={callModal.action}
       />
 
@@ -2138,7 +2138,7 @@ const handleContact = () => {
                     onClick={() => setShowContactModal(false)}
                     className="btn btn-secondary"
                   >
-                    ביטול
+                    Annuler
                   </button>
                 </div>
               </div>

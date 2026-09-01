@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 
 // Filtre côté client la liste des prestataires déjà chargée pour un service,
 // à partir du paramètre ?specialty=<valeur hébraïque> posé par la barre de
-// recherche de la homepage (ex: "aquarium" -> ניקוי ותחזוקת אקווריומים).
+// recherche de la homepage (ex: "aquarium" -> nettoyage et entretien d'aquariums).
 // On cherche la valeur dans le JSON complet du provider (service_details,
 // availability, etc.) pour rester correct quelle que soit la clé de filtre
 // réellement utilisée côté backend pour ce service.

@@ -192,7 +192,7 @@ const RecruitmentListingDetailPage = () => {
 
           {/* Tous les champs du formulaire */}
           <div className="rdp-section">
-            <h2 className="rdp-section-title">{t('recruitment.detail.jobDetails', 'פרטי המשרה')}</h2>
+            <h2 className="rdp-section-title">{t('recruitment.detail.jobDetails', 'Détails du poste')}</h2>
             <div className="rdp-details-grid">
 
               {contractLabel && (
@@ -268,7 +268,7 @@ const RecruitmentListingDetailPage = () => {
                   <span className="rdp-detail-icon"><Car size={17} /></span>
                   <div className="rdp-detail-text">
                     <span className="rdp-detail-label">{t('recruitment.drivingLicense')}</span>
-                    <span className="rdp-detail-val">✓ {t('recruitment.detail.yes', 'כן')}</span>
+                    <span className="rdp-detail-val">✓ {t('recruitment.detail.yes', 'Oui')}</span>
                   </div>
                 </div>
               )}
@@ -276,7 +276,7 @@ const RecruitmentListingDetailPage = () => {
               {(listing.languages_required || []).length > 0 && (
                 <div className="rdp-detail-row rdp-detail-row-chips">
                   <span className="rdp-detail-icon"><Languages size={17} /></span>
-                  <span className="rdp-detail-label">{t('recruitment.detail.languages', 'שפות')}</span>
+                  <span className="rdp-detail-label">{t('recruitment.detail.languages', 'Langues')}</span>
                   <div className="rdp-detail-chips">
                     {(listing.languages_required || []).map(l => (
                       <span key={l} className="rdp-req-chip">{t(`recruitment.lang.${l}`, l)}</span>
@@ -312,7 +312,7 @@ const RecruitmentListingDetailPage = () => {
               <p className="rdp-rec-service">{serviceLabel}</p>
               {memberSince && (
                 <p className="rdp-rec-since">
-                  {t('recruitment.detail.memberSince', 'מגייס מאז')} {memberSince}
+                  {t('recruitment.detail.memberSince', 'Recruteur depuis')} {memberSince}
                 </p>
               )}
             </div>
@@ -349,7 +349,7 @@ const RecruitmentListingDetailPage = () => {
       {similar.length > 0 && (
         <div className="rdp-sim-section">
           <div className="rdp-sim-inner">
-            <Reveal as="h2" direction="down" className="rdp-sim-heading">{t('recruitment.detail.similarOffers', 'מודעות דומות')}</Reveal>
+            <Reveal as="h2" direction="down" className="rdp-sim-heading">{t('recruitment.detail.similarOffers', 'Annonces similaires')}</Reveal>
             <div className="rdp-sim-grid">
               {similar.map((s, index) => (
                 <Reveal as="div" key={s.id} delay={index * 100}>
@@ -396,7 +396,7 @@ const RecruitmentListingDetailPage = () => {
         providerId={listing.provider_id}
         providerPhone={rawPhone}
         providerName={listing.full_name}
-        serviceName={`גיוס - ${serviceLabel}`}
+        serviceName={`Recrutement - ${serviceLabel}`}
         action={callModal.action}
         source="recruitment"
       />

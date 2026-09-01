@@ -3,13 +3,12 @@ import { X, Mail, Lock, User, Phone, Eye, EyeOff, Loader, Upload, CheckCircle, A
   Wrench, Sparkles, Users, Briefcase, Layers, Search } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
-import { getAllCities, getNeighborhoodsByCity } from '../../data/israelLocations.js';
+import WorkingAreasField from '../common/WorkingAreasField';
 import SuccessModal from '../SuccessModal';
 import imageCompression from 'browser-image-compression';
 import ServiceDetailsForm from '../services/ServiceDetailsForm';
 import RecruitmentForm from '../recruitment/RecruitmentForm';
 import { useLanguage } from '../../context/LanguageContext';
-import CustomDropdown from '../common/CustomDropdown';
 import { SERVICES_META, CATEGORY_DEFINITIONS } from '../../data/categories';
 import { SERVICE_SEARCH_TERMS } from '../../data/serviceSearchTerms';
 import { getServiceDetailsErrors } from '../../utils/serviceDetailsValidation';
@@ -40,7 +39,7 @@ const scrollToFirstError = (errors, currentStep = 1) => {
         targetElement = document.querySelector('input[name="confirmPassword"]');
         break;
       case 'workingAreas':
-        targetElement = document.querySelector('.city-selector select');
+        targetElement = document.querySelector('.working-areas-field .zone-autocomplete-input');
         break;
       default:
         if (firstErrorField.startsWith('serviceDetails.')) {
@@ -104,14 +103,6 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [successData, setSuccessData] = useState({});
   const [imageError, setImageError] = useState('');
-  const [cities, setCities] = useState([]);
-  const [selectedCity, setSelectedCity] = useState('');
-  const [availableNeighborhoods, setAvailableNeighborhoods] = useState([]);
-  const [locationMode, setLocationMode] = useState(''); // 'israel' | 'ezor' | 'city' | 'neighborhood'
-  const [selectedEzor, setSelectedEzor] = useState('');
-  
-  const [neighborhoodInput, setNeighborhoodInput] = useState('');
-  const [showNeighborhoodSuggestions, setShowNeighborhoodSuggestions] = useState(false);
   const modalRef = useRef(null);
 
   // Fonction pour gérer les checkboxes "Tout" vs options spécifiques
@@ -205,7 +196,7 @@ const services = SERVICE_CARD_DEFS.map(({ key, icon, gradient }) => ({
 // Regroupe les 35 services par catégorie (mêmes catégories que la page d'accueil)
 // et filtre selon la recherche, pour éviter une longue grille non-structurée.
 // La recherche matche sur le nom du service dans TOUTES les langues du site
-// (pas seulement la langue active), pour que taper "chef" ou "טבח" marche pareil.
+// (pas seulement la langue active), pour que taper "chef" ou "cook" marche pareil.
 const normalizedServiceSearch = serviceSearch.trim().toLowerCase();
 const matchesSearch = (key) => {
   if (!normalizedServiceSearch) return true;
@@ -254,27 +245,9 @@ const groupedServices = CATEGORY_DEFINITIONS
       });
       setShowPassword(false);
       setShowConfirmPassword(false);
-      setSelectedCity('');
-      setAvailableNeighborhoods([]);
-      setLocationMode('');
-      setSelectedEzor('');
       setImageError('');
     }
   }, [isOpen, initialMode, clearError]);
-
-  useEffect(() => {
-    const israeliCities = getAllCities();
-    setCities(israeliCities);
-  }, []);
-
-  useEffect(() => {
-    if (selectedCity) {
-      const neighborhoods = getNeighborhoodsByCity(selectedCity);
-      setAvailableNeighborhoods(neighborhoods);
-    } else {
-      setAvailableNeighborhoods([]);
-    }
-  }, [selectedCity]);
 
   useEffect(() => {
     const authForm = document.querySelector('.auth-modal .auth-form');
@@ -806,24 +779,8 @@ setErrors(newErrors);
     }
   };
 
-  const handleWorkingAreasChange = (neighborhood) => {
-    setFormData(prev => {
-      const currentAreas = prev.workingAreas || [];
-      const isSelected = currentAreas.some(area => area.neighborhood === neighborhood && area.city === selectedCity);
-      
-      let newAreas;
-      if (isSelected) {
-        newAreas = currentAreas.filter(area => !(area.neighborhood === neighborhood && area.city === selectedCity));
-      } else {
-        newAreas = [...currentAreas, { city: selectedCity, neighborhood }];
-      }
-      
-      return {
-        ...prev,
-        workingAreas: newAreas
-      };
-    });
-
+  const handleWorkingAreasChange = (workingAreas) => {
+    setFormData(prev => ({ ...prev, workingAreas }));
     if (errors.workingAreas) {
       setErrors(prev => ({ ...prev, workingAreas: '' }));
     }
@@ -1165,229 +1122,21 @@ if (!isValid) {
     return null;
   };
 
-const renderWorkingAreasSection = () => {
-  if (mode !== 'register' || step !== 2) return null;
+  const renderWorkingAreasSection = () => {
+    if (mode !== 'register' || step !== 2) return null;
 
-  const handleLocationModeChange = (newMode) => {
-    setLocationMode(newMode);
-    setSelectedEzor('');
-    setSelectedCity('');
-    setAvailableNeighborhoods([]);
-    if (errors.workingAreas) setErrors(prev => ({ ...prev, workingAreas: '' }));
-
-    if (newMode === 'israel') {
-      setFormData(prev => ({ ...prev, workingAreas: [{ city: 'ישראל', neighborhood: 'כל ישראל' }] }));
-    } else {
-      setFormData(prev => ({ ...prev, workingAreas: [] }));
-    }
-  };
-
-  const locationModes = [
-    { value: 'israel',       label: 'כל ישראל' },
-    { value: 'ezor',         label: 'לפי אזור' },
-    { value: 'city',         label: 'לפי עיר' },
-    { value: 'neighborhood', label: 'לפי שכונה' },
-  ];
-
-  const ezorim = ['מרכז', 'שרון', 'שפלה', 'ירושלים', 'צפון', 'חיפה', 'דרום', 'יהודה ושומרון'];
-
-  return (
-    <div className="input-group">
-      <label className="auth-form-label required">{t('auth.workingAreas')}</label>
-
-      {/* שלב 1: בחירת רמה */}
-      <div className="location-mode-selector">
-        {locationModes.map(({ value, label }) => (
-          <label key={value} className={`location-mode-option${locationMode === value ? ' selected' : ''}`}>
-            <input
-              type="radio"
-              name="locationMode"
-              value={value}
-              checked={locationMode === value}
-              onChange={() => handleLocationModeChange(value)}
-            />
-            <span>{label}</span>
-          </label>
-        ))}
+    return (
+      <div className="input-group working-areas-section">
+        <label className="auth-form-label required">{t('auth.workingAreas')}</label>
+        <p className="auth-form-hint">{t('auth.workingAreasHint')}</p>
+        <WorkingAreasField
+          value={formData.workingAreas}
+          onChange={handleWorkingAreasChange}
+          error={errors.workingAreas}
+        />
       </div>
-
-      {/* Cas 1: לפי אזור */}
-      {locationMode === 'ezor' && (
-        <div className="ezor-grid">
-          {ezorim.map(ezor => {
-            const isChecked = formData.workingAreas.some(a => a.city === ezor && a.neighborhood === 'כל האזור');
-            return (
-              <label key={ezor} className={`ezor-option${isChecked ? ' selected' : ''}`}>
-                <input
-                  type="checkbox"
-                  value={ezor}
-                  checked={isChecked}
-                  onChange={() => {
-                    setFormData(prev => {
-                      const alreadySelected = prev.workingAreas.some(a => a.city === ezor && a.neighborhood === 'כל האזור');
-                      if (alreadySelected) {
-                        return { ...prev, workingAreas: prev.workingAreas.filter(a => !(a.city === ezor && a.neighborhood === 'כל האזור')) };
-                      }
-                      return { ...prev, workingAreas: [...prev.workingAreas, { city: ezor, neighborhood: 'כל האזור' }] };
-                    });
-                    if (errors.workingAreas) setErrors(prev => ({ ...prev, workingAreas: '' }));
-                  }}
-                />
-                {ezor}
-              </label>
-            );
-          })}
-        </div>
-      )}
-
-      {/* Cas 2: לפי עיר */}
-      {locationMode === 'city' && (
-        <div className="city-selector">
-          <CustomDropdown
-            name="city"
-            options={cities}
-            value=""
-            onChange={(e) => {
-              const city = e.target.value;
-              setSelectedCity(city);
-              if (city) {
-                const other = formData.workingAreas.filter(a => a.city !== city);
-                setFormData(prev => ({ ...prev, workingAreas: [...other, { city, neighborhood: 'כל העיר' }] }));
-              } else {
-                setFormData(prev => ({ ...prev, workingAreas: [] }));
-              }
-              if (errors.workingAreas) setErrors(prev => ({ ...prev, workingAreas: '' }));
-            }}
-            placeholder={formData.workingAreas.length > 0 ? t('auth.selectAnotherCity') : t('auth.selectCity')}
-            error={errors.workingAreas}
-          />
-          {selectedCity && (
-            <div style={{ marginTop: '0.75rem', padding: '0.75rem', backgroundColor: '#f0fdf4', borderRadius: '8px', border: '1px solid #22c55e' }}>
-              <label className="checkbox-item" style={{ fontWeight: '600' }}>
-                <input
-                  type="checkbox"
-                  checked={formData.workingAreas?.some(a => a.city === selectedCity && a.neighborhood === 'כל העיר')}
-                  onChange={(e) => {
-                    if (e.target.checked) {
-                      const other = formData.workingAreas.filter(a => a.city !== selectedCity);
-                      setFormData(prev => ({ ...prev, workingAreas: [...other, { city: selectedCity, neighborhood: 'כל העיר' }] }));
-                    } else {
-                      setFormData(prev => ({ ...prev, workingAreas: formData.workingAreas.filter(a => !(a.city === selectedCity && a.neighborhood === 'כל העיר')) }));
-                    }
-                    if (errors.workingAreas) setErrors(prev => ({ ...prev, workingAreas: '' }));
-                  }}
-                />
-                {t('auth.allCity', { city: selectedCity })}
-              </label>
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* Cas 3: לפי שכונה */}
-      {locationMode === 'neighborhood' && (
-        <div>
-          <div className="city-selector">
-            <CustomDropdown
-              name="city"
-              options={cities}
-              value=""
-              onChange={(e) => {
-                setSelectedCity(e.target.value);
-                setFormData(prev => ({ ...prev, workingAreas: prev.workingAreas.filter(a => a.city !== e.target.value) }));
-                if (errors.workingAreas) setErrors(prev => ({ ...prev, workingAreas: '' }));
-              }}
-              placeholder={formData.workingAreas.length > 0 ? t('auth.selectAnotherCity') : t('auth.selectCity')}
-              error={errors.workingAreas}
-            />
-          </div>
-
-          {selectedCity && (
-            <>
-              <div style={{ marginTop: '0.5rem', marginBottom: '0.5rem', padding: '0.75rem', backgroundColor: '#f0fdf4', borderRadius: '8px', border: '1px solid #22c55e' }}>
-                <label className="checkbox-item" style={{ fontWeight: '600' }}>
-                  <input
-                    type="checkbox"
-                    checked={formData.workingAreas?.some(a => a.city === selectedCity && a.neighborhood === 'כל השכונות')}
-                    onChange={(e) => {
-                      if (e.target.checked) {
-                        const other = formData.workingAreas.filter(a => a.city !== selectedCity);
-                        setFormData(prev => ({ ...prev, workingAreas: [...other, { city: selectedCity, neighborhood: 'כל השכונות' }] }));
-                      } else {
-                        setFormData(prev => ({ ...prev, workingAreas: formData.workingAreas.filter(a => !(a.city === selectedCity && a.neighborhood === 'כל השכונות')) }));
-                      }
-                      if (errors.workingAreas) setErrors(prev => ({ ...prev, workingAreas: '' }));
-                    }}
-                  />
-                  כל השכונות ב{selectedCity}
-                </label>
-              </div>
-
-              {!formData.workingAreas?.some(a => a.city === selectedCity && a.neighborhood === 'כל השכונות') && (
-                <div style={{ marginTop: '0.5rem' }}>
-                  <CustomDropdown
-                    name="neighborhood"
-                    options={availableNeighborhoods.filter(n =>
-                      !formData.workingAreas.some(a => a.city === selectedCity && a.neighborhood === n)
-                    )}
-                    value=""
-                    onChange={(e) => {
-                      const n = e.target.value;
-                      if (n) {
-                        setFormData(prev => ({ ...prev, workingAreas: [...prev.workingAreas, { city: selectedCity, neighborhood: n }] }));
-                        if (errors.workingAreas) setErrors(prev => ({ ...prev, workingAreas: '' }));
-                      }
-                    }}
-                    placeholder={t('auth.typeNeighborhood', 'בחר שכונה...')}
-                  />
-                </div>
-              )}
-            </>
-          )}
-        </div>
-      )}
-
-      {/* תגיות אזורים שנבחרו */}
-      {formData.workingAreas.length > 0 && (
-        <div className="selected-areas">
-          <h5>{t('auth.selectedAreas')} ({formData.workingAreas.length})</h5>
-          <div className="selected-areas-list">
-            {formData.workingAreas.map((area, index) => (
-              <span key={index} className="area-tag">
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (area.neighborhood === 'כל ישראל') {
-                      setFormData(prev => ({ ...prev, workingAreas: [] }));
-                      setLocationMode('');
-                    } else if (area.neighborhood === 'כל האזור') {
-                      setFormData(prev => ({ ...prev, workingAreas: [] }));
-                      setSelectedEzor('');
-                    } else if (area.neighborhood === 'כל העיר' || area.neighborhood === 'כל השכונות') {
-                      setFormData(prev => ({ ...prev, workingAreas: prev.workingAreas.filter((_, i) => i !== index) }));
-                    } else {
-                      handleWorkingAreasChange(area.neighborhood);
-                    }
-                  }}
-                  aria-label="הסר אזור"
-                >
-                  ×
-                </button>
-                {area.neighborhood === 'כל ישראל'   ? t('auth.allIsrael') :
-                 area.neighborhood === 'כל האזור'   ? `כל אזור ${area.city}` :
-                 area.neighborhood === 'כל העיר'    ? t('auth.allCityShort', { city: area.city }) :
-                 area.neighborhood === 'כל השכונות' ? `כל שכונות ${area.city}` :
-                 `${area.city} - ${area.neighborhood}`}
-              </span>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {errors.workingAreas && <span className="error-text">{errors.workingAreas}</span>}
-    </div>
-  );
-};
+    );
+  };
 
   if (!isOpen) return null;
 

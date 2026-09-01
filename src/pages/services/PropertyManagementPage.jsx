@@ -31,7 +31,7 @@ const PropertyManagementPage = () => {
   const [error, setError] = useState(null);
   const { filteredProviders, specialty } = useSpecialtyFilter(providers);
 
-  // ֳ‰tat pour modal d'avis
+  // État pour la modale d’avis
   const [reviewModal, setReviewModal] = useState({
     isOpen: false,
     providerId: null,
@@ -52,7 +52,7 @@ const PropertyManagementPage = () => {
         limit: 100
       };
 
-      // Nettoyer les paramֳ¨tres vides
+      // Nettoyer les paramètres vides
       const cleanParams = Object.fromEntries(
         Object.entries(searchParams).filter(([key, value]) => 
           value !== '' && value !== null && value !== undefined
@@ -62,7 +62,7 @@ const PropertyManagementPage = () => {
       const response = await apiService.searchProviders(cleanParams);
       
       if (response.success) {
-         console.log('נ” Premier provider:', response.data.providers[0]); // AJOUTE CETTE LIGNE
+         console.log('Premier provider :', response.data.providers[0]); // AJOUTE CETTE LIGNE
         setProviders(response.data.providers || []);
         setResultsCount(response.data.pagination?.totalResults || response.data.providers?.length || 0);
       } else {
@@ -117,7 +117,7 @@ const PropertyManagementPage = () => {
     });
   };
 
-  // Fonction pour rafraֳ®chir aprֳ¨s crֳ©ation d'avis
+  // Fonction pour rafraîchir après création d’avis
   const handleReviewCreated = () => {
     loadProviders();
   };

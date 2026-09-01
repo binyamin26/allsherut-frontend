@@ -37,7 +37,7 @@ const Header = () => {
   const handleLangSwitch = (newLang) => {
     const curLang = getLangFromPath(pathname);
     // Sur une page de service → naviguer vers la même page dans la nouvelle langue
-    const serviceMatch = pathname.match(/(?:\/(?:fr|en|ru))?\/services\/([^/]+)$/);
+    const serviceMatch = pathname.match(/(?:\/(?:fr|en))?\/services\/([^/]+)$/);
     if (serviceMatch) {
       const key = getServiceKeyFromSlug(serviceMatch[1], curLang);
       if (key) {
@@ -49,7 +49,7 @@ const Header = () => {
     // Sur la home (/ ou /:lang) → naviguer vers la home de la nouvelle langue
     const parts = pathname.split('/').filter(Boolean);
     if (parts.length === 0 || (parts.length === 1 && SUPPORTED_LANGS.includes(parts[0]))) {
-      navigate(newLang === 'he' ? '/' : `/${newLang}`);
+      navigate(newLang === 'fr' ? '/' : `/${newLang}`);
       changeLanguage(newLang);
       return;
     }
@@ -58,10 +58,8 @@ const Header = () => {
   };
 
   const languages = [
-    { code: 'he', flag: 'https://flagcdn.com/w40/il.png', alt: 'עברית' },
-    { code: 'en', flag: 'https://flagcdn.com/w40/gb.png', alt: 'English' },
     { code: 'fr', flag: 'https://flagcdn.com/w40/fr.png', alt: 'Français' },
-    { code: 'ru', flag: 'https://flagcdn.com/w40/ru.png', alt: 'Русский' }
+    { code: 'en', flag: 'https://flagcdn.com/w40/gb.png', alt: 'English' }
   ];
 
   // Services avec clé interne pour construire les URLs localisées
@@ -145,15 +143,15 @@ const Header = () => {
             </div>
           </Link>
 <nav>
-  {/* Language dropdown - AVANT Accueil pour qu'il apparaisse entre Accueil et Services en RTL */}
+  {/* Language dropdown */}
   <div className="header-language-dropdown">
     <button 
       className="header-language-trigger"
       onClick={() => setShowLangDropdown(!showLangDropdown)}
     >
    <img 
-  src={languages.find(l => l.code === currentLanguage)?.flag || 'https://flagcdn.com/w40/il.png'} 
-  alt={currentLanguage || 'he'} 
+  src={languages.find(l => l.code === currentLanguage)?.flag || 'https://flagcdn.com/w40/fr.png'}
+  alt={currentLanguage || 'fr'}
 />
       <span className={`lang-arrow ${showLangDropdown ? 'open' : ''}`}>▼</span>
     </button>
@@ -198,23 +196,13 @@ const Header = () => {
     }}
     onClick={() => setIsMenuOpen(false)}
   >
-    {currentLanguage === 'he' ? (
-      <>
-        <div style={{ flexShrink: 0 }}>{service.icon}</div>
-        <div style={{ flexGrow: 1, textAlign: 'right' }}>
-          <h4>{t(service.nameKey)}</h4>
-          <p>{t(service.descKey)}</p>
-        </div>
-      </>
-    ) : (
-      <>
-        <div style={{ flexGrow: 1, textAlign: 'left' }}>
-          <h4>{t(service.nameKey)}</h4>
-          <p>{t(service.descKey)}</p>
-        </div>
-        <div style={{ flexShrink: 0 }}>{service.icon}</div>
-      </>
-    )}
+    <>
+      <div style={{ flexGrow: 1, textAlign: 'left' }}>
+        <h4>{t(service.nameKey)}</h4>
+        <p>{t(service.descKey)}</p>
+      </div>
+      <div style={{ flexShrink: 0 }}>{service.icon}</div>
+    </>
   </Link>
 ))}
     </div>
@@ -238,21 +226,12 @@ const Header = () => {
             style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '12px' }}
             onClick={() => setIsMenuOpen(false)}
           >
-            {currentLanguage === 'he' ? (
-              <>
-                <div style={{ flexShrink: 0 }}>{service.icon}</div>
-                <div style={{ flexGrow: 1, textAlign: 'right' }}>
-                  <h4>{t(service.nameKey)}</h4>
-                </div>
-              </>
-            ) : (
-              <>
-                <div style={{ flexGrow: 1, textAlign: 'left' }}>
-                  <h4>{t(service.nameKey)}</h4>
-                </div>
-                <div style={{ flexShrink: 0 }}>{service.icon}</div>
-              </>
-            )}
+            <>
+              <div style={{ flexGrow: 1, textAlign: 'left' }}>
+                <h4>{t(service.nameKey)}</h4>
+              </div>
+              <div style={{ flexShrink: 0 }}>{service.icon}</div>
+            </>
           </Link>
         );
       })}
@@ -268,13 +247,13 @@ const Header = () => {
               <div className="flex items-center space-x-4">
                 <div className="user-menu">
                   <Link to="/dashboard" className="cta-button">
-                    {t('nav.dashboard', 'דשבורד')}
+                    {t('nav.dashboard', 'Tableau de bord')}
                   </Link>
                 </div>
                 <button 
                   onClick={handleLogout}
                   className="cta-button"
-                  title="התנתק"
+                  title="Se déconnecter"
                 >
                   <LogOut className="w-4 h-4" />
                   {t('auth.logout')}
@@ -454,7 +433,7 @@ const Header = () => {
                 className="cta-button mobile-drawer-cta"
                 onClick={() => setIsMenuOpen(false)}
               >
-                {t('nav.dashboard', 'דשבורד')}
+                {t('nav.dashboard', 'Tableau de bord')}
               </Link>
               <button onClick={handleLogout} className="mobile-drawer-logout">
                 <LogOut className="w-4 h-4" />

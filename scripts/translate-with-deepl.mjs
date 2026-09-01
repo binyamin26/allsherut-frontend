@@ -1,5 +1,5 @@
 // scripts/translate-with-deepl.mjs
-// Translates missing keys from Hebrew (source) to EN, FR, RU via DeepL API.
+// Translates missing keys from French (source) to EN via DeepL API.
 //
 // Setup:
 //   1. Get a free API key at https://www.deepl.com/pro-api (500k chars/month free)
@@ -41,7 +41,8 @@ const API_URL = API_KEY.endsWith(':fx')
   ? 'https://api-free.deepl.com/v2/translate'
   : 'https://api.deepl.com/v2/translate';
 
-const TARGET_LANGS = { en: 'EN-US', fr: 'FR', ru: 'RU' };
+const TARGET_LANGS = { en: 'EN-US' };
+const SOURCE_LANG = 'FR';
 const BATCH_SIZE = 50; // keys per API call
 
 // ─── CLI args ────────────────────────────────────────────────────────────────
@@ -65,7 +66,7 @@ const restoreVars = (str) =>
 // Translate an array of strings via DeepL
 const translateBatch = async (texts, targetLang) => {
   const body = new URLSearchParams();
-  body.append('source_lang', 'HE');
+  body.append('source_lang', SOURCE_LANG);
   body.append('target_lang', targetLang);
   body.append('tag_handling', 'xml');
   body.append('ignore_tags', 'keep');
@@ -100,14 +101,14 @@ const translateAll = async (pairs, targetLang) => {
 };
 
 // ─── Main ────────────────────────────────────────────────────────────────────
-const heJson = JSON.parse(readFileSync('src/locales/he/translation.json', 'utf-8'));
+const sourceJson = JSON.parse(readFileSync('src/locales/fr/translation.json', 'utf-8'));
 const langs = onlyLang ? { [onlyLang]: TARGET_LANGS[onlyLang] } : TARGET_LANGS;
 
 let totalTranslated = 0;
 
 for (const [lang, deeplCode] of Object.entries(langs)) {
   if (!deeplCode) {
-    console.warn(`⚠️  Unknown language: ${lang}. Supported: en, fr, ru`);
+    console.warn(`⚠️  Unknown language: ${lang}. Supported: en`);
     continue;
   }
 
@@ -122,10 +123,10 @@ for (const [lang, deeplCode] of Object.entries(langs)) {
   }
 
   // Find keys to translate
-  const missing = Object.entries(heJson).filter(([key, value]) => {
+  const missing = Object.entries(sourceJson).filter(([key, value]) => {
     if (force) return true;
     if (!existing[key]) return true;           // missing
-    if (existing[key] === value) return true;  // same as Hebrew (not translated)
+    if (existing[key] === value) return true;  // same as French (not translated)
     return false;
   }).map(([key, value]) => ({ key, value }));
 

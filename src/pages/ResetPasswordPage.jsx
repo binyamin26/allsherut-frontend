@@ -35,7 +35,7 @@ const ResetPasswordPage = () => {
       setStep('verifying');
       
       if (!token || token.length !== 64) {
-        setError('טוקן איפוס לא תקין');
+        setError('Jeton de réinitialisation invalide');
         setStep('error');
         return;
       }
@@ -47,13 +47,13 @@ const ResetPasswordPage = () => {
         setTokenValid(true);
         setStep('form');
       } else {
-        setError(data.message || 'טוקן איפוס לא תקף או פג תוקף');
+        setError(data.message || 'Jeton de réinitialisation invalide ou expiré');
         setStep('error');
       }
 
     } catch (error) {
       console.error('Token verification error:', error);
-      setError('שגיאה בבדיקת הטוקן. נסה שוב מאוחר יותר');
+      setError('Erreur lors de la vérification du jeton. Réessayez plus tard');
       setStep('error');
     }
   };
@@ -63,15 +63,15 @@ const ResetPasswordPage = () => {
     const errors = {};
     
     if (!password) {
-      errors.newPassword = 'סיסמה נדרשת';
+      errors.newPassword = 'Mot de passe requis';
     } else if (password.length < 6) {
-      errors.newPassword = 'הסיסמה חייבת להכיל לפחות 6 תווים';
+      errors.newPassword = 'Le mot de passe doit contenir au moins 6 caractères';
     }
 
     if (!formData.confirmPassword) {
-      errors.confirmPassword = 'אישור סיסמה נדרש';
+      errors.confirmPassword = 'Confirmation du mot de passe requise';
     } else if (password !== formData.confirmPassword) {
-      errors.confirmPassword = 'הסיסמאות לא תואמות';
+      errors.confirmPassword = 'Les mots de passe ne correspondent pas';
     }
 
     return errors;
@@ -97,7 +97,7 @@ const ResetPasswordPage = () => {
       if (value !== formData.newPassword) {
         setValidationErrors(prev => ({
           ...prev,
-          confirmPassword: 'הסיסמאות לא תואמות'
+          confirmPassword: 'Les mots de passe ne correspondent pas'
         }));
       } else {
         setValidationErrors(prev => ({
@@ -137,7 +137,7 @@ const ResetPasswordPage = () => {
 
 
 if (data.success) {
-  setSuccess('הסיסמה שונתה בהצלחה!');
+  setSuccess('Mot de passe modifié avec succès !');
   setStep('success');
   
   // Redirection simple après 3 secondes
@@ -146,12 +146,12 @@ if (data.success) {
   }, 3000);
   
 } else {
-  setError(data.message || 'שגיאה בשינוי הסיסמה');
+  setError(data.message || 'Erreur lors du changement de mot de passe');
 }
 
     } catch (error) {
       console.error('Reset password error:', error);
-      setError('שגיאה בשינוי הסיסמה. נסה שוב מאוחר יותר');
+      setError('Erreur lors du changement de mot de passe. Réessayez plus tard');
     } finally {
       setLoading(false);
     }
@@ -165,8 +165,8 @@ if (data.success) {
           <div className="reset-card">
             <div className="text-center">
               <Loader className="animate-spin mx-auto mb-4" size={48} />
-              <h2>בודק טוקן איפוס...</h2>
-              <p className="text-neutral-600">אנא המתן בזמן שאנחנו מוודאים את תקינות הקישור</p>
+              <h2>Vérification du jeton de réinitialisation...</h2>
+              <p className="text-neutral-600">Veuillez patienter pendant que nous vérifions la validité du lien</p>
             </div>
           </div>
         </div>
@@ -184,19 +184,19 @@ if (data.success) {
               <div className="error-icon">
                 <AlertCircle size={64} />
               </div>
-              <h2>שגיאה בטוקן האיפוס</h2>
+              <h2>Erreur de jeton de réinitialisation</h2>
               <p className="error-message">{error}</p>
               
               <div className="error-actions">
                 <Link to="/" className="btn btn-secondary">
                   <Home size={18} />
-                  חזרה לדף הבית
+                  Retour à l’accueil
                 </Link>
                 <button 
                   onClick={() => navigate('/', { state: { showAuthModal: true } })}
                   className="btn btn-primary"
                 >
-                  בקש איפוס חדש
+                  Demander une nouvelle réinitialisation
                 </button>
               </div>
             </div>
@@ -216,9 +216,9 @@ if (step === 'success') {
             <div className="success-icon">
               <CheckCircle size={64} />
             </div>
-            <h2>הסיסמה שונתה בהצלחה!</h2>
+            <h2>Mot de passe modifié avec succès !</h2>
             <p className="success-message">
-              הסיסמה שלך שונתה בהצלחה. כעת תוכל להתחבר עם הסיסמה החדשה.
+              Votre mot de passe a été modifié avec succès. Vous pouvez maintenant vous connecter avec le nouveau mot de passe.
             </p>
             
             <div className="success-actions">
@@ -227,11 +227,11 @@ if (step === 'success') {
                 className="btn btn-primary"
               >
                 <Home size={18} />
-                חזרה לדף הבית
+                Retour à l’accueil
               </button>
               
               <p className="text-sm text-neutral-600 mt-4">
-                מעביר אוטומטית בעוד מספר שניות...
+                Redirection automatique dans quelques secondes...
               </p>
             </div>
           </div>
@@ -250,8 +250,8 @@ if (step === 'success') {
             <div className="reset-icon">
               <Lock size={48} />
             </div>
-            <h1>איפוס סיסמה</h1>
-            <p>הזן סיסמה חדשה לחשבון שלך</p>
+            <h1>Réinitialisation du mot de passe</h1>
+            <p>Saisissez un nouveau mot de passe pour votre compte</p>
           </div>
 
           <form onSubmit={handleSubmit} className="reset-form">
@@ -264,13 +264,13 @@ if (step === 'success') {
 
             {/* New Password Field */}
             <div className="input-group">
-              <label className="form-label">סיסמה חדשה</label>
+              <label className="form-label">Nouveau mot de passe</label>
               <div className="input-wrapper">
                 <Lock className="input-icon" size={20} />
                 <input
                   type={showPassword ? "text" : "password"}
                   name="newPassword"
-                  placeholder="הזן סיסמה חדשה"
+                  placeholder="Saisissez un nouveau mot de passe"
                   value={formData.newPassword}
                   onChange={handleInputChange}
                   className={validationErrors.newPassword ? 'error' : ''}
@@ -291,13 +291,13 @@ if (step === 'success') {
 
             {/* Confirm Password Field */}
             <div className="input-group">
-              <label className="form-label">אישור סיסמה חדשה</label>
+              <label className="form-label">Confirmation du nouveau mot de passe</label>
               <div className="input-wrapper">
                 <Lock className="input-icon" size={20} />
                 <input
                   type={showConfirmPassword ? "text" : "password"}
                   name="confirmPassword"
-                  placeholder="הזן שוב את הסיסמה החדשה"
+                  placeholder="Saisissez à nouveau le nouveau mot de passe"
                   value={formData.confirmPassword}
                   onChange={handleInputChange}
                   className={validationErrors.confirmPassword ? 'error' : ''}
@@ -325,12 +325,12 @@ if (step === 'success') {
               {loading ? (
                 <>
                   <Loader className="animate-spin" size={18} />
-                  משנה סיסמה...
+                  Modification du mot de passe...
                 </>
               ) : (
                 <>
                   <Lock size={18} />
-                  שנה סיסמה
+                  Modifier le mot de passe
                 </>
               )}
             </button>
@@ -338,13 +338,13 @@ if (step === 'success') {
             {/* Back to Login */}
             <div className="form-footer">
               <p>
-                נזכרת בסיסמה?{' '}
+                Vous vous souvenez de votre mot de passe ?{' '}
                 <button 
                   type="button"
                   onClick={() => navigate('/', { state: { showAuthModal: true } })}
                   className="link-btn"
                 >
-                  התחבר כאן
+                  Connectez-vous ici
                 </button>
               </p>
             </div>

@@ -73,7 +73,7 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
   };
   const formattedRating = formatRating(provider.average_rating);
 
-  // Ville avec logique כל ישראל
+  // Ville (logique « toute la France »)
   const getCity = () => {
     const city = provider.city || provider.location?.city || provider.location || '';
     if (city === 'כל ישראל' || city === 'ישראל') {
@@ -82,7 +82,7 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
     return city;
   };
 
-  // Neighborhood (ne pas afficher si כל ישראל)
+  // Quartier (ne pas afficher si « toute la France »)
   const getNeighborhood = () => {
     const neighborhood = provider.neighborhood || provider.location?.area || '';
     if (neighborhood === 'כל ישראל' || neighborhood === 'כל העיר') {

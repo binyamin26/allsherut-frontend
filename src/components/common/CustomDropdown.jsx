@@ -129,7 +129,7 @@ const CustomDropdown = ({
               ref={searchInputRef}
               type="text"
               className="dropdown-search-input"
-              placeholder={t ? t('common.search') : 'חיפוש...'}
+              placeholder={t ? t('common.search') : 'Rechercher...'}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               onClick={(e) => e.stopPropagation()}
@@ -151,7 +151,7 @@ const CustomDropdown = ({
         ))
       ) : (
         <li className="custom-dropdown-item no-results">
-         {t ? t('search.noResults.title') : 'לא נמצאו תוצאות'}
+         {t ? t('search.noResults.title') : 'Aucun résultat'}
         </li>
       )}
     </ul>,

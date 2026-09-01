@@ -3,7 +3,7 @@ import { Loader } from 'lucide-react';
 
 const LoadingSpinner = ({ 
   size = 'medium', 
-  text = 'טוען...', 
+  text = 'Chargement...', 
   overlay = false,
   className = ''
 }) => {

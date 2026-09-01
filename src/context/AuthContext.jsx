@@ -69,7 +69,7 @@ setUser({
             localStorage.removeItem('homesherut_token');
           }
         } catch (error) {
-          console.error('שגיאה בבדיקת אימות:', error);
+          console.error('Erreur lors de la vérification de l’authentification :', error);
           localStorage.removeItem('homesherut_token');
         }
       }
@@ -99,12 +99,12 @@ setUser({
         setUser({ ...userData, services: userData.services || [userData.service_type] });
         return { success: true };
       } else {
-        setError(data.message || 'שגיאה בהתחברות');
+        setError(data.message || 'Erreur de connexion');
         return { success: false, message: data.message };
       }
     } catch (error) {
-      console.error('שגיאה בהתחברות:', error);
-      const errorMessage = 'שגיאה בחיבור לשרת';
+      console.error('Erreur de connexion :', error);
+      const errorMessage = 'Erreur de connexion au serveur';
       setError(errorMessage);
       return { success: false, message: errorMessage };
     } finally {
@@ -143,13 +143,13 @@ setUser({
         return { success: true };
       } else {
         // Gestion des erreurs (409, 500, etc.)
-        const errorMessage = data.message || 'שגיאה ברישום';
+        const errorMessage = data.message || 'Erreur lors de l’inscription';
         setError(errorMessage);
         return { success: false, message: errorMessage, errors: data.errors };
       }
     } catch (error) {
-      console.error('שגיאה ברישום:', error);
-      const errorMessage = 'שגיאה בחיבור לשרת';
+      console.error('Erreur lors de l’inscription :', error);
+      const errorMessage = 'Erreur de connexion au serveur';
       setError(errorMessage);
       return { success: false, message: errorMessage };
     } finally {
@@ -185,14 +185,14 @@ setUser({
         setUser(updatedUser);
         return { success: true, data: data.data };
       } else {
-        const errorMessage = data.message || 'שגיאה בהשלמת הפרופיל';
+        const errorMessage = data.message || 'Erreur lors de la finalisation du profil';
         setError(errorMessage);
         return { success: false, message: errorMessage, errors: data.errors };
       }
 
     } catch (error) {
-      console.error('שגיאה בהשלמת פרופיל:', error);
-      const errorMessage = 'שגיאה בהשלמת הפרופיל';
+      console.error('Erreur lors de la finalisation du profil :', error);
+      const errorMessage = 'Erreur lors de la finalisation du profil';
       setError(errorMessage);
       return { success: false, message: errorMessage };
     } finally {
@@ -215,8 +215,8 @@ setUser({
         return { success: false, message: data.message };
       }
     } catch (error) {
-      console.error('שגיאה בבדיקת פרופיל:', error);
-      return { success: false, message: 'שגיאה בבדיקת הפרופיל' };
+      console.error('Erreur lors de la vérification du profil :', error);
+      return { success: false, message: 'Erreur lors de la vérification du profil' };
     }
   };
 
@@ -236,7 +236,7 @@ const checkPhoneExists = async (phone, serviceType) => {
     }
     return false;
   } catch (error) {
-    console.error('שגיאה בבדיקת טלפון:', error);
+    console.error('Erreur lors de la vérification du téléphone :', error);
     return false;
   }
 };
@@ -251,7 +251,7 @@ const checkPhoneExists = async (phone, serviceType) => {
         });
       }
     } catch (error) {
-      console.error('שגיאה בהתנתקות:', error);
+      console.error('Erreur lors de la déconnexion :', error);
     } finally {
       setUser(null);
       localStorage.removeItem('homesherut_token');
@@ -279,12 +279,12 @@ const updateProfile = async (profileData) => {
       setUser(updatedUser);
       return { success: true, data: data.data };
     } else {
-      setError(data.message || 'שגיאה בעדכון הפרופיל');
+      setError(data.message || 'Erreur lors de la mise à jour du profil');
       return { success: false, message: data.message };
     }
   } catch (error) {
-    console.error('שגיאה בעדכון פרופיל:', error);
-    const errorMessage = 'שגיאה בעדכון הפרופיל';
+    console.error('Erreur lors de la mise à jour du profil :', error);
+    const errorMessage = 'Erreur lors de la mise à jour du profil';
     setError(errorMessage);
     return { success: false, message: errorMessage };
   } finally {
@@ -333,12 +333,12 @@ const updatedUser = {
       setUser(updatedUser);
       return { success: true, imageUrl: data.data.imageUrl };
     } else {
-      setError(data.message || 'שגיאה בהעלאת התמונה');
+      setError(data.message || 'Erreur lors du téléchargement de la photo');
       return { success: false, message: data.message };
     }
   } catch (error) {
-    console.error('שגיאה בהעלאת תמונה:', error);
-    const errorMessage = 'שגיאה בהעלאת התמונה';
+    console.error('Erreur lors du téléchargement de la photo :', error);
+    const errorMessage = 'Erreur lors du téléchargement de la photo';
     setError(errorMessage);
     return { success: false, message: errorMessage };
   } finally {
@@ -368,12 +368,12 @@ const deleteProfileImage = async (serviceType = null) => {
       setUser(updatedUser);
       return { success: true };
     } else {
-      setError(response.message || 'שגיאה במחיקת התמונה');
+      setError(response.message || 'Erreur lors de la suppression de la photo');
       return { success: false, message: response.message };
     }
   } catch (error) {
-    console.error('שגיאה במחיקת תמונה:', error);
-    const errorMessage = 'שגיאה במחיקת התמונה';
+    console.error('Erreur lors de la suppression de la photo :', error);
+    const errorMessage = 'Erreur lors de la suppression de la photo';
     setError(errorMessage);
     return { success: false, message: errorMessage };
   } finally {
@@ -412,7 +412,7 @@ const uploadGalleryImage = async (imageFile, serviceType = null) => {
       return { success: false, message: data.message };
     }
   } catch (error) {
-    return { success: false, message: 'שגיאה בהעלאת התמונה' };
+    return { success: false, message: 'Erreur lors du téléchargement de la photo' };
   } finally {
     setLoading(false);
   }
@@ -440,7 +440,7 @@ const deleteGalleryImage = async (imageUrl, serviceType = null) => {
     }
     return { success: false, message: response.message };
   } catch (error) {
-    return { success: false, message: 'שגיאה במחיקת התמונה' };
+    return { success: false, message: 'Erreur lors de la suppression de la photo' };
   } finally {
     setLoading(false);
   }
@@ -463,12 +463,12 @@ const deleteGalleryImage = async (imageUrl, serviceType = null) => {
       if (data.success) {
         return { success: true };
       } else {
-        setError(data.message || 'שגיאה בשינוי הסיסמה');
+        setError(data.message || 'Erreur lors du changement de mot de passe');
         return { success: false, message: data.message };
       }
     } catch (error) {
-      console.error('שגיאה בשינוי סיסמה:', error);
-      const errorMessage = 'שגיאה בשינוי הסיסמה';
+      console.error('Erreur lors du changement de mot de passe :', error);
+      const errorMessage = 'Erreur lors du changement de mot de passe';
       setError(errorMessage);
       return { success: false, message: errorMessage };
     } finally {
@@ -501,7 +501,7 @@ if (data && (method === 'POST' || method === 'PUT' || method === 'PATCH' || meth
 
       if (!response.ok) {
         // ✅ NOUVEAU : Récupérer le vrai message d'erreur du serveur
-        let errorMessage = 'שגיאה בחיבור לשרת'; // Message par défaut
+        let errorMessage = 'Erreur de connexion au serveur'; // Message par défaut
         
         try {
           const errorData = await response.json();
@@ -518,7 +518,7 @@ if (data && (method === 'POST' || method === 'PUT' || method === 'PATCH' || meth
 
       return await response.json();
     } catch (error) {
-      console.error(`שגיאת API ${endpoint}:`, error);
+      console.error(`Erreur API ${endpoint}:`, error);
       throw error;
     }
   };
@@ -542,7 +542,7 @@ if (data && (method === 'POST' || method === 'PUT' || method === 'PATCH' || meth
       }
       return false;
     } catch (error) {
-      console.error('שגיאה ברענון משתמש:', error);
+      console.error('Erreur lors de l’actualisation de l’utilisateur :', error);
       return false;
     }
   };
@@ -576,7 +576,7 @@ if (data && (method === 'POST' || method === 'PUT' || method === 'PATCH' || meth
       const response = await apiCall('/subscriptions/status', 'GET');
       return response;
     } catch (error) {
-      console.error('שגיאה בקבלת סטטוס מנוי:', error);
+      console.error('Erreur lors de la récupération du statut de l’abonnement :', error);
       return { success: false, message: error.message };
     }
   };
@@ -589,7 +589,7 @@ if (data && (method === 'POST' || method === 'PUT' || method === 'PATCH' || meth
       const response = await apiCall('/subscriptions/pricing', 'GET');
       return response;
     } catch (error) {
-      console.error('שגיאה בקבלת מחירי מנויים:', error);
+      console.error('Erreur lors de la récupération des tarifs d’abonnement :', error);
       return { success: false, message: error.message };
     }
   };
@@ -613,8 +613,8 @@ if (data && (method === 'POST' || method === 'PUT' || method === 'PATCH' || meth
 
       return response;
     } catch (error) {
-      console.error('שגיאה בשדרוג מנוי:', error);
-      const errorMessage = error.message || 'שגיאה בשדרוג המנוי';
+      console.error('Erreur lors de la mise à niveau de l’abonnement :', error);
+      const errorMessage = error.message || 'Erreur lors de la mise à niveau de l’abonnement';
       setError(errorMessage);
       return { success: false, message: errorMessage };
     } finally {
@@ -639,8 +639,8 @@ if (data && (method === 'POST' || method === 'PUT' || method === 'PATCH' || meth
 
       return response;
     } catch (error) {
-      console.error('שגיאה בביטול מנוי:', error);
-      const errorMessage = error.message || 'שגיאה בביטול המנוי';
+      console.error('Erreur lors de l’annulation de l’abonnement :', error);
+      const errorMessage = error.message || 'Erreur lors de l’annulation de l’abonnement';
       setError(errorMessage);
       return { success: false, message: errorMessage };
     } finally {
@@ -665,8 +665,8 @@ if (data && (method === 'POST' || method === 'PUT' || method === 'PATCH' || meth
 
       return response;
     } catch (error) {
-      console.error('שגיאה בהפעלה מחדש של מנוי:', error);
-      const errorMessage = error.message || 'שגיאה בהפעלה מחדש של המנוי';
+      console.error('Erreur lors de la réactivation de l’abonnement :', error);
+      const errorMessage = error.message || 'Erreur lors de la réactivation de l’abonnement';
       setError(errorMessage);
       return { success: false, message: errorMessage };
     } finally {
@@ -682,7 +682,7 @@ if (data && (method === 'POST' || method === 'PUT' || method === 'PATCH' || meth
       const response = await apiCall('/subscriptions/billing-history', 'GET');
       return response;
     } catch (error) {
-      console.error('שגיאה בקבלת היסטוריית תשלומים:', error);
+      console.error('Erreur lors de la récupération de l’historique des paiements :', error);
       return { success: false, message: error.message };
     }
   };
@@ -704,13 +704,13 @@ if (data && (method === 'POST' || method === 'PUT' || method === 'PATCH' || meth
       if (response.success) {
         return { success: true, data: response.data };
       } else {
-        const errorMessage = response.message || 'שגיאה ביצירת התגובה';
+        const errorMessage = response.message || 'Erreur lors de la création de la réponse';
         setError(errorMessage);
         return { success: false, message: errorMessage };
       }
     } catch (error) {
-      console.error('שגיאה ביצירת מענה:', error);
-      const errorMessage = 'שגיאה בחיבור לשרת';
+      console.error('Erreur lors de la création de la réponse :', error);
+      const errorMessage = 'Erreur de connexion au serveur';
       setError(errorMessage);
       return { success: false, message: errorMessage };
     } finally {
@@ -737,13 +737,13 @@ if (data && (method === 'POST' || method === 'PUT' || method === 'PATCH' || meth
         const reviews = response.data?.reviews || response.reviews || [];
         return { success: true, data: { reviews } };
       } else {
-        const errorMessage = response.message || 'שגיאה בטעינת הביקורות';
+        const errorMessage = response.message || 'Erreur lors du chargement des avis';
         setError(errorMessage);
         return { success: false, message: errorMessage, data: { reviews: [] } };
       }
     } catch (error) {
-      console.error('שגיאה בטעינת ביקורות:', error);
-      const errorMessage = 'שגיאה בחיבור לשרת';
+      console.error('Erreur lors du chargement des avis :', error);
+      const errorMessage = 'Erreur de connexion au serveur';
       setError(errorMessage);
       return { success: false, message: errorMessage, data: { reviews: [] } };
     } finally {
@@ -762,13 +762,13 @@ if (data && (method === 'POST' || method === 'PUT' || method === 'PATCH' || meth
       if (response.success) {
         return { success: true, data: response.data };
       } else {
-        const errorMessage = response.message || 'שגיאה בטעינת הביקורת';
+        const errorMessage = response.message || 'Erreur lors du chargement de l’avis';
         setError(errorMessage);
         return { success: false, message: errorMessage };
       }
     } catch (error) {
-      console.error('שגיאה בטעינת ביקורת:', error);
-      const errorMessage = 'שגיאה בחיבור לשרת';
+      console.error('Erreur lors du chargement de l’avis :', error);
+      const errorMessage = 'Erreur de connexion au serveur';
       setError(errorMessage);
       return { success: false, message: errorMessage };
     } finally {
@@ -795,10 +795,10 @@ const switchService = async (serviceType) => {
         return { success: true };
       }
     }
-    return { success: false, message: 'שגיאה בהחלפת שירות' };
+    return { success: false, message: 'Erreur lors du changement de service' };
   } catch (error) {
-    console.error('שגיאה בהחלפת שירות:', error);
-    return { success: false, message: 'שגיאה בהחלפת שירות' };
+    console.error('Erreur lors du changement de service:', error);
+    return { success: false, message: 'Erreur lors du changement de service' };
   } finally {
     setLoading(false);
   }
@@ -820,7 +820,7 @@ const switchService = async (serviceType) => {
           return {
             success: true,
             accountDeleted: true,
-            message: 'החשבון נמחק לצמיתות'
+            message: 'Compte définitivement supprimé'
           };
         }
         
@@ -834,13 +834,13 @@ const switchService = async (serviceType) => {
           accountDeleted: false,
           remainingServices: response.data.remainingServices,
           newActiveService: response.data.newActiveService,
-          message: 'השירות נמחק בהצלחה'
+          message: 'Service supprimé avec succès'
         };
       } else {
-        throw new Error(response.message || 'שגיאה במחיקת השירות');
+        throw new Error(response.message || 'Erreur lors de la suppression du service');
       }
     } catch (error) {
-      console.error('שגיאה במחיקת שירות:', error);
+      console.error('Erreur lors de la suppression du service :', error);
       throw error;
     }
   };

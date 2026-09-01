@@ -31,7 +31,7 @@ const EldercarePageClean = () => {
   const [error, setError] = useState(null);
   const { filteredProviders, specialty } = useSpecialtyFilter(providers);
 
-  // ֳ‰tat pour modal d'avis
+  // État pour la modale d’avis
   const [reviewModal, setReviewModal] = useState({
     isOpen: false,
     providerId: null,
@@ -52,20 +52,20 @@ const EldercarePageClean = () => {
         limit: 100
       };
 
-      // Nettoyer les paramֳ¨tres vides
+      // Nettoyer les paramètres vides
       const cleanParams = Object.fromEntries(
         Object.entries(searchParams).filter(([key, value]) => 
           value !== '' && value !== null && value !== undefined
         )
       );
 
-        // נ” AJOUTE CES LIGNES DE DEBUG :
-    console.log('נ” URL appelֳ©e:', `${apiService.baseURL}/search/providers`);
-    console.log('נ” Paramֳ¨tres:', cleanParams);
+        // AJOUTE CES LIGNES DE DEBUG :
+    console.log('URL appelée :', `${apiService.baseURL}/search/providers`);
+    console.log('Paramètres :', cleanParams);
 
       const response = await apiService.searchProviders(cleanParams);
 
-       console.log('נ” Response complֳ¨te:', response);
+       console.log('Réponse complète :', response);
       
       if (response.success) {
         setProviders(response.data.providers || []);
@@ -122,7 +122,7 @@ useEffect(() => {
     });
   };
 
-  // Fonction pour rafraֳ®chir aprֳ¨s crֳ©ation d'avis
+  // Fonction pour rafraîchir après création d’avis
   const handleReviewCreated = () => {
     loadProviders();
   };

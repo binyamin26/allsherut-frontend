@@ -24,12 +24,12 @@ const ServiceIntro = ({ serviceId }) => {
   return (
     <section className="service-intro-section">
       <div className="container">
-        <span className="service-intro-eyebrow">{t('services.infoSectionTitle', 'מידע שימושי')}</span>
+        <span className="service-intro-eyebrow">{t('services.infoSectionTitle', 'Informations utiles')}</span>
         {intro && <p className="service-intro-text">{intro}</p>}
 
         {cards.length > 0 && (
           <>
-            <h2 className="service-cards-title">{t('services.cardsSectionTitle', 'שירותים ופעולות נפוצות')}</h2>
+            <h2 className="service-cards-title">{t('services.cardsSectionTitle', 'Services et prestations courants')}</h2>
             {/* At the desktop container width (820px), the base 220px-min auto-fit rule
                always resolves to 3 columns. That's exactly right for counts of 3 and 6
                (one or two full rows) but leaves a single orphaned card alone on its own
@@ -63,7 +63,7 @@ const ServiceIntro = ({ serviceId }) => {
 
         {checklist.length > 0 && (
           <div className="service-checklist">
-            <h3 className="service-checklist-title">{t('services.checklistSectionTitle', 'לפני שפונים לבעל מקצוע')}</h3>
+            <h3 className="service-checklist-title">{t('services.checklistSectionTitle', 'Avant de contacter un professionnel')}</h3>
             {/* Same orphan-row issue as the cards grid, same fix: the base 200px-min
                rule resolves to 3 columns at desktop width, which is exactly right for
                3 items (one row) and 5 (a 3+2 split most viewers read as intentional),

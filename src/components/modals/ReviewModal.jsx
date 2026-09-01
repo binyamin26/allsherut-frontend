@@ -99,7 +99,7 @@ if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
   // Extraire le message d'erreur spécifique
   const errorMessage = error?.response?.data?.message || 
                       error?.message || 
-                      'שגיאה בחיבור לשרת';
+                      'Erreur de connexion au serveur';
   setError(errorMessage);
 } finally {
       setLoading(false);
@@ -133,7 +133,7 @@ const handleVerifyCode = async () => {
     // Essayer d'extraire le message d'erreur du backend
     const errorMessage = error?.response?.data?.message || 
                         error?.message || 
-                        'שגיאה בחיבור לשרת';
+                        'Erreur de connexion au serveur';
     setError(errorMessage);
   } finally {
     setLoading(false);
@@ -191,7 +191,7 @@ const handleVerifyCode = async () => {
   // Extraire le message d'erreur spécifique
   const errorMessage = error?.response?.data?.message || 
                       error?.message || 
-                      'שגיאה בחיבור לשרת';
+                      'Erreur de connexion au serveur';
   setError(errorMessage);
 } finally {
       setLoading(false);

@@ -16,7 +16,7 @@ export const useLanguage = () => {
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
-const RTL_LANGS = ['he', 'ar'];
+const RTL_LANGS = [];
 const getDirection = (lang) => (RTL_LANGS.includes(lang) ? 'rtl' : 'ltr');
 
 const applyDirection = (lang, dir) => {
@@ -35,11 +35,11 @@ const applyDirection = (lang, dir) => {
 
 export const LanguageProvider = ({ children }) => {
   const { t: i18nT, i18n: i18nInstance } = useTranslation();
-  const [currentLanguage, setCurrentLanguage] = useState(i18nInstance.language || 'he');
+  const [currentLanguage, setCurrentLanguage] = useState(i18nInstance.language || 'fr');
 
   // Apply direction on mount
   useEffect(() => {
-    const lang = i18nInstance.language || 'he';
+    const lang = i18nInstance.language || 'fr';
     applyDirection(lang, getDirection(lang));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -54,13 +54,13 @@ export const LanguageProvider = ({ children }) => {
     return () => i18nInstance.off('languageChanged', onLanguageChanged);
   }, [i18nInstance]);
 
-  // Load the language bundle (if needed) then switch — lazy loading for en/fr/ru
+  // Load the language bundle (if needed) then switch — lazy loading for en
   const switchLanguage = async (lang) => {
-    await loadLanguage(lang); // no-op if already loaded or Hebrew
+    await loadLanguage(lang); // no-op if already loaded or French
     i18nInstance.changeLanguage(lang);
   };
 
-  // Intercept the CustomEvent fired by LanguageSelector.jsx
+  // Intercept the CustomEvent fired when the language changes elsewhere
   useEffect(() => {
     const handler = (event) => {
       const lang = event.detail?.language;

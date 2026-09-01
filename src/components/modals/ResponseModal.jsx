@@ -24,17 +24,17 @@ const ResponseModal = ({ isOpen, onClose, reviewData }) => {
     const trimmedText = responseText.trim();
     
     if (!trimmedText) {
-      setError('נדרש להזין תגובה');
+      setError('Une réponse est requise');
       return false;
     }
     
     if (trimmedText.length < 10) {
-      setError('התגובה צריכה להכיל לפחות 10 תווים');
+      setError('La réponse doit contenir au moins 10 caractères');
       return false;
     }
     
     if (trimmedText.length > 1000) {
-      setError('התגובה לא יכולה לחרוג מ-1000 תווים');
+      setError('La réponse ne peut pas dépasser 1000 caractères');
       return false;
     }
     
@@ -51,16 +51,16 @@ const ResponseModal = ({ isOpen, onClose, reviewData }) => {
       const result = await createProviderResponse(reviewData.id, responseText.trim());
 
       if (result.success) {
-        // קריאה לפונקציית callback של הצלחה
+        // Appel du callback de succès
         if (reviewData.onResponseSuccess) {
           reviewData.onResponseSuccess();
         }
         handleClose();
       } else {
-        setError(result.message || 'שגיאה ביצירת התגובה');
+        setError(result.message || 'Erreur lors de la création de la réponse');
       }
     } catch (error) {
-      setError('שגיאה בחיבור לשרת');
+      setError('Erreur de connexion au serveur');
     } finally {
       setLoading(false);
     }
@@ -84,7 +84,7 @@ const ResponseModal = ({ isOpen, onClose, reviewData }) => {
       <div className="modal-container review-modal">
         <div className="modal-header">
           <h2 className="modal-title">
-            מענה לביקורת
+            Répondre à l’avis
           </h2>
           <button className="modal-close-btn" onClick={handleClose}>
             <X size={20} />
@@ -92,12 +92,12 @@ const ResponseModal = ({ isOpen, onClose, reviewData }) => {
         </div>
 
         <div className="modal-content">
-          {/* הצגת הביקורת המקורית */}
+          {/* Affichage de l’avis d’origine */}
           <div className="original-review-section">
             <div className="info-box">
               <MessageCircle size={20} />
               <div>
-                <p><strong>הביקורת שקיבלת:</strong></p>
+                <p><strong>L’avis que vous avez reçu :</strong></p>
               </div>
             </div>
 
@@ -108,7 +108,7 @@ const ResponseModal = ({ isOpen, onClose, reviewData }) => {
                     <User size={18} />
                   </div>
                   <div className="reviewer-details">
-                    <h4>{reviewData.reviewerName || 'לקוח'}</h4>
+                    <h4>{reviewData.reviewerName || 'Client'}</h4>
                     <div className="review-rating">
                       {renderStars(reviewData.rating)}
                       <span className="rating-text">({reviewData.rating}/5)</span>
@@ -132,41 +132,41 @@ const ResponseModal = ({ isOpen, onClose, reviewData }) => {
             </div>
           </div>
 
-          {/* הנחיות למענה מקצועי */}
+          {/* Consignes pour une réponse professionnelle */}
           <div className="response-guidelines">
             <div className="info-box">
               <Lightbulb size={20} />
               <div>
-                <p><strong>טיפים למענה מקצועי:</strong></p>
+                <p><strong>Conseils pour une réponse professionnelle :</strong></p>
                 <ul style={{ margin: '8px 0 0 0', paddingRight: '20px' }}>
-                  <li>תודה ללקוח על הזמן שהשקיע בכתיבת הביקורת</li>
-                  <li>התייחס לנקודות הספציפיות שהוזכרו</li>
-                  <li>במידת הצורך, הסבר או הבהר נושאים</li>
-                  <li>שמור על טון מקצועי וחיובי</li>
-                  <li>הזמן לקוחות עתידיים לפנות אליך</li>
+                  <li>Remerciez le client pour le temps consacré à la rédaction de l’avis</li>
+                  <li>Répondez aux points spécifiques mentionnés</li>
+                  <li>Si nécessaire, expliquez ou clarifiez certains points</li>
+                  <li>Gardez un ton professionnel et positif</li>
+                  <li>Invitez les futurs clients à vous contacter</li>
                 </ul>
               </div>
             </div>
           </div>
 
-          {/* טופס המענה */}
+          {/* Formulaire de réponse */}
           <div className="response-form">
             <div className="input-group">
-              <label className="form-label">המענה שלך</label>
+              <label className="form-label">Votre réponse</label>
               <textarea
                 value={responseText}
                 onChange={(e) => handleResponseChange(e.target.value)}
-                placeholder="כתוב כאן את המענה שלך לביקורת... התייחס לנקודות שהלקוח העלה והודה לו על המשוב"
+                placeholder="Rédigez ici votre réponse à l’avis... Répondez aux points soulevés par le client et remerciez-le pour son retour"
                 className="review-textarea"
                 rows={6}
                 disabled={loading}
               />
               <div className="character-count">
                 <span className={responseText.length > 1000 ? 'text-danger' : 'text-muted'}>
-                  {responseText.length}/1000 תווים
+                  {responseText.length}/1000 caractères
                 </span>
                 {responseText.trim().length > 0 && responseText.trim().length < 10 && (
-                  <span className="text-warning"> • נדרשים לפחות 10 תווים</span>
+                  <span className="text-warning"> • au moins 10 caractères requis</span>
                 )}
               </div>
             </div>
@@ -184,14 +184,14 @@ const ResponseModal = ({ isOpen, onClose, reviewData }) => {
                 onClick={handleClose}
                 disabled={loading}
               >
-                בטל
+                Annuler
               </button>
               <button
                 className="btn btn-primary"
                 onClick={handleSubmitResponse}
                 disabled={loading || !responseText.trim() || responseText.trim().length < 10}
               >
-                {loading ? 'שולח...' : 'פרסם מענה'}
+                {loading ? 'Envoi...' : 'Publier la réponse'}
                 <Send size={18} />
               </button>
             </div>

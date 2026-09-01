@@ -295,7 +295,7 @@ const translateFieldValue = (fieldName, value) => {
     if (normalizedOpt === normalizedSearch) return true;
 
     // Match partiel uniquement quand séparateur "/" présent
-    // Ex: "בינוני / 10-25 ק״ג" match "בינוני" — mais PAS "קוסם ילדים" match "קוסם"
+    // Ex : "Moyen / 10-25 kg" correspond à "Moyen" — mais PAS "Magicien enfants" à "Magicien"
     if (normalizedOpt.startsWith(normalizedSearch + ' /')) return true;
     if (normalizedOpt.startsWith(normalizedSearch + '/')) return true;
 
@@ -588,7 +588,7 @@ if (field.type === 'select') {
         const currentValues = value || [];
         
         if (option === selectAllOption) {
-          // Si on coche "כל השבוע" ou "הכל" → décocher tous les autres
+          // Si on coche "toute la semaine" ou "tout" → décocher tous les autres
           if (checked) {
             // Décocher tous les autres d'abord
             currentValues.forEach(v => {
@@ -602,7 +602,7 @@ if (field.type === 'select') {
             onArrayChange(field.name, option, false);
           }
         } else {
-          // Si on coche un jour/heure spécifique → décocher "כל השבוע" ou "הכל"
+          // Si on coche un jour/heure spécifique → décocher "toute la semaine" ou "tout"
           if (checked && currentValues.includes(selectAllOption)) {
             onArrayChange(field.name, selectAllOption, false);
             setTimeout(() => onArrayChange(field.name, option, true), 0);

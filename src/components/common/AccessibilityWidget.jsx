@@ -143,7 +143,7 @@ const AccessibilityWidget = () => {
       speechSynthesis.cancel();
       
       const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'he-IL';
+      utterance.lang = 'fr-FR';
       utterance.rate = 0.8;
       utterance.pitch = 1;
       speechSynthesis.speak(utterance);
@@ -184,8 +184,8 @@ const AccessibilityWidget = () => {
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="accessibility-btn"
-          aria-label="פתח תפריט נגישות"
-          title="נגישות"
+          aria-label="Ouvrir le menu d'accessibilité"
+          title="Accessibilité"
           type="button"
         >
           <Accessibility size={24} />
@@ -193,13 +193,13 @@ const AccessibilityWidget = () => {
 
         {/* Widget Panel */}
         {isOpen && (
-          <div className="accessibility-panel" role="dialog" aria-label="תפריט נגישות">
+          <div className="accessibility-panel" role="dialog" aria-label="Menu d'accessibilité">
             <div className="accessibility-header">
-              <h3>הגדרות נגישות</h3>
+              <h3>{"Réglages d'accessibilité"}</h3>
               <button
                 onClick={() => setIsOpen(false)}
                 className="close-btn"
-                aria-label="סגור תפריט נגישות"
+                aria-label="Fermer le menu d'accessibilité"
                 type="button"
               >
                 ×
@@ -211,7 +211,7 @@ const AccessibilityWidget = () => {
               <div className="setting-group">
                 <div className="setting-header">
                   <Type size={20} />
-                  <span>גודל טקסט</span>
+                  <span>Taille du texte</span>
                 </div>
                 <div className="font-controls">
                   <button
@@ -219,7 +219,7 @@ const AccessibilityWidget = () => {
                     onClick={() => adjustFontSize(-10)}
                     disabled={settings.fontSize <= 80}
                     className="font-btn"
-                    aria-label="הקטן טקסט"
+                    aria-label="Réduire le texte"
                   >
                     <Minus size={16} />
                   </button>
@@ -229,7 +229,7 @@ const AccessibilityWidget = () => {
                     onClick={() => adjustFontSize(10)}
                     disabled={settings.fontSize >= 200}
                     className="font-btn"
-                    aria-label="הגדל טקסט"
+                    aria-label="Agrandir le texte"
                   >
                     <Plus size={16} />
                   </button>
@@ -240,7 +240,7 @@ const AccessibilityWidget = () => {
               <div className="setting-group">
                 <div className="setting-header">
                   <Eye size={20} />
-                  <span>ניגודיות</span>
+                  <span>Contraste</span>
                 </div>
                 <div className="toggle-group">
                   <button
@@ -248,21 +248,21 @@ const AccessibilityWidget = () => {
                     className={settings.contrast === 'normal' ? 'active' : ''}
                     onClick={() => updateSetting('contrast', 'normal')}
                   >
-                    רגיל
+                    Normal
                   </button>
                   <button
                     type="button"
                     className={settings.contrast === 'high' ? 'active' : ''}
                     onClick={() => updateSetting('contrast', 'high')}
                   >
-                    גבוה
+                    Élevé
                   </button>
                   <button
                     type="button"
                     className={settings.contrast === 'low' ? 'active' : ''}
                     onClick={() => updateSetting('contrast', 'low')}
                   >
-                    נמוך
+                    Faible
                   </button>
                 </div>
               </div>
@@ -271,7 +271,7 @@ const AccessibilityWidget = () => {
               <div className="setting-group">
                 <div className="setting-header">
                   <Palette size={20} />
-                  <span>צבעים</span>
+                  <span>Couleurs</span>
                 </div>
                 <div className="checkbox-group">
                   <label>
@@ -280,7 +280,7 @@ const AccessibilityWidget = () => {
                       checked={settings.colorBlind}
                       onChange={(e) => updateSetting('colorBlind', e.target.checked)}
                     />
-                    מצב עיוורון צבעים
+                    Mode daltonien
                   </label>
                   <label>
                     <input
@@ -288,7 +288,7 @@ const AccessibilityWidget = () => {
                       checked={settings.invertColors}
                       onChange={(e) => updateSetting('invertColors', e.target.checked)}
                     />
-                    הפוך צבעים
+                    Inverser les couleurs
                   </label>
                   <label>
                     <input
@@ -296,7 +296,7 @@ const AccessibilityWidget = () => {
                       checked={settings.darkMode}
                       onChange={(e) => updateSetting('darkMode', e.target.checked)}
                     />
-                    מצב לילה
+                    Mode nuit
                   </label>
                 </div>
               </div>
@@ -305,7 +305,7 @@ const AccessibilityWidget = () => {
               <div className="setting-group">
                 <div className="setting-header">
                   <Volume2 size={20} />
-                  <span>שמע</span>
+                  <span>Audio</span>
                 </div>
                 <div className="checkbox-group">
                   <label>
@@ -314,7 +314,7 @@ const AccessibilityWidget = () => {
                       checked={settings.speechEnabled}
                       onChange={(e) => updateSetting('speechEnabled', e.target.checked)}
                     />
-                    קריאה בקול (לחץ על טקסט)
+                    Lecture vocale (cliquez sur un texte)
                   </label>
                 </div>
                 {settings.speechEnabled && (
@@ -322,10 +322,10 @@ const AccessibilityWidget = () => {
                     <button
                       type="button"
                       className="test-speech"
-                      onClick={() => speakText('ברוכים הבאים לאתר הומשרות - שירותי בית מקצועיים')}
+                      onClick={() => speakText('Bienvenue sur AllSherut - services à domicile professionnels')}
                     >
                       <Play size={14} />
-                      בדיקת קול
+                      Tester la voix
                     </button>
                     <button
                       type="button"
@@ -333,7 +333,7 @@ const AccessibilityWidget = () => {
                       onClick={() => speechSynthesis.cancel()}
                     >
                       <Pause size={14} />
-                      עצור
+                      Arrêter
                     </button>
                   </div>
                 )}
@@ -343,7 +343,7 @@ const AccessibilityWidget = () => {
               <div className="setting-group">
                 <div className="setting-header">
                   <MousePointer size={20} />
-                  <span>ניווט ואינטראקציה</span>
+                  <span>Navigation et interaction</span>
                 </div>
                 <div className="checkbox-group">
                   <label>
@@ -352,7 +352,7 @@ const AccessibilityWidget = () => {
                       checked={settings.animationsDisabled}
                       onChange={(e) => updateSetting('animationsDisabled', e.target.checked)}
                     />
-                    בטל אנימציות
+                    Désactiver les animations
                   </label>
                   <label>
                     <input
@@ -360,7 +360,7 @@ const AccessibilityWidget = () => {
                       checked={settings.cursorSize === 'large'}
                       onChange={(e) => updateSetting('cursorSize', e.target.checked ? 'large' : 'normal')}
                     />
-                    סמן גדול
+                    Grand curseur
                   </label>
                   <label>
                     <input
@@ -368,7 +368,7 @@ const AccessibilityWidget = () => {
                       checked={settings.underlineLinks}
                       onChange={(e) => updateSetting('underlineLinks', e.target.checked)}
                     />
-                    קו תחתון לקישורים
+                    Souligner les liens
                   </label>
                   <label>
                     <input
@@ -376,7 +376,7 @@ const AccessibilityWidget = () => {
                       checked={settings.readingGuide}
                       onChange={(e) => updateSetting('readingGuide', e.target.checked)}
                     />
-                    מדריך קריאה
+                    Guide de lecture
                   </label>
                   <label>
                     <input
@@ -384,7 +384,7 @@ const AccessibilityWidget = () => {
                       checked={settings.keyboardNavigation}
                       onChange={(e) => updateSetting('keyboardNavigation', e.target.checked)}
                     />
-                    ניווט מקלדת משופר
+                    Navigation clavier améliorée
                   </label>
                   <label>
                     <input
@@ -392,7 +392,7 @@ const AccessibilityWidget = () => {
                       checked={settings.focusHighlight}
                       onChange={(e) => updateSetting('focusHighlight', e.target.checked)}
                     />
-                    הדגשת פוקוס
+                    Mise en évidence du focus
                   </label>
                   <label>
                     <input
@@ -400,7 +400,7 @@ const AccessibilityWidget = () => {
                       checked={settings.readingMask}
                       onChange={(e) => updateSetting('readingMask', e.target.checked)}
                     />
-                    מסכת קריאה
+                    Masque de lecture
                   </label>
                 </div>
               </div>
@@ -413,7 +413,7 @@ const AccessibilityWidget = () => {
                   className="reset-btn"
                 >
                   <RotateCcw size={16} />
-                  איפוס הגדרות
+                  Réinitialiser les réglages
                 </button>
               </div>
             </div>
@@ -465,7 +465,7 @@ const AccessibilityWidget = () => {
   border-radius: var(--radius-2xl);
   box-shadow: var(--shadow-2xl);
   border: 1px solid var(--neutral-200);
-  direction: rtl;
+  direction: ltr;
   max-height: calc(100vh - 100px);
   overflow: hidden;
 }

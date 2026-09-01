@@ -132,11 +132,11 @@ const SERVICE_PAGE_MAP = {
   doula:                 DoulaPage,
 };
 
-// Route universelle pour les pages de service (Hebrew root + /:lang/services/:slug)
+// Route universelle pour les pages de service (racine française + /:lang/services/:slug)
 const ServiceRouter = () => {
   const { lang, slug } = useParams();
   const { changeLanguage, currentLanguage } = useLanguage();
-  const effectiveLang = (lang && SUPPORTED_LANGS.includes(lang)) ? lang : 'he';
+  const effectiveLang = (lang && SUPPORTED_LANGS.includes(lang)) ? lang : 'fr';
 
   useEffect(() => {
     // Only override language when the URL explicitly carries a lang prefix
@@ -151,7 +151,7 @@ const ServiceRouter = () => {
   return <PageComponent />;
 };
 
-// Page d'accueil pour les URLs avec préfixe de langue (/fr, /en, /ru)
+// Page d'accueil pour les URLs avec préfixe de langue (/fr, /en)
 const LangHomePage = () => {
   const { lang } = useParams();
   const { changeLanguage, currentLanguage } = useLanguage();
@@ -160,7 +160,7 @@ const LangHomePage = () => {
     if (SUPPORTED_LANGS.includes(lang) && lang !== currentLanguage) changeLanguage(lang);
   }, [lang]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  if (!SUPPORTED_LANGS.includes(lang) || lang === 'he') return <NotFoundPage />;
+  if (!SUPPORTED_LANGS.includes(lang)) return <NotFoundPage />;
   return <HomePage />;
 };
 
@@ -171,7 +171,7 @@ const LangRecruitmentRoute = () => {
   useEffect(() => {
     if (SUPPORTED_LANGS.includes(lang) && lang !== currentLanguage) changeLanguage(lang);
   }, [lang]); // eslint-disable-line react-hooks/exhaustive-deps
-  if (!SUPPORTED_LANGS.includes(lang) || lang === 'he') return <NotFoundPage />;
+  if (!SUPPORTED_LANGS.includes(lang)) return <NotFoundPage />;
   return <RecruitmentServicePage />;
 };
 
@@ -181,7 +181,7 @@ const LangRecruitmentListingRoute = () => {
   useEffect(() => {
     if (SUPPORTED_LANGS.includes(lang) && lang !== currentLanguage) changeLanguage(lang);
   }, [lang]); // eslint-disable-line react-hooks/exhaustive-deps
-  if (!SUPPORTED_LANGS.includes(lang) || lang === 'he') return <NotFoundPage />;
+  if (!SUPPORTED_LANGS.includes(lang)) return <NotFoundPage />;
   return <RecruitmentListingDetailPage />;
 };
 
@@ -284,17 +284,17 @@ function App() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/categories/:slug" element={<CategoryPage />} />
 
-                {/* Pages de services (hébreu — routes racine inchangées) */}
+                {/* Pages de services (français — routes racine sans préfixe) */}
                 <Route path="/services/:slug" element={<ServiceRouter />} />
 
                 {/* Pages de services avec préfixe de langue (/fr/services/electricien, etc.) */}
                 <Route path="/:lang/services/:slug" element={<ServiceRouter />} />
 
-                {/* Pages d'accueil avec préfixe de langue (/fr, /en, /ru) */}
+                {/* Pages d'accueil avec préfixe de langue (/fr, /en) */}
                 <Route path="/:lang" element={<LangHomePage />} />
 
 
-                {/* Pages recrutement (hébreu) */}
+                {/* Pages recrutement (français — routes racine sans préfixe) */}
                 <Route path="/recruitment/listing/:id" element={<RecruitmentListingDetailPage />} />
                 <Route path="/recruitment/:service" element={<RecruitmentServicePage />} />
 

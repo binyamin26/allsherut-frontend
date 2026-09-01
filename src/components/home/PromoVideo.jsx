@@ -23,28 +23,6 @@ const promoTranslations = {
     { main: "Launch offer: free registration.", bgImage: "/gratos.jpg", time: 4 },
     { main: "Join AllSherut today and boost your visibility.", bgImage: "/itstarfou.jpg", time: 5 },
   ],
-  ru: [
-    { main: "Предлагаете услуги и хотите расширить клиентскую базу?", bgImage: "/artisan.jpg", time: 4 },
-    { main: "AllSherut поможет развить ваш бизнес.", bgImage: "/aide.jpg", time: 4 },
-    { main: "Простая и быстрая онлайн-регистрация.", bgVideo: "/arshama.mp4", bgFallback: "/images/electrician.jpg", time: 5 },
-    { main: "Более 20 категорий услуг на одной платформе.", isMarquee: true, time: 7 },
-    { main: "Лёгкий доступ к личному кабинету.", bgVideo: "/dashboard.mp4", bgFallback: "/images/nikayon.jpg", time: 5 },
-    { main: "Обновляйте информацию в любое время.", bgVideo: "/idkounpratim.mp4", bgFallback: "/images/jardinage.jpg", time: 6 },
-    { main: "Клиенты оценивают вашу работу. Отзывы укрепляют доверие.", bgImage: "/avis.jpg", time: 5 },
-    { main: "Стартовое предложение: бесплатная регистрация.", bgImage: "/gratos.jpg", time: 4 },
-    { main: "Присоединяйтесь к AllSherut и увеличьте видимость.", bgImage: "/itstarfou.jpg", time: 5 },
-  ],
-  he: [
-    { main: "אתה מציע שירותים ורוצה להגדיל את בסיס הלקוחות שלך?", bgImage: "/artisan.jpg", time: 4 },
-    { main: "AllSherut עוזר לך לפתח את העסק שלך.", bgImage: "/aide.jpg", time: 4 },
-    { main: "הרשמה פשוטה ומהירה באינטרנט.", bgVideo: "/arshama.mp4", bgFallback: "/images/electrician.jpg", time: 5 },
-    { main: "מעל 20 קטגוריות שירות בפלטפורמה אחת.", isMarquee: true, time: 7 },
-    { main: "גש בקלות לאזור האישי שלך.", bgVideo: "/dashboard.mp4", bgFallback: "/images/nikayon.jpg", time: 5 },
-    { main: "עדכן את המידע שלך בכל עת.", bgVideo: "/idkounpratim.mp4", bgFallback: "/images/jardinage.jpg", time: 6 },
-    { main: "לקוחות מעריכים את עבודתך. ביקורות מחזקות את האמינות שלך.", bgImage: "/avis.jpg", time: 5 },
-    { main: "מבצע השקה: הרשמה חינם.", bgImage: "/gratos.jpg", time: 4 },
-    { main: "הצטרף ל-AllSherut היום והגדל את הנראות שלך.", bgImage: "/itstarfou.jpg", time: 5 },
-  ],
 };
 
 const ANIM_CLASSES = ['impact-left', 'impact-right', 'impact-top', 'impact-zoom', 'impact-shrink'];
@@ -604,15 +582,15 @@ const particles = [
   { size: 2, left: '60%', dur: 17, delay: -7,  color: 'rgba(255,255,255,0.5)' },
 ];
 
-const LANG_LABELS = { fr: 'FR', en: 'EN', ru: 'RU', he: 'HE' };
-const LANG_ORDER  = ['fr', 'en', 'ru', 'he'];
+const LANG_LABELS = { fr: 'FR', en: 'EN' };
+const LANG_ORDER  = ['fr', 'en'];
 
 const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique.mp3", services = [] }) => {
   const [currentTime, setCurrentTime] = useState(0);
   const [started, setStarted]         = useState(false);
   const [isPlaying, setIsPlaying]     = useState(true);
   const [isMuted, setIsMuted]         = useState(false);
-  const [promoLang, setPromoLang]     = useState('he');
+  const [promoLang, setPromoLang]     = useState('fr');
   const audioRef       = useRef(null);
   const requestRef     = useRef(null);
   const startTimeRef   = useRef(null);
@@ -620,8 +598,8 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
   const pausedAtRef    = useRef(0);
   const lastUpdateRef  = useRef(0);
 
-  const promoTexts = promoTranslations[promoLang];
-  const isRTL      = promoLang === 'he';
+  const promoTexts = promoTranslations[promoLang] || promoTranslations.fr;
+  const isRTL      = false;
 
   const defaultMedia = [
     '/images/babysite.jpg','/images/nikayon.jpg','/images/jardinage.jpg',
@@ -866,7 +844,7 @@ const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique
         <div className="tap-overlay" onClick={handleStart}>
           <div className="tap-pulse"></div>
           <span className="tap-icon">▶</span>
-          <span className="tap-label">הקש להתחיל</span>
+          <span className="tap-label">Appuyez pour commencer</span>
         </div>
       )}
     </div>

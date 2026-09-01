@@ -216,8 +216,8 @@ async function enrichCitiesWithGPS(cities) {
   
   // Priorité aux grandes villes
   const priorityCities = [
-    'תל אביב', 'ירושלים', 'חיפה', 'באר שבע', 'ראשון לציון',
-    'פתח תקווה', 'אשדוד', 'נתניה', 'בני ברק', 'חולון'
+    'Paris', 'Marseille', 'Lyon', 'Toulouse', 'Nice',
+    'Nantes', 'Montpellier', 'Strasbourg', 'Bordeaux', 'Lille'
   ];
   
   for (const cityName of priorityCities) {
@@ -362,7 +362,7 @@ export const preloadImportantData = () => {
   const cities = getIsraeliCities();
   
   // Les quartiers sont déjà chargés instantanément depuis les données locales
-  const majorCities = ['תל אביב', 'ירושלים', 'חיפה'];
+  const majorCities = ['Paris', 'Marseille', 'Lyon'];
   majorCities.forEach(city => {
     const neighborhoods = getNeighborhoodsByCity(city);
     console.log(`[Preload] ${city}: ${neighborhoods.length} quartiers`);
@@ -448,7 +448,7 @@ export const validateLocationForHomeSherut = (city, neighborhood, serviceType) =
     if (!neighborhoodExists) {
       return {
         valid: false,
-        reason: `השכונה "${neighborhood}" לא נמצאה ב${city}`,
+        reason: `Le quartier "${neighborhood}" est introuvable à ${city}`,
         normalizedCity: validation.normalizedName,
         recommendedAlternatives: neighborhoods.slice(0, 3).map(n => n.name)
       };

@@ -73,32 +73,32 @@ const ProviderRegistration = () => {
 
   // Liste des types de services avec leurs noms en hébreu
   const serviceTypes = {
-    babysitting: 'בייביסיטר',
-    cleaning: 'ניקיון',
-    gardening: 'גינון',
-    petcare: 'שמירה על חיות מחמד',
-    tutoring: 'שיעורים פרטיים',
-    eldercare: 'טיפול בקשישים',
-    laundry: 'מכבסה וגיהוץ',
-    property_management: 'ניהול דירות',
-    electrician: 'חשמלאים',
-    plumbing: 'אינסטלציה',
-    air_conditioning: 'מיזוג אוויר',
-    gas_technician: 'טכנאי גז',
-    drywall: 'עבודות גבס',
-    carpentry: 'נגרות',
-    home_organization: 'סידור בית',
-    event_entertainment: 'הפעלות ואטרקציות לאירועים',
-    private_chef: 'שף פרטי',
-    catering: 'קייטרינג',
-    pastry: 'פירות ופטיסרי',
-    painting: 'עבודות צבע',
-    waterproofing: 'איטום',
-    contractor: 'קבלן',
-    aluminum: 'עבודות אלומיניום',
-    glass_works: 'עבודות זכוכית',
-    locksmith: 'מסגרות',
-    pest_control: 'הדברה, ריסוס והרחקת מזיקים'
+    babysitting: 'Baby-sitting',
+    cleaning: 'Ménage',
+    gardening: 'Jardinage',
+    petcare: 'Garde d’animaux',
+    tutoring: 'Cours particuliers',
+    eldercare: 'Aide aux personnes âgées',
+    laundry: 'Blanchisserie et repassage',
+    property_management: 'Gestion locative',
+    electrician: 'Électriciens',
+    plumbing: 'Plomberie',
+    air_conditioning: 'Climatisation',
+    gas_technician: 'Technicien gaz',
+    drywall: 'Travaux de placo',
+    carpentry: 'Menuiserie',
+    home_organization: 'Organisation de la maison',
+    event_entertainment: 'Animations et attractions pour événements',
+    private_chef: 'Chef privé',
+    catering: 'Traiteur',
+    pastry: 'Pâtisserie',
+    painting: 'Peinture',
+    waterproofing: 'Étanchéité',
+    contractor: 'Entrepreneur',
+    aluminum: 'Travaux aluminium',
+    glass_works: 'Vitrerie',
+    locksmith: 'Serrurerie',
+    pest_control: 'Désinsectisation, pulvérisation et élimination des nuisibles'
   };
 
   // Mapping des formulaires
@@ -160,12 +160,12 @@ const ProviderRegistration = () => {
     }
   };
 
-  // Gestion des checkboxes exclusives (comme "כל השבוע")
+  // Gestion des checkboxes exclusives (comme "toute la semaine")
   const handleExclusiveCheckbox = (field, value, exclusiveValue, otherValues) => {
     const currentValues = formData.serviceDetails[field] || [];
     
     if (value === exclusiveValue) {
-      // Si on coche "כל השבוע", on décoche les autres
+      // Si on coche "toute la semaine", on décoche les autres
       if (currentValues.includes(exclusiveValue)) {
         handleServiceDetailsChange(field, []);
       } else {
@@ -178,7 +178,7 @@ const ProviderRegistration = () => {
         // Décocher
         newValues = currentValues.filter(v => v !== value);
       } else {
-        // Cocher et retirer "כל השבוע" si présent
+        // Cocher et retirer "toute la semaine" si présent
         newValues = [...currentValues.filter(v => v !== exclusiveValue), value];
       }
       handleServiceDetailsChange(field, newValues);
@@ -366,24 +366,24 @@ const meResponse = await axios.get(
     });
   }
   
-  alert('ההרשמה הושלמה בהצלחה!');
+  alert('L’inscription a été effectuée avec succès !');
   navigate('/dashboard');
 }
     } catch (error) {
       console.error('Error:', error);
       
       if (error.response?.data?.error === 'NAME_MISMATCH') {
-        alert('השם שהזנת אינו תואם לחשבון הקיים. אנא הזן את השם המלא שרשום בחשבון.');
+        alert('Le nom saisi ne correspond pas au compte existant. Veuillez saisir le nom complet enregistré sur le compte.');
       } else if (error.response?.data?.error === 'INVALID_PASSWORD') {
-        alert('הסיסמה שהזנת אינה תואמת לחשבון הקיים. אנא הזן את הסיסמה הנכונה.');
+        alert('Le mot de passe saisi ne correspond pas au compte existant. Veuillez saisir le mot de passe correct.');
       } else if (error.response?.data?.message) {
         alert(error.response.data.message);
         } else if (error.response?.data?.error === 'PHONE_ALREADY_USED_FOR_SERVICE') {
-        alert('מספר הטלפון הזה כבר נרשם לשירות זה. האם יש לך כבר חשבון?');
+        alert('Ce numéro de téléphone est déjà enregistré pour ce service. Avez-vous déjà un compte ?');
       } else if (error.response?.data?.error === 'EMAIL_ALREADY_USED_FOR_SERVICE') {
-        alert('כתובת האימייל הזו כבר נרשמה לשירות זה. האם יש לך כבר חשבון?');
+        alert('Cette adresse e-mail est déjà enregistrée pour ce service. Avez-vous déjà un compte ?');
       } else {
-        alert('שגיאה בהרשמה. אנא נסה שוב.');
+        alert('Erreur lors de l’inscription. Veuillez réessayer.');
       }
     }
   };
@@ -408,7 +408,7 @@ const meResponse = await axios.get(
   return (
     <div className="provider-registration-container">
       <div className="registration-card">
-        <h1>הרשמה כנותן שירות</h1>
+        <h1>Inscription en tant que prestataire</h1>
         
         {/* Indicateur de progression */}
         <div className="progress-indicator">
@@ -426,10 +426,10 @@ const meResponse = await axios.get(
           {/* Étape 1: Informations personnelles */}
           {currentStep === 1 && (
             <div className="form-step">
-              <h2>מידע אישי</h2>
+              <h2>Informations personnelles</h2>
               
               <div className="input-group">
-                <label>שם פרטי *</label>
+                <label>Prénom *</label>
                 <input
                   type="text"
                   name="firstName"
@@ -441,7 +441,7 @@ const meResponse = await axios.get(
               </div>
 
               <div className="input-group">
-                <label>שם משפחה *</label>
+                <label>Nom *</label>
                 <input
                   type="text"
                   name="lastName"
@@ -453,7 +453,7 @@ const meResponse = await axios.get(
               </div>
 
               <div className="input-group">
-                <label>אימייל *</label>
+                <label>E-mail *</label>
                 <input
                   type="email"
                   name="email"
@@ -465,7 +465,7 @@ const meResponse = await axios.get(
               </div>
 
               <div className="input-group">
-                <label>סיסמה *</label>
+                <label>Mot de passe *</label>
                 <input
                   type="password"
                   name="password"
@@ -477,7 +477,7 @@ const meResponse = await axios.get(
               </div>
 
               <div className="input-group">
-                <label>אימות סיסמה *</label>
+                <label>Confirmation du mot de passe *</label>
                 <input
                   type="password"
                   name="confirmPassword"
@@ -489,7 +489,7 @@ const meResponse = await axios.get(
               </div>
 
               <div className="input-group">
-                <label>טלפון *</label>
+                <label>Téléphone *</label>
                 <input
                   type="tel"
                   name="phone"
@@ -506,11 +506,11 @@ const meResponse = await axios.get(
           {/* Étape 2: Adresse */}
           {currentStep === 2 && (
             <div className="form-step">
-              <h2>כתובת</h2>
+              <h2>Adresse</h2>
               
               {/* Ville */}
               <div className="input-group">
-                <label>עיר *</label>
+                <label>Ville *</label>
                 <CustomDropdown
                   name="city"
                   options={allCities}
@@ -520,7 +520,7 @@ const meResponse = await axios.get(
                     if (errors.city) setErrors(prev => ({ ...prev, city: '' }));
                     if (errors.neighborhood) setErrors(prev => ({ ...prev, neighborhood: '' }));
                   }}
-                  placeholder="בחר עיר..."
+                  placeholder="Choisissez une ville..."
                   error={!!errors.city}
                 />
                 {errors.city && <span className="error-text">{errors.city}</span>}
@@ -528,7 +528,7 @@ const meResponse = await axios.get(
 
               {/* Quartier */}
               <div className="input-group">
-                <label>שכונה *</label>
+                <label>Quartier *</label>
                 {getNeighborhoodsByCity(formData.city).length > 0 ? (
                   <CustomDropdown
                     name="neighborhood"
@@ -538,7 +538,7 @@ const meResponse = await axios.get(
                       setFormData(prev => ({ ...prev, neighborhood: e.target.value }));
                       if (errors.neighborhood) setErrors(prev => ({ ...prev, neighborhood: '' }));
                     }}
-                    placeholder={formData.city ? `בחר שכונה ב${formData.city}...` : 'בחר עיר תחילה'}
+                    placeholder={formData.city ? `Choisissez un quartier à ${formData.city}...` : 'Choisissez d’abord une ville'}
                     disabled={!formData.city}
                     error={!!errors.neighborhood}
                   />
@@ -548,7 +548,7 @@ const meResponse = await axios.get(
                     name="neighborhood"
                     value={formData.neighborhood}
                     onChange={handleChange}
-                    placeholder="הקלד שם שכונה..."
+                    placeholder="Saisissez un nom de quartier..."
                     className={errors.neighborhood ? 'error' : ''}
                   />
                 )}
@@ -556,7 +556,7 @@ const meResponse = await axios.get(
               </div>
 
               <div className="input-group">
-                <label>רחוב *</label>
+                <label>Rue *</label>
                 <input
                   type="text"
                   name="street"
@@ -572,17 +572,17 @@ const meResponse = await axios.get(
           {/* Étape 3: Choix du service */}
           {currentStep === 3 && (
             <div className="form-step">
-              <h2>סוג השירות</h2>
+              <h2>Type de service</h2>
               
               <div className="input-group">
-                <label>בחר סוג שירות *</label>
+                <label>Choisissez un type de service *</label>
                 <select
                   name="serviceType"
                   value={formData.serviceType}
                   onChange={handleChange}
                   className={errors.serviceType ? 'error' : ''}
                 >
-                  <option value="">בחר שירות</option>
+                  <option value="">Choisissez un service</option>
                   {Object.entries(serviceTypes).map(([key, label]) => (
                     <option key={key} value={key}>{label}</option>
                   ))}
@@ -595,7 +595,7 @@ const meResponse = await axios.get(
           {/* Étape 4: Détails du service */}
           {currentStep === 4 && (
             <div className="form-step">
-              <h2>פרטי השירות</h2>
+              <h2>Détails du service</h2>
               {renderServiceForm()}
             </div>
           )}
@@ -603,10 +603,10 @@ const meResponse = await axios.get(
           {/* Étape 5: Documents et confirmation */}
           {currentStep === 5 && (
             <div className="form-step">
-              <h2>מסמכים ואישור</h2>
+              <h2>Documents et validation</h2>
               
               <div className="input-group">
-                <label>תעודת זהות</label>
+                <label>Pièce d’identité</label>
                 <input
                   type="file"
                   name="idCard"
@@ -616,7 +616,7 @@ const meResponse = await axios.get(
               </div>
 
               <div className="input-group">
-                <label>רישיון מקצועי (אם רלוונטי)</label>
+                <label>Licence professionnelle (le cas échéant)</label>
                 <input
                   type="file"
                   name="professionalLicense"
@@ -633,7 +633,7 @@ const meResponse = await axios.get(
                     checked={formData.termsAccepted}
                     onChange={handleChange}
                   />
-                  אני מאשר/ת את תנאי השימוש *
+                  J’accepte les conditions d’utilisation *
                 </label>
                 {errors.termsAccepted && <span className="error-text">{errors.termsAccepted}</span>}
               </div>
@@ -644,17 +644,17 @@ const meResponse = await axios.get(
           <div className="form-navigation">
             {currentStep > 1 && (
               <button type="button" onClick={prevStep} className="btn-secondary">
-                חזור
+                Retour
               </button>
             )}
             
             {currentStep < 5 ? (
               <button type="button" onClick={nextStep} className="btn-primary">
-                המשך
+                Continuer
               </button>
             ) : (
               <button type="submit" className="btn-primary">
-                השלם הרשמה
+                Finaliser l’inscription
               </button>
             )}
           </div>

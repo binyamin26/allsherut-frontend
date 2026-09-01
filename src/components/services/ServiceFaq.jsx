@@ -21,9 +21,9 @@ const ServiceFaq = ({ serviceId }) => {
     <section className="service-faq-section">
       <div className="container">
         <div className="service-faq-header">
-          <h2 className="service-faq-title">{t('services.faqSectionTitle', 'שאלות נפוצות')}</h2>
+          <h2 className="service-faq-title">{t('services.faqSectionTitle', 'Questions fréquentes')}</h2>
           <p className="service-faq-subtitle">
-            {t('services.faqSectionSubtitle', 'התשובות לשאלות שהכי מטרידות לקוחות לפני שהם פונים לספק')}
+            {t('services.faqSectionSubtitle', 'Les réponses aux questions que se posent le plus les clients avant de contacter un prestataire')}
           </p>
         </div>
         <div className="service-faq-list">

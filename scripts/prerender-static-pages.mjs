@@ -59,9 +59,9 @@ const ROOT = resolve(__dirname, '..');
 const DIST = resolve(ROOT, 'dist');
 const BASE_URL = 'https://allsherut.com';
 
-// All 4 locales get their own prerendered static HTML per service page (see LANGS
+// All 3 locales get their own prerendered static HTML per service page (see LANGS
 // below) — not just Hebrew. Previously only /services/:slug (Hebrew) was prerendered;
-// /en/, /fr/, /ru/ variants fell through Vercel's SPA rewrite to the generic empty
+// /en/, /fr/ variants fell through Vercel's SPA rewrite to the generic empty
 // index.html shell. Googlebot's non-JS crawl then saw the same thin/duplicate shell
 // for every locale variant of every service page and overrode the JS-declared
 // self-referential canonical, consolidating them into the Hebrew page (Search Console:
@@ -69,13 +69,11 @@ const BASE_URL = 'https://allsherut.com';
 // gives each URL real, distinct content in the very first HTTP response, matching what
 // already works for the Hebrew pages.
 const LANGS = {
-  he: { dir: 'rtl', translations: JSON.parse(readFileSync(resolve(ROOT, 'src/locales/he/translation.json'), 'utf-8')) },
-  en: { dir: 'ltr', translations: JSON.parse(readFileSync(resolve(ROOT, 'src/locales/en/translation.json'), 'utf-8')) },
   fr: { dir: 'ltr', translations: JSON.parse(readFileSync(resolve(ROOT, 'src/locales/fr/translation.json'), 'utf-8')) },
-  ru: { dir: 'ltr', translations: JSON.parse(readFileSync(resolve(ROOT, 'src/locales/ru/translation.json'), 'utf-8')) },
+  en: { dir: 'ltr', translations: JSON.parse(readFileSync(resolve(ROOT, 'src/locales/en/translation.json'), 'utf-8')) },
 };
 const makeT = (translations) => (key, fallback = '') => translations[key] ?? fallback;
-const translations = LANGS.he.translations;
+const translations = LANGS.fr.translations;
 const t = makeT(translations);
 
 const baseHtml = readFileSync(resolve(DIST, 'index.html'), 'utf-8');
@@ -101,32 +99,30 @@ function escapeAttr(str = '') {
   return escapeHtml(str);
 }
 
-// hreflangPaths: { he, fr, en, ru } absolute *paths* (no domain) — for service pages
+// hreflangPaths: { he, fr, en } absolute *paths* (no domain) — for service pages
 // these differ per language (SERVICE_SLUGS has a distinct slug per language, e.g.
-// electrician/electricien/elektrik); for category pages they're all the same path
+// electrician/electricien); for category pages they're all the same path
 // (categories use sameUrlForAllLangs in the live <SEO> too). Passing the wrong one
 // here is exactly the hreflang-404 bug already fixed once on ProviderDetailPage —
 // this mirrors SEO.jsx's real per-language logic instead of naively prefixing
-// /fr, /en, /ru onto the Hebrew path.
-function buildHead({ title, description, canonicalPath, jsonLd, hreflangPaths, lang = 'he' }) {
+// /fr, /en onto the Hebrew path.
+function buildHead({ title, description, canonicalPath, jsonLd, hreflangPaths, lang = 'fr' }) {
   const fullTitle = `${title} | AllSherut`;
   const canonical = `${BASE_URL}${canonicalPath}`;
-  const paths = hreflangPaths || { he: canonicalPath, fr: canonicalPath, en: canonicalPath, ru: canonicalPath };
+  const paths = hreflangPaths || { fr: canonicalPath, en: canonicalPath };
   const hreflangLinks = [
-    `<link rel="alternate" hreflang="he-IL" href="${BASE_URL}${paths.he}" />`,
-    `<link rel="alternate" hreflang="fr-IL" href="${BASE_URL}${paths.fr}" />`,
-    `<link rel="alternate" hreflang="en-IL" href="${BASE_URL}${paths.en}" />`,
-    `<link rel="alternate" hreflang="ru-IL" href="${BASE_URL}${paths.ru}" />`,
-    `<link rel="alternate" hreflang="x-default" href="${BASE_URL}${paths.he}" />`,
+    `<link rel="alternate" hreflang="fr" href="${BASE_URL}${paths.fr}" />`,
+    `<link rel="alternate" hreflang="en" href="${BASE_URL}${paths.en}" />`,
+    `<link rel="alternate" hreflang="x-default" href="${BASE_URL}${paths.fr}" />`,
   ].join('\n    ');
 
   let html = baseHtml;
 
-  // Base template is hardcoded <html lang="he" dir="rtl">; swap for non-Hebrew pages so
+  // Base template is hardcoded <html lang="fr" dir="ltr">; swap for other locales so
   // the raw HTTP response (before any JS runs) already has the right direction/lang,
   // exactly like LanguageContext's applyDirection() sets it post-hydration.
-  const dir = LANGS[lang]?.dir || 'rtl';
-  html = html.replace(/<html lang="he" dir="rtl">/, `<html lang="${lang}" dir="${dir}">`);
+  const dir = LANGS[lang]?.dir || 'ltr';
+  html = html.replace(/<html lang="fr" dir="ltr">/, `<html lang="${lang}" dir="${dir}">`);
 
   html = html.replace(/<title>[^<]*<\/title>/, `<title>${escapeHtml(fullTitle)}</title>`);
   html = html.replace(
@@ -185,9 +181,9 @@ function renderServiceBody(serviceId, lang, t) {
   // locale, mirroring ServiceBreadcrumb.jsx's `category.names?.[currentLanguage] || category.names?.he`.
   const breadcrumb = `
     <div class="breadcrumb service-page-breadcrumb">
-      <a href="/">${escapeHtml(t('provider.home', 'בית'))}</a>
+      <a href="/">${escapeHtml(t('provider.home', 'Accueil'))}</a>
       <span>/</span>
-      ${category ? `<a href="/categories/${category.id}">${escapeHtml(category.names?.[lang] || category.names.he)}</a><span>/</span>` : ''}
+      ${category ? `<a href="/categories/${category.id}">${escapeHtml(category.names?.[lang] || category.names.fr)}</a><span>/</span>` : ''}
       <span>${escapeHtml(pageTitle)}</span>
     </div>`;
 
@@ -207,10 +203,10 @@ function renderServiceBody(serviceId, lang, t) {
   const introSection = (intro || cards.length > 0 || highlights.length > 0) ? `
     <section class="service-intro-section">
       <div class="container">
-        <span class="service-intro-eyebrow">${escapeHtml(t('services.infoSectionTitle', 'מידע שימושי'))}</span>
+        <span class="service-intro-eyebrow">${escapeHtml(t('services.infoSectionTitle', 'Informations utiles'))}</span>
         ${intro ? `<p class="service-intro-text">${escapeHtml(intro)}</p>` : ''}
         ${cards.length > 0 ? `
-        <h2 class="service-cards-title">${escapeHtml(t('services.cardsSectionTitle', 'שירותים ופעולות נפוצות'))}</h2>
+        <h2 class="service-cards-title">${escapeHtml(t('services.cardsSectionTitle', 'Services et prestations courants'))}</h2>
         <div class="service-cards-grid${cards.length === 4 ? ' service-cards-grid--four' : ''}">
           ${cards.map(card => `
           <div class="service-card">
@@ -222,7 +218,7 @@ function renderServiceBody(serviceId, lang, t) {
         ${highlights.length > 0 ? `<ul class="service-highlights">${highlights.map(h => `<li>${escapeHtml(h)}</li>`).join('')}</ul>` : ''}
         ${checklist.length > 0 ? `
         <div class="service-checklist">
-          <h3 class="service-checklist-title">${escapeHtml(t('services.checklistSectionTitle', 'לפני שפונים לבעל מקצוע'))}</h3>
+          <h3 class="service-checklist-title">${escapeHtml(t('services.checklistSectionTitle', 'Avant de contacter un professionnel'))}</h3>
           <ul class="service-checklist-list${checklist.length === 4 ? ' service-checklist-list--four' : checklist.length === 5 ? ' service-checklist-list--five' : ''}">
             ${checklist.map(item => `<li>${escapeHtml(item)}</li>`).join('')}
           </ul>
@@ -235,8 +231,8 @@ function renderServiceBody(serviceId, lang, t) {
     <section class="service-faq-section">
       <div class="container">
         <div class="service-faq-header">
-          <h2 class="service-faq-title">${escapeHtml(t('services.faqSectionTitle', 'שאלות נפוצות'))}</h2>
-          <p class="service-faq-subtitle">${escapeHtml(t('services.faqSectionSubtitle', 'התשובות לשאלות שהכי מטרידות לקוחות לפני שהם פונים לספק'))}</p>
+          <h2 class="service-faq-title">${escapeHtml(t('services.faqSectionTitle', 'Questions fréquentes'))}</h2>
+          <p class="service-faq-subtitle">${escapeHtml(t('services.faqSectionSubtitle', 'Les réponses aux questions que se posent le plus les clients avant de contacter un prestataire'))}</p>
         </div>
         <div class="service-faq-list">
           ${faqItems.map(item => `
@@ -258,10 +254,8 @@ for (const serviceId of Object.keys(SERVICE_PAGE_META)) {
   const meta = SERVICE_PAGE_META[serviceId];
   const key = serviceTypeToKey(serviceId);
   const hreflangPaths = {
-    he: buildServicePath(key, 'he'),
     fr: buildServicePath(key, 'fr'),
     en: buildServicePath(key, 'en'),
-    ru: buildServicePath(key, 'ru'),
   };
 
   // One prerendered page per locale (not just Hebrew) — mirrors the live <SEO> title/
@@ -292,7 +286,7 @@ for (const serviceId of Object.keys(SERVICE_PAGE_META)) {
 function renderCategoryBody(category) {
   const services = category.serviceIds.map(id => ({ id, ...SERVICES_META[id] })).filter(Boolean);
   const cards = services.map(service => {
-    const servicePath = buildServicePath(serviceTypeToKey(service.id), 'he');
+    const servicePath = buildServicePath(serviceTypeToKey(service.id), 'fr');
     const name = t(service.nameKey, service.id);
     return `
         <a href="${servicePath}" class="service-card-image" style="display:block;border-radius:12px;overflow:hidden">
@@ -306,7 +300,7 @@ function renderCategoryBody(category) {
       <section class="services-section" style="background:transparent">
         <div class="container">
           <div class="section-header">
-            <h1 class="section-title">${escapeHtml(category.names.he)}</h1>
+            <h1 class="section-title">${escapeHtml(category.names.fr)}</h1>
             <p class="hero-description text-center mb-16">${services.length} ${escapeHtml(t('homepage.services.subtitle', ''))}</p>
           </div>
         </div>
@@ -321,8 +315,8 @@ for (const category of CATEGORY_DEFINITIONS) {
   if (category.hidden) continue; // catégorie masquée jusqu'à nouvel ordre
   const canonicalPath = `/categories/${category.id}`;
   const head = buildHead({
-    title: category.names.he,
-    description: category.descriptions.he,
+    title: category.names.fr,
+    description: category.descriptions.fr,
     canonicalPath,
     jsonLd: null,
   });

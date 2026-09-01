@@ -13,7 +13,7 @@ const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
 const DAY_ORDER     = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
 const HOUR_OPTIONS  = ['morning', 'afternoon', 'evening', 'all'];
-const LANG_OPTIONS  = ['hebrew', 'english', 'french', 'russian'];
+const LANG_OPTIONS  = ['hebrew', 'english', 'french'];
 const EXP_OPTIONS   = ['beginner', '1_year', '2_years', '3_plus_years'];
 const PAYMENT_TYPES = ['hourly', 'daily', 'monthly'];
 
@@ -245,7 +245,7 @@ const RecruitmentServicePage = () => {
           <p style={SECTION_TITLE}>{t('recruitment.card.salary')}</p>
           <input type="number" min={0} style={INPUT_STYLE}
             value={salaryMax} onChange={e => setSalaryMax(e.target.value)}
-            placeholder="לדוגמה: 100 ₪" />
+            placeholder="Par exemple : 100 €" />
         </div>
 
         {/* Type de paiement */}

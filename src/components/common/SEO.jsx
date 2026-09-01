@@ -5,7 +5,7 @@ import { SERVICE_SLUGS, buildServicePath } from '../../utils/langUtils';
 const BASE_URL = 'https://allsherut.com';
 const DEFAULT_IMAGE = `${BASE_URL}/images/og-image.jpg`;
 
-// Derive service key from a Hebrew canonical path like /services/electrician
+// Derive service key from a root (prefix-less) canonical path like /services/electrician
 function serviceKeyFromCanonical(canonicalPath) {
   if (!canonicalPath?.startsWith('/services/')) return null;
   const slug = canonicalPath.replace('/services/', '');
@@ -25,10 +25,10 @@ function truncate(str, maxLength) {
 export default function SEO({ title, description, canonicalPath, image, noindex = false, jsonLd = null, sameUrlForAllLangs = false }) {
   const { currentLanguage } = useLanguage();
 
-  const rawTitle = title ? `${title} | AllSherut` : 'AllSherut - כל השירותים לבית בישראל';
+  const rawTitle = title ? `${title} | AllSherut` : 'AllSherut - Tous les services à domicile en France';
   const fullTitle = truncate(rawTitle, MAX_TITLE_LENGTH);
   const fullDescription = truncate(
-    description || 'חברו עם ספקי שירות מקצועיים בישראל - בייביסיטר, ניקיון, חשמלאי, אינסטלטור, גינון ועוד 23 קטגוריות שירות.',
+    description || 'Trouvez des prestataires de services professionnels en France - baby-sitting, ménage, électricien, plombier, jardinage et plus de 23 catégories de services.',
     MAX_DESCRIPTION_LENGTH
   );
   const ogImage = image || DEFAULT_IMAGE;
@@ -38,25 +38,21 @@ export default function SEO({ title, description, canonicalPath, image, noindex 
   const sameUrl = `${BASE_URL}${canonicalPath || '/'}`;
   const hreflang = serviceKey
     ? {
-        he: `${BASE_URL}${buildServicePath(serviceKey, 'he')}`,
         fr: `${BASE_URL}${buildServicePath(serviceKey, 'fr')}`,
         en: `${BASE_URL}${buildServicePath(serviceKey, 'en')}`,
-        ru: `${BASE_URL}${buildServicePath(serviceKey, 'ru')}`,
       }
     : sameUrlForAllLangs
-    ? { he: sameUrl, fr: sameUrl, en: sameUrl, ru: sameUrl }
+    ? { fr: sameUrl, en: sameUrl }
     : {
-        he: `${BASE_URL}${canonicalPath || '/'}`,
-        fr: `${BASE_URL}/fr${canonicalPath || '/'}`,
+        fr: `${BASE_URL}${canonicalPath || '/'}`,
         en: `${BASE_URL}/en${canonicalPath || '/'}`,
-        ru: `${BASE_URL}/ru${canonicalPath || '/'}`,
       };
 
   // Canonical URL reflects the current language version
   let canonical;
   if (serviceKey) {
     canonical = `${BASE_URL}${buildServicePath(serviceKey, currentLanguage)}`;
-  } else if (currentLanguage !== 'he' && canonicalPath) {
+  } else if (currentLanguage !== 'fr' && canonicalPath) {
     canonical = `${BASE_URL}/${currentLanguage}${canonicalPath}`;
   } else {
     canonical = canonicalPath ? `${BASE_URL}${canonicalPath}` : BASE_URL;
@@ -68,11 +64,9 @@ export default function SEO({ title, description, canonicalPath, image, noindex 
       <meta name="description" content={fullDescription} />
       <link rel="canonical" href={canonical} />
 
-      <link rel="alternate" hrefLang="he-IL" href={hreflang.he} />
-      <link rel="alternate" hrefLang="fr-IL" href={hreflang.fr} />
-      <link rel="alternate" hrefLang="en-IL" href={hreflang.en} />
-      <link rel="alternate" hrefLang="ru-IL" href={hreflang.ru} />
-      <link rel="alternate" hrefLang="x-default" href={hreflang.he} />
+      <link rel="alternate" hrefLang="fr-FR" href={hreflang.fr} />
+      <link rel="alternate" hrefLang="en" href={hreflang.en} />
+      <link rel="alternate" hrefLang="x-default" href={hreflang.fr} />
 
       <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow'} />
 

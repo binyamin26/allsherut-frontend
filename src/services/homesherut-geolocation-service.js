@@ -283,9 +283,9 @@ async function enrichCitiesWithGPSInBackground(cities) {
   
   // Priorité aux villes avec le plus de services HomeSherut
   const priorityCities = [
-    'תל אביב', 'ירושלים', 'חיפה', 'באר שבע', 'ראשון לציון',
-    'פתח תקווה', 'אשדוד', 'נתניה', 'בני ברק', 'חולון',
-    'רמת גן', 'אשקלון', 'רחובות', 'הרצליה', 'כפר סבא'
+    'Paris', 'Marseille', 'Lyon', 'Toulouse', 'Nice',
+    'Nantes', 'Montpellier', 'Strasbourg', 'Bordeaux', 'Lille',
+    'Rennes', 'Reims', 'Le Havre', 'Saint-Étienne', 'Toulon'
   ];
   
   // Charger les coordonnées sauvegardées
@@ -488,8 +488,8 @@ export const preloadHomeSherutData = async () => {
   const cities = getIsraeliCities();
   
   // Précharger les quartiers des 10 plus grandes villes
-  const majorCities = ['תל אביב', 'ירושלים', 'חיפה', 'באר שבע', 'ראשון לציון',
-                       'פתח תקווה', 'אשדוד', 'נתניה', 'בני ברק', 'חולון'];
+  const majorCities = ['Paris', 'Marseille', 'Lyon', 'Toulouse', 'Nice',
+                       'Nantes', 'Montpellier', 'Strasbourg', 'Bordeaux', 'Lille'];
   
   majorCities.forEach(city => {
     const neighborhoods = getNeighborhoodsByCity(city);
