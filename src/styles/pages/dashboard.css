@@ -3389,13 +3389,27 @@ select.inline-edit {
   }
 
   .provider-header-new .avatar-actions {
-    position: relative;
+    position: absolute;
+    top: 100%;
     bottom: auto;
-    left: auto;
-    transform: none;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
     margin-top: var(--space-3);
+    width: max-content;
+    max-width: 88vw;
+    flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+  }
+
+  .provider-header-new .avatar-actions .btn-sm {
+    width: auto;
+  }
+
+  /* Réserve la place du popover pour qu'il ne chevauche pas le nom */
+  .provider-header-new .provider-avatar.actions-visible {
+    margin-bottom: 80px !important;
   }
 
   .provider-header-new .provider-avatar .avatar-actions {
@@ -3415,6 +3429,16 @@ select.inline-edit {
   .provider-header-actions {
     flex-wrap: wrap;
     justify-content: center;
+  }
+
+  /* .btn a overflow:hidden -> le min-width auto d'un flex-item tombe à 0
+     et le texte se fait rogner. On empêche le rétrécissement pour forcer
+     le retour à la ligne au lieu de couper le libellé. */
+  .provider-header-actions .btn {
+    flex-shrink: 0;
+    max-width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 
