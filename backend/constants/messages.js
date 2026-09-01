@@ -11,40 +11,40 @@ const MESSAGES = {
   // =============================================
   SUCCESS: {
     AUTH: {
-      LOGIN: 'התחברות הצליחה!',
-      LOGOUT: 'התנתקות הצליחה',
-      REGISTER: 'הרשמה הצליחה!',
-      PASSWORD_CHANGED: 'הסיסמה שונתה בהצלחה',
-      PASSWORD_RESET: 'הסיסמה שונתה בהצלחה',
-      PROFILE_UPDATED: 'הפרופיל עודכן בהצלחה',
-      EMAIL_SENT: 'אם כתובת האימייל קיימת במערכת, נשלח אליה קישור לאיפוס סיסמה'
+      LOGIN: 'Connexion réussie !',
+      LOGOUT: 'Déconnexion réussie',
+      REGISTER: 'Inscription réussie !',
+      PASSWORD_CHANGED: 'Mot de passe modifié avec succès',
+      PASSWORD_RESET: 'Mot de passe modifié avec succès',
+      PROFILE_UPDATED: 'Profil mis à jour avec succès',
+      EMAIL_SENT: 'Si cette adresse e-mail existe, un lien de réinitialisation du mot de passe lui a été envoyé'
     },
     
     PROVIDER: {
-      PROFILE_COMPLETED: 'פרופיל השירות הושלם בהצלחה!',
-      PROFILE_UPDATED: 'פרופיל השירות עודכן בהצלחה',
-      FREE_MONTH_GRANTED: 'קיבלת חודש פרימיום חינם!',
-      DETAILS_SAVED: 'פרטי השירות נשמרו בהצלחה'
+      PROFILE_COMPLETED: 'Profil du service complété avec succès !',
+      PROFILE_UPDATED: 'Profil du service mis à jour avec succès',
+      FREE_MONTH_GRANTED: 'Vous avez reçu un mois premium gratuit !',
+      DETAILS_SAVED: 'Détails du service enregistrés avec succès'
     },
     
     CLIENT: {
-      CONTACT_SENT: 'הודעה נשלחה לספק השירות',
-      CREDITS_GRANTED: 'קיבלת 3 צפיות חינמיות!',
-      FAVORITE_ADDED: 'נוסף למועדפים',
-      FAVORITE_REMOVED: 'הוסר מהמועדפים'
+      CONTACT_SENT: 'Message envoyé au prestataire',
+      CREDITS_GRANTED: 'Vous avez reçu 3 consultations gratuites !',
+      FAVORITE_ADDED: 'Ajouté aux favoris',
+      FAVORITE_REMOVED: 'Retiré des favoris'
     },
     
     UPLOAD: {
-      IMAGE_UPLOADED: 'תמונת הפרופיל הועלתה בהצלחה',
-      IMAGE_DELETED: 'תמונת הפרופיל הוסרה בהצלחה',
-      FILE_PROCESSED: 'הקובץ עובד בהצלחה'
+      IMAGE_UPLOADED: 'Photo de profil téléchargée avec succès',
+      IMAGE_DELETED: 'Photo de profil supprimée avec succès',
+      FILE_PROCESSED: 'Fichier traité avec succès'
     },
     
     SYSTEM: {
-      DATA_LOADED: 'נתונים נטענו בהצלחה',
-      SEARCH_COMPLETED: 'חיפוש הושלם בהצלחה',
-      FILTERS_APPLIED: 'מסננים הוחלו בהצלחה',
-      STATS_LOADED: 'סטטיסטיקות נטענו בהצלחה'
+      DATA_LOADED: 'Données chargées avec succès',
+      SEARCH_COMPLETED: 'Recherche effectuée avec succès',
+      FILTERS_APPLIED: 'Filtres appliqués avec succès',
+      STATS_LOADED: 'Statistiques chargées avec succès'
     }
   },
 
@@ -53,64 +53,64 @@ const MESSAGES = {
   // =============================================
   ERROR: {
     AUTH: {
-      INVALID_CREDENTIALS: 'האימייל או הסיסמה שגויים',
-      EMAIL_EXISTS: 'כתובת האימייל כבר קיימת במערכת',
-      PASSWORD_TOO_WEAK: 'הסיסמה חייבת להכיל לפחות 8 תווים',
-      PASSWORD_MISMATCH: 'הסיסמה הנוכחית שגויה',
-      TOKEN_EXPIRED: 'פג תוקף ההתחברות. אנא התחבר מחדש',
-      TOKEN_INVALID: 'טוקן איפוס לא תקף או פג תוקף',
-      ACCESS_DENIED: 'אין הרשאה לפעולה זו',
-      LOGIN_REQUIRED: 'נדרשת התחברות למערכת',
-      RATE_LIMITED: 'יותר מדי ניסיונות התחברות. נסה שוב בעוד 15 דקות'
+      INVALID_CREDENTIALS: 'E-mail ou mot de passe incorrect',
+      EMAIL_EXISTS: 'Cette adresse e-mail est déjà utilisée',
+      PASSWORD_TOO_WEAK: 'Le mot de passe doit contenir au moins 8 caractères',
+      PASSWORD_MISMATCH: 'Le mot de passe actuel est incorrect',
+      TOKEN_EXPIRED: 'Session expirée. Veuillez vous reconnecter',
+      TOKEN_INVALID: 'Jeton de réinitialisation invalide ou expiré',
+      ACCESS_DENIED: 'Vous n’avez pas l’autorisation d’effectuer cette action',
+      LOGIN_REQUIRED: 'Connexion requise',
+      RATE_LIMITED: 'Trop de tentatives de connexion. Réessayez dans 15 minutes'
     },
     
     VALIDATION: {
-      REQUIRED_FIELD: 'שדה חובה חסר',
-      INVALID_EMAIL: 'כתובת אימייל לא תקינה',
-      INVALID_PHONE: 'מספר טלפון לא תקין (0X XX XX XX XX)',
-      INVALID_FORMAT: 'פורמט לא תקין',
-      DATA_INVALID: 'נתונים לא תקינים',
-      PASSWORD_COMPLEXITY: 'הסיסמה חייבת להכיל לפחות אות גדולה, אות קטנה וספרה',
-      COMMON_PASSWORD: 'הסיסמה לא יכולה להכיל מילים נפוצות'
+      REQUIRED_FIELD: 'Champ obligatoire manquant',
+      INVALID_EMAIL: 'Adresse e-mail invalide',
+      INVALID_PHONE: 'Numéro de téléphone invalide (0X XX XX XX XX)',
+      INVALID_FORMAT: 'Format invalide',
+      DATA_INVALID: 'Données invalides',
+      PASSWORD_COMPLEXITY: 'Le mot de passe doit contenir au moins une majuscule, une minuscule et un chiffre',
+      COMMON_PASSWORD: 'Le mot de passe ne peut pas contenir de mots courants'
     },
     
     RESOURCE: {
-      USER_NOT_FOUND: 'משתמש לא נמצא',
-      PROVIDER_NOT_FOUND: 'ספק השירות לא נמצא או אינו זמין',
-      PROFILE_NOT_FOUND: 'פרופיל לא נמצא',
-      RESOURCE_NOT_FOUND: 'המשאב המבוקש לא נמצא',
-      PROFILE_INCOMPLETE: 'פרופיל לא הושלם'
+      USER_NOT_FOUND: 'Utilisateur introuvable',
+      PROVIDER_NOT_FOUND: 'Prestataire introuvable ou indisponible',
+      PROFILE_NOT_FOUND: 'Profil introuvable',
+      RESOURCE_NOT_FOUND: 'Ressource introuvable',
+      PROFILE_INCOMPLETE: 'Profil incomplet'
     },
     
     BUSINESS: {
-      CREDITS_INSUFFICIENT: 'אין מספיק קרדיטים. שדרג לפרימיום',
-      PREMIUM_REQUIRED: 'נדרש חשבון פרימיום',
-      SERVICE_UNAVAILABLE: 'השירות אינו זמין כרגע',
-      ALREADY_CONTACTED: 'כבר יצרת קשר עם ספק זה החודש',
-      MAX_CONTACTS_REACHED: 'הגעת למקסימום צפיות החודש (3)'
+      CREDITS_INSUFFICIENT: 'Crédits insuffisants. Passez au premium',
+      PREMIUM_REQUIRED: 'Compte premium requis',
+      SERVICE_UNAVAILABLE: 'Le service n’est pas disponible pour le moment',
+      ALREADY_CONTACTED: 'Vous avez déjà contacté ce prestataire ce mois-ci',
+      MAX_CONTACTS_REACHED: 'Vous avez atteint le maximum de consultations ce mois-ci (3)'
     },
     
     UPLOAD: {
-      FILE_TOO_LARGE: 'הקובץ גדול מדי. מקסימום 5MB',
-      INVALID_FILE_TYPE: 'רק קבצי תמונה מותרים (JPEG, PNG, WebP)',
-      UPLOAD_FAILED: 'שגיאה בהעלאת התמונה',
-      NO_FILE_SELECTED: 'לא נבחר קובץ'
+      FILE_TOO_LARGE: 'Fichier trop volumineux. Maximum 5 Mo',
+      INVALID_FILE_TYPE: 'Seules les images sont autorisées (JPEG, PNG, WebP)',
+      UPLOAD_FAILED: 'Erreur lors du téléchargement de la photo',
+      NO_FILE_SELECTED: 'Aucun fichier sélectionné'
     },
     
     SYSTEM: {
-      SERVER_ERROR: 'שגיאת שרת פנימית',
-      DATABASE_ERROR: 'שגיאה במאגר המידע',
-      EXTERNAL_SERVICE: 'שגיאה בשירות חיצוני',
-      CONFIGURATION_ERROR: 'שגיאה בהגדרות המערכת',
-      NETWORK_ERROR: 'שגיאה ברשת. בדוק את החיבור לאינטרנט',
-      MAINTENANCE: 'המערכת בתחזוקה. נסה שוב מאוחר יותר'
+      SERVER_ERROR: 'Erreur interne du serveur',
+      DATABASE_ERROR: 'Erreur de base de données',
+      EXTERNAL_SERVICE: 'Erreur de service externe',
+      CONFIGURATION_ERROR: 'Erreur de configuration du système',
+      NETWORK_ERROR: 'Erreur réseau. Vérifiez votre connexion internet',
+      MAINTENANCE: 'Système en maintenance. Réessayez plus tard'
     },
     
     EMAIL: {
-      SEND_FAILED: 'שגיאה בשליחת האימייל',
-      SERVICE_UNAVAILABLE: 'שירות האימייל אינו זמין',
-      INVALID_TEMPLATE: 'תבנית אימייל לא תקינה',
-      RATE_LIMITED: 'ניתן לבקש איפוס סיסמה עד 3 פעמים בכל 15 דקות'
+      SEND_FAILED: 'Erreur lors de l’envoi de l’e-mail',
+      SERVICE_UNAVAILABLE: 'Le service d’e-mail n’est pas disponible',
+      INVALID_TEMPLATE: 'Modèle d’e-mail invalide',
+      RATE_LIMITED: 'Vous pouvez demander une réinitialisation du mot de passe jusqu’à 3 fois par tranche de 15 minutes'
     }
   },
 
@@ -119,33 +119,33 @@ const MESSAGES = {
   // =============================================
   INFO: {
     SEARCH: {
-      NO_RESULTS: 'לא נמצאו תוצאות המתאימות לחיפוש',
-      REFINE_SEARCH: 'נסה לשנות את מונחי החיפוש או הסר מסננים',
-      RESULTS_FOUND: 'נמצאו {count} תוצאות',
-      LOADING: 'טוען תוצאות...'
+      NO_RESULTS: 'Aucun résultat ne correspond à votre recherche',
+      REFINE_SEARCH: 'Essayez de modifier les termes de recherche ou de retirer des filtres',
+      RESULTS_FOUND: '{count} résultats trouvés',
+      LOADING: 'Chargement des résultats...'
     },
     
     PROVIDER: {
-      VERIFICATION_PENDING: 'הפרופיל שלך ממתין לאימות',
-      PROFILE_VIEWED: 'הפרופיל שלך נצפה {count} פעמים השבוע',
-      NEW_CONTACT: 'יש לך הודעה חדשה מלקוח',
-      PREMIUM_EXPIRES: 'החשבון הפרימיום יפוג בעוד {days} ימים'
+      VERIFICATION_PENDING: 'Votre profil est en attente de validation',
+      PROFILE_VIEWED: 'Votre profil a été vu {count} fois cette semaine',
+      NEW_CONTACT: 'Vous avez un nouveau message d’un client',
+      PREMIUM_EXPIRES: 'Le compte premium expire dans {days} jours'
     },
     
     CLIENT: {
-      CREDITS_REMAINING: 'נותרו לך {count} צפיות חינמיות החודש',
-      PREMIUM_BENEFITS: 'עם פרימיום תקבל צפיות ללא הגבלה',
-      CONTACT_SENT: 'ההודעה נשלחה. הספק יחזור אליך בהקדם',
-      SAVE_FAVORITE: 'שמור בעדפות כדי לא לאבד את הספק'
+      CREDITS_REMAINING: 'Il vous reste {count} consultations gratuites ce mois-ci',
+      PREMIUM_BENEFITS: 'Avec le premium, consultations illimitées',
+      CONTACT_SENT: 'Message envoyé. Le prestataire vous recontactera bientôt',
+      SAVE_FAVORITE: 'Ajoutez aux favoris pour ne pas perdre ce prestataire'
     },
     
     GENERAL: {
-      WELCOME: 'ברוכים הבאים להומשרות!',
-      LOADING: 'טוען...',
-      PROCESSING: 'מעבד...',
-      SAVING: 'שומר...',
-      SUCCESS: 'פעולה הושלמה בהצלחה',
-      PLEASE_WAIT: 'אנא המתן...'
+      WELCOME: 'Bienvenue sur AllSherut !',
+      LOADING: 'Chargement...',
+      PROCESSING: 'Traitement...',
+      SAVING: 'Enregistrement...',
+      SUCCESS: 'Action effectuée avec succès',
+      PLEASE_WAIT: 'Veuillez patienter...'
     }
   },
 
@@ -154,34 +154,34 @@ const MESSAGES = {
   // =============================================
   LABELS: {
     SERVICES: {
-      babysitting: 'בייביסיטר',
-      cleaning: 'ניקיון',
-      gardening: 'גינון', 
-      petcare: 'טיפוח חיות מחמד',
-      tutoring: 'שיעורים פרטיים',
-      eldercare: 'עזרה לקשישים',
-      pest_control: 'הדברה, ריסוס והרחקת מזיקים'
+      babysitting: 'Baby-sitting',
+      cleaning: 'Ménage',
+      gardening: 'Jardinage', 
+      petcare: 'Garde d’animaux',
+      tutoring: 'Cours particuliers',
+      eldercare: 'Aide aux personnes âgées',
+      pest_control: 'Désinsectisation, pulvérisation et élimination des nuisibles'
     },
     
     ROLES: {
-      client: 'לקוח',
-      provider: 'ספק שירות',
-      admin: 'מנהל'
+      client: 'Client',
+      provider: 'Prestataire',
+      admin: 'Administrateur'
     },
     
     STATUS: {
-      active: 'פעיל',
-      inactive: 'לא פעיל',
-      pending: 'ממתין',
-      verified: 'מאומת',
-      suspended: 'מושעה'
+      active: 'Actif',
+      inactive: 'Inactif',
+      pending: 'En attente',
+      verified: 'Vérifié',
+      suspended: 'Suspendu'
     },
     
     CONTACT: {
-      phone: 'טלפון',
-      email: 'אימייל',
-      whatsapp: 'וואטסאפ',
-      telegram: 'טלגרם'
+      phone: 'Téléphone',
+      email: 'E-mail',
+      whatsapp: 'WhatsApp',
+      telegram: 'Telegram'
     }
   }
 };
