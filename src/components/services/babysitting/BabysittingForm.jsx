@@ -60,10 +60,10 @@ const BabysittingForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
           <label className="auth-form-label required">{t('serviceForm.babysitting.ageGroups')}</label>
           <div className="checkbox-group" data-field="ageGroups">
             {[
-              { value: '0-1 שנה', label: t('filters.babysitting.age0to1') },
-              { value: '1-3 שנים', label: t('filters.babysitting.age1to3') },
-              { value: '3-6 שנים', label: t('filters.babysitting.age3to6') },
-              { value: '6+ שנים', label: t('filters.babysitting.age6plus') }
+              { value: 'age0to1', label: t('filters.babysitting.age0to1') },
+              { value: 'age1to3', label: t('filters.babysitting.age1to3') },
+              { value: 'age3to6', label: t('filters.babysitting.age3to6') },
+              { value: 'age6plus', label: t('filters.babysitting.age6plus') }
             ].map(age => (
               <label key={age.value} className="checkbox-item">
                 <input
@@ -88,19 +88,19 @@ const BabysittingForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
           <label className="auth-form-label required">{t('serviceForm.common.availabilityDays')}</label>
           <div className="checkbox-group" data-field="availability_days">
             {[
-              { value: 'ראשון', label: t('days.sunday') },
-              { value: 'שני', label: t('days.monday') },
-              { value: 'שלישי', label: t('days.tuesday') },
-              { value: 'רביעי', label: t('days.wednesday') },
-              { value: 'חמישי', label: t('days.thursday') },
-              { value: 'שישי', label: t('days.friday') },
-              { value: 'כל השבוע', label: t('days.allWeek') }
+              { value: 'sunday', label: t('days.sunday') },
+              { value: 'monday', label: t('days.monday') },
+              { value: 'tuesday', label: t('days.tuesday') },
+              { value: 'wednesday', label: t('days.wednesday') },
+              { value: 'thursday', label: t('days.thursday') },
+              { value: 'friday', label: t('days.friday') },
+              { value: 'allWeek', label: t('days.allWeek') }
             ].map(day => (
               <label key={day.value} className="checkbox-item">
                 <input
                   type="checkbox"
                   checked={serviceDetails.availability_days?.includes(day.value) || false}
-                  onChange={() => handleExclusiveCheckbox('availability_days', day.value, 'כל השבוע', ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי'])}
+                  onChange={() => handleExclusiveCheckbox('availability_days', day.value, 'allWeek', ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday'])}
                 />
                 {day.label}
               </label>
@@ -113,16 +113,16 @@ const BabysittingForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
           <label className="auth-form-label required">{t('serviceForm.common.availabilityHours')}</label>
           <div className="checkbox-group" data-field="availability_hours">
             {[
-              { value: 'בוקר', label: t('hours.morning') },
-              { value: 'אחר הצהריים', label: t('hours.afternoon') },
-              { value: 'ערב', label: t('hours.evening') },
-              { value: 'הכל', label: t('hours.all') }
+              { value: 'morning', label: t('hours.morning') },
+              { value: 'afternoon', label: t('hours.afternoon') },
+              { value: 'evening', label: t('hours.evening') },
+              { value: 'all', label: t('hours.all') }
             ].map(hour => (
               <label key={hour.value} className="checkbox-item">
                 <input
                   type="checkbox"
                   checked={serviceDetails.availability_hours?.includes(hour.value) || false}
-                  onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'הכל', ['בוקר', 'אחר הצהריים', 'ערב'])}
+                  onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'all', ['morning', 'afternoon', 'evening'])}
                 />
                 {hour.label}
               </label>
@@ -135,15 +135,15 @@ const BabysittingForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
           <label className="auth-form-label required">{t('serviceForm.babysitting.babysittingTypes')}</label>
           <div className="checkbox-group" data-field="babysitting_types">
             {[
-              { value: 'שמרטפות מזדמנת', label: t('filters.babysitting.occasional') },
-              { value: 'שמרטפות קבועה בבית הלקוח', label: t('filters.babysitting.regular') },
-              { value: 'הוצאה מהגן / מבית-הספר', label: t('filters.babysitting.pickup') },
-              { value: 'שמירה בלילה', label: t('filters.babysitting.nightCare') },
-              { value: 'שמירה בזמן חופשות', label: t('filters.babysitting.holidayCare') },
-              { value: 'עזרה בשיעורי בית', label: t('filters.babysitting.homework') },
-              { value: 'מטפלת במשרה מלאה', label: t('filters.babysitting.fullTime') },
-              { value: 'קייטנת קיץ', label: t('filters.babysitting.summerCamp') },
-              { value: 'קייטנת חורף', label: t('filters.babysitting.winterCamp') }
+              { value: 'occasional', label: t('filters.babysitting.occasional') },
+              { value: 'regular', label: t('filters.babysitting.regular') },
+              { value: 'pickup', label: t('filters.babysitting.pickup') },
+              { value: 'nightCare', label: t('filters.babysitting.nightCare') },
+              { value: 'holidayCare', label: t('filters.babysitting.holidayCare') },
+              { value: 'homework', label: t('filters.babysitting.homework') },
+              { value: 'fullTime', label: t('filters.babysitting.fullTime') },
+              { value: 'summerCamp', label: t('filters.babysitting.summerCamp') },
+              { value: 'winterCamp', label: t('filters.babysitting.winterCamp') }
             ].map(type => (
               <label key={type.value} className="checkbox-item">
                 <input
@@ -184,11 +184,11 @@ const BabysittingForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
           <label className="auth-form-label required">{t('serviceForm.babysitting.languages')}</label>
           <div className="checkbox-group" data-field="languages">
             {[
-              { value: 'עברית', label: t('languages.hebrew') },
-              { value: 'רוסית', label: t('languages.russian') },
-              { value: 'אנגלית', label: t('languages.english') },
-              { value: 'ספרדית', label: t('languages.spanish') },
-              { value: 'צרפתית', label: t('languages.french') }
+              { value: 'hebrew', label: t('languages.hebrew') },
+              { value: 'russian', label: t('languages.russian') },
+              { value: 'english', label: t('languages.english') },
+              { value: 'spanish', label: t('languages.spanish') },
+              { value: 'french', label: t('languages.french') }
             ].map(lang => (
               <label key={lang.value} className="checkbox-item">
                 <input
@@ -241,9 +241,9 @@ const BabysittingForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
   onChange={(e) => handleServiceDetailsChange('certifications', e.target.value)}
   placeholder={t('serviceForm.common.selectCertification')}
   options={[
-    { value: 'הכשרה בתחום החינוך המיוחד', label: t('filters.babysitting.certSpecialEd') },
-    { value: 'קורס עזרה ראשונה', label: t('filters.babysitting.certFirstAid') },
-    { value: 'ניסיון בגני ילדים או מעונות', label: t('filters.babysitting.certKindergarten') }
+    { value: 'certSpecialEd', label: t('filters.babysitting.certSpecialEd') },
+    { value: 'certFirstAid', label: t('filters.babysitting.certFirstAid') },
+    { value: 'certKindergarten', label: t('filters.babysitting.certKindergarten') }
   ]}
 />
         </div>
@@ -257,10 +257,10 @@ const BabysittingForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
   placeholder={t('serviceForm.common.selectLevel')}
   options={[
     { value: '', label: t('filters.noMatter') },
-    { value: 'חילוני', label: t('filters.religious.secular') },
-    { value: 'מסורתי', label: t('filters.religious.traditional') },
-    { value: 'דתי', label: t('filters.religious.religious') },
-    { value: 'חרדי', label: t('filters.religious.orthodox') }
+    { value: 'secular', label: t('filters.religious.secular') },
+    { value: 'traditional', label: t('filters.religious.traditional') },
+    { value: 'religious', label: t('filters.religious.religious') },
+    { value: 'orthodox', label: t('filters.religious.orthodox') }
   ]}
 />
         </div>

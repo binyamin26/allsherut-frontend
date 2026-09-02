@@ -8,19 +8,19 @@ export const FILTER_CONFIG = {
   // ═══════════════════════════════════════════════════════════════
   common: {
     days: [
-      { value: 'ראשון', key: 'days.sunday' },
-      { value: 'שני', key: 'days.monday' },
-      { value: 'שלישי', key: 'days.tuesday' },
-      { value: 'רביעי', key: 'days.wednesday' },
-      { value: 'חמישי', key: 'days.thursday' },
-      { value: 'שישי', key: 'days.friday' },
-      { value: 'כל השבוע', key: 'days.allWeek' }
+      { value: 'sunday', key: 'days.sunday' },
+      { value: 'monday', key: 'days.monday' },
+      { value: 'tuesday', key: 'days.tuesday' },
+      { value: 'wednesday', key: 'days.wednesday' },
+      { value: 'thursday', key: 'days.thursday' },
+      { value: 'friday', key: 'days.friday' },
+      { value: 'allWeek', key: 'days.allWeek' }
     ],
     hours: [
-      { value: 'בוקר', key: 'hours.morning' },
-      { value: 'אחר הצהריים', key: 'hours.afternoon' },
-      { value: 'ערב', key: 'hours.evening' },
-      { value: 'הכל', key: 'hours.all' }
+      { value: 'morning', key: 'hours.morning' },
+      { value: 'afternoon', key: 'hours.afternoon' },
+      { value: 'evening', key: 'hours.evening' },
+      { value: 'all', key: 'hours.all' }
     ],
     yesNoOptions: [
       { value: '', key: 'filters.noMatter' },
@@ -28,10 +28,10 @@ export const FILTER_CONFIG = {
       { value: 'no', key: 'common.no' }
     ],
     languages: [
-      { value: 'עברית', key: 'languages.hebrew' },
-      { value: 'רוסית', key: 'languages.russian' },
-      { value: 'אנגלית', key: 'languages.english' },
-      { value: 'צרפתית', key: 'languages.french' }
+      { value: 'hebrew', key: 'languages.hebrew' },
+      { value: 'russian', key: 'languages.russian' },
+      { value: 'english', key: 'languages.english' },
+      { value: 'french', key: 'languages.french' }
     ]
   },
 
@@ -51,42 +51,42 @@ export const FILTER_CONFIG = {
       religiousLevel: 'filters.babysitting.religiousLevel'
     },
     ageGroups: [
-      { value: '0-1 שנה', key: 'filters.babysitting.age0to1' },
-      { value: '1-3 שנים', key: 'filters.babysitting.age1to3' },
-      { value: '3-6 שנים', key: 'filters.babysitting.age3to6' },
-      { value: '6+ שנים', key: 'filters.babysitting.age6plus' }
+      { value: 'age0to1', key: 'filters.babysitting.age0to1' },
+      { value: 'age1to3', key: 'filters.babysitting.age1to3' },
+      { value: 'age3to6', key: 'filters.babysitting.age3to6' },
+      { value: 'age6plus', key: 'filters.babysitting.age6plus' }
     ],
     types: [
-      { value: 'שמרטפות מזדמנת', key: 'filters.babysitting.occasional' },
-      { value: 'שמרטפות קבועה בבית הלקוח', key: 'filters.babysitting.regular' },
-      { value: 'הוצאה מהגן / מבית-הספר', key: 'filters.babysitting.pickup' },
-      { value: 'שמירה בלילה', key: 'filters.babysitting.nightCare' },
-      { value: 'שמירה בזמן חופשות', key: 'filters.babysitting.holidayCare' },
-      { value: 'עזרה בשיעורי בית', key: 'filters.babysitting.homework' },
-      { value: 'מטפלת במשרה מלאה', key: 'filters.babysitting.fullTime' },
-      { value: 'קייטנת קיץ', key: 'filters.babysitting.summerCamp' },
-      { value: 'קייטנת חורף', key: 'filters.babysitting.winterCamp' }
+      { value: 'occasional', key: 'filters.babysitting.occasional' },
+      { value: 'regular', key: 'filters.babysitting.regular' },
+      { value: 'pickup', key: 'filters.babysitting.pickup' },
+      { value: 'nightCare', key: 'filters.babysitting.nightCare' },
+      { value: 'holidayCare', key: 'filters.babysitting.holidayCare' },
+      { value: 'homework', key: 'filters.babysitting.homework' },
+      { value: 'fullTime', key: 'filters.babysitting.fullTime' },
+      { value: 'summerCamp', key: 'filters.babysitting.summerCamp' },
+      { value: 'winterCamp', key: 'filters.babysitting.winterCamp' }
     ],
     languages: [
-      { value: 'עברית', key: 'languages.hebrew' },
-      { value: 'רוסית', key: 'languages.russian' },
-      { value: 'אנגלית', key: 'languages.english' },
-      { value: 'ספרדית', key: 'languages.spanish' },
-      { value: 'צרפתית', key: 'languages.french' }
+      { value: 'hebrew', key: 'languages.hebrew' },
+      { value: 'russian', key: 'languages.russian' },
+      { value: 'english', key: 'languages.english' },
+      { value: 'spanish', key: 'languages.spanish' },
+      { value: 'french', key: 'languages.french' }
     ],
     certifications: [
       { value: '', key: 'filters.noMatter' },
-      { value: 'הכשרה בתחום החינוך המיוחד', key: 'filters.babysitting.certSpecialEd' },
-      { value: 'קורס עזרה ראשונה', key: 'filters.babysitting.certFirstAid' },
-      { value: 'ניסיון בגני ילדים או מעונות', key: 'filters.babysitting.certKindergarten' }
+      { value: 'certSpecialEd', key: 'filters.babysitting.certSpecialEd' },
+      { value: 'certFirstAid', key: 'filters.babysitting.certFirstAid' },
+      { value: 'certKindergarten', key: 'filters.babysitting.certKindergarten' }
     ],
     religiousLevels: [
       { value: '', key: 'filters.noMatter' },
       { value: 'לא משנה', key: 'filters.noMatter' },
-      { value: 'חילוני', key: 'filters.religious.secular' },
-      { value: 'מסורתי', key: 'filters.religious.traditional' },
-      { value: 'דתי', key: 'filters.religious.religious' },
-      { value: 'חרדי', key: 'filters.religious.orthodox' }
+      { value: 'secular', key: 'filters.religious.secular' },
+      { value: 'traditional', key: 'filters.religious.traditional' },
+      { value: 'religious', key: 'filters.religious.religious' },
+      { value: 'orthodox', key: 'filters.religious.orthodox' }
     ]
   },
 
@@ -106,38 +106,38 @@ export const FILTER_CONFIG = {
     },
     legalStatus: [
       { value: '', key: 'filters.noMatter' },
-      { value: 'חברה', key: 'filters.cleaning.company' },
-      { value: 'עצמאי', key: 'filters.cleaning.independent' }
+      { value: 'company', key: 'filters.cleaning.company' },
+      { value: 'independent', key: 'filters.cleaning.independent' }
     ],
     homeCleaning: [
-      { value: 'ניקיון שוטף', key: 'filters.cleaning.regularCleaning' },
-      { value: 'ניקיון פסח', key: 'filters.cleaning.passoverCleaning' },
-      { value: 'ניקיון אחרי שיפוץ', key: 'filters.cleaning.postRenovation' },
-      { value: 'ניקיון לדירות Airbnb', key: 'filters.cleaning.airbnb' }
+      { value: 'regularCleaning', key: 'filters.cleaning.regularCleaning' },
+      { value: 'passoverCleaning', key: 'filters.cleaning.passoverCleaning' },
+      { value: 'postRenovation', key: 'filters.cleaning.postRenovation' },
+      { value: 'airbnb', key: 'filters.cleaning.airbnb' }
     ],
     officeCleaning: [
-      { value: 'משרדים', key: 'filters.cleaning.offices' },
-      { value: 'חנויות', key: 'filters.cleaning.stores' },
-      { value: 'בניינים', key: 'filters.cleaning.buildings' },
-      { value: 'מוסדות חינוך', key: 'filters.cleaning.educationalInstitutions' },
-      { value: 'מפעלים', key: 'filters.cleaning.factories' }
+      { value: 'offices', key: 'filters.cleaning.offices' },
+      { value: 'stores', key: 'filters.cleaning.stores' },
+      { value: 'buildings', key: 'filters.cleaning.buildings' },
+      { value: 'educationalInstitutions', key: 'filters.cleaning.educationalInstitutions' },
+      { value: 'factories', key: 'filters.cleaning.factories' }
     ],
     specialCleaning: [
-      { value: 'ניקוי חלונות', key: 'filters.cleaning.highWindows' },
-      { value: 'ניקוי שטיחים', key: 'filters.cleaning.carpets' },
-      { value: 'ניקוי ספות', key: 'filters.cleaning.sofas' },
-      { value: 'ניקוי וילונות', key: 'filters.cleaning.curtains' },
-      { value: 'ניקוי בלחץ מים (טרסות, חזיתות)', key: 'filters.cleaning.pressureWashing' },
-      { value: 'חיטוי וניקיון אחרי נזק (שריפה / הצפה)', key: 'filters.cleaning.damageCleanup' },
-      { value: 'ניקוי מזגן', key: 'filters.cleaning.acCleaning' },
-      { value: 'ניקיון גגות רעפים', key: 'filters.cleaning.roofCleaning' },
-      { value: 'ניקוי ותחזוקת אקווריומים', key: 'filters.cleaning.aquariumCleaning' }
+      { value: 'highWindows', key: 'filters.cleaning.highWindows' },
+      { value: 'carpets', key: 'filters.cleaning.carpets' },
+      { value: 'sofas', key: 'filters.cleaning.sofas' },
+      { value: 'curtains', key: 'filters.cleaning.curtains' },
+      { value: 'pressureWashing', key: 'filters.cleaning.pressureWashing' },
+      { value: 'damageCleanup', key: 'filters.cleaning.damageCleanup' },
+      { value: 'acCleaning', key: 'filters.cleaning.acCleaning' },
+      { value: 'roofCleaning', key: 'filters.cleaning.roofCleaning' },
+      { value: 'aquariumCleaning', key: 'filters.cleaning.aquariumCleaning' }
     ],
     additionalServices: [
-      { value: 'ניקוי רכב בבית הלקוח', key: 'filters.cleaning.carCleaning' },
-      { value: 'ניקוי פאנלים סולאריים', key: 'filters.cleaning.solarPanels' },
-      { value: 'גיהוץ בבית הלקוח', key: 'filters.cleaning.ironingAtHome' },
-      { value: 'קיפול כביסה', key: 'filters.cleaning.laundryFolding' }
+      { value: 'carCleaning', key: 'filters.cleaning.carCleaning' },
+      { value: 'solarPanels', key: 'filters.cleaning.solarPanels' },
+      { value: 'ironingAtHome', key: 'filters.cleaning.ironingAtHome' },
+      { value: 'laundryFolding', key: 'filters.cleaning.laundryFolding' }
     ],
     materialsOptions: [
       { value: '', key: 'filters.cleaning.allOptions' },
@@ -159,38 +159,38 @@ export const FILTER_CONFIG = {
       additionalServices: 'filters.gardening.additionalServices'
     },
     services: [
-      { value: 'גיזום עצים ושיחים', key: 'filters.gardening.pruning' },
-      { value: 'עיצוב גינה', key: 'filters.gardening.design' },
-      { value: 'שתילת צמחים', key: 'filters.gardening.planting' },
-      { value: 'השקיה', key: 'filters.gardening.irrigation' },
-      { value: 'דישון', key: 'filters.gardening.fertilizing' },
-      { value: 'ניכוש עשבים', key: 'filters.gardening.weeding' },
-      { value: 'תחזוקה כללית', key: 'filters.gardening.generalMaintenance' }
+      { value: 'pruning', key: 'filters.gardening.pruning' },
+      { value: 'design', key: 'filters.gardening.design' },
+      { value: 'planting', key: 'filters.gardening.planting' },
+      { value: 'irrigation', key: 'filters.gardening.irrigation' },
+      { value: 'fertilizing', key: 'filters.gardening.fertilizing' },
+      { value: 'weeding', key: 'filters.gardening.weeding' },
+      { value: 'generalMaintenance', key: 'filters.gardening.generalMaintenance' }
     ],
     seasons: [
-      { value: 'כל השנה', key: 'filters.gardening.allYear' },
-      { value: 'אביב', key: 'filters.gardening.spring' },
-      { value: 'קיץ', key: 'filters.gardening.summer' },
-      { value: 'סתיו', key: 'filters.gardening.autumn' },
-      { value: 'חורף', key: 'filters.gardening.winter' }
+      { value: 'allYear', key: 'filters.gardening.allYear' },
+      { value: 'spring', key: 'filters.gardening.spring' },
+      { value: 'summer', key: 'filters.gardening.summer' },
+      { value: 'autumn', key: 'filters.gardening.autumn' },
+      { value: 'winter', key: 'filters.gardening.winter' }
     ],
     equipment: [
-      { value: 'מכסחת דשא', key: 'filters.gardening.lawnMower' },
-      { value: 'מזמרות גיזום', key: 'filters.gardening.pruningShears' },
-      { value: 'משאבת מים', key: 'filters.gardening.waterPump' },
-      { value: 'כלים ידניים', key: 'filters.gardening.handTools' },
-      { value: 'מפזר דשן', key: 'filters.gardening.fertilizerSpreader' },
-      { value: 'מערכת השקיה', key: 'filters.gardening.irrigationSystem' }
+      { value: 'lawnMower', key: 'filters.gardening.lawnMower' },
+      { value: 'pruningShears', key: 'filters.gardening.pruningShears' },
+      { value: 'waterPump', key: 'filters.gardening.waterPump' },
+      { value: 'handTools', key: 'filters.gardening.handTools' },
+      { value: 'fertilizerSpreader', key: 'filters.gardening.fertilizerSpreader' },
+      { value: 'irrigationSystem', key: 'filters.gardening.irrigationSystem' }
     ],
     specializations: [
-      { value: 'הכשרה גנן סוג א', key: 'filters.gardening.gardenerTypeA' },
-      { value: 'הכשרה גנן סוג ב', key: 'filters.gardening.gardenerTypeB' },
-      { value: 'אילני אגרונום', key: 'filters.gardening.agronomist' },
-      { value: 'גוזם מומחה', key: 'filters.gardening.expertPruner' }
+      { value: 'gardenerTypeA', key: 'filters.gardening.gardenerTypeA' },
+      { value: 'gardenerTypeB', key: 'filters.gardening.gardenerTypeB' },
+      { value: 'agronomist', key: 'filters.gardening.agronomist' },
+      { value: 'expertPruner', key: 'filters.gardening.expertPruner' }
     ],
     additionalServices: [
-      { value: 'פינוי פסולת גינה', key: 'filters.gardening.wasteRemoval' },
-      { value: 'ייעוץ עיצוב נוף', key: 'filters.gardening.landscapeConsulting' }
+      { value: 'wasteRemoval', key: 'filters.gardening.wasteRemoval' },
+      { value: 'landscapeConsulting', key: 'filters.gardening.landscapeConsulting' }
     ]
   },
 
@@ -207,44 +207,44 @@ export const FILTER_CONFIG = {
       veterinaryServices: 'filters.petcare.veterinaryServices'
     },
     animalTypes: [
-      { value: 'כלבים', key: 'filters.petcare.dogs' },
-      { value: 'חתולים', key: 'filters.petcare.cats' },
-      { value: 'ציפורים', key: 'filters.petcare.birds' },
-      { value: 'מכרסמים קטנים', key: 'filters.petcare.smallRodents' },
-      { value: 'דגים', key: 'filters.petcare.fish' },
-      { value: 'זוחלים', key: 'filters.petcare.reptiles' }
+      { value: 'dogs', key: 'filters.petcare.dogs' },
+      { value: 'cats', key: 'filters.petcare.cats' },
+      { value: 'birds', key: 'filters.petcare.birds' },
+      { value: 'smallRodents', key: 'filters.petcare.smallRodents' },
+      { value: 'fish', key: 'filters.petcare.fish' },
+      { value: 'reptiles', key: 'filters.petcare.reptiles' }
     ],
     dogSizes: [
-      { value: 'קטן / עד 10 ק״ג', key: 'filters.petcare.smallDog' },
-      { value: 'בינוני / 10–25 ק״ג', key: 'filters.petcare.mediumDog' },
-      { value: 'גדול / 25–40 ק״ג', key: 'filters.petcare.largeDog' },
-      { value: 'ענק / מעל 40 ק״ג', key: 'filters.petcare.giantDog' }
+      { value: 'smallDog', key: 'filters.petcare.smallDog' },
+      { value: 'mediumDog', key: 'filters.petcare.mediumDog' },
+      { value: 'largeDog', key: 'filters.petcare.largeDog' },
+      { value: 'giantDog', key: 'filters.petcare.giantDog' }
     ],
     locationOptions: [
       { value: '', key: 'filters.common.noMatter' },  // ← corrigé
-      { value: 'בבית הלקוח', key: 'filters.petcare.clientHome' },
-      { value: 'בביתי', key: 'filters.petcare.caregiverHome' },
-      { value: 'שניהם', key: 'filters.common.both' }  // ← corrigé
+      { value: 'clientHome', key: 'filters.petcare.clientHome' },
+      { value: 'caregiverHome', key: 'filters.petcare.caregiverHome' },
+      { value: 'both', key: 'filters.common.both' }  // ← corrigé
     ],
     additionalServices: [
-      { value: 'הליכת כלבים', key: 'filters.petcare.dogWalking' },
-      { value: 'רחצה וטיפוח', key: 'filters.petcare.bathingGrooming' },  // ← corrigé
-      { value: 'אילוף בסיסי', key: 'filters.petcare.basicTraining' },
-      { value: 'מתן תרופות', key: 'filters.petcare.medicationAdmin' },  // ← corrigé
-      { value: 'האכלה בזמן השמירה', key: 'filters.petcare.feeding' },
-      { value: 'ניקוי ארגז חול / כלוב / אקווריום', key: 'filters.petcare.cleaning' },
-      { value: 'עדכון תמונות לבעלים', key: 'filters.petcare.photoUpdates' },
-      { value: 'שהייה ביום בלבד', key: 'filters.petcare.daytimeOnly' },  // ← corrigé
-      { value: 'לינה ללילה', key: 'filters.petcare.overnight' }
+      { value: 'dogWalking', key: 'filters.petcare.dogWalking' },
+      { value: 'bathingGrooming', key: 'filters.petcare.bathingGrooming' },  // ← corrigé
+      { value: 'basicTraining', key: 'filters.petcare.basicTraining' },
+      { value: 'medication', key: 'filters.petcare.medicationAdmin' },  // ← corrigé
+      { value: 'feeding', key: 'filters.petcare.feeding' },
+      { value: 'cleaning', key: 'filters.petcare.cleaning' },
+      { value: 'photoUpdates', key: 'filters.petcare.photoUpdates' },
+      { value: 'daytimeOnly', key: 'filters.petcare.daytimeOnly' },  // ← corrigé
+      { value: 'overnight', key: 'filters.petcare.overnight' }
     ],
     facilities: [
-      { value: 'גינה מגודרת', key: 'filters.petcare.fencedGarden' },
-      { value: 'חצר גדולה', key: 'filters.petcare.largeYard' },
-      { value: 'מזגן', key: 'filters.petcare.airConditioning' }
+      { value: 'fencedGarden', key: 'filters.petcare.fencedGarden' },
+      { value: 'largeYard', key: 'filters.petcare.largeYard' },
+      { value: 'airConditioning', key: 'filters.petcare.airConditioning' }
     ],
     veterinaryServices: [
-      { value: 'ביקור וטרינר', key: 'filters.petcare.vetVisit' },
-      { value: 'טיפול בסיסי', key: 'filters.petcare.basicCare' }
+      { value: 'vetVisit', key: 'filters.petcare.vetVisit' },
+      { value: 'basicCare', key: 'filters.petcare.basicCare' }
     ]
   },
 
@@ -263,34 +263,34 @@ eldercare: {
       vehicleForOutings: 'filters.eldercare.vehicleForOutings'
     },
     careTypes: [
-      { value: 'ליווי ותמיכה', key: 'filters.eldercare.companionship' },
-      { value: 'עזרה בניקיון הבית', key: 'filters.eldercare.houseCleaning' },
-      { value: 'בישול והכנת אוכל', key: 'filters.eldercare.cooking' },
-      { value: 'קניות ומשימות', key: 'filters.eldercare.errands' },
-      { value: 'מתן תרופות', key: 'filters.eldercare.medication' },
-      { value: 'ליווי לרופאים', key: 'filters.eldercare.doctorAccompaniment' }
+      { value: 'companionship', key: 'filters.eldercare.companionship' },
+      { value: 'houseCleaning', key: 'filters.eldercare.houseCleaning' },
+      { value: 'cooking', key: 'filters.eldercare.cooking' },
+      { value: 'errands', key: 'filters.eldercare.errands' },
+      { value: 'medication', key: 'filters.eldercare.medication' },
+      { value: 'doctorAccompaniment', key: 'filters.eldercare.doctorAccompaniment' }
     ],
     availability: [
-      { value: 'בוקר', key: 'hours.morning' },
-      { value: 'צהריים', key: 'hours.noon' },
-      { value: 'אחר הצהריים', key: 'hours.afternoon' },
-      { value: 'ערב', key: 'hours.evening' },
-      { value: 'לילה', key: 'hours.night' },
+      { value: 'morning', key: 'hours.morning' },
+      { value: 'noon', key: 'hours.noon' },
+      { value: 'afternoon', key: 'hours.afternoon' },
+      { value: 'evening', key: 'hours.evening' },
+      { value: 'night', key: 'hours.night' },
       { value: '24/7', key: 'hours.twentyFourSeven' }
     ],
     specificConditions: [
-      { value: 'אלצהיימר', key: 'filters.eldercare.alzheimers' },
-      { value: 'פרקינסון', key: 'filters.eldercare.parkinsons' },
-      { value: 'סוכרת', key: 'filters.eldercare.diabetes' },
-      { value: 'בעיות ניידות', key: 'filters.eldercare.mobilityIssues' },
-      { value: 'דמנציה', key: 'filters.eldercare.dementia' }
+      { value: 'alzheimers', key: 'filters.eldercare.alzheimers' },
+      { value: 'parkinsons', key: 'filters.eldercare.parkinsons' },
+      { value: 'diabetes', key: 'filters.eldercare.diabetes' },
+      { value: 'mobilityIssues', key: 'filters.eldercare.mobilityIssues' },
+      { value: 'dementia', key: 'filters.eldercare.dementia' }
     ],
     languages: [
-      { value: 'עברית', key: 'languages.hebrew' },
-      { value: 'רוסית', key: 'languages.russian' },
-      { value: 'אנגלית', key: 'languages.english' },
-      { value: 'ספרדית', key: 'languages.spanish' },
-      { value: 'צרפתית', key: 'languages.french' }
+      { value: 'hebrew', key: 'languages.hebrew' },
+      { value: 'russian', key: 'languages.russian' },
+      { value: 'english', key: 'languages.english' },
+      { value: 'spanish', key: 'languages.spanish' },
+      { value: 'french', key: 'languages.french' }
     ],
     administrativeHelp: [
       { value: '', key: 'filters.noMatter' },
@@ -318,10 +318,10 @@ eldercare: {
       workTypes: 'serviceForm.common.workTypes'
     },
     availability: [
-      { value: 'בוקר', key: 'hours.morning' },
-      { value: 'אחר הצהריים', key: 'hours.afternoon' },
-      { value: 'ערב', key: 'hours.evening' },
-      { value: 'לילה', key: 'hours.night' },
+      { value: 'morning', key: 'hours.morning' },
+      { value: 'afternoon', key: 'hours.afternoon' },
+      { value: 'evening', key: 'hours.evening' },
+      { value: 'night', key: 'hours.night' },
       { value: '24/7', key: 'hours.twentyFourSeven' }
     ],
     workTypes: [
@@ -346,27 +346,27 @@ tutoring: {
     ageGroups: [
       { value: 'ילדים', key: 'filters.sports_activities.children' },
       { value: 'נוער', key: 'filters.sports_activities.youth' },
-      { value: 'מבוגרים', key: 'filters.sports_activities.adults' },
+      { value: 'adults', key: 'filters.sports_activities.adults' },
       { value: 'כל הגילאים', key: 'filters.sports_activities.allAges' }
     ],
     levels: [
-      { value: 'יסודי', key: 'filters.tutoring.elementary' },
-      { value: 'חטיבת ביניים', key: 'filters.tutoring.middleSchool' },
-      { value: 'תיכון', key: 'filters.tutoring.highSchool' },
-      { value: 'בגרות', key: 'filters.tutoring.matriculation' },
-      { value: 'מכינה', key: 'filters.tutoring.preAcademic' },
-      { value: 'אקדמי', key: 'filters.tutoring.academic' },
-      { value: 'מבוגרים', key: 'filters.tutoring.adults' }
+      { value: 'elementary', key: 'filters.tutoring.elementary' },
+      { value: 'middleSchool', key: 'filters.tutoring.middleSchool' },
+      { value: 'highSchool', key: 'filters.tutoring.highSchool' },
+      { value: 'matriculation', key: 'filters.tutoring.matriculation' },
+      { value: 'preAcademic', key: 'filters.tutoring.preAcademic' },
+      { value: 'academic', key: 'filters.tutoring.academic' },
+      { value: 'adults', key: 'filters.tutoring.adults' }
     ],
     teachingModes: [
       { value: '', key: 'filters.tutoring.allOptions' },
-      { value: 'פרונטלי בלבד', key: 'filters.tutoring.inPersonOnly' },
-      { value: 'אונליין בלבד', key: 'filters.tutoring.onlineOnly' },
-      { value: 'שניהם', key: 'filters.tutoring.both' }
+      { value: 'inPersonOnly', key: 'filters.tutoring.inPersonOnly' },
+      { value: 'onlineOnly', key: 'filters.tutoring.onlineOnly' },
+      { value: 'both', key: 'filters.tutoring.both' }
     ],
     specializations: [
-      { value: 'הכנה לבחינות', key: 'filters.tutoring.examPrep' },
-      { value: 'הפרעות למידה', key: 'filters.tutoring.learningDisabilities' }
+      { value: 'examPrep', key: 'filters.tutoring.examPrep' },
+      { value: 'learningDisabilities', key: 'filters.tutoring.learningDisabilities' }
     ],
      qualifications: [
       { value: '', key: 'filters.common.noMatter' },
@@ -386,14 +386,14 @@ tutoring: {
     levels: [
       { value: 'ילדים', key: 'filters.sports_activities.children' },
       { value: 'נוער', key: 'filters.sports_activities.youth' },
-      { value: 'מבוגרים', key: 'filters.sports_activities.adults' },
+      { value: 'adults', key: 'filters.sports_activities.adults' },
       { value: 'כל הגילאים', key: 'filters.sports_activities.allAges' }
     ],
     teachingModes: [
       { value: '', key: 'filters.tutoring.allOptions' },
-      { value: 'פרונטלי בלבד', key: 'filters.tutoring.inPersonOnly' },
-      { value: 'אונליין בלבד', key: 'filters.tutoring.onlineOnly' },
-      { value: 'שניהם', key: 'filters.tutoring.both' }
+      { value: 'inPersonOnly', key: 'filters.tutoring.inPersonOnly' },
+      { value: 'onlineOnly', key: 'filters.tutoring.onlineOnly' },
+      { value: 'both', key: 'filters.tutoring.both' }
     ]
   },
 
@@ -408,10 +408,10 @@ laundry: {
       pickupService: 'filters.laundry.pickupService'
     },
     types: [
-      { value: 'איסוף והחזרת כביסה (שירות משלוחים)', key: 'filters.laundry.pickupDelivery' },
-      { value: 'ניקוי יבש / שירות מכבסה', key: 'filters.laundry.dryCleaning' },
-      { value: 'כביסת מצעים, מגבות, וילונות', key: 'filters.laundry.linens' },  // ← corrigé (était beddingTowels)
-      { value: 'כביסה תעשייתית (מלונות, מסעדות)', key: 'filters.laundry.industrial' }
+      { value: 'pickupDelivery', key: 'filters.laundry.pickupDelivery' },
+      { value: 'dryCleaning', key: 'filters.laundry.dryCleaning' },
+      { value: 'linens', key: 'filters.laundry.linens' },  // ← corrigé (était beddingTowels)
+      { value: 'industrial', key: 'filters.laundry.industrial' }
     ]
   },
 
@@ -429,53 +429,53 @@ laundry: {
       age: 'filters.common.age'
     },
     workTypes: [
-      { value: 'תיקונים', key: 'filters.electrician.repairs' },
-      { value: 'התקנות', key: 'filters.electrician.installations' },
-      { value: 'עבודות חשמל גדולות', key: 'filters.electrician.largeElectricalWork' }
+      { value: 'repairs', key: 'filters.electrician.repairs' },
+      { value: 'installations', key: 'filters.electrician.installations' },
+      { value: 'largeElectricalWork', key: 'filters.electrician.largeElectricalWork' }
     ],
   repairTypes: [
-      { value: 'תיקון מזגן', key: 'filters.ac.acRepair' },
-      { value: 'תיקון מזגן מעובש', key: 'filters.ac.moldyAcRepair' },
-      { value: 'תיקון מיזוג מיני מרכזי', key: 'filters.ac.miniCentralRepair' },
-      { value: 'תיקון דליפת גז במזגן', key: 'filters.ac.gasLeakRepair' },
-      { value: 'תיקון מיזוג מרכזי', key: 'filters.ac.centralRepair' },
-      { value: 'תיקון מזגן אינוורטר', key: 'filters.ac.inverterRepair' },
-      { value: 'תיקון מזגן VRF', key: 'filters.ac.vrfRepair' },
-      { value: 'ניקוי יסודי', key: 'filters.ac.filterCleaning' },
+      { value: 'acRepair', key: 'filters.ac.acRepair' },
+      { value: 'moldyAcRepair', key: 'filters.ac.moldyAcRepair' },
+      { value: 'miniCentralRepair', key: 'filters.ac.miniCentralRepair' },
+      { value: 'gasLeakRepair', key: 'filters.ac.gasLeakRepair' },
+      { value: 'centralRepair', key: 'filters.ac.centralRepair' },
+      { value: 'inverterRepair', key: 'filters.ac.inverterRepair' },
+      { value: 'vrfRepair', key: 'filters.ac.vrfRepair' },
+      { value: 'filterCleaning', key: 'filters.ac.filterCleaning' },
       { value: 'תיקון צ\'ילרים', key: 'filters.ac.chillerRepair' },
-      { value: 'טכנאי חדרי קירור', key: 'filters.ac.coldRoomTech' },
-      { value: 'מילוי גז', key: 'filters.ac.gasRefill' },
-      { value: 'תיקון קצר', key: 'filters.electrician.shortCircuitRepair' },
-      { value: 'תיקון טיימר', key: 'filters.electrician.timerRepair' },
-      { value: 'תיקון לוח חשמל', key: 'filters.electrician.panelRepair' },
-      { value: 'החלפת שקעים', key: 'filters.electrician.outletReplacement' },
-      { value: 'תיקון\\החלפת ספוטים', key: 'filters.electrician.spotlightRepair' },
-      { value: 'תיקונים אחרים', key: 'filters.electrician.otherRepairs' },
-      { value: 'החלפת אוטומט חדר מדרגות', key: 'filters.electrician.stairwaySwitch' }
+      { value: 'coldRoomTech', key: 'filters.ac.coldRoomTech' },
+      { value: 'gasRefill', key: 'filters.ac.gasRefill' },
+      { value: 'shortCircuitRepair', key: 'filters.electrician.shortCircuitRepair' },
+      { value: 'timerRepair', key: 'filters.electrician.timerRepair' },
+      { value: 'panelRepair', key: 'filters.electrician.panelRepair' },
+      { value: 'outletReplacement', key: 'filters.electrician.outletReplacement' },
+      { value: 'spotlightRepair', key: 'filters.electrician.spotlightRepair' },
+      { value: 'otherRepairs', key: 'filters.electrician.otherRepairs' },
+      { value: 'stairwaySwitch', key: 'filters.electrician.stairwaySwitch' }
     ],
     installationTypes: [
-      { value: 'התקנת מאוורר תקרה', key: 'filters.electrician.ceilingFan' },
-      { value: 'התקנת שקע חשמל', key: 'filters.electrician.outletInstall' },
-      { value: 'התקנת נקודת חשמל חדשה', key: 'filters.electrician.newOutlet' },
-      { value: 'התקנת אטמור', key: 'filters.electrician.waterHeater' },
-      { value: 'התקנת מתג', key: 'filters.electrician.switchInstall' },
-      { value: 'עמדת טעינה לרכב חשמלי', key: 'filters.electrician.evCharger' },
-      { value: 'התקנת שעון שבת', key: 'filters.electrician.shabbatTimer' },
-      { value: 'התקנות אחרות', key: 'filters.electrician.otherInstall' },
-      { value: 'עמדת טעינה לרכב חשמלי של חברת EV-Meter', key: 'filters.electrician.evMeter' },
-      { value: 'התקנות כיריים אינדוקציה', key: 'filters.electrician.inductionCooktop' },
-      { value: 'התקנת תנור אמבטיה', key: 'filters.electrician.bathroomHeater' },
-      { value: 'התקנת גנרטור לבית פרטי', key: 'filters.electrician.generator' },
-      { value: 'התקנת ונטה', key: 'filters.electrician.ventaInstall' },
-      { value: 'עמדת טעינה לרכב חשמלי EV-EDGE', key: 'filters.electrician.evEdge' }
+      { value: 'ceilingFan', key: 'filters.electrician.ceilingFan' },
+      { value: 'outletInstall', key: 'filters.electrician.outletInstall' },
+      { value: 'newOutlet', key: 'filters.electrician.newOutlet' },
+      { value: 'waterHeater', key: 'filters.electrician.waterHeater' },
+      { value: 'switchInstall', key: 'filters.electrician.switchInstall' },
+      { value: 'evCharger', key: 'filters.electrician.evCharger' },
+      { value: 'shabbatTimer', key: 'filters.electrician.shabbatTimer' },
+      { value: 'otherInstall', key: 'filters.electrician.otherInstall' },
+      { value: 'evMeter', key: 'filters.electrician.evMeter' },
+      { value: 'inductionCooktop', key: 'filters.electrician.inductionCooktop' },
+      { value: 'bathroomHeater', key: 'filters.electrician.bathroomHeater' },
+      { value: 'generator', key: 'filters.electrician.generator' },
+      { value: 'ventaInstall', key: 'filters.electrician.ventaInstall' },
+      { value: 'evEdge', key: 'filters.electrician.evEdge' }
     ],
     largeWorkTypes: [
-      { value: 'בניית תשתית חשמל בכל הבית', key: 'filters.electrician.newInfrastructure' },
-      { value: 'החלפת תשתית חשמל בכל הבית', key: 'filters.electrician.replaceInfrastructure' },
-      { value: 'החלפת לוח חשמל', key: 'filters.electrician.panelReplacement' },
-      { value: 'הארקה', key: 'filters.electrician.grounding' },
-      { value: 'החלפה לתלת פאזי', key: 'filters.electrician.threePhase' },
-      { value: 'הכנה לביקורת עבור חברת חשמל', key: 'filters.electrician.inspection' }
+      { value: 'newInfrastructure', key: 'filters.electrician.newInfrastructure' },
+      { value: 'replaceInfrastructure', key: 'filters.electrician.replaceInfrastructure' },
+      { value: 'panelReplacement', key: 'filters.electrician.panelReplacement' },
+      { value: 'grounding', key: 'filters.electrician.grounding' },
+      { value: 'threePhase', key: 'filters.electrician.threePhase' },
+      { value: 'inspection', key: 'filters.electrician.inspection' }
     ]
   },
 
@@ -491,55 +491,55 @@ laundry: {
       fixtureTypes: 'filters.plumbing.fixtureTypes'
     },
     workTypes: [
-      { value: 'סתימות', key: 'filters.plumbing.blockages' },
-      { value: 'תיקון צנרת', key: 'filters.plumbing.pipeRepair' },
-      { value: 'עבודות גדולות', key: 'filters.plumbing.largeWork' },
-      { value: 'תיקון והתקנת אביזרי אינסטלציה', key: 'filters.plumbing.fixtureRepair' }
+      { value: 'blockages', key: 'filters.plumbing.blockages' },
+      { value: 'pipeRepair', key: 'filters.plumbing.pipeRepair' },
+      { value: 'largeWork', key: 'filters.plumbing.largeWork' },
+      { value: 'fixtureRepair', key: 'filters.plumbing.fixtureRepair' }
     ],
     blockageTypes: [
-      { value: 'פתיחת סתימה בבית', key: 'filters.plumbing.homeBlockage' },
-      { value: 'משאבה טבולה', key: 'filters.plumbing.submersiblePump' },
-      { value: 'פתיחת סתימה בבנין', key: 'filters.plumbing.buildingBlockage' }
+      { value: 'homeBlockage', key: 'filters.plumbing.homeBlockage' },
+      { value: 'submersiblePump', key: 'filters.plumbing.submersiblePump' },
+      { value: 'buildingBlockage', key: 'filters.plumbing.buildingBlockage' }
     ],
     pipeRepairTypes: [
-      { value: 'תיקון צנרת גברית', key: 'filters.plumbing.malePipeRepair' },
-      { value: 'תיקון נזקי צנרת בבית', key: 'filters.plumbing.homePipeDamage' },
-      { value: 'תיקון נזקי צנרת בבניין', key: 'filters.plumbing.buildingPipeDamage' },
-      { value: 'הגברת לחץ מים', key: 'filters.plumbing.pressureBoost' },
-      { value: 'תיקון צנרת בגינה', key: 'filters.plumbing.gardenPipes' },
-      { value: 'תיקוני צנרת אחרים', key: 'filters.plumbing.otherPipeRepairs' },
-      { value: 'תיקון צנרת ביוב ללא הרס', key: 'filters.plumbing.sewerNonDestructive' },
-      { value: 'איתור נזילות', key: 'filters.plumbing.leakDetection' }
+      { value: 'malePipeRepair', key: 'filters.plumbing.malePipeRepair' },
+      { value: 'homePipeDamage', key: 'filters.plumbing.homePipeDamage' },
+      { value: 'buildingPipeDamage', key: 'filters.plumbing.buildingPipeDamage' },
+      { value: 'pressureBoost', key: 'filters.plumbing.pressureBoost' },
+      { value: 'gardenPipes', key: 'filters.plumbing.gardenPipes' },
+      { value: 'otherPipeRepairs', key: 'filters.plumbing.otherPipeRepairs' },
+      { value: 'sewerNonDestructive', key: 'filters.plumbing.sewerNonDestructive' },
+      { value: 'leakDetection', key: 'filters.plumbing.leakDetection' }
     ],
     largeWorkTypes: [
-      { value: 'החלפת צנרת בבית', key: 'filters.plumbing.homePipeReplacement' },
-      { value: 'החלפת צנרת בבניין', key: 'filters.plumbing.buildingPipeReplacement' },
-      { value: 'התקנת נקודות מים חדשות', key: 'filters.plumbing.newWaterPoints' },
-      { value: 'החלפת קו ביוב בבית', key: 'filters.plumbing.homeSewerReplacement' },
-      { value: 'החלפת קו ביוב בבניין', key: 'filters.plumbing.buildingSewerReplacement' },
-      { value: 'הקמת קו ביוב חדש', key: 'filters.plumbing.newSewerLine' },
-      { value: 'החלפת צנרת בגינה', key: 'filters.plumbing.gardenPipeReplacement' },
-      { value: 'התקנת מזח', key: 'filters.plumbing.pierInstallation' }
+      { value: 'homePipeReplacement', key: 'filters.plumbing.homePipeReplacement' },
+      { value: 'buildingPipeReplacement', key: 'filters.plumbing.buildingPipeReplacement' },
+      { value: 'newWaterPoints', key: 'filters.plumbing.newWaterPoints' },
+      { value: 'homeSewerReplacement', key: 'filters.plumbing.homeSewerReplacement' },
+      { value: 'buildingSewerReplacement', key: 'filters.plumbing.buildingSewerReplacement' },
+      { value: 'newSewerLine', key: 'filters.plumbing.newSewerLine' },
+      { value: 'gardenPipeReplacement', key: 'filters.plumbing.gardenPipeReplacement' },
+      { value: 'pierInstallation', key: 'filters.plumbing.pierInstallation' }
     ],
     fixtureTypes: [
-      { value: 'התקנת בר מים', key: 'filters.plumbing.waterBar' },
-      { value: 'ניאגרה סמויה', key: 'filters.plumbing.concealedCistern' },
-      { value: 'ברזים', key: 'filters.plumbing.faucets' },
-      { value: 'ניאגרות ואסלות', key: 'filters.plumbing.toilets' },
-      { value: 'מסנני מים', key: 'filters.plumbing.waterFilters' },
-      { value: 'התקנת טוחן אשפה', key: 'filters.plumbing.garbageDisposal' },
-      { value: 'תיקון טוחן אשפה', key: 'filters.plumbing.disposalRepair' },
-      { value: 'כיורים', key: 'filters.plumbing.sinks' },
-      { value: 'הכנה למדיח כלים', key: 'filters.plumbing.dishwasherPrep' },
-      { value: 'אגנית למקלחון', key: 'filters.plumbing.showerBase' },
-      { value: 'אביזרים אחרים', key: 'filters.plumbing.otherFixtures' },
-      { value: 'סילוקית לאסלה', key: 'filters.plumbing.toiletFlush' },
-      { value: 'התקנת בידה', key: 'filters.plumbing.bidet' },
-      { value: 'אסלה תלויה', key: 'filters.plumbing.wallMountedToilet' },
-      { value: 'אל חוזר לשעון מים', key: 'filters.plumbing.checkValve' },
-      { value: 'התקנת מערכות מים תת כיוריות', key: 'filters.plumbing.underSinkSystems' },
-      { value: 'התקנת דוד שמש', key: 'filters.plumbing.solarHeaterInstall' },
-      { value: 'תיקון דוד שמש', key: 'filters.plumbing.solarHeaterRepair' }
+      { value: 'waterBar', key: 'filters.plumbing.waterBar' },
+      { value: 'concealedCistern', key: 'filters.plumbing.concealedCistern' },
+      { value: 'faucets', key: 'filters.plumbing.faucets' },
+      { value: 'toilets', key: 'filters.plumbing.toilets' },
+      { value: 'waterFilters', key: 'filters.plumbing.waterFilters' },
+      { value: 'garbageDisposal', key: 'filters.plumbing.garbageDisposal' },
+      { value: 'disposalRepair', key: 'filters.plumbing.disposalRepair' },
+      { value: 'sinks', key: 'filters.plumbing.sinks' },
+      { value: 'dishwasherPrep', key: 'filters.plumbing.dishwasherPrep' },
+      { value: 'showerBase', key: 'filters.plumbing.showerBase' },
+      { value: 'otherFixtures', key: 'filters.plumbing.otherFixtures' },
+      { value: 'toiletFlush', key: 'filters.plumbing.toiletFlush' },
+      { value: 'bidet', key: 'filters.plumbing.bidet' },
+      { value: 'wallMountedToilet', key: 'filters.plumbing.wallMountedToilet' },
+      { value: 'checkValve', key: 'filters.plumbing.checkValve' },
+      { value: 'underSinkSystems', key: 'filters.plumbing.underSinkSystems' },
+      { value: 'solarHeaterInstall', key: 'filters.plumbing.solarHeaterInstall' },
+      { value: 'solarHeaterRepair', key: 'filters.plumbing.solarHeaterRepair' }
     ]
   },
 
@@ -554,36 +554,36 @@ laundry: {
       disassemblyTypes: 'filters.ac.disassemblyTypes'
     },
     workTypes: [
-      { value: 'התקנת מזגנים', key: 'filters.ac.installation' },
-      { value: 'תיקון מזגנים', key: 'filters.ac.repair' },
-      { value: 'פירוק והרכבת מזגנים', key: 'filters.ac.disassembly' }
+      { value: 'installation', key: 'filters.ac.installation' },
+      { value: 'repair', key: 'filters.ac.repair' },
+      { value: 'disassembly', key: 'filters.ac.disassembly' }
     ],
     installationTypes: [
-      { value: 'התקנת מזגן', key: 'filters.ac.acInstall' },
-      { value: 'התקנת מיזוג מיני מרכזי', key: 'filters.ac.miniCentralInstall' },
-      { value: 'התקנת מיזוג מרכזי', key: 'filters.ac.centralInstall' },
-      { value: 'התקנת מזגן אינוורטר', key: 'filters.ac.inverterInstall' },
-      { value: 'התקנת מזגן מולטי אינוורטר', key: 'filters.ac.multiInverterInstall' },
-      { value: 'התקנת מזגן VRF', key: 'filters.ac.vrfInstall' }
+      { value: 'acInstall', key: 'filters.ac.acInstall' },
+      { value: 'miniCentralInstall', key: 'filters.ac.miniCentralInstall' },
+      { value: 'centralInstall', key: 'filters.ac.centralInstall' },
+      { value: 'inverterInstall', key: 'filters.ac.inverterInstall' },
+      { value: 'multiInverterInstall', key: 'filters.ac.multiInverterInstall' },
+      { value: 'vrfInstall', key: 'filters.ac.vrfInstall' }
     ],
     repairTypes: [
-      { value: 'תיקון מזגן', key: 'filters.ac.acRepair' },
-      { value: 'תיקון מזגן מעובש', key: 'filters.ac.moldyAcRepair' },
-      { value: 'תיקון מיזוג מיני מרכזי', key: 'filters.ac.miniCentralRepair' },
-      { value: 'תיקון דליפת גז במזגן', key: 'filters.ac.gasLeakRepair' },
-      { value: 'תיקון מיזוג מרכזי', key: 'filters.ac.centralRepair' },
-      { value: 'תיקון מזגן אינוורטר', key: 'filters.ac.inverterRepair' },
-      { value: 'תיקון מזגן VRF', key: 'filters.ac.vrfRepair' },
-      { value: 'ניקוי יסודי', key: 'filters.ac.filterCleaning' },
+      { value: 'acRepair', key: 'filters.ac.acRepair' },
+      { value: 'moldyAcRepair', key: 'filters.ac.moldyAcRepair' },
+      { value: 'miniCentralRepair', key: 'filters.ac.miniCentralRepair' },
+      { value: 'gasLeakRepair', key: 'filters.ac.gasLeakRepair' },
+      { value: 'centralRepair', key: 'filters.ac.centralRepair' },
+      { value: 'inverterRepair', key: 'filters.ac.inverterRepair' },
+      { value: 'vrfRepair', key: 'filters.ac.vrfRepair' },
+      { value: 'filterCleaning', key: 'filters.ac.filterCleaning' },
       { value: 'תיקון צ\'ילרים', key: 'filters.ac.chillerRepair' },
-      { value: 'טכנאי חדרי קירור', key: 'filters.ac.coldRoomTech' }
+      { value: 'coldRoomTech', key: 'filters.ac.coldRoomTech' }
     ],
     disassemblyTypes: [
-      { value: 'פירוק והרכבת מזגן', key: 'filters.ac.acDisassembly' },
-      { value: 'פירוק מיזוג מיני מרכזי', key: 'filters.ac.miniCentralDisassembly' },
-      { value: 'פירוק מיזוג מרכזי', key: 'filters.ac.centralDisassembly' },
-      { value: 'פירוק מזגן אינוורטר', key: 'filters.ac.inverterDisassembly' },
-      { value: 'פירוק מזגן VRF', key: 'filters.ac.vrfDisassembly' }
+      { value: 'acDisassembly', key: 'filters.ac.acDisassembly' },
+      { value: 'miniCentralDisassembly', key: 'filters.ac.miniCentralDisassembly' },
+      { value: 'centralDisassembly', key: 'filters.ac.centralDisassembly' },
+      { value: 'inverterDisassembly', key: 'filters.ac.inverterDisassembly' },
+      { value: 'vrfDisassembly', key: 'filters.ac.vrfDisassembly' }
     ]
   },
 
@@ -598,26 +598,26 @@ laundry: {
       licenseTypes: 'filters.gas.licenseTypes'
     },
     workTypes: [
-      { value: 'התקנת צנרת גז בבית', key: 'filters.gas.pipeInstallation' },
-      { value: 'תיקוני גז בבית', key: 'filters.gas.repairs' }
+      { value: 'pipeInstallation', key: 'filters.gas.pipeInstallation' },
+      { value: 'repairs', key: 'filters.gas.repairs' }
     ],
     installationTypes: [
-      { value: 'הזזת\\התקנת נקודת גז', key: 'filters.gas.gasPointInstall' },
-      { value: 'התקנת כיריים גז', key: 'filters.gas.stovetopInstall' },
-      { value: 'התקנת צינור גז', key: 'filters.gas.pipeInstall' },
-      { value: 'התקנת גריל גז', key: 'filters.gas.grillInstall' },
-      { value: 'התקנת חימום מים בגז', key: 'filters.gas.waterHeaterInstall' },
-      { value: 'התקנת חגז', key: 'filters.gas.hagaz' },
-      { value: 'בניית תשתית גז במבנה חדש', key: 'filters.gas.newBuildingInfra' },
-      { value: 'שירותי גז לעסקים', key: 'filters.gas.businessServices' }
+      { value: 'gasPointInstall', key: 'filters.gas.gasPointInstall' },
+      { value: 'stovetopInstall', key: 'filters.gas.stovetopInstall' },
+      { value: 'pipeInstall', key: 'filters.gas.pipeInstall' },
+      { value: 'grillInstall', key: 'filters.gas.grillInstall' },
+      { value: 'waterHeaterInstall', key: 'filters.gas.waterHeaterInstall' },
+      { value: 'hagaz', key: 'filters.gas.hagaz' },
+      { value: 'newBuildingInfra', key: 'filters.gas.newBuildingInfra' },
+      { value: 'businessServices', key: 'filters.gas.businessServices' }
     ],
     repairTypes: [
-      { value: 'תיקון כיריים גז', key: 'filters.gas.stovetopRepair' },
-      { value: 'תיקון צנרת גז', key: 'filters.gas.pipeRepair' }
+      { value: 'stovetopRepair', key: 'filters.gas.stovetopRepair' },
+      { value: 'pipeRepair', key: 'filters.gas.pipeRepair' }
     ],
     licenseTypes: [
-      { value: 'רמה 1', key: 'filters.gas.licenseLevel1' },
-      { value: 'רמה 2', key: 'filters.gas.licenseLevel2' }
+      { value: 'licenseLevel1', key: 'filters.gas.licenseLevel1' },
+      { value: 'licenseLevel2', key: 'filters.gas.licenseLevel2' }
     ]
   },
 
@@ -631,28 +631,28 @@ laundry: {
       constructionTypes: 'filters.drywall.constructionTypes'
     },
     workTypes: [
-      { value: 'עיצובים בגבס', key: 'filters.drywall.design' },
-      { value: 'עבודות גבס', key: 'filters.drywall.construction' }
+      { value: 'design', key: 'filters.drywall.design' },
+      { value: 'drywallWork', key: 'filters.drywall.construction' }
     ],
     designTypes: [
-      { value: 'נישות גבס', key: 'filters.drywall.niches' },
-      { value: 'מזנון גבס', key: 'filters.drywall.tvUnit' },
-      { value: 'ספריות גבס', key: 'filters.drywall.libraries' },
-      { value: 'כוורות גבס', key: 'filters.drywall.shelves' },
-      { value: 'תאורה נסתרת בגבס', key: 'filters.drywall.hiddenLighting' },
-      { value: 'קרניז גבס מעוגל', key: 'filters.drywall.roundedCornice' },
-      { value: 'קשתות גבס', key: 'filters.drywall.arches' },
-      { value: 'תקרה צפה', key: 'filters.drywall.floatingCeiling' },
-      { value: 'קיר צף', key: 'filters.drywall.floatingWall' }
+      { value: 'niches', key: 'filters.drywall.niches' },
+      { value: 'tvUnit', key: 'filters.drywall.tvUnit' },
+      { value: 'libraries', key: 'filters.drywall.libraries' },
+      { value: 'shelves', key: 'filters.drywall.shelves' },
+      { value: 'hiddenLighting', key: 'filters.drywall.hiddenLighting' },
+      { value: 'roundedCornice', key: 'filters.drywall.roundedCornice' },
+      { value: 'arches', key: 'filters.drywall.arches' },
+      { value: 'floatingCeiling', key: 'filters.drywall.floatingCeiling' },
+      { value: 'floatingWall', key: 'filters.drywall.floatingWall' }
     ],
     constructionTypes: [
-      { value: 'בניית קירות גבס', key: 'filters.drywall.walls' },
-      { value: 'בניית תקרות גבס', key: 'filters.drywall.ceilings' },
-      { value: 'בניית מדפי גבס', key: 'filters.drywall.shelfConstruction' },
-      { value: 'הנמכת תקרה למזגן', key: 'filters.drywall.acDropCeiling' },
-      { value: 'חיפוי גבס לצנרת', key: 'filters.drywall.pipeCovering' },
-      { value: 'בניית סינר\\קרניז גבס', key: 'filters.drywall.cornice' },
-      { value: 'בידוד אקוסטי', key: 'filters.drywall.acousticInsulation' }
+      { value: 'walls', key: 'filters.drywall.walls' },
+      { value: 'ceilings', key: 'filters.drywall.ceilings' },
+      { value: 'shelfConstruction', key: 'filters.drywall.shelfConstruction' },
+      { value: 'acDropCeiling', key: 'filters.drywall.acDropCeiling' },
+      { value: 'pipeCovering', key: 'filters.drywall.pipeCovering' },
+      { value: 'cornice', key: 'filters.drywall.cornice' },
+      { value: 'acousticInsulation', key: 'filters.drywall.acousticInsulation' }
     ]
   },
 
@@ -671,67 +671,67 @@ laundry: {
       fenceTypes: 'filters.carpentry.fenceTypes'
     },
     workTypes: [
-      { value: 'בניית רהיטים', key: 'filters.carpentry.furnitureBuilding' },
-      { value: 'תיקון רהיטים', key: 'filters.carpentry.furnitureRepair' },
-      { value: 'עבודות נגרות אחרות', key: 'filters.carpentry.otherWork' },
-      { value: 'נגרות חוץ', key: 'filters.carpentry.outdoorCarpentry' }
+      { value: 'furnitureBuilding', key: 'filters.carpentry.furnitureBuilding' },
+      { value: 'furnitureRepair', key: 'filters.carpentry.furnitureRepair' },
+      { value: 'otherWork', key: 'filters.carpentry.otherWork' },
+      { value: 'outdoorCarpentry', key: 'filters.carpentry.outdoorCarpentry' }
     ],
     furnitureBuildingTypes: [
-      { value: 'בניית ארונות קיר', key: 'filters.carpentry.wallClosets' },
-      { value: 'בניית ארונות הזזה', key: 'filters.carpentry.slidingClosets' },
-      { value: 'בניית ארונות אמבטיה', key: 'filters.carpentry.bathroomCabinets' },
-      { value: 'בניית חדר שינה', key: 'filters.carpentry.bedroomFurniture' },
-      { value: 'בניית שולחן', key: 'filters.carpentry.tableBuilding' },
-      { value: 'בניית כסאות', key: 'filters.carpentry.chairBuilding' },
-      { value: 'בניית מזנון', key: 'filters.carpentry.tvUnitBuilding' },
-      { value: 'בניית ספריה', key: 'filters.carpentry.libraryBuilding' },
-      { value: 'בניית רהיטים ייחודים', key: 'filters.carpentry.customFurniture' },
-      { value: 'בניית מדפים', key: 'filters.carpentry.shelfBuilding' },
-      { value: 'בניית חדר ארונות', key: 'filters.carpentry.walkInCloset' },
-      { value: 'בניית מיטה מעץ', key: 'filters.carpentry.woodenBed' },
-      { value: 'בניית ארונות מטבח', key: 'filters.carpentry.kitchenFurniture' }
+      { value: 'wallClosets', key: 'filters.carpentry.wallClosets' },
+      { value: 'slidingClosets', key: 'filters.carpentry.slidingClosets' },
+      { value: 'bathroomCabinets', key: 'filters.carpentry.bathroomCabinets' },
+      { value: 'bedroomFurniture', key: 'filters.carpentry.bedroomFurniture' },
+      { value: 'tableBuilding', key: 'filters.carpentry.tableBuilding' },
+      { value: 'chairBuilding', key: 'filters.carpentry.chairBuilding' },
+      { value: 'tvUnitBuilding', key: 'filters.carpentry.tvUnitBuilding' },
+      { value: 'libraryBuilding', key: 'filters.carpentry.libraryBuilding' },
+      { value: 'customFurniture', key: 'filters.carpentry.customFurniture' },
+      { value: 'shelfBuilding', key: 'filters.carpentry.shelfBuilding' },
+      { value: 'walkInCloset', key: 'filters.carpentry.walkInCloset' },
+      { value: 'woodenBed', key: 'filters.carpentry.woodenBed' },
+      { value: 'kitchenFurniture', key: 'filters.carpentry.kitchenFurniture' }
     ],
     furnitureRepairTypes: [
-      { value: 'תיקון ארונות קיר', key: 'filters.carpentry.repairWallClosets' },
-      { value: 'תיקון שולחן', key: 'filters.carpentry.repairTable' },
-      { value: 'תיקון כסאות', key: 'filters.carpentry.repairChairs' },
-      { value: 'תיקון ארונות הזזה', key: 'filters.carpentry.repairSlidingClosets' },
-      { value: 'תיקון ארונות אמבטיה', key: 'filters.carpentry.repairBathroomCabinets' },
-      { value: 'תיקון חדר שינה', key: 'filters.carpentry.repairBedroomFurniture' },
-      { value: 'תיקון מזנון', key: 'filters.carpentry.repairTvUnit' },
-      { value: 'תיקון ספרייה', key: 'filters.carpentry.repairLibrary' },
-      { value: 'תיקון רהיטים אחרים', key: 'filters.carpentry.repairOther' }
+      { value: 'repairWallClosets', key: 'filters.carpentry.repairWallClosets' },
+      { value: 'repairTable', key: 'filters.carpentry.repairTable' },
+      { value: 'repairChairs', key: 'filters.carpentry.repairChairs' },
+      { value: 'repairSlidingClosets', key: 'filters.carpentry.repairSlidingClosets' },
+      { value: 'repairBathroomCabinets', key: 'filters.carpentry.repairBathroomCabinets' },
+      { value: 'repairBedroomFurniture', key: 'filters.carpentry.repairBedroomFurniture' },
+      { value: 'repairTvUnit', key: 'filters.carpentry.repairTvUnit' },
+      { value: 'repairLibrary', key: 'filters.carpentry.repairLibrary' },
+      { value: 'repairOther', key: 'filters.carpentry.repairOther' }
     ],
     otherCarpentryTypes: [
-      { value: 'חיפוי עץ לקיר', key: 'filters.carpentry.wallCladding' },
-      { value: 'פירוק והרכבת רהיטים', key: 'filters.carpentry.disassembly' },
-      { value: 'בניית דלתות', key: 'filters.carpentry.doorFabrication' },
-      { value: 'תיקון דלתות', key: 'filters.carpentry.doorRepair' },
-      { value: 'חידוש דלתות כניסה מעץ', key: 'filters.carpentry.doorRenovation' },
-      { value: 'בניית קומת גלריה', key: 'filters.carpentry.loft' },
-      { value: 'מדרגות עץ לבית', key: 'filters.carpentry.stairs' },
-      { value: 'משרביות מעץ', key: 'filters.carpentry.lattice' },
+      { value: 'wallCladding', key: 'filters.carpentry.wallCladding' },
+      { value: 'disassembly', key: 'filters.carpentry.disassembly' },
+      { value: 'doorFabrication', key: 'filters.carpentry.doorFabrication' },
+      { value: 'doorRepair', key: 'filters.carpentry.doorRepair' },
+      { value: 'doorRenovation', key: 'filters.carpentry.doorRenovation' },
+      { value: 'loft', key: 'filters.carpentry.loft' },
+      { value: 'stairs', key: 'filters.carpentry.stairs' },
+      { value: 'lattice', key: 'filters.carpentry.lattice' },
       { value: 'בוצ\'ר עץ', key: 'filters.carpentry.butcher' }
     ],
     outdoorCarpentryTypes: [
-      { value: 'פרגולות', key: 'filters.carpentry.pergolas' },
-      { value: 'דקים', key: 'filters.carpentry.decks' },
-      { value: 'גדרות ומחיצות עץ', key: 'filters.carpentry.fences' }
+      { value: 'pergolas', key: 'filters.carpentry.pergolas' },
+      { value: 'decks', key: 'filters.carpentry.decks' },
+      { value: 'fences', key: 'filters.carpentry.fences' }
     ],
     pergolaTypes: [
-      { value: 'פרגולות עץ', key: 'filters.carpentry.woodPergolas' },
-      { value: 'פרגולות הצללה', key: 'filters.carpentry.shadePergolas' },
-      { value: 'סגירת מרפסת', key: 'filters.carpentry.balconyEnclosure' }
+      { value: 'woodPergolas', key: 'filters.carpentry.woodPergolas' },
+      { value: 'shadePergolas', key: 'filters.carpentry.shadePergolas' },
+      { value: 'balconyEnclosure', key: 'filters.carpentry.balconyEnclosure' }
     ],
     deckTypes: [
-      { value: 'דקים מעץ טבעי', key: 'filters.carpentry.naturalWoodDecks' },
-      { value: 'דק סינטטי (קומפוזיט)', key: 'filters.carpentry.compositeDecks' },
-      { value: 'שיקום / חידוש דקים', key: 'filters.carpentry.deckRenovation' }
+      { value: 'naturalWoodDecks', key: 'filters.carpentry.naturalWoodDecks' },
+      { value: 'compositeDecks', key: 'filters.carpentry.compositeDecks' },
+      { value: 'deckRenovation', key: 'filters.carpentry.deckRenovation' }
     ],
     fenceTypes: [
-      { value: 'גדרות עץ', key: 'filters.carpentry.woodFences' },
-      { value: 'מחיצות עץ לגינה', key: 'filters.carpentry.gardenPartitions' },
-      { value: 'שערי עץ', key: 'filters.carpentry.woodGates' }
+      { value: 'woodFences', key: 'filters.carpentry.woodFences' },
+      { value: 'gardenPartitions', key: 'filters.carpentry.gardenPartitions' },
+      { value: 'woodGates', key: 'filters.carpentry.woodGates' }
     ]
   },
 
@@ -744,19 +744,19 @@ laundry: {
       shortTermRental: 'filters.property.shortTermRental'
     },
     fullYearRental: [
-      { value: 'חיפוש ובדיקת שוכרים מתאימים', key: 'filters.property.tenantSearch' },
-      { value: 'חתימה על חוזה וניהול ערבויות', key: 'filters.property.contractManagement' },
-      { value: 'גביית שכ"ד והעברת תשלומים לבעל הדירה', key: 'filters.property.rentCollection' },
-      { value: 'בדיקת מצב הנכס לפני ואחרי תקופת השכירות', key: 'filters.property.propertyInspection' },
-      { value: 'העברת חשבונות השירותים (מים, חשמל, גז) על שם השוכר החדש', key: 'filters.property.utilityTransfer' }
+      { value: 'tenantSearch', key: 'filters.property.tenantSearch' },
+      { value: 'contractManagement', key: 'filters.property.contractManagement' },
+      { value: 'rentCollection', key: 'filters.property.rentCollection' },
+      { value: 'propertyInspection', key: 'filters.property.propertyInspection' },
+      { value: 'utilityTransfer', key: 'filters.property.utilityTransfer' }
     ],
     shortTermRental: [
-      { value: 'פרסום וניהול מודעות באתרים', key: 'filters.property.listingManagement' },
-      { value: 'ניהול הזמנות ותקשורת עם אורחים', key: 'filters.property.guestCommunication' },
-      { value: 'קבלת אורחים / מסירת מפתחות', key: 'filters.property.guestCheckin' },
-      { value: 'ניקיון בין השהיות', key: 'filters.property.turnaroundCleaning' },
-      { value: 'בדיקה תקופתית של הנכס', key: 'filters.property.periodicInspection' },
-      { value: 'תיקונים כלליים (חשמל, אינסטלציה, מזגן וכו׳)', key: 'filters.property.generalRepairs' }
+      { value: 'listingManagement', key: 'filters.property.listingManagement' },
+      { value: 'guestCommunication', key: 'filters.property.guestCommunication' },
+      { value: 'guestCheckin', key: 'filters.property.guestCheckin' },
+      { value: 'turnaroundCleaning', key: 'filters.property.turnaroundCleaning' },
+      { value: 'periodicInspection', key: 'filters.property.periodicInspection' },
+      { value: 'generalRepairs', key: 'filters.property.generalRepairs' }
     ]
   },
 
@@ -771,28 +771,28 @@ laundry: {
       professionalOrganizationTypes: 'filters.organization.professionalTypes'
     },
     workTypes: [
-      { value: 'סידור כללי', key: 'filters.organization.general' },
-      { value: 'סידור + מיון', key: 'filters.organization.sorting' },
-      { value: 'ארגון מקצועי', key: 'filters.organization.professional' }
+      { value: 'general', key: 'filters.organization.general' },
+      { value: 'sorting', key: 'filters.organization.sorting' },
+      { value: 'professional', key: 'filters.organization.professional' }
     ],
     generalOrganizationTypes: [
-      { value: 'סידור בית מלא', key: 'filters.organization.fullHouse' },
-      { value: 'סידור חדרים', key: 'filters.organization.rooms' },
-      { value: 'סידור מטבח', key: 'filters.organization.kitchen' },
-      { value: 'סידור חדר ילדים', key: 'filters.organization.kidsRoom' },
-      { value: 'סידור חדר ארונות / ארונות בגדים', key: 'filters.organization.closets' },
-      { value: 'סידור חדר אמבטיה', key: 'filters.organization.bathroom' }
+      { value: 'fullHouse', key: 'filters.organization.fullHouse' },
+      { value: 'rooms', key: 'filters.organization.rooms' },
+      { value: 'kitchen', key: 'filters.organization.kitchen' },
+      { value: 'kidsRoom', key: 'filters.organization.kidsRoom' },
+      { value: 'closets', key: 'filters.organization.closets' },
+      { value: 'bathroom', key: 'filters.organization.bathroom' }
     ],
     sortingTypes: [
-      { value: 'מיון חפצים', key: 'filters.organization.itemSorting' },
-      { value: 'מיון בגדים', key: 'filters.organization.clothesSorting' },
-      { value: 'מיון צעצועים', key: 'filters.organization.toySorting' },
-      { value: 'הכנת חפצים למסירה / תרומה', key: 'filters.organization.donation' }
+      { value: 'itemSorting', key: 'filters.organization.itemSorting' },
+      { value: 'clothesSorting', key: 'filters.organization.clothesSorting' },
+      { value: 'toySorting', key: 'filters.organization.toySorting' },
+      { value: 'donation', key: 'filters.organization.donation' }
     ],
     professionalOrganizationTypes: [
-      { value: 'יצירת פתרונות אחסון', key: 'filters.organization.storageSolutions' },
-      { value: 'אופטימיזציה של חללים קטנים', key: 'filters.organization.smallSpaces' },
-      { value: 'עיצוב וסידור מדפים', key: 'filters.organization.shelfDesign' }
+      { value: 'storageSolutions', key: 'filters.organization.storageSolutions' },
+      { value: 'smallSpaces', key: 'filters.organization.smallSpaces' },
+      { value: 'shelfDesign', key: 'filters.organization.shelfDesign' }
     ]
   },
 
@@ -804,14 +804,14 @@ laundry: {
       workTypes: 'filters.painting.workTypes'
     },
     workTypes: [
-      { value: 'צביעה כללית של דירה', key: 'filters.painting.generalPainting' },
-      { value: 'תיקוני קירות – חורים, סדקים, שפכטל', key: 'filters.painting.wallRepairs' },
-      { value: 'החלקת קירות (שפכטל מלא)', key: 'filters.painting.wallSmoothing' },
-     { value: 'תיקון רטיבות / עובש', key: 'filters.painting.moistureMold' },  // ← était moistureRepair
-      { value: 'קילופי צבע ישן', key: 'filters.painting.paintStripping' },
-      { value: 'צביעת אפקטים – בטון, משי, אומבר', key: 'filters.painting.effectPainting' },
-      { value: 'צביעת קיר דקורטיבי / Accent Wall', key: 'filters.painting.accentWall' },
-      { value: 'טקסטורות מיוחדות', key: 'filters.painting.specialTextures' }
+      { value: 'generalPainting', key: 'filters.painting.generalPainting' },
+      { value: 'wallRepairs', key: 'filters.painting.wallRepairs' },
+      { value: 'wallSmoothing', key: 'filters.painting.wallSmoothing' },
+     { value: 'moistureMold', key: 'filters.painting.moistureMold' },  // ← était moistureRepair
+      { value: 'paintStripping', key: 'filters.painting.paintStripping' },
+      { value: 'effectPainting', key: 'filters.painting.effectPainting' },
+      { value: 'accentWall', key: 'filters.painting.accentWall' },
+      { value: 'specialTextures', key: 'filters.painting.specialTextures' }
     ]
   },
 
@@ -826,57 +826,57 @@ laundry: {
       kosherTypes: 'filters.chef.kosherTypes'
     },
     eventTypes: [
-      { value: 'חתונה', key: 'filters.chef.wedding' },
-      { value: 'בר מצווה', key: 'filters.chef.barMitsva' },
-      { value: 'בת מצווה', key: 'filters.chef.batMitsva' },
-      { value: 'ברית מילה', key: 'filters.chef.britMila' },
-      { value: 'פדיון הבן', key: 'filters.chef.pidyonHaben' },
-      { value: 'שבע ברכות', key: 'filters.chef.shevaBrahot' },
-      { value: 'יום הולדת / יום שנה', key: 'filters.chef.anniversary' },
-      { value: 'קידוש', key: 'filters.chef.kiddouch' },
-      { value: 'שבת חתן', key: 'filters.chef.shabbatHatan' },
-      { value: 'אירוע עסקי', key: 'filters.chef.corporateEvent' },
-      { value: 'מסיבה פרטית', key: 'filters.chef.privateParty' },
-      { value: 'חגיגה משפחתית', key: 'filters.chef.familyParty' },
-      { value: 'אירוסין', key: 'filters.chef.engagement' },
-      { value: 'סעודות שבת', key: 'filters.chef.shabbatMeals' }
+      { value: 'wedding', key: 'filters.chef.wedding' },
+      { value: 'barMitsva', key: 'filters.chef.barMitsva' },
+      { value: 'batMitsva', key: 'filters.chef.batMitsva' },
+      { value: 'britMila', key: 'filters.chef.britMila' },
+      { value: 'pidyonHaben', key: 'filters.chef.pidyonHaben' },
+      { value: 'shevaBrahot', key: 'filters.chef.shevaBrahot' },
+      { value: 'anniversary', key: 'filters.chef.anniversary' },
+      { value: 'kiddouch', key: 'filters.chef.kiddouch' },
+      { value: 'shabbatHatan', key: 'filters.chef.shabbatHatan' },
+      { value: 'corporateEvent', key: 'filters.chef.corporateEvent' },
+      { value: 'privateParty', key: 'filters.chef.privateParty' },
+      { value: 'familyParty', key: 'filters.chef.familyParty' },
+      { value: 'engagement', key: 'filters.chef.engagement' },
+      { value: 'shabbatMeals', key: 'filters.chef.shabbatMeals' }
     ],
     workTypes: [
-      { value: 'סוג האירוע', key: 'filters.chef.eventType' },
+      { value: 'eventTypes', key: 'filters.chef.eventType' },
       { value: 'סוג המטבח', key: 'filters.chef.cuisineType' },
       { value: 'כשרות', key: 'filters.chef.kashrut' }
     ],
     cuisineTypes: [
-      { value: 'פיצות', key: 'filters.chef.pizza' },
-      { value: 'סושי', key: 'filters.chef.sushi' },
-      { value: 'סלטים', key: 'filters.chef.salads' },
-      { value: 'אסייתי', key: 'filters.chef.asian' },
-      { value: 'פסטות', key: 'filters.chef.pasta' },
-      { value: 'בשרי', key: 'filters.chef.meat' },
-      { value: 'טבעוני / צמחוני', key: 'filters.chef.vegan' },
-      { value: 'לא גלוטן', key: 'filters.chef.glutenFree' },
-      { value: 'קינוחים', key: 'filters.chef.desserts' },
-      { value: 'סלטי שבת', key: 'filters.chef.shabbatSalads' },
-      { value: 'חלבי', key: 'filters.chef.halavi' },
-      { value: 'חלות שבת', key: 'filters.chef.shabbatChallah' },
-      { value: 'דגים מעושנים', key: 'filters.chef.smokedFish' },
-      { value: 'הרינג', key: 'filters.chef.herring' }
+      { value: 'pizza', key: 'filters.chef.pizza' },
+      { value: 'sushi', key: 'filters.chef.sushi' },
+      { value: 'salads', key: 'filters.chef.salads' },
+      { value: 'asian', key: 'filters.chef.asian' },
+      { value: 'pasta', key: 'filters.chef.pasta' },
+      { value: 'meat', key: 'filters.chef.meat' },
+      { value: 'vegan', key: 'filters.chef.vegan' },
+      { value: 'glutenFree', key: 'filters.chef.glutenFree' },
+      { value: 'desserts', key: 'filters.chef.desserts' },
+      { value: 'shabbatSalads', key: 'filters.chef.shabbatSalads' },
+      { value: 'halavi', key: 'filters.chef.halavi' },
+      { value: 'shabbatChallah', key: 'filters.chef.shabbatChallah' },
+      { value: 'smokedFish', key: 'filters.chef.smokedFish' },
+      { value: 'herring', key: 'filters.chef.herring' }
     ],
     kosherTypes: [
-    { value: 'בד"ץ העדה החרדית', key: 'filters.chef.badatzEdaChareidis' },  // ← était badatzEdaCharedit
-      { value: 'בד"ץ בית יוסף', key: 'filters.chef.badatzBeitYosef' },
-      { value: 'בד"ץ יורה דעה (ר׳ שלמה מחפוד)', key: 'filters.chef.badatzYoreDea' },
-      { value: 'בד"ץ מחזיקי הדת – בעלז', key: 'filters.chef.badatzBelz' },
-      { value: 'בד"ץ שארית ישראל', key: 'filters.chef.badatzSheerit' },
-      { value: 'בד"ץ נתיבות כשרות', key: 'filters.chef.badatzNetivot' },
-      { value: 'בד"ץ חוג חתם סופר בני ברק', key: 'filters.chef.badatzChatamBB' },
-      { value: 'בד"ץ חוג חתם סופר פ״ת', key: 'filters.chef.badatzChatamPT' },
-      { value: 'בד"ץ מקווה ישראל', key: 'filters.chef.badatzMikveh' },
-      { value: 'בד"ץ רבני צפת', key: 'filters.chef.badatzTzfat' },
-      { value: 'כשרות הרב לנדא', key: 'filters.chef.rabbiLanda' },
-      { value: 'כשרות הרב רובין', key: 'filters.chef.rabbiRubin' },
-      { value: 'רבנות מהדרין', key: 'filters.chef.rabbinateMethadrin' },
-      { value: 'רבנות', key: 'filters.chef.rabbinate' }
+    { value: 'badatzEdaChareidis', key: 'filters.chef.badatzEdaChareidis' },  // ← était badatzEdaCharedit
+      { value: 'badatzBeitYosef', key: 'filters.chef.badatzBeitYosef' },
+      { value: 'badatzYoreDea', key: 'filters.chef.badatzYoreDea' },
+      { value: 'badatzBelz', key: 'filters.chef.badatzBelz' },
+      { value: 'badatzSheerit', key: 'filters.chef.badatzSheerit' },
+      { value: 'badatzNetivot', key: 'filters.chef.badatzNetivot' },
+      { value: 'badatzChatamBB', key: 'filters.chef.badatzChatamBB' },
+      { value: 'badatzChatamPT', key: 'filters.chef.badatzChatamPT' },
+      { value: 'badatzMikveh', key: 'filters.chef.badatzMikveh' },
+      { value: 'badatzTzfat', key: 'filters.chef.badatzTzfat' },
+      { value: 'rabbiLanda', key: 'filters.chef.rabbiLanda' },
+      { value: 'rabbiRubin', key: 'filters.chef.rabbiRubin' },
+      { value: 'rabbinateMethadrin', key: 'filters.chef.rabbinateMethadrin' },
+      { value: 'rabbinate', key: 'filters.chef.rabbinate' }
     ]
   },
 
@@ -891,56 +891,56 @@ laundry: {
       kosherTypes: 'filters.chef.kosherTypes'
     },
     eventTypes: [
-      { value: 'חתונה', key: 'filters.chef.wedding' },
-      { value: 'בר מצווה', key: 'filters.chef.barMitsva' },
-      { value: 'בת מצווה', key: 'filters.chef.batMitsva' },
-      { value: 'ברית מילה', key: 'filters.chef.britMila' },
-      { value: 'פדיון הבן', key: 'filters.chef.pidyonHaben' },
-      { value: 'שבע ברכות', key: 'filters.chef.shevaBrahot' },
-      { value: 'יום הולדת / יום שנה', key: 'filters.chef.anniversary' },
-      { value: 'קידוש', key: 'filters.chef.kiddouch' },
-      { value: 'שבת חתן', key: 'filters.chef.shabbatHatan' },
-      { value: 'אירוע עסקי', key: 'filters.chef.corporateEvent' },
-      { value: 'מסיבה פרטית', key: 'filters.chef.privateParty' },
-      { value: 'חגיגה משפחתית', key: 'filters.chef.familyParty' },
-      { value: 'אירוסין', key: 'filters.chef.engagement' },
-      { value: 'סעודות שבת', key: 'filters.chef.shabbatMeals' }
+      { value: 'wedding', key: 'filters.chef.wedding' },
+      { value: 'barMitsva', key: 'filters.chef.barMitsva' },
+      { value: 'batMitsva', key: 'filters.chef.batMitsva' },
+      { value: 'britMila', key: 'filters.chef.britMila' },
+      { value: 'pidyonHaben', key: 'filters.chef.pidyonHaben' },
+      { value: 'shevaBrahot', key: 'filters.chef.shevaBrahot' },
+      { value: 'anniversary', key: 'filters.chef.anniversary' },
+      { value: 'kiddouch', key: 'filters.chef.kiddouch' },
+      { value: 'shabbatHatan', key: 'filters.chef.shabbatHatan' },
+      { value: 'corporateEvent', key: 'filters.chef.corporateEvent' },
+      { value: 'privateParty', key: 'filters.chef.privateParty' },
+      { value: 'familyParty', key: 'filters.chef.familyParty' },
+      { value: 'engagement', key: 'filters.chef.engagement' },
+      { value: 'shabbatMeals', key: 'filters.chef.shabbatMeals' }
     ],
     workTypes: [
-      { value: 'סוג האירוע', key: 'filters.chef.eventType' },
+      { value: 'eventTypes', key: 'filters.chef.eventType' },
       { value: 'סוג המטבח', key: 'filters.chef.cuisineType' },
       { value: 'כשרות', key: 'filters.chef.kashrut' }
     ],
     cuisineTypes: [
-      { value: 'פיצות', key: 'filters.chef.pizza' },
-      { value: 'סושי', key: 'filters.chef.sushi' },
-      { value: 'סלטים', key: 'filters.chef.salads' },
-      { value: 'אסייתי', key: 'filters.chef.asian' },
-      { value: 'פסטות', key: 'filters.chef.pasta' },
-      { value: 'בשרי', key: 'filters.chef.meat' },
-      { value: 'טבעוני / צמחוני', key: 'filters.chef.vegan' },
-      { value: 'לא גלוטן', key: 'filters.chef.glutenFree' },
-      { value: 'סלטי שבת', key: 'filters.chef.shabbatSalads' },
-      { value: 'חלבי', key: 'filters.chef.halavi' },
-      { value: 'חלות שבת', key: 'filters.chef.shabbatChallah' },
-      { value: 'דגים מעושנים', key: 'filters.chef.smokedFish' },
-      { value: 'הרינג', key: 'filters.chef.herring' }
+      { value: 'pizza', key: 'filters.chef.pizza' },
+      { value: 'sushi', key: 'filters.chef.sushi' },
+      { value: 'salads', key: 'filters.chef.salads' },
+      { value: 'asian', key: 'filters.chef.asian' },
+      { value: 'pasta', key: 'filters.chef.pasta' },
+      { value: 'meat', key: 'filters.chef.meat' },
+      { value: 'vegan', key: 'filters.chef.vegan' },
+      { value: 'glutenFree', key: 'filters.chef.glutenFree' },
+      { value: 'shabbatSalads', key: 'filters.chef.shabbatSalads' },
+      { value: 'halavi', key: 'filters.chef.halavi' },
+      { value: 'shabbatChallah', key: 'filters.chef.shabbatChallah' },
+      { value: 'smokedFish', key: 'filters.chef.smokedFish' },
+      { value: 'herring', key: 'filters.chef.herring' }
     ],
     kosherTypes: [
-      { value: 'בד"ץ העדה החרדית', key: 'filters.chef.badatzEdaChareidis' },
-      { value: 'בד"ץ בית יוסף', key: 'filters.chef.badatzBeitYosef' },
-      { value: 'בד"ץ יורה דעה (ר׳ שלמה מחפוד)', key: 'filters.chef.badatzYoreDea' },
-      { value: 'בד"ץ מחזיקי הדת – בעלז', key: 'filters.chef.badatzBelz' },
-      { value: 'בד"ץ שארית ישראל', key: 'filters.chef.badatzSheerit' },
-      { value: 'בד"ץ נתיבות כשרות', key: 'filters.chef.badatzNetivot' },
-      { value: 'בד"ץ חוג חתם סופר בני ברק', key: 'filters.chef.badatzChatamBB' },
-      { value: 'בד"ץ חוג חתם סופר פ״ת', key: 'filters.chef.badatzChatamPT' },
-      { value: 'בד"ץ מקווה ישראל', key: 'filters.chef.badatzMikveh' },
-      { value: 'בד"ץ רבני צפת', key: 'filters.chef.badatzTzfat' },
-      { value: 'כשרות הרב לנדא', key: 'filters.chef.rabbiLanda' },
-      { value: 'כשרות הרב רובין', key: 'filters.chef.rabbiRubin' },
-      { value: 'רבנות מהדרין', key: 'filters.chef.rabbinateMethadrin' },
-      { value: 'רבנות', key: 'filters.chef.rabbinate' }
+      { value: 'badatzEdaChareidis', key: 'filters.chef.badatzEdaChareidis' },
+      { value: 'badatzBeitYosef', key: 'filters.chef.badatzBeitYosef' },
+      { value: 'badatzYoreDea', key: 'filters.chef.badatzYoreDea' },
+      { value: 'badatzBelz', key: 'filters.chef.badatzBelz' },
+      { value: 'badatzSheerit', key: 'filters.chef.badatzSheerit' },
+      { value: 'badatzNetivot', key: 'filters.chef.badatzNetivot' },
+      { value: 'badatzChatamBB', key: 'filters.chef.badatzChatamBB' },
+      { value: 'badatzChatamPT', key: 'filters.chef.badatzChatamPT' },
+      { value: 'badatzMikveh', key: 'filters.chef.badatzMikveh' },
+      { value: 'badatzTzfat', key: 'filters.chef.badatzTzfat' },
+      { value: 'rabbiLanda', key: 'filters.chef.rabbiLanda' },
+      { value: 'rabbiRubin', key: 'filters.chef.rabbiRubin' },
+      { value: 'rabbinateMethadrin', key: 'filters.chef.rabbinateMethadrin' },
+      { value: 'rabbinate', key: 'filters.chef.rabbinate' }
     ]
   },
 
@@ -954,46 +954,46 @@ laundry: {
       kosherTypes: 'filters.chef.kosherTypes'
     },
     eventTypes: [
-      { value: 'חתונה', key: 'filters.chef.wedding' },
-      { value: 'בר מצווה', key: 'filters.chef.barMitsva' },
-      { value: 'בת מצווה', key: 'filters.chef.batMitsva' },
-      { value: 'ברית מילה', key: 'filters.chef.britMila' },
-      { value: 'פדיון הבן', key: 'filters.chef.pidyonHaben' },
-      { value: 'שבע ברכות', key: 'filters.chef.shevaBrahot' },
-      { value: 'יום הולדת / יום שנה', key: 'filters.chef.anniversary' },
-      { value: 'קידוש', key: 'filters.chef.kiddouch' },
-      { value: 'שבת חתן', key: 'filters.chef.shabbatHatan' },
-      { value: 'אירוע עסקי', key: 'filters.chef.corporateEvent' },
-      { value: 'מסיבה פרטית', key: 'filters.chef.privateParty' },
-      { value: 'חגיגה משפחתית', key: 'filters.chef.familyParty' },
-      { value: 'אירוסין', key: 'filters.chef.engagement' },
-      { value: 'סעודות שבת', key: 'filters.chef.shabbatMeals' }
+      { value: 'wedding', key: 'filters.chef.wedding' },
+      { value: 'barMitsva', key: 'filters.chef.barMitsva' },
+      { value: 'batMitsva', key: 'filters.chef.batMitsva' },
+      { value: 'britMila', key: 'filters.chef.britMila' },
+      { value: 'pidyonHaben', key: 'filters.chef.pidyonHaben' },
+      { value: 'shevaBrahot', key: 'filters.chef.shevaBrahot' },
+      { value: 'anniversary', key: 'filters.chef.anniversary' },
+      { value: 'kiddouch', key: 'filters.chef.kiddouch' },
+      { value: 'shabbatHatan', key: 'filters.chef.shabbatHatan' },
+      { value: 'corporateEvent', key: 'filters.chef.corporateEvent' },
+      { value: 'privateParty', key: 'filters.chef.privateParty' },
+      { value: 'familyParty', key: 'filters.chef.familyParty' },
+      { value: 'engagement', key: 'filters.chef.engagement' },
+      { value: 'shabbatMeals', key: 'filters.chef.shabbatMeals' }
     ],
     productTypes: [
-      { value: 'עוגות', key: 'filters.pastry.cakes' },
-      { value: 'פטיסרי', key: 'filters.pastry.patisserie' },
-      { value: 'שוקולדים', key: 'filters.pastry.chocolates' },
-      { value: 'מקרון', key: 'filters.pastry.macarons' },
-      { value: 'קופסת עוגות', key: 'filters.pastry.cakeBox' },
-      { value: 'עיצובי פירות', key: 'filters.pastry.fruitArrangements' },
-      { value: 'מגשי פירות', key: 'filters.pastry.fruitPlatters' },
-      { value: 'קינוחים', key: 'filters.pastry.desserts' }
+      { value: 'cakes', key: 'filters.pastry.cakes' },
+      { value: 'patisserie', key: 'filters.pastry.patisserie' },
+      { value: 'chocolates', key: 'filters.pastry.chocolates' },
+      { value: 'macarons', key: 'filters.pastry.macarons' },
+      { value: 'cakeBox', key: 'filters.pastry.cakeBox' },
+      { value: 'fruitArrangements', key: 'filters.pastry.fruitArrangements' },
+      { value: 'fruitPlatters', key: 'filters.pastry.fruitPlatters' },
+      { value: 'desserts', key: 'filters.pastry.desserts' }
     ],
     kosherTypes: [
-      { value: 'בד"ץ העדה החרדית', key: 'filters.chef.badatzEdaChareidis' },
-      { value: 'בד"ץ בית יוסף', key: 'filters.chef.badatzBeitYosef' },
-      { value: 'בד"ץ יורה דעה (ר׳ שלמה מחפוד)', key: 'filters.chef.badatzYoreDea' },
-      { value: 'בד"ץ מחזיקי הדת – בעלז', key: 'filters.chef.badatzBelz' },
-      { value: 'בד"ץ שארית ישראל', key: 'filters.chef.badatzSheerit' },
-      { value: 'בד"ץ נתיבות כשרות', key: 'filters.chef.badatzNetivot' },
-      { value: 'בד"ץ חוג חתם סופר בני ברק', key: 'filters.chef.badatzChatamBB' },
-      { value: 'בד"ץ חוג חתם סופר פ״ת', key: 'filters.chef.badatzChatamPT' },
-      { value: 'בד"ץ מקווה ישראל', key: 'filters.chef.badatzMikveh' },
-      { value: 'בד"ץ רבני צפת', key: 'filters.chef.badatzTzfat' },
-      { value: 'כשרות הרב לנדא', key: 'filters.chef.rabbiLanda' },
-      { value: 'כשרות הרב רובין', key: 'filters.chef.rabbiRubin' },
-      { value: 'רבנות מהדרין', key: 'filters.chef.rabbinateMethadrin' },
-      { value: 'רבנות', key: 'filters.chef.rabbinate' }
+      { value: 'badatzEdaChareidis', key: 'filters.chef.badatzEdaChareidis' },
+      { value: 'badatzBeitYosef', key: 'filters.chef.badatzBeitYosef' },
+      { value: 'badatzYoreDea', key: 'filters.chef.badatzYoreDea' },
+      { value: 'badatzBelz', key: 'filters.chef.badatzBelz' },
+      { value: 'badatzSheerit', key: 'filters.chef.badatzSheerit' },
+      { value: 'badatzNetivot', key: 'filters.chef.badatzNetivot' },
+      { value: 'badatzChatamBB', key: 'filters.chef.badatzChatamBB' },
+      { value: 'badatzChatamPT', key: 'filters.chef.badatzChatamPT' },
+      { value: 'badatzMikveh', key: 'filters.chef.badatzMikveh' },
+      { value: 'badatzTzfat', key: 'filters.chef.badatzTzfat' },
+      { value: 'rabbiLanda', key: 'filters.chef.rabbiLanda' },
+      { value: 'rabbiRubin', key: 'filters.chef.rabbiRubin' },
+      { value: 'rabbinateMethadrin', key: 'filters.chef.rabbinateMethadrin' },
+      { value: 'rabbinate', key: 'filters.chef.rabbinate' }
     ]
   },
 
@@ -1006,19 +1006,19 @@ laundry: {
       otherTypes: 'filters.events.otherTypes'
     },
     entertainmentTypes: [
-      { value: 'קוסם ילדים', key: 'filters.events.magician' },
-      { value: 'קוסם', key: 'filters.events.magicianGeneral' },
-      { value: 'ליצן ילדים', key: 'filters.events.clown' },
-      { value: 'בלוני צורות', key: 'filters.events.balloonArt' },
-      { value: 'הפרחת בלונים / ניפוח בלונים במקום', key: 'filters.events.balloonInflation' },
-      { value: 'דמויות ותחפושות', key: 'filters.events.costumes' },
-      { value: 'שעשועונים ומשחקי קבוצה', key: 'filters.events.groupGames' },
-      { value: 'מופע בועות סבון', key: 'filters.events.bubbleShow' },
-      { value: 'הפעלה מוזיקלית / ריקודים', key: 'filters.events.musicDancing' }
+      { value: 'magician', key: 'filters.events.magician' },
+      { value: 'magicianGeneral', key: 'filters.events.magicianGeneral' },
+      { value: 'clown', key: 'filters.events.clown' },
+      { value: 'balloonArt', key: 'filters.events.balloonArt' },
+      { value: 'balloonInflation', key: 'filters.events.balloonInflation' },
+      { value: 'costumes', key: 'filters.events.costumes' },
+      { value: 'groupGames', key: 'filters.events.groupGames' },
+      { value: 'bubbleShow', key: 'filters.events.bubbleShow' },
+      { value: 'musicDancing', key: 'filters.events.musicDancing' }
     ],
     otherTypes: [
-      { value: 'איפור פנים מקצועי', key: 'filters.events.facePainting' },
-      { value: 'צילום מגנטים', key: 'filters.events.photoMagnets' }
+      { value: 'facePainting', key: 'filters.events.facePainting' },
+      { value: 'photoMagnets', key: 'filters.events.photoMagnets' }
     ]
   },
 
@@ -1030,32 +1030,32 @@ laundry: {
       equipmentRentalTypes: 'filters.events.equipmentRentalTypes'
     },
     equipmentRentalCategories: [
-      { value: '🍿 מכונות מזון', key: 'filters.events.foodMachines' },
-      { value: '🎪 השכרת מתנפחים ומשחקים', key: 'filters.events.inflatables' },
-      { value: '💨 מכונות אפקטים להשכרה', key: 'filters.events.effectMachines' }
+      { value: 'foodMachines', key: 'filters.events.foodMachines' },
+      { value: 'inflatables', key: 'filters.events.inflatables' },
+      { value: 'effectMachines', key: 'filters.events.effectMachines' }
     ],
     foodMachineTypes: [
-      { value: 'מכונת פופקורן', key: 'filters.events.popcorn' },
-      { value: 'מכונת סוכר-בורי', key: 'filters.events.cottonCandy' },
-      { value: 'מכונת ברד', key: 'filters.events.slushie' },
-      { value: 'מכונת וופל בלגי', key: 'filters.events.waffle' },
-      { value: 'מכונת גרניטה וקפה בר', key: 'filters.events.granita' },
-      { value: 'מכונת גלידה אמריקאית', key: 'filters.events.softServe' },
-      { value: 'מכונת מילקשייק', key: 'filters.events.milkshake' },
-      { value: 'מסחטת מיצים טריים', key: 'filters.events.juicer' },
-      { value: 'מכונת נקניקיות', key: 'filters.events.hotdog' },
-      { value: 'מחבת קרפים', key: 'filters.events.crepe' },
-      { value: 'מזרקת שוקולד', key: 'filters.events.chocolateFountain' }
+      { value: 'popcorn', key: 'filters.events.popcorn' },
+      { value: 'cottonCandy', key: 'filters.events.cottonCandy' },
+      { value: 'slushie', key: 'filters.events.slushie' },
+      { value: 'waffle', key: 'filters.events.waffle' },
+      { value: 'granita', key: 'filters.events.granita' },
+      { value: 'softServe', key: 'filters.events.softServe' },
+      { value: 'milkshake', key: 'filters.events.milkshake' },
+      { value: 'juicer', key: 'filters.events.juicer' },
+      { value: 'hotdog', key: 'filters.events.hotdog' },
+      { value: 'crepe', key: 'filters.events.crepe' },
+      { value: 'chocolateFountain', key: 'filters.events.chocolateFountain' }
     ],
     inflatableGameTypes: [
-      { value: 'מתנפחים', key: 'filters.events.bouncyHouses' },
+      { value: 'bouncyHouses', key: 'filters.events.bouncyHouses' },
       { value: 'ג\'ימבורי', key: 'filters.events.gymboree' },
-      { value: 'עמדות משחק', key: 'filters.events.gameStations' }
+      { value: 'gameStations', key: 'filters.events.gameStations' }
     ],
     effectMachineTypes: [
-      { value: 'מכונת עשן', key: 'filters.events.smokeMachine' },
-      { value: 'מכונת שלג', key: 'filters.events.snowMachine' },
-      { value: 'מכונת בועות', key: 'filters.events.bubbleMachine' }
+      { value: 'smokeMachine', key: 'filters.events.smokeMachine' },
+      { value: 'snowMachine', key: 'filters.events.snowMachine' },
+      { value: 'bubbleMachine', key: 'filters.events.bubbleMachine' }
     ]
   },
 
@@ -1067,19 +1067,19 @@ laundry: {
       foodStandTypes: 'filters.events.foodStandTypes'
     },
     foodStandTypes: [
-      { value: 'פופקורן', key: 'filters.events.stand.popcorn' },
-      { value: 'ברבה פאפא', key: 'filters.events.stand.cottonCandy' },
-      { value: 'הוט דוג', key: 'filters.events.stand.hotdog' },
-      { value: 'גרניטה / סלאש', key: 'filters.events.stand.granita' },
-      { value: 'קרפים', key: 'filters.events.stand.crepe' },
-      { value: 'וופלים', key: 'filters.events.stand.waffle' },
-      { value: 'גלידה', key: 'filters.events.stand.icecream' },
-      { value: 'קפה', key: 'filters.events.stand.coffee' },
-      { value: 'סוכריות', key: 'filters.events.stand.candy' },
-      { value: 'שוקולד', key: 'filters.events.stand.chocolate' },
+      { value: 'popcorn', key: 'filters.events.stand.popcorn' },
+      { value: 'cottonCandy', key: 'filters.events.stand.cottonCandy' },
+      { value: 'hotdog', key: 'filters.events.stand.hotdog' },
+      { value: 'granita', key: 'filters.events.stand.granita' },
+      { value: 'crepe', key: 'filters.events.stand.crepe' },
+      { value: 'waffle', key: 'filters.events.stand.waffle' },
+      { value: 'icecream', key: 'filters.events.stand.icecream' },
+      { value: 'coffee', key: 'filters.events.stand.coffee' },
+      { value: 'candy', key: 'filters.events.stand.candy' },
+      { value: 'chocolate', key: 'filters.events.stand.chocolate' },
       { value: 'נאצ\'וס', key: 'filters.events.stand.nachos' },
-      { value: 'המבורגרים', key: 'filters.events.stand.burger' },
-      { value: 'פיצה', key: 'filters.events.stand.pizza' }
+      { value: 'burger', key: 'filters.events.stand.burger' },
+      { value: 'pizza', key: 'filters.events.stand.pizza' }
     ]
   },
 
@@ -1153,51 +1153,51 @@ contractor: {
       facadeRepairTypes: 'filters.contractor.facadeRepairTypes'
     },
     workTypes: [
-      { value: 'עבודות שלד', key: 'filters.contractor.structureWork' },
-      { value: 'שיפוצים כלליים', key: 'filters.contractor.generalRenovation' },
-      { value: 'חשמל ואינסטלציה', key: 'filters.contractor.electricPlumbing' },
-      { value: 'עבודות חוץ', key: 'filters.contractor.exteriorWork' },
-      { value: 'שיקום ותיקון חוץ', key: 'filters.contractor.facadeRepair' }
+      { value: 'structureWork', key: 'filters.contractor.structureWork' },
+      { value: 'generalRenovation', key: 'filters.contractor.generalRenovation' },
+      { value: 'electricPlumbing', key: 'filters.contractor.electricPlumbing' },
+      { value: 'exteriorWork', key: 'filters.contractor.exteriorWork' },
+      { value: 'facadeRepair', key: 'filters.contractor.facadeRepair' }
     ],
     structureWorkTypes: [
-      { value: 'בניית שלד', key: 'filters.contractor.buildingFrame' },
-      { value: 'יציקות בטון', key: 'filters.contractor.concretePours' },
-      { value: 'טפסנות', key: 'filters.contractor.formwork' },
-      { value: 'חיזוק מבנים', key: 'filters.contractor.structuralReinforcement' },
-      { value: 'בניית קירות בלוקים', key: 'filters.contractor.blockWalls' },
-      { value: 'הריסה ובנייה מחדש', key: 'filters.contractor.demolitionRebuild' }
+      { value: 'buildingFrame', key: 'filters.contractor.buildingFrame' },
+      { value: 'concretePours', key: 'filters.contractor.concretePours' },
+      { value: 'formwork', key: 'filters.contractor.formwork' },
+      { value: 'structuralReinforcement', key: 'filters.contractor.structuralReinforcement' },
+      { value: 'blockWalls', key: 'filters.contractor.blockWalls' },
+      { value: 'demolitionRebuild', key: 'filters.contractor.demolitionRebuild' }
     ],
     generalRenovationTypes: [
-      { value: 'שיפוץ דירה מלא', key: 'filters.contractor.fullApartmentReno' },
-      { value: 'שיפוץ חדרים', key: 'filters.contractor.roomRenovation' },
-      { value: 'שיפוץ חדרי רחצה', key: 'filters.contractor.bathroomReno' },
-      { value: 'שיפוץ מטבח', key: 'filters.contractor.kitchenReno' },
-      { value: 'החלפת ריצוף', key: 'filters.contractor.flooringReplacement' },
-      { value: 'עבודות גבס', key: 'filters.contractor.drywallWork' },
-      { value: 'טיח ושפכטל', key: 'filters.contractor.plasterWork' },
-      { value: 'סגירת מרפסת', key: 'filters.contractor.balconyEnclosure' },
-      { value: 'צביעה מקצועית', key: 'filters.contractor.professionalPainting' },
-      { value: 'החלפת דלתות ומשקופים', key: 'filters.contractor.doorFrameReplacement' }
+      { value: 'fullApartmentReno', key: 'filters.contractor.fullApartmentReno' },
+      { value: 'roomRenovation', key: 'filters.contractor.roomRenovation' },
+      { value: 'bathroomReno', key: 'filters.contractor.bathroomReno' },
+      { value: 'kitchenReno', key: 'filters.contractor.kitchenReno' },
+      { value: 'flooringReplacement', key: 'filters.contractor.flooringReplacement' },
+      { value: 'drywallWork', key: 'filters.contractor.drywallWork' },
+      { value: 'plasterWork', key: 'filters.contractor.plasterWork' },
+      { value: 'balconyEnclosure', key: 'filters.contractor.balconyEnclosure' },
+      { value: 'professionalPainting', key: 'filters.contractor.professionalPainting' },
+      { value: 'doorFrameReplacement', key: 'filters.contractor.doorFrameReplacement' }
     ],
     electricPlumbingTypes: [
-      { value: 'עבודות חשמל', key: 'filters.contractor.electricalWork' },
-      { value: 'החלפת לוח חשמל', key: 'filters.contractor.panelReplacement' },
-      { value: 'אינסטלציה כללית', key: 'filters.contractor.generalPlumbing' },
-      { value: 'החלפת צנרת', key: 'filters.contractor.pipeReplacement' },
-      { value: 'איתור ותיקון נזילות', key: 'filters.contractor.leakDetection' }
+      { value: 'electricalWork', key: 'filters.contractor.electricalWork' },
+      { value: 'panelReplacement', key: 'filters.contractor.panelReplacement' },
+      { value: 'generalPlumbing', key: 'filters.contractor.generalPlumbing' },
+      { value: 'pipeReplacement', key: 'filters.contractor.pipeReplacement' },
+      { value: 'leakDetection', key: 'filters.contractor.leakDetection' }
     ],
     exteriorWorkTypes: [
-      { value: 'ריצוף חוץ', key: 'filters.contractor.exteriorFlooring' },
-      { value: 'בניית פרגולה', key: 'filters.contractor.pergolaConstruction' },
-      { value: 'חיפויי אבן / חיפויי קירות חוץ', key: 'filters.contractor.stoneCladding' },
-      { value: 'גידור', key: 'filters.contractor.fencing' },
-      { value: 'בניית שבילים בגינה', key: 'filters.contractor.gardenPathways' }
+      { value: 'exteriorFlooring', key: 'filters.contractor.exteriorFlooring' },
+      { value: 'pergolaConstruction', key: 'filters.contractor.pergolaConstruction' },
+      { value: 'stoneCladding', key: 'filters.contractor.stoneCladding' },
+      { value: 'fencing', key: 'filters.contractor.fencing' },
+      { value: 'gardenPathways', key: 'filters.contractor.gardenPathways' }
     ],
     facadeRepairTypes: [
-      { value: 'תיקון טיח חוץ', key: 'filters.contractor.exteriorPlasterRepair' },
-      { value: 'שיקום קירות חיצוניים', key: 'filters.contractor.exteriorWallRestoration' },
-      { value: 'איטום סדקים בקירות', key: 'filters.contractor.wallCrackSealing' },
-      { value: 'טיפול בנפילת טיח', key: 'filters.contractor.fallingPlasterTreatment' }
+      { value: 'exteriorPlasterRepair', key: 'filters.contractor.exteriorPlasterRepair' },
+      { value: 'exteriorWallRestoration', key: 'filters.contractor.exteriorWallRestoration' },
+      { value: 'wallCrackSealing', key: 'filters.contractor.wallCrackSealing' },
+      { value: 'fallingPlasterTreatment', key: 'filters.contractor.fallingPlasterTreatment' }
     ]
   },
 
@@ -1213,43 +1213,43 @@ aluminum: {
       claddingTypes: 'filters.aluminum.claddingTypes'
     },
     workTypes: [
-      { value: 'חלונות ודלתות', key: 'filters.aluminum.windowsDoors' },
-      { value: 'פרגולות ואלומיניום חוץ', key: 'filters.aluminum.pergolas' },
-      { value: 'תיקונים ושירות', key: 'filters.aluminum.repairs' },
-      { value: 'חיפויי אלומיניום', key: 'filters.aluminum.cladding' }
+      { value: 'windowsDoors', key: 'filters.aluminum.windowsDoors' },
+      { value: 'pergolas', key: 'filters.aluminum.pergolas' },
+      { value: 'repairs', key: 'filters.aluminum.repairs' },
+      { value: 'cladding', key: 'filters.aluminum.cladding' }
     ],
     windowsDoorsTypes: [
-      { value: 'התקנת חלונות אלומיניום', key: 'filters.aluminum.installWindows' },
-      { value: 'דלתות אלומיניום', key: 'filters.aluminum.aluminumDoors' },
-      { value: 'דלתות הזזה (ויטרינות)', key: 'filters.aluminum.slidingDoors' },
-      { value: 'דלתות כניסה מאלומיניום', key: 'filters.aluminum.entryDoors' },
-      { value: 'רשתות נגד יתושים', key: 'filters.aluminum.mosquitoNets' },
-      { value: 'תריסים ידניים', key: 'filters.aluminum.manualShutters' },
-      { value: 'תריסים חשמליים', key: 'filters.aluminum.electricShutters' }
+      { value: 'installWindows', key: 'filters.aluminum.installWindows' },
+      { value: 'aluminumDoors', key: 'filters.aluminum.aluminumDoors' },
+      { value: 'slidingDoors', key: 'filters.aluminum.slidingDoors' },
+      { value: 'entryDoors', key: 'filters.aluminum.entryDoors' },
+      { value: 'mosquitoNets', key: 'filters.aluminum.mosquitoNets' },
+      { value: 'manualShutters', key: 'filters.aluminum.manualShutters' },
+      { value: 'electricShutters', key: 'filters.aluminum.electricShutters' }
     ],
     pergolasOutdoorTypes: [
-      { value: 'פרגולות אלומיניום', key: 'filters.aluminum.aluminumPergolas' },
-      { value: 'סגירת מרפסות', key: 'filters.aluminum.balconyEnclosure' },
-      { value: 'חיפויי אלומיניום חיצוניים', key: 'filters.aluminum.exteriorCladding' },
-      { value: 'מעקות אלומיניום לגינה / מרפסות', key: 'filters.aluminum.railings' }
+      { value: 'aluminumPergolas', key: 'filters.aluminum.aluminumPergolas' },
+      { value: 'balconyEnclosure', key: 'filters.aluminum.balconyEnclosure' },
+      { value: 'exteriorCladding', key: 'filters.aluminum.exteriorCladding' },
+      { value: 'railings', key: 'filters.aluminum.railings' }
     ],
     repairsServiceTypes: [
-      { value: 'תיקון מנועי תריס חשמלי', key: 'filters.aluminum.repairShutterMotor' },
-      { value: 'תיקון מסילות', key: 'filters.aluminum.repairTracks' },
-      { value: 'תיקון גלגלים בחלונות', key: 'filters.aluminum.repairWheels' },
-      { value: 'החלפת ידיות / צירים', key: 'filters.aluminum.replaceHandles' },
-      { value: 'איטום וחידוש מסביב לחלונות', key: 'filters.aluminum.sealingRenewal' },
-      { value: 'תיקון תריסים ידניים', key: 'filters.aluminum.repairManualShutters' }
+      { value: 'repairShutterMotor', key: 'filters.aluminum.repairShutterMotor' },
+      { value: 'repairTracks', key: 'filters.aluminum.repairTracks' },
+      { value: 'repairWheels', key: 'filters.aluminum.repairWheels' },
+      { value: 'replaceHandles', key: 'filters.aluminum.replaceHandles' },
+      { value: 'sealingRenewal', key: 'filters.aluminum.sealingRenewal' },
+      { value: 'repairManualShutters', key: 'filters.aluminum.repairManualShutters' }
     ],
     claddingTypes: [
-      { value: 'חיפוי צנרת / כיסוי צינורות', key: 'filters.aluminum.pipeCovering' },
-      { value: 'חיפוי מונים (חשמל / מים / גז)', key: 'filters.aluminum.meterCovering' },
-      { value: 'ארגזים דקורטיביים מאלומיניום', key: 'filters.aluminum.decorativeBoxes' },
-      { value: 'חיפוי קווי מזגן', key: 'filters.aluminum.acLineCovering' },
-      { value: 'הגנה למנוע מזגן חיצוני', key: 'filters.aluminum.acMotorProtection' },
-      { value: 'חיפוי קירות חוץ מאלומיניום', key: 'filters.aluminum.wallCladding' },
-      { value: 'חיפויים דקורטיביים', key: 'filters.aluminum.decorativeCladding' },
-      { value: 'חיפוי וארגזי תריס', key: 'filters.aluminum.shutterBoxCladding' }
+      { value: 'pipeCovering', key: 'filters.aluminum.pipeCovering' },
+      { value: 'meterCovering', key: 'filters.aluminum.meterCovering' },
+      { value: 'decorativeBoxes', key: 'filters.aluminum.decorativeBoxes' },
+      { value: 'acLineCovering', key: 'filters.aluminum.acLineCovering' },
+      { value: 'acMotorProtection', key: 'filters.aluminum.acMotorProtection' },
+      { value: 'wallCladding', key: 'filters.aluminum.wallCladding' },
+      { value: 'decorativeCladding', key: 'filters.aluminum.decorativeCladding' },
+      { value: 'shutterBoxCladding', key: 'filters.aluminum.shutterBoxCladding' }
     ]
   },
 
@@ -1266,43 +1266,43 @@ glass_works: {
       repairCustomTypes: 'filters.glass.repairCustomTypes'
     },
     workTypes: [
-      { value: 'זכוכית למקלחונים', key: 'filters.glass.showers' },
-      { value: 'זכוכית לחלונות ודלתות', key: 'filters.glass.homeGlass' },
-      { value: 'זכוכית למטבח ובית', key: 'filters.glass.furniture' },
-      { value: 'זכוכית מיוחדת ובטיחות', key: 'filters.glass.partitions' },
-      { value: 'שירותי תיקון והתאמה אישית', key: 'filters.glass.repairs' }
+      { value: 'showers', key: 'filters.glass.showers' },
+      { value: 'homeGlass', key: 'filters.glass.homeGlass' },
+      { value: 'furniture', key: 'filters.glass.furniture' },
+      { value: 'partitions', key: 'filters.glass.partitions' },
+      { value: 'repairs', key: 'filters.glass.repairs' }
     ],
     showerGlassTypes: [
-      { value: 'התקנת מקלחון זכוכית', key: 'filters.glass.showerInstall' },
-      { value: 'תיקון מקלחון', key: 'filters.glass.showerRepair' },
-      { value: 'החלפת זכוכית במקלחון', key: 'filters.glass.showerGlassReplacement' },
-      { value: 'דלתות מקלחת', key: 'filters.glass.showerDoors' }
+      { value: 'showerInstall', key: 'filters.glass.showerInstall' },
+      { value: 'showerRepair', key: 'filters.glass.showerRepair' },
+      { value: 'showerGlassReplacement', key: 'filters.glass.showerGlassReplacement' },
+      { value: 'showerDoors', key: 'filters.glass.showerDoors' }
     ],
     windowsDoorGlassTypes: [
-      { value: 'החלפת זכוכית בחלון', key: 'filters.glass.windowReplacement' },
-      { value: 'זכוכית מבודדת (Double)', key: 'filters.glass.doubleGlazing' },
-      { value: 'זיגוג מחדש', key: 'filters.glass.reglazing' },
-      { value: 'דלתות זכוכית פנימיות', key: 'filters.glass.interiorGlassDoors' },
-      { value: 'מחיצות זכוכית', key: 'filters.glass.glassPartitions' }
+      { value: 'windowReplacement', key: 'filters.glass.windowReplacement' },
+      { value: 'doubleGlazing', key: 'filters.glass.doubleGlazing' },
+      { value: 'reglazing', key: 'filters.glass.reglazing' },
+      { value: 'interiorGlassDoors', key: 'filters.glass.interiorGlassDoors' },
+      { value: 'glassPartitions', key: 'filters.glass.glassPartitions' }
     ],
     kitchenHomeGlassTypes: [
-      { value: 'זכוכית למטבח (Backsplash)', key: 'filters.glass.kitchenBacksplash' },
-      { value: 'מדפי זכוכית', key: 'filters.glass.glassShelves' },
-      { value: 'שולחנות זכוכית', key: 'filters.glass.glassTables' },
-      { value: 'מראות לחדר אמבטיה', key: 'filters.glass.bathroomMirrors' },
-      { value: 'מראות דקורטיביות', key: 'filters.glass.decorativeMirrors' }
+      { value: 'kitchenBacksplash', key: 'filters.glass.kitchenBacksplash' },
+      { value: 'glassShelves', key: 'filters.glass.glassShelves' },
+      { value: 'glassTables', key: 'filters.glass.glassTables' },
+      { value: 'bathroomMirrors', key: 'filters.glass.bathroomMirrors' },
+      { value: 'decorativeMirrors', key: 'filters.glass.decorativeMirrors' }
     ],
     specialSafetyGlassTypes: [
-      { value: 'זכוכית מחוסמת (בטיחותית)', key: 'filters.glass.temperedGlass' },
-      { value: 'זכוכית חכמה', key: 'filters.glass.smartGlass' },
-      { value: 'זכוכית עמידה לפריצה', key: 'filters.glass.securityGlass' },
-      { value: 'זכוכית אקוסטית (בידוד רעש)', key: 'filters.glass.acousticGlass' },
-      { value: 'זכוכית צבעונית / מעוצבת', key: 'filters.glass.decorativeGlass' }
+      { value: 'temperedGlass', key: 'filters.glass.temperedGlass' },
+      { value: 'smartGlass', key: 'filters.glass.smartGlass' },
+      { value: 'securityGlass', key: 'filters.glass.securityGlass' },
+      { value: 'acousticGlass', key: 'filters.glass.acousticGlass' },
+      { value: 'decorativeGlass', key: 'filters.glass.decorativeGlass' }
     ],
     repairCustomTypes: [
-      { value: 'תיקון שריטות וסדקים', key: 'filters.glass.scratchRepair' },
-      { value: 'ליטוש זכוכית', key: 'filters.glass.glassPolishing' },
-      { value: 'חיתוך זכוכית לפי מידה', key: 'filters.glass.customCutting' }
+      { value: 'scratchRepair', key: 'filters.glass.scratchRepair' },
+      { value: 'glassPolishing', key: 'filters.glass.glassPolishing' },
+      { value: 'customCutting', key: 'filters.glass.customCutting' }
     ]
   },
 
@@ -1319,41 +1319,41 @@ locksmith: {
       securityServicesTypes: 'filters.locksmith.securityServicesTypes'
     },
     workTypes: [
-      { value: 'החלפת מנעולים', key: 'filters.locksmith.lockReplacement' },
-      { value: 'פתיחת דלתות', key: 'filters.locksmith.emergencyOpening' },
-      { value: 'התקנת מערכות נעילה', key: 'filters.locksmith.advancedSystems' },
-      { value: 'תיקון מנעולים ודלתות', key: 'filters.locksmith.doorRepair' },
-      { value: 'שירותי ביטחון', key: 'serviceForm.locksmith.securityServices' }
+      { value: 'lockReplacement', key: 'filters.locksmith.lockReplacement' },
+      { value: 'emergencyOpening', key: 'filters.locksmith.emergencyOpening' },
+      { value: 'advancedSystems', key: 'filters.locksmith.advancedSystems' },
+      { value: 'doorRepair', key: 'filters.locksmith.doorRepair' },
+      { value: 'securityServices', key: 'serviceForm.locksmith.securityServices' }
     ],
     lockReplacementTypes: [
-      { value: 'מנעול צילינדר', key: 'filters.locksmith.cylinderLock' },
-      { value: 'מנעול ביטחון', key: 'filters.locksmith.securityLock' },
-      { value: 'מנעול דלת כניסה', key: 'filters.locksmith.entranceLock' },
-      { value: 'מנעול למשרד / חנות', key: 'filters.locksmith.officeLock' }
+      { value: 'cylinderLock', key: 'filters.locksmith.cylinderLock' },
+      { value: 'securityLock', key: 'filters.locksmith.securityLock' },
+      { value: 'entranceLock', key: 'filters.locksmith.entranceLock' },
+      { value: 'officeLock', key: 'filters.locksmith.officeLock' }
     ],
     doorOpeningTypes: [
-      { value: 'פתיחת דלת ללא נזק', key: 'filters.locksmith.noDamageOpening' },
-      { value: 'פתיחה חירום 24/7', key: 'filters.locksmith.emergency247' },
-      { value: 'פתיחת כספת', key: 'filters.locksmith.safeOpening' },
-      { value: 'שכפול מפתחות במקום', key: 'filters.locksmith.keyDuplication' }
+      { value: 'noDamageOpening', key: 'filters.locksmith.noDamageOpening' },
+      { value: 'emergency247', key: 'filters.locksmith.emergency247' },
+      { value: 'safeOpening', key: 'filters.locksmith.safeOpening' },
+      { value: 'keyDuplication', key: 'filters.locksmith.keyDuplication' }
     ],
     lockSystemInstallationTypes: [
-      { value: 'מנעולים חכמים', key: 'filters.locksmith.smartLocks' },
-      { value: 'מערכת אינטרקום', key: 'filters.locksmith.intercom' },
-      { value: 'קוד כניסה למשרדים', key: 'filters.locksmith.accessCode' },
-      { value: 'מנעול אלקטרוני', key: 'filters.locksmith.electronicLock' }
+      { value: 'smartLocks', key: 'filters.locksmith.smartLocks' },
+      { value: 'intercom', key: 'filters.locksmith.intercom' },
+      { value: 'accessCode', key: 'filters.locksmith.accessCode' },
+      { value: 'electronicLock', key: 'filters.locksmith.electronicLock' }
     ],
     lockDoorRepairTypes: [
-      { value: 'תיקון מנעול תקוע', key: 'filters.locksmith.stuckLockRepair' },
-      { value: 'תיקון ציר דלת', key: 'filters.locksmith.hingeRepair' },
-      { value: 'שיוף דלת שלא נסגרת', key: 'filters.locksmith.doorSanding' },
-      { value: 'החלפת ידית דלת', key: 'filters.locksmith.handleReplacement' }
+      { value: 'stuckLockRepair', key: 'filters.locksmith.stuckLockRepair' },
+      { value: 'hingeRepair', key: 'filters.locksmith.hingeRepair' },
+      { value: 'doorSanding', key: 'filters.locksmith.doorSanding' },
+      { value: 'handleReplacement', key: 'filters.locksmith.handleReplacement' }
     ],
     securityServicesTypes: [
-      { value: 'שדרוג מערכת ביטחון', key: 'filters.locksmith.securityUpgrade' },
-      { value: 'התקנת דלת ביטחון', key: 'filters.locksmith.securityDoorInstall' },
-      { value: 'בדיקת פגיעות דלת', key: 'filters.locksmith.vulnerabilityCheck' },
-      { value: 'שירות מסגרות מסחרי', key: 'filters.locksmith.commercialLocksmith' }
+      { value: 'securityUpgrade', key: 'filters.locksmith.securityUpgrade' },
+      { value: 'securityDoorInstall', key: 'filters.locksmith.securityDoorInstall' },
+      { value: 'vulnerabilityCheck', key: 'filters.locksmith.vulnerabilityCheck' },
+      { value: 'commercialLocksmith', key: 'filters.locksmith.commercialLocksmith' }
     ]
   },
 
@@ -1383,27 +1383,27 @@ locksmith: {
       languages: 'filters.photographer.languagesSection'
     },
     workTypes: [
-      { value: 'סוג האירוע', key: 'filters.photographer.eventTypes' },
-      { value: 'אלבום צילום', key: 'filters.photographer.photoAlbum' },
-      { value: 'מגנט', key: 'filters.photographer.magnet' },
-      { value: 'קמרמן', key: 'filters.photographer.cameraman' }
+      { value: 'eventTypes', key: 'filters.photographer.eventTypes' },
+      { value: 'photoAlbum', key: 'filters.photographer.photoAlbum' },
+      { value: 'magnet', key: 'filters.photographer.magnet' },
+      { value: 'cameraman', key: 'filters.photographer.cameraman' }
     ],
     eventTypes: [
-      { value: 'בר מצווה', key: 'filters.photographer.barMitsva' },
-      { value: 'בת מצווה', key: 'filters.photographer.batMitsva' },
-      { value: 'חתונה', key: 'filters.photographer.wedding' },
-      { value: 'אירוסין', key: 'filters.photographer.engagement' },
-      { value: 'תספורת', key: 'filters.photographer.haircut' },
-      { value: 'שוטינג פוטו', key: 'filters.photographer.photoShoot' },
-      { value: 'אירועים פרטיים', key: 'filters.photographer.privateEvents' },
-      { value: 'ברית מילה', key: 'filters.photographer.britMila' }
+      { value: 'barMitsva', key: 'filters.photographer.barMitsva' },
+      { value: 'batMitsva', key: 'filters.photographer.batMitsva' },
+      { value: 'wedding', key: 'filters.photographer.wedding' },
+      { value: 'engagement', key: 'filters.photographer.engagement' },
+      { value: 'haircut', key: 'filters.photographer.haircut' },
+      { value: 'photoShoot', key: 'filters.photographer.photoShoot' },
+      { value: 'privateEvents', key: 'filters.photographer.privateEvents' },
+      { value: 'britMila', key: 'filters.photographer.britMila' }
     ],
     languages: [
-      { value: 'צרפתית', key: 'filters.photographer.languageFrench' },
-      { value: 'רוסית', key: 'filters.photographer.languageRussian' },
-      { value: 'ספרדית', key: 'filters.photographer.languageSpanish' },
-      { value: 'עברית', key: 'filters.photographer.languageHebrew' },
-      { value: 'אנגלית', key: 'filters.photographer.languageEnglish' }
+      { value: 'french', key: 'filters.photographer.languageFrench' },
+      { value: 'russian', key: 'filters.photographer.languageRussian' },
+      { value: 'spanish', key: 'filters.photographer.languageSpanish' },
+      { value: 'hebrew', key: 'filters.photographer.languageHebrew' },
+      { value: 'english', key: 'filters.photographer.languageEnglish' }
     ]
   },
 
@@ -1418,10 +1418,10 @@ locksmith: {
       age: 'filters.common.age'
     },
     decorationTypes: [
-      { value: 'קשתות ועיצוב בלונים', key: 'filters.event_decoration.archBalloon' },
-      { value: 'עיצוב שולחנות', key: 'filters.event_decoration.tableDeco' },
-      { value: 'עיצוב אולמות', key: 'filters.event_decoration.hallDeco' },
-      { value: 'קירות צילום ופינות צילום', key: 'filters.event_decoration.photoWall' }
+      { value: 'archBalloon', key: 'filters.event_decoration.archBalloon' },
+      { value: 'tableDeco', key: 'filters.event_decoration.tableDeco' },
+      { value: 'hallDeco', key: 'filters.event_decoration.hallDeco' },
+      { value: 'photoWall', key: 'filters.event_decoration.photoWall' }
     ]
   },
 
@@ -1455,8 +1455,8 @@ locksmith: {
       { value: 'הרכבת רהיטים', key: 'serviceForm.handyman.furnitureAssembly' }
     ],
     doorsFurnitureTypes: [
-      { value: 'תיקון דלתות', key: 'serviceForm.handyman.doorRepair' },
-      { value: 'תיקון רהיטים', key: 'serviceForm.handyman.furnitureRepair' }
+      { value: 'doorRepair', key: 'serviceForm.handyman.doorRepair' },
+      { value: 'furnitureRepair', key: 'serviceForm.handyman.furnitureRepair' }
     ],
     lightWorkTypes: [
       { value: 'החלפת מנורות', key: 'serviceForm.handyman.lampReplacement' },
@@ -1482,21 +1482,21 @@ locksmith: {
       workAtHeight: 'serviceForm.pest_control.workAtHeight'
     },
     insects: [
-      { value: 'הדברת תיקנים', key: 'filters.pest_control.cockroaches' },
-      { value: 'הדברת נמלים', key: 'filters.pest_control.ants' },
-      { value: 'הדברת פשפשים', key: 'filters.pest_control.bedbugs' },
-      { value: 'הדברת פרעושים', key: 'filters.pest_control.fleas' },
-      { value: 'הדברת יתושים', key: 'filters.pest_control.mosquitoes' }
+      { value: 'cockroaches', key: 'filters.pest_control.cockroaches' },
+      { value: 'ants', key: 'filters.pest_control.ants' },
+      { value: 'bedbugs', key: 'filters.pest_control.bedbugs' },
+      { value: 'fleas', key: 'filters.pest_control.fleas' },
+      { value: 'mosquitoes', key: 'filters.pest_control.mosquitoes' }
     ],
     rodents: [
-      { value: 'הדברת חולדות', key: 'filters.pest_control.rats' },
-      { value: 'הדברת עכברים', key: 'filters.pest_control.mice' }
+      { value: 'rats', key: 'filters.pest_control.rats' },
+      { value: 'mice', key: 'filters.pest_control.mice' }
     ],
     birdsAnimals: [
-      { value: 'הרחקת יונים', key: 'filters.pest_control.pigeons' },
-      { value: 'רשתות נגד יונים', key: 'filters.pest_control.pigeonNets' },
-      { value: 'הרחקת עטלפים', key: 'filters.pest_control.bats' },
-      { value: 'הרחקת נחשים', key: 'filters.pest_control.snakes' }
+      { value: 'pigeons', key: 'filters.pest_control.pigeons' },
+      { value: 'pigeonNets', key: 'filters.pest_control.pigeonNets' },
+      { value: 'bats', key: 'filters.pest_control.bats' },
+      { value: 'snakes', key: 'filters.pest_control.snakes' }
     ],
     certifiedOptions: [
       { value: '', key: 'filters.noMatter' },
@@ -1518,16 +1518,16 @@ locksmith: {
       workTypes: 'filters.mechanic.workTypes'
     },
     workTypes: [
-      { value: 'מכונאות רכב',   key: 'serviceForm.mechanic.carMechanics' },
-      { value: 'הכנה לטסט',     key: 'serviceForm.mechanic.testPrep' },
-      { value: 'טיפולים שוטפים', key: 'serviceForm.mechanic.routineMaintenance' },
-      { value: 'בדיקות מחשב',   key: 'serviceForm.mechanic.computerDiagnostics' },
-      { value: 'מצברים',         key: 'serviceForm.mechanic.batteries' },
-      { value: 'מיזוג אוויר',   key: 'serviceForm.mechanic.airConditioning' },
-      { value: 'אלטרנטור',       key: 'serviceForm.mechanic.alternator' },
-      { value: 'תיקוני מנוע',   key: 'serviceForm.mechanic.engineRepairs' },
-      { value: 'רדיאטור וקירור', key: 'serviceForm.mechanic.radiatorCooling' },
-      { value: 'לקיחת רכב לטסט', key: 'serviceForm.mechanic.vehicleInspection' }
+      { value: 'carMechanics',   key: 'serviceForm.mechanic.carMechanics' },
+      { value: 'testPrep',     key: 'serviceForm.mechanic.testPrep' },
+      { value: 'routineMaintenance', key: 'serviceForm.mechanic.routineMaintenance' },
+      { value: 'computerDiagnostics',   key: 'serviceForm.mechanic.computerDiagnostics' },
+      { value: 'batteries',         key: 'serviceForm.mechanic.batteries' },
+      { value: 'airConditioning',   key: 'serviceForm.mechanic.airConditioning' },
+      { value: 'alternator',       key: 'serviceForm.mechanic.alternator' },
+      { value: 'engineRepairs',   key: 'serviceForm.mechanic.engineRepairs' },
+      { value: 'radiatorCooling', key: 'serviceForm.mechanic.radiatorCooling' },
+      { value: 'vehicleInspection', key: 'serviceForm.mechanic.vehicleInspection' }
     ]
   },
 
@@ -1536,12 +1536,12 @@ locksmith: {
       workTypes: 'filters.metalwork.workTypes'
     },
     workTypes: [
-      { value: 'סורגים',        key: 'serviceForm.metalwork.bars' },
-      { value: 'מעקות',         key: 'serviceForm.metalwork.railings' },
-      { value: 'גדרות',         key: 'serviceForm.metalwork.fences' },
-      { value: 'גלריות',        key: 'serviceForm.metalwork.galleries' },
-      { value: 'מרפסות תלויות', key: 'serviceForm.metalwork.hangingBalconies' },
-      { value: 'מדרגות',        key: 'serviceForm.metalwork.stairs' }
+      { value: 'bars',        key: 'serviceForm.metalwork.bars' },
+      { value: 'railings',         key: 'serviceForm.metalwork.railings' },
+      { value: 'fences',         key: 'serviceForm.metalwork.fences' },
+      { value: 'galleries',        key: 'serviceForm.metalwork.galleries' },
+      { value: 'hangingBalconies', key: 'serviceForm.metalwork.hangingBalconies' },
+      { value: 'stairs',        key: 'serviceForm.metalwork.stairs' }
     ]
   },
 
@@ -1556,8 +1556,8 @@ locksmith: {
       availabilityHours: 'filters.driver.availabilityHours'
     },
     serviceType: [
-      { value: 'דרייבר', key: 'serviceForm.driver.privateDriver' },
-      { value: 'מונית',  key: 'serviceForm.driver.taxi' }
+      { value: 'privateDriver', key: 'serviceForm.driver.privateDriver' },
+      { value: 'taxi',  key: 'serviceForm.driver.taxi' }
     ],
     transportationType: [
       { value: 'הסעות לאירועים', key: 'serviceForm.driver.eventTransport' },
@@ -1573,10 +1573,10 @@ locksmith: {
       { value: 'אוטובוס (50-60 מושבים)', key: 'serviceForm.driver.bus' }
     ],
     availabilityHours: [
-      { value: 'בוקר',        key: 'hours.morning' },
-      { value: 'אחר הצהריים', key: 'hours.afternoon' },
-      { value: 'ערב',         key: 'hours.evening' },
-      { value: 'לילה',        key: 'hours.night' },
+      { value: 'morning',        key: 'hours.morning' },
+      { value: 'afternoon', key: 'hours.afternoon' },
+      { value: 'evening',         key: 'hours.evening' },
+      { value: 'night',        key: 'hours.night' },
       { value: '24/6',        key: 'hours.twentyFourSix' }
     ]
   }
@@ -1601,7 +1601,7 @@ export const getSectionTitle = (serviceType, sectionKey, t) => {
 export const getCommonDays = (t, includeSaturday = false) => {
   const days = FILTER_CONFIG.common.days;
   if (!includeSaturday) {
-    return days.filter(d => d.value !== 'שבת').map(d => ({
+    return days.filter(d => d.value !== 'saturday').map(d => ({
       value: d.value,
       label: t(d.key)
     }));

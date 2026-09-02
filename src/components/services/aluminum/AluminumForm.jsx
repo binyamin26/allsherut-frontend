@@ -14,16 +14,16 @@ const AluminumForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
           <label className="auth-form-label required">{t('serviceForm.common.availabilityHours')}</label>
           <div className="checkbox-group" data-field="availability_hours">
           {[
-  { value: 'בוקר', label: t('hours.morning') },
-  { value: 'אחר הצהריים', label: t('hours.afternoon') },
-  { value: 'ערב', label: t('hours.evening') },
-  { value: 'הכל', label: t('hours.all') }
+  { value: 'morning', label: t('hours.morning') },
+  { value: 'afternoon', label: t('hours.afternoon') },
+  { value: 'evening', label: t('hours.evening') },
+  { value: 'all', label: t('hours.all') }
 ].map(hour => (
             <label key={hour.value} className="checkbox-item">
     <input
       type="checkbox"
       checked={serviceDetails.availability_hours?.includes(hour.value) || false}
-      onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'הכל', ['בוקר', 'אחר הצהריים', 'ערב'])}
+      onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'all', ['morning', 'afternoon', 'evening'])}
     />
     {hour.label}
   </label>
@@ -39,29 +39,29 @@ const AluminumForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
             <label className="checkbox-item" style={{fontWeight: 'bold'}}>
               <input
                 type="checkbox"
-                checked={serviceDetails.work_types?.includes('חלונות ודלתות') || false}
+                checked={serviceDetails.work_types?.includes('windowsDoors') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
                   const newTypes = e.target.checked 
-                    ? [...current, 'חלונות ודלתות']
-                    : current.filter(t => t !== 'חלונות ודלתות');
+                    ? [...current, 'windowsDoors']
+                    : current.filter(t => t !== 'windowsDoors');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
  {t('serviceForm.aluminum.windowsDoors')}
             </label>
             
-            {serviceDetails.work_types?.includes('חלונות ודלתות') && (
+            {serviceDetails.work_types?.includes('windowsDoors') && (
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="windows_doors_types">
                   {[
-  { value: 'התקנת חלונות אלומיניום', label: t('serviceForm.aluminum.installWindows') },
-  { value: 'דלתות אלומיניום', label: t('serviceForm.aluminum.aluminumDoors') },
-  { value: 'דלתות הזזה (ויטרינות)', label: t('serviceForm.aluminum.slidingDoors') },
-  { value: 'דלתות כניסה מאלומיניום', label: t('serviceForm.aluminum.entryDoors') },
-  { value: 'רשתות נגד יתושים', label: t('serviceForm.aluminum.mosquitoNets') },
-  { value: 'תריסים ידניים', label: t('serviceForm.aluminum.manualShutters') },
-  { value: 'תריסים חשמליים', label: t('serviceForm.aluminum.electricShutters') }
+  { value: 'installWindows', label: t('serviceForm.aluminum.installWindows') },
+  { value: 'aluminumDoors', label: t('serviceForm.aluminum.aluminumDoors') },
+  { value: 'slidingDoors', label: t('serviceForm.aluminum.slidingDoors') },
+  { value: 'entryDoors', label: t('serviceForm.aluminum.entryDoors') },
+  { value: 'mosquitoNets', label: t('serviceForm.aluminum.mosquitoNets') },
+  { value: 'manualShutters', label: t('serviceForm.aluminum.manualShutters') },
+  { value: 'electricShutters', label: t('serviceForm.aluminum.electricShutters') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
@@ -88,26 +88,26 @@ const AluminumForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
             <label className="checkbox-item" style={{fontWeight: 'bold'}}>
               <input
                 type="checkbox"
-                checked={serviceDetails.work_types?.includes('פרגולות ואלומיניום חוץ') || false}
+                checked={serviceDetails.work_types?.includes('pergolas') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
                   const newTypes = e.target.checked 
-                    ? [...current, 'פרגולות ואלומיניום חוץ']
-                    : current.filter(t => t !== 'פרגולות ואלומיניום חוץ');
+                    ? [...current, 'pergolas']
+                    : current.filter(t => t !== 'pergolas');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
  {t('serviceForm.aluminum.pergolasOutdoor')}
             </label>
             
-            {serviceDetails.work_types?.includes('פרגולות ואלומיניום חוץ') && (
+            {serviceDetails.work_types?.includes('pergolas') && (
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="pergolas_outdoor_types">
              {[
-  { value: 'פרגולות אלומיניום', label: t('serviceForm.aluminum.pergolas') },
-  { value: 'סגירת מרפסות', label: t('serviceForm.aluminum.balconyEnclosure') },
-  { value: 'חיפויי אלומיניום חיצוניים', label: t('serviceForm.aluminum.exteriorCladding') },
-  { value: 'מעקות אלומיניום לגינה / מרפסות', label: t('serviceForm.aluminum.railings') }
+  { value: 'aluminumPergolas', label: t('serviceForm.aluminum.pergolas') },
+  { value: 'balconyEnclosure', label: t('serviceForm.aluminum.balconyEnclosure') },
+  { value: 'exteriorCladding', label: t('serviceForm.aluminum.exteriorCladding') },
+  { value: 'railings', label: t('serviceForm.aluminum.railings') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">  
     <input
@@ -134,28 +134,28 @@ const AluminumForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
             <label className="checkbox-item" style={{fontWeight: 'bold'}}>
               <input
                 type="checkbox"
-                checked={serviceDetails.work_types?.includes('תיקונים ושירות') || false}
+                checked={serviceDetails.work_types?.includes('repairs') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
                   const newTypes = e.target.checked 
-                    ? [...current, 'תיקונים ושירות']
-                    : current.filter(t => t !== 'תיקונים ושירות');
+                    ? [...current, 'repairs']
+                    : current.filter(t => t !== 'repairs');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
  {t('serviceForm.aluminum.repairsService')}
             </label>
             
-            {serviceDetails.work_types?.includes('תיקונים ושירות') && (
+            {serviceDetails.work_types?.includes('repairs') && (
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="repairs_service_types">
 {[
-  { value: 'תיקון מנועי תריס חשמלי', label: t('serviceForm.aluminum.repairShutterMotor') },
-  { value: 'תיקון מסילות', label: t('serviceForm.aluminum.repairTracks') },
-  { value: 'תיקון גלגלים בחלונות', label: t('serviceForm.aluminum.repairWheels') },
-  { value: 'החלפת ידיות / צירים', label: t('serviceForm.aluminum.replaceHandles') },
-  { value: 'איטום וחידוש מסביב לחלונות', label: t('serviceForm.aluminum.sealingRenewal') },
-  { value: 'תיקון תריסים ידניים', label: t('serviceForm.aluminum.repairManualShutters') }
+  { value: 'repairShutterMotor', label: t('serviceForm.aluminum.repairShutterMotor') },
+  { value: 'repairTracks', label: t('serviceForm.aluminum.repairTracks') },
+  { value: 'repairWheels', label: t('serviceForm.aluminum.repairWheels') },
+  { value: 'replaceHandles', label: t('serviceForm.aluminum.replaceHandles') },
+  { value: 'sealingRenewal', label: t('serviceForm.aluminum.sealingRenewal') },
+  { value: 'repairManualShutters', label: t('serviceForm.aluminum.repairManualShutters') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
@@ -182,30 +182,30 @@ const AluminumForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
             <label className="checkbox-item" style={{fontWeight: 'bold'}}>
               <input
                 type="checkbox"
-                checked={serviceDetails.work_types?.includes('חיפויי אלומיניום') || false}
+                checked={serviceDetails.work_types?.includes('cladding') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
                   const newTypes = e.target.checked 
-                    ? [...current, 'חיפויי אלומיניום']
-                    : current.filter(t => t !== 'חיפויי אלומיניום');
+                    ? [...current, 'cladding']
+                    : current.filter(t => t !== 'cladding');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
                {t('serviceForm.aluminum.cladding')}
             </label>
             
-            {serviceDetails.work_types?.includes('חיפויי אלומיניום') && (
+            {serviceDetails.work_types?.includes('cladding') && (
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="cladding_types">
      {[
-  { value: 'חיפוי צנרת / כיסוי צינורות', label: t('serviceForm.aluminum.pipeCovering') },
-  { value: 'חיפוי מונים (חשמל / מים / גז)', label: t('serviceForm.aluminum.meterCovering') },
-  { value: 'ארגזים דקורטיביים מאלומיניום', label: t('serviceForm.aluminum.decorativeBoxes') },
-  { value: 'חיפוי קווי מזגן', label: t('serviceForm.aluminum.acLineCovering') },
-  { value: 'הגנה למנוע מזגן חיצוני', label: t('serviceForm.aluminum.acMotorProtection') },
-  { value: 'חיפוי קירות חוץ מאלומיניום', label: t('serviceForm.aluminum.wallCladding') },
-  { value: 'חיפויים דקורטיביים', label: t('serviceForm.aluminum.decorativeCladding') },
-  { value: 'חיפוי וארגזי תריס', label: t('serviceForm.aluminum.shutterBoxCladding') }
+  { value: 'pipeCovering', label: t('serviceForm.aluminum.pipeCovering') },
+  { value: 'meterCovering', label: t('serviceForm.aluminum.meterCovering') },
+  { value: 'decorativeBoxes', label: t('serviceForm.aluminum.decorativeBoxes') },
+  { value: 'acLineCovering', label: t('serviceForm.aluminum.acLineCovering') },
+  { value: 'acMotorProtection', label: t('serviceForm.aluminum.acMotorProtection') },
+  { value: 'wallCladding', label: t('serviceForm.aluminum.wallCladding') },
+  { value: 'decorativeCladding', label: t('serviceForm.aluminum.decorativeCladding') },
+  { value: 'shutterBoxCladding', label: t('serviceForm.aluminum.shutterBoxCladding') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
@@ -250,10 +250,10 @@ const AluminumForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
           <label className="auth-form-label required">{t('filters.common.languages')}</label>
           <div className="checkbox-group" data-field="languages">
             {[
-              { value: 'עברית', label: t('languages.hebrew') },
-              { value: 'רוסית', label: t('languages.russian') },
-              { value: 'אנגלית', label: t('languages.english') },
-              { value: 'צרפתית', label: t('languages.french') }
+              { value: 'hebrew', label: t('languages.hebrew') },
+              { value: 'russian', label: t('languages.russian') },
+              { value: 'english', label: t('languages.english') },
+              { value: 'french', label: t('languages.french') }
             ].map(lang => (
               <label key={lang.value} className="checkbox-item">
                 <input

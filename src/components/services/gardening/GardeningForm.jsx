@@ -17,13 +17,13 @@ const GardeningForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
           <label>{t('serviceForm.gardening.services')}</label>
 <div className="checkbox-group" data-field="services">
  {[
-  { value: 'גיזום עצים ושיחים', label: t('filters.gardening.pruning') },
-  { value: 'עיצוב גינה', label: t('filters.gardening.design') },
-  { value: 'שתילת צמחים', label: t('filters.gardening.planting') },
-  { value: 'השקיה', label: t('filters.gardening.irrigation') },
-  { value: 'דישון', label: t('filters.gardening.fertilizing') },
-  { value: 'ניכוש עשבים', label: t('filters.gardening.weeding') },
-  { value: 'תחזוקה כללית', label: t('filters.gardening.generalMaintenance') }
+  { value: 'pruning', label: t('filters.gardening.pruning') },
+  { value: 'design', label: t('filters.gardening.design') },
+  { value: 'planting', label: t('filters.gardening.planting') },
+  { value: 'irrigation', label: t('filters.gardening.irrigation') },
+  { value: 'fertilizing', label: t('filters.gardening.fertilizing') },
+  { value: 'weeding', label: t('filters.gardening.weeding') },
+  { value: 'generalMaintenance', label: t('filters.gardening.generalMaintenance') }
 ].map(service => (
   <label key={service.value} className="checkbox-item">
     <input
@@ -49,17 +49,17 @@ const GardeningForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
          <label className="auth-form-label required">{t('serviceForm.gardening.seasons')}</label>
 <div className="checkbox-group" data-field="seasons">
 {[
-  { value: 'כל השנה', label: t('filters.gardening.allYear') },
-  { value: 'אביב', label: t('filters.gardening.spring') },
-  { value: 'קיץ', label: t('filters.gardening.summer') },
-  { value: 'סתיו', label: t('filters.gardening.autumn') },
-  { value: 'חורף', label: t('filters.gardening.winter') }
+  { value: 'allYear', label: t('filters.gardening.allYear') },
+  { value: 'spring', label: t('filters.gardening.spring') },
+  { value: 'summer', label: t('filters.gardening.summer') },
+  { value: 'autumn', label: t('filters.gardening.autumn') },
+  { value: 'winter', label: t('filters.gardening.winter') }
 ].map(season => (
   <label key={season.value} className="checkbox-item">
     <input
       type="checkbox"
       checked={serviceDetails.seasons?.includes(season.value) || false}
-      onChange={() => handleExclusiveCheckbox('seasons', season.value, 'כל השנה', ['אביב', 'קיץ', 'סתיו', 'חורף'])}
+      onChange={() => handleExclusiveCheckbox('seasons', season.value, 'allYear', ['spring', 'summer', 'autumn', 'winter'])}
     />
     {season.label}
   </label>
@@ -71,16 +71,16 @@ const GardeningForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
                    <label className="auth-form-label required">{t('serviceForm.common.availabilityHours')}</label>
           <div className="checkbox-group" data-field="availability_hours">
             {[
-              { value: 'בוקר', label: t('hours.morning') },
-              { value: 'אחר הצהריים', label: t('hours.afternoon') },
-              { value: 'ערב', label: t('hours.evening') },
-              { value: 'הכל', label: t('hours.all') }
+              { value: 'morning', label: t('hours.morning') },
+              { value: 'afternoon', label: t('hours.afternoon') },
+              { value: 'evening', label: t('hours.evening') },
+              { value: 'all', label: t('hours.all') }
             ].map(hour => (
               <label key={hour.value} className="checkbox-item">
                 <input
                   type="checkbox"
                   checked={serviceDetails.availability_hours?.includes(hour.value) || false}
-                  onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'הכל', ['בוקר', 'אחר הצהריים', 'ערב'])}
+                  onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'all', ['morning', 'afternoon', 'evening'])}
                 />
                 {hour.label}
               </label>
@@ -93,12 +93,12 @@ const GardeningForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
         <label className="auth-form-label required">{t('serviceForm.gardening.equipment')}</label>
 <div className="checkbox-group" data-field="equipment">
 {[
-  { value: 'מכסחת דשא', label: t('filters.gardening.lawnMower') },
-  { value: 'מזמרות גיזום', label: t('filters.gardening.pruningShears') },
-  { value: 'משאבת מים', label: t('filters.gardening.waterPump') },
-  { value: 'כלים ידניים', label: t('filters.gardening.handTools') },
-  { value: 'מפזר דשן', label: t('filters.gardening.fertilizerSpreader') },
-  { value: 'מערכת השקיה', label: t('filters.gardening.irrigationSystem') }
+  { value: 'lawnMower', label: t('filters.gardening.lawnMower') },
+  { value: 'pruningShears', label: t('filters.gardening.pruningShears') },
+  { value: 'waterPump', label: t('filters.gardening.waterPump') },
+  { value: 'handTools', label: t('filters.gardening.handTools') },
+  { value: 'fertilizerSpreader', label: t('filters.gardening.fertilizerSpreader') },
+  { value: 'irrigationSystem', label: t('filters.gardening.irrigationSystem') }
 ].map(equipment => (
   <label key={equipment.value} className="checkbox-item">
     <input
@@ -138,10 +138,10 @@ const GardeningForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
           <label className="auth-form-label required">{t('filters.common.languages')}</label>
           <div className="checkbox-group" data-field="languages">
             {[
-              { value: 'עברית', label: t('languages.hebrew') },
-              { value: 'רוסית', label: t('languages.russian') },
-              { value: 'אנגלית', label: t('languages.english') },
-              { value: 'צרפתית', label: t('languages.french') }
+              { value: 'hebrew', label: t('languages.hebrew') },
+              { value: 'russian', label: t('languages.russian') },
+              { value: 'english', label: t('languages.english') },
+              { value: 'french', label: t('languages.french') }
             ].map(lang => (
               <label key={lang.value} className="checkbox-item">
                 <input
@@ -170,10 +170,10 @@ const GardeningForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
         <label>{t('serviceForm.gardening.specializations')}</label>
 <div className="checkbox-group">
  {[
-  { value: 'הכשרה גנן סוג א', label: t('filters.gardening.gardenerTypeA') },
-  { value: 'הכשרה גנן סוג ב', label: t('filters.gardening.gardenerTypeB') },
-  { value: 'אילני אגרונום', label: t('filters.gardening.agronomist') },
-  { value: 'גוזם מומחה', label: t('filters.gardening.expertPruner') }
+  { value: 'gardenerTypeA', label: t('filters.gardening.gardenerTypeA') },
+  { value: 'gardenerTypeB', label: t('filters.gardening.gardenerTypeB') },
+  { value: 'agronomist', label: t('filters.gardening.agronomist') },
+  { value: 'expertPruner', label: t('filters.gardening.expertPruner') }
 ].map(spec => (
   <label key={spec.value} className="checkbox-item">
     <input
@@ -197,8 +197,8 @@ const GardeningForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
          <label>{t('serviceForm.gardening.additionalServices')}</label>
 <div className="checkbox-group">
   {[
-  { value: 'פינוי פסולת גינה', label: t('filters.gardening.wasteRemoval') },
-  { value: 'ייעוץ עיצוב נוף', label: t('filters.gardening.landscapeConsulting') }
+  { value: 'wasteRemoval', label: t('filters.gardening.wasteRemoval') },
+  { value: 'landscapeConsulting', label: t('filters.gardening.landscapeConsulting') }
 ].map(service => (
   <label key={service.value} className="checkbox-item">
     <input

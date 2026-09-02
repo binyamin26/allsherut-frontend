@@ -15,19 +15,19 @@ const EventFoodStandsForm = ({ serviceDetails, errors, handleServiceDetailsChang
           <label className="auth-form-label required">{t('serviceForm.common.availabilityDays')}</label>
           <div className="checkbox-group" data-field="availability_days">
             {[
-              { value: 'ראשון', label: t('days.sunday') },
-              { value: 'שני', label: t('days.monday') },
-              { value: 'שלישי', label: t('days.tuesday') },
-              { value: 'רביעי', label: t('days.wednesday') },
-              { value: 'חמישי', label: t('days.thursday') },
-              { value: 'שישי', label: t('days.friday') },
-              { value: 'כל השבוע', label: t('days.allWeek') }
+              { value: 'sunday', label: t('days.sunday') },
+              { value: 'monday', label: t('days.monday') },
+              { value: 'tuesday', label: t('days.tuesday') },
+              { value: 'wednesday', label: t('days.wednesday') },
+              { value: 'thursday', label: t('days.thursday') },
+              { value: 'friday', label: t('days.friday') },
+              { value: 'allWeek', label: t('days.allWeek') }
             ].map(day => (
               <label key={day.value} className="checkbox-item">
                 <input
                   type="checkbox"
                   checked={serviceDetails.availability_days?.includes(day.value) || false}
-                  onChange={() => handleExclusiveCheckbox('availability_days', day.value, 'כל השבוע', ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי'])}
+                  onChange={() => handleExclusiveCheckbox('availability_days', day.value, 'allWeek', ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday'])}
                 />
                 {day.label}
               </label>
@@ -40,16 +40,16 @@ const EventFoodStandsForm = ({ serviceDetails, errors, handleServiceDetailsChang
           <label className="auth-form-label required">{t('serviceForm.common.availabilityHours')}</label>
           <div className="checkbox-group" data-field="availability_hours">
             {[
-              { value: 'בוקר', label: t('hours.morning') },
-              { value: 'אחר הצהריים', label: t('hours.afternoon') },
-              { value: 'ערב', label: t('hours.evening') },
-              { value: 'הכל', label: t('hours.all') }
+              { value: 'morning', label: t('hours.morning') },
+              { value: 'afternoon', label: t('hours.afternoon') },
+              { value: 'evening', label: t('hours.evening') },
+              { value: 'all', label: t('hours.all') }
             ].map(hour => (
               <label key={hour.value} className="checkbox-item">
                 <input
                   type="checkbox"
                   checked={serviceDetails.availability_hours?.includes(hour.value) || false}
-                  onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'הכל', ['בוקר', 'אחר הצהריים', 'ערב'])}
+                  onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'all', ['morning', 'afternoon', 'evening'])}
                 />
                 {hour.label}
               </label>
@@ -62,19 +62,19 @@ const EventFoodStandsForm = ({ serviceDetails, errors, handleServiceDetailsChang
           <label className="auth-form-label required">{t('serviceForm.event.foodStandTypes')}</label>
           <div className="checkbox-group" data-field="food_stand_types">
             {[
-              { value: 'פופקורן', label: t('filters.events.stand.popcorn') },
-              { value: 'ברבה פאפא', label: t('filters.events.stand.cottonCandy') },
-              { value: 'הוט דוג', label: t('filters.events.stand.hotdog') },
-              { value: 'גרניטה / סלאש', label: t('filters.events.stand.granita') },
-              { value: 'קרפים', label: t('filters.events.stand.crepe') },
-              { value: 'וופלים', label: t('filters.events.stand.waffle') },
-              { value: 'גלידה', label: t('filters.events.stand.icecream') },
-              { value: 'קפה', label: t('filters.events.stand.coffee') },
-              { value: 'סוכריות', label: t('filters.events.stand.candy') },
-              { value: 'שוקולד', label: t('filters.events.stand.chocolate') },
+              { value: 'popcorn', label: t('filters.events.stand.popcorn') },
+              { value: 'cottonCandy', label: t('filters.events.stand.cottonCandy') },
+              { value: 'hotdog', label: t('filters.events.stand.hotdog') },
+              { value: 'granita', label: t('filters.events.stand.granita') },
+              { value: 'crepe', label: t('filters.events.stand.crepe') },
+              { value: 'waffle', label: t('filters.events.stand.waffle') },
+              { value: 'icecream', label: t('filters.events.stand.icecream') },
+              { value: 'coffee', label: t('filters.events.stand.coffee') },
+              { value: 'candy', label: t('filters.events.stand.candy') },
+              { value: 'chocolate', label: t('filters.events.stand.chocolate') },
               { value: 'נאצ\'וס', label: t('filters.events.stand.nachos') },
-              { value: 'המבורגרים', label: t('filters.events.stand.burger') },
-              { value: 'פיצה', label: t('filters.events.stand.pizza') }
+              { value: 'burger', label: t('filters.events.stand.burger') },
+              { value: 'pizza', label: t('filters.events.stand.pizza') }
             ].map(type => (
               <label key={type.value} className="checkbox-item">
                 <input
@@ -114,10 +114,10 @@ const EventFoodStandsForm = ({ serviceDetails, errors, handleServiceDetailsChang
           <label className="auth-form-label required">{t('filters.common.languages')}</label>
           <div className="checkbox-group" data-field="languages">
             {[
-              { value: 'עברית', label: t('languages.hebrew') },
-              { value: 'רוסית', label: t('languages.russian') },
-              { value: 'אנגלית', label: t('languages.english') },
-              { value: 'צרפתית', label: t('languages.french') }
+              { value: 'hebrew', label: t('languages.hebrew') },
+              { value: 'russian', label: t('languages.russian') },
+              { value: 'english', label: t('languages.english') },
+              { value: 'french', label: t('languages.french') }
             ].map(lang => (
               <label key={lang.value} className="checkbox-item">
                 <input

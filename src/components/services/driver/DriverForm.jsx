@@ -10,8 +10,8 @@ const VEHICLE_TYPES = [
 ];
 
 const SERVICE_TYPES = [
-  { value: 'דרייבר', key: 'serviceForm.driver.privateDriver' },
-  { value: 'מונית',  key: 'serviceForm.driver.taxi' },
+  { value: 'privateDriver', key: 'serviceForm.driver.privateDriver' },
+  { value: 'taxi',  key: 'serviceForm.driver.taxi' },
 ];
 
 const TRANSPORTATION_TYPES = [
@@ -22,18 +22,18 @@ const TRANSPORTATION_TYPES = [
 ];
 
 const AVAILABILITY_HOURS = [
-  { value: 'בוקר',           key: 'hours.morning' },
-  { value: 'אחר הצהריים',    key: 'hours.afternoon' },
-  { value: 'ערב',            key: 'hours.evening' },
-  { value: 'לילה',           key: 'hours.night' },
+  { value: 'morning',           key: 'hours.morning' },
+  { value: 'afternoon',    key: 'hours.afternoon' },
+  { value: 'evening',            key: 'hours.evening' },
+  { value: 'night',           key: 'hours.night' },
   { value: '24/6',           key: 'hours.twentyFourSix' },
 ];
 
 const LANGUAGES_OPTIONS = [
-  { value: 'עברית',   key: 'languages.hebrew' },
-  { value: 'רוסית',   key: 'languages.russian' },
-  { value: 'אנגלית',  key: 'languages.english' },
-  { value: 'צרפתית',  key: 'languages.french' },
+  { value: 'hebrew',   key: 'languages.hebrew' },
+  { value: 'russian',   key: 'languages.russian' },
+  { value: 'english',  key: 'languages.english' },
+  { value: 'french',  key: 'languages.french' },
 ];
 
 const DriverForm = ({ serviceDetails, errors, handleServiceDetailsChange, handleExclusiveCheckbox }) => {
@@ -54,7 +54,7 @@ const DriverForm = ({ serviceDetails, errors, handleServiceDetailsChange, handle
                 <input
                   type="checkbox"
                   checked={serviceDetails.availability_hours?.includes(hour.value) || false}
-                  onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, '24/6', ['בוקר', 'אחר הצהריים', 'ערב', 'לילה'])}
+                  onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, '24/6', ['morning', 'afternoon', 'evening', 'night'])}
                 />
                 {t(hour.key)}
               </label>

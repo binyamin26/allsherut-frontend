@@ -11,25 +11,25 @@ const serviceFieldsConfig = {
         name: 'ageGroups', 
         label: 'serviceFields.babysitting.ageGroups', 
         type: 'checkbox',
-        options: ['0-1 שנה', '1-3 שנים', '3-6 שנים', '6+ שנים']
+        options: ['age0to1', 'age1to3', 'age3to6', 'age6plus']
       },
       { 
         name: 'availability_days', 
         label: 'serviceFields.babysitting.availability_days', 
         type: 'checkbox',
-        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע']
+        options: ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'allWeek']
       },
       { 
         name: 'availability_hours', 
         label: 'serviceFields.babysitting.availability_hours', 
         type: 'checkbox',
-        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+        options: ['morning', 'afternoon', 'evening', 'all']
       },
       { 
         name: 'babysitting_types', 
         label: 'serviceFields.babysitting.babysitting_types', 
         type: 'checkbox',
-        options: ['שמרטפות מזדמנת', 'שמרטפות קבועה בבית הלקוח', 'הוצאה מהגן / מבית-הספר', 'שמירה בלילה', 'שמירה בזמן חופשות', 'עזרה בשיעורי בית', 'מטפלת במשרה מלאה', 'קייטנת קיץ', 'קייטנת חורף']
+        options: ['occasional', 'regular', 'pickup', 'nightCare', 'holidayCare', 'homework', 'fullTime', 'summerCamp', 'winterCamp']
       },
       { 
         name: 'can_travel_alone', 
@@ -41,19 +41,19 @@ const serviceFieldsConfig = {
         name: 'languages', 
         label: 'serviceFields.babysitting.languages', 
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+        options: ['hebrew', 'english', 'french', 'spanish', 'russian']
       },
       {
         name: 'certifications',
         label: 'serviceFields.babysitting.certifications',
         type: 'select',
-        options: ['הכשרה בתחום החינוך המיוחד', 'קורס עזרה ראשונה', 'ניסיון בגני ילדים או מעונות']
+        options: ['certSpecialEd', 'certFirstAid', 'certKindergarten']
       },
       { 
         name: 'religiosity', 
         label: 'serviceFields.babysitting.religiosity', 
         type: 'select',
-        options: ['לא משנה', 'חילוני', 'מסורתי', 'דתי', 'חרדי']
+        options: ['לא משנה', 'secular', 'traditional', 'religious', 'orthodox']
       }
     ]
   },
@@ -64,27 +64,27 @@ const serviceFieldsConfig = {
         name: 'legalStatus',
         label: 'serviceFields.cleaning.legalStatus', 
         type: 'select',
-        options: ['חברה', 'עצמאי']
+        options: ['company', 'independent']
       },
       { 
         name: 'cleaningTypes', 
         label: 'serviceFields.cleaning.cleaningTypes', 
         type: 'checkbox',
         options: [
-          'ניקיון שוטף', 'ניקיון פסח', 'ניקיון אחרי שיפוץ', 'ניקיון לדירות Airbnb',
-          'משרדים', 'חנויות', 'בניינים', 'מוסדות חינוך', 'מפעלים',
-          'ניקוי חלונות', 'ניקוי מזגן', 'ניקיון גגות רעפים',
-          'ניקוי שטיחים', 'ניקוי ספות', 'ניקוי וילונות', 'ניקוי בלחץ מים (טרסות, חזיתות)',
-          'חיטוי וניקיון אחרי נזק (שריפה / הצפה)', 'ניקוי ותחזוקת אקווריומים',
-          'ניקוי רכב בבית הלקוח', 'ניקוי פאנלים סולאריים',
-          'גיהוץ בבית הלקוח', 'קיפול כביסה'
+          'regularCleaning', 'passoverCleaning', 'postRenovation', 'airbnb',
+          'offices', 'stores', 'buildings', 'educationalInstitutions', 'factories',
+          'highWindows', 'acCleaning', 'roofCleaning',
+          'carpets', 'sofas', 'curtains', 'pressureWashing',
+          'damageCleanup', 'aquariumCleaning',
+          'carCleaning', 'solarPanels',
+          'ironingAtHome', 'laundryFolding'
         ]
       },
       {
         name: 'availability_hours',
         label: 'serviceFields.cleaning.availability_hours',
         type: 'checkbox',
-        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+        options: ['morning', 'afternoon', 'evening', 'all']
       },
       { name: 'experience', label: 'serviceFields.cleaning.experienceYears', type: 'number' },
       {
@@ -97,7 +97,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+        options: ['hebrew', 'english', 'french', 'spanish', 'russian']
       }
     ]
   },
@@ -108,44 +108,44 @@ const serviceFieldsConfig = {
         name: 'services',
         label: 'serviceFields.gardening.services', 
         type: 'checkbox',
-        options: ['גיזום עצים ושיחים', 'עיצוב גינה', 'שתילת צמחים', 'השקיה', 'דישון', 'ניכוש עשבים', 'תחזוקה כללית']
+        options: ['pruning', 'design', 'planting', 'irrigation', 'fertilizing', 'weeding', 'generalMaintenance']
       },
       { 
         name: 'seasons', 
         label: 'serviceFields.gardening.seasons', 
         type: 'checkbox',
-        options: ['כל השנה', 'אביב', 'קיץ', 'סתיו', 'חורף']
+        options: ['allYear', 'spring', 'summer', 'autumn', 'winter']
       },
       { 
         name: 'equipment', 
         label: 'serviceFields.gardening.equipment', 
         type: 'checkbox',
-        options: ['מכסחת דשא', 'מזמרות גיזום', 'משאבת מים', 'כלים ידניים', 'מפזר דשן', 'מערכת השקיה']
+        options: ['lawnMower', 'pruningShears', 'waterPump', 'handTools', 'fertilizerSpreader', 'irrigationSystem']
       },
       { 
         name: 'specializations', 
         label: 'serviceFields.gardening.specializations', 
         type: 'checkbox',
-        options: ['הכשרה גנן סוג א', 'הכשרה גנן סוג ב', 'אילני אגרונום', 'גוזם מומחה']
+        options: ['gardenerTypeA', 'gardenerTypeB', 'agronomist', 'expertPruner']
       },
       { 
         name: 'additionalServices', 
         label: 'serviceFields.gardening.additionalServices', 
         type: 'checkbox',
-        options: ['פינוי פסולת גינה', 'ייעוץ עיצוב נוף']
+        options: ['wasteRemoval', 'landscapeConsulting']
       },
       {
         name: 'availability_hours',
         label: 'serviceFields.gardening.availability_hours',
         type: 'checkbox',
-        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+        options: ['morning', 'afternoon', 'evening', 'all']
       },
       { name: 'experience', label: 'serviceFields.gardening.experienceYears', type: 'number' },
       {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+        options: ['hebrew', 'english', 'french', 'spanish', 'russian']
       }
     ]
   },
@@ -157,31 +157,31 @@ const serviceFieldsConfig = {
         name: 'availability_days',
         label: 'serviceFields.petcare.availability_days',
         type: 'checkbox',
-        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת']
+        options: ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
       },
       {
         name: 'availability_hours',
         label: 'serviceFields.petcare.availability_hours',
         type: 'checkbox',
-        options: ['בוקר', 'צהריים', 'אחר הצהריים', 'ערב', 'לילה']
+        options: ['morning', 'noon', 'afternoon', 'evening', 'night']
       },
       {
         name: 'animalTypes',
         label: 'serviceFields.petcare.animalTypes', 
         type: 'checkbox',
-        options: ['כלבים', 'חתולים', 'ציפורים', 'מכרסמים קטנים', 'דגים', 'זוחלים']
+        options: ['dogs', 'cats', 'birds', 'smallRodents', 'fish', 'reptiles']
       },
       { 
         name: 'dogSizes', 
         label: 'serviceFields.petcare.dogSizes', 
         type: 'checkbox',
-        options: ['קטן', 'בינוני', 'גדול', 'ענק']
+        options: ['smallDog', 'mediumDog', 'largeDog', 'giantDog']
       },
       { 
         name: 'location', 
         label: 'serviceFields.petcare.location', 
         type: 'select',
-        options: ['בבית הלקוח', 'בבית המטפל', 'פנסיון לבעלי חיים']
+        options: ['clientHome', 'בבית המטפל', 'פנסיון לבעלי חיים']
       },
       { 
         name: 'experience', 
@@ -193,34 +193,34 @@ const serviceFieldsConfig = {
         label: 'serviceFields.petcare.additionalServices', 
         type: 'checkbox',
         options: [
-          'הליכת כלבים', 
-          'רחצה וטיפוח', 
-          'אילוף בסיסי', 
-          'מתן תרופות',
-          'האכלה בזמן השמירה', 
-          'ניקוי ארגז חול / כלוב / אקווריום',
-          'עדכון תמונות לבעלים', 
-          'שהייה ביום בלבד', 
-          'לינה ללילה'
+          'dogWalking', 
+          'bathingGrooming', 
+          'basicTraining', 
+          'medication',
+          'feeding', 
+          'cleaning',
+          'photoUpdates', 
+          'daytimeOnly', 
+          'overnight'
         ]
       },
       { 
         name: 'facilities', 
         label: 'serviceFields.petcare.facilities', 
         type: 'checkbox',
-        options: ['גינה מגודרת', 'חצר גדולה', 'מזגן']
+        options: ['fencedGarden', 'largeYard', 'airConditioning']
       },
       {
         name: 'veterinaryServices',
         label: 'serviceFields.petcare.veterinaryServices',
         type: 'checkbox',
-        options: ['ביקור וטרינר', 'טיפול בסיסי']
+        options: ['vetVisit', 'basicCare']
       },
       {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+        options: ['hebrew', 'english', 'french', 'spanish', 'russian']
       }
     ]
   },
@@ -233,50 +233,50 @@ const serviceFieldsConfig = {
         name: 'availability_days',
         label: 'serviceFields.tutoring.availability_days',
         type: 'checkbox',
-        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת']
+        options: ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
       },
       {
         name: 'availability_hours',
         label: 'serviceFields.tutoring.availability_hours',
         type: 'checkbox',
-        options: ['בוקר', 'צהריים', 'אחר הצהריים', 'ערב', 'לילה']
+        options: ['morning', 'noon', 'afternoon', 'evening', 'night']
       },
       {
         name: 'subjects',
         label: 'serviceFields.tutoring.subjects',
         type: 'checkbox',
-        options: ['מתמטיקה', 'אנגלית', 'עברית', 'פיזיקה', 'כימיה', 'ביולוגיה', 'היסטוריה', 'ספורט', 'מוזיקה', 'אומנות']
+        options: ['מתמטיקה', 'english', 'hebrew', 'פיזיקה', 'כימיה', 'ביולוגיה', 'היסטוריה', 'ספורט', 'מוזיקה', 'אומנות']
       },
       {
         name: 'ageGroups',
         label: 'filters.sports_activities.ageGroups',
         type: 'checkbox',
-        options: ['ילדים', 'נוער', 'מבוגרים', 'כל הגילאים']
+        options: ['ילדים', 'נוער', 'adults', 'כל הגילאים']
       },
       {
         name: 'levels',
         label: 'serviceFields.tutoring.levels',
         type: 'checkbox',
-        options: ['יסודי', 'חטיבת ביניים', 'תיכון', 'בגרות', 'מכינה', 'אקדמי', 'מבוגרים']
+        options: ['elementary', 'middleSchool', 'highSchool', 'matriculation', 'preAcademic', 'academic', 'adults']
       },
       {
         name: 'teachingMode',
         label: 'serviceFields.tutoring.teachingMode',
         type: 'select',
-        options: ['פרונטלי בלבד', 'אונליין בלבד', 'שניהם']
+        options: ['inPersonOnly', 'onlineOnly', 'both']
       },
       {
         name: 'specializations',
         label: 'serviceFields.tutoring.specializations',
         type: 'checkbox',
-        options: ['הכנה לבחינות', 'הפרעות למידה']
+        options: ['examPrep', 'learningDisabilities']
       },
       { name: 'qualifications', label: 'serviceFields.tutoring.qualifications', type: 'text' },
       {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+        options: ['hebrew', 'english', 'french', 'spanish', 'russian']
       }
     ]
   },
@@ -289,13 +289,13 @@ const serviceFieldsConfig = {
         name: 'availability_days',
         label: 'serviceFields.tutoring.availability_days',
         type: 'checkbox',
-        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת']
+        options: ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
       },
       {
         name: 'availability_hours',
         label: 'serviceFields.tutoring.availability_hours',
         type: 'checkbox',
-        options: ['בוקר', 'צהריים', 'אחר הצהריים', 'ערב', 'לילה']
+        options: ['morning', 'noon', 'afternoon', 'evening', 'night']
       },
       {
         name: 'subjects',
@@ -307,19 +307,19 @@ const serviceFieldsConfig = {
         name: 'levels',
         label: 'filters.sports_activities.ageGroups',
         type: 'checkbox',
-        options: ['ילדים', 'נוער', 'מבוגרים', 'כל הגילאים']
+        options: ['ילדים', 'נוער', 'adults', 'כל הגילאים']
       },
       {
         name: 'teachingMode',
         label: 'serviceForm.sports_activities.activityMode',
         type: 'select',
-        options: ['פרונטלי בלבד', 'אונליין בלבד', 'שניהם']
+        options: ['inPersonOnly', 'onlineOnly', 'both']
       },
       {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+        options: ['hebrew', 'english', 'french', 'spanish', 'russian']
       }
     ]
   },
@@ -330,7 +330,7 @@ const serviceFieldsConfig = {
         name: 'availability_hours',
         label: 'serviceForm.common.availabilityHours',
         type: 'checkbox',
-        options: ['בוקר', 'אחר הצהריים', 'ערב', 'לילה', '24/7']
+        options: ['morning', 'afternoon', 'evening', 'night', '24/7']
       },
       {
         name: 'work_types',
@@ -343,7 +343,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+        options: ['hebrew', 'english', 'french', 'spanish', 'russian']
       }
     ]
   },
@@ -363,20 +363,20 @@ const serviceFieldsConfig = {
         name: 'availability_days',
         label: 'serviceFields.eldercare.availability_days',
         type: 'checkbox',
-        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת']
+        options: ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
       },
       {
         name: 'availability_hours',
         label: 'serviceFields.eldercare.availability',
         type: 'checkbox',
-        options: ['בוקר', 'צהריים', 'אחר הצהריים', 'ערב', 'לילה', '24/7']
+        options: ['morning', 'noon', 'afternoon', 'evening', 'night', '24/7']
       },
       { name: 'experience', label: 'serviceFields.eldercare.experience', type: 'number' },
       {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+        options: ['hebrew', 'english', 'french', 'spanish', 'russian']
       },
       {
         name: 'administrativeHelp',
@@ -427,17 +427,17 @@ const serviceFieldsConfig = {
         label: 'serviceFields.laundry.laundryTypes', 
         type: 'checkbox',
         options: [
-          'איסוף והחזרת כביסה (שירות משלוחים)',
-          'ניקוי יבש / שירות מכבסה',
-          'כביסת מצעים, מגבות, וילונות',
-          'כביסה תעשייתית (מלונות, מסעדות)'
+          'pickupDelivery',
+          'dryCleaning',
+          'linens',
+          'industrial'
         ]
       },
     {
       name: 'availability_hours',
       label: 'serviceFields.laundry.availableHours',
       type: 'checkbox',
-      options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+      options: ['morning', 'afternoon', 'evening', 'all']
     },
       {
         name: 'pickupService',
@@ -452,7 +452,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+        options: ['hebrew', 'english', 'french', 'spanish', 'russian']
       }
     ]
   },
@@ -464,31 +464,31 @@ const serviceFieldsConfig = {
         name: 'availability_hours',
         label: 'serviceFields.property_management.availability_hours',
         type: 'checkbox',
-        options: ['בוקר', 'צהריים', 'אחר הצהריים', 'ערב', 'הכל']
+        options: ['morning', 'noon', 'afternoon', 'evening', 'all']
       },
       {
         name: 'management_type',
         label: 'serviceFields.property_management.management_type',
         type: 'checkbox',
         options: [
-          'חיפוש ובדיקת שוכרים מתאימים',
-          'חתימה על חוזה וניהול ערבויות',
-          'גביית שכ"ד והעברת תשלומים לבעל הדירה',
-          'בדיקת מצב הנכס לפני ואחרי תקופת השכירות',
-          'העברת חשבונות השירותים (מים, חשמל, גז) על שם השוכר החדש',
-          'פרסום וניהול מודעות באתרים',
-          'ניהול הזמנות ותקשורת עם אורחים',
-          'קבלת אורחים / מסירת מפתחות',
-          'ניקיון בין השהיות',
-          'בדיקה תקופתית של הנכס',
-          'תיקונים כלליים (חשמל, אינסטלציה, מזגן וכו׳)'
+          'tenantSearch',
+          'contractManagement',
+          'rentCollection',
+          'propertyInspection',
+          'utilityTransfer',
+          'listingManagement',
+          'guestCommunication',
+          'guestCheckin',
+          'turnaroundCleaning',
+          'periodicInspection',
+          'generalRepairs'
         ]
       },
       {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+        options: ['hebrew', 'english', 'french', 'spanish', 'russian']
       }
     ]
   },
@@ -500,37 +500,37 @@ const serviceFieldsConfig = {
         name: 'availability_hours',
         label: 'serviceFields.electrician.availability_hours',
         type: 'checkbox',
-        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+        options: ['morning', 'afternoon', 'evening', 'all']
       },
       { 
         name: 'work_types', 
         label: 'serviceFields.electrician.work_types', 
         type: 'checkbox',
-        options: ['תיקונים', 'התקנות', 'עבודות חשמל גדולות']
+        options: ['repairs', 'installations', 'largeElectricalWork']
       },
       { 
         name: 'repair_types', 
         label: 'serviceFields.electrician.repair_types', 
         type: 'checkbox',
-        options: ['תיקון קצר', 'תיקון טיימר', 'תיקון לוח חשמל', 'החלפת שקעים', 'תיקון\\החלפת ספוטים', 'תיקונים אחרים', 'החלפת אוטומט חדר מדרגות']
+        options: ['shortCircuitRepair', 'timerRepair', 'panelRepair', 'outletReplacement', 'spotlightRepair', 'otherRepairs', 'stairwaySwitch']
       },
       { 
         name: 'installation_types', 
         label: 'serviceFields.electrician.installation_types', 
         type: 'checkbox',
-        options: ['התקנת מאוורר תקרה', 'התקנת שקע חשמל', 'התקנת נקודת חשמל חדשה', 'התקנת אטמור', 'התקנת מתג', 'עמדת טעינה לרכב חשמלי', 'התקנת שעון שבת', 'התקנות אחרות', 'עמדת טעינה לרכב חשמלי של חברת EV-Meter', 'התקנות כיריים אינדוקציה', 'התקנת תנור אמבטיה', 'התקנת גנרטור לבית פרטי', 'התקנת ונטה', 'עמדת טעינה לרכב חשמלי EV-EDGE']
+        options: ['ceilingFan', 'outletInstall', 'newOutlet', 'waterHeater', 'switchInstall', 'evCharger', 'shabbatTimer', 'otherInstall', 'evMeter', 'inductionCooktop', 'bathroomHeater', 'generator', 'ventaInstall', 'evEdge']
       },
       { 
         name: 'large_work_types', 
         label: 'serviceFields.electrician.large_work_types', 
         type: 'checkbox',
-        options: ['בניית תשתית חשמל בכל הבית', 'החלפת תשתית חשמל בכל הבית', 'החלפת לוח חשמל', 'הארקה', 'החלפה לתלת פאזי', 'הכנה לביקורת עבור חברת חשמל']
+        options: ['newInfrastructure', 'replaceInfrastructure', 'panelReplacement', 'grounding', 'threePhase', 'inspection']
       },
       {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+        options: ['hebrew', 'english', 'french', 'spanish', 'russian']
       }
     ]
   },
@@ -542,43 +542,43 @@ const serviceFieldsConfig = {
         name: 'availability_hours',
         label: 'serviceFields.plumbing.availability_hours',
         type: 'checkbox',
-        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+        options: ['morning', 'afternoon', 'evening', 'all']
       },
       { 
         name: 'work_types', 
         label: 'serviceFields.plumbing.work_types', 
         type: 'checkbox',
-        options: ['סתימות', 'תיקון צנרת', 'עבודות גדולות', 'תיקון והתקנת אביזרי אינסטלציה']
+        options: ['blockages', 'pipeRepair', 'largeWork', 'fixtureRepair']
       },
       { 
         name: 'blockage_types', 
         label: 'serviceFields.plumbing.blockage_types', 
         type: 'checkbox',
-        options: ['פתיחת סתימה בבית', 'משאבה טבולה', 'פתיחת סתימה בבנין']
+        options: ['homeBlockage', 'submersiblePump', 'buildingBlockage']
       },
       { 
         name: 'pipe_repair_types', 
         label: 'serviceFields.plumbing.pipe_repair_types', 
         type: 'checkbox',
-        options: ['תיקון צנרת גברית', 'תיקון נזקי צנרת בבית', 'תיקון נזקי צנרת בבניין', 'הגברת לחץ מים', 'תיקון צנרת בגינה', 'תיקוני צנרת אחרים', 'תיקון צנרת ביוב ללא הרס']
+        options: ['malePipeRepair', 'homePipeDamage', 'buildingPipeDamage', 'pressureBoost', 'gardenPipes', 'otherPipeRepairs', 'sewerNonDestructive']
       },
       { 
         name: 'large_work_types', 
         label: 'serviceFields.plumbing.large_work_types', 
         type: 'checkbox',
-        options: ['החלפת צנרת בבית', 'החלפת צנרת בבניין', 'התקנת נקודות מים חדשות', 'החלפת קו ביוב בבית', 'החלפת קו ביוב בבניין', 'הקמת קו ביוב חדש', 'החלפת צנרת בגינה', 'התקנת מזח']
+        options: ['homePipeReplacement', 'buildingPipeReplacement', 'newWaterPoints', 'homeSewerReplacement', 'buildingSewerReplacement', 'newSewerLine', 'gardenPipeReplacement', 'pierInstallation']
       },
       { 
         name: 'fixture_types', 
         label: 'serviceFields.plumbing.fixture_types', 
         type: 'checkbox',
-        options: ['התקנת בר מים', 'ניאגרה סמויה', 'ברזים', 'ניאגרות ואסלות', 'מסנני מים', 'התקנת טוחן אשפה', 'תיקון טוחן אשפה', 'כיורים', 'הכנה למדיח כלים', 'אגנית למקלחון', 'אביזרים אחרים', 'סילוקית לאסלה', 'התקנת בידה', 'אסלה תלויה', 'אל חוזר לשעון מים', 'התקנת מערכות מים תת כיוריות']
+        options: ['waterBar', 'concealedCistern', 'faucets', 'toilets', 'waterFilters', 'garbageDisposal', 'disposalRepair', 'sinks', 'dishwasherPrep', 'showerBase', 'otherFixtures', 'toiletFlush', 'bidet', 'wallMountedToilet', 'checkValve', 'underSinkSystems']
       },
       {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+        options: ['hebrew', 'english', 'french', 'spanish', 'russian']
       }
     ]
   },
@@ -590,37 +590,37 @@ const serviceFieldsConfig = {
         name: 'availability_hours',
         label: 'serviceFields.air_conditioning.availability_hours',
         type: 'checkbox',
-        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+        options: ['morning', 'afternoon', 'evening', 'all']
       },
       { 
         name: 'work_types', 
         label: 'serviceFields.air_conditioning.work_types', 
         type: 'checkbox',
-        options: ['התקנת מזגנים', 'תיקון מזגנים', 'פירוק והרכבת מזגנים']
+        options: ['installation', 'repair', 'disassembly']
       },
       { 
         name: 'installation_types', 
         label: 'serviceFields.air_conditioning.installation_types', 
         type: 'checkbox',
-        options: ['התקנת מזגן', 'התקנת מיזוג מיני מרכזי', 'התקנת מיזוג מרכזי', 'התקנת מזגן אינוורטר', 'התקנת מזגן מולטי אינוורטר', 'התקנת מזגן VRF']
+        options: ['acInstall', 'miniCentralInstall', 'centralInstall', 'inverterInstall', 'multiInverterInstall', 'vrfInstall']
       },
       { 
         name: 'repair_types', 
         label: 'serviceFields.air_conditioning.repair_types', 
         type: 'checkbox',
-        options: ['תיקון מזגן', 'מילוי גז', 'תיקון מזגן מעובש', 'תיקון מיזוג מיני מרכזי', 'תיקון דליפת גז במזגן', 'תיקון מיזוג מרכזי', 'תיקון מזגן אינוורטר', 'תיקון מזגן VRF', 'ניקוי יסודי', 'תיקון צ\'ילרים', 'טכנאי חדרי קירור']
+        options: ['acRepair', 'gasRefill', 'moldyAcRepair', 'miniCentralRepair', 'gasLeakRepair', 'centralRepair', 'inverterRepair', 'vrfRepair', 'filterCleaning', 'תיקון צ\'ילרים', 'coldRoomTech']
       },
       { 
         name: 'disassembly_types', 
         label: 'serviceFields.air_conditioning.disassembly_types', 
         type: 'checkbox',
-        options: ['פירוק והרכבת מזגן', 'פירוק מיזוג מיני מרכזי', 'פירוק מיזוג מרכזי', 'פירוק מזגן אינוורטר', 'פירוק מזגן VRF']
+        options: ['acDisassembly', 'miniCentralDisassembly', 'centralDisassembly', 'inverterDisassembly', 'vrfDisassembly']
       },
       {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+        options: ['hebrew', 'english', 'french', 'spanish', 'russian']
       }
     ]
   },
@@ -632,37 +632,37 @@ const serviceFieldsConfig = {
         name: 'availability_hours',
         label: 'serviceFields.gas_technician.availability_hours',
         type: 'checkbox',
-        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+        options: ['morning', 'afternoon', 'evening', 'all']
       },
       { 
         name: 'work_types', 
         label: 'serviceFields.gas_technician.work_types', 
         type: 'checkbox',
-        options: ['התקנת צנרת גז בבית', 'תיקוני גז בבית']
+        options: ['pipeInstallation', 'repairs']
       },
       { 
         name: 'installation_types', 
         label: 'serviceFields.gas_technician.installation_types', 
         type: 'checkbox',
-        options: ['הזזת\\התקנת נקודת גז', 'התקנת כיריים גז', 'התקנת צינור גז', 'התקנת גריל גז', 'התקנת חימום מים בגז', 'התקנת חגז', 'בניית תשתית גז במבנה חדש', 'שירותי גז לעסקים']
+        options: ['gasPointInstall', 'stovetopInstall', 'pipeInstall', 'grillInstall', 'waterHeaterInstall', 'hagaz', 'newBuildingInfra', 'businessServices']
       },
       {
         name: 'repair_types',
         label: 'serviceFields.gas_technician.repair_types',
         type: 'checkbox',
-        options: ['תיקון כיריים גז', 'תיקון צנרת גז']
+        options: ['stovetopRepair', 'pipeRepair']
       },
       {
         name: 'license_type',
         label: 'serviceFields.gas_technician.license_type',
         type: 'checkbox',
-        options: ['רמה 1', 'רמה 2']
+        options: ['licenseLevel1', 'licenseLevel2']
       },
       {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+        options: ['hebrew', 'english', 'french', 'spanish', 'russian']
       }
     ]
   },
@@ -674,31 +674,31 @@ const serviceFieldsConfig = {
         name: 'availability_hours',
         label: 'serviceFields.drywall.availability_hours',
         type: 'checkbox',
-        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+        options: ['morning', 'afternoon', 'evening', 'all']
       },
       { 
         name: 'work_types', 
         label: 'serviceFields.drywall.work_types', 
         type: 'checkbox',
-        options: ['עיצובים בגבס', 'עבודות גבס']
+        options: ['design', 'drywallWork']
       },
       { 
         name: 'design_types', 
         label: 'serviceFields.drywall.design_types', 
         type: 'checkbox',
-        options: ['נישות גבס', 'מזנון גבס', 'ספריות גבס', 'כוורות גבס', 'תאורה נסתרת בגבס', 'קרניז גבס מעוגל', 'קשתות גבס', 'תקרה צפה', 'קיר צף']
+        options: ['niches', 'tvUnit', 'libraries', 'shelves', 'hiddenLighting', 'roundedCornice', 'arches', 'floatingCeiling', 'floatingWall']
       },
       { 
         name: 'construction_types', 
         label: 'serviceFields.drywall.construction_types', 
         type: 'checkbox',
-        options: ['בניית קירות גבס', 'בניית תקרות גבס', 'בניית מדפי גבס', 'הנמכת תקרה למזגן', 'חיפוי גבס לצנרת', 'בניית סינר\\קרניז גבס', 'בידוד אקוסטי']
+        options: ['walls', 'ceilings', 'shelfConstruction', 'acDropCeiling', 'pipeCovering', 'cornice', 'acousticInsulation']
       },
       {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+        options: ['hebrew', 'english', 'french', 'spanish', 'russian']
       }
     ]
   },
@@ -710,61 +710,61 @@ const serviceFieldsConfig = {
         name: 'availability_hours',
         label: 'serviceFields.carpentry.availability_hours',
         type: 'checkbox',
-        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+        options: ['morning', 'afternoon', 'evening', 'all']
       },
       { 
         name: 'work_types', 
         label: 'serviceFields.carpentry.work_types', 
         type: 'checkbox',
-        options: ['בניית רהיטים', 'תיקון רהיטים', 'עבודות נגרות אחרות', 'נגרות חוץ']
+        options: ['furnitureBuilding', 'furnitureRepair', 'otherWork', 'outdoorCarpentry']
       },
       { 
         name: 'furniture_building_types', 
         label: 'serviceFields.carpentry.furniture_building_types', 
         type: 'checkbox',
-        options: ['בניית ארונות קיר', 'בניית ארונות הזזה', 'בניית ארונות אמבטיה', 'בניית חדר שינה', 'בניית שולחן', 'בניית כסאות', 'בניית מזנון', 'בניית ספריה', 'בניית רהיטים ייחודים', 'בניית מדפים', 'בניית חדר ארונות', 'בניית מיטה מעץ', 'בניית ארונות מטבח']
+        options: ['wallClosets', 'slidingClosets', 'bathroomCabinets', 'bedroomFurniture', 'tableBuilding', 'chairBuilding', 'tvUnitBuilding', 'libraryBuilding', 'customFurniture', 'shelfBuilding', 'walkInCloset', 'woodenBed', 'kitchenFurniture']
       },
       { 
         name: 'furniture_repair_types', 
         label: 'serviceFields.carpentry.furniture_repair_types', 
         type: 'checkbox',
-        options: ['תיקון ארונות קיר', 'תיקון שולחן', 'תיקון כסאות', 'תיקון ארונות הזזה', 'תיקון ארונות אמבטיה', 'תיקון חדר שינה', 'תיקון מזנון', 'תיקון ספרייה', 'תיקון רהיטים אחרים']
+        options: ['repairWallClosets', 'repairTable', 'repairChairs', 'repairSlidingClosets', 'repairBathroomCabinets', 'repairBedroomFurniture', 'repairTvUnit', 'repairLibrary', 'repairOther']
       },
       { 
         name: 'other_carpentry_types', 
         label: 'serviceFields.carpentry.other_carpentry_types', 
         type: 'checkbox',
-        options: ['חיפוי עץ לקיר', 'פירוק והרכבת רהיטים', 'בניית דלתות', 'תיקון דלתות', 'חידוש דלתות כניסה מעץ', 'בניית קומת גלריה', 'מדרגות עץ לבית', 'משרביות מעץ', 'בוצ\'ר עץ']
+        options: ['wallCladding', 'disassembly', 'doorFabrication', 'doorRepair', 'doorRenovation', 'loft', 'stairs', 'lattice', 'בוצ\'ר עץ']
       },
       { 
         name: 'outdoor_carpentry_types', 
         label: 'serviceFields.carpentry.outdoor_carpentry_types', 
         type: 'checkbox',
-        options: ['פרגולות', 'דקים', 'גדרות ומחיצות עץ']
+        options: ['pergolas', 'decks', 'fences']
       },
       { 
         name: 'pergola_types', 
         label: 'serviceFields.carpentry.pergola_types', 
         type: 'checkbox',
-        options: ['פרגולות עץ', 'פרגולות הצללה', 'סגירת מרפסת']
+        options: ['woodPergolas', 'shadePergolas', 'balconyEnclosure']
       },
       { 
         name: 'deck_types', 
         label: 'serviceFields.carpentry.deck_types', 
         type: 'checkbox',
-        options: ['דקים מעץ טבעי', 'דק סינטטי (קומפוזיט)', 'שיקום / חידוש דקים']
+        options: ['naturalWoodDecks', 'compositeDecks', 'deckRenovation']
       },
       { 
         name: 'fence_types', 
         label: 'serviceFields.carpentry.fence_types', 
         type: 'checkbox',
-        options: ['גדרות עץ', 'מחיצות עץ לגינה', 'שערי עץ']
+        options: ['woodFences', 'gardenPartitions', 'woodGates']
       },
       {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+        options: ['hebrew', 'english', 'french', 'spanish', 'russian']
       }
     ]
   },
@@ -776,37 +776,37 @@ const serviceFieldsConfig = {
         name: 'availability_hours',
         label: 'serviceFields.home_organization.availability_hours',
         type: 'checkbox',
-        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+        options: ['morning', 'afternoon', 'evening', 'all']
       },
       { 
         name: 'work_types', 
         label: 'serviceFields.home_organization.work_types', 
         type: 'checkbox',
-        options: ['סידור כללי', 'סידור + מיון', 'ארגון מקצועי']
+        options: ['general', 'sorting', 'professional']
       },
       { 
         name: 'general_organization_types', 
         label: 'serviceFields.home_organization.general_organization_types', 
         type: 'checkbox',
-        options: ['סידור בית מלא', 'סידור חדרים', 'סידור מטבח', 'סידור חדר ילדים', 'סידור חדר ארונות / ארונות בגדים', 'סידור חדר אמבטיה']
+        options: ['fullHouse', 'rooms', 'kitchen', 'kidsRoom', 'closets', 'bathroom']
       },
       { 
         name: 'sorting_types', 
         label: 'serviceFields.home_organization.sorting_types', 
         type: 'checkbox',
-        options: ['מיון חפצים', 'מיון בגדים', 'מיון צעצועים', 'הכנת חפצים למסירה / תרומה']
+        options: ['itemSorting', 'clothesSorting', 'toySorting', 'donation']
       },
       { 
         name: 'professional_organization_types', 
         label: 'serviceFields.home_organization.professional_organization_types', 
         type: 'checkbox',
-        options: ['יצירת פתרונות אחסון', 'אופטימיזציה של חללים קטנים', 'עיצוב וסידור מדפים']
+        options: ['storageSolutions', 'smallSpaces', 'shelfDesign']
       },
       {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+        options: ['hebrew', 'english', 'french', 'spanish', 'russian']
       }
     ]
   },
@@ -818,31 +818,31 @@ const serviceFieldsConfig = {
         name: 'availability_days',
         label: 'serviceFields.event_entertainment.availability_days',
         type: 'checkbox',
-        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע']
+        options: ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'allWeek']
       },
       {
         name: 'availability_hours',
         label: 'serviceFields.event_entertainment.availability_hours',
         type: 'checkbox',
-        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+        options: ['morning', 'afternoon', 'evening', 'all']
       },
       {
         name: 'entertainment_types',
         label: 'serviceFields.event_entertainment.entertainment_types',
         type: 'checkbox',
-        options: ['קוסם ילדים', 'קוסם', 'ליצן ילדים', 'בלוני צורות', 'הפרחת בלונים / ניפוח בלונים במקום', 'דמויות ותחפושות', 'שעשועונים ומשחקי קבוצה', 'מופע בועות סבון', 'הפעלה מוזיקלית / ריקודים']
+        options: ['magician', 'magicianGeneral', 'clown', 'balloonArt', 'balloonInflation', 'costumes', 'groupGames', 'bubbleShow', 'musicDancing']
       },
       {
         name: 'other_types',
         label: 'serviceFields.event_entertainment.other_types',
         type: 'checkbox',
-        options: ['איפור פנים מקצועי', 'צילום מגנטים']
+        options: ['facePainting', 'photoMagnets']
       },
       {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+        options: ['hebrew', 'english', 'french', 'spanish', 'russian']
       }
     ]
   },
@@ -854,43 +854,43 @@ const serviceFieldsConfig = {
         name: 'availability_days',
         label: 'serviceFields.event_equipment_rental.availability_days',
         type: 'checkbox',
-        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע']
+        options: ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'allWeek']
       },
       {
         name: 'availability_hours',
         label: 'serviceFields.event_equipment_rental.availability_hours',
         type: 'checkbox',
-        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+        options: ['morning', 'afternoon', 'evening', 'all']
       },
       {
         name: 'equipment_rental_types',
         label: 'serviceFields.event_equipment_rental.equipment_rental_types',
         type: 'checkbox',
-        options: ['🍿 מכונות מזון', '🎪 השכרת מתנפחים ומשחקים', '💨 מכונות אפקטים להשכרה']
+        options: ['foodMachines', 'inflatables', 'effectMachines']
       },
       {
         name: 'food_machine_types',
         label: 'serviceFields.event_equipment_rental.food_machine_types',
         type: 'checkbox',
-        options: ['מכונת פופקורן', 'מכונת סוכר-בורי', 'מכונת ברד', 'מכונת וופל בלגי', 'מכונת גרניטה וקפה בר', 'מכונת גלידה אמריקאית', 'מכונת מילקשייק', 'מסחטת מיצים טריים', 'מכונת נקניקיות', 'מחבת קרפים', 'מזרקת שוקולד']
+        options: ['popcorn', 'cottonCandy', 'slushie', 'waffle', 'granita', 'softServe', 'milkshake', 'juicer', 'hotdog', 'crepe', 'chocolateFountain']
       },
       {
         name: 'inflatable_game_types',
         label: 'serviceFields.event_equipment_rental.inflatable_game_types',
         type: 'checkbox',
-        options: ['מתנפחים', 'ג\'ימבורי', 'עמדות משחק']
+        options: ['bouncyHouses', 'ג\'ימבורי', 'gameStations']
       },
       {
         name: 'effect_machine_types',
         label: 'serviceFields.event_equipment_rental.effect_machine_types',
         type: 'checkbox',
-        options: ['מכונת עשן', 'מכונת שלג', 'מכונת בועות']
+        options: ['smokeMachine', 'snowMachine', 'bubbleMachine']
       },
       {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+        options: ['hebrew', 'english', 'french', 'spanish', 'russian']
       }
     ]
   },
@@ -902,25 +902,25 @@ const serviceFieldsConfig = {
         name: 'availability_days',
         label: 'serviceFields.event_food_stands.availability_days',
         type: 'checkbox',
-        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע']
+        options: ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'allWeek']
       },
       {
         name: 'availability_hours',
         label: 'serviceFields.event_food_stands.availability_hours',
         type: 'checkbox',
-        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+        options: ['morning', 'afternoon', 'evening', 'all']
       },
       {
         name: 'food_stand_types',
         label: 'serviceFields.event_food_stands.food_stand_types',
         type: 'checkbox',
-        options: ['פופקורן', 'ברבה פאפא', 'הוט דוג', 'גרניטה / סלאש', 'קרפים', 'וופלים', 'גלידה', 'קפה', 'סוכריות', 'שוקולד', 'נאצ\'וס', 'המבורגרים', 'פיצה']
+        options: ['popcorn', 'cottonCandy', 'hotdog', 'granita', 'crepe', 'waffle', 'icecream', 'coffee', 'candy', 'chocolate', 'נאצ\'וס', 'burger', 'pizza']
       },
       {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+        options: ['hebrew', 'english', 'french', 'spanish', 'russian']
       }
     ]
   },
@@ -932,25 +932,25 @@ const serviceFieldsConfig = {
         name: 'availability_days',
         label: 'serviceFields.dj.availability_days',
         type: 'checkbox',
-        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע']
+        options: ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'allWeek']
       },
       {
         name: 'availability_hours',
         label: 'serviceFields.dj.availability_hours',
         type: 'checkbox',
-        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+        options: ['morning', 'afternoon', 'evening', 'all']
       },
       {
         name: 'dj_event_types',
         label: 'serviceFields.dj.dj_event_types',
         type: 'checkbox',
-        options: ['חתונה', 'בר מצווה', 'בת מצווה', 'ברית מילה', 'שבע ברכות', 'יום הולדת / יום שנה', 'אירוע עסקי', 'מסיבה פרטית', 'חגיגה משפחתית', 'אירוסין']
+        options: ['wedding', 'barMitsva', 'batMitsva', 'britMila', 'shevaBrahot', 'anniversary', 'corporateEvent', 'privateParty', 'familyParty', 'engagement']
       },
       {
         name: 'languages',
         label: 'serviceFields.dj.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+        options: ['hebrew', 'english', 'french', 'spanish', 'russian']
       },
       {
         name: 'separated_dancing',
@@ -967,39 +967,39 @@ const serviceFieldsConfig = {
         name: 'availability_hours',
         label: 'serviceFields.private_chef.availability_hours',
         type: 'checkbox',
-        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+        options: ['morning', 'afternoon', 'evening', 'all']
       },
       {
         name: 'work_types',
         label: 'serviceFields.private_chef.work_types',
         type: 'checkbox',
-        options: ['סוג האירוע', 'סוג המטבח', 'כשרות']
+        options: ['eventTypes', 'סוג המטבח', 'כשרות']
       },
       {
         name: 'event_types',
         label: 'serviceFields.private_chef.event_types',
         type: 'checkbox',
         options: [
-          'חתונה', 'בר מצווה', 'בת מצווה', 'ברית מילה', 'פדיון הבן',
-          'שבע ברכות', 'יום הולדת / יום שנה', 'קידוש', 'שבת חתן',
-          'אירוע עסקי', 'מסיבה פרטית', 'חגיגה משפחתית', 'אירוסין', 'סעודות שבת'
+          'wedding', 'barMitsva', 'batMitsva', 'britMila', 'pidyonHaben',
+          'shevaBrahot', 'anniversary', 'kiddouch', 'shabbatHatan',
+          'corporateEvent', 'privateParty', 'familyParty', 'engagement', 'shabbatMeals'
         ]
       },
       {
         name: 'cuisine_types',
         label: 'serviceFields.private_chef.cuisine_types',
         type: 'checkbox',
-        options: ['פיצות', 'סושי', 'סלטים', 'אסייתי', 'פסטות', 'בשרי', 'טבעוני / צמחוני', 'לא גלוטן', 'קינוחים', 'סלטי שבת', 'חלבי', 'חלות שבת', 'דגים מעושנים', 'הרינג']
+        options: ['pizza', 'sushi', 'salads', 'asian', 'pasta', 'meat', 'vegan', 'glutenFree', 'desserts', 'shabbatSalads', 'halavi', 'shabbatChallah', 'smokedFish', 'herring']
       },
       {
         name: 'kosher_types',
         label: 'serviceFields.private_chef.kosher_types',
         type: 'checkbox',
         options: [
-          'בד"ץ העדה החרדית', 'בד"ץ בית יוסף', 'בד"ץ יורה דעה (ר׳ שלמה מחפוד)',
-          'בד"ץ מחזיקי הדת – בעלז', 'בד"ץ שארית ישראל', 'בד"ץ נתיבות כשרות',
-          'בד"ץ חוג חתם סופר בני ברק', 'בד"ץ חוג חתם סופר פ״ת', 'בד"ץ מקווה ישראל',
-          'בד"ץ רבני צפת', 'כשרות הרב לנדא', 'כשרות הרב רובין', 'רבנות מהדרין', 'רבנות', 'אחר'
+          'badatzEdaChareidis', 'badatzBeitYosef', 'badatzYoreDea',
+          'badatzBelz', 'badatzSheerit', 'badatzNetivot',
+          'badatzChatamBB', 'badatzChatamPT', 'badatzMikveh',
+          'badatzTzfat', 'rabbiLanda', 'rabbiRubin', 'rabbinateMethadrin', 'rabbinate', 'other'
         ]
       },
       { name: 'kosher_other', label: 'serviceFields.private_chef.kosher_other', type: 'text' },
@@ -1007,7 +1007,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+        options: ['hebrew', 'english', 'french', 'spanish', 'russian']
       }
     ]
   },
@@ -1019,39 +1019,39 @@ const serviceFieldsConfig = {
         name: 'availability_hours',
         label: 'serviceFields.catering.availability_hours',
         type: 'checkbox',
-        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+        options: ['morning', 'afternoon', 'evening', 'all']
       },
       {
         name: 'work_types',
         label: 'serviceFields.catering.work_types',
         type: 'checkbox',
-        options: ['סוג האירוע', 'סוג המטבח', 'כשרות']
+        options: ['eventTypes', 'סוג המטבח', 'כשרות']
       },
       {
         name: 'event_types',
         label: 'serviceFields.catering.event_types',
         type: 'checkbox',
         options: [
-          'חתונה', 'בר מצווה', 'בת מצווה', 'ברית מילה', 'פדיון הבן',
-          'שבע ברכות', 'יום הולדת / יום שנה', 'קידוש', 'שבת חתן',
-          'אירוע עסקי', 'מסיבה פרטית', 'חגיגה משפחתית', 'אירוסין', 'סעודות שבת'
+          'wedding', 'barMitsva', 'batMitsva', 'britMila', 'pidyonHaben',
+          'shevaBrahot', 'anniversary', 'kiddouch', 'shabbatHatan',
+          'corporateEvent', 'privateParty', 'familyParty', 'engagement', 'shabbatMeals'
         ]
       },
       {
         name: 'cuisine_types',
         label: 'serviceFields.catering.cuisine_types',
         type: 'checkbox',
-        options: ['פיצות', 'סושי', 'סלטים', 'אסייתי', 'פסטות', 'בשרי', 'טבעוני / צמחוני', 'לא גלוטן', 'סלטי שבת', 'חלבי', 'חלות שבת', 'דגים מעושנים', 'הרינג']
+        options: ['pizza', 'sushi', 'salads', 'asian', 'pasta', 'meat', 'vegan', 'glutenFree', 'shabbatSalads', 'halavi', 'shabbatChallah', 'smokedFish', 'herring']
       },
       {
         name: 'kosher_types',
         label: 'serviceFields.catering.kosher_types',
         type: 'checkbox',
         options: [
-          'בד"ץ העדה החרדית', 'בד"ץ בית יוסף', 'בד"ץ יורה דעה (ר׳ שלמה מחפוד)',
-          'בד"ץ מחזיקי הדת – בעלז', 'בד"ץ שארית ישראל', 'בד"ץ נתיבות כשרות',
-          'בד"ץ חוג חתם סופר בני ברק', 'בד"ץ חוג חתם סופר פ״ת', 'בד"ץ מקווה ישראל',
-          'בד"ץ רבני צפת', 'כשרות הרב לנדא', 'כשרות הרב רובין', 'רבנות מהדרין', 'רבנות', 'אחר'
+          'badatzEdaChareidis', 'badatzBeitYosef', 'badatzYoreDea',
+          'badatzBelz', 'badatzSheerit', 'badatzNetivot',
+          'badatzChatamBB', 'badatzChatamPT', 'badatzMikveh',
+          'badatzTzfat', 'rabbiLanda', 'rabbiRubin', 'rabbinateMethadrin', 'rabbinate', 'other'
         ]
       },
       { name: 'kosher_other', label: 'serviceFields.catering.kosher_other', type: 'text' },
@@ -1059,7 +1059,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+        options: ['hebrew', 'english', 'french', 'spanish', 'russian']
       }
     ]
   },
@@ -1071,22 +1071,22 @@ const serviceFieldsConfig = {
         name: 'availability_hours',
         label: 'serviceFields.pastry.availability_hours',
         type: 'checkbox',
-        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+        options: ['morning', 'afternoon', 'evening', 'all']
       },
       {
         name: 'product_types',
         label: 'serviceFields.pastry.product_types',
         type: 'checkbox',
-        options: ['עוגות', 'פטיסרי', 'שוקולדים', 'מקרון', 'קופסת עוגות', 'עיצובי פירות', 'מגשי פירות', 'קינוחים']
+        options: ['cakes', 'patisserie', 'chocolates', 'macarons', 'cakeBox', 'fruitArrangements', 'fruitPlatters', 'desserts']
       },
       {
         name: 'event_types',
         label: 'serviceFields.pastry.event_types',
         type: 'checkbox',
         options: [
-          'חתונה', 'בר מצווה', 'בת מצווה', 'ברית מילה', 'פדיון הבן',
-          'שבע ברכות', 'יום הולדת / יום שנה', 'קידוש', 'שבת חתן',
-          'אירוע עסקי', 'מסיבה פרטית', 'חגיגה משפחתית', 'אירוסין', 'סעודות שבת'
+          'wedding', 'barMitsva', 'batMitsva', 'britMila', 'pidyonHaben',
+          'shevaBrahot', 'anniversary', 'kiddouch', 'shabbatHatan',
+          'corporateEvent', 'privateParty', 'familyParty', 'engagement', 'shabbatMeals'
         ]
       },
       {
@@ -1094,10 +1094,10 @@ const serviceFieldsConfig = {
         label: 'serviceFields.pastry.kosher_types',
         type: 'checkbox',
         options: [
-          'בד"ץ העדה החרדית', 'בד"ץ בית יוסף', 'בד"ץ יורה דעה (ר׳ שלמה מחפוד)',
-          'בד"ץ מחזיקי הדת – בעלז', 'בד"ץ שארית ישראל', 'בד"ץ נתיבות כשרות',
-          'בד"ץ חוג חתם סופר בני ברק', 'בד"ץ חוג חתם סופר פ״ת', 'בד"ץ מקווה ישראל',
-          'בד"ץ רבני צפת', 'כשרות הרב לנדא', 'כשרות הרב רובין', 'רבנות מהדרין', 'רבנות', 'אחר'
+          'badatzEdaChareidis', 'badatzBeitYosef', 'badatzYoreDea',
+          'badatzBelz', 'badatzSheerit', 'badatzNetivot',
+          'badatzChatamBB', 'badatzChatamPT', 'badatzMikveh',
+          'badatzTzfat', 'rabbiLanda', 'rabbiRubin', 'rabbinateMethadrin', 'rabbinate', 'other'
         ]
       },
       { name: 'kosher_other', label: 'serviceFields.pastry.kosher_other', type: 'text' },
@@ -1105,7 +1105,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+        options: ['hebrew', 'english', 'french', 'spanish', 'russian']
       }
     ]
   },
@@ -1117,25 +1117,25 @@ const serviceFieldsConfig = {
         name: 'availability_hours',
         label: 'serviceFields.photographer.availability_hours',
         type: 'checkbox',
-        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+        options: ['morning', 'afternoon', 'evening', 'all']
       },
       {
         name: 'work_types',
         label: 'serviceFields.photographer.work_types',
         type: 'checkbox',
-        options: ['סוג האירוע']
+        options: ['eventTypes']
       },
       {
         name: 'event_types',
         label: 'serviceFields.photographer.event_types',
         type: 'checkbox',
-        options: ['בר מצווה', 'בת מצווה', 'חתונה', 'אירוסין', 'תספורת', 'שוטינג פוטו', 'אירועים פרטיים']
+        options: ['barMitsva', 'batMitsva', 'wedding', 'engagement', 'haircut', 'photoShoot', 'privateEvents']
       },
       {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+        options: ['hebrew', 'english', 'french', 'spanish', 'russian']
       }
     ]
   },
@@ -1148,19 +1148,19 @@ const serviceFieldsConfig = {
         name: 'decoration_types',
         label: 'serviceFields.event_decoration.decoration_types',
         type: 'checkbox',
-        options: ['קשתות ועיצוב בלונים', 'עיצוב שולחנות', 'עיצוב אולמות', 'קירות צילום ופינות צילום']
+        options: ['archBalloon', 'tableDeco', 'hallDeco', 'photoWall']
       },
       {
         name: 'availability_hours',
         label: 'serviceFields.event_decoration.availability_hours',
         type: 'checkbox',
-        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+        options: ['morning', 'afternoon', 'evening', 'all']
       },
       {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+        options: ['hebrew', 'english', 'french', 'spanish', 'russian']
       }
     ]
   },
@@ -1172,7 +1172,7 @@ const serviceFieldsConfig = {
         name: 'availability_hours',
         label: 'serviceFields.moving.availability_hours',
         type: 'checkbox',
-        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+        options: ['morning', 'afternoon', 'evening', 'all']
       },
       {
         name: 'avoda_ivrit',
@@ -1195,7 +1195,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+        options: ['hebrew', 'english', 'french', 'spanish', 'russian']
       }
     ]
   },
@@ -1207,19 +1207,19 @@ const serviceFieldsConfig = {
         name: 'availability_hours',
         label: 'serviceFields.painting.availability_hours',
         type: 'checkbox',
-        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+        options: ['morning', 'afternoon', 'evening', 'all']
       },
       { 
         name: 'work_types', 
         label: 'serviceFields.painting.work_types', 
         type: 'checkbox',
-        options: ['צביעה כללית של דירה', 'תיקוני קירות – חורים, סדקים, שפכטל', 'החלקת קירות (שפכטל מלא)', 'תיקון רטיבות / עובש', 'קילופי צבע ישן', 'צביעת אפקטים – בטון, משי, אומבר', 'צביעת קיר דקורטיבי / Accent Wall', 'טקסטורות מיוחדות']
+        options: ['generalPainting', 'wallRepairs', 'wallSmoothing', 'moistureMold', 'paintStripping', 'effectPainting', 'accentWall', 'specialTextures']
       },
       {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+        options: ['hebrew', 'english', 'french', 'spanish', 'russian']
       }
     ]
   },
@@ -1231,7 +1231,7 @@ const serviceFieldsConfig = {
         name: 'availability_hours',
         label: 'serviceFields.waterproofing.availability_hours',
         type: 'checkbox',
-        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+        options: ['morning', 'afternoon', 'evening', 'all']
       },
       {
         name: 'work_types',
@@ -1279,7 +1279,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+        options: ['hebrew', 'english', 'french', 'spanish', 'russian']
       }
     ]
   },
@@ -1291,49 +1291,49 @@ const serviceFieldsConfig = {
         name: 'availability_hours',
         label: 'serviceFields.contractor.availability_hours',
         type: 'checkbox',
-        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+        options: ['morning', 'afternoon', 'evening', 'all']
       },
       { 
         name: 'work_types', 
         label: 'serviceFields.contractor.work_types', 
         type: 'checkbox',
-        options: ['עבודות שלד', 'שיפוצים כלליים', 'חשמל ואינסטלציה', 'עבודות חוץ', 'שיקום ותיקון חוץ']
+        options: ['structureWork', 'generalRenovation', 'electricPlumbing', 'exteriorWork', 'facadeRepair']
       },
       { 
         name: 'structure_work_types', 
         label: 'serviceFields.contractor.structure_work_types', 
         type: 'checkbox',
-        options: ['בניית שלד', 'יציקות בטון', 'טפסנות', 'חיזוק מבנים', 'בניית קירות בלוקים', 'הריסה ובנייה מחדש']
+        options: ['buildingFrame', 'concretePours', 'formwork', 'structuralReinforcement', 'blockWalls', 'demolitionRebuild']
       },
       { 
         name: 'general_renovation_types', 
         label: 'serviceFields.contractor.general_renovation_types', 
         type: 'checkbox',
-        options: ['שיפוץ דירה מלא', 'שיפוץ חדרים', 'שיפוץ חדרי רחצה', 'שיפוץ מטבח', 'החלפת ריצוף', 'עבודות גבס', 'טיח ושפכטל', 'סגירת מרפסת', 'צביעה מקצועית', 'החלפת דלתות ומשקופים']
+        options: ['fullApartmentReno', 'roomRenovation', 'bathroomReno', 'kitchenReno', 'flooringReplacement', 'drywallWork', 'plasterWork', 'balconyEnclosure', 'professionalPainting', 'doorFrameReplacement']
       },
       { 
         name: 'electric_plumbing_types', 
         label: 'serviceFields.contractor.electric_plumbing_types', 
         type: 'checkbox',
-        options: ['עבודות חשמל', 'החלפת לוח חשמל', 'אינסטלציה כללית', 'החלפת צנרת', 'איתור ותיקון נזילות']
+        options: ['electricalWork', 'panelReplacement', 'generalPlumbing', 'pipeReplacement', 'leakDetection']
       },
       { 
         name: 'exterior_work_types', 
         label: 'serviceFields.contractor.exterior_work_types', 
         type: 'checkbox',
-        options: ['ריצוף חוץ', 'בניית פרגולה', 'חיפויי אבן / חיפויי קירות חוץ', 'גידור', 'בניית שבילים בגינה']
+        options: ['exteriorFlooring', 'pergolaConstruction', 'stoneCladding', 'fencing', 'gardenPathways']
       },
       { 
         name: 'facade_repair_types', 
         label: 'serviceFields.contractor.facade_repair_types', 
         type: 'checkbox',
-        options: ['תיקון טיח חוץ', 'שיקום קירות חיצוניים', 'איטום סדקים בקירות', 'טיפול בנפילת טיח']
+        options: ['exteriorPlasterRepair', 'exteriorWallRestoration', 'wallCrackSealing', 'fallingPlasterTreatment']
       },
       {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+        options: ['hebrew', 'english', 'french', 'spanish', 'russian']
       }
     ]
   },
@@ -1345,43 +1345,43 @@ const serviceFieldsConfig = {
         name: 'availability_hours',
         label: 'serviceFields.aluminum.availability_hours',
         type: 'checkbox',
-        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+        options: ['morning', 'afternoon', 'evening', 'all']
       },
       { 
         name: 'work_types', 
         label: 'serviceFields.aluminum.work_types', 
         type: 'checkbox',
-        options: ['חלונות ודלתות', 'פרגולות ואלומיניום חוץ', 'תיקונים ושירות', 'חיפויי אלומיניום']
+        options: ['windowsDoors', 'pergolas', 'repairs', 'cladding']
       },
       { 
         name: 'windows_doors_types', 
         label: 'serviceFields.aluminum.windows_doors_types', 
         type: 'checkbox',
-        options: ['התקנת חלונות אלומיניום', 'דלתות אלומיניום', 'דלתות הזזה (ויטרינות)', 'דלתות כניסה מאלומיניום', 'רשתות נגד יתושים', 'תריסים ידניים', 'תריסים חשמליים']
+        options: ['installWindows', 'aluminumDoors', 'slidingDoors', 'entryDoors', 'mosquitoNets', 'manualShutters', 'electricShutters']
       },
       { 
         name: 'pergolas_outdoor_types', 
         label: 'serviceFields.aluminum.pergolas_outdoor_types', 
         type: 'checkbox',
-        options: ['פרגולות אלומיניום', 'סגירת מרפסות', 'חיפויי אלומיניום חיצוניים', 'מעקות אלומיניום לגינה / מרפסות']
+        options: ['aluminumPergolas', 'balconyEnclosure', 'exteriorCladding', 'railings']
       },
       { 
         name: 'repairs_service_types', 
         label: 'serviceFields.aluminum.repairs_service_types', 
         type: 'checkbox',
-        options: ['תיקון מנועי תריס חשמלי', 'תיקון מסילות', 'תיקון גלגלים בחלונות', 'החלפת ידיות / צירים', 'איטום וחידוש מסביב לחלונות', 'תיקון תריסים ידניים']
+        options: ['repairShutterMotor', 'repairTracks', 'repairWheels', 'replaceHandles', 'sealingRenewal', 'repairManualShutters']
       },
       { 
         name: 'cladding_types', 
         label: 'serviceFields.aluminum.cladding_types', 
         type: 'checkbox',
-        options: ['חיפוי צנרת / כיסוי צינורות', 'חיפוי מונים (חשמל / מים / גז)', 'ארגזים דקורטיביים מאלומיניום', 'חיפוי קווי מזגן', 'הגנה למנוע מזגן חיצוני', 'חיפוי קירות חוץ מאלומיניום', 'חיפויים דקורטיביים', 'חיפוי וארגזי תריס']
+        options: ['pipeCovering', 'meterCovering', 'decorativeBoxes', 'acLineCovering', 'acMotorProtection', 'wallCladding', 'decorativeCladding', 'shutterBoxCladding']
       },
       {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+        options: ['hebrew', 'english', 'french', 'spanish', 'russian']
       }
     ]
   },
@@ -1393,49 +1393,49 @@ const serviceFieldsConfig = {
         name: 'availability_hours',
         label: 'serviceFields.glass_works.availability_hours',
         type: 'checkbox',
-        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+        options: ['morning', 'afternoon', 'evening', 'all']
       },
       { 
         name: 'work_types', 
         label: 'serviceFields.glass_works.work_types', 
         type: 'checkbox',
-        options: ['זכוכית למקלחונים', 'זכוכית לחלונות ודלתות', 'זכוכית למטבח ובית', 'זכוכית מיוחדת ובטיחות', 'שירותי תיקון והתאמה אישית']
+        options: ['showers', 'homeGlass', 'furniture', 'partitions', 'repairs']
       },
       { 
         name: 'shower_glass_types', 
         label: 'serviceFields.glass_works.shower_glass_types', 
         type: 'checkbox',
-        options: ['התקנת מקלחון זכוכית', 'תיקון מקלחון', 'החלפת זכוכית במקלחון', 'דלתות מקלחת']
+        options: ['showerInstall', 'showerRepair', 'showerGlassReplacement', 'showerDoors']
       },
       { 
         name: 'windows_doors_glass_types', 
         label: 'serviceFields.glass_works.windows_doors_glass_types', 
         type: 'checkbox',
-        options: ['החלפת זכוכית בחלון', 'זכוכית מבודדת (Double)', 'זיגוג מחדש', 'דלתות זכוכית פנימיות', 'מחיצות זכוכית']
+        options: ['windowReplacement', 'doubleGlazing', 'reglazing', 'interiorGlassDoors', 'glassPartitions']
       },
       { 
         name: 'kitchen_home_glass_types', 
         label: 'serviceFields.glass_works.kitchen_home_glass_types', 
         type: 'checkbox',
-        options: ['זכוכית למטבח (Backsplash)', 'מדפי זכוכית', 'שולחנות זכוכית', 'מראות לחדר אמבטיה', 'מראות דקורטיביות']
+        options: ['kitchenBacksplash', 'glassShelves', 'glassTables', 'bathroomMirrors', 'decorativeMirrors']
       },
       { 
         name: 'special_safety_glass_types', 
         label: 'serviceFields.glass_works.special_safety_glass_types', 
         type: 'checkbox',
-        options: ['זכוכית מחוסמת (בטיחותית)', 'זכוכית חכמה', 'זכוכית עמידה לפריצה', 'זכוכית אקוסטית (בידוד רעש)', 'זכוכית צבעונית / מעוצבת']
+        options: ['temperedGlass', 'smartGlass', 'securityGlass', 'acousticGlass', 'decorativeGlass']
       },
       { 
         name: 'repair_custom_types', 
         label: 'serviceFields.glass_works.repair_custom_types', 
         type: 'checkbox',
-        options: ['תיקון שריטות וסדקים', 'ליטוש זכוכית', 'חיתוך זכוכית לפי מידה']
+        options: ['scratchRepair', 'glassPolishing', 'customCutting']
       },
       {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+        options: ['hebrew', 'english', 'french', 'spanish', 'russian']
       }
     ]
   },
@@ -1447,49 +1447,49 @@ const serviceFieldsConfig = {
         name: 'availability_hours',
         label: 'serviceFields.locksmith.availability_hours',
         type: 'checkbox',
-        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+        options: ['morning', 'afternoon', 'evening', 'all']
       },
       { 
         name: 'work_types', 
         label: 'serviceFields.locksmith.work_types', 
         type: 'checkbox',
-        options: ['החלפת מנעולים', 'פתיחת דלתות', 'התקנת מערכות נעילה', 'תיקון מנעולים ודלתות', 'שירותי ביטחון']
+        options: ['lockReplacement', 'emergencyOpening', 'advancedSystems', 'doorRepair', 'securityServices']
       },
       { 
         name: 'lock_replacement_types', 
         label: 'serviceFields.locksmith.lock_replacement_types', 
         type: 'checkbox',
-        options: ['מנעול צילינדר', 'מנעול ביטחון', 'מנעול דלת כניסה', 'מנעול למשרד / חנות']
+        options: ['cylinderLock', 'securityLock', 'entranceLock', 'officeLock']
       },
       { 
         name: 'door_opening_types', 
         label: 'serviceFields.locksmith.door_opening_types', 
         type: 'checkbox',
-        options: ['פתיחת דלת ללא נזק', 'פתיחה חירום 24/7', 'פתיחת כספת', 'שכפול מפתחות במקום']
+        options: ['noDamageOpening', 'emergency247', 'safeOpening', 'keyDuplication']
       },
       { 
         name: 'lock_system_installation_types', 
         label: 'serviceFields.locksmith.lock_system_installation_types', 
         type: 'checkbox',
-        options: ['מנעולים חכמים', 'מערכת אינטרקום', 'קוד כניסה למשרדים', 'מנעול אלקטרוני']
+        options: ['smartLocks', 'intercom', 'accessCode', 'electronicLock']
       },
       { 
         name: 'lock_door_repair_types', 
         label: 'serviceFields.locksmith.lock_door_repair_types', 
         type: 'checkbox',
-        options: ['תיקון מנעול תקוע', 'תיקון ציר דלת', 'שיוף דלת שלא נסגרת', 'החלפת ידית דלת']
+        options: ['stuckLockRepair', 'hingeRepair', 'doorSanding', 'handleReplacement']
       },
       {
         name: 'security_services_types',
         label: 'serviceFields.locksmith.security_services_types',
         type: 'checkbox',
-        options: ['שדרוג מערכת ביטחון', 'התקנת דלת ביטחון', 'בדיקת פגיעות דלת', 'שירות מסגרות מסחרי']
+        options: ['securityUpgrade', 'securityDoorInstall', 'vulnerabilityCheck', 'commercialLocksmith']
       },
       {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+        options: ['hebrew', 'english', 'french', 'spanish', 'russian']
       }
     ]
   },
@@ -1500,7 +1500,7 @@ const serviceFieldsConfig = {
         name: 'availability_hours',
         label: 'serviceFields.handyman.availability_hours',
         type: 'checkbox',
-        options: ['בוקר', 'צהריים', 'ערב', '24/7']
+        options: ['morning', 'noon', 'evening', '24/7']
       },
       { name: 'experience', label: 'serviceForm.common.experience', type: 'number' },
       {
@@ -1525,7 +1525,7 @@ const serviceFieldsConfig = {
         name: 'doors_furniture_types',
         label: 'serviceFields.handyman.doors_furniture_types',
         type: 'checkbox',
-        options: ['תיקון דלתות', 'תיקון רהיטים']
+        options: ['doorRepair', 'furnitureRepair']
       },
       {
         name: 'light_work_types',
@@ -1543,7 +1543,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+        options: ['hebrew', 'english', 'french', 'spanish', 'russian']
       }
     ]
   },
@@ -1554,7 +1554,7 @@ const serviceFieldsConfig = {
         name: 'availability_hours',
         label: 'serviceFields.electrician.availability_hours',
         type: 'checkbox',
-        options: ['בוקר', 'צהריים', 'ערב', '24/7']
+        options: ['morning', 'noon', 'evening', '24/7']
       },
       { name: 'experience', label: 'serviceForm.common.experience', type: 'number' },
       {
@@ -1562,9 +1562,9 @@ const serviceFieldsConfig = {
         label: 'serviceForm.pest_control.pestTypes',
         type: 'checkbox',
         options: [
-          'הדברת תיקנים', 'הדברת נמלים', 'הדברת פשפשים', 'הדברת פרעושים', 'הדברת יתושים',
-          'הדברת חולדות', 'הדברת עכברים',
-          'הרחקת יונים', 'רשתות נגד יונים', 'הרחקת עטלפים', 'הרחקת נחשים'
+          'cockroaches', 'ants', 'bedbugs', 'fleas', 'mosquitoes',
+          'rats', 'mice',
+          'pigeons', 'pigeonNets', 'bats', 'snakes'
         ]
       },
       {
@@ -1581,7 +1581,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+        options: ['hebrew', 'english', 'french', 'spanish', 'russian']
       }
     ]
   },
@@ -1593,19 +1593,19 @@ const serviceFieldsConfig = {
         name: 'availability_hours',
         label: 'serviceFields.metalwork.availability_hours',
         type: 'checkbox',
-        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+        options: ['morning', 'afternoon', 'evening', 'all']
       },
       {
         name: 'work_types',
         label: 'serviceFields.metalwork.work_types',
         type: 'checkbox',
         options: [
-          { value: 'סורגים',         labelKey: 'serviceForm.metalwork.bars' },
-          { value: 'מעקות',          labelKey: 'serviceForm.metalwork.railings' },
-          { value: 'גדרות',          labelKey: 'serviceForm.metalwork.fences' },
-          { value: 'גלריות',         labelKey: 'serviceForm.metalwork.galleries' },
-          { value: 'מרפסות תלויות',  labelKey: 'serviceForm.metalwork.hangingBalconies' },
-          { value: 'מדרגות',         labelKey: 'serviceForm.metalwork.stairs' },
+          { value: 'bars',         labelKey: 'serviceForm.metalwork.bars' },
+          { value: 'railings',          labelKey: 'serviceForm.metalwork.railings' },
+          { value: 'fences',          labelKey: 'serviceForm.metalwork.fences' },
+          { value: 'galleries',         labelKey: 'serviceForm.metalwork.galleries' },
+          { value: 'hangingBalconies',  labelKey: 'serviceForm.metalwork.hangingBalconies' },
+          { value: 'stairs',         labelKey: 'serviceForm.metalwork.stairs' },
         ]
       }
     ]
@@ -1619,23 +1619,23 @@ const serviceFieldsConfig = {
         label: 'serviceFields.mechanic.work_types',
         type: 'checkbox',
         options: [
-          { value: 'מכונאות רכב',    labelKey: 'serviceForm.mechanic.carMechanics' },
-          { value: 'הכנה לטסט',      labelKey: 'serviceForm.mechanic.testPrep' },
-          { value: 'טיפולים שוטפים', labelKey: 'serviceForm.mechanic.routineMaintenance' },
-          { value: 'בדיקות מחשב',    labelKey: 'serviceForm.mechanic.computerDiagnostics' },
-          { value: 'מצברים',          labelKey: 'serviceForm.mechanic.batteries' },
-          { value: 'מיזוג אוויר',    labelKey: 'serviceForm.mechanic.airConditioning' },
-          { value: 'אלטרנטור',        labelKey: 'serviceForm.mechanic.alternator' },
-          { value: 'תיקוני מנוע',    labelKey: 'serviceForm.mechanic.engineRepairs' },
-          { value: 'רדיאטור וקירור',  labelKey: 'serviceForm.mechanic.radiatorCooling' },
-          { value: 'לקיחת רכב לטסט', labelKey: 'serviceForm.mechanic.vehicleInspection' }
+          { value: 'carMechanics',    labelKey: 'serviceForm.mechanic.carMechanics' },
+          { value: 'testPrep',      labelKey: 'serviceForm.mechanic.testPrep' },
+          { value: 'routineMaintenance', labelKey: 'serviceForm.mechanic.routineMaintenance' },
+          { value: 'computerDiagnostics',    labelKey: 'serviceForm.mechanic.computerDiagnostics' },
+          { value: 'batteries',          labelKey: 'serviceForm.mechanic.batteries' },
+          { value: 'airConditioning',    labelKey: 'serviceForm.mechanic.airConditioning' },
+          { value: 'alternator',        labelKey: 'serviceForm.mechanic.alternator' },
+          { value: 'engineRepairs',    labelKey: 'serviceForm.mechanic.engineRepairs' },
+          { value: 'radiatorCooling',  labelKey: 'serviceForm.mechanic.radiatorCooling' },
+          { value: 'vehicleInspection', labelKey: 'serviceForm.mechanic.vehicleInspection' }
         ]
       },
       {
         name: 'languages',
         label: 'serviceFields.eldercare.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+        options: ['hebrew', 'english', 'french', 'spanish', 'russian']
       }
     ]
   },
@@ -1648,10 +1648,10 @@ const serviceFieldsConfig = {
         label: 'serviceFields.driver.availability_hours',
         type: 'checkbox',
         options: [
-          { value: 'בוקר',        labelKey: 'hours.morning' },
-          { value: 'אחר הצהריים', labelKey: 'hours.afternoon' },
-          { value: 'ערב',         labelKey: 'hours.evening' },
-          { value: 'לילה',        labelKey: 'hours.night' },
+          { value: 'morning',        labelKey: 'hours.morning' },
+          { value: 'afternoon', labelKey: 'hours.afternoon' },
+          { value: 'evening',         labelKey: 'hours.evening' },
+          { value: 'night',        labelKey: 'hours.night' },
           { value: '24/6',         labelKey: 'hours.twentyFourSix' }
         ]
       },
@@ -1660,8 +1660,8 @@ const serviceFieldsConfig = {
         label: 'serviceForm.driver.serviceType',
         type: 'radio',
         options: [
-          { value: 'דרייבר', labelKey: 'serviceForm.driver.privateDriver' },
-          { value: 'מונית',  labelKey: 'serviceForm.driver.taxi' }
+          { value: 'privateDriver', labelKey: 'serviceForm.driver.privateDriver' },
+          { value: 'taxi',  labelKey: 'serviceForm.driver.taxi' }
         ]
       },
       {
@@ -1691,7 +1691,7 @@ const serviceFieldsConfig = {
         name: 'languages',
         label: 'serviceFields.driver.languages',
         type: 'checkbox',
-        options: ['עברית', 'אנגלית', 'צרפתית', 'רוסית']
+        options: ['hebrew', 'english', 'french', 'russian']
       }
     ]
   }

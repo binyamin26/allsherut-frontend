@@ -14,16 +14,16 @@ const AirConditioningForm = ({ serviceDetails, errors, handleServiceDetailsChang
       <label className="auth-form-label required">{t('serviceForm.common.availabilityHours')}</label>
           <div className="checkbox-group" data-field="availability_hours">
           {[
-  { value: 'בוקר', label: t('hours.morning') },
-  { value: 'אחר הצהריים', label: t('hours.afternoon') },
-  { value: 'ערב', label: t('hours.evening') },
-  { value: 'הכל', label: t('hours.all') }
+  { value: 'morning', label: t('hours.morning') },
+  { value: 'afternoon', label: t('hours.afternoon') },
+  { value: 'evening', label: t('hours.evening') },
+  { value: 'all', label: t('hours.all') }
 ].map(hour => (
   <label key={hour.value} className="checkbox-item">
     <input
       type="checkbox"
       checked={serviceDetails.availability_hours?.includes(hour.value) || false}
-      onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'הכל', ['בוקר', 'אחר הצהריים', 'ערב'])}
+      onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'all', ['morning', 'afternoon', 'evening'])}
     />
     {hour.label}
   </label>
@@ -39,28 +39,28 @@ const AirConditioningForm = ({ serviceDetails, errors, handleServiceDetailsChang
             <label className="checkbox-item" style={{fontWeight: 'bold'}}>
               <input
                 type="checkbox"
-                checked={serviceDetails.work_types?.includes('התקנת מזגנים') || false}
+                checked={serviceDetails.work_types?.includes('installation') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
                   const newTypes = e.target.checked 
-                    ? [...current, 'התקנת מזגנים']
-                    : current.filter(t => t !== 'התקנת מזגנים');
+                    ? [...current, 'installation']
+                    : current.filter(t => t !== 'installation');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
   {t('serviceForm.airConditioning.installation')}
             </label>
             
-            {serviceDetails.work_types?.includes('התקנת מזגנים') && (
+            {serviceDetails.work_types?.includes('installation') && (
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="installation_types">
                {[
-  { value: 'התקנת מזגן', key: 'filters.ac.acInstall' },
-  { value: 'התקנת מיזוג מיני מרכזי', key: 'filters.ac.miniCentralInstall' },
-  { value: 'התקנת מיזוג מרכזי', key: 'filters.ac.centralInstall' },
-  { value: 'התקנת מזגן אינוורטר', key: 'filters.ac.inverterInstall' },
-  { value: 'התקנת מזגן מולטי אינוורטר', key: 'filters.ac.multiInverterInstall' },
-  { value: 'התקנת מזגן VRF', key: 'filters.ac.vrfInstall' }
+  { value: 'acInstall', key: 'filters.ac.acInstall' },
+  { value: 'miniCentralInstall', key: 'filters.ac.miniCentralInstall' },
+  { value: 'centralInstall', key: 'filters.ac.centralInstall' },
+  { value: 'inverterInstall', key: 'filters.ac.inverterInstall' },
+  { value: 'multiInverterInstall', key: 'filters.ac.multiInverterInstall' },
+  { value: 'vrfInstall', key: 'filters.ac.vrfInstall' }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
@@ -87,33 +87,33 @@ const AirConditioningForm = ({ serviceDetails, errors, handleServiceDetailsChang
             <label className="checkbox-item" style={{fontWeight: 'bold'}}>
               <input
                 type="checkbox"
-                checked={serviceDetails.work_types?.includes('תיקון מזגנים') || false}
+                checked={serviceDetails.work_types?.includes('repair') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
                   const newTypes = e.target.checked 
-                    ? [...current, 'תיקון מזגנים']
-                    : current.filter(t => t !== 'תיקון מזגנים');
+                    ? [...current, 'repair']
+                    : current.filter(t => t !== 'repair');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
  {t('serviceForm.airConditioning.repair')}
             </label>
             
-            {serviceDetails.work_types?.includes('תיקון מזגנים') && (
+            {serviceDetails.work_types?.includes('repair') && (
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="repair_types">
                   {[
-  { value: 'תיקון מזגן', key: 'filters.ac.acRepair' },
-  { value: 'תיקון מזגן מעובש', key: 'filters.ac.moldyAcRepair' },
-  { value: 'תיקון מיזוג מיני מרכזי', key: 'filters.ac.miniCentralRepair' },
-  { value: 'תיקון דליפת גז במזגן', key: 'filters.ac.gasLeakRepair' },
-  { value: 'תיקון מיזוג מרכזי', key: 'filters.ac.centralRepair' },
-  { value: 'תיקון מזגן אינוורטר', key: 'filters.ac.inverterRepair' },
-  { value: 'תיקון מזגן VRF', key: 'filters.ac.vrfRepair' },
-  { value: 'ניקוי יסודי', key: 'filters.ac.filterCleaning' },
+  { value: 'acRepair', key: 'filters.ac.acRepair' },
+  { value: 'moldyAcRepair', key: 'filters.ac.moldyAcRepair' },
+  { value: 'miniCentralRepair', key: 'filters.ac.miniCentralRepair' },
+  { value: 'gasLeakRepair', key: 'filters.ac.gasLeakRepair' },
+  { value: 'centralRepair', key: 'filters.ac.centralRepair' },
+  { value: 'inverterRepair', key: 'filters.ac.inverterRepair' },
+  { value: 'vrfRepair', key: 'filters.ac.vrfRepair' },
+  { value: 'filterCleaning', key: 'filters.ac.filterCleaning' },
   { value: 'תיקון צ\'ילרים', key: 'filters.ac.chillerRepair' },
-  { value: 'טכנאי חדרי קירור', key: 'filters.ac.coldRoomTech' },
-  { value: 'מילוי גז', key: 'filters.ac.gasRefill' }
+  { value: 'coldRoomTech', key: 'filters.ac.coldRoomTech' },
+  { value: 'gasRefill', key: 'filters.ac.gasRefill' }
 ].map(type => (
                     <label key={type.value} className="checkbox-item">
                       <input
@@ -140,27 +140,27 @@ const AirConditioningForm = ({ serviceDetails, errors, handleServiceDetailsChang
             <label className="checkbox-item" style={{fontWeight: 'bold'}}>
               <input
                 type="checkbox"
-                checked={serviceDetails.work_types?.includes('פירוק והרכבת מזגנים') || false}
+                checked={serviceDetails.work_types?.includes('disassembly') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
                   const newTypes = e.target.checked 
-                    ? [...current, 'פירוק והרכבת מזגנים']
-                    : current.filter(t => t !== 'פירוק והרכבת מזגנים');
+                    ? [...current, 'disassembly']
+                    : current.filter(t => t !== 'disassembly');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
   {t('serviceForm.airConditioning.disassembly')}
             </label>
             
-            {serviceDetails.work_types?.includes('פירוק והרכבת מזגנים') && (
+            {serviceDetails.work_types?.includes('disassembly') && (
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="disassembly_types">
                 {[
-  { value: 'פירוק והרכבת מזגן', key: 'filters.ac.acDisassembly' },
-  { value: 'פירוק מיזוג מיני מרכזי', key: 'filters.ac.miniCentralDisassembly' },
-  { value: 'פירוק מיזוג מרכזי', key: 'filters.ac.centralDisassembly' },
-  { value: 'פירוק מזגן אינוורטר', key: 'filters.ac.inverterDisassembly' },
-  { value: 'פירוק מזגן VRF', key: 'filters.ac.vrfDisassembly' }
+  { value: 'acDisassembly', key: 'filters.ac.acDisassembly' },
+  { value: 'miniCentralDisassembly', key: 'filters.ac.miniCentralDisassembly' },
+  { value: 'centralDisassembly', key: 'filters.ac.centralDisassembly' },
+  { value: 'inverterDisassembly', key: 'filters.ac.inverterDisassembly' },
+  { value: 'vrfDisassembly', key: 'filters.ac.vrfDisassembly' }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
@@ -205,10 +205,10 @@ const AirConditioningForm = ({ serviceDetails, errors, handleServiceDetailsChang
           <label className="auth-form-label required">{t('filters.common.languages')}</label>
           <div className="checkbox-group" data-field="languages">
             {[
-              { value: 'עברית', label: t('languages.hebrew') },
-              { value: 'רוסית', label: t('languages.russian') },
-              { value: 'אנגלית', label: t('languages.english') },
-              { value: 'צרפתית', label: t('languages.french') }
+              { value: 'hebrew', label: t('languages.hebrew') },
+              { value: 'russian', label: t('languages.russian') },
+              { value: 'english', label: t('languages.english') },
+              { value: 'french', label: t('languages.french') }
             ].map(lang => (
               <label key={lang.value} className="checkbox-item">
                 <input

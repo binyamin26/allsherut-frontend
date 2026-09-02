@@ -8,34 +8,34 @@ export const serviceFiltersConfig = {
     ageGroups: {
       label: 'קבוצות גיל מתאימות',
       type: 'checkbox',
-      options: ['0-1 שנה', '1-3 שנים', '3-6 שנים', '6+ שנים'],
+      options: ['age0to1', 'age1to3', 'age3to6', 'age6plus'],
       dbField: 'service_details->>"$.ageGroups"'
     },
     availability_days: {
       label: 'ימי זמינות',
       type: 'checkbox',
-      options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע'],
+      options: ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'allWeek'],
       dbField: 'availability_days'
     },
     availability_hours: {
       label: 'שעות זמינות',
       type: 'checkbox',
-      options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל'],
+      options: ['morning', 'afternoon', 'evening', 'all'],
       dbField: 'availability_hours'
     },
     babysitting_types: {
       label: 'סוגי שמרטפות',
       type: 'checkbox',
       options: [
-        'שמרטפות מזדמנת',
-        'שמרטפות קבועה בבית הלקוח',
-        'הוצאה מהגן / מבית-הספר',
-        'שמירה בלילה',
-        'שמירה בזמן חופשות',
-        'עזרה בשיעורי בית',
-        'מטפלת במשרה מלאה',
-        'קייטנת קיץ',
-        'קייטנת חורף'
+        'occasional',
+        'regular',
+        'pickup',
+        'nightCare',
+        'holidayCare',
+        'homework',
+        'fullTime',
+        'summerCamp',
+        'winterCamp'
       ],
       dbField: 'babysitting_types'
     },
@@ -43,7 +43,7 @@ export const serviceFiltersConfig = {
       label: 'רמת ניסיון',
       type: 'select',
       options: [
-        { value: '', label: 'הכל' },
+        { value: '', label: 'all' },
         { value: 'מתחיל', label: 'מתחיל' },
         { value: 'מנוסה', label: 'מנוסה' }
       ],
@@ -64,17 +64,17 @@ export const serviceFiltersConfig = {
     languages: {
       label: 'שפות',
       type: 'checkbox',
-      options: ['עברית', 'רוסית', 'אנגלית', 'ספרדית', 'צרפתית'],
+      options: ['hebrew', 'russian', 'english', 'spanish', 'french'],
       dbField: 'languages'
     },
     religiousLevel: {
       label: 'רמה דתית',
       type: 'select',
       options: [
-        { value: 'חילוני', label: 'חילוני' },
-        { value: 'מסורתי', label: 'מסורתי' },
-        { value: 'דתי', label: 'דתי' },
-        { value: 'חרדי', label: 'חרדי' }
+        { value: 'secular', label: 'secular' },
+        { value: 'traditional', label: 'traditional' },
+        { value: 'religious', label: 'religious' },
+        { value: 'orthodox', label: 'orthodox' }
       ],
       dbField: 'service_details->>"$.religiosity"'
     }
@@ -86,9 +86,9 @@ export const serviceFiltersConfig = {
         label: 'סטטוס משפטי',
         type: 'select',
         options: [
-          { value: '', label: 'הכל' },
-          { value: 'חברה', label: 'חברה' },
-          { value: 'עצמאי', label: 'עצמאי' }
+          { value: '', label: 'all' },
+          { value: 'company', label: 'company' },
+          { value: 'independent', label: 'independent' }
         ],
         dbField: 'availability->>"$.legalStatus"'
       },
@@ -98,33 +98,33 @@ export const serviceFiltersConfig = {
         type: 'checkbox-categorized', // ✅ Nouveau type pour gérer les catégories
         categories: {
           'ניקיון ביתי': [
-            'ניקיון שוטף',
-            'ניקיון פסח',
-            'ניקיון אחרי שיפוץ',
-            'ניקיון לדירות Airbnb'
+            'regularCleaning',
+            'passoverCleaning',
+            'postRenovation',
+            'airbnb'
           ],
           'ניקיון משרדים ומבנים': [
-            'משרדים',
-            'חנויות',
-            'בניינים',
-            'מוסדות חינוך',
-            'מפעלים'
+            'offices',
+            'stores',
+            'buildings',
+            'educationalInstitutions',
+            'factories'
           ],
           'ניקיון מיוחד': [
-            'ניקוי חלונות',
-            'ניקוי שטיחים',
-            'ניקוי ספות',
-            'ניקוי וילונות',
-            'ניקוי בלחץ מים (טרסות, חזיתות)',
-            'ניקוי מזגן',
-            'ניקיון גגות רעפים',
-            'חיטוי וניקיון אחרי נזק (שריפה / הצפה)'
+            'highWindows',
+            'carpets',
+            'sofas',
+            'curtains',
+            'pressureWashing',
+            'acCleaning',
+            'roofCleaning',
+            'damageCleanup'
           ],
           'שירותים נוספים': [
-            'ניקוי רכב בבית הלקוח',
-            'ניקוי פאנלים סולאריים',
-            'גיהוץ בבית הלקוח',
-            'קיפול כביסה'
+            'carCleaning',
+            'solarPanels',
+            'ironingAtHome',
+            'laundryFolding'
           ]
         },
         dbField: 'availability->>"$.cleaningTypes"'
@@ -144,14 +144,14 @@ export const serviceFiltersConfig = {
       availableDays: {
         label: 'ימים זמינים',
         type: 'checkbox',
-        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת', 'כל השבוע'],
+        options: ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'allWeek'],
         dbField: 'availability->>"$.availableDays"'
       },
       // ✅ NOUVEAU - Disponibilité (heures)
       availableHours: {
         label: 'שעות זמינות',
         type: 'checkbox',
-        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל'],
+        options: ['morning', 'afternoon', 'evening', 'all'],
         dbField: 'availability->>"$.availableHours"'
       }
     },
@@ -191,13 +191,13 @@ export const serviceFiltersConfig = {
         label: 'סוגי שירותים',
         type: 'checkbox',
         options: [
-          'גיזום עצים ושיחים',
-          'עיצוב גינה',
-          'שתילת צמחים',
-          'השקיה',
-          'דישון',
-          'ניכוש עשבים',
-          'תחזוקה כללית'
+          'pruning',
+          'design',
+          'planting',
+          'irrigation',
+          'fertilizing',
+          'weeding',
+          'generalMaintenance'
         ],
         dbField: 'availability->>"$.services"'
       },
@@ -205,11 +205,11 @@ export const serviceFiltersConfig = {
         label: 'עונות זמינות',
         type: 'checkbox',
         options: [
-          'כל השנה',    // ✅ En premier
-          'אביב',       // Printemps
-          'קיץ',        // Été  
-          'סתיו',       // Automne
-          'חורף'       // Hiver
+          'allYear',    // ✅ En premier
+          'spring',       // Printemps
+          'summer',        // Été  
+          'autumn',       // Automne
+          'winter'       // Hiver
         ],
         dbField: 'availability->>"$.seasons"'
       },
@@ -218,12 +218,12 @@ export const serviceFiltersConfig = {
         label: 'ציוד בבעלותי',
         type: 'checkbox',
         options: [
-          'מכסחת דשא',
-          'מזמרות גיזום',
-          'משאבת מים',
-          'כלים ידניים',
-          'מפזר דשן',
-          'מערכת השקיה'
+          'lawnMower',
+          'pruningShears',
+          'waterPump',
+          'handTools',
+          'fertilizerSpreader',
+          'irrigationSystem'
         ],
         dbField: 'availability->>"$.equipment"'
       }
@@ -232,13 +232,13 @@ export const serviceFiltersConfig = {
       specializations: {
         label: 'התמחויות',
         type: 'checkbox',
-       options: ['הכשרה גנן סוג א', 'הכשרה גנן סוג ב', 'אילני אגרונום', 'גוזם מומחה'],
+       options: ['gardenerTypeA', 'gardenerTypeB', 'agronomist', 'expertPruner'],
         dbField: 'availability->>"$.specializations"'
       },
       additionalServices: {
         label: 'שירותים נוספים',
         type: 'checkbox',
-        options: ['פינוי פסולת גינה', 'ייעוץ עיצוב נוף'],
+        options: ['wasteRemoval', 'landscapeConsulting'],
         dbField: 'availability->>"$.additionalServices"'
       }
     }
@@ -246,24 +246,24 @@ export const serviceFiltersConfig = {
 
   petcare: {
     required: {
-      // ✅ CORRIGÉ - "מכרסמים קטנים" au lieu de "מכרסמים"
+      // ✅ CORRIGÉ - "smallRodents" au lieu de "מכרסמים"
       animalTypes: {
         label: 'סוגי חיות מתאימות',
         type: 'checkbox',
-        options: ['כלבים', 'חתולים', 'ציפורים', 'מכרסמים קטנים', 'דגים', 'זוחלים'],
+        options: ['dogs', 'cats', 'birds', 'smallRodents', 'fish', 'reptiles'],
         dbField: 'availability->>"$.animalTypes"'
       },
       dogSizes: {
         label: 'גודל כלבים מתאים',
         type: 'checkbox',
-        options: ['קטן', 'בינוני', 'גדול', 'ענק'],
+        options: ['smallDog', 'mediumDog', 'largeDog', 'giantDog'],
         dbField: 'availability->>"$.dogSizes"'
       },
       experienceLevel: {
         label: 'רמת ניסיון',
         type: 'select',
         options: [
-          { value: '', label: 'הכל' },
+          { value: '', label: 'all' },
           { value: 'מתחיל', label: 'מתחיל' },
           { value: 'מנוסה', label: 'מנוסה' }
         ],
@@ -273,8 +273,8 @@ export const serviceFiltersConfig = {
         label: 'מקום השמירה',
         type: 'select',
         options: [
-          { value: '', label: 'הכל' },
-       { value: 'בבית הלקוח', label: 'בבית הלקוח' },
+          { value: '', label: 'all' },
+       { value: 'clientHome', label: 'clientHome' },
 { value: 'בבית המטפל', label: 'בבית המטפל' },
 { value: 'פנסיון לבעלי חיים', label: 'פנסיון לבעלי חיים' }
         ],
@@ -303,7 +303,7 @@ export const serviceFiltersConfig = {
         dbField: 'availability->>"$.walkExercise"'
       },
       medicationAdmin: {
-        label: 'מתן תרופות',
+        label: 'medication',
         type: 'select',
         options: [
           { value: '', label: 'לא משנה' },
@@ -334,21 +334,21 @@ export const serviceFiltersConfig = {
       additionalServices: {
         label: 'שירותים נוספים',
         type: 'checkbox',
-       options: ['הליכת כלבים', 'רחצה וטיפוח', 'אילוף בסיסי', 'מתן תרופות', 'האכלה בזמן השמירה', 'ניקוי ארגז חול / כלוב / אקווריום', 'עדכון תמונות לבעלים', 'שהייה לילה / יום בלבד'],
+       options: ['dogWalking', 'bathingGrooming', 'basicTraining', 'medication', 'feeding', 'cleaning', 'photoUpdates', 'שהייה לילה / יום בלבד'],
         dbField: 'availability->>"$.additionalServices"'
       },
       // ✅ NOUVEAU - Installations à la maison
       facilities: {
         label: 'מתקנים בבית',
         type: 'checkbox',
-       options: ['גינה מגודרת', 'חצר גדולה', 'מזגן'],
+       options: ['fencedGarden', 'largeYard', 'airConditioning'],
         dbField: 'availability->>"$.facilities"'
       },
         // ✅ NOUVEAU - Services vétérinaires
       veterinaryServices: {
         label: 'שירותים וטרינריים',
         type: 'checkbox',
-        options: ['ביקור וטרינר', 'מתן תרופות', 'טיפול בסיסי'],
+        options: ['vetVisit', 'medication', 'basicCare'],
         dbField: 'availability->>"$.veterinaryServices"'
       }
     }
@@ -370,7 +370,7 @@ export const serviceFiltersConfig = {
       levels: {
         label: 'רמות לימוד',
         type: 'checkbox',
-        options: ['יסודי', 'חטיבת ביניים', 'תיכון', 'בגרות', 'מכינה', 'אקדמי', 'מבוגרים'],
+        options: ['elementary', 'middleSchool', 'highSchool', 'matriculation', 'preAcademic', 'academic', 'adults'],
         dbField: 'availability->>"$.levels"'
       },
       // ✅ CORRIGÉ - Options alignées avec l'inscription
@@ -378,10 +378,10 @@ export const serviceFiltersConfig = {
         label: 'אופן הוראה',
         type: 'select',
         options: [
-          { value: '', label: 'הכל' },
-          { value: 'פרונטלי בלבד', label: 'פרונטלי בלבד' },
-          { value: 'אונליין בלבד', label: 'אונליין בלבד' },
-          { value: 'שניהם', label: 'שניהם' }
+          { value: '', label: 'all' },
+          { value: 'inPersonOnly', label: 'inPersonOnly' },
+          { value: 'onlineOnly', label: 'onlineOnly' },
+          { value: 'both', label: 'both' }
         ],
         dbField: 'availability->>"$.teachingMode"'
       }
@@ -390,7 +390,7 @@ export const serviceFiltersConfig = {
       specializations: {
         label: 'התמחויות',
         type: 'checkbox',
-        options: ['הכנה לבחינות', 'הפרעות למידה'],
+        options: ['examPrep', 'learningDisabilities'],
         dbField: 'availability->>"$.specializations"'
       },
       teachingLanguages: {
@@ -409,12 +409,12 @@ export const serviceFiltersConfig = {
         label: 'סוגי טיפול מוצעים',
         type: 'checkbox',
         options: [
-          'ליווי ותמיכה',
-          'עזרה בניקיון הבית',
-          'בישול והכנת אוכל',
-          'קניות ומשימות',
-          'מתן תרופות',
-          'ליווי לרופאים'
+          'companionship',
+          'houseCleaning',
+          'cooking',
+          'errands',
+          'medication',
+          'doctorAccompaniment'
         ],
         dbField: 'availability->>"$.careTypes"'
       },
@@ -422,7 +422,7 @@ export const serviceFiltersConfig = {
       availability: {
         label: 'זמינות',
         type: 'checkbox',
-        options: ['בוקר', 'צהריים', 'אחר הצהריים', 'ערב', 'לילה', '24/7'],
+        options: ['morning', 'noon', 'afternoon', 'evening', 'night', '24/7'],
         dbField: 'availability->>"$.timeSlots"'
       }
     },
@@ -431,7 +431,7 @@ export const serviceFiltersConfig = {
       specificConditions: {
         label: 'נסיון עם מחלות ספציפיות',
         type: 'checkbox',
-        options: ['אלצהיימר', 'פרקינסון', 'סוכרת', 'בעיות ניידות', 'דמנציה'],
+        options: ['alzheimers', 'parkinsons', 'diabetes', 'mobilityIssues', 'dementia'],
         dbField: 'availability->>"$.specificConditions"'
       },
       administrativeHelp: {
@@ -479,10 +479,10 @@ export const serviceFiltersConfig = {
       label: 'סוגי שירותים',
       type: 'checkbox',
       options: [
-        'איסוף והחזרת כביסה (שירות משלוחים)',
-        'ניקוי יבש / שירות מכבסה',
-        'כביסת מצעים, מגבות, וילונות',
-        'כביסה תעשייתית (מלונות, מסעדות)'
+        'pickupDelivery',
+        'dryCleaning',
+        'linens',
+        'industrial'
       ],
       dbField: 'availability->>"$.laundryTypes"'
     },
@@ -511,14 +511,14 @@ export const serviceFiltersConfig = {
     availableDays: {
       label: 'זמינות - ימים',
       type: 'checkbox',
-      options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת', 'כל השבוע'],
+      options: ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'allWeek'],
       dbField: 'availability->>"$.availableDays"'
     },
     // 🆕 NOUVEAU - Heures disponibles
     availableHours: {
       label: 'זמינות - שעות',
       type: 'checkbox',
-      options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל'],
+      options: ['morning', 'afternoon', 'evening', 'all'],
       dbField: 'availability->>"$.availableHours"'
     },
     pickupService: {
@@ -549,19 +549,19 @@ export const serviceFiltersConfig = {
         label: 'סוג הניהול',
         categories: {
           '🏠 ניהול השכרה לשנה מלאה': [
-            'חיפוש ובדיקת שוכרים מתאימים',
-            'חתימה על חוזה וניהול ערבויות',
-            'גביית שכ"ד והעברת תשלומים לבעל הדירה',
-            'בדיקת מצב הנכס לפני ואחרי תקופת השכירות',
-            'העברת חשבונות השירותים (מים, חשמל, גז) על שם השוכר החדש'
+            'tenantSearch',
+            'contractManagement',
+            'rentCollection',
+            'propertyInspection',
+            'utilityTransfer'
           ],
           '🏖️ השכרה לטווח קצר (Airbnb / Booking)': [
-            'פרסום וניהול מודעות באתרים',
-            'ניהול הזמנות ותקשורת עם אורחים',
-            'קבלת אורחים / מסירת מפתחות',
-            'ניקיון בין השהיות',
-            'בדיקה תקופתית של הנכס',
-            'תיקונים כלליים (חשמל, אינסטלציה, מזגן וכו׳)'
+            'listingManagement',
+            'guestCommunication',
+            'guestCheckin',
+            'turnaroundCleaning',
+            'periodicInspection',
+            'generalRepairs'
           ]
         }
       }
@@ -583,29 +583,29 @@ optional: {
       availability_days: {
         label: 'ימי זמינות',
         type: 'checkbox',
-        options: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'כל השבוע'],
+        options: ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'allWeek'],
         dbField: 'availability_days'
       },
       availability_hours: {
         label: 'שעות זמינות',
         type: 'checkbox',
-        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל'],
+        options: ['morning', 'afternoon', 'evening', 'all'],
         dbField: 'availability_hours'
       },
       dj_event_types: {
         label: 'סוגי אירועים',
         type: 'checkbox',
         options: [
-          'חתונה',
-          'בר מצווה',
-          'בת מצווה',
-          'ברית מילה',
-          'שבע ברכות',
-          'יום הולדת / יום שנה',
-          'אירוע עסקי',
-          'מסיבה פרטית',
-          'חגיגה משפחתית',
-          'אירוסין'
+          'wedding',
+          'barMitsva',
+          'batMitsva',
+          'britMila',
+          'shevaBrahot',
+          'anniversary',
+          'corporateEvent',
+          'privateParty',
+          'familyParty',
+          'engagement'
         ],
         dbField: 'service_details->>"$.dj_event_types"'
       }
@@ -614,7 +614,7 @@ optional: {
       languages: {
         label: 'שפות מדוברות',
         type: 'checkbox',
-        options: ['עברית', 'רוסית', 'אנגלית', 'צרפתית'],
+        options: ['hebrew', 'russian', 'english', 'french'],
         dbField: 'languages'
       },
       experienceYears: {
@@ -635,20 +635,20 @@ optional: {
         type: 'checkbox-categorized',
         categories: {
           'חרקים': [
-            'הדברת תיקנים',
-            'הדברת נמלים',
-            'הדברת פשפשים',
-            'הדברת פרעושים',
-            'הדברת יתושים'
+            'cockroaches',
+            'ants',
+            'bedbugs',
+            'fleas',
+            'mosquitoes'
           ],
           '🐭 מכרסמים': [
-            'הדברת חולדות',
-            'הדברת עכברים'
+            'rats',
+            'mice'
           ],
           '🐦 יונים ובעלי חיים': [
-            'הרחקת יונים',
-            'הרחקת עטלפים',
-            'הרחקת נחשים'
+            'pigeons',
+            'bats',
+            'snakes'
           ]
         },
         dbField: 'availability->>"$.pestTypes"'
@@ -691,13 +691,13 @@ optional: {
       work_types: {
         label: 'סוג עבודה',
         type: 'checkbox',
-        options: ['סורגים', 'מעקות', 'גדרות'],
+        options: ['bars', 'railings', 'fences'],
         dbField: 'service_details->>"$.work_types"'
       },
       availability_hours: {
         label: 'שעות זמינות',
         type: 'checkbox',
-        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל'],
+        options: ['morning', 'afternoon', 'evening', 'all'],
         dbField: 'availability_hours'
       }
     },
@@ -705,7 +705,7 @@ optional: {
       languages: {
         label: 'שפות מדוברות',
         type: 'checkbox',
-        options: ['עברית', 'רוסית', 'אנגלית', 'צרפתית'],
+        options: ['hebrew', 'russian', 'english', 'french'],
         dbField: 'languages'
       },
       experienceYears: {
@@ -736,7 +736,7 @@ optional: {
       availability_hours: {
         label: 'שעות זמינות',
         type: 'checkbox',
-        options: ['בוקר', 'אחר הצהריים', 'ערב', 'לילה', '24/6'],
+        options: ['morning', 'afternoon', 'evening', 'night', '24/6'],
         dbField: 'availability_hours'
       }
     },
@@ -744,7 +744,7 @@ optional: {
       languages: {
         label: 'שפות מדוברות',
         type: 'checkbox',
-        options: ['עברית', 'רוסית', 'אנגלית', 'צרפתית'],
+        options: ['hebrew', 'russian', 'english', 'french'],
         dbField: 'languages'
       },
       experienceYears: {

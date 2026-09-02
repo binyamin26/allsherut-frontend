@@ -2,15 +2,15 @@ import React from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
 
 const WORK_TYPES = [
-  { value: 'סורגים',          key: 'serviceForm.metalwork.bars' },
-  { value: 'מעקות',           key: 'serviceForm.metalwork.railings' },
-  { value: 'גדרות',           key: 'serviceForm.metalwork.fences' },
-  { value: 'גלריות',          key: 'serviceForm.metalwork.galleries' },
-  { value: 'מרפסות תלויות',   key: 'serviceForm.metalwork.hangingBalconies' },
-  { value: 'מדרגות',          key: 'serviceForm.metalwork.stairs' },
+  { value: 'bars',          key: 'serviceForm.metalwork.bars' },
+  { value: 'railings',           key: 'serviceForm.metalwork.railings' },
+  { value: 'fences',           key: 'serviceForm.metalwork.fences' },
+  { value: 'galleries',          key: 'serviceForm.metalwork.galleries' },
+  { value: 'hangingBalconies',   key: 'serviceForm.metalwork.hangingBalconies' },
+  { value: 'stairs',          key: 'serviceForm.metalwork.stairs' },
 ];
 
-const HOURS = ['בוקר', 'אחר הצהריים', 'ערב', 'הכל'];
+const HOURS = ['morning', 'afternoon', 'evening', 'all'];
 
 const MetalworkForm = ({ serviceDetails, errors, handleServiceDetailsChange }) => {
   const { t } = useLanguage();
@@ -95,10 +95,10 @@ const MetalworkForm = ({ serviceDetails, errors, handleServiceDetailsChange }) =
           <label className="auth-form-label required">{t('filters.common.languages')}</label>
           <div className="checkbox-group" data-field="languages">
             {[
-              { value: 'עברית', label: t('languages.hebrew') },
-              { value: 'רוסית', label: t('languages.russian') },
-              { value: 'אנגלית', label: t('languages.english') },
-              { value: 'צרפתית', label: t('languages.french') }
+              { value: 'hebrew', label: t('languages.hebrew') },
+              { value: 'russian', label: t('languages.russian') },
+              { value: 'english', label: t('languages.english') },
+              { value: 'french', label: t('languages.french') }
             ].map(lang => (
               <label key={lang.value} className="checkbox-item">
                 <input

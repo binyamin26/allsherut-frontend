@@ -15,19 +15,19 @@ const DJForm = ({ serviceDetails, errors, handleServiceDetailsChange, handleExcl
           <label className="auth-form-label required">{t('serviceForm.common.availabilityDays')}</label>
           <div className="checkbox-group" data-field="availability_days">
             {[
-              { value: 'ראשון', label: t('days.sunday') },
-              { value: 'שני', label: t('days.monday') },
-              { value: 'שלישי', label: t('days.tuesday') },
-              { value: 'רביעי', label: t('days.wednesday') },
-              { value: 'חמישי', label: t('days.thursday') },
-              { value: 'שישי', label: t('days.friday') },
-              { value: 'כל השבוע', label: t('days.allWeek') }
+              { value: 'sunday', label: t('days.sunday') },
+              { value: 'monday', label: t('days.monday') },
+              { value: 'tuesday', label: t('days.tuesday') },
+              { value: 'wednesday', label: t('days.wednesday') },
+              { value: 'thursday', label: t('days.thursday') },
+              { value: 'friday', label: t('days.friday') },
+              { value: 'allWeek', label: t('days.allWeek') }
             ].map(day => (
               <label key={day.value} className="checkbox-item">
                 <input
                   type="checkbox"
                   checked={serviceDetails.availability_days?.includes(day.value) || false}
-                  onChange={() => handleExclusiveCheckbox('availability_days', day.value, 'כל השבוע', ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי'])}
+                  onChange={() => handleExclusiveCheckbox('availability_days', day.value, 'allWeek', ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday'])}
                 />
                 {day.label}
               </label>
@@ -40,16 +40,16 @@ const DJForm = ({ serviceDetails, errors, handleServiceDetailsChange, handleExcl
           <label className="auth-form-label required">{t('serviceForm.common.availabilityHours')}</label>
           <div className="checkbox-group" data-field="availability_hours">
             {[
-              { value: 'בוקר', label: t('hours.morning') },
-              { value: 'אחר הצהריים', label: t('hours.afternoon') },
-              { value: 'ערב', label: t('hours.evening') },
-              { value: 'הכל', label: t('hours.all') }
+              { value: 'morning', label: t('hours.morning') },
+              { value: 'afternoon', label: t('hours.afternoon') },
+              { value: 'evening', label: t('hours.evening') },
+              { value: 'all', label: t('hours.all') }
             ].map(hour => (
               <label key={hour.value} className="checkbox-item">
                 <input
                   type="checkbox"
                   checked={serviceDetails.availability_hours?.includes(hour.value) || false}
-                  onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'הכל', ['בוקר', 'אחר הצהריים', 'ערב'])}
+                  onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'all', ['morning', 'afternoon', 'evening'])}
                 />
                 {hour.label}
               </label>
@@ -62,16 +62,16 @@ const DJForm = ({ serviceDetails, errors, handleServiceDetailsChange, handleExcl
           <label className="auth-form-label required">{t('serviceForm.dj.eventTypes')}</label>
           <div className="checkbox-group" data-field="dj_event_types">
             {[
-              { value: 'חתונה', label: t('filters.chef.wedding') },
-              { value: 'בר מצווה', label: t('filters.chef.barMitsva') },
-              { value: 'בת מצווה', label: t('filters.chef.batMitsva') },
-              { value: 'ברית מילה', label: t('filters.chef.britMila') },
-              { value: 'שבע ברכות', label: t('filters.chef.shevaBrahot') },
-              { value: 'יום הולדת / יום שנה', label: t('filters.chef.anniversary') },
-              { value: 'אירוע עסקי', label: t('filters.chef.corporateEvent') },
-              { value: 'מסיבה פרטית', label: t('filters.chef.privateParty') },
-              { value: 'חגיגה משפחתית', label: t('filters.chef.familyParty') },
-              { value: 'אירוסין', label: t('filters.chef.engagement') }
+              { value: 'wedding', label: t('filters.chef.wedding') },
+              { value: 'barMitsva', label: t('filters.chef.barMitsva') },
+              { value: 'batMitsva', label: t('filters.chef.batMitsva') },
+              { value: 'britMila', label: t('filters.chef.britMila') },
+              { value: 'shevaBrahot', label: t('filters.chef.shevaBrahot') },
+              { value: 'anniversary', label: t('filters.chef.anniversary') },
+              { value: 'corporateEvent', label: t('filters.chef.corporateEvent') },
+              { value: 'privateParty', label: t('filters.chef.privateParty') },
+              { value: 'familyParty', label: t('filters.chef.familyParty') },
+              { value: 'engagement', label: t('filters.chef.engagement') }
             ].map(type => (
               <label key={type.value} className="checkbox-item">
                 <input
@@ -111,10 +111,10 @@ const DJForm = ({ serviceDetails, errors, handleServiceDetailsChange, handleExcl
           <label className="auth-form-label required">{t('filters.common.languages')}</label>
           <div className="checkbox-group" data-field="languages">
             {[
-              { value: 'עברית', label: t('languages.hebrew') },
-              { value: 'רוסית', label: t('languages.russian') },
-              { value: 'אנגלית', label: t('languages.english') },
-              { value: 'צרפתית', label: t('languages.french') }
+              { value: 'hebrew', label: t('languages.hebrew') },
+              { value: 'russian', label: t('languages.russian') },
+              { value: 'english', label: t('languages.english') },
+              { value: 'french', label: t('languages.french') }
             ].map(lang => (
               <label key={lang.value} className="checkbox-item">
                 <input

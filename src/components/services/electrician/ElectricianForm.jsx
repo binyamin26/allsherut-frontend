@@ -14,16 +14,16 @@ const ElectricianForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
           <label className="auth-form-label required">{t('serviceForm.common.availabilityHours')}</label>
           <div className="checkbox-group" data-field="availability_hours">
          {[
-  { value: 'בוקר', label: t('hours.morning') },
-  { value: 'אחר הצהריים', label: t('hours.afternoon') },
-  { value: 'ערב', label: t('hours.evening') },
-  { value: 'הכל', label: t('hours.all') }
+  { value: 'morning', label: t('hours.morning') },
+  { value: 'afternoon', label: t('hours.afternoon') },
+  { value: 'evening', label: t('hours.evening') },
+  { value: 'all', label: t('hours.all') }
 ].map(hour => (
           <label key={hour.value} className="checkbox-item">
     <input
       type="checkbox"
       checked={serviceDetails.availability_hours?.includes(hour.value) || false}
-      onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'הכל', ['בוקר', 'אחר הצהריים', 'ערב'])}
+      onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'all', ['morning', 'afternoon', 'evening'])}
     />
     {hour.label}
   </label>
@@ -39,29 +39,29 @@ const ElectricianForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
             <label className="checkbox-item" style={{fontWeight: 'bold'}}>
               <input
                 type="checkbox"
-                checked={serviceDetails.work_types?.includes('תיקונים') || false}
+                checked={serviceDetails.work_types?.includes('repairs') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
                   const newTypes = e.target.checked 
-                    ? [...current, 'תיקונים']
-                    : current.filter(t => t !== 'תיקונים');
+                    ? [...current, 'repairs']
+                    : current.filter(t => t !== 'repairs');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
              {t('serviceForm.electrician.repairs')}
             </label>
             
-            {serviceDetails.work_types?.includes('תיקונים') && (
+            {serviceDetails.work_types?.includes('repairs') && (
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="repair_types">
                  {[
-  { value: 'תיקון קצר', label: t('filters.electrician.shortCircuitRepair') },
-  { value: 'תיקון טיימר', label: t('filters.electrician.timerRepair') },
-  { value: 'תיקון לוח חשמל', label: t('filters.electrician.panelRepair') },
-  { value: 'החלפת שקעים', label: t('filters.electrician.outletReplacement') },
-  { value: 'תיקון\\החלפת ספוטים', label: t('filters.electrician.spotlightRepair') },
-  { value: 'תיקונים אחרים', label: t('filters.electrician.otherRepairs') },
-  { value: 'החלפת אוטומט חדר מדרגות', label: t('filters.electrician.stairwaySwitch') }
+  { value: 'shortCircuitRepair', label: t('filters.electrician.shortCircuitRepair') },
+  { value: 'timerRepair', label: t('filters.electrician.timerRepair') },
+  { value: 'panelRepair', label: t('filters.electrician.panelRepair') },
+  { value: 'outletReplacement', label: t('filters.electrician.outletReplacement') },
+  { value: 'spotlightRepair', label: t('filters.electrician.spotlightRepair') },
+  { value: 'otherRepairs', label: t('filters.electrician.otherRepairs') },
+  { value: 'stairwaySwitch', label: t('filters.electrician.stairwaySwitch') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
@@ -88,36 +88,36 @@ const ElectricianForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
             <label className="checkbox-item" style={{fontWeight: 'bold'}}>
               <input
                 type="checkbox"
-                checked={serviceDetails.work_types?.includes('התקנות') || false}
+                checked={serviceDetails.work_types?.includes('installations') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
                   const newTypes = e.target.checked 
-                    ? [...current, 'התקנות']
-                    : current.filter(t => t !== 'התקנות');
+                    ? [...current, 'installations']
+                    : current.filter(t => t !== 'installations');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
               {t('serviceForm.electrician.installations')}
             </label>
             
-            {serviceDetails.work_types?.includes('התקנות') && (
+            {serviceDetails.work_types?.includes('installations') && (
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="installation_types">
                {[
-  { value: 'התקנת מאוורר תקרה', label: t('filters.electrician.ceilingFan') },
-  { value: 'התקנת שקע חשמל', label: t('filters.electrician.outletInstall') },
-  { value: 'התקנת נקודת חשמל חדשה', label: t('filters.electrician.newOutlet') },
-  { value: 'התקנת אטמור', label: t('filters.electrician.waterHeater') },
-  { value: 'התקנת מתג', label: t('filters.electrician.switchInstall') },
-  { value: 'עמדת טעינה לרכב חשמלי', label: t('filters.electrician.evCharger') },
-  { value: 'התקנת שעון שבת', label: t('filters.electrician.shabbatTimer') },
-  { value: 'התקנות אחרות', label: t('filters.electrician.otherInstall') },
-  { value: 'עמדת טעינה לרכב חשמלי של חברת EV-Meter', label: t('filters.electrician.evMeter') },
-  { value: 'התקנות כיריים אינדוקציה', label: t('filters.electrician.inductionCooktop') },
-  { value: 'התקנת תנור אמבטיה', label: t('filters.electrician.bathroomHeater') },
-  { value: 'התקנת גנרטור לבית פרטי', label: t('filters.electrician.generator') },
-  { value: 'התקנת ונטה', label: t('filters.electrician.ventaInstall') },
-  { value: 'עמדת טעינה לרכב חשמלי EV-EDGE', label: t('filters.electrician.evEdge') }
+  { value: 'ceilingFan', label: t('filters.electrician.ceilingFan') },
+  { value: 'outletInstall', label: t('filters.electrician.outletInstall') },
+  { value: 'newOutlet', label: t('filters.electrician.newOutlet') },
+  { value: 'waterHeater', label: t('filters.electrician.waterHeater') },
+  { value: 'switchInstall', label: t('filters.electrician.switchInstall') },
+  { value: 'evCharger', label: t('filters.electrician.evCharger') },
+  { value: 'shabbatTimer', label: t('filters.electrician.shabbatTimer') },
+  { value: 'otherInstall', label: t('filters.electrician.otherInstall') },
+  { value: 'evMeter', label: t('filters.electrician.evMeter') },
+  { value: 'inductionCooktop', label: t('filters.electrician.inductionCooktop') },
+  { value: 'bathroomHeater', label: t('filters.electrician.bathroomHeater') },
+  { value: 'generator', label: t('filters.electrician.generator') },
+  { value: 'ventaInstall', label: t('filters.electrician.ventaInstall') },
+  { value: 'evEdge', label: t('filters.electrician.evEdge') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
@@ -144,28 +144,28 @@ const ElectricianForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
             <label className="checkbox-item" style={{fontWeight: 'bold'}}>
               <input
                 type="checkbox"
-                checked={serviceDetails.work_types?.includes('עבודות חשמל גדולות') || false}
+                checked={serviceDetails.work_types?.includes('largeElectricalWork') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
                   const newTypes = e.target.checked 
-                    ? [...current, 'עבודות חשמל גדולות']
-                    : current.filter(t => t !== 'עבודות חשמל גדולות');
+                    ? [...current, 'largeElectricalWork']
+                    : current.filter(t => t !== 'largeElectricalWork');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
             {t('serviceForm.electrician.largeWork')}
             </label>
             
-            {serviceDetails.work_types?.includes('עבודות חשמל גדולות') && (
+            {serviceDetails.work_types?.includes('largeElectricalWork') && (
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="large_work_types">
                  {[
-  { value: 'בניית תשתית חשמל בכל הבית', label: t('filters.electrician.newInfrastructure') },
-  { value: 'החלפת תשתית חשמל בכל הבית', label: t('filters.electrician.replaceInfrastructure') },
-  { value: 'החלפת לוח חשמל', label: t('filters.electrician.panelReplacement') },
-  { value: 'הארקה', label: t('filters.electrician.grounding') },
-  { value: 'החלפה לתלת פאזי', label: t('filters.electrician.threePhase') },
-  { value: 'הכנה לביקורת עבור חברת חשמל', label: t('filters.electrician.inspection') }
+  { value: 'newInfrastructure', label: t('filters.electrician.newInfrastructure') },
+  { value: 'replaceInfrastructure', label: t('filters.electrician.replaceInfrastructure') },
+  { value: 'panelReplacement', label: t('filters.electrician.panelReplacement') },
+  { value: 'grounding', label: t('filters.electrician.grounding') },
+  { value: 'threePhase', label: t('filters.electrician.threePhase') },
+  { value: 'inspection', label: t('filters.electrician.inspection') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
@@ -210,10 +210,10 @@ const ElectricianForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
           <label className="auth-form-label required">{t('filters.common.languages')}</label>
           <div className="checkbox-group" data-field="languages">
             {[
-              { value: 'עברית', label: t('languages.hebrew') },
-              { value: 'רוסית', label: t('languages.russian') },
-              { value: 'אנגלית', label: t('languages.english') },
-              { value: 'צרפתית', label: t('languages.french') }
+              { value: 'hebrew', label: t('languages.hebrew') },
+              { value: 'russian', label: t('languages.russian') },
+              { value: 'english', label: t('languages.english') },
+              { value: 'french', label: t('languages.french') }
             ].map(lang => (
               <label key={lang.value} className="checkbox-item">
                 <input

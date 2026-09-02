@@ -15,16 +15,16 @@ const PhotographerForm = ({ serviceDetails, errors, handleServiceDetailsChange, 
           <label className="auth-form-label required">{t('serviceForm.common.availabilityHours')}</label>
           <div className="checkbox-group" data-field="availability_hours">
             {[
-              { value: 'בוקר', label: t('hours.morning') },
-              { value: 'אחר הצהריים', label: t('hours.afternoon') },
-              { value: 'ערב', label: t('hours.evening') },
-              { value: 'הכל', label: t('hours.all') }
+              { value: 'morning', label: t('hours.morning') },
+              { value: 'afternoon', label: t('hours.afternoon') },
+              { value: 'evening', label: t('hours.evening') },
+              { value: 'all', label: t('hours.all') }
             ].map(hour => (
               <label key={hour.value} className="checkbox-item">
                 <input
                   type="checkbox"
                   checked={serviceDetails.availability_hours?.includes(hour.value) || false}
-                  onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'הכל', ['בוקר', 'אחר הצהריים', 'ערב'])}
+                  onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'all', ['morning', 'afternoon', 'evening'])}
                 />
                 {hour.label}
               </label>
@@ -40,30 +40,30 @@ const PhotographerForm = ({ serviceDetails, errors, handleServiceDetailsChange, 
             <label className="checkbox-item" style={{ fontWeight: 'bold' }}>
               <input
                 type="checkbox"
-                checked={serviceDetails.work_types?.includes('סוג האירוע') || false}
+                checked={serviceDetails.work_types?.includes('eventTypes') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
                   const newTypes = e.target.checked
-                    ? [...current, 'סוג האירוע']
-                    : current.filter(v => v !== 'סוג האירוע');
+                    ? [...current, 'eventTypes']
+                    : current.filter(v => v !== 'eventTypes');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
               {t('serviceForm.photographer.eventTypes')}
             </label>
 
-            {serviceDetails.work_types?.includes('סוג האירוע') && (
+            {serviceDetails.work_types?.includes('eventTypes') && (
               <div style={{ marginRight: '30px', marginTop: '10px' }}>
                 <div className="checkbox-group" data-field="event_types">
                   {[
-                    { value: 'בר מצווה', label: t('filters.photographer.barMitsva') },
-                    { value: 'בת מצווה', label: t('filters.photographer.batMitsva') },
-                    { value: 'חתונה', label: t('filters.photographer.wedding') },
-                    { value: 'אירוסין', label: t('filters.photographer.engagement') },
-                    { value: 'תספורת', label: t('filters.photographer.haircut') },
-                    { value: 'שוטינג פוטו', label: t('filters.photographer.photoShoot') },
-                    { value: 'אירועים פרטיים', label: t('filters.photographer.privateEvents') },
-                    { value: 'ברית מילה', label: t('filters.photographer.britMila') }
+                    { value: 'barMitsva', label: t('filters.photographer.barMitsva') },
+                    { value: 'batMitsva', label: t('filters.photographer.batMitsva') },
+                    { value: 'wedding', label: t('filters.photographer.wedding') },
+                    { value: 'engagement', label: t('filters.photographer.engagement') },
+                    { value: 'haircut', label: t('filters.photographer.haircut') },
+                    { value: 'photoShoot', label: t('filters.photographer.photoShoot') },
+                    { value: 'privateEvents', label: t('filters.photographer.privateEvents') },
+                    { value: 'britMila', label: t('filters.photographer.britMila') }
                   ].map(type => (
                     <label key={type.value} className="checkbox-item">
                       <input
@@ -90,12 +90,12 @@ const PhotographerForm = ({ serviceDetails, errors, handleServiceDetailsChange, 
             <label className="checkbox-item" style={{ fontWeight: 'bold' }}>
               <input
                 type="checkbox"
-                checked={serviceDetails.work_types?.includes('אלבום צילום') || false}
+                checked={serviceDetails.work_types?.includes('photoAlbum') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
                   const newTypes = e.target.checked
-                    ? [...current, 'אלבום צילום']
-                    : current.filter(v => v !== 'אלבום צילום');
+                    ? [...current, 'photoAlbum']
+                    : current.filter(v => v !== 'photoAlbum');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
@@ -107,12 +107,12 @@ const PhotographerForm = ({ serviceDetails, errors, handleServiceDetailsChange, 
             <label className="checkbox-item" style={{ fontWeight: 'bold' }}>
               <input
                 type="checkbox"
-                checked={serviceDetails.work_types?.includes('מגנט') || false}
+                checked={serviceDetails.work_types?.includes('magnet') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
                   const newTypes = e.target.checked
-                    ? [...current, 'מגנט']
-                    : current.filter(v => v !== 'מגנט');
+                    ? [...current, 'magnet']
+                    : current.filter(v => v !== 'magnet');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
@@ -144,11 +144,11 @@ const PhotographerForm = ({ serviceDetails, errors, handleServiceDetailsChange, 
           <label className="auth-form-label required">{t('serviceForm.photographer.languages')}</label>
           <div className="checkbox-group" data-field="languages">
             {[
-              { value: 'צרפתית', label: t('filters.photographer.languageFrench') },
-              { value: 'רוסית', label: t('filters.photographer.languageRussian') },
-              { value: 'ספרדית', label: t('filters.photographer.languageSpanish') },
-              { value: 'עברית', label: t('filters.photographer.languageHebrew') },
-              { value: 'אנגלית', label: t('filters.photographer.languageEnglish') }
+              { value: 'french', label: t('filters.photographer.languageFrench') },
+              { value: 'russian', label: t('filters.photographer.languageRussian') },
+              { value: 'spanish', label: t('filters.photographer.languageSpanish') },
+              { value: 'hebrew', label: t('filters.photographer.languageHebrew') },
+              { value: 'english', label: t('filters.photographer.languageEnglish') }
             ].map(lang => (
               <label key={lang.value} className="checkbox-item">
                 <input
@@ -179,12 +179,12 @@ const PhotographerForm = ({ serviceDetails, errors, handleServiceDetailsChange, 
             <label className="checkbox-item">
               <input
                 type="checkbox"
-                checked={serviceDetails.work_types?.includes('קמרמן') || false}
+                checked={serviceDetails.work_types?.includes('cameraman') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
                   const newTypes = e.target.checked
-                    ? [...current, 'קמרמן']
-                    : current.filter(v => v !== 'קמרמן');
+                    ? [...current, 'cameraman']
+                    : current.filter(v => v !== 'cameraman');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />

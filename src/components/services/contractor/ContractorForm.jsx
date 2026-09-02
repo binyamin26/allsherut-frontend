@@ -14,16 +14,16 @@ const ContractorForm = ({ serviceDetails, errors, handleServiceDetailsChange, ha
           <label className="auth-form-label required">{t('serviceForm.common.availabilityHours')}</label>
           <div className="checkbox-group" data-field="availability_hours">
           {[
-  { value: 'בוקר', label: t('hours.morning') },
-  { value: 'אחר הצהריים', label: t('hours.afternoon') },
-  { value: 'ערב', label: t('hours.evening') },
-  { value: 'הכל', label: t('hours.all') }
+  { value: 'morning', label: t('hours.morning') },
+  { value: 'afternoon', label: t('hours.afternoon') },
+  { value: 'evening', label: t('hours.evening') },
+  { value: 'all', label: t('hours.all') }
 ].map(hour => (
               <label key={hour.value} className="checkbox-item">
     <input
       type="checkbox"
       checked={serviceDetails.availability_hours?.includes(hour.value) || false}
-      onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'הכל', ['בוקר', 'אחר הצהריים', 'ערב'])}
+      onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'all', ['morning', 'afternoon', 'evening'])}
     />
     {hour.label}
   </label>
@@ -39,28 +39,28 @@ const ContractorForm = ({ serviceDetails, errors, handleServiceDetailsChange, ha
             <label className="checkbox-item" style={{fontWeight: 'bold'}}>
               <input
                 type="checkbox"
-                checked={serviceDetails.work_types?.includes('עבודות שלד') || false}
+                checked={serviceDetails.work_types?.includes('structureWork') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
                   const newTypes = e.target.checked 
-                    ? [...current, 'עבודות שלד']
-                    : current.filter(t => t !== 'עבודות שלד');
+                    ? [...current, 'structureWork']
+                    : current.filter(t => t !== 'structureWork');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
            {t('serviceForm.contractor.structureWork')}
             </label>
             
-            {serviceDetails.work_types?.includes('עבודות שלד') && (
+            {serviceDetails.work_types?.includes('structureWork') && (
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="structure_work_types">
                  {[
-  { value: 'בניית שלד', label: t('serviceForm.contractor.buildingFrame') },
-  { value: 'יציקות בטון', label: t('serviceForm.contractor.concretePours') },
-  { value: 'טפסנות', label: t('serviceForm.contractor.formwork') },
-  { value: 'חיזוק מבנים', label: t('serviceForm.contractor.structuralReinforcement') },
-  { value: 'בניית קירות בלוקים', label: t('serviceForm.contractor.blockWalls') },
-  { value: 'הריסה ובנייה מחדש', label: t('serviceForm.contractor.demolitionRebuild') }
+  { value: 'buildingFrame', label: t('serviceForm.contractor.buildingFrame') },
+  { value: 'concretePours', label: t('serviceForm.contractor.concretePours') },
+  { value: 'formwork', label: t('serviceForm.contractor.formwork') },
+  { value: 'structuralReinforcement', label: t('serviceForm.contractor.structuralReinforcement') },
+  { value: 'blockWalls', label: t('serviceForm.contractor.blockWalls') },
+  { value: 'demolitionRebuild', label: t('serviceForm.contractor.demolitionRebuild') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
@@ -87,32 +87,32 @@ const ContractorForm = ({ serviceDetails, errors, handleServiceDetailsChange, ha
             <label className="checkbox-item" style={{fontWeight: 'bold'}}>
               <input
                 type="checkbox"
-                checked={serviceDetails.work_types?.includes('שיפוצים כלליים') || false}
+                checked={serviceDetails.work_types?.includes('generalRenovation') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
                   const newTypes = e.target.checked 
-                    ? [...current, 'שיפוצים כלליים']
-                    : current.filter(t => t !== 'שיפוצים כלליים');
+                    ? [...current, 'generalRenovation']
+                    : current.filter(t => t !== 'generalRenovation');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
            {t('serviceForm.contractor.generalRenovation')}
             </label>
             
-            {serviceDetails.work_types?.includes('שיפוצים כלליים') && (
+            {serviceDetails.work_types?.includes('generalRenovation') && (
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="general_renovation_types">
                 {[
-  { value: 'שיפוץ דירה מלא', label: t('serviceForm.contractor.fullApartmentReno') },
-  { value: 'שיפוץ חדרים', label: t('serviceForm.contractor.roomRenovation') },
-  { value: 'שיפוץ חדרי רחצה', label: t('serviceForm.contractor.bathroomReno') },
-  { value: 'שיפוץ מטבח', label: t('serviceForm.contractor.kitchenReno') },
-  { value: 'החלפת ריצוף', label: t('serviceForm.contractor.flooringReplacement') },
-  { value: 'עבודות גבס', label: t('serviceForm.contractor.drywallWork') },
-  { value: 'טיח ושפכטל', label: t('serviceForm.contractor.plasterWork') },
-  { value: 'סגירת מרפסת', label: t('serviceForm.contractor.balconyEnclosure') },
-  { value: 'צביעה מקצועית', label: t('serviceForm.contractor.professionalPainting') },
-  { value: 'החלפת דלתות ומשקופים', label: t('serviceForm.contractor.doorFrameReplacement') }
+  { value: 'fullApartmentReno', label: t('serviceForm.contractor.fullApartmentReno') },
+  { value: 'roomRenovation', label: t('serviceForm.contractor.roomRenovation') },
+  { value: 'bathroomReno', label: t('serviceForm.contractor.bathroomReno') },
+  { value: 'kitchenReno', label: t('serviceForm.contractor.kitchenReno') },
+  { value: 'flooringReplacement', label: t('serviceForm.contractor.flooringReplacement') },
+  { value: 'drywallWork', label: t('serviceForm.contractor.drywallWork') },
+  { value: 'plasterWork', label: t('serviceForm.contractor.plasterWork') },
+  { value: 'balconyEnclosure', label: t('serviceForm.contractor.balconyEnclosure') },
+  { value: 'professionalPainting', label: t('serviceForm.contractor.professionalPainting') },
+  { value: 'doorFrameReplacement', label: t('serviceForm.contractor.doorFrameReplacement') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
@@ -139,27 +139,27 @@ const ContractorForm = ({ serviceDetails, errors, handleServiceDetailsChange, ha
             <label className="checkbox-item" style={{fontWeight: 'bold'}}>
               <input
                 type="checkbox"
-                checked={serviceDetails.work_types?.includes('חשמל ואינסטלציה') || false}
+                checked={serviceDetails.work_types?.includes('electricPlumbing') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
                   const newTypes = e.target.checked 
-                    ? [...current, 'חשמל ואינסטלציה']
-                    : current.filter(t => t !== 'חשמל ואינסטלציה');
+                    ? [...current, 'electricPlumbing']
+                    : current.filter(t => t !== 'electricPlumbing');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
             {t('serviceForm.contractor.electricPlumbing')}
             </label>
             
-            {serviceDetails.work_types?.includes('חשמל ואינסטלציה') && (
+            {serviceDetails.work_types?.includes('electricPlumbing') && (
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="electric_plumbing_types">
                  {[
-  { value: 'עבודות חשמל', label: t('serviceForm.contractor.electricalWork') },
-  { value: 'החלפת לוח חשמל', label: t('serviceForm.contractor.panelReplacement') },
-  { value: 'אינסטלציה כללית', label: t('serviceForm.contractor.generalPlumbing') },
-  { value: 'החלפת צנרת', label: t('serviceForm.contractor.pipeReplacement') },
-  { value: 'איתור ותיקון נזילות', label: t('serviceForm.contractor.leakDetection') }
+  { value: 'electricalWork', label: t('serviceForm.contractor.electricalWork') },
+  { value: 'panelReplacement', label: t('serviceForm.contractor.panelReplacement') },
+  { value: 'generalPlumbing', label: t('serviceForm.contractor.generalPlumbing') },
+  { value: 'pipeReplacement', label: t('serviceForm.contractor.pipeReplacement') },
+  { value: 'leakDetection', label: t('serviceForm.contractor.leakDetection') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
@@ -186,27 +186,27 @@ const ContractorForm = ({ serviceDetails, errors, handleServiceDetailsChange, ha
             <label className="checkbox-item" style={{fontWeight: 'bold'}}>
               <input
                 type="checkbox"
-                checked={serviceDetails.work_types?.includes('עבודות חוץ') || false}
+                checked={serviceDetails.work_types?.includes('exteriorWork') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
                   const newTypes = e.target.checked 
-                    ? [...current, 'עבודות חוץ']
-                    : current.filter(t => t !== 'עבודות חוץ');
+                    ? [...current, 'exteriorWork']
+                    : current.filter(t => t !== 'exteriorWork');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
             {t('serviceForm.contractor.exteriorWork')}
             </label>
             
-            {serviceDetails.work_types?.includes('עבודות חוץ') && (
+            {serviceDetails.work_types?.includes('exteriorWork') && (
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="exterior_work_types">
                {[
-  { value: 'ריצוף חוץ', label: t('serviceForm.contractor.exteriorFlooring') },
-  { value: 'בניית פרגולה', label: t('serviceForm.contractor.pergolaConstruction') },
-  { value: 'חיפויי אבן / חיפויי קירות חוץ', label: t('serviceForm.contractor.stoneCladding') },
-  { value: 'גידור', label: t('serviceForm.contractor.fencing') },
-  { value: 'בניית שבילים בגינה', label: t('serviceForm.contractor.gardenPathways') }
+  { value: 'exteriorFlooring', label: t('serviceForm.contractor.exteriorFlooring') },
+  { value: 'pergolaConstruction', label: t('serviceForm.contractor.pergolaConstruction') },
+  { value: 'stoneCladding', label: t('serviceForm.contractor.stoneCladding') },
+  { value: 'fencing', label: t('serviceForm.contractor.fencing') },
+  { value: 'gardenPathways', label: t('serviceForm.contractor.gardenPathways') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
@@ -233,26 +233,26 @@ const ContractorForm = ({ serviceDetails, errors, handleServiceDetailsChange, ha
             <label className="checkbox-item" style={{fontWeight: 'bold'}}>
               <input
                 type="checkbox"
-                checked={serviceDetails.work_types?.includes('שיקום ותיקון חוץ') || false}
+                checked={serviceDetails.work_types?.includes('facadeRepair') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
                   const newTypes = e.target.checked 
-                    ? [...current, 'שיקום ותיקון חוץ']
-                    : current.filter(t => t !== 'שיקום ותיקון חוץ');
+                    ? [...current, 'facadeRepair']
+                    : current.filter(t => t !== 'facadeRepair');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
             {t('serviceForm.contractor.facadeRepair')}
             </label>
             
-            {serviceDetails.work_types?.includes('שיקום ותיקון חוץ') && (
+            {serviceDetails.work_types?.includes('facadeRepair') && (
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="facade_repair_types">
               {[
-  { value: 'תיקון טיח חוץ', label: t('serviceForm.contractor.exteriorPlasterRepair') },
-  { value: 'שיקום קירות חיצוניים', label: t('serviceForm.contractor.exteriorWallRestoration') },
-  { value: 'איטום סדקים בקירות', label: t('serviceForm.contractor.wallCrackSealing') },
-  { value: 'טיפול בנפילת טיח', label: t('serviceForm.contractor.fallingPlasterTreatment') }
+  { value: 'exteriorPlasterRepair', label: t('serviceForm.contractor.exteriorPlasterRepair') },
+  { value: 'exteriorWallRestoration', label: t('serviceForm.contractor.exteriorWallRestoration') },
+  { value: 'wallCrackSealing', label: t('serviceForm.contractor.wallCrackSealing') },
+  { value: 'fallingPlasterTreatment', label: t('serviceForm.contractor.fallingPlasterTreatment') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
@@ -297,10 +297,10 @@ const ContractorForm = ({ serviceDetails, errors, handleServiceDetailsChange, ha
           <label className="auth-form-label required">{t('filters.common.languages')}</label>
           <div className="checkbox-group" data-field="languages">
             {[
-              { value: 'עברית', label: t('languages.hebrew') },
-              { value: 'רוסית', label: t('languages.russian') },
-              { value: 'אנגלית', label: t('languages.english') },
-              { value: 'צרפתית', label: t('languages.french') }
+              { value: 'hebrew', label: t('languages.hebrew') },
+              { value: 'russian', label: t('languages.russian') },
+              { value: 'english', label: t('languages.english') },
+              { value: 'french', label: t('languages.french') }
             ].map(lang => (
               <label key={lang.value} className="checkbox-item">
                 <input

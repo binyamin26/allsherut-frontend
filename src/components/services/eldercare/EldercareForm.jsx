@@ -75,19 +75,19 @@ const EldercareForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
   <label className="auth-form-label required">{t('serviceForm.common.availabilityDays')}</label>
   <div className="checkbox-group" data-field="availability_days">
     {[
-      { value: 'ראשון', label: t('days.sunday') },
-      { value: 'שני', label: t('days.monday') },
-      { value: 'שלישי', label: t('days.tuesday') },
-      { value: 'רביעי', label: t('days.wednesday') },
-      { value: 'חמישי', label: t('days.thursday') },
-      { value: 'שישי', label: t('days.friday') },
-      { value: 'כל השבוע', label: t('days.allWeek') }
+      { value: 'sunday', label: t('days.sunday') },
+      { value: 'monday', label: t('days.monday') },
+      { value: 'tuesday', label: t('days.tuesday') },
+      { value: 'wednesday', label: t('days.wednesday') },
+      { value: 'thursday', label: t('days.thursday') },
+      { value: 'friday', label: t('days.friday') },
+      { value: 'allWeek', label: t('days.allWeek') }
     ].map(day => (
       <label key={day.value} className="checkbox-item">
         <input
           type="checkbox"
           checked={serviceDetails.availability_days?.includes(day.value) || false}
-          onChange={() => handleExclusiveCheckbox('availability_days', day.value, 'כל השבוע', ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי'])}
+          onChange={() => handleExclusiveCheckbox('availability_days', day.value, 'allWeek', ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday'])}
         />
         {day.label}
       </label>
@@ -100,11 +100,11 @@ const EldercareForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
           <label className="auth-form-label required">{t('serviceForm.eldercare.availability')}</label>
           <div className="checkbox-group" data-field="availability_hours">
             {[
-              { value: 'בוקר', label: t('hours.morning') },
-              { value: 'צהריים', label: t('hours.noon') },
-              { value: 'אחר הצהריים', label: t('hours.afternoon') },
-              { value: 'ערב', label: t('hours.evening') },
-              { value: 'לילה', label: t('hours.night') },
+              { value: 'morning', label: t('hours.morning') },
+              { value: 'noon', label: t('hours.noon') },
+              { value: 'afternoon', label: t('hours.afternoon') },
+              { value: 'evening', label: t('hours.evening') },
+              { value: 'night', label: t('hours.night') },
               { value: '24/7', label: t('hours.twentyFourSeven') }
             ].map(hour => (
               <label key={hour.value} className="checkbox-item">
@@ -130,11 +130,11 @@ const EldercareForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
           <label className="auth-form-label required">{t('serviceForm.eldercare.languages')}</label>
           <div className="checkbox-group" data-field="languages">
             {[
-              { value: 'עברית', label: t('languages.hebrew') },
-              { value: 'רוסית', label: t('languages.russian') },
-              { value: 'אנגלית', label: t('languages.english') },
-              { value: 'ספרדית', label: t('languages.spanish') },
-              { value: 'צרפתית', label: t('languages.french') }
+              { value: 'hebrew', label: t('languages.hebrew') },
+              { value: 'russian', label: t('languages.russian') },
+              { value: 'english', label: t('languages.english') },
+              { value: 'spanish', label: t('languages.spanish') },
+              { value: 'french', label: t('languages.french') }
             ].map(lang => (
               <label key={lang.value} className="checkbox-item">
                 <input

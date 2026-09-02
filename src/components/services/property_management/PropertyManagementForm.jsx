@@ -5,20 +5,20 @@ const PropertyManagementForm = ({ serviceDetails, errors, handleServiceDetailsCh
     const { t } = useLanguage();
     
    const longTermManagement = [
-  { value: 'חיפוש ובדיקת שוכרים מתאימים', label: t('serviceForm.propertyManagement.longTerm.tenantSearch') },
-  { value: 'חתימה על חוזה וניהול ערבויות', label: t('serviceForm.propertyManagement.longTerm.contracts') },
-  { value: 'גביית שכ"ד והעברת תשלומים לבעל הדירה', label: t('serviceForm.propertyManagement.longTerm.rentCollection') },
-  { value: 'בדיקת מצב הנכס לפני ואחרי תקופת השכירות', label: t('serviceForm.propertyManagement.longTerm.inspection') },
-  { value: 'העברת חשבונות השירותים (מים, חשמל, גז) על שם השוכר החדש', label: t('serviceForm.propertyManagement.longTerm.utilities') }
+  { value: 'tenantSearch', label: t('serviceForm.propertyManagement.longTerm.tenantSearch') },
+  { value: 'contractManagement', label: t('serviceForm.propertyManagement.longTerm.contracts') },
+  { value: 'rentCollection', label: t('serviceForm.propertyManagement.longTerm.rentCollection') },
+  { value: 'propertyInspection', label: t('serviceForm.propertyManagement.longTerm.inspection') },
+  { value: 'utilityTransfer', label: t('serviceForm.propertyManagement.longTerm.utilities') }
 ];
 
 const shortTermManagement = [
-  { value: 'פרסום וניהול מודעות באתרים', label: t('serviceForm.propertyManagement.shortTerm.listings') },
-  { value: 'ניהול הזמנות ותקשורת עם אורחים', label: t('serviceForm.propertyManagement.shortTerm.bookings') },
-  { value: 'קבלת אורחים / מסירת מפתחות', label: t('serviceForm.propertyManagement.shortTerm.checkin') },
-  { value: 'ניקיון בין השהיות', label: t('serviceForm.propertyManagement.shortTerm.cleaning') },
-  { value: 'בדיקה תקופתית של הנכס', label: t('serviceForm.propertyManagement.shortTerm.inspection') },
-  { value: 'תיקונים כלליים (חשמל, אינסטלציה, מזגן וכו׳)', label: t('serviceForm.propertyManagement.shortTerm.repairs') }
+  { value: 'listingManagement', label: t('serviceForm.propertyManagement.shortTerm.listings') },
+  { value: 'guestCommunication', label: t('serviceForm.propertyManagement.shortTerm.bookings') },
+  { value: 'guestCheckin', label: t('serviceForm.propertyManagement.shortTerm.checkin') },
+  { value: 'turnaroundCleaning', label: t('serviceForm.propertyManagement.shortTerm.cleaning') },
+  { value: 'periodicInspection', label: t('serviceForm.propertyManagement.shortTerm.inspection') },
+  { value: 'generalRepairs', label: t('serviceForm.propertyManagement.shortTerm.repairs') }
 ];
 
   return (
@@ -88,11 +88,11 @@ const shortTermManagement = [
   <label className="auth-form-label required">{t('serviceForm.common.availabilityHours')}</label>
   <div className="checkbox-group" data-field="availability_hours">
     {[
-      { value: 'בוקר', label: t('hours.morning') },
-      { value: 'צהריים', label: t('hours.noon') },
-      { value: 'אחר הצהריים', label: t('hours.afternoon') },
-      { value: 'ערב', label: t('hours.evening') },
-      { value: 'לילה', label: t('hours.night') }
+      { value: 'morning', label: t('hours.morning') },
+      { value: 'noon', label: t('hours.noon') },
+      { value: 'afternoon', label: t('hours.afternoon') },
+      { value: 'evening', label: t('hours.evening') },
+      { value: 'night', label: t('hours.night') }
     ].map(hour => (
       <label key={hour.value} className="checkbox-item">
         <input
@@ -132,10 +132,10 @@ const shortTermManagement = [
           <label className="auth-form-label required">{t('filters.common.languages')}</label>
           <div className="checkbox-group" data-field="languages">
             {[
-              { value: 'עברית', label: t('languages.hebrew') },
-              { value: 'רוסית', label: t('languages.russian') },
-              { value: 'אנגלית', label: t('languages.english') },
-              { value: 'צרפתית', label: t('languages.french') }
+              { value: 'hebrew', label: t('languages.hebrew') },
+              { value: 'russian', label: t('languages.russian') },
+              { value: 'english', label: t('languages.english') },
+              { value: 'french', label: t('languages.french') }
             ].map(lang => (
               <label key={lang.value} className="checkbox-item">
                 <input

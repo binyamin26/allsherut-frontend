@@ -14,16 +14,16 @@ const GasTechnicianForm = ({ serviceDetails, errors, handleServiceDetailsChange,
           <label className="auth-form-label required">{t('serviceForm.common.availabilityHours')}</label>
           <div className="checkbox-group" data-field="availability_hours">
           {[
-  { value: 'בוקר', label: t('hours.morning') },
-  { value: 'אחר הצהריים', label: t('hours.afternoon') },
-  { value: 'ערב', label: t('hours.evening') },
-  { value: 'הכל', label: t('hours.all') }
+  { value: 'morning', label: t('hours.morning') },
+  { value: 'afternoon', label: t('hours.afternoon') },
+  { value: 'evening', label: t('hours.evening') },
+  { value: 'all', label: t('hours.all') }
 ].map(hour => (
              <label key={hour.value} className="checkbox-item">
     <input
       type="checkbox"
       checked={serviceDetails.availability_hours?.includes(hour.value) || false}
-      onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'הכל', ['בוקר', 'אחר הצהריים', 'ערב'])}
+      onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'all', ['morning', 'afternoon', 'evening'])}
     />
     {hour.label}
   </label>
@@ -39,30 +39,30 @@ const GasTechnicianForm = ({ serviceDetails, errors, handleServiceDetailsChange,
             <label className="checkbox-item" style={{fontWeight: 'bold'}}>
               <input
                 type="checkbox"
-                checked={serviceDetails.work_types?.includes('התקנת צנרת גז בבית') || false}
+                checked={serviceDetails.work_types?.includes('pipeInstallation') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
                   const newTypes = e.target.checked 
-                    ? [...current, 'התקנת צנרת גז בבית']
-                    : current.filter(t => t !== 'התקנת צנרת גז בבית');
+                    ? [...current, 'pipeInstallation']
+                    : current.filter(t => t !== 'pipeInstallation');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
              {t('serviceForm.gas.installation')}
             </label>
             
-            {serviceDetails.work_types?.includes('התקנת צנרת גז בבית') && (
+            {serviceDetails.work_types?.includes('pipeInstallation') && (
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="installation_types">
                  {[
-  { value: 'הזזת\\התקנת נקודת גז', label: t('filters.gas.gasPointInstall') },
-  { value: 'התקנת כיריים גז', label: t('filters.gas.stovetopInstall') },
-  { value: 'התקנת צינור גז', label: t('filters.gas.pipeInstall') },
-  { value: 'התקנת גריל גז', label: t('filters.gas.grillInstall') },
-  { value: 'התקנת חימום מים בגז', label: t('filters.gas.waterHeaterInstall') },
-  { value: 'התקנת חגז', label: t('filters.gas.hagaz') },
-  { value: 'בניית תשתית גז במבנה חדש', label: t('filters.gas.newBuildingInfra') },
-  { value: 'שירותי גז לעסקים', label: t('filters.gas.businessServices') }
+  { value: 'gasPointInstall', label: t('filters.gas.gasPointInstall') },
+  { value: 'stovetopInstall', label: t('filters.gas.stovetopInstall') },
+  { value: 'pipeInstall', label: t('filters.gas.pipeInstall') },
+  { value: 'grillInstall', label: t('filters.gas.grillInstall') },
+  { value: 'waterHeaterInstall', label: t('filters.gas.waterHeaterInstall') },
+  { value: 'hagaz', label: t('filters.gas.hagaz') },
+  { value: 'newBuildingInfra', label: t('filters.gas.newBuildingInfra') },
+  { value: 'businessServices', label: t('filters.gas.businessServices') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
@@ -89,24 +89,24 @@ const GasTechnicianForm = ({ serviceDetails, errors, handleServiceDetailsChange,
             <label className="checkbox-item" style={{fontWeight: 'bold'}}>
               <input
                 type="checkbox"
-                checked={serviceDetails.work_types?.includes('תיקוני גז בבית') || false}
+                checked={serviceDetails.work_types?.includes('repairs') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
                   const newTypes = e.target.checked 
-                    ? [...current, 'תיקוני גז בבית']
-                    : current.filter(t => t !== 'תיקוני גז בבית');
+                    ? [...current, 'repairs']
+                    : current.filter(t => t !== 'repairs');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
             {t('serviceForm.gas.repairs')}
             </label>
             
-            {serviceDetails.work_types?.includes('תיקוני גז בבית') && (
+            {serviceDetails.work_types?.includes('repairs') && (
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="repair_types">
                  {[
-  { value: 'תיקון כיריים גז', label: t('filters.gas.stovetopRepair') },
-  { value: 'תיקון צנרת גז', label: t('filters.gas.pipeRepair') }
+  { value: 'stovetopRepair', label: t('filters.gas.stovetopRepair') },
+  { value: 'pipeRepair', label: t('filters.gas.pipeRepair') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
@@ -136,8 +136,8 @@ const GasTechnicianForm = ({ serviceDetails, errors, handleServiceDetailsChange,
           <label className="auth-form-label required">{t('serviceForm.gas.licenseType')}</label>
           <div className="checkbox-group" data-field="license_type">
             {[
-              { value: 'רמה 1', label: t('serviceForm.gas.licenseLevel1') },
-              { value: 'רמה 2', label: t('serviceForm.gas.licenseLevel2') }
+              { value: 'licenseLevel1', label: t('serviceForm.gas.licenseLevel1') },
+              { value: 'licenseLevel2', label: t('serviceForm.gas.licenseLevel2') }
             ].map(level => (
               <label key={level.value} className="checkbox-item">
                 <input
@@ -177,10 +177,10 @@ const GasTechnicianForm = ({ serviceDetails, errors, handleServiceDetailsChange,
           <label className="auth-form-label required">{t('filters.common.languages')}</label>
           <div className="checkbox-group" data-field="languages">
             {[
-              { value: 'עברית', label: t('languages.hebrew') },
-              { value: 'רוסית', label: t('languages.russian') },
-              { value: 'אנגלית', label: t('languages.english') },
-              { value: 'צרפתית', label: t('languages.french') }
+              { value: 'hebrew', label: t('languages.hebrew') },
+              { value: 'russian', label: t('languages.russian') },
+              { value: 'english', label: t('languages.english') },
+              { value: 'french', label: t('languages.french') }
             ].map(lang => (
               <label key={lang.value} className="checkbox-item">
                 <input

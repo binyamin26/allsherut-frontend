@@ -568,10 +568,10 @@ if (field.type === 'select') {
     if (field.type === 'json-array' || field.type === 'checkbox') {
       // ✅ Définir les options "tout sélectionner" pour chaque champ
       const selectAllOptions = {
-        'availability_days': 'כל השבוע',
-        'availability_hours': 'הכל',
-        'availableDays': 'כל השבוע',
-        'availableHours': 'הכל'
+        'availability_days': 'allWeek',
+        'availability_hours': 'all',
+        'availableDays': 'allWeek',
+        'availableHours': 'all'
       };
       
       const selectAllOption = selectAllOptions[field.name]

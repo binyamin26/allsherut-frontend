@@ -33,12 +33,12 @@ const PetcareForm = ({ serviceDetails, errors, handleServiceDetailsChange, handl
       <label className="auth-form-label required">{t('serviceForm.petcare.animalTypes')}</label>
 <div className="checkbox-group" data-field="animalTypes">
   {[
-    { value: 'כלבים', label: t('filters.petcare.dogs') },
-    { value: 'חתולים', label: t('filters.petcare.cats') },
-    { value: 'ציפורים', label: t('filters.petcare.birds') },
-    { value: 'מכרסמים קטנים', label: t('filters.petcare.smallRodents') },
-    { value: 'דגים', label: t('filters.petcare.fish') },
-    { value: 'זוחלים', label: t('filters.petcare.reptiles') }
+    { value: 'dogs', label: t('filters.petcare.dogs') },
+    { value: 'cats', label: t('filters.petcare.cats') },
+    { value: 'birds', label: t('filters.petcare.birds') },
+    { value: 'smallRodents', label: t('filters.petcare.smallRodents') },
+    { value: 'fish', label: t('filters.petcare.fish') },
+    { value: 'reptiles', label: t('filters.petcare.reptiles') }
   ].map(animal => (
     <label key={animal.value} className="checkbox-item">
       <input
@@ -58,15 +58,15 @@ const PetcareForm = ({ serviceDetails, errors, handleServiceDetailsChange, handl
 </div>
           {errors['serviceDetails.animalTypes'] && <span className="error-text">{errors['serviceDetails.animalTypes']}</span>}
         </div>
-{serviceDetails.animalTypes?.includes('כלבים') && (
+{serviceDetails.animalTypes?.includes('dogs') && (
   <div className="input-group">
     <label className="auth-form-label required">{t('serviceForm.petcare.dogSizes')}</label>
     <div className="checkbox-group" data-field="dogSizes">
       {[
-        { size: 'קטן', weight: 'עד 10 ק״ג', label: t('filters.petcare.smallDog') },
-        { size: 'בינוני', weight: '10–25 ק״ג', label: t('filters.petcare.mediumDog') },
-        { size: 'גדול', weight: '25–40 ק״ג', label: t('filters.petcare.largeDog') },
-        { size: 'ענק', weight: 'מעל 40 ק״ג', label: t('filters.petcare.giantDog') }
+        { size: 'smallDog', weight: 'עד 10 ק״ג', label: t('filters.petcare.smallDog') },
+        { size: 'mediumDog', weight: '10–25 ק״ג', label: t('filters.petcare.mediumDog') },
+        { size: 'largeDog', weight: '25–40 ק״ג', label: t('filters.petcare.largeDog') },
+        { size: 'giantDog', weight: 'מעל 40 ק״ג', label: t('filters.petcare.giantDog') }
       ].map(({ size, weight, label }) => (
         <label key={size} className="checkbox-item">
           <input
@@ -97,9 +97,9 @@ const PetcareForm = ({ serviceDetails, errors, handleServiceDetailsChange, handl
   placeholder={t('serviceForm.petcare.selectLocation')}
   error={errors['serviceDetails.location']}
   options={[
-    { value: 'בבית הלקוח', label: t('filters.petcare.clientHome') },
+    { value: 'clientHome', label: t('filters.petcare.clientHome') },
     { value: 'בבית המטפל', label: t('filters.petcare.caregiverHome') },
-    { value: 'שניהם', label: t('filters.common.both') }
+    { value: 'both', label: t('filters.common.both') }
   ]}
 />
           {errors['serviceDetails.location'] && <span className="error-text">{errors['serviceDetails.location']}</span>}
@@ -110,13 +110,13 @@ const PetcareForm = ({ serviceDetails, errors, handleServiceDetailsChange, handl
   <label className="auth-form-label required">{t('serviceForm.common.availabilityDays')}</label>
   <div className="checkbox-group" data-field="availability_days">
     {[
-      { value: 'ראשון', label: t('days.sunday') },
-      { value: 'שני', label: t('days.monday') },
-      { value: 'שלישי', label: t('days.tuesday') },
-      { value: 'רביעי', label: t('days.wednesday') },
-      { value: 'חמישי', label: t('days.thursday') },
-      { value: 'שישי', label: t('days.friday') },
-      { value: 'שבת', label: t('days.saturday') }
+      { value: 'sunday', label: t('days.sunday') },
+      { value: 'monday', label: t('days.monday') },
+      { value: 'tuesday', label: t('days.tuesday') },
+      { value: 'wednesday', label: t('days.wednesday') },
+      { value: 'thursday', label: t('days.thursday') },
+      { value: 'friday', label: t('days.friday') },
+      { value: 'saturday', label: t('days.saturday') }
     ].map(day => (
       <label key={day.value} className="checkbox-item">
         <input
@@ -142,11 +142,11 @@ const PetcareForm = ({ serviceDetails, errors, handleServiceDetailsChange, handl
   <label className="auth-form-label required">{t('serviceForm.common.availabilityHours')}</label>
   <div className="checkbox-group" data-field="availability_hours">
     {[
-      { value: 'בוקר', label: t('hours.morning') },
-      { value: 'צהריים', label: t('hours.noon') },
-      { value: 'אחר הצהריים', label: t('hours.afternoon') },
-      { value: 'ערב', label: t('hours.evening') },
-      { value: 'לילה', label: t('hours.night') }
+      { value: 'morning', label: t('hours.morning') },
+      { value: 'noon', label: t('hours.noon') },
+      { value: 'afternoon', label: t('hours.afternoon') },
+      { value: 'evening', label: t('hours.evening') },
+      { value: 'night', label: t('hours.night') }
     ].map(hour => (
       <label key={hour.value} className="checkbox-item">
         <input
@@ -186,10 +186,10 @@ const PetcareForm = ({ serviceDetails, errors, handleServiceDetailsChange, handl
           <label className="auth-form-label required">{t('filters.common.languages')}</label>
           <div className="checkbox-group" data-field="languages">
             {[
-              { value: 'עברית', label: t('languages.hebrew') },
-              { value: 'רוסית', label: t('languages.russian') },
-              { value: 'אנגלית', label: t('languages.english') },
-              { value: 'צרפתית', label: t('languages.french') }
+              { value: 'hebrew', label: t('languages.hebrew') },
+              { value: 'russian', label: t('languages.russian') },
+              { value: 'english', label: t('languages.english') },
+              { value: 'french', label: t('languages.french') }
             ].map(lang => (
               <label key={lang.value} className="checkbox-item">
                 <input
@@ -218,15 +218,15 @@ const PetcareForm = ({ serviceDetails, errors, handleServiceDetailsChange, handl
          <label>{t('serviceForm.petcare.additionalServices')}</label>
 <div className="checkbox-group">
   {[
-    { value: 'הליכת כלבים', label: t('filters.petcare.dogWalking') },
-    { value: 'רחצה וטיפוח', label: t('filters.petcare.bathingGrooming') },
-    { value: 'אילוף בסיסי', label: t('filters.petcare.basicTraining') },
-    { value: 'מתן תרופות', label: t('filters.petcare.medicationAdmin') },
-    { value: 'האכלה בזמן השמירה', label: t('filters.petcare.feeding') },
-    { value: 'ניקוי ארגז חול / כלוב / אקווריום', label: t('filters.petcare.cleaning') },
-    { value: 'עדכון תמונות לבעלים', label: t('filters.petcare.photoUpdates') },
-    { value: 'שהייה ביום בלבד', label: t('filters.petcare.daytimeOnly') },
-    { value: 'לינה ללילה', label: t('filters.petcare.overnight') }
+    { value: 'dogWalking', label: t('filters.petcare.dogWalking') },
+    { value: 'bathingGrooming', label: t('filters.petcare.bathingGrooming') },
+    { value: 'basicTraining', label: t('filters.petcare.basicTraining') },
+    { value: 'medication', label: t('filters.petcare.medicationAdmin') },
+    { value: 'feeding', label: t('filters.petcare.feeding') },
+    { value: 'cleaning', label: t('filters.petcare.cleaning') },
+    { value: 'photoUpdates', label: t('filters.petcare.photoUpdates') },
+    { value: 'daytimeOnly', label: t('filters.petcare.daytimeOnly') },
+    { value: 'overnight', label: t('filters.petcare.overnight') }
   ].map(service => (
     <label key={service.value} className="checkbox-item">
       <input
@@ -250,9 +250,9 @@ const PetcareForm = ({ serviceDetails, errors, handleServiceDetailsChange, handl
          <label>{t('serviceForm.petcare.facilities')}</label>
 <div className="checkbox-group">
   {[
-    { value: 'גינה מגודרת', label: t('filters.petcare.fencedGarden') },
-    { value: 'חצר גדולה', label: t('filters.petcare.largeYard') },
-    { value: 'מזגן', label: t('filters.petcare.airConditioning') }
+    { value: 'fencedGarden', label: t('filters.petcare.fencedGarden') },
+    { value: 'largeYard', label: t('filters.petcare.largeYard') },
+    { value: 'airConditioning', label: t('filters.petcare.airConditioning') }
   ].map(facility => (
     <label key={facility.value} className="checkbox-item">
       <input
@@ -276,8 +276,8 @@ const PetcareForm = ({ serviceDetails, errors, handleServiceDetailsChange, handl
         <label>{t('serviceForm.petcare.veterinaryServices')}</label>
 <div className="checkbox-group">
   {[
-    { value: 'ביקור וטרינר', label: t('filters.petcare.vetVisit') },
-    { value: 'טיפול בסיסי', label: t('filters.petcare.basicCare') }
+    { value: 'vetVisit', label: t('filters.petcare.vetVisit') },
+    { value: 'basicCare', label: t('filters.petcare.basicCare') }
   ].map(service => (
     <label key={service.value} className="checkbox-item">
       <input

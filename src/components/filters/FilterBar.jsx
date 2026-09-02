@@ -271,10 +271,10 @@ const LanguagePanel = ({ selected = [], onChange }) => {
   const { t } = useLanguage();
 
   const options = [
-    { value: 'עברית', key: 'languages.hebrew' },
-    { value: 'צרפתית', key: 'languages.french' },
-    { value: 'רוסית', key: 'languages.russian' },
-    { value: 'אנגלית', key: 'languages.english' }
+    { value: 'hebrew', key: 'languages.hebrew' },
+    { value: 'french', key: 'languages.french' },
+    { value: 'russian', key: 'languages.russian' },
+    { value: 'english', key: 'languages.english' }
   ];
 
   const toggle = (value) => {
@@ -1320,9 +1320,9 @@ const TechnicalServiceFilters = ({
 const ElectricianFilters = (props) => {
   const config = FILTER_CONFIG.electrician;
   const filterMappings = {
-    'תיקונים': { title: config.sectionTitles.repairTypes, filterKey: 'repair_types', options: config.repairTypes },
-    'התקנות': { title: config.sectionTitles.installationTypes, filterKey: 'installation_types', options: config.installationTypes },
-    'עבודות חשמל גדולות': { title: config.sectionTitles.largeWorkTypes, filterKey: 'large_work_types', options: config.largeWorkTypes }
+    'repairs': { title: config.sectionTitles.repairTypes, filterKey: 'repair_types', options: config.repairTypes },
+    'installations': { title: config.sectionTitles.installationTypes, filterKey: 'installation_types', options: config.installationTypes },
+    'largeElectricalWork': { title: config.sectionTitles.largeWorkTypes, filterKey: 'large_work_types', options: config.largeWorkTypes }
   };
   return <TechnicalServiceFilters {...props} serviceConfig={config} filterMappings={filterMappings} />;
 };
@@ -1330,10 +1330,10 @@ const ElectricianFilters = (props) => {
 const PlumbingFilters = (props) => {
   const config = FILTER_CONFIG.plumbing;
   const filterMappings = {
-    'סתימות': { title: config.sectionTitles.blockageTypes, filterKey: 'blockage_types', options: config.blockageTypes },
-    'תיקון צנרת': { title: config.sectionTitles.pipeRepairTypes, filterKey: 'pipe_repair_types', options: config.pipeRepairTypes },
-    'עבודות גדולות': { title: config.sectionTitles.largeWorkTypes, filterKey: 'large_work_types', options: config.largeWorkTypes },
-    'תיקון והתקנת אביזרי אינסטלציה': { title: config.sectionTitles.fixtureTypes, filterKey: 'fixture_types', options: config.fixtureTypes }
+    'blockages': { title: config.sectionTitles.blockageTypes, filterKey: 'blockage_types', options: config.blockageTypes },
+    'pipeRepair': { title: config.sectionTitles.pipeRepairTypes, filterKey: 'pipe_repair_types', options: config.pipeRepairTypes },
+    'largeWork': { title: config.sectionTitles.largeWorkTypes, filterKey: 'large_work_types', options: config.largeWorkTypes },
+    'fixtureRepair': { title: config.sectionTitles.fixtureTypes, filterKey: 'fixture_types', options: config.fixtureTypes }
   };
   return <TechnicalServiceFilters {...props} serviceConfig={config} filterMappings={filterMappings} />;
 };
@@ -1341,9 +1341,9 @@ const PlumbingFilters = (props) => {
 const AirConditioningFilters = (props) => {
   const config = FILTER_CONFIG.air_conditioning;
   const filterMappings = {
-    'התקנת מזגנים': { title: config.sectionTitles.installationTypes, filterKey: 'installation_types', options: config.installationTypes },
-    'תיקון מזגנים': { title: config.sectionTitles.repairTypes, filterKey: 'repair_types', options: config.repairTypes },
-    'פירוק והרכבת מזגנים': { title: config.sectionTitles.disassemblyTypes, filterKey: 'disassembly_types', options: config.disassemblyTypes }
+    'installation': { title: config.sectionTitles.installationTypes, filterKey: 'installation_types', options: config.installationTypes },
+    'repair': { title: config.sectionTitles.repairTypes, filterKey: 'repair_types', options: config.repairTypes },
+    'disassembly': { title: config.sectionTitles.disassemblyTypes, filterKey: 'disassembly_types', options: config.disassemblyTypes }
   };
   return <TechnicalServiceFilters {...props} serviceConfig={config} filterMappings={filterMappings} />;
 };
@@ -1352,8 +1352,8 @@ const GasTechnicianFilters = (props) => {
   const { t } = useLanguage();
   const config = FILTER_CONFIG.gas_technician;
   const filterMappings = {
-    'התקנת צנרת גז בבית': { title: config.sectionTitles.installationTypes, filterKey: 'installation_types', options: config.installationTypes },
-    'תיקוני גז בבית': { title: config.sectionTitles.repairTypes, filterKey: 'repair_types', options: config.repairTypes }
+    'pipeInstallation': { title: config.sectionTitles.installationTypes, filterKey: 'installation_types', options: config.installationTypes },
+    'repairs': { title: config.sectionTitles.repairTypes, filterKey: 'repair_types', options: config.repairTypes }
   };
   return (
     <>
@@ -1372,8 +1372,8 @@ const GasTechnicianFilters = (props) => {
 const DrywallFilters = (props) => {
   const config = FILTER_CONFIG.drywall;
   const filterMappings = {
-    'עיצובים בגבס': { title: config.sectionTitles.designTypes, filterKey: 'design_types', options: config.designTypes },
-    'עבודות גבס': { title: config.sectionTitles.constructionTypes, filterKey: 'construction_types', options: config.constructionTypes }
+    'design': { title: config.sectionTitles.designTypes, filterKey: 'design_types', options: config.designTypes },
+    'drywallWork': { title: config.sectionTitles.constructionTypes, filterKey: 'construction_types', options: config.constructionTypes }
   };
   return <TechnicalServiceFilters {...props} serviceConfig={config} filterMappings={filterMappings} />;
 };
@@ -1394,13 +1394,13 @@ const CarpentryFilters = ({ filters, handleFilterChange, handleCheckboxChange, h
           <label className="checkbox-option" style={{ fontWeight: '600' }}>
             <input
               type="checkbox"
-              checked={filters.work_types?.includes('בניית רהיטים') || false}
-              onChange={(e) => handleCheckboxChange('work_types', 'בניית רהיטים', e.target.checked)}
+              checked={filters.work_types?.includes('furnitureBuilding') || false}
+              onChange={(e) => handleCheckboxChange('work_types', 'furnitureBuilding', e.target.checked)}
             />
             {t('filters.carpentry.furnitureBuilding')}
           </label>
           
-          {filters.work_types?.includes('בניית רהיטים') && (
+          {filters.work_types?.includes('furnitureBuilding') && (
             <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
               {config.furnitureBuildingTypes.map(opt => (
                 <label key={opt.value} className="checkbox-option">
@@ -1421,13 +1421,13 @@ const CarpentryFilters = ({ filters, handleFilterChange, handleCheckboxChange, h
           <label className="checkbox-option" style={{ fontWeight: '600' }}>
             <input
               type="checkbox"
-              checked={filters.work_types?.includes('תיקון רהיטים') || false}
-              onChange={(e) => handleCheckboxChange('work_types', 'תיקון רהיטים', e.target.checked)}
+              checked={filters.work_types?.includes('furnitureRepair') || false}
+              onChange={(e) => handleCheckboxChange('work_types', 'furnitureRepair', e.target.checked)}
             />
             {t('filters.carpentry.furnitureRepair')}
           </label>
           
-          {filters.work_types?.includes('תיקון רהיטים') && (
+          {filters.work_types?.includes('furnitureRepair') && (
             <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
               {config.furnitureRepairTypes.map(opt => (
                 <label key={opt.value} className="checkbox-option">
@@ -1448,13 +1448,13 @@ const CarpentryFilters = ({ filters, handleFilterChange, handleCheckboxChange, h
           <label className="checkbox-option" style={{ fontWeight: '600' }}>
             <input
               type="checkbox"
-              checked={filters.work_types?.includes('עבודות נגרות אחרות') || false}
-              onChange={(e) => handleCheckboxChange('work_types', 'עבודות נגרות אחרות', e.target.checked)}
+              checked={filters.work_types?.includes('otherWork') || false}
+              onChange={(e) => handleCheckboxChange('work_types', 'otherWork', e.target.checked)}
             />
             {t('filters.carpentry.otherWork')}
           </label>
           
-          {filters.work_types?.includes('עבודות נגרות אחרות') && (
+          {filters.work_types?.includes('otherWork') && (
             <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
               {config.otherCarpentryTypes.map(opt => (
                 <label key={opt.value} className="checkbox-option">
@@ -1475,25 +1475,25 @@ const CarpentryFilters = ({ filters, handleFilterChange, handleCheckboxChange, h
           <label className="checkbox-option" style={{ fontWeight: '600' }}>
             <input
               type="checkbox"
-              checked={filters.work_types?.includes('נגרות חוץ') || false}
-              onChange={(e) => handleCheckboxChange('work_types', 'נגרות חוץ', e.target.checked)}
+              checked={filters.work_types?.includes('outdoorCarpentry') || false}
+              onChange={(e) => handleCheckboxChange('work_types', 'outdoorCarpentry', e.target.checked)}
             />
             {t('filters.carpentry.outdoorCarpentry')}
           </label>
           
-          {filters.work_types?.includes('נגרות חוץ') && (
+          {filters.work_types?.includes('outdoorCarpentry') && (
             <div style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
               {/* פרגולות */}
               <div style={{ marginBottom: '10px' }}>
                 <label className="checkbox-option" style={{ fontWeight: '500' }}>
                   <input
                     type="checkbox"
-                    checked={filters.outdoor_carpentry_types?.includes('פרגולות') || false}
-                    onChange={(e) => handleCheckboxChange('outdoor_carpentry_types', 'פרגולות', e.target.checked)}
+                    checked={filters.outdoor_carpentry_types?.includes('pergolas') || false}
+                    onChange={(e) => handleCheckboxChange('outdoor_carpentry_types', 'pergolas', e.target.checked)}
                   />
                   {t('filters.carpentry.pergolas')}
                 </label>
-                {filters.outdoor_carpentry_types?.includes('פרגולות') && (
+                {filters.outdoor_carpentry_types?.includes('pergolas') && (
                   <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
                     {config.pergolaTypes.map(opt => (
                       <label key={opt.value} className="checkbox-option">
@@ -1514,12 +1514,12 @@ const CarpentryFilters = ({ filters, handleFilterChange, handleCheckboxChange, h
                 <label className="checkbox-option" style={{ fontWeight: '500' }}>
                   <input
                     type="checkbox"
-                    checked={filters.outdoor_carpentry_types?.includes('דקים') || false}
-                    onChange={(e) => handleCheckboxChange('outdoor_carpentry_types', 'דקים', e.target.checked)}
+                    checked={filters.outdoor_carpentry_types?.includes('decks') || false}
+                    onChange={(e) => handleCheckboxChange('outdoor_carpentry_types', 'decks', e.target.checked)}
                   />
                   {t('filters.carpentry.decks')}
                 </label>
-                {filters.outdoor_carpentry_types?.includes('דקים') && (
+                {filters.outdoor_carpentry_types?.includes('decks') && (
                   <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
                     {config.deckTypes.map(opt => (
                       <label key={opt.value} className="checkbox-option">
@@ -1540,12 +1540,12 @@ const CarpentryFilters = ({ filters, handleFilterChange, handleCheckboxChange, h
                 <label className="checkbox-option" style={{ fontWeight: '500' }}>
                   <input
                     type="checkbox"
-                    checked={filters.outdoor_carpentry_types?.includes('גדרות ומחיצות עץ') || false}
-                    onChange={(e) => handleCheckboxChange('outdoor_carpentry_types', 'גדרות ומחיצות עץ', e.target.checked)}
+                    checked={filters.outdoor_carpentry_types?.includes('fences') || false}
+                    onChange={(e) => handleCheckboxChange('outdoor_carpentry_types', 'fences', e.target.checked)}
                   />
                   {t('filters.carpentry.fences')}
                 </label>
-                {filters.outdoor_carpentry_types?.includes('גדרות ומחיצות עץ') && (
+                {filters.outdoor_carpentry_types?.includes('fences') && (
                   <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
                     {config.fenceTypes.map(opt => (
                       <label key={opt.value} className="checkbox-option">
@@ -1608,13 +1608,13 @@ const HomeOrganizationFilters = ({ filters, handleFilterChange, handleCheckboxCh
           <label className="checkbox-option" style={{ fontWeight: '600' }}>
             <input
               type="checkbox"
-              checked={filters.work_types?.includes('סידור כללי') || false}
-              onChange={(e) => handleCheckboxChange('work_types', 'סידור כללי', e.target.checked)}
+              checked={filters.work_types?.includes('general') || false}
+              onChange={(e) => handleCheckboxChange('work_types', 'general', e.target.checked)}
             />
             {t('filters.organization.general')}
           </label>
           
-          {filters.work_types?.includes('סידור כללי') && (
+          {filters.work_types?.includes('general') && (
             <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
               {config.generalOrganizationTypes.map(opt => (
                 <label key={opt.value} className="checkbox-option">
@@ -1635,13 +1635,13 @@ const HomeOrganizationFilters = ({ filters, handleFilterChange, handleCheckboxCh
           <label className="checkbox-option" style={{ fontWeight: '600' }}>
             <input
               type="checkbox"
-              checked={filters.work_types?.includes('סידור + מיון') || false}
-              onChange={(e) => handleCheckboxChange('work_types', 'סידור + מיון', e.target.checked)}
+              checked={filters.work_types?.includes('sorting') || false}
+              onChange={(e) => handleCheckboxChange('work_types', 'sorting', e.target.checked)}
             />
             {t('filters.organization.sorting')}
           </label>
           
-          {filters.work_types?.includes('סידור + מיון') && (
+          {filters.work_types?.includes('sorting') && (
             <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
               {config.sortingTypes.map(opt => (
                 <label key={opt.value} className="checkbox-option">
@@ -1662,13 +1662,13 @@ const HomeOrganizationFilters = ({ filters, handleFilterChange, handleCheckboxCh
           <label className="checkbox-option" style={{ fontWeight: '600' }}>
             <input
               type="checkbox"
-              checked={filters.work_types?.includes('ארגון מקצועי') || false}
-              onChange={(e) => handleCheckboxChange('work_types', 'ארגון מקצועי', e.target.checked)}
+              checked={filters.work_types?.includes('professional') || false}
+              onChange={(e) => handleCheckboxChange('work_types', 'professional', e.target.checked)}
             />
             {t('filters.organization.professional')}
           </label>
           
-          {filters.work_types?.includes('ארגון מקצועי') && (
+          {filters.work_types?.includes('professional') && (
             <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
               {config.professionalOrganizationTypes.map(opt => (
                 <label key={opt.value} className="checkbox-option">
@@ -1726,13 +1726,13 @@ const PrivateChefFilters = ({ filters, handleFilterChange, handleCheckboxChange,
           <label className="checkbox-option" style={{ fontWeight: '600' }}>
             <input
               type="checkbox"
-              checked={filters.work_types?.includes('סוג האירוע') || false}
-              onChange={(e) => handleCheckboxChange('work_types', 'סוג האירוע', e.target.checked)}
+              checked={filters.work_types?.includes('eventTypes') || false}
+              onChange={(e) => handleCheckboxChange('work_types', 'eventTypes', e.target.checked)}
             />
             {t(config.sectionTitles.eventType)}
           </label>
 
-          {filters.work_types?.includes('סוג האירוע') && (
+          {filters.work_types?.includes('eventTypes') && (
             <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
               {config.eventTypes.map(opt => (
                 <label key={opt.value} className="checkbox-option">
@@ -1801,15 +1801,15 @@ const PrivateChefFilters = ({ filters, handleFilterChange, handleCheckboxChange,
               <label className="checkbox-option">
                 <input
                   type="checkbox"
-                  checked={filters.kosher_types?.includes('אחר') || false}
+                  checked={filters.kosher_types?.includes('other') || false}
                   onChange={(e) => {
-                    handleCheckboxChange('kosher_types', 'אחר', e.target.checked);
+                    handleCheckboxChange('kosher_types', 'other', e.target.checked);
                     if (!e.target.checked) handleFilterChange('kosher_other', '');
                   }}
                 />
                 {t('filters.chef.otherKosher')}
               </label>
-              {filters.kosher_types?.includes('אחר') && (
+              {filters.kosher_types?.includes('other') && (
                 <input
                   type="text"
                   className="standard-input"
@@ -1844,13 +1844,13 @@ const CateringFilters = ({ filters, handleFilterChange, handleCheckboxChange, ha
           <label className="checkbox-option" style={{ fontWeight: '600' }}>
             <input
               type="checkbox"
-              checked={filters.work_types?.includes('סוג האירוע') || false}
-              onChange={(e) => handleCheckboxChange('work_types', 'סוג האירוע', e.target.checked)}
+              checked={filters.work_types?.includes('eventTypes') || false}
+              onChange={(e) => handleCheckboxChange('work_types', 'eventTypes', e.target.checked)}
             />
             {t(config.sectionTitles.eventType)}
           </label>
 
-          {filters.work_types?.includes('סוג האירוע') && (
+          {filters.work_types?.includes('eventTypes') && (
             <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
               {config.eventTypes.map(opt => (
                 <label key={opt.value} className="checkbox-option">
@@ -1919,15 +1919,15 @@ const CateringFilters = ({ filters, handleFilterChange, handleCheckboxChange, ha
               <label className="checkbox-option">
                 <input
                   type="checkbox"
-                  checked={filters.kosher_types?.includes('אחר') || false}
+                  checked={filters.kosher_types?.includes('other') || false}
                   onChange={(e) => {
-                    handleCheckboxChange('kosher_types', 'אחר', e.target.checked);
+                    handleCheckboxChange('kosher_types', 'other', e.target.checked);
                     if (!e.target.checked) handleFilterChange('kosher_other', '');
                   }}
                 />
                 {t('filters.chef.otherKosher')}
               </label>
-              {filters.kosher_types?.includes('אחר') && (
+              {filters.kosher_types?.includes('other') && (
                 <input
                   type="text"
                   className="standard-input"
@@ -1976,13 +1976,13 @@ const PastryFilters = ({ filters, handleFilterChange, handleCheckboxChange, hand
           <label className="checkbox-option" style={{ fontWeight: '600' }}>
             <input
               type="checkbox"
-              checked={filters.work_types?.includes('סוג האירוע') || false}
-              onChange={(e) => handleCheckboxChange('work_types', 'סוג האירוע', e.target.checked)}
+              checked={filters.work_types?.includes('eventTypes') || false}
+              onChange={(e) => handleCheckboxChange('work_types', 'eventTypes', e.target.checked)}
             />
             {t(config.sectionTitles.eventType)}
           </label>
 
-          {filters.work_types?.includes('סוג האירוע') && (
+          {filters.work_types?.includes('eventTypes') && (
             <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
               {config.eventTypes.map(opt => (
                 <label key={opt.value} className="checkbox-option">
@@ -2024,15 +2024,15 @@ const PastryFilters = ({ filters, handleFilterChange, handleCheckboxChange, hand
               <label className="checkbox-option">
                 <input
                   type="checkbox"
-                  checked={filters.kosher_types?.includes('אחר') || false}
+                  checked={filters.kosher_types?.includes('other') || false}
                   onChange={(e) => {
-                    handleCheckboxChange('kosher_types', 'אחר', e.target.checked);
+                    handleCheckboxChange('kosher_types', 'other', e.target.checked);
                     if (!e.target.checked) handleFilterChange('kosher_other', '');
                   }}
                 />
                 {t('filters.chef.otherKosher')}
               </label>
-              {filters.kosher_types?.includes('אחר') && (
+              {filters.kosher_types?.includes('other') && (
                 <input
                   type="text"
                   className="standard-input"
@@ -2094,12 +2094,12 @@ const EventEquipmentRentalFilters = ({ filters, handleFilterChange, handleCheckb
           <label className="checkbox-option" style={{ fontWeight: '600' }}>
             <input
               type="checkbox"
-              checked={filters.equipment_rental_types?.includes('🍿 מכונות מזון') || false}
-              onChange={(e) => handleCheckboxChange('equipment_rental_types', '🍿 מכונות מזון', e.target.checked)}
+              checked={filters.equipment_rental_types?.includes('foodMachines') || false}
+              onChange={(e) => handleCheckboxChange('equipment_rental_types', 'foodMachines', e.target.checked)}
             />
             {t('filters.events.foodMachines')}
           </label>
-          {filters.equipment_rental_types?.includes('🍿 מכונות מזון') && (
+          {filters.equipment_rental_types?.includes('foodMachines') && (
             <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
               {config.foodMachineTypes.map(opt => (
                 <label key={opt.value} className="checkbox-option">
@@ -2120,12 +2120,12 @@ const EventEquipmentRentalFilters = ({ filters, handleFilterChange, handleCheckb
           <label className="checkbox-option" style={{ fontWeight: '600' }}>
             <input
               type="checkbox"
-              checked={filters.equipment_rental_types?.includes('🎪 השכרת מתנפחים ומשחקים') || false}
-              onChange={(e) => handleCheckboxChange('equipment_rental_types', '🎪 השכרת מתנפחים ומשחקים', e.target.checked)}
+              checked={filters.equipment_rental_types?.includes('inflatables') || false}
+              onChange={(e) => handleCheckboxChange('equipment_rental_types', 'inflatables', e.target.checked)}
             />
             {t('filters.events.inflatables')}
           </label>
-          {filters.equipment_rental_types?.includes('🎪 השכרת מתנפחים ומשחקים') && (
+          {filters.equipment_rental_types?.includes('inflatables') && (
             <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
               {config.inflatableGameTypes.map(opt => (
                 <label key={opt.value} className="checkbox-option">
@@ -2146,12 +2146,12 @@ const EventEquipmentRentalFilters = ({ filters, handleFilterChange, handleCheckb
           <label className="checkbox-option" style={{ fontWeight: '600' }}>
             <input
               type="checkbox"
-              checked={filters.equipment_rental_types?.includes('💨 מכונות אפקטים להשכרה') || false}
-              onChange={(e) => handleCheckboxChange('equipment_rental_types', '💨 מכונות אפקטים להשכרה', e.target.checked)}
+              checked={filters.equipment_rental_types?.includes('effectMachines') || false}
+              onChange={(e) => handleCheckboxChange('equipment_rental_types', 'effectMachines', e.target.checked)}
             />
             {t('filters.events.effectMachines')}
           </label>
-          {filters.equipment_rental_types?.includes('💨 מכונות אפקטים להשכרה') && (
+          {filters.equipment_rental_types?.includes('effectMachines') && (
             <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
               {config.effectMachineTypes.map(opt => (
                 <label key={opt.value} className="checkbox-option">
@@ -2208,13 +2208,13 @@ const AluminumFilters = ({ filters, handleFilterChange, handleCheckboxChange, ha
           <label className="checkbox-option" style={{ fontWeight: '600' }}>
             <input
               type="checkbox"
-              checked={filters.work_types?.includes('חלונות ודלתות') || false}
-              onChange={(e) => handleCheckboxChange('work_types', 'חלונות ודלתות', e.target.checked)}
+              checked={filters.work_types?.includes('windowsDoors') || false}
+              onChange={(e) => handleCheckboxChange('work_types', 'windowsDoors', e.target.checked)}
             />
             {t('filters.aluminum.windowsDoors')}
           </label>
           
-          {filters.work_types?.includes('חלונות ודלתות') && (
+          {filters.work_types?.includes('windowsDoors') && (
             <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
               {config.windowsDoorsTypes.map(opt => (
                 <label key={opt.value} className="checkbox-option">
@@ -2235,13 +2235,13 @@ const AluminumFilters = ({ filters, handleFilterChange, handleCheckboxChange, ha
           <label className="checkbox-option" style={{ fontWeight: '600' }}>
             <input
               type="checkbox"
-              checked={filters.work_types?.includes('פרגולות ואלומיניום חוץ') || false}
-              onChange={(e) => handleCheckboxChange('work_types', 'פרגולות ואלומיניום חוץ', e.target.checked)}
+              checked={filters.work_types?.includes('pergolas') || false}
+              onChange={(e) => handleCheckboxChange('work_types', 'pergolas', e.target.checked)}
             />
             {t('filters.aluminum.pergolas')}
           </label>
           
-          {filters.work_types?.includes('פרגולות ואלומיניום חוץ') && (
+          {filters.work_types?.includes('pergolas') && (
             <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
               {config.pergolasOutdoorTypes.map(opt => (
                 <label key={opt.value} className="checkbox-option">
@@ -2262,13 +2262,13 @@ const AluminumFilters = ({ filters, handleFilterChange, handleCheckboxChange, ha
           <label className="checkbox-option" style={{ fontWeight: '600' }}>
             <input
               type="checkbox"
-              checked={filters.work_types?.includes('תיקונים ושירות') || false}
-              onChange={(e) => handleCheckboxChange('work_types', 'תיקונים ושירות', e.target.checked)}
+              checked={filters.work_types?.includes('repairs') || false}
+              onChange={(e) => handleCheckboxChange('work_types', 'repairs', e.target.checked)}
             />
             {t('filters.aluminum.repairs')}
           </label>
           
-          {filters.work_types?.includes('תיקונים ושירות') && (
+          {filters.work_types?.includes('repairs') && (
             <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
               {config.repairsServiceTypes.map(opt => (
                 <label key={opt.value} className="checkbox-option">
@@ -2289,13 +2289,13 @@ const AluminumFilters = ({ filters, handleFilterChange, handleCheckboxChange, ha
           <label className="checkbox-option" style={{ fontWeight: '600' }}>
             <input
               type="checkbox"
-              checked={filters.work_types?.includes('חיפויי אלומיניום') || false}
-              onChange={(e) => handleCheckboxChange('work_types', 'חיפויי אלומיניום', e.target.checked)}
+              checked={filters.work_types?.includes('cladding') || false}
+              onChange={(e) => handleCheckboxChange('work_types', 'cladding', e.target.checked)}
             />
             {t('filters.aluminum.cladding')}
           </label>
           
-          {filters.work_types?.includes('חיפויי אלומיניום') && (
+          {filters.work_types?.includes('cladding') && (
             <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
               {config.claddingTypes.map(opt => (
                 <label key={opt.value} className="checkbox-option">
@@ -2332,13 +2332,13 @@ const ContractorFilters = ({ filters, handleFilterChange, handleCheckboxChange, 
           <label className="checkbox-option" style={{ fontWeight: '600' }}>
             <input
               type="checkbox"
-              checked={filters.work_types?.includes('עבודות שלד') || false}
-              onChange={(e) => handleCheckboxChange('work_types', 'עבודות שלד', e.target.checked)}
+              checked={filters.work_types?.includes('structureWork') || false}
+              onChange={(e) => handleCheckboxChange('work_types', 'structureWork', e.target.checked)}
             />
             {t('filters.contractor.structureWork')}
           </label>
           
-          {filters.work_types?.includes('עבודות שלד') && (
+          {filters.work_types?.includes('structureWork') && (
             <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
               {config.structureWorkTypes.map(opt => (
                 <label key={opt.value} className="checkbox-option">
@@ -2359,13 +2359,13 @@ const ContractorFilters = ({ filters, handleFilterChange, handleCheckboxChange, 
           <label className="checkbox-option" style={{ fontWeight: '600' }}>
             <input
               type="checkbox"
-              checked={filters.work_types?.includes('שיפוצים כלליים') || false}
-              onChange={(e) => handleCheckboxChange('work_types', 'שיפוצים כלליים', e.target.checked)}
+              checked={filters.work_types?.includes('generalRenovation') || false}
+              onChange={(e) => handleCheckboxChange('work_types', 'generalRenovation', e.target.checked)}
             />
             {t('filters.contractor.generalRenovation')}
           </label>
           
-          {filters.work_types?.includes('שיפוצים כלליים') && (
+          {filters.work_types?.includes('generalRenovation') && (
             <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
               {config.generalRenovationTypes.map(opt => (
                 <label key={opt.value} className="checkbox-option">
@@ -2386,13 +2386,13 @@ const ContractorFilters = ({ filters, handleFilterChange, handleCheckboxChange, 
           <label className="checkbox-option" style={{ fontWeight: '600' }}>
             <input
               type="checkbox"
-              checked={filters.work_types?.includes('חשמל ואינסטלציה') || false}
-              onChange={(e) => handleCheckboxChange('work_types', 'חשמל ואינסטלציה', e.target.checked)}
+              checked={filters.work_types?.includes('electricPlumbing') || false}
+              onChange={(e) => handleCheckboxChange('work_types', 'electricPlumbing', e.target.checked)}
             />
             {t('filters.contractor.electricPlumbing')}
           </label>
           
-          {filters.work_types?.includes('חשמל ואינסטלציה') && (
+          {filters.work_types?.includes('electricPlumbing') && (
             <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
               {config.electricPlumbingTypes.map(opt => (
                 <label key={opt.value} className="checkbox-option">
@@ -2413,13 +2413,13 @@ const ContractorFilters = ({ filters, handleFilterChange, handleCheckboxChange, 
           <label className="checkbox-option" style={{ fontWeight: '600' }}>
             <input
               type="checkbox"
-              checked={filters.work_types?.includes('עבודות חוץ') || false}
-              onChange={(e) => handleCheckboxChange('work_types', 'עבודות חוץ', e.target.checked)}
+              checked={filters.work_types?.includes('exteriorWork') || false}
+              onChange={(e) => handleCheckboxChange('work_types', 'exteriorWork', e.target.checked)}
             />
             {t('filters.contractor.exteriorWork')}
           </label>
           
-          {filters.work_types?.includes('עבודות חוץ') && (
+          {filters.work_types?.includes('exteriorWork') && (
             <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
               {config.exteriorWorkTypes.map(opt => (
                 <label key={opt.value} className="checkbox-option">
@@ -2440,13 +2440,13 @@ const ContractorFilters = ({ filters, handleFilterChange, handleCheckboxChange, 
           <label className="checkbox-option" style={{ fontWeight: '600' }}>
             <input
               type="checkbox"
-              checked={filters.work_types?.includes('שיקום ותיקון חוץ') || false}
-              onChange={(e) => handleCheckboxChange('work_types', 'שיקום ותיקון חוץ', e.target.checked)}
+              checked={filters.work_types?.includes('facadeRepair') || false}
+              onChange={(e) => handleCheckboxChange('work_types', 'facadeRepair', e.target.checked)}
             />
             {t('filters.contractor.facadeRepair')}
           </label>
           
-          {filters.work_types?.includes('שיקום ותיקון חוץ') && (
+          {filters.work_types?.includes('facadeRepair') && (
             <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
               {config.facadeRepairTypes.map(opt => (
                 <label key={opt.value} className="checkbox-option">
@@ -2483,13 +2483,13 @@ const GlassWorksFilters = ({ filters, handleFilterChange, handleCheckboxChange, 
           <label className="checkbox-option" style={{ fontWeight: '600' }}>
             <input
               type="checkbox"
-              checked={filters.work_types?.includes('זכוכית למקלחונים') || false}
-              onChange={(e) => handleCheckboxChange('work_types', 'זכוכית למקלחונים', e.target.checked)}
+              checked={filters.work_types?.includes('showers') || false}
+              onChange={(e) => handleCheckboxChange('work_types', 'showers', e.target.checked)}
             />
             {t('filters.glass.showers')}
           </label>
           
-          {filters.work_types?.includes('זכוכית למקלחונים') && (
+          {filters.work_types?.includes('showers') && (
             <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
               {config.showerGlassTypes.map(opt => (
                 <label key={opt.value} className="checkbox-option">
@@ -2510,13 +2510,13 @@ const GlassWorksFilters = ({ filters, handleFilterChange, handleCheckboxChange, 
           <label className="checkbox-option" style={{ fontWeight: '600' }}>
             <input
               type="checkbox"
-              checked={filters.work_types?.includes('זכוכית לחלונות ודלתות') || false}
-              onChange={(e) => handleCheckboxChange('work_types', 'זכוכית לחלונות ודלתות', e.target.checked)}
+              checked={filters.work_types?.includes('homeGlass') || false}
+              onChange={(e) => handleCheckboxChange('work_types', 'homeGlass', e.target.checked)}
             />
             {t('filters.glass.homeGlass')}
           </label>
           
-          {filters.work_types?.includes('זכוכית לחלונות ודלתות') && (
+          {filters.work_types?.includes('homeGlass') && (
             <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
               {config.windowsDoorGlassTypes.map(opt => (
                 <label key={opt.value} className="checkbox-option">
@@ -2537,13 +2537,13 @@ const GlassWorksFilters = ({ filters, handleFilterChange, handleCheckboxChange, 
           <label className="checkbox-option" style={{ fontWeight: '600' }}>
             <input
               type="checkbox"
-              checked={filters.work_types?.includes('זכוכית למטבח ובית') || false}
-              onChange={(e) => handleCheckboxChange('work_types', 'זכוכית למטבח ובית', e.target.checked)}
+              checked={filters.work_types?.includes('furniture') || false}
+              onChange={(e) => handleCheckboxChange('work_types', 'furniture', e.target.checked)}
             />
             {t('filters.glass.furniture')}
           </label>
           
-          {filters.work_types?.includes('זכוכית למטבח ובית') && (
+          {filters.work_types?.includes('furniture') && (
             <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
               {config.kitchenHomeGlassTypes.map(opt => (
                 <label key={opt.value} className="checkbox-option">
@@ -2564,13 +2564,13 @@ const GlassWorksFilters = ({ filters, handleFilterChange, handleCheckboxChange, 
           <label className="checkbox-option" style={{ fontWeight: '600' }}>
             <input
               type="checkbox"
-              checked={filters.work_types?.includes('זכוכית מיוחדת ובטיחות') || false}
-              onChange={(e) => handleCheckboxChange('work_types', 'זכוכית מיוחדת ובטיחות', e.target.checked)}
+              checked={filters.work_types?.includes('partitions') || false}
+              onChange={(e) => handleCheckboxChange('work_types', 'partitions', e.target.checked)}
             />
             {t('filters.glass.partitions')}
           </label>
           
-          {filters.work_types?.includes('זכוכית מיוחדת ובטיחות') && (
+          {filters.work_types?.includes('partitions') && (
             <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
               {config.specialSafetyGlassTypes.map(opt => (
                 <label key={opt.value} className="checkbox-option">
@@ -2591,13 +2591,13 @@ const GlassWorksFilters = ({ filters, handleFilterChange, handleCheckboxChange, 
           <label className="checkbox-option" style={{ fontWeight: '600' }}>
             <input
               type="checkbox"
-              checked={filters.work_types?.includes('שירותי תיקון והתאמה אישית') || false}
-              onChange={(e) => handleCheckboxChange('work_types', 'שירותי תיקון והתאמה אישית', e.target.checked)}
+              checked={filters.work_types?.includes('repairs') || false}
+              onChange={(e) => handleCheckboxChange('work_types', 'repairs', e.target.checked)}
             />
             {t('filters.glass.repairs')}
           </label>
           
-          {filters.work_types?.includes('שירותי תיקון והתאמה אישית') && (
+          {filters.work_types?.includes('repairs') && (
             <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
               {config.repairCustomTypes.map(opt => (
                 <label key={opt.value} className="checkbox-option">
@@ -2634,13 +2634,13 @@ const LocksmithFilters = ({ filters, handleFilterChange, handleCheckboxChange, h
           <label className="checkbox-option" style={{ fontWeight: '600' }}>
             <input
               type="checkbox"
-              checked={filters.work_types?.includes('החלפת מנעולים') || false}
-              onChange={(e) => handleCheckboxChange('work_types', 'החלפת מנעולים', e.target.checked)}
+              checked={filters.work_types?.includes('lockReplacement') || false}
+              onChange={(e) => handleCheckboxChange('work_types', 'lockReplacement', e.target.checked)}
             />
             {t('filters.locksmith.lockReplacement')}
           </label>
           
-          {filters.work_types?.includes('החלפת מנעולים') && (
+          {filters.work_types?.includes('lockReplacement') && (
             <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
               {config.lockReplacementTypes.map(opt => (
                 <label key={opt.value} className="checkbox-option">
@@ -2661,13 +2661,13 @@ const LocksmithFilters = ({ filters, handleFilterChange, handleCheckboxChange, h
           <label className="checkbox-option" style={{ fontWeight: '600' }}>
             <input
               type="checkbox"
-              checked={filters.work_types?.includes('פתיחת דלתות') || false}
-              onChange={(e) => handleCheckboxChange('work_types', 'פתיחת דלתות', e.target.checked)}
+              checked={filters.work_types?.includes('emergencyOpening') || false}
+              onChange={(e) => handleCheckboxChange('work_types', 'emergencyOpening', e.target.checked)}
             />
             {t('filters.locksmith.emergencyOpening')}
           </label>
           
-          {filters.work_types?.includes('פתיחת דלתות') && (
+          {filters.work_types?.includes('emergencyOpening') && (
             <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
               {config.doorOpeningTypes.map(opt => (
                 <label key={opt.value} className="checkbox-option">
@@ -2688,13 +2688,13 @@ const LocksmithFilters = ({ filters, handleFilterChange, handleCheckboxChange, h
           <label className="checkbox-option" style={{ fontWeight: '600' }}>
             <input
               type="checkbox"
-              checked={filters.work_types?.includes('התקנת מערכות נעילה') || false}
-              onChange={(e) => handleCheckboxChange('work_types', 'התקנת מערכות נעילה', e.target.checked)}
+              checked={filters.work_types?.includes('advancedSystems') || false}
+              onChange={(e) => handleCheckboxChange('work_types', 'advancedSystems', e.target.checked)}
             />
             {t('filters.locksmith.advancedSystems')}
           </label>
           
-          {filters.work_types?.includes('התקנת מערכות נעילה') && (
+          {filters.work_types?.includes('advancedSystems') && (
             <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
               {config.lockSystemInstallationTypes.map(opt => (
                 <label key={opt.value} className="checkbox-option">
@@ -2715,13 +2715,13 @@ const LocksmithFilters = ({ filters, handleFilterChange, handleCheckboxChange, h
           <label className="checkbox-option" style={{ fontWeight: '600' }}>
             <input
               type="checkbox"
-              checked={filters.work_types?.includes('תיקון מנעולים ודלתות') || false}
-              onChange={(e) => handleCheckboxChange('work_types', 'תיקון מנעולים ודלתות', e.target.checked)}
+              checked={filters.work_types?.includes('doorRepair') || false}
+              onChange={(e) => handleCheckboxChange('work_types', 'doorRepair', e.target.checked)}
             />
             {t('filters.locksmith.doorRepair')}
           </label>
           
-          {filters.work_types?.includes('תיקון מנעולים ודלתות') && (
+          {filters.work_types?.includes('doorRepair') && (
             <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
               {config.lockDoorRepairTypes.map(opt => (
                 <label key={opt.value} className="checkbox-option">
@@ -2742,13 +2742,13 @@ const LocksmithFilters = ({ filters, handleFilterChange, handleCheckboxChange, h
           <label className="checkbox-option" style={{ fontWeight: '600' }}>
             <input
               type="checkbox"
-              checked={filters.work_types?.includes('שירותי ביטחון') || false}
-              onChange={(e) => handleCheckboxChange('work_types', 'שירותי ביטחון', e.target.checked)}
+              checked={filters.work_types?.includes('securityServices') || false}
+              onChange={(e) => handleCheckboxChange('work_types', 'securityServices', e.target.checked)}
             />
             {t('serviceForm.locksmith.securityServices')}
           </label>
           
-          {filters.work_types?.includes('שירותי ביטחון') && (
+          {filters.work_types?.includes('securityServices') && (
             <div className="checkbox-grid" style={{ marginRight: '1.5rem', marginTop: '0.5rem' }}>
               {config.securityServicesTypes.map(opt => (
                 <label key={opt.value} className="checkbox-option">
@@ -3332,16 +3332,16 @@ const DJFilters = ({ filters, handleFilterChange, handleCheckboxChange, handleEx
   const { t } = useLanguage();
 
   const eventTypes = [
-    { value: 'חתונה', key: 'filters.chef.wedding' },
-    { value: 'בר מצווה', key: 'filters.chef.barMitsva' },
-    { value: 'בת מצווה', key: 'filters.chef.batMitsva' },
-    { value: 'ברית מילה', key: 'filters.chef.britMila' },
-    { value: 'שבע ברכות', key: 'filters.chef.shevaBrahot' },
-    { value: 'יום הולדת / יום שנה', key: 'filters.chef.anniversary' },
-    { value: 'אירוע עסקי', key: 'filters.chef.corporateEvent' },
-    { value: 'מסיבה פרטית', key: 'filters.chef.privateParty' },
-    { value: 'חגיגה משפחתית', key: 'filters.chef.familyParty' },
-    { value: 'אירוסין', key: 'filters.chef.engagement' }
+    { value: 'wedding', key: 'filters.chef.wedding' },
+    { value: 'barMitsva', key: 'filters.chef.barMitsva' },
+    { value: 'batMitsva', key: 'filters.chef.batMitsva' },
+    { value: 'britMila', key: 'filters.chef.britMila' },
+    { value: 'shevaBrahot', key: 'filters.chef.shevaBrahot' },
+    { value: 'anniversary', key: 'filters.chef.anniversary' },
+    { value: 'corporateEvent', key: 'filters.chef.corporateEvent' },
+    { value: 'privateParty', key: 'filters.chef.privateParty' },
+    { value: 'familyParty', key: 'filters.chef.familyParty' },
+    { value: 'engagement', key: 'filters.chef.engagement' }
   ];
 
   return (

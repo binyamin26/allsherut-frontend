@@ -15,16 +15,16 @@ const EventDecorationForm = ({ serviceDetails, errors, handleServiceDetailsChang
           <label className="auth-form-label required">{t('serviceForm.common.availabilityHours')}</label>
           <div className="checkbox-group" data-field="availability_hours">
             {[
-              { value: 'בוקר', label: t('hours.morning') },
-              { value: 'אחר הצהריים', label: t('hours.afternoon') },
-              { value: 'ערב', label: t('hours.evening') },
-              { value: 'הכל', label: t('hours.all') }
+              { value: 'morning', label: t('hours.morning') },
+              { value: 'afternoon', label: t('hours.afternoon') },
+              { value: 'evening', label: t('hours.evening') },
+              { value: 'all', label: t('hours.all') }
             ].map(hour => (
               <label key={hour.value} className="checkbox-item">
                 <input
                   type="checkbox"
                   checked={serviceDetails.availability_hours?.includes(hour.value) || false}
-                  onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'הכל', ['בוקר', 'אחר הצהריים', 'ערב'])}
+                  onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'all', ['morning', 'afternoon', 'evening'])}
                 />
                 {hour.label}
               </label>
@@ -37,10 +37,10 @@ const EventDecorationForm = ({ serviceDetails, errors, handleServiceDetailsChang
           <label className="auth-form-label required">{t('serviceForm.event_decoration.decorationTypes')}</label>
           <div className="checkbox-group" data-field="decoration_types">
             {[
-              { value: 'קשתות ועיצוב בלונים', label: t('serviceForm.event_decoration.archBalloon') },
-              { value: 'עיצוב שולחנות', label: t('serviceForm.event_decoration.tableDeco') },
-              { value: 'עיצוב אולמות', label: t('serviceForm.event_decoration.hallDeco') },
-              { value: 'קירות צילום ופינות צילום', label: t('serviceForm.event_decoration.photoWall') }
+              { value: 'archBalloon', label: t('serviceForm.event_decoration.archBalloon') },
+              { value: 'tableDeco', label: t('serviceForm.event_decoration.tableDeco') },
+              { value: 'hallDeco', label: t('serviceForm.event_decoration.hallDeco') },
+              { value: 'photoWall', label: t('serviceForm.event_decoration.photoWall') }
             ].map(type => (
               <label key={type.value} className="checkbox-item">
                 <input
@@ -74,10 +74,10 @@ const EventDecorationForm = ({ serviceDetails, errors, handleServiceDetailsChang
           <label className="auth-form-label required">{t('filters.common.languages')}</label>
           <div className="checkbox-group" data-field="languages">
             {[
-              { value: 'עברית', label: t('languages.hebrew') },
-              { value: 'רוסית', label: t('languages.russian') },
-              { value: 'אנגלית', label: t('languages.english') },
-              { value: 'צרפתית', label: t('languages.french') }
+              { value: 'hebrew', label: t('languages.hebrew') },
+              { value: 'russian', label: t('languages.russian') },
+              { value: 'english', label: t('languages.english') },
+              { value: 'french', label: t('languages.french') }
             ].map(lang => (
               <label key={lang.value} className="checkbox-item">
                 <input

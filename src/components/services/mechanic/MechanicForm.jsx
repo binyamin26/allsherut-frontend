@@ -2,16 +2,16 @@ import React from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
 
 const WORK_TYPES = [
-  { value: 'מכונאות רכב',   key: 'serviceForm.mechanic.carMechanics' },
-  { value: 'הכנה לטסט',     key: 'serviceForm.mechanic.testPrep' },
-  { value: 'טיפולים שוטפים', key: 'serviceForm.mechanic.routineMaintenance' },
-  { value: 'בדיקות מחשב',   key: 'serviceForm.mechanic.computerDiagnostics' },
-  { value: 'מצברים',         key: 'serviceForm.mechanic.batteries' },
-  { value: 'מיזוג אוויר',   key: 'serviceForm.mechanic.airConditioning' },
-  { value: 'אלטרנטור',       key: 'serviceForm.mechanic.alternator' },
-  { value: 'תיקוני מנוע',   key: 'serviceForm.mechanic.engineRepairs' },
-  { value: 'רדיאטור וקירור', key: 'serviceForm.mechanic.radiatorCooling' },
-  { value: 'לקיחת רכב לטסט', key: 'serviceForm.mechanic.vehicleInspection' },
+  { value: 'carMechanics',   key: 'serviceForm.mechanic.carMechanics' },
+  { value: 'testPrep',     key: 'serviceForm.mechanic.testPrep' },
+  { value: 'routineMaintenance', key: 'serviceForm.mechanic.routineMaintenance' },
+  { value: 'computerDiagnostics',   key: 'serviceForm.mechanic.computerDiagnostics' },
+  { value: 'batteries',         key: 'serviceForm.mechanic.batteries' },
+  { value: 'airConditioning',   key: 'serviceForm.mechanic.airConditioning' },
+  { value: 'alternator',       key: 'serviceForm.mechanic.alternator' },
+  { value: 'engineRepairs',   key: 'serviceForm.mechanic.engineRepairs' },
+  { value: 'radiatorCooling', key: 'serviceForm.mechanic.radiatorCooling' },
+  { value: 'vehicleInspection', key: 'serviceForm.mechanic.vehicleInspection' },
 ];
 
 const MechanicForm = ({ serviceDetails, errors, handleServiceDetailsChange }) => {
@@ -70,10 +70,10 @@ const MechanicForm = ({ serviceDetails, errors, handleServiceDetailsChange }) =>
           <label className="auth-form-label required">{t('filters.common.languages')}</label>
           <div className="checkbox-group" data-field="languages">
             {[
-              { value: 'עברית', label: t('languages.hebrew') },
-              { value: 'רוסית', label: t('languages.russian') },
-              { value: 'אנגלית', label: t('languages.english') },
-              { value: 'צרפתית', label: t('languages.french') }
+              { value: 'hebrew', label: t('languages.hebrew') },
+              { value: 'russian', label: t('languages.russian') },
+              { value: 'english', label: t('languages.english') },
+              { value: 'french', label: t('languages.french') }
             ].map(lang => (
               <label key={lang.value} className="checkbox-item">
                 <input

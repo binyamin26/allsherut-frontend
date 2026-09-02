@@ -16,9 +16,9 @@ const PestControlForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
           <label className="auth-form-label required">{t('serviceFields.electrician.availability_hours')}</label>
           <div className="checkbox-group">
             {[
-              { value: 'בוקר',   label: t('hours.morning') },
-              { value: 'צהריים', label: t('hours.noon') },
-              { value: 'ערב',    label: t('hours.evening') },
+              { value: 'morning',   label: t('hours.morning') },
+              { value: 'noon', label: t('hours.noon') },
+              { value: 'evening',    label: t('hours.evening') },
               { value: '24/7',   label: t('hours.twentyFourSeven') }
             ].map(option => (
               <label key={option.value} className="checkbox-item">
@@ -56,11 +56,11 @@ const PestControlForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
             <h5 className="category-title">{t('serviceForm.pest_control.insects')}</h5>
             <div className="checkbox-group">
               {[
-                { value: 'הדברת תיקנים', label: t('filters.pest_control.cockroaches') },
-                { value: 'הדברת נמלים', label: t('filters.pest_control.ants') },
-                { value: 'הדברת פשפשים', label: t('filters.pest_control.bedbugs') },
-                { value: 'הדברת פרעושים', label: t('filters.pest_control.fleas') },
-                { value: 'הדברת יתושים', label: t('filters.pest_control.mosquitoes') }
+                { value: 'cockroaches', label: t('filters.pest_control.cockroaches') },
+                { value: 'ants', label: t('filters.pest_control.ants') },
+                { value: 'bedbugs', label: t('filters.pest_control.bedbugs') },
+                { value: 'fleas', label: t('filters.pest_control.fleas') },
+                { value: 'mosquitoes', label: t('filters.pest_control.mosquitoes') }
               ].map(type => (
                 <label key={type.value} className="checkbox-item">
                   <input
@@ -85,8 +85,8 @@ const PestControlForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
             <h5 className="category-title">{t('serviceForm.pest_control.rodents')}</h5>
             <div className="checkbox-group">
               {[
-                { value: 'הדברת חולדות', label: t('filters.pest_control.rats') },
-                { value: 'הדברת עכברים', label: t('filters.pest_control.mice') }
+                { value: 'rats', label: t('filters.pest_control.rats') },
+                { value: 'mice', label: t('filters.pest_control.mice') }
               ].map(type => (
                 <label key={type.value} className="checkbox-item">
                   <input
@@ -111,10 +111,10 @@ const PestControlForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
             <h5 className="category-title">{t('serviceForm.pest_control.birdsAnimals')}</h5>
             <div className="checkbox-group">
               {[
-                { value: 'הרחקת יונים', label: t('filters.pest_control.pigeons') },
-                { value: 'רשתות נגד יונים', label: t('filters.pest_control.pigeonNets') },
-                { value: 'הרחקת עטלפים', label: t('filters.pest_control.bats') },
-                { value: 'הרחקת נחשים', label: t('filters.pest_control.snakes') }
+                { value: 'pigeons', label: t('filters.pest_control.pigeons') },
+                { value: 'pigeonNets', label: t('filters.pest_control.pigeonNets') },
+                { value: 'bats', label: t('filters.pest_control.bats') },
+                { value: 'snakes', label: t('filters.pest_control.snakes') }
               ].map(type => (
                 <label key={type.value} className="checkbox-item">
                   <input
@@ -181,10 +181,10 @@ const PestControlForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
           <label className="auth-form-label required">{t('filters.common.languages')}</label>
           <div className="checkbox-group" data-field="languages">
             {[
-              { value: 'עברית', label: t('languages.hebrew') },
-              { value: 'רוסית', label: t('languages.russian') },
-              { value: 'אנגלית', label: t('languages.english') },
-              { value: 'צרפתית', label: t('languages.french') }
+              { value: 'hebrew', label: t('languages.hebrew') },
+              { value: 'russian', label: t('languages.russian') },
+              { value: 'english', label: t('languages.english') },
+              { value: 'french', label: t('languages.french') }
             ].map(lang => (
               <label key={lang.value} className="checkbox-item">
                 <input

@@ -14,16 +14,16 @@ const CateringForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
   <label className="auth-form-label required">{t('serviceForm.common.availabilityHours')}</label>
   <div className="checkbox-group" data-field="availability_hours">
     {[
-      { value: 'בוקר', label: t('hours.morning') },
-      { value: 'אחר הצהריים', label: t('hours.afternoon') },
-      { value: 'ערב', label: t('hours.evening') },
-      { value: 'הכל', label: t('hours.all') }
+      { value: 'morning', label: t('hours.morning') },
+      { value: 'afternoon', label: t('hours.afternoon') },
+      { value: 'evening', label: t('hours.evening') },
+      { value: 'all', label: t('hours.all') }
     ].map(hour => (
       <label key={hour.value} className="checkbox-item">
         <input
           type="checkbox"
           checked={serviceDetails.availability_hours?.includes(hour.value) || false}
-          onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'הכל', ['בוקר', 'אחר הצהריים', 'ערב'])}
+          onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'all', ['morning', 'afternoon', 'evening'])}
         />
         {hour.label}
       </label>
@@ -40,36 +40,36 @@ const CateringForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
             <label className="checkbox-item" style={{fontWeight: 'bold'}}>
               <input
                 type="checkbox"
-                checked={serviceDetails.work_types?.includes('סוג האירוע') || false}
+                checked={serviceDetails.work_types?.includes('eventTypes') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
                   const newTypes = e.target.checked
-                    ? [...current, 'סוג האירוע']
-                    : current.filter(v => v !== 'סוג האירוע');
+                    ? [...current, 'eventTypes']
+                    : current.filter(v => v !== 'eventTypes');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
               {t('filters.chef.eventType')}
             </label>
 
-            {serviceDetails.work_types?.includes('סוג האירוע') && (
+            {serviceDetails.work_types?.includes('eventTypes') && (
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="event_types">
                   {[
-                    { value: 'חתונה', label: t('filters.chef.wedding') },
-                    { value: 'בר מצווה', label: t('filters.chef.barMitsva') },
-                    { value: 'בת מצווה', label: t('filters.chef.batMitsva') },
-                    { value: 'ברית מילה', label: t('filters.chef.britMila') },
-                    { value: 'פדיון הבן', label: t('filters.chef.pidyonHaben') },
-                    { value: 'שבע ברכות', label: t('filters.chef.shevaBrahot') },
-                    { value: 'יום הולדת / יום שנה', label: t('filters.chef.anniversary') },
-                    { value: 'קידוש', label: t('filters.chef.kiddouch') },
-                    { value: 'שבת חתן', label: t('filters.chef.shabbatHatan') },
-                    { value: 'אירוע עסקי', label: t('filters.chef.corporateEvent') },
-                    { value: 'מסיבה פרטית', label: t('filters.chef.privateParty') },
-                    { value: 'חגיגה משפחתית', label: t('filters.chef.familyParty') },
-                    { value: 'אירוסין', label: t('filters.chef.engagement') },
-                    { value: 'סעודות שבת', label: t('filters.chef.shabbatMeals') }
+                    { value: 'wedding', label: t('filters.chef.wedding') },
+                    { value: 'barMitsva', label: t('filters.chef.barMitsva') },
+                    { value: 'batMitsva', label: t('filters.chef.batMitsva') },
+                    { value: 'britMila', label: t('filters.chef.britMila') },
+                    { value: 'pidyonHaben', label: t('filters.chef.pidyonHaben') },
+                    { value: 'shevaBrahot', label: t('filters.chef.shevaBrahot') },
+                    { value: 'anniversary', label: t('filters.chef.anniversary') },
+                    { value: 'kiddouch', label: t('filters.chef.kiddouch') },
+                    { value: 'shabbatHatan', label: t('filters.chef.shabbatHatan') },
+                    { value: 'corporateEvent', label: t('filters.chef.corporateEvent') },
+                    { value: 'privateParty', label: t('filters.chef.privateParty') },
+                    { value: 'familyParty', label: t('filters.chef.familyParty') },
+                    { value: 'engagement', label: t('filters.chef.engagement') },
+                    { value: 'shabbatMeals', label: t('filters.chef.shabbatMeals') }
                   ].map(type => (
                     <label key={type.value} className="checkbox-item">
                       <input
@@ -112,19 +112,19 @@ const CateringForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="cuisine_types">
              {[
-  { value: 'פיצות', label: t('filters.chef.pizza') },
-  { value: 'סושי', label: t('filters.chef.sushi') },
-  { value: 'סלטים', label: t('filters.chef.salads') },
-  { value: 'אסייתי', label: t('filters.chef.asian') },
-  { value: 'פסטות', label: t('filters.chef.pasta') },
-  { value: 'בשרי', label: t('filters.chef.meat') },
-  { value: 'טבעוני / צמחוני', label: t('filters.chef.vegan') },
-  { value: 'לא גלוטן', label: t('filters.chef.glutenFree') },
-  { value: 'סלטי שבת', label: t('filters.chef.shabbatSalads') },
-  { value: 'חלבי', label: t('filters.chef.halavi') },
-  { value: 'חלות שבת', label: t('filters.chef.shabbatChallah') },
-  { value: 'דגים מעושנים', label: t('filters.chef.smokedFish') },
-  { value: 'הרינג', label: t('filters.chef.herring') }
+  { value: 'pizza', label: t('filters.chef.pizza') },
+  { value: 'sushi', label: t('filters.chef.sushi') },
+  { value: 'salads', label: t('filters.chef.salads') },
+  { value: 'asian', label: t('filters.chef.asian') },
+  { value: 'pasta', label: t('filters.chef.pasta') },
+  { value: 'meat', label: t('filters.chef.meat') },
+  { value: 'vegan', label: t('filters.chef.vegan') },
+  { value: 'glutenFree', label: t('filters.chef.glutenFree') },
+  { value: 'shabbatSalads', label: t('filters.chef.shabbatSalads') },
+  { value: 'halavi', label: t('filters.chef.halavi') },
+  { value: 'shabbatChallah', label: t('filters.chef.shabbatChallah') },
+  { value: 'smokedFish', label: t('filters.chef.smokedFish') },
+  { value: 'herring', label: t('filters.chef.herring') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
@@ -167,20 +167,20 @@ const CateringForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="kosher_types">
                  {[
-  { value: 'בד"ץ העדה החרדית', label: t('filters.chef.badatzEdaChareidis') },
-  { value: 'בד"ץ בית יוסף', label: t('filters.chef.badatzBeitYosef') },
-  { value: 'בד"ץ יורה דעה (ר׳ שלמה מחפוד)', label: t('filters.chef.badatzYoreDea') },
-  { value: 'בד"ץ מחזיקי הדת – בעלז', label: t('filters.chef.badatzBelz') },
-  { value: 'בד"ץ שארית ישראל', label: t('filters.chef.badatzSheerit') },
-  { value: 'בד"ץ נתיבות כשרות', label: t('filters.chef.badatzNetivot') },
-  { value: 'בד"ץ חוג חתם סופר בני ברק', label: t('filters.chef.badatzChatamBB') },
-  { value: 'בד"ץ חוג חתם סופר פ״ת', label: t('filters.chef.badatzChatamPT') },
-  { value: 'בד"ץ מקווה ישראל', label: t('filters.chef.badatzMikveh') },
-  { value: 'בד"ץ רבני צפת', label: t('filters.chef.badatzTzfat') },
-  { value: 'כשרות הרב לנדא', label: t('filters.chef.rabbiLanda') },
-  { value: 'כשרות הרב רובין', label: t('filters.chef.rabbiRubin') },
-  { value: 'רבנות', label: t('filters.chef.rabbinate') },
-  { value: 'רבנות מהדרין', label: t('filters.chef.rabbinateMethadrin') }
+  { value: 'badatzEdaChareidis', label: t('filters.chef.badatzEdaChareidis') },
+  { value: 'badatzBeitYosef', label: t('filters.chef.badatzBeitYosef') },
+  { value: 'badatzYoreDea', label: t('filters.chef.badatzYoreDea') },
+  { value: 'badatzBelz', label: t('filters.chef.badatzBelz') },
+  { value: 'badatzSheerit', label: t('filters.chef.badatzSheerit') },
+  { value: 'badatzNetivot', label: t('filters.chef.badatzNetivot') },
+  { value: 'badatzChatamBB', label: t('filters.chef.badatzChatamBB') },
+  { value: 'badatzChatamPT', label: t('filters.chef.badatzChatamPT') },
+  { value: 'badatzMikveh', label: t('filters.chef.badatzMikveh') },
+  { value: 'badatzTzfat', label: t('filters.chef.badatzTzfat') },
+  { value: 'rabbiLanda', label: t('filters.chef.rabbiLanda') },
+  { value: 'rabbiRubin', label: t('filters.chef.rabbiRubin') },
+  { value: 'rabbinate', label: t('filters.chef.rabbinate') },
+  { value: 'rabbinateMethadrin', label: t('filters.chef.rabbinateMethadrin') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
@@ -200,19 +200,19 @@ const CateringForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
                   <label className="checkbox-item">
                     <input
                       type="checkbox"
-                      checked={serviceDetails.kosher_types?.includes('אחר') || false}
+                      checked={serviceDetails.kosher_types?.includes('other') || false}
                       onChange={(e) => {
                         const current = serviceDetails.kosher_types || [];
                         const newTypes = e.target.checked
-                          ? [...current, 'אחר']
-                          : current.filter(v => v !== 'אחר');
+                          ? [...current, 'other']
+                          : current.filter(v => v !== 'other');
                         handleServiceDetailsChange('kosher_types', newTypes);
                         if (!e.target.checked) handleServiceDetailsChange('kosher_other', '');
                       }}
                     />
                     {t('filters.chef.otherKosher')}
                   </label>
-                  {serviceDetails.kosher_types?.includes('אחר') && (
+                  {serviceDetails.kosher_types?.includes('other') && (
                     <input
                       type="text"
                       className="standard-input"
@@ -250,10 +250,10 @@ const CateringForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
           <label className="auth-form-label required">{t('filters.common.languages')}</label>
           <div className="checkbox-group" data-field="languages">
             {[
-              { value: 'עברית', label: t('languages.hebrew') },
-              { value: 'רוסית', label: t('languages.russian') },
-              { value: 'אנגלית', label: t('languages.english') },
-              { value: 'צרפתית', label: t('languages.french') }
+              { value: 'hebrew', label: t('languages.hebrew') },
+              { value: 'russian', label: t('languages.russian') },
+              { value: 'english', label: t('languages.english') },
+              { value: 'french', label: t('languages.french') }
             ].map(lang => (
               <label key={lang.value} className="checkbox-item">
                 <input

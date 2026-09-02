@@ -14,16 +14,16 @@ const HomeOrganizationForm = ({ serviceDetails, errors, handleServiceDetailsChan
           <label className="auth-form-label required">{t('serviceForm.common.availabilityHours')}</label>
           <div className="checkbox-group" data-field="availability_hours">
         {[
-  { value: 'בוקר', label: t('hours.morning') },
-  { value: 'אחר הצהריים', label: t('hours.afternoon') },
-  { value: 'ערב', label: t('hours.evening') },
-  { value: 'הכל', label: t('hours.all') }
+  { value: 'morning', label: t('hours.morning') },
+  { value: 'afternoon', label: t('hours.afternoon') },
+  { value: 'evening', label: t('hours.evening') },
+  { value: 'all', label: t('hours.all') }
 ].map(hour => (
          <label key={hour.value} className="checkbox-item">
     <input
       type="checkbox"
       checked={serviceDetails.availability_hours?.includes(hour.value) || false}
-      onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'הכל', ['בוקר', 'אחר הצהריים', 'ערב'])}
+      onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'all', ['morning', 'afternoon', 'evening'])}
     />
     {hour.label}
   </label>
@@ -39,28 +39,28 @@ const HomeOrganizationForm = ({ serviceDetails, errors, handleServiceDetailsChan
             <label className="checkbox-item" style={{fontWeight: 'bold'}}>
               <input
                 type="checkbox"
-                checked={serviceDetails.work_types?.includes('סידור כללי') || false}
+                checked={serviceDetails.work_types?.includes('general') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
                   const newTypes = e.target.checked 
-                    ? [...current, 'סידור כללי']
-                    : current.filter(t => t !== 'סידור כללי');
+                    ? [...current, 'general']
+                    : current.filter(t => t !== 'general');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
            {t('serviceForm.homeOrg.generalOrganization')}
             </label>
             
-            {serviceDetails.work_types?.includes('סידור כללי') && (
+            {serviceDetails.work_types?.includes('general') && (
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="general_organization_types">
                  {[
-  { value: 'סידור בית מלא', label: t('filters.homeOrg.fullHome') },
-  { value: 'סידור חדרים', label: t('filters.homeOrg.rooms') },
-  { value: 'סידור מטבח', label: t('filters.homeOrg.kitchen') },
-  { value: 'סידור חדר ילדים', label: t('filters.homeOrg.kidsRoom') },
-  { value: 'סידור חדר ארונות / ארונות בגדים', label: t('filters.homeOrg.closets') },
-  { value: 'סידור חדר אמבטיה', label: t('filters.homeOrg.bathroom') }
+  { value: 'fullHouse', label: t('filters.homeOrg.fullHome') },
+  { value: 'rooms', label: t('filters.homeOrg.rooms') },
+  { value: 'kitchen', label: t('filters.homeOrg.kitchen') },
+  { value: 'kidsRoom', label: t('filters.homeOrg.kidsRoom') },
+  { value: 'closets', label: t('filters.homeOrg.closets') },
+  { value: 'bathroom', label: t('filters.homeOrg.bathroom') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
@@ -87,26 +87,26 @@ const HomeOrganizationForm = ({ serviceDetails, errors, handleServiceDetailsChan
             <label className="checkbox-item" style={{fontWeight: 'bold'}}>
               <input
                 type="checkbox"
-                checked={serviceDetails.work_types?.includes('סידור + מיון') || false}
+                checked={serviceDetails.work_types?.includes('sorting') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
                   const newTypes = e.target.checked 
-                    ? [...current, 'סידור + מיון']
-                    : current.filter(t => t !== 'סידור + מיון');
+                    ? [...current, 'sorting']
+                    : current.filter(t => t !== 'sorting');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
            {t('serviceForm.homeOrg.sortingOrganization')}
             </label>
             
-            {serviceDetails.work_types?.includes('סידור + מיון') && (
+            {serviceDetails.work_types?.includes('sorting') && (
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="sorting_types">
              {[
-  { value: 'מיון חפצים', label: t('filters.homeOrg.itemSorting') },
-  { value: 'מיון בגדים', label: t('filters.homeOrg.clothesSorting') },
-  { value: 'מיון צעצועים', label: t('filters.homeOrg.toySorting') },
-  { value: 'הכנת חפצים למסירה / תרומה', label: t('filters.homeOrg.donationPrep') }
+  { value: 'itemSorting', label: t('filters.homeOrg.itemSorting') },
+  { value: 'clothesSorting', label: t('filters.homeOrg.clothesSorting') },
+  { value: 'toySorting', label: t('filters.homeOrg.toySorting') },
+  { value: 'donation', label: t('filters.homeOrg.donationPrep') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
@@ -133,25 +133,25 @@ const HomeOrganizationForm = ({ serviceDetails, errors, handleServiceDetailsChan
             <label className="checkbox-item" style={{fontWeight: 'bold'}}>
               <input
                 type="checkbox"
-                checked={serviceDetails.work_types?.includes('ארגון מקצועי') || false}
+                checked={serviceDetails.work_types?.includes('professional') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
                   const newTypes = e.target.checked 
-                    ? [...current, 'ארגון מקצועי']
-                    : current.filter(t => t !== 'ארגון מקצועי');
+                    ? [...current, 'professional']
+                    : current.filter(t => t !== 'professional');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
              {t('serviceForm.homeOrg.professionalOrganization')}
             </label>
             
-            {serviceDetails.work_types?.includes('ארגון מקצועי') && (
+            {serviceDetails.work_types?.includes('professional') && (
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="professional_organization_types">
                  {[
-  { value: 'יצירת פתרונות אחסון', label: t('filters.homeOrg.storageSolutions') },
-  { value: 'אופטימיזציה של חללים קטנים', label: t('filters.homeOrg.smallSpaceOptimization') },
-  { value: 'עיצוב וסידור מדפים', label: t('filters.homeOrg.shelfDesign') }
+  { value: 'storageSolutions', label: t('filters.homeOrg.storageSolutions') },
+  { value: 'smallSpaces', label: t('filters.homeOrg.smallSpaceOptimization') },
+  { value: 'shelfDesign', label: t('filters.homeOrg.shelfDesign') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
@@ -196,10 +196,10 @@ const HomeOrganizationForm = ({ serviceDetails, errors, handleServiceDetailsChan
           <label className="auth-form-label required">{t('filters.common.languages')}</label>
           <div className="checkbox-group" data-field="languages">
             {[
-              { value: 'עברית', label: t('languages.hebrew') },
-              { value: 'רוסית', label: t('languages.russian') },
-              { value: 'אנגלית', label: t('languages.english') },
-              { value: 'צרפתית', label: t('languages.french') }
+              { value: 'hebrew', label: t('languages.hebrew') },
+              { value: 'russian', label: t('languages.russian') },
+              { value: 'english', label: t('languages.english') },
+              { value: 'french', label: t('languages.french') }
             ].map(lang => (
               <label key={lang.value} className="checkbox-item">
                 <input

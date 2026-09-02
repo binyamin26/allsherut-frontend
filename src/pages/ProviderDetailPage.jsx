@@ -57,14 +57,14 @@ const IconLabel = ({ icon: Icon, children }) => (
 );
 
 const LANGUAGE_FLAGS = {
-  'עברית': 'il',
-  'רוסית': 'ru',
-  'אנגלית': 'gb',
-  'ספרדית': 'es',
-  'צרפתית': 'fr',
+  'hebrew': 'il',
+  'russian': 'ru',
+  'english': 'gb',
+  'spanish': 'es',
+  'french': 'fr',
 };
 
-const DAY_ORDER = ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת', 'כל השבוע'];
+const DAY_ORDER = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'allWeek'];
 const sortDays = (days) => {
   if (!Array.isArray(days)) return days;
   return [...days].sort((a, b) => {
@@ -858,10 +858,10 @@ const handleContact = () => {
                 <span>{translateAndJoin(details.event_types, 'photographerEventTypes', t)}</span>
               </div>
             )}
-            {details.work_types && details.work_types.filter(w => w !== 'סוג האירוע').length > 0 && (
+            {details.work_types && details.work_types.filter(w => w !== 'eventTypes').length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <IconLabel icon={ImageIcon}>{t('serviceForm.common.workTypes')}:</IconLabel>
-                <span>{translateAndJoin(details.work_types.filter(w => w !== 'סוג האירוע'), 'photographerWorkTypes', t)}</span>
+                <span>{translateAndJoin(details.work_types.filter(w => w !== 'eventTypes'), 'photographerWorkTypes', t)}</span>
               </div>
             )}
           </>
@@ -892,7 +892,7 @@ const handleContact = () => {
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <IconLabel icon={Award}>{t('provider.details.kosherTypes')}:</IconLabel>
                 <span>{translateAndJoin(details.kosher_types, 'chefKosher', t)}</span>
-                {details.kosher_types.includes('אחר') && details.kosher_other && (
+                {details.kosher_types.includes('other') && details.kosher_other && (
                   <span> ({details.kosher_other})</span>
                 )}
               </div>
@@ -919,7 +919,7 @@ const handleContact = () => {
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <IconLabel icon={Award}>{t('provider.details.kosherTypes')}:</IconLabel>
                 <span>{translateAndJoin(details.kosher_types, 'chefKosher', t)}</span>
-                {details.kosher_types.includes('אחר') && details.kosher_other && (
+                {details.kosher_types.includes('other') && details.kosher_other && (
                   <span> ({details.kosher_other})</span>
                 )}
               </div>
@@ -1389,11 +1389,11 @@ const handleContact = () => {
             {/* Long term */}
             {(() => {
               const longTermOptions = [
-                'חיפוש ובדיקת שוכרים מתאימים',
-                'חתימה על חוזה וניהול ערבויות',
-                'גביית שכ"ד והעברת תשלומים לבעל הדירה',
-                'בדיקת מצב הנכס לפני ואחרי תקופת השכירות',
-                'העברת חשבונות השירותים (מים, חשמל, גז) על שם השוכר החדש'
+                'tenantSearch',
+                'contractManagement',
+                'rentCollection',
+                'propertyInspection',
+                'utilityTransfer'
               ];
               const selectedLongTerm = details.management_type.filter(t => longTermOptions.includes(t));
               
@@ -1408,12 +1408,12 @@ const handleContact = () => {
             {/* Short term */}
             {(() => {
               const shortTermOptions = [
-                'פרסום וניהול מודעות באתרים',
-                'ניהול הזמנות ותקשורת עם אורחים',
-                'קבלת אורחים / מסירת מפתחות',
-                'ניקיון בין השהיות',
-                'בדיקה תקופתית של הנכס',
-                'תיקונים כלליים (חשמל, אינסטלציה, מזגן וכו׳)'
+                'listingManagement',
+                'guestCommunication',
+                'guestCheckin',
+                'turnaroundCleaning',
+                'periodicInspection',
+                'generalRepairs'
               ];
               const selectedShortTerm = details.management_type.filter(t => shortTermOptions.includes(t));
               

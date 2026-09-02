@@ -50,7 +50,7 @@ export const getServiceDetailsErrors = (serviceType, serviceDetails, t) => {
 
     case 'petcare':
       if (!serviceDetails.animalTypes || serviceDetails.animalTypes.length === 0) errors.animalTypes = t('validation.selectAtLeastOne');
-      if (serviceDetails.animalTypes?.includes('כלבים') && (!serviceDetails.dogSizes || serviceDetails.dogSizes.length === 0)) {
+      if (serviceDetails.animalTypes?.includes('dogs') && (!serviceDetails.dogSizes || serviceDetails.dogSizes.length === 0)) {
         errors.dogSizes = t('validation.selectAtLeastOne');
       }
       if (!serviceDetails.location) errors.location = t('validation.locationRequired');
@@ -83,18 +83,18 @@ export const getServiceDetailsErrors = (serviceType, serviceDetails, t) => {
     case 'electrician':
       if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) errors.availability_hours = t('validation.availabilityHoursRequired');
       if (!serviceDetails.work_types || serviceDetails.work_types.length === 0) errors.work_types = t('validation.workTypesRequired');
-      if (serviceDetails.work_types?.includes('תיקונים') && (!serviceDetails.repair_types || serviceDetails.repair_types.length === 0)) errors.repair_types = t('validation.selectAtLeastOne');
-      if (serviceDetails.work_types?.includes('התקנות') && (!serviceDetails.installation_types || serviceDetails.installation_types.length === 0)) errors.installation_types = t('validation.selectAtLeastOne');
-      if (serviceDetails.work_types?.includes('עבודות חשמל גדולות') && (!serviceDetails.large_work_types || serviceDetails.large_work_types.length === 0)) errors.large_work_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('repairs') && (!serviceDetails.repair_types || serviceDetails.repair_types.length === 0)) errors.repair_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('installations') && (!serviceDetails.installation_types || serviceDetails.installation_types.length === 0)) errors.installation_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('largeElectricalWork') && (!serviceDetails.large_work_types || serviceDetails.large_work_types.length === 0)) errors.large_work_types = t('validation.selectAtLeastOne');
       break;
 
     case 'plumbing':
       if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) errors.availability_hours = t('validation.availabilityHoursRequired');
       if (!serviceDetails.work_types || serviceDetails.work_types.length === 0) errors.work_types = t('validation.workTypesRequired');
-      if (serviceDetails.work_types?.includes('סתימות') && (!serviceDetails.blockage_types || serviceDetails.blockage_types.length === 0)) errors.blockage_types = t('validation.selectAtLeastOne');
-      if (serviceDetails.work_types?.includes('תיקון צנרת') && (!serviceDetails.pipe_repair_types || serviceDetails.pipe_repair_types.length === 0)) errors.pipe_repair_types = t('validation.selectAtLeastOne');
-      if (serviceDetails.work_types?.includes('עבודות גדולות') && (!serviceDetails.large_work_types || serviceDetails.large_work_types.length === 0)) errors.large_work_types = t('validation.selectAtLeastOne');
-      if (serviceDetails.work_types?.includes('תיקון והתקנת אביזרי אינסטלציה') && (!serviceDetails.fixture_types || serviceDetails.fixture_types.length === 0)) errors.fixture_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('blockages') && (!serviceDetails.blockage_types || serviceDetails.blockage_types.length === 0)) errors.blockage_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('pipeRepair') && (!serviceDetails.pipe_repair_types || serviceDetails.pipe_repair_types.length === 0)) errors.pipe_repair_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('largeWork') && (!serviceDetails.large_work_types || serviceDetails.large_work_types.length === 0)) errors.large_work_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('fixtureRepair') && (!serviceDetails.fixture_types || serviceDetails.fixture_types.length === 0)) errors.fixture_types = t('validation.selectAtLeastOne');
       break;
 
     case 'laundry':
@@ -110,45 +110,45 @@ export const getServiceDetailsErrors = (serviceType, serviceDetails, t) => {
     case 'air_conditioning':
       if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) errors.availability_hours = t('validation.availabilityHoursRequired');
       if (!serviceDetails.work_types || serviceDetails.work_types.length === 0) errors.work_types = t('validation.workTypesRequired');
-      if (serviceDetails.work_types?.includes('התקנת מזגנים') && (!serviceDetails.installation_types || serviceDetails.installation_types.length === 0)) errors.installation_types = t('validation.selectAtLeastOne');
-      if (serviceDetails.work_types?.includes('תיקון מזגנים') && (!serviceDetails.repair_types || serviceDetails.repair_types.length === 0)) errors.repair_types = t('validation.selectAtLeastOne');
-      if (serviceDetails.work_types?.includes('פירוק והרכבת מזגנים') && (!serviceDetails.disassembly_types || serviceDetails.disassembly_types.length === 0)) errors.disassembly_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('installation') && (!serviceDetails.installation_types || serviceDetails.installation_types.length === 0)) errors.installation_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('repair') && (!serviceDetails.repair_types || serviceDetails.repair_types.length === 0)) errors.repair_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('disassembly') && (!serviceDetails.disassembly_types || serviceDetails.disassembly_types.length === 0)) errors.disassembly_types = t('validation.selectAtLeastOne');
       break;
 
     case 'gas_technician':
       if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) errors.availability_hours = t('validation.availabilityHoursRequired');
       if (!serviceDetails.work_types || serviceDetails.work_types.length === 0) errors.work_types = t('validation.workTypesRequired');
-      if (serviceDetails.work_types?.includes('התקנת צנרת גז בבית') && (!serviceDetails.installation_types || serviceDetails.installation_types.length === 0)) errors.installation_types = t('validation.selectAtLeastOne');
-      if (serviceDetails.work_types?.includes('תיקוני גז בבית') && (!serviceDetails.repair_types || serviceDetails.repair_types.length === 0)) errors.repair_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('pipeInstallation') && (!serviceDetails.installation_types || serviceDetails.installation_types.length === 0)) errors.installation_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('repairs') && (!serviceDetails.repair_types || serviceDetails.repair_types.length === 0)) errors.repair_types = t('validation.selectAtLeastOne');
       if (!serviceDetails.license_type || serviceDetails.license_type.length === 0) errors.license_type = t('validation.selectAtLeastOne');
       break;
 
     case 'drywall':
       if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) errors.availability_hours = t('validation.availabilityHoursRequired');
       if (!serviceDetails.work_types || serviceDetails.work_types.length === 0) errors.work_types = t('validation.workTypesRequired');
-      if (serviceDetails.work_types?.includes('עיצובים בגבס') && (!serviceDetails.design_types || serviceDetails.design_types.length === 0)) errors.design_types = t('validation.selectAtLeastOne');
-      if (serviceDetails.work_types?.includes('עבודות גבס') && (!serviceDetails.construction_types || serviceDetails.construction_types.length === 0)) errors.construction_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('design') && (!serviceDetails.design_types || serviceDetails.design_types.length === 0)) errors.design_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('drywallWork') && (!serviceDetails.construction_types || serviceDetails.construction_types.length === 0)) errors.construction_types = t('validation.selectAtLeastOne');
       break;
 
     case 'carpentry':
       if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) errors.availability_hours = t('validation.availabilityHoursRequired');
       if (!serviceDetails.work_types || serviceDetails.work_types.length === 0) errors.work_types = t('validation.workTypesRequired');
-      if (serviceDetails.work_types?.includes('בניית רהיטים') && (!serviceDetails.furniture_building_types || serviceDetails.furniture_building_types.length === 0)) errors.furniture_building_types = t('validation.selectAtLeastOne');
-      if (serviceDetails.work_types?.includes('תיקון רהיטים') && (!serviceDetails.furniture_repair_types || serviceDetails.furniture_repair_types.length === 0)) errors.furniture_repair_types = t('validation.selectAtLeastOne');
-      if (serviceDetails.work_types?.includes('עבודות נגרות אחרות') && (!serviceDetails.other_carpentry_types || serviceDetails.other_carpentry_types.length === 0)) errors.other_carpentry_types = t('validation.selectAtLeastOne');
-      if (serviceDetails.work_types?.includes('נגרות חוץ')) {
-        if (serviceDetails.outdoor_carpentry_types?.includes('פרגולות') && (!serviceDetails.pergola_types || serviceDetails.pergola_types.length === 0)) errors.pergola_types = t('validation.selectAtLeastOne');
-        if (serviceDetails.outdoor_carpentry_types?.includes('דקים') && (!serviceDetails.deck_types || serviceDetails.deck_types.length === 0)) errors.deck_types = t('validation.selectAtLeastOne');
-        if (serviceDetails.outdoor_carpentry_types?.includes('גדרות ומחיצות עץ') && (!serviceDetails.fence_types || serviceDetails.fence_types.length === 0)) errors.fence_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('furnitureBuilding') && (!serviceDetails.furniture_building_types || serviceDetails.furniture_building_types.length === 0)) errors.furniture_building_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('furnitureRepair') && (!serviceDetails.furniture_repair_types || serviceDetails.furniture_repair_types.length === 0)) errors.furniture_repair_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('otherWork') && (!serviceDetails.other_carpentry_types || serviceDetails.other_carpentry_types.length === 0)) errors.other_carpentry_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('outdoorCarpentry')) {
+        if (serviceDetails.outdoor_carpentry_types?.includes('pergolas') && (!serviceDetails.pergola_types || serviceDetails.pergola_types.length === 0)) errors.pergola_types = t('validation.selectAtLeastOne');
+        if (serviceDetails.outdoor_carpentry_types?.includes('decks') && (!serviceDetails.deck_types || serviceDetails.deck_types.length === 0)) errors.deck_types = t('validation.selectAtLeastOne');
+        if (serviceDetails.outdoor_carpentry_types?.includes('fences') && (!serviceDetails.fence_types || serviceDetails.fence_types.length === 0)) errors.fence_types = t('validation.selectAtLeastOne');
       }
       break;
 
     case 'home_organization':
       if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) errors.availability_hours = t('validation.availabilityHoursRequired');
       if (!serviceDetails.work_types || serviceDetails.work_types.length === 0) errors.work_types = t('validation.workTypesRequired');
-      if (serviceDetails.work_types?.includes('סידור כללי') && (!serviceDetails.general_organization_types || serviceDetails.general_organization_types.length === 0)) errors.general_organization_types = t('validation.selectAtLeastOne');
-      if (serviceDetails.work_types?.includes('סידור + מיון') && (!serviceDetails.sorting_types || serviceDetails.sorting_types.length === 0)) errors.sorting_types = t('validation.selectAtLeastOne');
-      if (serviceDetails.work_types?.includes('ארגון מקצועי') && (!serviceDetails.professional_organization_types || serviceDetails.professional_organization_types.length === 0)) errors.professional_organization_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('general') && (!serviceDetails.general_organization_types || serviceDetails.general_organization_types.length === 0)) errors.general_organization_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('sorting') && (!serviceDetails.sorting_types || serviceDetails.sorting_types.length === 0)) errors.sorting_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('professional') && (!serviceDetails.professional_organization_types || serviceDetails.professional_organization_types.length === 0)) errors.professional_organization_types = t('validation.selectAtLeastOne');
       break;
 
     case 'event_entertainment':
@@ -161,9 +161,9 @@ export const getServiceDetailsErrors = (serviceType, serviceDetails, t) => {
       if (!serviceDetails.availability_days || serviceDetails.availability_days.length === 0) errors.availability_days = t('validation.availabilityDaysRequired');
       if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) errors.availability_hours = t('validation.availabilityHoursRequired');
       if (!serviceDetails.equipment_rental_types || serviceDetails.equipment_rental_types.length === 0) errors.equipment_rental_types = t('validation.selectAtLeastOne');
-      if (serviceDetails.equipment_rental_types?.includes('🍿 מכונות מזון') && (!serviceDetails.food_machine_types || serviceDetails.food_machine_types.length === 0)) errors.food_machine_types = t('validation.selectAtLeastOne');
-      if (serviceDetails.equipment_rental_types?.includes('🎪 השכרת מתנפחים ומשחקים') && (!serviceDetails.inflatable_game_types || serviceDetails.inflatable_game_types.length === 0)) errors.inflatable_game_types = t('validation.selectAtLeastOne');
-      if (serviceDetails.equipment_rental_types?.includes('💨 מכונות אפקטים להשכרה') && (!serviceDetails.effect_machine_types || serviceDetails.effect_machine_types.length === 0)) errors.effect_machine_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.equipment_rental_types?.includes('foodMachines') && (!serviceDetails.food_machine_types || serviceDetails.food_machine_types.length === 0)) errors.food_machine_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.equipment_rental_types?.includes('inflatables') && (!serviceDetails.inflatable_game_types || serviceDetails.inflatable_game_types.length === 0)) errors.inflatable_game_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.equipment_rental_types?.includes('effectMachines') && (!serviceDetails.effect_machine_types || serviceDetails.effect_machine_types.length === 0)) errors.effect_machine_types = t('validation.selectAtLeastOne');
       break;
 
     case 'event_food_stands':
@@ -210,40 +210,40 @@ export const getServiceDetailsErrors = (serviceType, serviceDetails, t) => {
     case 'contractor':
       if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) errors.availability_hours = t('validation.availabilityHoursRequired');
       if (!serviceDetails.work_types || serviceDetails.work_types.length === 0) errors.work_types = t('validation.workTypesRequired');
-      if (serviceDetails.work_types?.includes('עבודות שלד') && (!serviceDetails.structure_work_types || serviceDetails.structure_work_types.length === 0)) errors.structure_work_types = t('validation.selectAtLeastOne');
-      if (serviceDetails.work_types?.includes('שיפוצים כלליים') && (!serviceDetails.general_renovation_types || serviceDetails.general_renovation_types.length === 0)) errors.general_renovation_types = t('validation.selectAtLeastOne');
-      if (serviceDetails.work_types?.includes('חשמל ואינסטלציה') && (!serviceDetails.electric_plumbing_types || serviceDetails.electric_plumbing_types.length === 0)) errors.electric_plumbing_types = t('validation.selectAtLeastOne');
-      if (serviceDetails.work_types?.includes('עבודות חוץ') && (!serviceDetails.exterior_work_types || serviceDetails.exterior_work_types.length === 0)) errors.exterior_work_types = t('validation.selectAtLeastOne');
-      if (serviceDetails.work_types?.includes('שיקום ותיקון חוץ') && (!serviceDetails.facade_repair_types || serviceDetails.facade_repair_types.length === 0)) errors.facade_repair_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('structureWork') && (!serviceDetails.structure_work_types || serviceDetails.structure_work_types.length === 0)) errors.structure_work_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('generalRenovation') && (!serviceDetails.general_renovation_types || serviceDetails.general_renovation_types.length === 0)) errors.general_renovation_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('electricPlumbing') && (!serviceDetails.electric_plumbing_types || serviceDetails.electric_plumbing_types.length === 0)) errors.electric_plumbing_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('exteriorWork') && (!serviceDetails.exterior_work_types || serviceDetails.exterior_work_types.length === 0)) errors.exterior_work_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('facadeRepair') && (!serviceDetails.facade_repair_types || serviceDetails.facade_repair_types.length === 0)) errors.facade_repair_types = t('validation.selectAtLeastOne');
       break;
 
     case 'aluminum':
       if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) errors.availability_hours = t('validation.availabilityHoursRequired');
       if (!serviceDetails.work_types || serviceDetails.work_types.length === 0) errors.work_types = t('validation.workTypesRequired');
-      if (serviceDetails.work_types?.includes('חלונות ודלתות') && (!serviceDetails.windows_doors_types || serviceDetails.windows_doors_types.length === 0)) errors.windows_doors_types = t('validation.selectAtLeastOne');
-      if (serviceDetails.work_types?.includes('פרגולות ואלומיניום חוץ') && (!serviceDetails.pergolas_outdoor_types || serviceDetails.pergolas_outdoor_types.length === 0)) errors.pergolas_outdoor_types = t('validation.selectAtLeastOne');
-      if (serviceDetails.work_types?.includes('תיקונים ושירות') && (!serviceDetails.repairs_service_types || serviceDetails.repairs_service_types.length === 0)) errors.repairs_service_types = t('validation.selectAtLeastOne');
-      if (serviceDetails.work_types?.includes('חיפויי אלומיניום') && (!serviceDetails.cladding_types || serviceDetails.cladding_types.length === 0)) errors.cladding_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('windowsDoors') && (!serviceDetails.windows_doors_types || serviceDetails.windows_doors_types.length === 0)) errors.windows_doors_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('pergolas') && (!serviceDetails.pergolas_outdoor_types || serviceDetails.pergolas_outdoor_types.length === 0)) errors.pergolas_outdoor_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('repairs') && (!serviceDetails.repairs_service_types || serviceDetails.repairs_service_types.length === 0)) errors.repairs_service_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('cladding') && (!serviceDetails.cladding_types || serviceDetails.cladding_types.length === 0)) errors.cladding_types = t('validation.selectAtLeastOne');
       break;
 
     case 'glass_works':
       if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) errors.availability_hours = t('validation.availabilityHoursRequired');
       if (!serviceDetails.work_types || serviceDetails.work_types.length === 0) errors.work_types = t('validation.workTypesRequired');
-      if (serviceDetails.work_types?.includes('זכוכית למקלחונים') && (!serviceDetails.shower_glass_types || serviceDetails.shower_glass_types.length === 0)) errors.shower_glass_types = t('validation.selectAtLeastOne');
-      if (serviceDetails.work_types?.includes('זכוכית לחלונות ודלתות') && (!serviceDetails.windows_doors_glass_types || serviceDetails.windows_doors_glass_types.length === 0)) errors.windows_doors_glass_types = t('validation.selectAtLeastOne');
-      if (serviceDetails.work_types?.includes('זכוכית למטבח ובית') && (!serviceDetails.kitchen_home_glass_types || serviceDetails.kitchen_home_glass_types.length === 0)) errors.kitchen_home_glass_types = t('validation.selectAtLeastOne');
-      if (serviceDetails.work_types?.includes('זכוכית מיוחדת ובטיחות') && (!serviceDetails.special_safety_glass_types || serviceDetails.special_safety_glass_types.length === 0)) errors.special_safety_glass_types = t('validation.selectAtLeastOne');
-      if (serviceDetails.work_types?.includes('שירותי תיקון והתאמה אישית') && (!serviceDetails.repair_custom_types || serviceDetails.repair_custom_types.length === 0)) errors.repair_custom_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('showers') && (!serviceDetails.shower_glass_types || serviceDetails.shower_glass_types.length === 0)) errors.shower_glass_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('homeGlass') && (!serviceDetails.windows_doors_glass_types || serviceDetails.windows_doors_glass_types.length === 0)) errors.windows_doors_glass_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('furniture') && (!serviceDetails.kitchen_home_glass_types || serviceDetails.kitchen_home_glass_types.length === 0)) errors.kitchen_home_glass_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('partitions') && (!serviceDetails.special_safety_glass_types || serviceDetails.special_safety_glass_types.length === 0)) errors.special_safety_glass_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('repairs') && (!serviceDetails.repair_custom_types || serviceDetails.repair_custom_types.length === 0)) errors.repair_custom_types = t('validation.selectAtLeastOne');
       break;
 
     case 'locksmith':
       if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) errors.availability_hours = t('validation.availabilityHoursRequired');
       if (!serviceDetails.work_types || serviceDetails.work_types.length === 0) errors.work_types = t('validation.workTypesRequired');
-      if (serviceDetails.work_types?.includes('החלפת מנעולים') && (!serviceDetails.lock_replacement_types || serviceDetails.lock_replacement_types.length === 0)) errors.lock_replacement_types = t('validation.selectAtLeastOne');
-      if (serviceDetails.work_types?.includes('פתיחת דלתות') && (!serviceDetails.door_opening_types || serviceDetails.door_opening_types.length === 0)) errors.door_opening_types = t('validation.selectAtLeastOne');
-      if (serviceDetails.work_types?.includes('התקנת מערכות נעילה') && (!serviceDetails.lock_system_installation_types || serviceDetails.lock_system_installation_types.length === 0)) errors.lock_system_installation_types = t('validation.selectAtLeastOne');
-      if (serviceDetails.work_types?.includes('תיקון מנעולים ודלתות') && (!serviceDetails.lock_door_repair_types || serviceDetails.lock_door_repair_types.length === 0)) errors.lock_door_repair_types = t('validation.selectAtLeastOne');
-      if (serviceDetails.work_types?.includes('שירותי ביטחון') && (!serviceDetails.security_services_types || serviceDetails.security_services_types.length === 0)) errors.security_services_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('lockReplacement') && (!serviceDetails.lock_replacement_types || serviceDetails.lock_replacement_types.length === 0)) errors.lock_replacement_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('emergencyOpening') && (!serviceDetails.door_opening_types || serviceDetails.door_opening_types.length === 0)) errors.door_opening_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('advancedSystems') && (!serviceDetails.lock_system_installation_types || serviceDetails.lock_system_installation_types.length === 0)) errors.lock_system_installation_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('doorRepair') && (!serviceDetails.lock_door_repair_types || serviceDetails.lock_door_repair_types.length === 0)) errors.lock_door_repair_types = t('validation.selectAtLeastOne');
+      if (serviceDetails.work_types?.includes('securityServices') && (!serviceDetails.security_services_types || serviceDetails.security_services_types.length === 0)) errors.security_services_types = t('validation.selectAtLeastOne');
       break;
 
     case 'moving':

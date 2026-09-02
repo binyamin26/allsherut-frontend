@@ -14,16 +14,16 @@ const PaintingForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
   <label className="auth-form-label required">{t('serviceForm.common.availabilityHours')}</label>
   <div className="checkbox-group" data-field="availability_hours">
     {[
-      { value: 'בוקר', label: t('hours.morning') },
-      { value: 'אחר הצהריים', label: t('hours.afternoon') },
-      { value: 'ערב', label: t('hours.evening') },
-      { value: 'הכל', label: t('hours.all') }
+      { value: 'morning', label: t('hours.morning') },
+      { value: 'afternoon', label: t('hours.afternoon') },
+      { value: 'evening', label: t('hours.evening') },
+      { value: 'all', label: t('hours.all') }
     ].map(hour => (
       <label key={hour.value} className="checkbox-item">
         <input
           type="checkbox"
           checked={serviceDetails.availability_hours?.includes(hour.value) || false}
-          onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'הכל', ['בוקר', 'אחר הצהריים', 'ערב'])}
+          onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'all', ['morning', 'afternoon', 'evening'])}
         />
         {hour.label}
       </label>
@@ -37,14 +37,14 @@ const PaintingForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
           <div className="checkbox-group" data-field="work_types">
 <div className="checkbox-group" data-field="work_types">
   {[
-    { value: 'צביעה כללית של דירה', label: t('filters.painting.generalPainting') },
-    { value: 'תיקוני קירות – חורים, סדקים, שפכטל', label: t('filters.painting.wallRepairs') },
-    { value: 'החלקת קירות (שפכטל מלא)', label: t('filters.painting.wallSmoothing') },
-    { value: 'תיקון רטיבות / עובש', label: t('filters.painting.moistureMold') },
-    { value: 'קילופי צבע ישן', label: t('filters.painting.paintStripping') },
-    { value: 'צביעת אפקטים – בטון, משי, אומבר', label: t('filters.painting.effectPainting') },
-    { value: 'צביעת קיר דקורטיבי / Accent Wall', label: t('filters.painting.accentWall') },
-    { value: 'טקסטורות מיוחדות', label: t('filters.painting.specialTextures') }
+    { value: 'generalPainting', label: t('filters.painting.generalPainting') },
+    { value: 'wallRepairs', label: t('filters.painting.wallRepairs') },
+    { value: 'wallSmoothing', label: t('filters.painting.wallSmoothing') },
+    { value: 'moistureMold', label: t('filters.painting.moistureMold') },
+    { value: 'paintStripping', label: t('filters.painting.paintStripping') },
+    { value: 'effectPainting', label: t('filters.painting.effectPainting') },
+    { value: 'accentWall', label: t('filters.painting.accentWall') },
+    { value: 'specialTextures', label: t('filters.painting.specialTextures') }
   ].map(type => (
     <label key={type.value} className="checkbox-item">
       <input
@@ -85,10 +85,10 @@ const PaintingForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
           <label className="auth-form-label required">{t('filters.common.languages')}</label>
           <div className="checkbox-group" data-field="languages">
             {[
-              { value: 'עברית', label: t('languages.hebrew') },
-              { value: 'רוסית', label: t('languages.russian') },
-              { value: 'אנגלית', label: t('languages.english') },
-              { value: 'צרפתית', label: t('languages.french') }
+              { value: 'hebrew', label: t('languages.hebrew') },
+              { value: 'russian', label: t('languages.russian') },
+              { value: 'english', label: t('languages.english') },
+              { value: 'french', label: t('languages.french') }
             ].map(lang => (
               <label key={lang.value} className="checkbox-item">
                 <input

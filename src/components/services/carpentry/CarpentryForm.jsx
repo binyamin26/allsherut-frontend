@@ -14,16 +14,16 @@ const CarpentryForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
           <label className="auth-form-label required">{t('serviceForm.common.availabilityHours')}</label>
           <div className="checkbox-group" data-field="availability_hours">
           {[
-  { value: 'בוקר', label: t('hours.morning') },
-  { value: 'אחר הצהריים', label: t('hours.afternoon') },
-  { value: 'ערב', label: t('hours.evening') },
-  { value: 'הכל', label: t('hours.all') }
+  { value: 'morning', label: t('hours.morning') },
+  { value: 'afternoon', label: t('hours.afternoon') },
+  { value: 'evening', label: t('hours.evening') },
+  { value: 'all', label: t('hours.all') }
 ].map(hour => (
             <label key={hour.value} className="checkbox-item">
     <input
       type="checkbox"
       checked={serviceDetails.availability_hours?.includes(hour.value) || false}
-      onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'הכל', ['בוקר', 'אחר הצהריים', 'ערב'])}
+      onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'all', ['morning', 'afternoon', 'evening'])}
     />
     {hour.label}
   </label>
@@ -39,35 +39,35 @@ const CarpentryForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
             <label className="checkbox-item" style={{fontWeight: 'bold'}}>
               <input
                 type="checkbox"
-                checked={serviceDetails.work_types?.includes('בניית רהיטים') || false}
+                checked={serviceDetails.work_types?.includes('furnitureBuilding') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
                   const newTypes = e.target.checked 
-                    ? [...current, 'בניית רהיטים']
-                    : current.filter(t => t !== 'בניית רהיטים');
+                    ? [...current, 'furnitureBuilding']
+                    : current.filter(t => t !== 'furnitureBuilding');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
            {t('serviceForm.carpentry.furnitureBuilding')}
             </label>
             
-            {serviceDetails.work_types?.includes('בניית רהיטים') && (
+            {serviceDetails.work_types?.includes('furnitureBuilding') && (
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="furniture_building_types">
                  {[
-  { value: 'בניית ארונות קיר', label: t('filters.carpentry.wallClosets') },
-  { value: 'בניית ארונות הזזה', label: t('filters.carpentry.slidingClosets') },
-  { value: 'בניית ארונות אמבטיה', label: t('filters.carpentry.bathroomCabinets') },
-  { value: 'בניית חדר שינה', label: t('filters.carpentry.bedroomFurniture') },
-  { value: 'בניית שולחן', label: t('filters.carpentry.tableBuilding') },
-  { value: 'בניית כסאות', label: t('filters.carpentry.chairBuilding') },
-  { value: 'בניית מזנון', label: t('filters.carpentry.tvUnitBuilding') },
-  { value: 'בניית ספריה', label: t('filters.carpentry.libraryBuilding') },
-  { value: 'בניית רהיטים ייחודים', label: t('filters.carpentry.customFurniture') },
-  { value: 'בניית מדפים', label: t('filters.carpentry.shelfBuilding') },
-  { value: 'בניית חדר ארונות', label: t('filters.carpentry.walkInCloset') },
-  { value: 'בניית מיטה מעץ', label: t('filters.carpentry.woodenBed') },
-  { value: 'בניית ארונות מטבח', label: t('filters.carpentry.kitchenFurniture') }
+  { value: 'wallClosets', label: t('filters.carpentry.wallClosets') },
+  { value: 'slidingClosets', label: t('filters.carpentry.slidingClosets') },
+  { value: 'bathroomCabinets', label: t('filters.carpentry.bathroomCabinets') },
+  { value: 'bedroomFurniture', label: t('filters.carpentry.bedroomFurniture') },
+  { value: 'tableBuilding', label: t('filters.carpentry.tableBuilding') },
+  { value: 'chairBuilding', label: t('filters.carpentry.chairBuilding') },
+  { value: 'tvUnitBuilding', label: t('filters.carpentry.tvUnitBuilding') },
+  { value: 'libraryBuilding', label: t('filters.carpentry.libraryBuilding') },
+  { value: 'customFurniture', label: t('filters.carpentry.customFurniture') },
+  { value: 'shelfBuilding', label: t('filters.carpentry.shelfBuilding') },
+  { value: 'walkInCloset', label: t('filters.carpentry.walkInCloset') },
+  { value: 'woodenBed', label: t('filters.carpentry.woodenBed') },
+  { value: 'kitchenFurniture', label: t('filters.carpentry.kitchenFurniture') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
@@ -94,31 +94,31 @@ const CarpentryForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
             <label className="checkbox-item" style={{fontWeight: 'bold'}}>
               <input
                 type="checkbox"
-                checked={serviceDetails.work_types?.includes('תיקון רהיטים') || false}
+                checked={serviceDetails.work_types?.includes('furnitureRepair') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
                   const newTypes = e.target.checked 
-                    ? [...current, 'תיקון רהיטים']
-                    : current.filter(t => t !== 'תיקון רהיטים');
+                    ? [...current, 'furnitureRepair']
+                    : current.filter(t => t !== 'furnitureRepair');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
             {t('serviceForm.carpentry.furnitureRepair')}
             </label>
             
-            {serviceDetails.work_types?.includes('תיקון רהיטים') && (
+            {serviceDetails.work_types?.includes('furnitureRepair') && (
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="furniture_repair_types">
              {[
-  { value: 'תיקון ארונות קיר', label: t('serviceForm.carpentry.repairWallClosets') },
-  { value: 'תיקון שולחן', label: t('serviceForm.carpentry.repairTable') },
-  { value: 'תיקון כסאות', label: t('serviceForm.carpentry.repairChairs') },
-  { value: 'תיקון ארונות הזזה', label: t('serviceForm.carpentry.repairSlidingClosets') },
-  { value: 'תיקון ארונות אמבטיה', label: t('serviceForm.carpentry.repairBathroomCabinets') },
-  { value: 'תיקון חדר שינה', label: t('serviceForm.carpentry.repairBedroomFurniture') },
-  { value: 'תיקון מזנון', label: t('serviceForm.carpentry.repairTvUnit') },
-  { value: 'תיקון ספרייה', label: t('serviceForm.carpentry.repairLibrary') },
-  { value: 'תיקון רהיטים אחרים', label: t('serviceForm.carpentry.repairOther') }
+  { value: 'repairWallClosets', label: t('serviceForm.carpentry.repairWallClosets') },
+  { value: 'repairTable', label: t('serviceForm.carpentry.repairTable') },
+  { value: 'repairChairs', label: t('serviceForm.carpentry.repairChairs') },
+  { value: 'repairSlidingClosets', label: t('serviceForm.carpentry.repairSlidingClosets') },
+  { value: 'repairBathroomCabinets', label: t('serviceForm.carpentry.repairBathroomCabinets') },
+  { value: 'repairBedroomFurniture', label: t('serviceForm.carpentry.repairBedroomFurniture') },
+  { value: 'repairTvUnit', label: t('serviceForm.carpentry.repairTvUnit') },
+  { value: 'repairLibrary', label: t('serviceForm.carpentry.repairLibrary') },
+  { value: 'repairOther', label: t('serviceForm.carpentry.repairOther') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
@@ -145,30 +145,30 @@ const CarpentryForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
             <label className="checkbox-item" style={{fontWeight: 'bold'}}>
               <input
                 type="checkbox"
-                checked={serviceDetails.work_types?.includes('עבודות נגרות אחרות') || false}
+                checked={serviceDetails.work_types?.includes('otherWork') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
                   const newTypes = e.target.checked 
-                    ? [...current, 'עבודות נגרות אחרות']
-                    : current.filter(t => t !== 'עבודות נגרות אחרות');
+                    ? [...current, 'otherWork']
+                    : current.filter(t => t !== 'otherWork');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
            {t('serviceForm.carpentry.otherWork')}
             </label>
             
-            {serviceDetails.work_types?.includes('עבודות נגרות אחרות') && (
+            {serviceDetails.work_types?.includes('otherWork') && (
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="other_carpentry_types">
               {[
-  { value: 'חיפוי עץ לקיר', label: t('serviceForm.carpentry.wallCladding') },
-  { value: 'פירוק והרכבת רהיטים', label: t('serviceForm.carpentry.disassembly') },
-  { value: 'בניית דלתות', label: t('serviceForm.carpentry.doorFabrication') },
-  { value: 'תיקון דלתות', label: t('serviceForm.carpentry.doorRepair') },
-  { value: 'חידוש דלתות כניסה מעץ', label: t('serviceForm.carpentry.doorRenovation') },
-  { value: 'בניית קומת גלריה', label: t('serviceForm.carpentry.loft') },
-  { value: 'מדרגות עץ לבית', label: t('serviceForm.carpentry.stairs') },
-  { value: 'משרביות מעץ', label: t('serviceForm.carpentry.lattice') },
+  { value: 'wallCladding', label: t('serviceForm.carpentry.wallCladding') },
+  { value: 'disassembly', label: t('serviceForm.carpentry.disassembly') },
+  { value: 'doorFabrication', label: t('serviceForm.carpentry.doorFabrication') },
+  { value: 'doorRepair', label: t('serviceForm.carpentry.doorRepair') },
+  { value: 'doorRenovation', label: t('serviceForm.carpentry.doorRenovation') },
+  { value: 'loft', label: t('serviceForm.carpentry.loft') },
+  { value: 'stairs', label: t('serviceForm.carpentry.stairs') },
+  { value: 'lattice', label: t('serviceForm.carpentry.lattice') },
   { value: 'בוצ\'ר עץ', label: t('serviceForm.carpentry.butcher') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
@@ -196,44 +196,44 @@ const CarpentryForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
             <label className="checkbox-item" style={{fontWeight: 'bold'}}>
               <input
                 type="checkbox"
-                checked={serviceDetails.work_types?.includes('נגרות חוץ') || false}
+                checked={serviceDetails.work_types?.includes('outdoorCarpentry') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
                   const newTypes = e.target.checked 
-                    ? [...current, 'נגרות חוץ']
-                    : current.filter(t => t !== 'נגרות חוץ');
+                    ? [...current, 'outdoorCarpentry']
+                    : current.filter(t => t !== 'outdoorCarpentry');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
              {t('serviceForm.carpentry.outdoorCarpentry')}
             </label>
             
-            {serviceDetails.work_types?.includes('נגרות חוץ') && (
+            {serviceDetails.work_types?.includes('outdoorCarpentry') && (
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 
                 <div style={{marginBottom: '15px'}}>
                   <label className="checkbox-item" style={{fontWeight: '600'}}>
                     <input
                       type="checkbox"
-                      checked={serviceDetails.outdoor_carpentry_types?.includes('פרגולות') || false}
+                      checked={serviceDetails.outdoor_carpentry_types?.includes('pergolas') || false}
                       onChange={(e) => {
                         const current = serviceDetails.outdoor_carpentry_types || [];
                         const newTypes = e.target.checked 
-                          ? [...current, 'פרגולות']
-                          : current.filter(t => t !== 'פרגולות');
+                          ? [...current, 'pergolas']
+                          : current.filter(t => t !== 'pergolas');
                         handleServiceDetailsChange('outdoor_carpentry_types', newTypes);
                       }}
                     />
                     {t('serviceForm.carpentry.pergolas')}
                   </label>
                   
-                  {serviceDetails.outdoor_carpentry_types?.includes('פרגולות') && (
+                  {serviceDetails.outdoor_carpentry_types?.includes('pergolas') && (
                     <div style={{marginRight: '30px', marginTop: '10px'}}>
                       <div className="checkbox-group" data-field="pergola_types">
                     {[
-  { value: 'פרגולות עץ', label: t('serviceForm.carpentry.woodPergolas') },
-  { value: 'פרגולות הצללה', label: t('serviceForm.carpentry.shadePergolas') },
-  { value: 'סגירת מרפסת', label: t('serviceForm.carpentry.balconyEnclosure') }
+  { value: 'woodPergolas', label: t('serviceForm.carpentry.woodPergolas') },
+  { value: 'shadePergolas', label: t('serviceForm.carpentry.shadePergolas') },
+  { value: 'balconyEnclosure', label: t('serviceForm.carpentry.balconyEnclosure') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
@@ -260,25 +260,25 @@ const CarpentryForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
                   <label className="checkbox-item" style={{fontWeight: '600'}}>
                     <input
                       type="checkbox"
-                      checked={serviceDetails.outdoor_carpentry_types?.includes('דקים') || false}
+                      checked={serviceDetails.outdoor_carpentry_types?.includes('decks') || false}
                       onChange={(e) => {
                         const current = serviceDetails.outdoor_carpentry_types || [];
                         const newTypes = e.target.checked 
-                          ? [...current, 'דקים']
-                          : current.filter(t => t !== 'דקים');
+                          ? [...current, 'decks']
+                          : current.filter(t => t !== 'decks');
                         handleServiceDetailsChange('outdoor_carpentry_types', newTypes);
                       }}
                     />
                     {t('serviceForm.carpentry.decks')}
                   </label>
                   
-                  {serviceDetails.outdoor_carpentry_types?.includes('דקים') && (
+                  {serviceDetails.outdoor_carpentry_types?.includes('decks') && (
                     <div style={{marginRight: '30px', marginTop: '10px'}}>
                       <div className="checkbox-group" data-field="deck_types">
                     {[
-  { value: 'דקים מעץ טבעי', label: t('serviceForm.carpentry.naturalWoodDecks') },
-  { value: 'דק סינטטי (קומפוזיט)', label: t('serviceForm.carpentry.compositeDecks') },
-  { value: 'שיקום / חידוש דקים', label: t('serviceForm.carpentry.deckRenovation') }
+  { value: 'naturalWoodDecks', label: t('serviceForm.carpentry.naturalWoodDecks') },
+  { value: 'compositeDecks', label: t('serviceForm.carpentry.compositeDecks') },
+  { value: 'deckRenovation', label: t('serviceForm.carpentry.deckRenovation') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
@@ -305,25 +305,25 @@ const CarpentryForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
                   <label className="checkbox-item" style={{fontWeight: '600'}}>
                     <input
                       type="checkbox"
-                      checked={serviceDetails.outdoor_carpentry_types?.includes('גדרות ומחיצות עץ') || false}
+                      checked={serviceDetails.outdoor_carpentry_types?.includes('fences') || false}
                       onChange={(e) => {
                         const current = serviceDetails.outdoor_carpentry_types || [];
                         const newTypes = e.target.checked 
-                          ? [...current, 'גדרות ומחיצות עץ']
-                          : current.filter(t => t !== 'גדרות ומחיצות עץ');
+                          ? [...current, 'fences']
+                          : current.filter(t => t !== 'fences');
                         handleServiceDetailsChange('outdoor_carpentry_types', newTypes);
                       }}
                     />
                  {t('serviceForm.carpentry.fences')}
                   </label>
                   
-                  {serviceDetails.outdoor_carpentry_types?.includes('גדרות ומחיצות עץ') && (
+                  {serviceDetails.outdoor_carpentry_types?.includes('fences') && (
                     <div style={{marginRight: '30px', marginTop: '10px'}}>
                       <div className="checkbox-group" data-field="fence_types">
                      {[
-  { value: 'גדרות עץ', label: t('serviceForm.carpentry.woodFences') },
-  { value: 'מחיצות עץ לגינה', label: t('serviceForm.carpentry.gardenPartitions') },
-  { value: 'שערי עץ', label: t('serviceForm.carpentry.woodGates') }
+  { value: 'woodFences', label: t('serviceForm.carpentry.woodFences') },
+  { value: 'gardenPartitions', label: t('serviceForm.carpentry.gardenPartitions') },
+  { value: 'woodGates', label: t('serviceForm.carpentry.woodGates') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
@@ -371,10 +371,10 @@ const CarpentryForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
           <label className="auth-form-label required">{t('filters.common.languages')}</label>
           <div className="checkbox-group" data-field="languages">
             {[
-              { value: 'עברית', label: t('languages.hebrew') },
-              { value: 'רוסית', label: t('languages.russian') },
-              { value: 'אנגלית', label: t('languages.english') },
-              { value: 'צרפתית', label: t('languages.french') }
+              { value: 'hebrew', label: t('languages.hebrew') },
+              { value: 'russian', label: t('languages.russian') },
+              { value: 'english', label: t('languages.english') },
+              { value: 'french', label: t('languages.french') }
             ].map(lang => (
               <label key={lang.value} className="checkbox-item">
                 <input

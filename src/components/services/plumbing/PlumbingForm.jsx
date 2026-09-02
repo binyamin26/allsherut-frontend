@@ -14,16 +14,16 @@ const PlumbingForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
   <label className="auth-form-label required">{t('serviceForm.common.availabilityHours')}</label>
   <div className="checkbox-group" data-field="availability_hours">
     {[
-      { value: 'בוקר', label: t('hours.morning') },
-      { value: 'אחר הצהריים', label: t('hours.afternoon') },
-      { value: 'ערב', label: t('hours.evening') },
-      { value: 'הכל', label: t('hours.all') }
+      { value: 'morning', label: t('hours.morning') },
+      { value: 'afternoon', label: t('hours.afternoon') },
+      { value: 'evening', label: t('hours.evening') },
+      { value: 'all', label: t('hours.all') }
     ].map(hour => (
       <label key={hour.value} className="checkbox-item">
         <input
           type="checkbox"
           checked={serviceDetails.availability_hours?.includes(hour.value) || false}
-          onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'הכל', ['בוקר', 'אחר הצהריים', 'ערב'])}
+          onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'all', ['morning', 'afternoon', 'evening'])}
         />
         {hour.label}
       </label>
@@ -39,25 +39,25 @@ const PlumbingForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
             <label className="checkbox-item" style={{fontWeight: 'bold'}}>
               <input
                 type="checkbox"
-                checked={serviceDetails.work_types?.includes('סתימות') || false}
+                checked={serviceDetails.work_types?.includes('blockages') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
                   const newTypes = e.target.checked 
-                    ? [...current, 'סתימות']
-                    : current.filter(t => t !== 'סתימות');
+                    ? [...current, 'blockages']
+                    : current.filter(t => t !== 'blockages');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
            {t('serviceForm.plumbing.blockages')}
             </label>
             
-            {serviceDetails.work_types?.includes('סתימות') && (
+            {serviceDetails.work_types?.includes('blockages') && (
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="blockage_types">
                 {[
-  { value: 'פתיחת סתימה בבית', label: t('filters.plumbing.homeBlockage') },
-  { value: 'משאבה טבולה', label: t('filters.plumbing.submersiblePump') },
-  { value: 'פתיחת סתימה בבנין', label: t('filters.plumbing.buildingBlockage') }
+  { value: 'homeBlockage', label: t('filters.plumbing.homeBlockage') },
+  { value: 'submersiblePump', label: t('filters.plumbing.submersiblePump') },
+  { value: 'buildingBlockage', label: t('filters.plumbing.buildingBlockage') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
@@ -84,30 +84,30 @@ const PlumbingForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
             <label className="checkbox-item" style={{fontWeight: 'bold'}}>
               <input
                 type="checkbox"
-                checked={serviceDetails.work_types?.includes('תיקון צנרת') || false}
+                checked={serviceDetails.work_types?.includes('pipeRepair') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
                   const newTypes = e.target.checked 
-                    ? [...current, 'תיקון צנרת']
-                    : current.filter(t => t !== 'תיקון צנרת');
+                    ? [...current, 'pipeRepair']
+                    : current.filter(t => t !== 'pipeRepair');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
          {t('serviceForm.plumbing.pipeRepair')}
             </label>
             
-            {serviceDetails.work_types?.includes('תיקון צנרת') && (
+            {serviceDetails.work_types?.includes('pipeRepair') && (
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="pipe_repair_types">
                  {[
-  { value: 'תיקון צנרת גברית', label: t( 'filters.plumbing.malePipeRepair') },
-  { value: 'תיקון נזקי צנרת בבית', label: t('filters.plumbing.homePipeDamage') },
-  { value: 'תיקון נזקי צנרת בבניין', label: t('filters.plumbing.buildingPipeDamage') },
-  { value: 'הגברת לחץ מים', label: t('filters.plumbing.pressureBoost') },
-  { value: 'תיקון צנרת בגינה', label: t('filters.plumbing.gardenPipes') },
-  { value: 'תיקוני צנרת אחרים', label: t('filters.plumbing.otherPipeRepairs') },
-  { value: 'תיקון צנרת ביוב ללא הרס', label: t('filters.plumbing.sewerNonDestructive') },
-  { value: 'איתור נזילות', label: t('filters.plumbing.leakDetection') }
+  { value: 'malePipeRepair', label: t( 'filters.plumbing.malePipeRepair') },
+  { value: 'homePipeDamage', label: t('filters.plumbing.homePipeDamage') },
+  { value: 'buildingPipeDamage', label: t('filters.plumbing.buildingPipeDamage') },
+  { value: 'pressureBoost', label: t('filters.plumbing.pressureBoost') },
+  { value: 'gardenPipes', label: t('filters.plumbing.gardenPipes') },
+  { value: 'otherPipeRepairs', label: t('filters.plumbing.otherPipeRepairs') },
+  { value: 'sewerNonDestructive', label: t('filters.plumbing.sewerNonDestructive') },
+  { value: 'leakDetection', label: t('filters.plumbing.leakDetection') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
@@ -134,30 +134,30 @@ const PlumbingForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
             <label className="checkbox-item" style={{fontWeight: 'bold'}}>
               <input
                 type="checkbox"
-                checked={serviceDetails.work_types?.includes('עבודות גדולות') || false}
+                checked={serviceDetails.work_types?.includes('largeWork') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
                   const newTypes = e.target.checked 
-                    ? [...current, 'עבודות גדולות']
-                    : current.filter(t => t !== 'עבודות גדולות');
+                    ? [...current, 'largeWork']
+                    : current.filter(t => t !== 'largeWork');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
              {t('serviceForm.plumbing.largeWork')}
             </label>
             
-            {serviceDetails.work_types?.includes('עבודות גדולות') && (
+            {serviceDetails.work_types?.includes('largeWork') && (
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="large_work_types">
                 {[
-  { value: 'החלפת צנרת בבית', label: t('filters.plumbing.homePipeReplacement') },
-  { value: 'החלפת צנרת בבניין', label: t('filters.plumbing.buildingPipeReplacement') },
-  { value: 'התקנת נקודות מים חדשות', label: t('filters.plumbing.newWaterPoints') },
-  { value: 'החלפת קו ביוב בבית', label: t('filters.plumbing.homeSewerReplacement') },
-  { value: 'החלפת קו ביוב בבניין', label: t('filters.plumbing.buildingSewerReplacement') },
-  { value: 'הקמת קו ביוב חדש', label: t('filters.plumbing.newSewerLine') },
-  { value: 'החלפת צנרת בגינה', label: t('filters.plumbing.gardenPipeReplacement') },
-  { value: 'התקנת מזח', label: t('filters.plumbing.pierInstallation') }
+  { value: 'homePipeReplacement', label: t('filters.plumbing.homePipeReplacement') },
+  { value: 'buildingPipeReplacement', label: t('filters.plumbing.buildingPipeReplacement') },
+  { value: 'newWaterPoints', label: t('filters.plumbing.newWaterPoints') },
+  { value: 'homeSewerReplacement', label: t('filters.plumbing.homeSewerReplacement') },
+  { value: 'buildingSewerReplacement', label: t('filters.plumbing.buildingSewerReplacement') },
+  { value: 'newSewerLine', label: t('filters.plumbing.newSewerLine') },
+  { value: 'gardenPipeReplacement', label: t('filters.plumbing.gardenPipeReplacement') },
+  { value: 'pierInstallation', label: t('filters.plumbing.pierInstallation') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
@@ -184,40 +184,40 @@ const PlumbingForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
             <label className="checkbox-item" style={{fontWeight: 'bold'}}>
               <input
                 type="checkbox"
-                checked={serviceDetails.work_types?.includes('תיקון והתקנת אביזרי אינסטלציה') || false}
+                checked={serviceDetails.work_types?.includes('fixtureRepair') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
                   const newTypes = e.target.checked 
-                    ? [...current, 'תיקון והתקנת אביזרי אינסטלציה']
-                    : current.filter(t => t !== 'תיקון והתקנת אביזרי אינסטלציה');
+                    ? [...current, 'fixtureRepair']
+                    : current.filter(t => t !== 'fixtureRepair');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
          {t('serviceForm.plumbing.fixtureInstallation')}
             </label>
             
-            {serviceDetails.work_types?.includes('תיקון והתקנת אביזרי אינסטלציה') && (
+            {serviceDetails.work_types?.includes('fixtureRepair') && (
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="fixture_types">
                {[
-  { value: 'התקנת בר מים', label: t('filters.plumbing.waterBar') },
-  { value: 'ניאגרה סמויה', label: t('filters.plumbing.concealedCistern') },
-  { value: 'ברזים', label: t('filters.plumbing.faucets') },
-  { value: 'ניאגרות ואסלות', label: t('filters.plumbing.toilets') },
-  { value: 'מסנני מים', label: t('filters.plumbing.waterFilters') },
-  { value: 'התקנת טוחן אשפה', label: t('filters.plumbing.garbageDisposal') },
-  { value: 'תיקון טוחן אשפה', label: t('filters.plumbing.disposalRepair') },
-  { value: 'כיורים', label: t('filters.plumbing.sinks') },
-  { value: 'הכנה למדיח כלים', label: t('filters.plumbing.dishwasherPrep') },
-  { value: 'אגנית למקלחון', label: t('filters.plumbing.showerBase') },
-  { value: 'אביזרים אחרים', label: t('filters.plumbing.otherFixtures') },
-  { value: 'סילוקית לאסלה', label: t('filters.plumbing.toiletFlush') },
-  { value: 'התקנת בידה', label: t('filters.plumbing.bidet') },
-  { value: 'אסלה תלויה', label: t('filters.plumbing.wallMountedToilet') },
-  { value: 'אל חוזר לשעון מים', label: t('filters.plumbing.checkValve') },
-  { value: 'התקנת מערכות מים תת כיוריות', label: t('filters.plumbing.underSinkSystems') },
-  { value: 'התקנת דוד שמש', label: t('filters.plumbing.solarHeaterInstall') },
-  { value: 'תיקון דוד שמש', label: t('filters.plumbing.solarHeaterRepair') }
+  { value: 'waterBar', label: t('filters.plumbing.waterBar') },
+  { value: 'concealedCistern', label: t('filters.plumbing.concealedCistern') },
+  { value: 'faucets', label: t('filters.plumbing.faucets') },
+  { value: 'toilets', label: t('filters.plumbing.toilets') },
+  { value: 'waterFilters', label: t('filters.plumbing.waterFilters') },
+  { value: 'garbageDisposal', label: t('filters.plumbing.garbageDisposal') },
+  { value: 'disposalRepair', label: t('filters.plumbing.disposalRepair') },
+  { value: 'sinks', label: t('filters.plumbing.sinks') },
+  { value: 'dishwasherPrep', label: t('filters.plumbing.dishwasherPrep') },
+  { value: 'showerBase', label: t('filters.plumbing.showerBase') },
+  { value: 'otherFixtures', label: t('filters.plumbing.otherFixtures') },
+  { value: 'toiletFlush', label: t('filters.plumbing.toiletFlush') },
+  { value: 'bidet', label: t('filters.plumbing.bidet') },
+  { value: 'wallMountedToilet', label: t('filters.plumbing.wallMountedToilet') },
+  { value: 'checkValve', label: t('filters.plumbing.checkValve') },
+  { value: 'underSinkSystems', label: t('filters.plumbing.underSinkSystems') },
+  { value: 'solarHeaterInstall', label: t('filters.plumbing.solarHeaterInstall') },
+  { value: 'solarHeaterRepair', label: t('filters.plumbing.solarHeaterRepair') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
@@ -262,10 +262,10 @@ const PlumbingForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
           <label className="auth-form-label required">{t('filters.common.languages')}</label>
           <div className="checkbox-group" data-field="languages">
             {[
-              { value: 'עברית', label: t('languages.hebrew') },
-              { value: 'רוסית', label: t('languages.russian') },
-              { value: 'אנגלית', label: t('languages.english') },
-              { value: 'צרפתית', label: t('languages.french') }
+              { value: 'hebrew', label: t('languages.hebrew') },
+              { value: 'russian', label: t('languages.russian') },
+              { value: 'english', label: t('languages.english') },
+              { value: 'french', label: t('languages.french') }
             ].map(lang => (
               <label key={lang.value} className="checkbox-item">
                 <input

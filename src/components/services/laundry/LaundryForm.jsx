@@ -15,10 +15,10 @@ const LaundryForm = ({ serviceDetails, errors, handleServiceDetailsChange, handl
          <label className="auth-form-label required">{t('serviceForm.laundry.serviceTypes')}</label>
 <div className="checkbox-group" data-field="laundryTypes">
   {[
-    { value: 'איסוף והחזרת כביסה (שירות משלוחים)', label: t('filters.laundry.pickupDelivery') },
-    { value: 'ניקוי יבש / שירות מכבסה', label: t('filters.laundry.dryCleaning') },
-    { value: 'כביסת מצעים, מגבות, וילונות', label: t('filters.laundry.linens') },
-    { value: 'כביסה תעשייתית (מלונות, מסעדות)', label: t('filters.laundry.industrial') }
+    { value: 'pickupDelivery', label: t('filters.laundry.pickupDelivery') },
+    { value: 'dryCleaning', label: t('filters.laundry.dryCleaning') },
+    { value: 'linens', label: t('filters.laundry.linens') },
+    { value: 'industrial', label: t('filters.laundry.industrial') }
   ].map(type => (
     <label key={type.value} className="checkbox-item">
       <input
@@ -43,16 +43,16 @@ const LaundryForm = ({ serviceDetails, errors, handleServiceDetailsChange, handl
        <label className="auth-form-label required">{t('serviceForm.laundry.availabilityHours')}</label>
           <div className="checkbox-group">
       {[
-  { value: 'בוקר', label: t('hours.morning') },
-  { value: 'אחר הצהריים', label: t('hours.afternoon') },
-  { value: 'ערב', label: t('hours.evening') },
-  { value: 'הכל', label: t('hours.all') }
+  { value: 'morning', label: t('hours.morning') },
+  { value: 'afternoon', label: t('hours.afternoon') },
+  { value: 'evening', label: t('hours.evening') },
+  { value: 'all', label: t('hours.all') }
 ].map(hour => (
   <label key={hour.value} className="checkbox-item">
     <input
       type="checkbox"
       checked={serviceDetails.availability_hours?.includes(hour.value) || false}
-      onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'הכל', ['בוקר', 'אחר הצהריים', 'ערב'])}
+      onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'all', ['morning', 'afternoon', 'evening'])}
     />
     {hour.label}
   </label>
@@ -80,10 +80,10 @@ const LaundryForm = ({ serviceDetails, errors, handleServiceDetailsChange, handl
           <label className="auth-form-label required">{t('filters.common.languages')}</label>
           <div className="checkbox-group" data-field="languages">
             {[
-              { value: 'עברית', label: t('languages.hebrew') },
-              { value: 'רוסית', label: t('languages.russian') },
-              { value: 'אנגלית', label: t('languages.english') },
-              { value: 'צרפתית', label: t('languages.french') }
+              { value: 'hebrew', label: t('languages.hebrew') },
+              { value: 'russian', label: t('languages.russian') },
+              { value: 'english', label: t('languages.english') },
+              { value: 'french', label: t('languages.french') }
             ].map(lang => (
               <label key={lang.value} className="checkbox-item">
                 <input

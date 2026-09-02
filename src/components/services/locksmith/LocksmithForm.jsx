@@ -14,16 +14,16 @@ const LocksmithForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
           <label className="auth-form-label required">{t('serviceForm.common.availabilityHours')}</label>
           <div className="checkbox-group" data-field="availability_hours">
             {[
-              { value: 'בוקר', label: t('hours.morning') },
-              { value: 'אחר הצהריים', label: t('hours.afternoon') },
-              { value: 'ערב', label: t('hours.evening') },
-              { value: 'הכל', label: t('hours.all') }
+              { value: 'morning', label: t('hours.morning') },
+              { value: 'afternoon', label: t('hours.afternoon') },
+              { value: 'evening', label: t('hours.evening') },
+              { value: 'all', label: t('hours.all') }
             ].map(hour => (
               <label key={hour.value} className="checkbox-item">
                 <input
                   type="checkbox"
                   checked={serviceDetails.availability_hours?.includes(hour.value) || false}
-                  onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'הכל', ['בוקר', 'אחר הצהריים', 'ערב'])}
+                  onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'all', ['morning', 'afternoon', 'evening'])}
                 />
                 {hour.label}
               </label>
@@ -39,26 +39,26 @@ const LocksmithForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
             <label className="checkbox-item" style={{fontWeight: 'bold'}}>
               <input
                 type="checkbox"
-                checked={serviceDetails.work_types?.includes('החלפת מנעולים') || false}
+                checked={serviceDetails.work_types?.includes('lockReplacement') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
                   const newTypes = e.target.checked 
-                    ? [...current, 'החלפת מנעולים']
-                    : current.filter(t => t !== 'החלפת מנעולים');
+                    ? [...current, 'lockReplacement']
+                    : current.filter(t => t !== 'lockReplacement');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
              {t('serviceForm.locksmith.lockReplacement')}
             </label>
             
-            {serviceDetails.work_types?.includes('החלפת מנעולים') && (
+            {serviceDetails.work_types?.includes('lockReplacement') && (
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="lock_replacement_types">
               {[
-  { value: 'מנעול צילינדר', label: t('filters.locksmith.cylinderLock') },
-  { value: 'מנעול ביטחון', label: t('filters.locksmith.securityLock') },
-  { value: 'מנעול דלת כניסה', label: t('filters.locksmith.entranceLock') },
-  { value: 'מנעול למשרד / חנות', label: t('filters.locksmith.officeLock') }
+  { value: 'cylinderLock', label: t('filters.locksmith.cylinderLock') },
+  { value: 'securityLock', label: t('filters.locksmith.securityLock') },
+  { value: 'entranceLock', label: t('filters.locksmith.entranceLock') },
+  { value: 'officeLock', label: t('filters.locksmith.officeLock') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
@@ -85,26 +85,26 @@ const LocksmithForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
             <label className="checkbox-item" style={{fontWeight: 'bold'}}>
               <input
                 type="checkbox"
-                checked={serviceDetails.work_types?.includes('פתיחת דלתות') || false}
+                checked={serviceDetails.work_types?.includes('emergencyOpening') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
                   const newTypes = e.target.checked 
-                    ? [...current, 'פתיחת דלתות']
-                    : current.filter(t => t !== 'פתיחת דלתות');
+                    ? [...current, 'emergencyOpening']
+                    : current.filter(t => t !== 'emergencyOpening');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
         {t('serviceForm.locksmith.doorOpening')}
             </label>
             
-            {serviceDetails.work_types?.includes('פתיחת דלתות') && (
+            {serviceDetails.work_types?.includes('emergencyOpening') && (
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="door_opening_types">
              {[
-  { value: 'פתיחת דלת ללא נזק', label: t('filters.locksmith.noDamageOpening') },
-  { value: 'פתיחה חירום 24/7', label: t('filters.locksmith.emergency247') },
-  { value: 'פתיחת כספת', label: t('filters.locksmith.safeOpening') },
-  { value: 'שכפול מפתחות במקום', label: t('filters.locksmith.keyDuplication') }
+  { value: 'noDamageOpening', label: t('filters.locksmith.noDamageOpening') },
+  { value: 'emergency247', label: t('filters.locksmith.emergency247') },
+  { value: 'safeOpening', label: t('filters.locksmith.safeOpening') },
+  { value: 'keyDuplication', label: t('filters.locksmith.keyDuplication') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
@@ -131,26 +131,26 @@ const LocksmithForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
             <label className="checkbox-item" style={{fontWeight: 'bold'}}>
               <input
                 type="checkbox"
-                checked={serviceDetails.work_types?.includes('התקנת מערכות נעילה') || false}
+                checked={serviceDetails.work_types?.includes('advancedSystems') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
                   const newTypes = e.target.checked 
-                    ? [...current, 'התקנת מערכות נעילה']
-                    : current.filter(t => t !== 'התקנת מערכות נעילה');
+                    ? [...current, 'advancedSystems']
+                    : current.filter(t => t !== 'advancedSystems');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
             {t('serviceForm.locksmith.lockSystemInstallation')}
             </label>
             
-            {serviceDetails.work_types?.includes('התקנת מערכות נעילה') && (
+            {serviceDetails.work_types?.includes('advancedSystems') && (
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="lock_system_installation_types">
               {[
-  { value: 'מנעולים חכמים', label: t('filters.locksmith.smartLocks') },
-  { value: 'מערכת אינטרקום', label: t('filters.locksmith.intercom') },
-  { value: 'קוד כניסה למשרדים', label: t('filters.locksmith.accessCode') },
-  { value: 'מנעול אלקטרוני', label: t('filters.locksmith.electronicLock') }
+  { value: 'smartLocks', label: t('filters.locksmith.smartLocks') },
+  { value: 'intercom', label: t('filters.locksmith.intercom') },
+  { value: 'accessCode', label: t('filters.locksmith.accessCode') },
+  { value: 'electronicLock', label: t('filters.locksmith.electronicLock') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
@@ -177,26 +177,26 @@ const LocksmithForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
             <label className="checkbox-item" style={{fontWeight: 'bold'}}>
               <input
                 type="checkbox"
-                checked={serviceDetails.work_types?.includes('תיקון מנעולים ודלתות') || false}
+                checked={serviceDetails.work_types?.includes('doorRepair') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
                   const newTypes = e.target.checked 
-                    ? [...current, 'תיקון מנעולים ודלתות']
-                    : current.filter(t => t !== 'תיקון מנעולים ודלתות');
+                    ? [...current, 'doorRepair']
+                    : current.filter(t => t !== 'doorRepair');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
            {t('serviceForm.locksmith.lockDoorRepair')}
             </label>
             
-            {serviceDetails.work_types?.includes('תיקון מנעולים ודלתות') && (
+            {serviceDetails.work_types?.includes('doorRepair') && (
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="lock_door_repair_types">
                 {[
-  { value: 'תיקון מנעול תקוע', label: t('filters.locksmith.stuckLockRepair') },
-  { value: 'תיקון ציר דלת', label: t('filters.locksmith.hingeRepair') },
-  { value: 'שיוף דלת שלא נסגרת', label: t('filters.locksmith.doorSanding') },
-  { value: 'החלפת ידית דלת', label: t('filters.locksmith.handleReplacement') }
+  { value: 'stuckLockRepair', label: t('filters.locksmith.stuckLockRepair') },
+  { value: 'hingeRepair', label: t('filters.locksmith.hingeRepair') },
+  { value: 'doorSanding', label: t('filters.locksmith.doorSanding') },
+  { value: 'handleReplacement', label: t('filters.locksmith.handleReplacement') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
@@ -223,26 +223,26 @@ const LocksmithForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
             <label className="checkbox-item" style={{fontWeight: 'bold'}}>
               <input
                 type="checkbox"
-                checked={serviceDetails.work_types?.includes('שירותי ביטחון') || false}
+                checked={serviceDetails.work_types?.includes('securityServices') || false}
                 onChange={(e) => {
                   const current = serviceDetails.work_types || [];
                   const newTypes = e.target.checked 
-                    ? [...current, 'שירותי ביטחון']
-                    : current.filter(t => t !== 'שירותי ביטחון');
+                    ? [...current, 'securityServices']
+                    : current.filter(t => t !== 'securityServices');
                   handleServiceDetailsChange('work_types', newTypes);
                 }}
               />
             {t('serviceForm.locksmith.securityServices')}
             </label>
             
-            {serviceDetails.work_types?.includes('שירותי ביטחון') && (
+            {serviceDetails.work_types?.includes('securityServices') && (
               <div style={{marginRight: '30px', marginTop: '10px'}}>
                 <div className="checkbox-group" data-field="security_services_types">
                  {[
-  { value: 'שדרוג מערכת ביטחון', label: t('filters.locksmith.securityUpgrade') },
-  { value: 'התקנת דלת ביטחון', label: t('filters.locksmith.securityDoorInstall') },
-  { value: 'בדיקת פגיעות דלת', label: t('filters.locksmith.vulnerabilityCheck') },
-  { value: 'שירות מסגרות מסחרי', label: t('filters.locksmith.commercialLocksmith') }
+  { value: 'securityUpgrade', label: t('filters.locksmith.securityUpgrade') },
+  { value: 'securityDoorInstall', label: t('filters.locksmith.securityDoorInstall') },
+  { value: 'vulnerabilityCheck', label: t('filters.locksmith.vulnerabilityCheck') },
+  { value: 'commercialLocksmith', label: t('filters.locksmith.commercialLocksmith') }
 ].map(type => (
   <label key={type.value} className="checkbox-item">
     <input
@@ -287,10 +287,10 @@ const LocksmithForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
           <label className="auth-form-label required">{t('filters.common.languages')}</label>
           <div className="checkbox-group" data-field="languages">
             {[
-              { value: 'עברית', label: t('languages.hebrew') },
-              { value: 'רוסית', label: t('languages.russian') },
-              { value: 'אנגלית', label: t('languages.english') },
-              { value: 'צרפתית', label: t('languages.french') }
+              { value: 'hebrew', label: t('languages.hebrew') },
+              { value: 'russian', label: t('languages.russian') },
+              { value: 'english', label: t('languages.english') },
+              { value: 'french', label: t('languages.french') }
             ].map(lang => (
               <label key={lang.value} className="checkbox-item">
                 <input

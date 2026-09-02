@@ -20,8 +20,8 @@ const CleaningForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
   placeholder={t('serviceForm.common.selectStatus')}
   error={errors['serviceDetails.legalStatus']}
   options={[
-    { value: 'חברה', label: t('serviceForm.cleaning.company') },
-    { value: 'עצמאי', label: t('serviceForm.cleaning.selfEmployed') }
+    { value: 'company', label: t('serviceForm.cleaning.company') },
+    { value: 'independent', label: t('serviceForm.cleaning.selfEmployed') }
   ]}
 />
        {errors['serviceDetails.legalStatus'] && <span className="error-text">{errors['serviceDetails.legalStatus']}</span>}
@@ -34,10 +34,10 @@ const CleaningForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
          <h5 className="category-title">{t('serviceForm.cleaning.homeCleaning')}</h5>
 <div className="checkbox-group">
   {[
-    { value: 'ניקיון שוטף', label: t('filters.cleaning.regularCleaning') },
-    { value: 'ניקיון פסח', label: t('filters.cleaning.passoverCleaning') },
-    { value: 'ניקיון אחרי שיפוץ', label: t('filters.cleaning.postRenovation') },
-    { value: 'ניקיון לדירות Airbnb', label: t('filters.cleaning.airbnb') }
+    { value: 'regularCleaning', label: t('filters.cleaning.regularCleaning') },
+    { value: 'passoverCleaning', label: t('filters.cleaning.passoverCleaning') },
+    { value: 'postRenovation', label: t('filters.cleaning.postRenovation') },
+    { value: 'airbnb', label: t('filters.cleaning.airbnb') }
   ].map(type => (
     <label key={type.value} className="checkbox-item">
       <input
@@ -61,11 +61,11 @@ const CleaningForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
         <h5 className="category-title">{t('serviceForm.cleaning.officeCleaning')}</h5>
 <div className="checkbox-group">
   {[
-    { value: 'משרדים', label: t('filters.cleaning.offices') },
-    { value: 'חנויות', label: t('filters.cleaning.stores') },
-    { value: 'בניינים', label: t('filters.cleaning.buildings') },
-    { value: 'מוסדות חינוך', label: t('filters.cleaning.educationalInstitutions') },
-    { value: 'מפעלים', label: t('filters.cleaning.factories') }
+    { value: 'offices', label: t('filters.cleaning.offices') },
+    { value: 'stores', label: t('filters.cleaning.stores') },
+    { value: 'buildings', label: t('filters.cleaning.buildings') },
+    { value: 'educationalInstitutions', label: t('filters.cleaning.educationalInstitutions') },
+    { value: 'factories', label: t('filters.cleaning.factories') }
   ].map(type => (
     <label key={type.value} className="checkbox-item">
       <input
@@ -89,15 +89,15 @@ const CleaningForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
        <h5 className="category-title">{t('serviceForm.cleaning.specialCleaning')}</h5>
 <div className="checkbox-group">
   {[
-    { value: 'ניקוי חלונות', label: t('filters.cleaning.highWindows') },
-    { value: 'ניקוי מזגן', label: t('filters.cleaning.acCleaning') },
-    { value: 'ניקיון גגות רעפים', label: t('filters.cleaning.roofCleaning') },
-    { value: 'ניקוי שטיחים', label: t('filters.cleaning.carpets') },
-    { value: 'ניקוי ספות', label: t('filters.cleaning.sofas') },
-    { value: 'ניקוי וילונות', label: t('filters.cleaning.curtains') },
-    { value: 'ניקוי בלחץ מים (טרסות, חזיתות)', label: t('filters.cleaning.pressureWashing') },
-    { value: 'חיטוי וניקיון אחרי נזק (שריפה / הצפה)', label: t('filters.cleaning.damageCleanup') },
-    { value: 'ניקוי ותחזוקת אקווריומים', label: t('filters.cleaning.aquariumCleaning') }
+    { value: 'highWindows', label: t('filters.cleaning.highWindows') },
+    { value: 'acCleaning', label: t('filters.cleaning.acCleaning') },
+    { value: 'roofCleaning', label: t('filters.cleaning.roofCleaning') },
+    { value: 'carpets', label: t('filters.cleaning.carpets') },
+    { value: 'sofas', label: t('filters.cleaning.sofas') },
+    { value: 'curtains', label: t('filters.cleaning.curtains') },
+    { value: 'pressureWashing', label: t('filters.cleaning.pressureWashing') },
+    { value: 'damageCleanup', label: t('filters.cleaning.damageCleanup') },
+    { value: 'aquariumCleaning', label: t('filters.cleaning.aquariumCleaning') }
   ].map(type => (
     <label key={type.value} className="checkbox-item">
       <input
@@ -141,10 +141,10 @@ const CleaningForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
         <h5 className="category-title">{t('serviceForm.cleaning.additionalServices')}</h5>
 <div className="checkbox-group">
   {[
-    { value: 'ניקוי רכב בבית הלקוח', label: t('filters.cleaning.carCleaning') },
-    { value: 'ניקוי פאנלים סולאריים', label: t('filters.cleaning.solarPanels') },
-    { value: 'גיהוץ בבית הלקוח', label: t('filters.cleaning.ironingAtHome') },
-    { value: 'קיפול כביסה', label: t('filters.cleaning.laundryFolding') }
+    { value: 'carCleaning', label: t('filters.cleaning.carCleaning') },
+    { value: 'solarPanels', label: t('filters.cleaning.solarPanels') },
+    { value: 'ironingAtHome', label: t('filters.cleaning.ironingAtHome') },
+    { value: 'laundryFolding', label: t('filters.cleaning.laundryFolding') }
   ].map(type => (
     <label key={type.value} className="checkbox-item">
       <input
@@ -174,16 +174,16 @@ const CleaningForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
   <h5 className="subsection-title required">{t('serviceForm.cleaning.hours')}</h5>
     <div className="checkbox-group">
      {[
-  { value: 'בוקר', label: t('hours.morning') },
-  { value: 'אחר הצהריים', label: t('hours.afternoon') },
-  { value: 'ערב', label: t('hours.evening') },
-  { value: 'הכל', label: t('hours.all') }
+  { value: 'morning', label: t('hours.morning') },
+  { value: 'afternoon', label: t('hours.afternoon') },
+  { value: 'evening', label: t('hours.evening') },
+  { value: 'all', label: t('hours.all') }
 ].map(hour => (
      <label key={hour.value} className="checkbox-item">
     <input
       type="checkbox"
       checked={serviceDetails.availability_hours?.includes(hour.value) || false}
-      onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'הכל', ['בוקר', 'אחר הצהריים', 'ערב'])}
+      onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'all', ['morning', 'afternoon', 'evening'])}
     />
     {hour.label}
   </label>
@@ -211,10 +211,10 @@ const CleaningForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
           <label className="auth-form-label required">{t('filters.common.languages')}</label>
           <div className="checkbox-group" data-field="languages">
             {[
-              { value: 'עברית', label: t('languages.hebrew') },
-              { value: 'רוסית', label: t('languages.russian') },
-              { value: 'אנגלית', label: t('languages.english') },
-              { value: 'צרפתית', label: t('languages.french') }
+              { value: 'hebrew', label: t('languages.hebrew') },
+              { value: 'russian', label: t('languages.russian') },
+              { value: 'english', label: t('languages.english') },
+              { value: 'french', label: t('languages.french') }
             ].map(lang => (
               <label key={lang.value} className="checkbox-item">
                 <input

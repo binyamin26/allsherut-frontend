@@ -22,10 +22,10 @@ const DoulaForm = ({ serviceDetails, errors, handleServiceDetailsChange }) => {
           <label className="auth-form-label required">{t('serviceForm.common.availabilityHours')}</label>
           <div className="checkbox-group" data-field="availability_hours">
             {[
-              { value: 'בוקר', label: t('hours.morning') },
-              { value: 'אחר הצהריים', label: t('hours.afternoon') },
-              { value: 'ערב', label: t('hours.evening') },
-              { value: 'לילה', label: t('hours.night') },
+              { value: 'morning', label: t('hours.morning') },
+              { value: 'afternoon', label: t('hours.afternoon') },
+              { value: 'evening', label: t('hours.evening') },
+              { value: 'night', label: t('hours.night') },
               { value: '24/7', label: t('hours.twentyFourSeven') },
             ].map(hour => (
               <label key={hour.value} className="checkbox-item">
@@ -91,11 +91,11 @@ const DoulaForm = ({ serviceDetails, errors, handleServiceDetailsChange }) => {
           <label className="auth-form-label required">{t('filters.common.languages')}</label>
           <div className="checkbox-group" data-field="languages">
             {[
-              { value: 'עברית', label: t('languages.hebrew') },
-              { value: 'רוסית', label: t('languages.russian') },
-              { value: 'אנגלית', label: t('languages.english') },
-              { value: 'ספרדית', label: t('languages.spanish') },
-              { value: 'צרפתית', label: t('languages.french') },
+              { value: 'hebrew', label: t('languages.hebrew') },
+              { value: 'russian', label: t('languages.russian') },
+              { value: 'english', label: t('languages.english') },
+              { value: 'spanish', label: t('languages.spanish') },
+              { value: 'french', label: t('languages.french') },
             ].map(lang => (
               <label key={lang.value} className="checkbox-item">
                 <input
