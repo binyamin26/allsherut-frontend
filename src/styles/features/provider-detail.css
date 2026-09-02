@@ -1644,7 +1644,7 @@ text-align: start;
 }
 
 /* ====================================
-   AREA-TAG — badge lieu (ville / quartier / כל הארץ)
+   AREA-TAG — badge lieu (ville / quartier / toute la France)
    Chargé en dernier pour garantir la priorité sur tous les overrides
    ==================================== */
 .area-tag {

@@ -336,7 +336,7 @@
   gap: var(--space-4);
 }
 
-/* Bouton שמור שינויים (primaire) */
+/* Bouton Enregistrer les modifications (primaire) */
 .edit-actions .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -384,7 +384,7 @@
   transform: none;
 }
 
-/* Bouton בטל (secondaire) - MÊME STYLE QUE PRIMAIRE */
+/* Bouton Annuler (secondaire) - MÊME STYLE QUE PRIMAIRE */
 .edit-actions .btn-secondary {
   display: inline-flex;
   align-items: center;
@@ -881,7 +881,7 @@
   background: var(--primary-50);
 }
 
-/* Bouton שנה סיסמה taille standard */
+/* Bouton Changer le mot de passe taille standard */
 .password-form .btn-primary {
   display: inline-flex;
   align-items: center;

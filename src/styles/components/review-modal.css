@@ -710,7 +710,7 @@
   box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1) !important;
 }
 
-/* Bouton vert "חזור" - même style que "השאר חוות דעת" */
+/* Bouton vert "Retour" - même style que "Laisser un avis" */
 .btn-back-green {
   flex: 1;
   padding: 16px 32px;
@@ -740,7 +740,7 @@
   cursor: not-allowed;
 }
 
-/* Bouton "אמת קוד" */
+/* Bouton "Vérifier le code" */
 .btn-verify {
   flex: 1;
   padding: 16px 32px;
@@ -785,7 +785,7 @@
   width: 100% !important;
 }
 
-/* Bouton "התקשר עכשיו" - pas de changement de couleur au hover */
+/* Bouton "Appeler maintenant" - pas de changement de couleur au hover */
 .contact-actions .btn-primary:hover,
 .contact-actions .btn-primary:active,
 .contact-actions .btn-primary:focus {

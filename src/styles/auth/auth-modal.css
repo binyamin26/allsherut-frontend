@@ -1043,7 +1043,7 @@
    🎨 AJUSTEMENTS DE TAILLE ET ESPACEMENT
    ==================================== */
 
-/* Label "קטגוריות ניקיון" plus grand et plus bas */
+/* Label "Catégories de ménage" plus grand et plus bas */
 .service-details-form .input-group > label,
 .service-details-form + .form-section.optional .input-group > label {
   font-size: var(--text-xl) !important;
@@ -1052,12 +1052,12 @@
   margin-bottom: var(--space-4);
 }
 
-/* Spécifiquement pour "אספקת ציוד" - plus bas */
+/* Spécifiquement pour "Fourniture de matériel" - plus bas */
 .input-group:has(select[data-field="materialsProvided"]) {
   margin-top: var(--space-6);
 }
 
-/* Label "זמינות" plus gros et plus bas */
+/* Label "Disponibilité" plus gros et plus bas */
 .input-group:has(.availability-subsection) > label {
   font-size: var(--text-2xl) !important;
   font-weight: 700 !important;
@@ -1309,7 +1309,7 @@
   background: linear-gradient(135deg, var(--primary-500) 0%, var(--accent-500) 100%) !important;
 }
 
-/* Bouton "חזור" step 2 - pas de changement de couleur */
+/* Bouton "Retour" step 2 - pas de changement de couleur */
 .step-navigation .btn-secondary:hover,
 .step-navigation .btn-secondary:active,
 .step-navigation .btn-secondary:focus {
@@ -1515,7 +1515,7 @@
   line-height: 1.3;
 }
 
-/* Badge "חודש ראשון חינם" - masqué par défaut */
+/* Badge "Premier mois gratuit" - masqué par défaut */
 .service-pricing {
   display: none;
 }

@@ -1270,7 +1270,7 @@
    BOUTONS FOOTER - FILTER SIDEBAR
    ==================================== */
 
-/* Bouton נקה - bleu au lieu de blanc */
+/* Bouton Effacer - bleu au lieu de blanc */
 .filter-sidebar-footer .btn-secondary {
   background: #3b82f6 !important;
   color: white !important;
@@ -1281,7 +1281,7 @@
   background: #2563eb !important;
 }
 
-/* Bouton הצג תוצאות - pas de changement au hover */
+/* Bouton Afficher les résultats - pas de changement au hover */
 .filter-sidebar-footer .btn-primary {
   background: #3b82f6 !important;
 }
