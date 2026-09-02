@@ -2,6 +2,23 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## ⚠️ RÈGLE CRITIQUE — branche & déploiement
+
+Ce dossier partage le **même dépôt Git** que le site israélien de production
+(`origin` = github.com/binyamin26/allsherut-frontend). La branche `main` est
+**auto-déployée par Vercel sur allsherut.com** (site he/en/fr/ru). Tout commit
+poussé sur `main` depuis ce dossier part en prod israélienne.
+
+- Travail « migration France » **UNIQUEMENT sur la branche `france`**.
+- Vérifier `git branch --show-current` = `france` avant chaque commit.
+- **JAMAIS** de push sur `main` / `origin/main` depuis ce dossier sans accord explicite.
+- **JAMAIS** supprimer `src/locales/he`, `src/locales/ru`, `public/locales/he`,
+  `public/locales/ru` (ni sur `france`, ni sur `main`).
+- Incident 2026-09-02 : migration France poussée par erreur sur `main`,
+  allsherut.com cassé (he/ru retirés). Reverté ; le travail France vit sur `france`.
+- Le site France n'aura d'existence réelle qu'avec son propre projet Vercel qui
+  suit la branche `france` + son propre domaine (ex. allsherut.fr).
+
 ## Project Overview
 
 claude
