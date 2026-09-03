@@ -382,12 +382,82 @@ const deleteProfileImage = async (serviceType = null) => {
 };
 
 // Upload image galerie
+// Upload direct navigateur → Cloudinary pour la galerie (contourne le multipart
+// vers fly.dev, parfois bloqué par des filtres réseau côté client type
+// Netspark/Etrog — même contournement que la photo de profil à l'inscription).
+// Retourne l'URL secure_url, ou null si ça échoue (on retombe alors sur le
+// vieil upload multipart via notre backend).
+const uploadGalleryDirectToCloudinary = async (file) => {
+  try {
+    const sigResponse = await fetch(`${API_BASE}/upload/cloudinary-signature`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ folder: 'gallery' })
+    });
+    const sigData = await sigResponse.json();
+    if (!sigData.success) return null;
+
+    const { signature, timestamp, folder, apiKey, cloudName } = sigData.data;
+
+    const cloudinaryFormData = new FormData();
+    cloudinaryFormData.append('file', file);
+    cloudinaryFormData.append('api_key', apiKey);
+    cloudinaryFormData.append('timestamp', timestamp);
+    cloudinaryFormData.append('signature', signature);
+    cloudinaryFormData.append('folder', folder);
+
+    const uploadResponse = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+      method: 'POST',
+      body: cloudinaryFormData
+    });
+    const uploadData = await uploadResponse.json();
+    return uploadData.secure_url || null;
+  } catch (err) {
+    console.warn('⚠️ Upload galerie direct Cloudinary échoué, fallback backend:', err);
+    return null;
+  }
+};
+
 const uploadGalleryImage = async (imageFile, serviceType = null) => {
   try {
     setLoading(true);
+    const svcType = serviceType || user?.service_type;
+
+    const applyGalleryUpdate = (data) => {
+      const updatedUser = {
+        ...user,
+        providerProfile: user.providerProfile ? {
+          ...user.providerProfile,
+          profile_images: data.data.gallery,
+          ...(data.data.verificationStatus ? { verification_status: data.data.verificationStatus } : {})
+        } : null
+      };
+      setUser(updatedUser);
+    };
+
+    // 1) Tentative upload direct navigateur → Cloudinary (bypass fly.dev)
+    const directUrl = await uploadGalleryDirectToCloudinary(imageFile);
+    if (directUrl) {
+      const saveResponse = await fetch(`${API_BASE}/upload/gallery-image-url`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('homesherut_token')}`
+        },
+        body: JSON.stringify({ imageUrl: directUrl, serviceType: svcType })
+      });
+      const saveData = await saveResponse.json();
+      if (saveData.success) {
+        applyGalleryUpdate(saveData);
+        return { success: true, gallery: saveData.data.gallery };
+      }
+      // sinon, on tente quand même le fallback multipart ci-dessous
+    }
+
+    // 2) Fallback : ancien upload multipart via notre backend
     const formData = new FormData();
     formData.append('galleryImage', imageFile);
-    formData.append('serviceType', serviceType || user?.service_type);
+    formData.append('serviceType', svcType);
 
     const response = await fetch(`${API_BASE}/upload/gallery-image`, {
       method: 'POST',
@@ -398,15 +468,7 @@ const uploadGalleryImage = async (imageFile, serviceType = null) => {
     const data = await response.json();
 
     if (data.success) {
-      const updatedUser = {
-        ...user,
-        providerProfile: user.providerProfile ? {
-          ...user.providerProfile,
-          profile_images: data.data.gallery,
-          ...(data.data.verificationStatus ? { verification_status: data.data.verificationStatus } : {})
-        } : null
-      };
-      setUser(updatedUser);
+      applyGalleryUpdate(data);
       return { success: true, gallery: data.data.gallery };
     } else {
       return { success: false, message: data.message };
