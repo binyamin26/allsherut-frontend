@@ -4006,3 +4006,109 @@ select.inline-edit {
     letter-spacing: 0.01em !important;
   }
 }
+
+/* ─── Pricing — insérer une ligne entre deux lignes ─────────────────── */
+.pricing-insert-gap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 12px;
+}
+
+.pricing-insert-btn {
+  opacity: 0;
+  transition: opacity 0.12s ease, background-color 0.12s ease;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid #93b7e0;
+  background: #eef4fb;
+  color: #2F80ED;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.pricing-insert-gap:hover .pricing-insert-btn,
+.pricing-insert-gap.is-open .pricing-insert-btn { opacity: 1; }
+.pricing-insert-btn:hover { background: #dcebfa; }
+.pricing-insert-gap.is-open { min-height: 0; padding: 6px 0; }
+
+.pricing-insert-menu {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #dbe7f5;
+  border-radius: 999px;
+  padding: 4px 6px;
+  box-shadow: 0 4px 14px rgba(15, 42, 68, 0.1);
+}
+
+.pricing-insert-menu button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: none;
+  background: #f0f6fd;
+  color: #0F2A44;
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.pricing-insert-menu button:hover { background: #e0edfb; }
+
+.pricing-insert-menu .pricing-insert-close {
+  background: transparent;
+  padding: 4px;
+  color: #94a3b8;
+}
+
+@media (hover: none) {
+  .pricing-insert-btn { opacity: 0.5; }
+}
+
+/* ─── Pricing — contrôles de ligne (monter / descendre + supprimer) ──── */
+.pricing-row-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.pricing-move-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.pricing-move-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: #9CA3AF;
+  padding: 0 2px;
+  line-height: 0;
+  display: flex;
+  border-radius: 4px;
+}
+
+.pricing-move-btn:hover:not(:disabled) { color: #2F80ED; background: #eef4fb; }
+.pricing-move-btn:disabled { opacity: 0.3; cursor: default; }
+
+@media (min-width: 641px) {
+  .pricing-title-row > .pricing-row-controls {
+    grid-column: 3;
+    justify-self: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .pricing-row-mobile-header .pricing-row-controls { gap: 6px; }
+  .pricing-row-mobile-header .pricing-move-group { flex-direction: row; gap: 2px; }
+}
