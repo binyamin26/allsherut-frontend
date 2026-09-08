@@ -962,7 +962,7 @@ const translationMappings = {
   },
   locksmithDoorOpening: {
     'פתיחת דלת ללא נזק': 'filters.locksmith.noDamageOpening',
-    'פתיחה חירום 24/7': 'filters.locksmith.emergency247',
+    'פתיחה חירום 24/6': 'filters.locksmith.emergency247',
     'פתיחת כספת': 'filters.locksmith.safeOpening',
     'שכפול מפתחות במקום': 'filters.locksmith.keyDuplication',
   },

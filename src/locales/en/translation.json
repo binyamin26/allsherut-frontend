@@ -1176,7 +1176,7 @@
   "filters.locksmith.entranceLock": "Entry door lock",
   "filters.locksmith.officeLock": "Office / store lock",
   "filters.locksmith.noDamageOpening": "No-damage door opening",
-  "filters.locksmith.emergency247": "24/7 emergency opening",
+  "filters.locksmith.emergency247": "24/6 emergency opening",
   "filters.locksmith.safeOpening": "Safe opening",
   "filters.locksmith.keyDuplication": "On-site key duplication",
   "filters.locksmith.smartLocks": "Smart locks",

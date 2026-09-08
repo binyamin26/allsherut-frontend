@@ -1333,7 +1333,7 @@ locksmith: {
     ],
     doorOpeningTypes: [
       { value: 'פתיחת דלת ללא נזק', key: 'filters.locksmith.noDamageOpening' },
-      { value: 'פתיחה חירום 24/7', key: 'filters.locksmith.emergency247' },
+      { value: 'פתיחה חירום 24/6', key: 'filters.locksmith.emergency247' },
       { value: 'פתיחת כספת', key: 'filters.locksmith.safeOpening' },
       { value: 'שכפול מפתחות במקום', key: 'filters.locksmith.keyDuplication' }
     ],

@@ -1447,7 +1447,7 @@ const serviceFieldsConfig = {
         name: 'availability_hours',
         label: 'serviceFields.locksmith.availability_hours',
         type: 'checkbox',
-        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל']
+        options: ['בוקר', 'אחר הצהריים', 'ערב', 'הכל', '24/6']
       },
       { 
         name: 'work_types', 
@@ -1465,7 +1465,7 @@ const serviceFieldsConfig = {
         name: 'door_opening_types', 
         label: 'serviceFields.locksmith.door_opening_types', 
         type: 'checkbox',
-        options: ['פתיחת דלת ללא נזק', 'פתיחה חירום 24/7', 'פתיחת כספת', 'שכפול מפתחות במקום']
+        options: ['פתיחת דלת ללא נזק', 'פתיחה חירום 24/6', 'פתיחת כספת', 'שכפול מפתחות במקום']
       },
       { 
         name: 'lock_system_installation_types', 

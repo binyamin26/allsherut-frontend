@@ -1086,6 +1086,12 @@ const handleContact = () => {
         {/* === LOCKSMITH === */}
         {provider.serviceType === 'locksmith' && (
           <>
+            {details.availability_hours && details.availability_hours.length > 0 && (
+              <div className="detail-item">
+                <IconLabel icon={Clock}>{t('serviceFields.locksmith.availability_hours')}:</IconLabel>
+                <span>{translateAndJoin(details.availability_hours, 'hours', t)}</span>
+              </div>
+            )}
             {details.lock_replacement_types && details.lock_replacement_types.length > 0 && (
               <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
                 <IconLabel icon={Lock}>{t('provider.details.lockReplacement')}:</IconLabel>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
 
-const LocksmithForm = ({ serviceDetails, errors, handleServiceDetailsChange, handleExclusiveCheckbox }) => {
+const LocksmithForm = ({ serviceDetails, errors, handleServiceDetailsChange }) => {
     const { t } = useLanguage();
   return (
     <div className="service-details-form">
@@ -17,13 +17,30 @@ const LocksmithForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
               { value: 'בוקר', label: t('hours.morning') },
               { value: 'אחר הצהריים', label: t('hours.afternoon') },
               { value: 'ערב', label: t('hours.evening') },
-              { value: 'הכל', label: t('hours.all') }
+              { value: 'הכל', label: t('hours.all') },
+              { value: '24/6', label: t('hours.twentyFourSix') }
             ].map(hour => (
               <label key={hour.value} className="checkbox-item">
                 <input
                   type="checkbox"
                   checked={serviceDetails.availability_hours?.includes(hour.value) || false}
-                  onChange={() => handleExclusiveCheckbox('availability_hours', hour.value, 'הכל', ['בוקר', 'אחר הצהריים', 'ערב'])}
+                  onChange={() => {
+                    const current = serviceDetails.availability_hours || [];
+                    const exclusiveValues = ['הכל', '24/6'];
+                    if (exclusiveValues.includes(hour.value)) {
+                      // "הכל" / "24/6" : sélection unique, décoche tout le reste
+                      handleServiceDetailsChange(
+                        'availability_hours',
+                        current.includes(hour.value) ? [] : [hour.value]
+                      );
+                    } else {
+                      // Créneau précis : décoche les options exclusives
+                      const next = current.includes(hour.value)
+                        ? current.filter(v => v !== hour.value)
+                        : [...current.filter(v => !exclusiveValues.includes(v)), hour.value];
+                      handleServiceDetailsChange('availability_hours', next);
+                    }
+                  }}
                 />
                 {hour.label}
               </label>
@@ -102,7 +119,7 @@ const LocksmithForm = ({ serviceDetails, errors, handleServiceDetailsChange, han
                 <div className="checkbox-group" data-field="door_opening_types">
              {[
   { value: 'פתיחת דלת ללא נזק', label: t('filters.locksmith.noDamageOpening') },
-  { value: 'פתיחה חירום 24/7', label: t('filters.locksmith.emergency247') },
+  { value: 'פתיחה חירום 24/6', label: t('filters.locksmith.emergency247') },
   { value: 'פתיחת כספת', label: t('filters.locksmith.safeOpening') },
   { value: 'שכפול מפתחות במקום', label: t('filters.locksmith.keyDuplication') }
 ].map(type => (

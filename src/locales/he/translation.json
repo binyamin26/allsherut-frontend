@@ -1150,7 +1150,7 @@
   "filters.locksmith.entranceLock": "מנעול דלת כניסה",
   "filters.locksmith.officeLock": "מנעול למשרד / חנות",
   "filters.locksmith.noDamageOpening": "פתיחת דלת ללא נזק",
-  "filters.locksmith.emergency247": "פתיחה חירום 24/7",
+  "filters.locksmith.emergency247": "פתיחה חירום 24/6",
   "filters.locksmith.safeOpening": "פתיחת כספת",
   "filters.locksmith.keyDuplication": "שכפול מפתחות במקום",
   "filters.locksmith.smartLocks": "מנעולים חכמים",
@@ -3526,7 +3526,7 @@
 
   "services.locksmith.intro": "ננעלתם בחוץ, איבדתם מפתח או רוצים לשדרג את המנעול בדלת? המנעולנים באתר מציינים אזורי פעילות וזמינות לקריאות חירום, כדי שתמצאו פתרון מהיר קרוב אליכם.",
   "services.locksmith.card1Title": "פתיחת דלתות",
-  "services.locksmith.card1Desc": "פתיחה ללא נזק, קריאת חירום 24/7 או פתיחת כספת.",
+  "services.locksmith.card1Desc": "פתיחה ללא נזק, קריאת חירום 24/6 או פתיחת כספת.",
   "services.locksmith.card2Title": "החלפת מנעולים",
   "services.locksmith.card2Desc": "החלפת מנעולים לדלת כניסה, למשרד או לחנות.",
   "services.locksmith.card3Title": "התקנת מערכות נעילה",
