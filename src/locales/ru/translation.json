@@ -491,6 +491,8 @@
   "languages.english": "Английский",
   "languages.spanish": "Испанский",
   "languages.french": "Французский",
+  "languages.other": "Другой",
+  "languages.otherPlaceholder": "Какой язык?",
   "filters.religious.secular": "Светский",
   "filters.religious.traditional": "Традиционный",
   "filters.religious.religious": "Религиозный",

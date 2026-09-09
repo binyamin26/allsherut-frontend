@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
 import CustomDropdown from '../../common/CustomDropdown';
+import LanguagesCheckboxGroup from '../common/LanguagesCheckboxGroup';
 
 const BabysittingForm = ({ serviceDetails, errors, handleServiceDetailsChange, handleExclusiveCheckbox }) => {
   const { t } = useLanguage();
@@ -182,31 +183,12 @@ const BabysittingForm = ({ serviceDetails, errors, handleServiceDetailsChange, h
 
         <div className="input-group">
           <label className="auth-form-label required">{t('serviceForm.babysitting.languages')}</label>
-          <div className="checkbox-group" data-field="languages">
-            {[
-              { value: 'עברית', label: t('languages.hebrew') },
-              { value: 'רוסית', label: t('languages.russian') },
-              { value: 'אנגלית', label: t('languages.english') },
-              { value: 'ספרדית', label: t('languages.spanish') },
-              { value: 'צרפתית', label: t('languages.french') }
-            ].map(lang => (
-              <label key={lang.value} className="checkbox-item">
-                <input
-                  type="checkbox"
-                  checked={serviceDetails.languages?.includes(lang.value) || false}
-                  onChange={(e) => {
-                    const current = serviceDetails.languages || [];
-                    const newLangs = e.target.checked 
-                      ? [...current, lang.value]
-                      : current.filter(l => l !== lang.value);
-                    handleServiceDetailsChange('languages', newLangs);
-                  }}
-                />
-                {lang.label}
-              </label>
-            ))}
-          </div>
-          {errors['serviceDetails.languages'] && <span className="error-text">{errors['serviceDetails.languages']}</span>}
+          <LanguagesCheckboxGroup
+            serviceDetails={serviceDetails}
+            handleServiceDetailsChange={handleServiceDetailsChange}
+            errors={errors}
+            includeSpanish
+          />
         </div>
 
         <div className="input-group">

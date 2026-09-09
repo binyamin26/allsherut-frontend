@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
+import LanguagesCheckboxGroup from '../common/LanguagesCheckboxGroup';
 
 const DoulaForm = ({ serviceDetails, errors, handleServiceDetailsChange }) => {
   const { t } = useLanguage();
@@ -89,31 +90,12 @@ const DoulaForm = ({ serviceDetails, errors, handleServiceDetailsChange }) => {
 
         <div className="input-group">
           <label className="auth-form-label required">{t('filters.common.languages')}</label>
-          <div className="checkbox-group" data-field="languages">
-            {[
-              { value: 'עברית', label: t('languages.hebrew') },
-              { value: 'רוסית', label: t('languages.russian') },
-              { value: 'אנגלית', label: t('languages.english') },
-              { value: 'ספרדית', label: t('languages.spanish') },
-              { value: 'צרפתית', label: t('languages.french') },
-            ].map(lang => (
-              <label key={lang.value} className="checkbox-item">
-                <input
-                  type="checkbox"
-                  checked={serviceDetails.languages?.includes(lang.value) || false}
-                  onChange={(e) => {
-                    const current = serviceDetails.languages || [];
-                    const newLangs = e.target.checked
-                      ? [...current, lang.value]
-                      : current.filter(l => l !== lang.value);
-                    handleServiceDetailsChange('languages', newLangs);
-                  }}
-                />
-                {lang.label}
-              </label>
-            ))}
-          </div>
-          {errors['serviceDetails.languages'] && <span className="error-text">{errors['serviceDetails.languages']}</span>}
+          <LanguagesCheckboxGroup
+            serviceDetails={serviceDetails}
+            handleServiceDetailsChange={handleServiceDetailsChange}
+            errors={errors}
+            includeSpanish
+          />
         </div>
       </div>
     </div>

@@ -486,6 +486,8 @@
   "languages.english": "English",
   "languages.spanish": "Spanish",
   "languages.french": "French",
+  "languages.other": "Other",
+  "languages.otherPlaceholder": "Which language?",
   "filters.religious.secular": "Secular",
   "filters.religious.traditional": "Traditional",
   "filters.religious.religious": "Religious",

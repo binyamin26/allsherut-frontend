@@ -460,6 +460,8 @@
   "languages.english": "אנגלית",
   "languages.spanish": "ספרדית",
   "languages.french": "צרפתית",
+  "languages.other": "אחר",
+  "languages.otherPlaceholder": "איזו שפה?",
   "filters.religious.secular": "חילוני",
   "filters.religious.traditional": "מסורתי",
   "filters.religious.religious": "דתי",

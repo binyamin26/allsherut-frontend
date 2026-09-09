@@ -415,10 +415,14 @@ const translateFieldArray = (fieldName, values) => {
     // MODE LECTURE
     if (!isEditMode) {
       if (field.type === 'json-array' || field.type === 'checkbox') {
+        // Langues : afficher le texte libre à la place du marqueur "אחר"
+        const displayArray = (field.name === 'languages' && Array.isArray(value))
+          ? value.map(v => (v === 'אחר' && serviceDetails?.languages_other) ? serviceDetails.languages_other : v)
+          : value;
         return (
           <div className="tags-list">
-            {Array.isArray(value) && value.length > 0 
-              ? translateFieldArray(field.name, value)  // ✅ TRADUIT
+            {Array.isArray(displayArray) && displayArray.length > 0
+              ? translateFieldArray(field.name, displayArray)  // ✅ TRADUIT
               : <span>{t('dashboard.notSpecified')}</span>
             }
           </div>
@@ -630,6 +634,31 @@ if (field.type === 'select') {
               </label>
             );
           })}
+          {field.name === 'languages' && (
+            <>
+              <label className="checkbox-item">
+                <input
+                  type="checkbox"
+                  checked={(value || []).includes('אחר')}
+                  onChange={(e) => {
+                    handleCheckboxChange('אחר', e.target.checked);
+                    if (!e.target.checked) onFieldChange('languages_other', '');
+                  }}
+                />
+                {t('languages.other')}
+              </label>
+              {(value || []).includes('אחר') && (
+                <input
+                  type="text"
+                  className="form-input inline-edit"
+                  style={{ marginTop: '8px' }}
+                  placeholder={t('languages.otherPlaceholder')}
+                  value={serviceDetails?.languages_other || ''}
+                  onChange={(e) => onFieldChange('languages_other', e.target.value)}
+                />
+              )}
+            </>
+          )}
         </div>
       );
     }

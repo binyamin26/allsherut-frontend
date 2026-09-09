@@ -3,6 +3,7 @@ import { useLanguage } from '../../../context/LanguageContext';
 import { FILTER_CONFIG } from '../../config/filterConfig';
 import CustomDropdown from '../../common/CustomDropdown';
 import { TUTORING_SUBCATEGORIES } from '../../../data/subcategoriesData';
+import LanguagesCheckboxGroup from '../common/LanguagesCheckboxGroup';
 
 const TutoringForm = ({ serviceDetails, errors, handleServiceDetailsChange, handleExclusiveCheckbox }) => {
   const { t, currentLanguage } = useLanguage();
@@ -210,30 +211,11 @@ const TutoringForm = ({ serviceDetails, errors, handleServiceDetailsChange, hand
         </div>
         <div className="input-group">
           <label className="auth-form-label required">{t('filters.common.languages')}</label>
-          <div className="checkbox-group" data-field="languages">
-            {[
-              { value: 'עברית', label: t('languages.hebrew') },
-              { value: 'רוסית', label: t('languages.russian') },
-              { value: 'אנגלית', label: t('languages.english') },
-              { value: 'צרפתית', label: t('languages.french') }
-            ].map(lang => (
-              <label key={lang.value} className="checkbox-item">
-                <input
-                  type="checkbox"
-                  checked={serviceDetails.languages?.includes(lang.value) || false}
-                  onChange={(e) => {
-                    const current = serviceDetails.languages || [];
-                    const newLangs = e.target.checked
-                      ? [...current, lang.value]
-                      : current.filter(l => l !== lang.value);
-                    handleServiceDetailsChange('languages', newLangs);
-                  }}
-                />
-                {lang.label}
-              </label>
-            ))}
-          </div>
-          {errors['serviceDetails.languages'] && <span className="error-text">{errors['serviceDetails.languages']}</span>}
+          <LanguagesCheckboxGroup
+            serviceDetails={serviceDetails}
+            handleServiceDetailsChange={handleServiceDetailsChange}
+            errors={errors}
+          />
         </div>
       </div>
 
