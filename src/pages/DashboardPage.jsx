@@ -22,6 +22,7 @@ import {
   BarChart3,
   ArrowLeftRight,
   ChevronDown,
+  ChevronUp,
   Shield,
   Check,
   EyeOff,
@@ -218,6 +219,7 @@ const userData = useMemo(() => {
   const [pricingSaving, setPricingSaving] = useState(false);
   const [pricingMsg, setPricingMsg] = useState({ type: '', text: '' });
   const [pricingErrors, setPricingErrors] = useState({});
+  const [pricingInsertAt, setPricingInsertAt] = useState(null); // index du "+" ouvert entre deux lignes
 
   const [passwordData, setPasswordData] = useState({
     currentPassword: '',
@@ -438,13 +440,101 @@ const loadMyReviews = async () => {
     }
   };
 
-  const handleAddPricingRow = () => {
-    setPricingItems(prev => [...prev, { _key: Date.now(), service_name: '', price: '', is_title: false, _isNew: true }]);
+  // index === null -> ajoute à la fin
+  const handleInsertPricingItem = (index, isTitle) => {
+    const newItem = { _key: Date.now(), service_name: '', price: '', is_title: isTitle, _isNew: true };
+    setPricingItems(prev => {
+      const at = index === null || index > prev.length ? prev.length : Math.max(0, index);
+      return [...prev.slice(0, at), newItem, ...prev.slice(at)];
+    });
+    setPricingInsertAt(null);
   };
 
-  const handleAddPricingTitle = () => {
-    setPricingItems(prev => [...prev, { _key: Date.now(), service_name: '', price: '', is_title: true, _isNew: true }]);
+  const handleAddPricingRow = () => handleInsertPricingItem(null, false);
+  const handleAddPricingTitle = () => handleInsertPricingItem(null, true);
+
+  const handleMovePricingRow = (key, direction) => {
+    setPricingItems(prev => {
+      const i = prev.findIndex(item => item._key === key);
+      const j = i + direction;
+      if (i === -1 || j < 0 || j >= prev.length) return prev;
+      const next = [...prev];
+      [next[i], next[j]] = [next[j], next[i]];
+      return next;
+    });
   };
+
+  // "+" entre deux lignes → insère un service ou un titre à cette position exacte
+  const renderPricingInsert = (index) => {
+    const open = pricingInsertAt === index;
+    return (
+      <div key={`ins-${index}`} className={`pricing-insert-gap${open ? ' is-open' : ''}`}>
+        {open ? (
+          <div className="pricing-insert-menu">
+            <button type="button" onClick={() => handleInsertPricingItem(index, false)}>
+              <Plus size={13} /> {t('pricing.serviceNameLabel')}
+            </button>
+            <button type="button" onClick={() => handleInsertPricingItem(index, true)}>
+              <Plus size={13} /> {t('pricing.titlePlaceholder')}
+            </button>
+            <button
+              type="button"
+              className="pricing-insert-close"
+              onClick={() => setPricingInsertAt(null)}
+              aria-label="X"
+            >
+              <X size={13} />
+            </button>
+          </div>
+        ) : (
+          <button
+            type="button"
+            className="pricing-insert-btn"
+            onClick={() => setPricingInsertAt(index)}
+            title={t('pricing.insertHere')}
+            aria-label={t('pricing.insertHere')}
+          >
+            <Plus size={14} />
+          </button>
+        )}
+      </div>
+    );
+  };
+
+  // Groupe monter / descendre / supprimer d'une ligne de tarif
+  const renderPricingRowControls = (item, idx) => (
+    <div className="pricing-row-controls">
+      <div className="pricing-move-group">
+        <button
+          type="button"
+          className="pricing-move-btn"
+          disabled={idx === 0}
+          onClick={() => handleMovePricingRow(item._key, -1)}
+          title={t('pricing.moveUp')}
+          aria-label={t('pricing.moveUp')}
+        >
+          <ChevronUp size={14} />
+        </button>
+        <button
+          type="button"
+          className="pricing-move-btn"
+          disabled={idx === pricingItems.length - 1}
+          onClick={() => handleMovePricingRow(item._key, 1)}
+          title={t('pricing.moveDown')}
+          aria-label={t('pricing.moveDown')}
+        >
+          <ChevronDown size={14} />
+        </button>
+      </div>
+      <button
+        onClick={() => handleDeletePricingRow(item._key)}
+        title="Supprimer"
+        className="pricing-delete-btn"
+      >
+        <XCircle size={15} />
+      </button>
+    </div>
+  );
 
   const handlePricingRowChange = (key, field, value) => {
     setPricingItems(prev => prev.map(item => item._key === key ? { ...item, [field]: value } : item));
@@ -2618,8 +2708,11 @@ const profileCompletionStatus = (() => {
                       {t('pricing.empty')}
                     </div>
                   )}
-                  {pricingItems.map((item, idx) => item.is_title ? (
-                    <div key={item._key} className="pricing-title-row" style={{
+                  {pricingItems.map((item, idx) => (
+                    <React.Fragment key={item._key}>
+                    {renderPricingInsert(idx)}
+                    {item.is_title ? (
+                    <div className="pricing-title-row" style={{
                       margin: idx === 0 ? '1.5rem 1.25rem 1.5rem' : '3rem 1.25rem 1.75rem',
                     }}>
                       <div className="pricing-title-row-content">
@@ -2647,33 +2740,48 @@ const profileCompletionStatus = (() => {
                         </div>
                         <div className="pricing-title-line" />
                       </div>
-                      <button
-                        onClick={() => handleDeletePricingRow(item._key)}
-                        title="Supprimer"
-                        className="pricing-delete-btn"
-                        style={{ flexShrink: 0 }}
-                      >
-                        <XCircle size={15} />
-                      </button>
+                      {renderPricingRowControls(item, idx)}
                     </div>
                   ) : (
-                    <div key={item._key} className={`pricing-row${item._isNew ? ' pricing-row-new' : ''}`} style={{
+                    <div className={`pricing-row${item._isNew ? ' pricing-row-new' : ''}`} style={{
                       display: 'grid', gridTemplateColumns: '1fr 180px 80px',
                       padding: '1rem 1.1rem', gap: '0.5rem', alignItems: 'center',
                       borderBottom: (idx < pricingItems.length - 1 && !pricingItems[idx + 1]?.is_title) ? '1px solid #F1F5F9' : 'none',
                       background: item._isNew ? undefined : '#fff',
                     }}>
-                      {/* En-tête carte mobile (numéro + supprimer) */}
+                      {/* En-tête carte mobile (numéro + monter/descendre + supprimer) */}
                       <div className="pricing-row-mobile-header">
                         <span className="pricing-row-badge">
                           {idx + 1}
                         </span>
-                        <button
-                          onClick={() => handleDeletePricingRow(item._key)}
-                          className="pricing-delete-mobile"
-                        >
-                          <XCircle size={16} />
-                        </button>
+                        <div className="pricing-row-controls">
+                          <div className="pricing-move-group">
+                            <button
+                              type="button"
+                              className="pricing-move-btn"
+                              disabled={idx === 0}
+                              onClick={() => handleMovePricingRow(item._key, -1)}
+                              aria-label={t('pricing.moveUp')}
+                            >
+                              <ChevronUp size={16} />
+                            </button>
+                            <button
+                              type="button"
+                              className="pricing-move-btn"
+                              disabled={idx === pricingItems.length - 1}
+                              onClick={() => handleMovePricingRow(item._key, 1)}
+                              aria-label={t('pricing.moveDown')}
+                            >
+                              <ChevronDown size={16} />
+                            </button>
+                          </div>
+                          <button
+                            onClick={() => handleDeletePricingRow(item._key)}
+                            className="pricing-delete-mobile"
+                          >
+                            <XCircle size={16} />
+                          </button>
+                        </div>
                       </div>
 
                       <div className="pricing-name-cell">
@@ -2719,16 +2827,13 @@ const profileCompletionStatus = (() => {
                         )}
                       </div>
                       <div className="pricing-delete-cell" style={{ display: 'flex', justifyContent: 'center' }}>
-                        <button
-                          onClick={() => handleDeletePricingRow(item._key)}
-                          title="Supprimer"
-                          className="pricing-delete-btn"
-                        >
-                          <XCircle size={15} />
-                        </button>
+                        {renderPricingRowControls(item, idx)}
                       </div>
                     </div>
+                    )}
+                    </React.Fragment>
                   ))}
+                  {pricingItems.length > 0 && renderPricingInsert(pricingItems.length)}
 
                   {/* Pied du tableau — boutons Ajouter */}
                   <div className="pricing-add-wrapper" style={{ padding: '0.75rem 1rem', borderTop: '1px solid #f3f4f6', display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
