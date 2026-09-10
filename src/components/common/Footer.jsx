@@ -1,25 +1,13 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useLanguage } from '../../context/LanguageContext'
-import { Mail } from 'lucide-react'
-import { buildServicePath } from '../../utils/langUtils'
+import { Mail, ChevronDown } from 'lucide-react'
+import { buildServicePath, serviceTypeToKey } from '../../utils/langUtils'
+import { VISIBLE_CATEGORY_DEFINITIONS, SERVICES_META } from '../../data/categories'
 
 const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 };
-
-// A short, curated set of popular services — enough for real internal linking
-// without turning the footer into a sitemap. Every service still gets linked from
-// its category page (and the sitemap), so nothing here is an SEO dead-end.
-const FEATURED_SERVICES = [
-  { nameKey: 'services.cleaning', serviceKey: 'cleaning' },
-  { nameKey: 'services.babysitting', serviceKey: 'babysitting' },
-  { nameKey: 'services.electrician', serviceKey: 'electrician' },
-  { nameKey: 'services.plumbing', serviceKey: 'plumbing' },
-  { nameKey: 'services.gardening', serviceKey: 'gardening' },
-  { nameKey: 'services.eldercare', serviceKey: 'eldercare' },
-  { nameKey: 'services.air_conditioning', serviceKey: 'air-conditioning' },
-  { nameKey: 'services.handyman', serviceKey: 'handyman' },
-];
 
 const INFO_LINKS = [
   { nameKey: 'footer.links.howItWorks', path: '/how-it-works' },
@@ -29,6 +17,15 @@ const INFO_LINKS = [
 
 const Footer = () => {
   const { changeLanguage, currentLanguage, t } = useLanguage();
+  const [openCategories, setOpenCategories] = useState(() => new Set());
+
+  const toggleCategory = (id) => {
+    setOpenCategories((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id); else next.add(id);
+      return next;
+    });
+  };
 
   const languages = [
     { code: 'he', flag: 'https://flagcdn.com/w40/il.png', alt: 'עברית' },
@@ -78,24 +75,51 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Services */}
+          {/* Services — accordion by category, all 37 services, no duplicated data */}
           <div className="footer-section">
             <h3>{t('footer.groups.services')}</h3>
-            <div className="footer-links">
-              {FEATURED_SERVICES.map((service) => (
-                <Link
-                  key={service.serviceKey}
-                  to={buildServicePath(service.serviceKey, currentLanguage)}
-                  className="footer-link"
-                  onClick={scrollToTop}
-                >
-                  {t(service.nameKey)}
-                </Link>
-              ))}
-              <Link to="/#services" className="footer-link footer-link-accent" onClick={scrollToTop}>
-                {t('footer.viewAllServices')}
-              </Link>
+            <div className="footer-accordion">
+              {VISIBLE_CATEGORY_DEFINITIONS.map((cat) => {
+                const isOpen = openCategories.has(cat.id);
+                const categoryName = cat.names[currentLanguage] || cat.names.he;
+                return (
+                  <div key={cat.id} className={`footer-accordion-item${isOpen ? ' is-open' : ''}`}>
+                    <button
+                      type="button"
+                      className="footer-accordion-trigger"
+                      aria-expanded={isOpen}
+                      onClick={() => toggleCategory(cat.id)}
+                    >
+                      <span>{categoryName}</span>
+                      <ChevronDown size={16} className="footer-accordion-chevron" aria-hidden="true" />
+                    </button>
+                    <div className="footer-accordion-panel-wrap">
+                      <div className="footer-accordion-panel-inner">
+                        <div className="footer-accordion-links">
+                          {cat.serviceIds.map((serviceId) => {
+                            const meta = SERVICES_META[serviceId];
+                            if (!meta) return null;
+                            return (
+                              <Link
+                                key={serviceId}
+                                to={buildServicePath(serviceTypeToKey(serviceId), currentLanguage)}
+                                className="footer-link footer-sublink"
+                                onClick={scrollToTop}
+                              >
+                                {t(meta.nameKey)}
+                              </Link>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
+            <Link to="/#services" className="footer-link footer-link-accent footer-view-all" onClick={scrollToTop}>
+              {t('footer.viewAllServices')}
+            </Link>
           </div>
 
           {/* For professionals */}
