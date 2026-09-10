@@ -1803,10 +1803,12 @@ const handleContact = () => {
               className={`section-nav-tab${activeSection === 'details' ? ' active' : ''}`}
               onClick={() => scrollToSection(detailsRef)}
             ><ClipboardList size={15} />{t('provider.navDetails')}</button>
-            <button
-              className={`section-nav-tab${activeSection === 'gallery' ? ' active' : ''}`}
-              onClick={() => scrollToSection(galleryRef)}
-            ><ImageIcon size={15} />{t('provider.navGallery')}</button>
+            {provider.media?.gallery?.length > 0 && (
+              <button
+                className={`section-nav-tab${activeSection === 'gallery' ? ' active' : ''}`}
+                onClick={() => scrollToSection(galleryRef)}
+              ><ImageIcon size={15} />{t('provider.navGallery')}</button>
+            )}
             <button
               className={`section-nav-tab${activeSection === 'pricing' ? ' active' : ''}`}
               onClick={() => scrollToSection(pricingRef)}
@@ -1842,18 +1844,13 @@ const handleContact = () => {
               )}
             </div>
 
-            {/* Section : Photos */}
-            <div ref={galleryRef} data-section="gallery" className="service-details-section">
-              <h3 className="details-title" style={{ textAlign: 'start' }}>{t('provider.navGallery')}</h3>
-              {provider.media?.gallery?.length > 0 ? (
+            {/* Section : Photos (cachée si le prestataire n'a aucune photo) */}
+            {provider.media?.gallery?.length > 0 && (
+              <div ref={galleryRef} data-section="gallery" className="service-details-section">
+                <h3 className="details-title" style={{ textAlign: 'start' }}>{t('provider.navGallery')}</h3>
                 <ProviderGallery images={provider.media.gallery} />
-              ) : (
-                <div style={{ textAlign: 'center', padding: '3rem 1rem', color: '#9ca3af' }}>
-                  <div style={{ fontSize: '3rem', marginBottom: '0.75rem' }}>🖼️</div>
-                  <p style={{ margin: 0 }}>{t('provider.galleryEmpty')}</p>
-                </div>
-              )}
-            </div>
+              </div>
+            )}
 
             {/* Section : Tarifs */}
             <div ref={pricingRef} data-section="pricing" className="service-details-section">
