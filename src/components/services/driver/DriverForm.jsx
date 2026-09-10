@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
+import LanguagesCheckboxGroup from '../common/LanguagesCheckboxGroup';
 
 const VEHICLE_TYPES = [
   { value: '5 מקומות',           key: 'serviceForm.driver.seats5' },
@@ -27,13 +28,6 @@ const AVAILABILITY_HOURS = [
   { value: 'evening',            key: 'hours.evening' },
   { value: 'night',           key: 'hours.night' },
   { value: '24/6',           key: 'hours.twentyFourSix' },
-];
-
-const LANGUAGES_OPTIONS = [
-  { value: 'hebrew',   key: 'languages.hebrew' },
-  { value: 'russian',   key: 'languages.russian' },
-  { value: 'english',  key: 'languages.english' },
-  { value: 'french',  key: 'languages.french' },
 ];
 
 const DriverForm = ({ serviceDetails, errors, handleServiceDetailsChange, handleExclusiveCheckbox }) => {
@@ -152,25 +146,11 @@ const DriverForm = ({ serviceDetails, errors, handleServiceDetailsChange, handle
 
         <div className="input-group">
           <label className="auth-form-label required">{t('filters.common.languages')}</label>
-          <div className="checkbox-group" data-field="languages">
-            {LANGUAGES_OPTIONS.map(lang => (
-              <label key={lang.value} className="checkbox-item">
-                <input
-                  type="checkbox"
-                  checked={serviceDetails.languages?.includes(lang.value) || false}
-                  onChange={(e) => {
-                    const current = serviceDetails.languages || [];
-                    const updated = e.target.checked
-                      ? [...current, lang.value]
-                      : current.filter(l => l !== lang.value);
-                    handleServiceDetailsChange('languages', updated);
-                  }}
-                />
-                {t(lang.key)}
-              </label>
-            ))}
-          </div>
-          {errors['serviceDetails.languages'] && <span className="error-text">{errors['serviceDetails.languages']}</span>}
+          <LanguagesCheckboxGroup
+            serviceDetails={serviceDetails}
+            handleServiceDetailsChange={handleServiceDetailsChange}
+            errors={errors}
+          />
         </div>
       </div>
     </div>

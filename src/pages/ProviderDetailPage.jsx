@@ -436,7 +436,9 @@ const handleContact = () => {
                   {LANGUAGE_FLAGS[lang] && (
                     <img src={`https://flagcdn.com/w20/${LANGUAGE_FLAGS[lang]}.png`} alt="" />
                   )}
-                  {translateValue(lang, 'languages', t)}
+                  {lang === 'other'
+                    ? (details.languages_other || translateValue(lang, 'languages', t))
+                    : translateValue(lang, 'languages', t)}
                 </span>
               ))}
             </div>
