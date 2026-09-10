@@ -90,7 +90,10 @@ const Footer = () => {
                       aria-expanded={isOpen}
                       onClick={() => toggleCategory(cat.id)}
                     >
-                      <span>{categoryName}</span>
+                      <span className="footer-accordion-label">
+                        {categoryName}
+                        <span className="footer-accordion-count">{cat.serviceIds.length}</span>
+                      </span>
                       <ChevronDown size={16} className="footer-accordion-chevron" aria-hidden="true" />
                     </button>
                     <div className="footer-accordion-panel-wrap">
