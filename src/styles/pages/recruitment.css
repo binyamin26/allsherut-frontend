@@ -243,6 +243,124 @@
 }
 
 /* ====================================
+   INFO SECTION (intro + how it works + FAQ)
+   Toujours rendue, même à 0 annonce, pour donner à la page un
+   contenu réel et éviter un Soft 404 côté Google.
+   ==================================== */
+.recruitment-info-section {
+  background: white;
+  border-top: 1px solid var(--neutral-200);
+  padding: 2.5rem 1.5rem 3rem;
+}
+
+.recruitment-info-inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.text-recruitment-info-eyebrow {
+  display: inline-block;
+  font-size: var(--text-sm) !important;
+  font-weight: 700;
+  color: var(--accent-400);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.6rem;
+}
+
+.recruitment-info-text {
+  font-size: var(--text-base);
+  line-height: 1.75;
+  color: var(--neutral-700);
+  margin: 0 0 2rem;
+}
+
+.recruitment-steps-title,
+.recruitment-faq-title {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--neutral-900);
+  margin: 0 0 1rem;
+}
+
+.recruitment-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.recruitment-step {
+  background: var(--neutral-25);
+  border: 1px solid var(--neutral-200);
+  border-radius: var(--radius-xl);
+  padding: 1.25rem;
+}
+
+.recruitment-step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background: var(--primary-600);
+  color: white;
+  font-weight: 700;
+  font-size: var(--text-sm);
+  margin-bottom: 0.6rem;
+}
+
+.recruitment-step-title {
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--neutral-900);
+  margin: 0 0 0.35rem;
+}
+
+.recruitment-step-desc {
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--neutral-600);
+  margin: 0;
+}
+
+.recruitment-faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.recruitment-faq-item {
+  border-bottom: 1px solid var(--neutral-100);
+  padding-bottom: 1rem;
+}
+
+.recruitment-faq-q {
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--neutral-900);
+  margin: 0 0 0.35rem;
+}
+
+.recruitment-faq-a {
+  font-size: var(--text-sm);
+  line-height: 1.65;
+  color: var(--neutral-600);
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .recruitment-info-section {
+    padding: 2rem 1rem 2.5rem;
+  }
+
+  .recruitment-steps-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ====================================
    JOB LISTINGS LIST & ROWS
    ==================================== */
 

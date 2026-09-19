@@ -306,6 +306,36 @@ const RecruitmentServicePage = () => {
         )}
       </div>
 
+      {/* Contenu éditorial statique — toujours rendu, même sans annonces actives,
+         pour éviter qu'une page vide (0 annonce) soit vue par Google comme un Soft 404 */}
+      <section className="recruitment-info-section">
+        <div className="recruitment-info-inner">
+          <span className="recruitment-info-eyebrow">{t('recruitment.infoEyebrow')}</span>
+          <p className="recruitment-info-text">{t('recruitment.intro.text', { service: serviceLabel })}</p>
+
+          <h2 className="recruitment-steps-title">{t('recruitment.howItWorks.title')}</h2>
+          <div className="recruitment-steps-grid">
+            {[1, 2, 3].map(n => (
+              <div className="recruitment-step" key={n}>
+                <span className="recruitment-step-num">{n}</span>
+                <h3 className="recruitment-step-title">{t(`recruitment.howItWorks.step${n}.title`)}</h3>
+                <p className="recruitment-step-desc">{t(`recruitment.howItWorks.step${n}.desc`, { service: serviceLabel })}</p>
+              </div>
+            ))}
+          </div>
+
+          <h2 className="recruitment-faq-title">{t('recruitment.faq.title')}</h2>
+          <div className="recruitment-faq-list">
+            {[1, 2, 3, 4].map(n => (
+              <div className="recruitment-faq-item" key={n}>
+                <p className="recruitment-faq-q">{t(`recruitment.faq.q${n}`, { service: serviceLabel })}</p>
+                <p className="recruitment-faq-a">{t(`recruitment.faq.a${n}`, { service: serviceLabel })}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 };
