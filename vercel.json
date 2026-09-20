@@ -15,6 +15,10 @@
       ]
     }
   ],
+  "redirects": [
+    { "source": "/services/traiteur", "destination": "/fr/services/traiteur", "permanent": true },
+    { "source": "/services/activites-sportives", "destination": "/fr/services/activites-sportives", "permanent": true }
+  ],
   "rewrites": [
     {
       "source": "/api/:path*",
