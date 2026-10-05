@@ -2101,6 +2101,7 @@ const handleContact = () => {
         onClose={() => setCallModal({ open: false, action: 'call' })}
         providerId={provider?.id}
         providerPhone={provider?.phone}
+        providerWhatsapp={provider?.whatsappPhone}
         providerName={provider?.name || provider?.full_name}
         serviceName={serviceNameHe}
         action={callModal.action}

@@ -155,8 +155,9 @@ const RecruitmentListingDetailPage = () => {
   /* Phone / WhatsApp */
   const rawPhone = listing.phone || '';
   const telLink  = rawPhone ? `tel:${rawPhone}` : null;
-  const waPhone  = formatWhatsAppNumber(rawPhone);
-  const waLink   = rawPhone ? `https://wa.me/${waPhone}` : null;
+  const rawWhatsapp = listing.whatsapp_phone || '';
+  const waPhone  = formatWhatsAppNumber(rawWhatsapp || rawPhone);
+  const waLink   = (rawWhatsapp || rawPhone) ? `https://wa.me/${waPhone}` : null;
 
   const memberSince = listing.created_at ? new Date(listing.created_at).getFullYear() : null;
 
@@ -395,6 +396,7 @@ const RecruitmentListingDetailPage = () => {
         onClose={() => setCallModal({ open: false, action: 'call' })}
         providerId={listing.provider_id}
         providerPhone={rawPhone}
+        providerWhatsapp={rawWhatsapp}
         providerName={listing.full_name}
         serviceName={`גיוס - ${serviceLabel}`}
         action={callModal.action}

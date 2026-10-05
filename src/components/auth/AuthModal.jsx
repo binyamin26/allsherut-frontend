@@ -74,6 +74,8 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
     name: '',
     email: '',
     phone: '',
+    whatsappDifferent: false,
+    whatsappPhone: '',
     password: '',
     confirmPassword: '',
     role: 'provider',
@@ -232,6 +234,8 @@ const groupedServices = CATEGORY_DEFINITIONS
         name: '',
         email: '',
         phone: '',
+        whatsappDifferent: false,
+        whatsappPhone: '',
         password: '',
         confirmPassword: '',
         role: 'provider',
@@ -614,6 +618,10 @@ if (!formData.phone.trim()) {
   newErrors.phone = t('auth.validation.phoneInvalid');
 } else if (fieldValidation.phone.status === 'invalid') {
   newErrors.phone = fieldValidation.phone.message;
+}
+
+if (formData.whatsappDifferent && !formData.whatsappPhone.trim()) {
+  newErrors.whatsappPhone = t('auth.validation.whatsappRequired');
 }
 
 if (!formData.password) {
@@ -1056,6 +1064,9 @@ if (!isValid) {
       registrationFormData.append('name', formData.name);
       registrationFormData.append('email', formData.email);
       registrationFormData.append('phone', formData.phone.replace(/[\s\-(). /]/g, ''));
+      if (formData.whatsappDifferent && formData.whatsappPhone.trim()) {
+        registrationFormData.append('whatsappPhone', formData.whatsappPhone.replace(/[\s\-(). /]/g, ''));
+      }
       registrationFormData.append('password', formData.password);
       registrationFormData.append('role', 'provider');
       console.log('serviceType:', formData.serviceType);
@@ -1655,7 +1666,7 @@ const renderWorkingAreasSection = () => {
 </div>
 
 <div className="input-group">
- <label className="auth-form-label required">{t('auth.phone')}</label>
+ <label className="auth-form-label required">{t('auth.phoneWhatsapp')}</label>
   <div className="input-wrapper">
     <Phone className="input-icon" size={20} />
     <input
@@ -1675,7 +1686,37 @@ const renderWorkingAreasSection = () => {
     </span>
   )}
   {errors.phone && <span className="error-text">{errors.phone}</span>}
+  <label className="whatsapp-different-check">
+    <input
+      type="checkbox"
+      checked={formData.whatsappDifferent}
+      onChange={(e) => {
+        const checked = e.target.checked;
+        setFormData(prev => ({ ...prev, whatsappDifferent: checked, whatsappPhone: checked ? prev.whatsappPhone : '' }));
+        if (!checked) setErrors(prev => ({ ...prev, whatsappPhone: '' }));
+      }}
+    />
+    <span className="text-whatsapp-different">{t('auth.whatsappDifferent')}</span>
+  </label>
 </div>
+
+{formData.whatsappDifferent && (
+  <div className="input-group">
+    <label className="auth-form-label required">{t('auth.whatsappNumber')}</label>
+    <div className="input-wrapper">
+      <Phone className="input-icon" size={20} />
+      <input
+        type="tel"
+        name="whatsappPhone"
+        placeholder="05X-XXXXXXX"
+        value={formData.whatsappPhone}
+        onChange={handleInputChange}
+        className={`standard-input ${errors.whatsappPhone ? 'error' : ''}`}
+      />
+    </div>
+    {errors.whatsappPhone && <span className="error-text">{errors.whatsappPhone}</span>}
+  </div>
+)}
 
 <div className="input-group">
 <label className="auth-form-label required">{t('auth.password')}</label>

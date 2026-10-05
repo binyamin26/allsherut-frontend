@@ -2114,3 +2114,26 @@
     z-index: 10;
   }
 }
+/* ==========================================================
+   Case "Mon numéro WhatsApp est différent"
+   (le span porte "text-" pour survivre à l'override de l'AccessibilityWidget)
+   ========================================================== */
+.whatsapp-different-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+.whatsapp-different-check input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.whatsapp-different-check .text-whatsapp-different {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-700, #374151);
+}

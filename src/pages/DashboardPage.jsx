@@ -251,6 +251,8 @@ const userData = useMemo(() => {
     firstName: '',
     lastName: '',
     phone: '',
+    whatsappDifferent: false,
+    whatsappPhone: '',
     email: '',
     description: '',
     experienceYears: '',
@@ -915,6 +917,8 @@ const response = await changePassword(
         firstName: user?.providerProfile?.serviceDetails?.service_first_name || userData?.firstName || '',
         lastName: user?.providerProfile?.serviceDetails?.service_last_name ?? userData?.lastName ?? '',
         phone: userData?.phone || '',
+        whatsappDifferent: !!userData?.whatsappPhone,
+        whatsappPhone: userData?.whatsappPhone || '',
         email: userData?.email || '',
         description: userData?.serviceDetails?.description || '',
         experienceYears: userData?.serviceDetails?.experience_years || '',
@@ -1038,7 +1042,17 @@ const handleSaveProfile = async () => {
     const cleanedData = cleanProfileData(editFormData);
     
     cleanedData.activeServiceType = activeService || userData?.serviceType;
-    
+
+    if (editFormData.whatsappDifferent && !(editFormData.whatsappPhone || '').trim()) {
+      setMessage({ type: 'error', text: t('auth.validation.whatsappRequired') });
+      setEditLoading(false);
+      return;
+    }
+
+    // WhatsApp : vide = même numéro que le téléphone
+    cleanedData.whatsappPhone = editFormData.whatsappDifferent ? (editFormData.whatsappPhone || '').trim() : '';
+    delete cleanedData.whatsappDifferent;
+
     // ✅ Synchroniser les valeurs de serviceDetails vers le niveau root
     if (cleanedData.serviceDetails) {
       // Années d'expérience
@@ -2048,20 +2062,57 @@ const profileCompletionStatus = (() => {
             <Phone size={18} />
           </div>
         <div className="contact-details">
-            <label>{t('dashboard.phone')}:</label>
+            <label>{t('dashboard.phoneWhatsapp')}:</label>
             {isEditMode ? (
-              <input
-                type="tel"
-                value={editFormData.phone}
-                onChange={(e) => handleEditInputChange('phone', e.target.value)}
-                className="form-input inline-edit"
-                placeholder="050-1234567"
-              />
+              <>
+                <input
+                  type="tel"
+                  value={editFormData.phone}
+                  onChange={(e) => handleEditInputChange('phone', e.target.value)}
+                  className="form-input inline-edit"
+                  placeholder="050-1234567"
+                />
+                <label className="whatsapp-different-check">
+                  <input
+                    type="checkbox"
+                    checked={!editFormData.whatsappDifferent}
+                    onChange={(e) => {
+                      const same = e.target.checked;
+                      setEditFormData(prev => ({ ...prev, whatsappDifferent: !same, whatsappPhone: same ? '' : prev.whatsappPhone }));
+                    }}
+                  />
+                  <span className="text-whatsapp-different">{t('dashboard.whatsappSameNumber')}</span>
+                </label>
+                {editFormData.whatsappDifferent && (
+                  <>
+                    <label>{t('auth.whatsappNumber')}:</label>
+                    <input
+                      type="tel"
+                      value={editFormData.whatsappPhone}
+                      onChange={(e) => handleEditInputChange('whatsappPhone', e.target.value)}
+                      className="form-input inline-edit"
+                      placeholder="050-9876543"
+                    />
+                  </>
+                )}
+              </>
             ) : (
               <span>{userData?.phone || t('dashboard.notSpecified')}</span>
             )}
           </div>
         </div>
+
+        {!isEditMode && userData?.whatsappPhone && (
+          <div className="provider-contact-item">
+            <div className="provider-contact-icon">
+              <MessageCircle size={18} />
+            </div>
+            <div className="contact-details">
+              <label>{t('auth.whatsappNumber')}:</label>
+              <span>{userData.whatsappPhone}</span>
+            </div>
+          </div>
+        )}
         
         <div className="provider-contact-item">
           <div className="provider-contact-icon">
