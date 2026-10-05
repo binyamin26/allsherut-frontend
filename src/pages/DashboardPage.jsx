@@ -52,7 +52,7 @@ import DeleteAccountModal from '../components/modals/DeleteAccountModal';
 // PAIEMENT DÉSACTIVÉ - RÉACTIVER QUAND SITE PAYANT
 // import CancelSubscriptionModal from '../components/modals/CancelSubscriptionModal';
 import ServiceDetailsEditor from '../components/dashboard/ServiceDetailsEditor';
-import ProfileCompletionCard from '../components/dashboard/ProfileCompletionCard';
+import ProfileCompletionCard, { GALLERY_OPTIONAL_SERVICES } from '../components/dashboard/ProfileCompletionCard';
 import ShareReviewLinkCard from '../components/dashboard/ShareReviewLinkCard';
 import serviceFieldsConfig from '../components/config/serviceFieldsConfig';
 import ServiceDetailsForm from '../components/services/ServiceDetailsForm';
@@ -251,6 +251,8 @@ const userData = useMemo(() => {
     firstName: '',
     lastName: '',
     phone: '',
+    whatsappDifferent: false,
+    whatsappPhone: '',
     email: '',
     description: '',
     experienceYears: '',
@@ -877,6 +879,8 @@ const response = await changePassword(
         firstName: user?.providerProfile?.serviceDetails?.service_first_name || userData?.firstName || '',
         lastName: user?.providerProfile?.serviceDetails?.service_last_name ?? userData?.lastName ?? '',
         phone: userData?.phone || '',
+        whatsappDifferent: !!userData?.whatsappPhone,
+        whatsappPhone: userData?.whatsappPhone || '',
         email: userData?.email || '',
         description: userData?.serviceDetails?.description || '',
         experienceYears: userData?.serviceDetails?.experience_years || '',
@@ -973,7 +977,15 @@ const handleSaveProfile = async () => {
   setMessage(null);
   
   try {  
+    if (editFormData.whatsappDifferent && !(editFormData.whatsappPhone || '').trim()) {
+      setMessage({ type: 'error', text: t('auth.validation.whatsappRequired') });
+      setEditLoading(false);
+      return;
+    }
+
     const cleanedData = cleanProfileData(editFormData);
+    cleanedData.whatsappPhone = editFormData.whatsappDifferent ? (editFormData.whatsappPhone || '').trim() : '';
+    delete cleanedData.whatsappDifferent;
     
     cleanedData.activeServiceType = activeService || userData?.serviceType;
     
@@ -1730,6 +1742,7 @@ const profileCompletionStatus = (() => {
                   reviewsCount={myReviews.length}
                   galleryLabel={t('dashboard.gallery.title')}
                   experienceLabel={profileCompletionExperienceLabel}
+                  galleryRequired={!GALLERY_OPTIONAL_SERVICES.includes(activeService || userData?.serviceType)}
                 />
               )}
 
@@ -1981,25 +1994,70 @@ const profileCompletionStatus = (() => {
           </div>
         </div>
         
-        <div className="provider-contact-item">
-          <div className="provider-contact-icon">
-            <Phone size={18} />
+        <div className="provider-contact-item" style={isEditMode ? { flexDirection: 'column', alignItems: 'stretch' } : undefined}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <div className="provider-contact-icon">
+              <Phone size={18} />
+            </div>
+            <div className="contact-details">
+              <label>{t('dashboard.phone')}:</label>
+              {isEditMode ? (
+                <input
+                  type="tel"
+                  value={editFormData.phone}
+                  onChange={(e) => handleEditInputChange('phone', e.target.value)}
+                  className="form-input inline-edit"
+                  placeholder="06 12 34 56 78"
+                />
+              ) : (
+                <span>{userData?.phone || t('dashboard.notSpecified')}</span>
+              )}
+            </div>
           </div>
-        <div className="contact-details">
-            <label>{t('dashboard.phone')}:</label>
-            {isEditMode ? (
-              <input
-                type="tel"
-                value={editFormData.phone}
-                onChange={(e) => handleEditInputChange('phone', e.target.value)}
-                className="form-input inline-edit"
-                placeholder="050-1234567"
-              />
-            ) : (
-              <span>{userData?.phone || t('dashboard.notSpecified')}</span>
-            )}
-          </div>
+          {isEditMode && (
+            <>
+              <label className="whatsapp-different-check">
+                <input
+                  type="checkbox"
+                  checked={!editFormData.whatsappDifferent}
+                  onChange={(e) => {
+                    const same = e.target.checked;
+                    setEditFormData(prev => ({ ...prev, whatsappDifferent: !same, whatsappPhone: same ? '' : prev.whatsappPhone }));
+                  }}
+                />
+                <span className="text-whatsapp-different">{t('dashboard.whatsappSameNumber')}</span>
+              </label>
+              {editFormData.whatsappDifferent && (
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <div className="provider-contact-icon">
+                    <MessageCircle size={18} />
+                  </div>
+                  <div className="contact-details">
+                    <label>{t('auth.whatsappNumber')}:</label>
+                    <input
+                      type="tel"
+                      value={editFormData.whatsappPhone}
+                      onChange={(e) => handleEditInputChange('whatsappPhone', e.target.value)}
+                      className="form-input inline-edit"
+                      placeholder="06 12 34 56 78"
+                    />
+                  </div>
+                </div>
+              )}
+            </>
+          )}
         </div>
+        {!isEditMode && userData?.whatsappPhone && (
+          <div className="provider-contact-item">
+            <div className="provider-contact-icon">
+              <MessageCircle size={18} />
+            </div>
+            <div className="contact-details">
+              <label>{t('auth.whatsappNumber')}:</label>
+              <span>{userData.whatsappPhone}</span>
+            </div>
+          </div>
+        )}
         
         <div className="provider-contact-item">
           <div className="provider-contact-icon">

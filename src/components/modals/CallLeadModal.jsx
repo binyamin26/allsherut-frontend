@@ -5,7 +5,7 @@ import { useLanguage } from '../../context/LanguageContext';
 import apiService from '../../services/api';
 import { formatWhatsAppNumber } from '../../utils/phoneUtils';
 
-const CallLeadModal = ({ isOpen, onClose, providerId, providerPhone, providerName, serviceName, action, source = 'service' }) => {
+const CallLeadModal = ({ isOpen, onClose, providerId, providerPhone, providerWhatsapp, providerName, serviceName, action, source = 'service' }) => {
   const { t, isRTL } = useLanguage();
   const [clientPhone, setClientPhone] = useState('');
   const [error, setError] = useState('');
@@ -39,7 +39,7 @@ const CallLeadModal = ({ isOpen, onClose, providerId, providerPhone, providerNam
     onClose();
 
     if (action === 'whatsapp') {
-      const waNumber = formatWhatsAppNumber(providerPhone);
+      const waNumber = formatWhatsAppNumber(providerWhatsapp || providerPhone);
       setTimeout(() => window.open(`https://wa.me/${waNumber}`, '_blank'), 100);
     } else {
       setTimeout(() => { window.location.href = `tel:${providerPhone}`; }, 100);

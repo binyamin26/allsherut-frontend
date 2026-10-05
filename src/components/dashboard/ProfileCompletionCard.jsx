@@ -1,15 +1,18 @@
 import { Check, Circle } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 
-// Chaque critère pèse 20% — pondération égale volontairement simple pour la V1.
+// Services pour lesquels la galerie n'est pas requise (garder synchronisé avec backend/utils/profileCompleteness.js)
+export const GALLERY_OPTIONAL_SERVICES = ['babysitting', 'property_management'];
+
+// Chaque critère pèse un poids égal (20% à 5 critères, 25% sans galerie) — pondération égale volontairement simple pour la V1.
 // galleryLabel/experienceLabel : libellés exacts déjà utilisés dans la page de profil
 // (l'intitulé "expérience" varie selon le métier), pour rester identique partout.
-const ProfileCompletionCard = ({ completed, reviewsCount, galleryLabel, experienceLabel }) => {
+const ProfileCompletionCard = ({ completed, reviewsCount, galleryLabel, experienceLabel, galleryRequired = true }) => {
   const { t } = useLanguage();
 
   const CRITERIA = [
     { key: 'photo', label: t('dashboard.profileCompletion.itemPhoto') },
-    { key: 'gallery', label: galleryLabel || t('dashboard.profileCompletion.itemGallery') },
+    ...(galleryRequired ? [{ key: 'gallery', label: galleryLabel || t('dashboard.profileCompletion.itemGallery') }] : []),
     { key: 'experience', label: experienceLabel || t('dashboard.profileCompletion.itemExperience') },
     { key: 'description', label: t('dashboard.profileCompletion.itemDescription') },
     { key: 'languages', label: t('dashboard.profileCompletion.itemLanguages') }

@@ -3611,5 +3611,11 @@
   "serviceFields.driver.transportation_type": "Type de transport",
   "serviceFields.driver.languages": "Langues parlées",
   "provider.details.driverVehicleType": "Type de véhicule",
-  "provider.details.driverTransportationType": "Type de transport"
+  "provider.details.driverTransportationType": "Type de transport",
+  "auth.phoneWhatsapp": "Téléphone / WhatsApp",
+  "auth.whatsappDifferent": "Mon numéro WhatsApp est différent",
+  "auth.whatsappNumber": "Numéro WhatsApp",
+  "auth.validation.whatsappRequired": "Le numéro WhatsApp est requis",
+  "dashboard.phoneWhatsapp": "Téléphone / WhatsApp",
+  "dashboard.whatsappSameNumber": "Utiliser le même numéro pour WhatsApp"
 }

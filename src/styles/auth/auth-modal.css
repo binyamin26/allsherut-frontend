@@ -2114,3 +2114,22 @@
     z-index: 10;
   }
 }
+
+.whatsapp-different-check {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 12px;
+  cursor: pointer;
+}
+
+.whatsapp-different-check input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.text-whatsapp-different {
+  margin-inline-start: 4px;
+  font-size: var(--text-sm, 14px);
+}
