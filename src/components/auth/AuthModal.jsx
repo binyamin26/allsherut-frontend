@@ -1666,7 +1666,7 @@ const renderWorkingAreasSection = () => {
 </div>
 
 <div className="input-group">
- <label className="auth-form-label required">{t('auth.phoneWhatsapp')}</label>
+ <label className="auth-form-label required">{formData.whatsappDifferent ? t('auth.phone') : t('auth.phoneWhatsapp')}</label>
   <div className="input-wrapper">
     <Phone className="input-icon" size={20} />
     <input

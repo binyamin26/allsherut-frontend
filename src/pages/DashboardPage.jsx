@@ -2062,7 +2062,7 @@ const profileCompletionStatus = (() => {
             <Phone size={18} />
           </div>
         <div className="contact-details">
-            <label>{t('dashboard.phoneWhatsapp')}:</label>
+            <label>{isEditMode && editFormData.whatsappDifferent ? t('dashboard.phone') : t('dashboard.phoneWhatsapp')}:</label>
             {isEditMode ? (
               <>
                 <input
