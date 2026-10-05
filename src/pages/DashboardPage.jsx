@@ -2058,14 +2058,17 @@ const profileCompletionStatus = (() => {
           </div>
         </div>
         
-        <div className="provider-contact-item">
-          <div className="provider-contact-icon">
-            <Phone size={18} />
-          </div>
-        <div className="contact-details">
-            <label>{isEditMode && editFormData.whatsappDifferent ? t('dashboard.phone') : t('dashboard.phoneWhatsapp')}:</label>
-            {isEditMode ? (
-              <>
+        <div
+          className="provider-contact-item"
+          style={isEditMode ? { flexDirection: 'column', alignItems: 'stretch' } : undefined}
+        >
+          <div style={isEditMode ? { display: 'flex', alignItems: 'center', gap: 'var(--space-3)' } : { display: 'contents' }}>
+            <div className="provider-contact-icon">
+              <Phone size={18} />
+            </div>
+            <div className="contact-details">
+              <label>{isEditMode && editFormData.whatsappDifferent ? t('dashboard.phone') : t('dashboard.phoneWhatsapp')}:</label>
+              {isEditMode ? (
                 <input
                   type="tel"
                   value={editFormData.phone}
@@ -2073,19 +2076,31 @@ const profileCompletionStatus = (() => {
                   className="form-input inline-edit"
                   placeholder="050-1234567"
                 />
-                <label className="whatsapp-different-check">
-                  <input
-                    type="checkbox"
-                    checked={!editFormData.whatsappDifferent}
-                    onChange={(e) => {
-                      const same = e.target.checked;
-                      setEditFormData(prev => ({ ...prev, whatsappDifferent: !same, whatsappPhone: same ? '' : prev.whatsappPhone }));
-                    }}
-                  />
-                  <span className="text-whatsapp-different">{t('dashboard.whatsappSameNumber')}</span>
-                </label>
-                {editFormData.whatsappDifferent && (
-                  <>
+              ) : (
+                <span>{userData?.phone || t('dashboard.notSpecified')}</span>
+              )}
+            </div>
+          </div>
+
+          {isEditMode && (
+            <>
+              <label className="whatsapp-different-check">
+                <input
+                  type="checkbox"
+                  checked={!editFormData.whatsappDifferent}
+                  onChange={(e) => {
+                    const same = e.target.checked;
+                    setEditFormData(prev => ({ ...prev, whatsappDifferent: !same, whatsappPhone: same ? '' : prev.whatsappPhone }));
+                  }}
+                />
+                <span className="text-whatsapp-different">{t('dashboard.whatsappSameNumber')}</span>
+              </label>
+              {editFormData.whatsappDifferent && (
+                <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)' }}>
+                  <div className="provider-contact-icon">
+                    <MessageCircle size={18} />
+                  </div>
+                  <div className="contact-details">
                     <label>{t('auth.whatsappNumber')}:</label>
                     <input
                       type="tel"
@@ -2094,13 +2109,11 @@ const profileCompletionStatus = (() => {
                       className="form-input inline-edit"
                       placeholder="050-9876543"
                     />
-                  </>
-                )}
-              </>
-            ) : (
-              <span>{userData?.phone || t('dashboard.notSpecified')}</span>
-            )}
-          </div>
+                  </div>
+                </div>
+              )}
+            </>
+          )}
         </div>
 
         {!isEditMode && userData?.whatsappPhone && (
