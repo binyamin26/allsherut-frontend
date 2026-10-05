@@ -52,7 +52,7 @@ import DeleteAccountModal from '../components/modals/DeleteAccountModal';
 // PAIEMENT DÉSACTIVÉ - RÉACTIVER QUAND SITE PAYANT
 // import CancelSubscriptionModal from '../components/modals/CancelSubscriptionModal';
 import ServiceDetailsEditor from '../components/dashboard/ServiceDetailsEditor';
-import ProfileCompletionCard from '../components/dashboard/ProfileCompletionCard';
+import ProfileCompletionCard, { GALLERY_OPTIONAL_SERVICES } from '../components/dashboard/ProfileCompletionCard';
 import ShareReviewLinkCard from '../components/dashboard/ShareReviewLinkCard';
 import serviceFieldsConfig from '../components/config/serviceFieldsConfig';
 import ServiceDetailsForm from '../components/services/ServiceDetailsForm';
@@ -1806,6 +1806,7 @@ const profileCompletionStatus = (() => {
                   reviewsCount={myReviews.length}
                   galleryLabel={t('dashboard.gallery.title')}
                   experienceLabel={profileCompletionExperienceLabel}
+                  galleryRequired={!GALLERY_OPTIONAL_SERVICES.includes(activeService || userData?.serviceType)}
                 />
               )}
 
