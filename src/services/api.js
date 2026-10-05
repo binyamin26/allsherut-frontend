@@ -1,9 +1,8 @@
 class ApiService {
   constructor() {
-    // Base URL components split to avoid Vite minifier optimization
-    this.protocol = "https://";
-    this.domain = "homesherut-backend.fly.dev";
-    this.basePath = "/api";
+    // Dev : proxy Vite (/api -> localhost:5000). Prod : VITE_API_URL obligatoire
+    // (URL complète du backend, /api inclus). Aucun repli sur un domaine en dur.
+    this.baseUrl = import.meta.env.DEV ? '/api' : import.meta.env.VITE_API_URL;
   }
 
   getAuthToken() {
@@ -11,7 +10,10 @@ class ApiService {
   }
 
   buildURL(endpoint) {
-    return this.protocol + this.domain + this.basePath + endpoint;
+    if (!this.baseUrl) {
+      throw new Error('VITE_API_URL is not defined: set it to the backend API URL (e.g. https://<backend>/api) in the production build environment.');
+    }
+    return this.baseUrl.replace(/\/+$/, '') + endpoint;
   }
 
   async request(endpoint, options = {}) {
