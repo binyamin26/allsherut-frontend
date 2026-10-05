@@ -33,6 +33,9 @@ const scrollToFirstError = (errors, currentStep = 1) => {
       case 'phone':
         targetElement = document.querySelector('input[name="phone"]');
         break;
+      case 'whatsappPhone':
+        targetElement = document.querySelector('input[name="whatsappPhone"]');
+        break;
       case 'password':
         targetElement = document.querySelector('input[name="password"]');
         break;
