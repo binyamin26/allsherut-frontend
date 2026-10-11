@@ -62,9 +62,6 @@ export const CATEGORY_DEFINITIONS = [
   },
   {
     id: 'medecine-soins',
-    // Section masquée temporairement (jusqu'à nouvel ordre) — ne rien supprimer.
-    // Pour la réafficher : retirer `hidden: true` ci-dessous, c'est le seul interrupteur.
-    hidden: true,
     names: {
       fr: 'Médecine & Soins',
       he: 'רפואה וטיפול',
