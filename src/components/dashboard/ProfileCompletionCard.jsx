@@ -6,7 +6,7 @@ import { useLanguage } from '../../context/LanguageContext';
 // (l'intitulé "expérience" varie selon le métier), pour rester identique partout.
 // Services pour lesquels la galerie n'est pas requise (doit rester aligné avec
 // GALLERY_OPTIONAL_SERVICES dans backend/utils/profileCompleteness.js).
-export const GALLERY_OPTIONAL_SERVICES = ['babysitting', 'property_management'];
+export const GALLERY_OPTIONAL_SERVICES = ['babysitting', 'property_management', 'doula'];
 
 const ProfileCompletionCard = ({ completed, reviewsCount, galleryLabel, experienceLabel, galleryRequired = true }) => {
   const { t } = useLanguage();
