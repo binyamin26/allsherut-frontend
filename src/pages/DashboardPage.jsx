@@ -2000,7 +2000,7 @@ const profileCompletionStatus = (() => {
 
     {/* Section Description */}
 <div className="info-section">
-  <h3 className="section-title">תיאור אישי</h3>
+  <h3 className="section-title">{t('dashboard.personalDescription')}</h3>
   {isEditMode ? (
     <div className="form-group">
       <textarea
@@ -2011,7 +2011,7 @@ const profileCompletionStatus = (() => {
           }
         }}
         className="form-input"
-        placeholder="ספר על עצמך, הניסיון שלך והשירות שאתה מציע..."
+        placeholder={t('dashboard.descriptionPlaceholder')}
         rows={4}
         maxLength={300}
         style={{ resize: 'vertical', minHeight: '100px', width: '100%' }}
@@ -2026,7 +2026,7 @@ const profileCompletionStatus = (() => {
     const realDescription = isAutoPlaceholder ? '' : rawDescription;
     return (
       <p style={{ color: realDescription ? '#374151' : '#9ca3af', lineHeight: '1.6', margin: 0, whiteSpace: 'pre-line' }}>
-        {realDescription || 'לא הוסף תיאור עדיין'}
+        {realDescription || t('dashboard.noDescriptionYet')}
       </p>
     );
   })()}
