@@ -23,7 +23,7 @@ import {
   Settings, Flame, ClipboardList, Bug, BookOpen, Trophy, Sun,
   Wallet, Globe, Car, Baby, Users, Dog,
   Stethoscope, PawPrint, HeartHandshake, ListChecks, Truck, PackageOpen,
-  Image as ImageIcon, Tag
+  Image as ImageIcon, Tag, Warehouse
 } from 'lucide-react';
 
 const AVATAR_GRADIENTS = [
@@ -1547,6 +1547,12 @@ const handleContact = () => {
             {(details.cardboard_supply === 'כן' || (Array.isArray(details.cardboard_supply) && details.cardboard_supply.includes('כן'))) && (
               <div className="detail-item">
                 <IconLabel icon={PackageOpen}>{t('provider.details.cardboardSupply')}:</IconLabel>
+                <span>{t('common.yes')}</span>
+              </div>
+            )}
+            {(details.storage === 'כן' || (Array.isArray(details.storage) && details.storage.includes('כן'))) && (
+              <div className="detail-item">
+                <IconLabel icon={Warehouse}>{t('provider.details.storage')}:</IconLabel>
                 <span>{t('common.yes')}</span>
               </div>
             )}
