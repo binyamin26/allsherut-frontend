@@ -117,8 +117,8 @@ const handleVerifyCode = async () => {
 
   try {
     const response = await apiCall('/reviews/verify-code', 'POST', {
-      email: formData.email,
-      verificationCode: formData.verificationCode,
+      email: formData.email.trim(),
+      verificationCode: formData.verificationCode.replace(/\D/g, ''),
       providerId,
       serviceType
     });
@@ -168,9 +168,9 @@ const handleVerifyCode = async () => {
 
     try {
       const response = await apiCall('/reviews/create', 'POST', {
-        email: formData.email,
+        email: formData.email.trim(),
         name: formData.name,
-        verificationCode: formData.verificationCode,
+        verificationCode: formData.verificationCode.replace(/\D/g, ''),
         providerId,
         serviceType,
         qualityRating: qualityRating || null,
@@ -320,6 +320,8 @@ placeholder={t('review.form.emailPlaceholder')}
                   <div className="input-wrapper">
                    <input
   type="text"
+  inputMode="numeric"
+  autoComplete="one-time-code"
   value={formData.verificationCode}
   onChange={(e) => handleInputChange('verificationCode', e.target.value)}
   onKeyDown={(e) => e.key === 'Enter' && handleVerifyCode()}
