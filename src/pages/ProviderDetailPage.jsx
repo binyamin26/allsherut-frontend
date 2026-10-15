@@ -1708,10 +1708,12 @@ const handleContact = () => {
     <div className="provider-rating-location">
       <div className="rating">
         {(() => {
-          const avg = provider.rating?.average
-            ? parseFloat(provider.rating.average)
-            : reviews.length > 0
-              ? reviews.reduce((sum, r) => sum + parseFloat(r.rating || 0), 0) / reviews.length
+          // Même calcul que la section avis (2 décimales) ; la valeur du backend
+          // est arrondie à 1 décimale, donc seulement en secours.
+          const avg = reviews.length > 0
+            ? reviews.reduce((sum, r) => sum + parseFloat(r.rating || 0), 0) / reviews.length
+            : provider.rating?.average
+              ? parseFloat(provider.rating.average)
               : 0;
           const count = provider.rating?.count ?? reviews.length;
           const formatted = formatRating(avg);
