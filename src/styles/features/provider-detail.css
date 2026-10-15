@@ -946,6 +946,8 @@ text-align: start;
   box-shadow: var(--shadow-md);
 }
 
+.write-review-btn.btn-primary:hover:not(:disabled),
+.write-review-btn.btn-primary:focus-visible:not(:disabled),
 .write-review-btn:hover,
 .hero-center-content .review-action-btn:hover {
   background: #fbbf24;
