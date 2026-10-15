@@ -307,6 +307,7 @@ const ProviderDetailPage = () => {
       setError('Erreur lors du chargement des informations du prestataire');
     } finally {
       setLoading(false);
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     }
   };
 
@@ -1233,7 +1234,7 @@ const handleContact = () => {
         {provider.serviceType === 'tutoring' && details.subjects && details.subjects.length > 0 && (
           <>
             {(() => {
-              const cleanName = (name) => (name || '').replace(/[​-‏‪-‮﻿]/g, '');
+              const cleanName = (name) => (name || '').replace(/[\u200B-\u200F\u202A-\u202E\uFEFF]/g, '');
               const groups = [
                 { key: 'music',    emoji: '🎵', label: t('filters.tutoring.music'),           min: 1,   max: 7   },
                 { key: 'art',      emoji: '🎨', label: t('filters.tutoring.art'),             min: 10,  max: 16  },
@@ -1304,7 +1305,7 @@ const handleContact = () => {
         {provider.serviceType === 'sports_activities' && details.subjects && details.subjects.length > 0 && (
           <>
             {(() => {
-              const cleanName = (name) => (name || '').replace(/‏/g, '');
+              const cleanName = (name) => (name || '').replace(/\u200F/g, '');
               const subcats = sportsSubcats.length > 0 ? sportsSubcats : tutoringSubcats;
               const groups = [
                 { key: 'music',    emoji: '🎵', label: t('filters.tutoring.music'),    min: 1,   max: 7   },
@@ -1926,14 +1927,12 @@ const handleContact = () => {
                           })() : null}
                         </div>
 
-                        {isAuthenticated && user?.role === 'client' && (
-                          <button
-                            className="btn btn-primary write-review-btn"
-                            onClick={handleOpenReviewModal}
-                          >
-                            <MessageCircle size={18} />
-                          {t('provider.reviews.writeReview')}</button>
-                        )}
+                        <button
+                          className="btn btn-primary write-review-btn"
+                          onClick={handleOpenReviewModal}
+                        >
+                          <MessageCircle size={18} />
+                        {t('provider.reviews.writeReview')}</button>
                       </div>
                     </div>
 
@@ -2069,14 +2068,12 @@ const handleContact = () => {
                               <div className="no-reviews-content">
                               <h4>{t('provider.reviews.noReviews')}</h4>
 <p>{t('provider.reviews.beFirst')} {provider.name}</p>
-                                {isAuthenticated && user?.role === 'client' && (
-                                  <button 
-                                    className="btn btn-primary"
-                                    onClick={handleOpenReviewModal}
-                                  >
-                                    <MessageCircle size={18} />
-                                 {t('provider.reviews.writeFirst')}</button>
-                                )}
+                                <button
+                                  className="btn btn-primary"
+                                  onClick={handleOpenReviewModal}
+                                >
+                                  <MessageCircle size={18} />
+                               {t('provider.reviews.writeFirst')}</button>
                               </div>
                             </div>
                           )}

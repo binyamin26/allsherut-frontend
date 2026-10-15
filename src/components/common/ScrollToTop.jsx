@@ -1,16 +1,43 @@
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 if ('scrollRestoration' in window.history) {
   window.history.scrollRestoration = 'manual';
 }
 
-const ScrollToTop = () => {
-  const { pathname } = useLocation();
+const toTop = () => window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
 
+const ScrollToTop = () => {
+  const { pathname, search, hash } = useLocation();
+
+  useLayoutEffect(() => {
+    if (hash) return; // les ancres (#services...) gèrent leur propre scroll
+    toTop();
+  }, [pathname, search, hash]);
+
+  // Pages lazy + données async : on re-force le haut de page pendant la
+  // première seconde, tant que l'utilisateur n'a pas scrollé lui-même.
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-  }, [pathname]);
+    if (hash) return undefined;
+    let userScrolled = false;
+    const onUserScroll = () => { userScrolled = true; };
+    window.addEventListener('wheel', onUserScroll, { passive: true });
+    window.addEventListener('touchmove', onUserScroll, { passive: true });
+    window.addEventListener('keydown', onUserScroll);
+
+    const timers = [0, 100, 300, 800].map((delay) =>
+      setTimeout(() => {
+        if (!userScrolled && window.scrollY !== 0) toTop();
+      }, delay)
+    );
+
+    return () => {
+      timers.forEach(clearTimeout);
+      window.removeEventListener('wheel', onUserScroll);
+      window.removeEventListener('touchmove', onUserScroll);
+      window.removeEventListener('keydown', onUserScroll);
+    };
+  }, [pathname, search, hash]);
 
   return null;
 };
