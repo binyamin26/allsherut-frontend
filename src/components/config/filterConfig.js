@@ -971,6 +971,7 @@ laundry: {
     ],
     productTypes: [
       { value: 'עוגות', key: 'filters.pastry.cakes' },
+      { value: 'עוגות קומות', key: 'filters.pastry.tieredCakes' },
       { value: 'פטיסרי', key: 'filters.pastry.patisserie' },
       { value: 'שוקולדים', key: 'filters.pastry.chocolates' },
       { value: 'מקרון', key: 'filters.pastry.macarons' },

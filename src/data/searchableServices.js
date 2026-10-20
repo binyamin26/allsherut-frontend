@@ -486,6 +486,7 @@ const searchableServices = [
   { label: 'מקרון', labelEn: 'Macarons', labelFr: 'Macarons', labelRu: 'Макарон', href: '/services/pastry', type: 'specialty' },
   { label: 'עיצובי פירות', labelEn: 'Fruit Arrangements', labelFr: 'Décorations de fruits', labelRu: 'Фруктовые композиции', href: '/services/pastry', type: 'specialty' },
   { label: 'פטיסרי', labelEn: 'Pastry / Patisserie', labelFr: 'Pâtisserie', labelRu: 'Кондитерская / Патиссери', href: '/services/pastry', type: 'specialty' },
+  { label: 'עוגות קומות', labelEn: 'Tiered Cakes', labelFr: 'Pièces montées', labelRu: 'Многоярусные торты', href: '/services/pastry', type: 'specialty' },
   { label: 'קופסת עוגות', labelEn: 'Cake Box', labelFr: 'Boîte à gâteaux', labelRu: 'Коробка тортов', href: '/services/pastry', type: 'specialty' },
 
   // 18. PAINTING

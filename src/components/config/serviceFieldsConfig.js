@@ -1077,7 +1077,7 @@ const serviceFieldsConfig = {
         name: 'product_types',
         label: 'serviceFields.pastry.product_types',
         type: 'checkbox',
-        options: ['עוגות', 'פטיסרי', 'שוקולדים', 'מקרון', 'קופסת עוגות', 'עיצובי פירות', 'מגשי פירות', 'קינוחים']
+        options: ['עוגות', 'עוגות קומות', 'פטיסרי', 'שוקולדים', 'מקרון', 'קופסת עוגות', 'עיצובי פירות', 'מגשי פירות', 'קינוחים']
       },
       {
         name: 'event_types',

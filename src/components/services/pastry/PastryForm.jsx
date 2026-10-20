@@ -38,6 +38,7 @@ const PastryForm = ({ serviceDetails, errors, handleServiceDetailsChange, handle
           <div className="checkbox-group" data-field="product_types">
             {[
               { value: 'עוגות', label: t('filters.pastry.cakes') },
+              { value: 'עוגות קומות', label: t('filters.pastry.tieredCakes') },
               { value: 'פטיסרי', label: t('filters.pastry.patisserie') },
               { value: 'שוקולדים', label: t('filters.pastry.chocolates') },
               { value: 'מקרון', label: t('filters.pastry.macarons') },

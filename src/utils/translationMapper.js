@@ -685,6 +685,7 @@ const translationMappings = {
   // ═══════════════════════════════════════════════════════════════
   pastryProducts: {
     'עוגות': 'filters.pastry.cakes',
+    'עוגות קומות': 'filters.pastry.tieredCakes',
     'פטיסרי': 'filters.pastry.patisserie',
     'שוקולדים': 'filters.pastry.chocolates',
     'מקרון': 'filters.pastry.macarons',
