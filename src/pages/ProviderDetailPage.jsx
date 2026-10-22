@@ -1240,7 +1240,7 @@ const handleContact = () => {
         {provider.serviceType === 'tutoring' && details.subjects && details.subjects.length > 0 && (
           <>
             {(() => {
-              const cleanName = (name) => (name || '').replace(/[​-‏‪-‮﻿]/g, '');
+              const cleanName = (name) => (name || '').replace(/[\u200B-\u200F\u202A-\u202E\uFEFF]/g, '');
               const groups = [
                 { key: 'music',    emoji: '🎵', label: t('filters.tutoring.music'),           min: 1,   max: 7   },
                 { key: 'art',      emoji: '🎨', label: t('filters.tutoring.art'),             min: 10,  max: 16  },
@@ -1625,20 +1625,22 @@ const handleContact = () => {
     ? (reviews.reduce((sum, r) => sum + parseFloat(r.rating || 0), 0) / reviews.length).toFixed(1)
     : null;
 
+  const providerCity = provider?.location?.city || provider?.location_city || null;
+
   const providerJsonLd = provider ? {
     '@context': 'https://schema.org',
     '@graph': [
       {
         '@type': 'LocalBusiness',
-        name: `${provider.first_name} ${provider.last_name}`,
-        description: provider.description || `${serviceNameHe}${provider.location_city ? ` ב${provider.location_city}` : ''}`,
+        name: `${provider.name}`,
+        description: provider.description || `${serviceNameHe}${providerCity ? ` ב${providerCity}` : ''}`,
         url: `https://allsherut.com/provider/${provider.id}`,
         ...(providerImage && { image: providerImage }),
         ...((provider.phone || provider.contact?.phone) && { telephone: provider.phone || provider.contact.phone }),
         ...(provider.serviceDetails?.hourly_rate && { priceRange: `₪${provider.serviceDetails.hourly_rate}` }),
         address: {
           '@type': 'PostalAddress',
-          ...(provider.location_city && { addressLocality: provider.location_city }),
+          ...(providerCity && { addressLocality: providerCity }),
           addressCountry: 'IL',
         },
         ...(provider.workingAreas?.length > 0 && {
@@ -1659,7 +1661,7 @@ const handleContact = () => {
         itemListElement: [
           { '@type': 'ListItem', position: 1, name: t('provider.home'), item: 'https://allsherut.com/' },
           { '@type': 'ListItem', position: 2, name: serviceNameHe, item: `https://allsherut.com${servicePath}` },
-          { '@type': 'ListItem', position: 3, name: `${provider.first_name} ${provider.last_name}` },
+          { '@type': 'ListItem', position: 3, name: `${provider.name}` },
         ],
       },
     ],
@@ -1669,8 +1671,8 @@ const handleContact = () => {
     <>
       {provider && (
         <SEO
-          title={`${provider.first_name} ${provider.last_name} - ${serviceNameHe}${provider.location_city ? ` ב${provider.location_city}` : ''}`}
-          description={provider.description || `${provider.first_name} ${provider.last_name} - ${serviceNameHe} מקצועי${provider.location_city ? ` ב${provider.location_city}` : ''} | AllSherut`}
+          title={`${provider.name} - ${serviceNameHe}${providerCity ? ` ב${providerCity}` : ''}`}
+          description={provider.description || `${provider.name} - ${serviceNameHe} מקצועי${providerCity ? ` ב${providerCity}` : ''} | AllSherut`}
           canonicalPath={`/provider/${provider.id}`}
           image={providerImage}
           jsonLd={providerJsonLd}
