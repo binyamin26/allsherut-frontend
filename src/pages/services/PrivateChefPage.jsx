@@ -119,9 +119,9 @@ const PrivateChefPage = () => {
     <div className="service-page private-chef-page">
       <SEO
   title={t('services.private_chef.pageTitle', SERVICE_PAGE_META.private_chef.title)}
-  description={t('services.private_chef.desc', SERVICE_PAGE_META.private_chef.description)}
+  description={t('services.private_chef.metaDescription', t('services.private_chef.desc', SERVICE_PAGE_META.private_chef.description))}
   canonicalPath={buildServicePath(serviceTypeToKey('private_chef'), 'he')}
-  jsonLd={buildServicePageJsonLd({ serviceId: 'private_chef', name: t('services.private_chef.pageTitle', SERVICE_PAGE_META.private_chef.title), description: t('services.private_chef.desc', SERVICE_PAGE_META.private_chef.description), t })}
+  jsonLd={buildServicePageJsonLd({ serviceId: 'private_chef', name: t('services.private_chef.pageTitle', SERVICE_PAGE_META.private_chef.title), description: t('services.private_chef.metaDescription', t('services.private_chef.desc', SERVICE_PAGE_META.private_chef.description)), t })}
       />
       <ServiceBreadcrumb serviceId="private_chef" />
       <section className="service-header">
