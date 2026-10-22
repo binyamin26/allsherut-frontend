@@ -126,9 +126,9 @@ const PropertyManagementPage = () => {
     <div className="service-page property-management-page">
       <SEO
   title={t('services.property_management.pageTitle', SERVICE_PAGE_META.property_management.title)}
-  description={t('services.property_management.desc', SERVICE_PAGE_META.property_management.description)}
+  description={t('services.property_management.metaDescription', t('services.property_management.desc', SERVICE_PAGE_META.property_management.description))}
   canonicalPath={buildServicePath(serviceTypeToKey('property_management'), 'he')}
-  jsonLd={buildServicePageJsonLd({ serviceId: 'property_management', name: t('services.property_management.pageTitle', SERVICE_PAGE_META.property_management.title), description: t('services.property_management.desc', SERVICE_PAGE_META.property_management.description), t })}
+  jsonLd={buildServicePageJsonLd({ serviceId: 'property_management', name: t('services.property_management.pageTitle', SERVICE_PAGE_META.property_management.title), description: t('services.property_management.metaDescription', t('services.property_management.desc', SERVICE_PAGE_META.property_management.description)), t })}
       />
       <ServiceBreadcrumb serviceId="property_management" />
       <section className="service-header">
