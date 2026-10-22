@@ -270,7 +270,7 @@ for (const serviceId of Object.keys(SERVICE_PAGE_META)) {
   for (const lang of Object.keys(LANGS)) {
     const localeT = makeT(LANGS[lang].translations);
     const title = localeT(`services.${serviceId}.pageTitle`, meta.title);
-    const description = localeT(`services.${serviceId}.desc`, meta.description);
+    const description = localeT(`services.${serviceId}.metaDescription`, localeT(`services.${serviceId}.desc`, meta.description));
     const canonicalPath = hreflangPaths[lang];
     const jsonLd = buildServicePageJsonLd({ serviceId, name: title, description, t: localeT });
 
