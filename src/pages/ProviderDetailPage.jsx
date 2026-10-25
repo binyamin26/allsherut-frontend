@@ -10,6 +10,7 @@ import ProviderGallery from '../components/common/ProviderGallery';
 import apiService from '../services/api';
 import { useLanguage } from '../context/LanguageContext';
 import { translateValue, translateAndJoin, translateArrayFromMultipleCategories } from '../utils/translationMapper';
+import { SECURITY_SERVICES, isSecurityService } from '../data/securityServices';
 import { buildServicePath, serviceTypeToKey } from '../utils/langUtils';
 import { TUTORING_SUBCATEGORIES } from '../data/subcategoriesData';
 import {
@@ -1128,6 +1129,38 @@ const handleContact = () => {
             )}
           </>
         )}
+
+        {/* === SÉCURITÉ / RÉSEAUX / MAISON INTELLIGENTE (6 services, config: data/securityServices.js) === */}
+        {isSecurityService(provider.serviceType) && (() => {
+          const securityService = SECURITY_SERVICES[provider.serviceType];
+          const selectedWorkTypes = securityService.workTypes.filter(wt => details.work_types?.includes(wt.value));
+          return (
+            <>
+              {details.availability_hours && details.availability_hours.length > 0 && (
+                <div className="detail-item">
+                  <IconLabel icon={Clock}>{t('serviceForm.common.availabilityHours')}:</IconLabel>
+                  <span>{translateAndJoin(details.availability_hours, 'hours', t)}</span>
+                </div>
+              )}
+              {selectedWorkTypes.length > 0 && (
+                <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                  <IconLabel icon={Settings}>{t('serviceForm.common.workTypes')}:</IconLabel>
+                  <span>{selectedWorkTypes.map(wt => t(wt.labelKey)).join(', ')}</span>
+                </div>
+              )}
+              {selectedWorkTypes.map(wt => {
+                const chosen = wt.details.filter(d => details[wt.field]?.includes(d.value));
+                if (chosen.length === 0) return null;
+                return (
+                  <div className="detail-item" style={{ gridColumn: '1 / -1' }} key={wt.field}>
+                    <IconLabel icon={Shield}>{t(wt.labelKey)}:</IconLabel>
+                    <span>{chosen.map(d => t(d.labelKey)).join(', ')}</span>
+                  </div>
+                );
+              })}
+            </>
+          );
+        })()}
 
         {/* === GAS_TECHNICIAN === */}
         {provider.serviceType === 'gas_technician' && (

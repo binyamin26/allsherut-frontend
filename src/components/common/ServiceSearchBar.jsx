@@ -38,7 +38,13 @@ const SERVICE_URLS = {
   handyman: '/services/handyman',
   mechanic: '/services/mechanic',
   driver: '/services/driver',
-  doula: '/services/doula'
+  doula: '/services/doula',
+  security_cameras: '/services/security-cameras',
+  security_alarms: '/services/security-alarms',
+  intercom_access: '/services/intercom-access',
+  networking: '/services/networking',
+  audio_systems: '/services/audio-systems',
+  smart_home: '/services/smart-home'
 };
 
 // Chemins des services appartenant à une catégorie masquée — exclus de la recherche.

@@ -586,6 +586,12 @@ if (field.type === 'select') {
         if (!hasSelectAll) {
           // Pas de logique spéciale
           onArrayChange(field.name, option, checked);
+          // Décocher un type de travaux vide ses détails conditionnels (champs `visibleWhen`)
+          if (!checked) {
+            config.fields
+              .filter(f => f.visibleWhen?.field === field.name && f.visibleWhen.value === option)
+              .forEach(f => onFieldChange(f.name, []));
+          }
           return;
         }
         
@@ -676,7 +682,10 @@ if (field.type === 'select') {
     <div className="info-section">
       <h3 className="section-title">{t('dashboard.serviceDetails')}</h3>
       <div className="service-specific-grid">
-        {config.fields.filter(field => !excludeFields.includes(field.name)).map(field => (
+        {config.fields
+          .filter(field => !excludeFields.includes(field.name))
+          .filter(field => !field.visibleWhen || (serviceDetails?.[field.visibleWhen.field] || []).includes(field.visibleWhen.value))
+          .map(field => (
           <div
             key={field.name}
             className={`professional-item ${field.type === 'json-array' || field.type === 'checkbox' || field.type === 'radio' || (serviceType === 'tutoring' && field.name === 'subjects') ? 'full-width' : ''}`}

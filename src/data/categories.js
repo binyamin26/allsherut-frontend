@@ -132,6 +132,25 @@ export const CATEGORY_DEFINITIONS = [
     gradient: 'from-blue-500 to-indigo-600',
     serviceIds: ['moving', 'driver', 'mechanic'],
   },
+  {
+    id: 'securite-reseaux-maison-intelligente',
+    names: {
+      fr: 'Sécurité, Réseaux & Maison intelligente',
+      he: 'אבטחה, תקשורת ובית חכם',
+      en: 'Security, Networking & Smart Home',
+      ru: 'Системы безопасности, сети и умный дом',
+    },
+    descriptions: {
+      fr: 'Sécurité et technologie pour la maison en Israël : caméras de surveillance, alarmes, interphones, réseaux, sonorisation et domotique.',
+      he: 'אבטחה וטכנולוגיה לבית בישראל: מצלמות אבטחה, אזעקות, אינטרקום, רשתות תקשורת, מערכות שמע ובית חכם.',
+      en: 'Home security and technology in Israel: security cameras, alarms, intercoms, networking, audio systems and smart home.',
+      ru: 'Безопасность и технологии для дома в Израиле: камеры видеонаблюдения, сигнализация, домофоны, сети, аудиосистемы и умный дом.',
+    },
+    // TODO: image provisoire (serrurier) — à remplacer par une image dédiée à la catégorie
+    image: '/images/serrure.png',
+    gradient: 'from-slate-600 to-blue-700',
+    serviceIds: ['security_cameras', 'security_alarms', 'intercom_access', 'networking', 'audio_systems', 'smart_home'],
+  },
 ];
 
 // Find the parent category definition for a given service id (e.g. 'electrician')
@@ -191,5 +210,12 @@ export const SERVICES_META = {
   petcare:            { image: '/images/chien.jpg',           href: '/services/petcare',            nameKey: 'services.petcare' },
   eldercare:          { image: '/images/eldercare.jpg',       href: '/services/eldercare',          nameKey: 'services.eldercare' },
   driver:             { image: '/images/driver.jpg',          href: '/services/driver',             nameKey: 'services.driver' },
+  // Catégorie Sécurité : pas d'image dédiée pour l'instant → emoji (SECURITY_SERVICES[key].icon)
+  security_cameras:   { icon: '📹', href: '/services/security-cameras', nameKey: 'services.security_cameras' },
+  security_alarms:    { icon: '🚨', href: '/services/security-alarms',  nameKey: 'services.security_alarms' },
+  intercom_access:    { icon: '🔔', href: '/services/intercom-access',  nameKey: 'services.intercom_access' },
+  networking:         { icon: '🌐', href: '/services/networking',       nameKey: 'services.networking' },
+  audio_systems:      { icon: '🔊', href: '/services/audio-systems',    nameKey: 'services.audio_systems' },
+  smart_home:         { icon: '🏠', href: '/services/smart-home',       nameKey: 'services.smart_home' },
   doula:              { image: '/images/doula.jpeg',           href: '/services/doula',              nameKey: 'services.doula' },
 };

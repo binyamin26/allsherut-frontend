@@ -78,6 +78,12 @@ const MechanicPage = lazyWithRetry(() => import('./pages/services/MechanicPage')
 const MetalworkPage = lazyWithRetry(() => import('./pages/services/MetalworkPage'));
 const DriverPage = lazyWithRetry(() => import('./pages/services/DriverPage'));
 const DoulaPage = lazyWithRetry(() => import('./pages/services/DoulaPage'));
+const SecurityCamerasPage = lazyWithRetry(() => import('./pages/services/SecurityCamerasPage'));
+const SecurityAlarmsPage = lazyWithRetry(() => import('./pages/services/SecurityAlarmsPage'));
+const IntercomAccessPage = lazyWithRetry(() => import('./pages/services/IntercomAccessPage'));
+const NetworkingPage = lazyWithRetry(() => import('./pages/services/NetworkingPage'));
+const AudioSystemsPage = lazyWithRetry(() => import('./pages/services/AudioSystemsPage'));
+const SmartHomePage = lazyWithRetry(() => import('./pages/services/SmartHomePage'));
 
 // Page de détails provider
 const ProviderDetailPage = lazyWithRetry(() => import('./pages/ProviderDetailPage'));
@@ -132,6 +138,12 @@ const SERVICE_PAGE_MAP = {
   metalwork:             MetalworkPage,
   driver:                DriverPage,
   doula:                 DoulaPage,
+  'security-cameras':    SecurityCamerasPage,
+  'security-alarms':     SecurityAlarmsPage,
+  'intercom-access':     IntercomAccessPage,
+  networking:            NetworkingPage,
+  'audio-systems':       AudioSystemsPage,
+  'smart-home':          SmartHomePage,
 };
 
 // Route universelle pour les pages de service (Hebrew root + /:lang/services/:slug)

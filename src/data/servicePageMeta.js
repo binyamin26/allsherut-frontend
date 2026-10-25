@@ -78,6 +78,43 @@ export const SERVICE_PAGE_META = {
     heroImage: '/images/WhatsApp Image 2026-10-25 at 16.49.48.jpeg',
     heroAlt: 'דולה',
   },
+  // Catégorie Sécurité : pas encore d'image de héros (heroImage vide → emoji côté page)
+  security_cameras: {
+    title: 'מתקיני מצלמות אבטחה',
+    description: 'מצאו מתקין מצלמות אבטחה בישראל - התקנה לבית ולעסק, מערכות IP ותיקון ותחזוקה.',
+    heroImage: '',
+    heroAlt: 'מצלמות אבטחה',
+  },
+  security_alarms: {
+    title: 'מתקיני מערכות אזעקה',
+    description: 'מצאו מתקין מערכות אזעקה בישראל - אזעקות לבית ולעסק, גלאים, שליטה מרחוק ותיקון.',
+    heroImage: '',
+    heroAlt: 'מערכות אזעקה',
+  },
+  intercom_access: {
+    title: 'מתקיני אינטרקום ובקרת כניסה',
+    description: 'מצאו מתקין אינטרקום ובקרת כניסה בישראל - אינטרקום וידאו, קודנים, כרטיסים ומנעולים חשמליים.',
+    heroImage: '',
+    heroAlt: 'אינטרקום ובקרת כניסה',
+  },
+  networking: {
+    title: 'מתקיני רשתות תקשורת וכבילה',
+    description: 'מצאו מתקין רשתות תקשורת וכבילה בישראל - נקודות רשת, ציוד Wi-Fi, רשתות למשרד ולבית ותיקון תקלות.',
+    heroImage: '',
+    heroAlt: 'רשתות תקשורת וכבילה',
+  },
+  audio_systems: {
+    title: 'מתקיני מערכות שמע וסאונד',
+    description: 'מצאו מתקין מערכות שמע וסאונד בישראל - שמע לבית ולעסק, מערכות מרובות אזורים ותיקון.',
+    heroImage: '',
+    heroAlt: 'מערכות שמע וסאונד',
+  },
+  smart_home: {
+    title: 'מתקיני בית חכם ואוטומציה',
+    description: 'מצאו מתקין בית חכם ואוטומציה בישראל - בית חכם קווי ואלחוטי, תאורה חכמה ושילוב מערכות.',
+    heroImage: '',
+    heroAlt: 'בית חכם ואוטומציה',
+  },
   electrician: {
     title: 'חשמלאי בישראל',
     description: 'מצאו חשמלאי מוסמך בישראל - תיקונים, התקנות וחיווט חדש בצורה בטוחה ומקצועית.',

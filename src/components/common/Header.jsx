@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
-import { Menu, X, Home, Users, BookOpen, UserCheck, Sparkles, Baby, LogOut, Shirt, Zap, Wrench, Wind, Flame, Package, Layers, Hammer, PartyPopper, ChefHat, Paintbrush, Droplets, HardHat, Frame, Square, Key, Leaf, PawPrint, ChevronDown, Phone, Truck, Camera, Wand2, Bug, Cog, Dumbbell, Music2, Car, Shield, Navigation, Soup, Croissant, Castle, Popcorn, HeartPulse } from 'lucide-react'
+import { Menu, X, Home, Users, BookOpen, UserCheck, Sparkles, Baby, LogOut, Shirt, Zap, Wrench, Wind, Flame, Package, Layers, Hammer, PartyPopper, ChefHat, Paintbrush, Droplets, HardHat, Frame, Square, Key, Leaf, PawPrint, ChevronDown, Phone, Truck, Camera, Wand2, Bug, Cog, Dumbbell, Music2, Car, Shield, Navigation, Soup, Croissant, Castle, Popcorn, HeartPulse, Video, Siren, BellRing, Network, Volume2, Cpu } from 'lucide-react'
 import { useAuth } from '../../context/AuthContext'
 import AuthModal from '../auth/AuthModal'
 import ServiceSearchBar from './ServiceSearchBar'
@@ -90,6 +90,12 @@ const Header = () => {
     { icon: <Car className="w-5 h-5" />, nameKey: 'services.mechanic', descKey: 'services.mechanic.desc', serviceKey: 'mechanic' },
     { icon: <Navigation className="w-5 h-5" />, nameKey: 'services.driver', descKey: 'services.driver.desc', serviceKey: 'driver' },
     { icon: <HeartPulse className="w-5 h-5" />, nameKey: 'services.doula', descKey: 'services.doula.desc', serviceKey: 'doula' },
+    { icon: <Video className="w-5 h-5" />, nameKey: 'services.security_cameras', descKey: 'services.security_cameras.desc', serviceKey: 'security-cameras' },
+    { icon: <Siren className="w-5 h-5" />, nameKey: 'services.security_alarms', descKey: 'services.security_alarms.desc', serviceKey: 'security-alarms' },
+    { icon: <BellRing className="w-5 h-5" />, nameKey: 'services.intercom_access', descKey: 'services.intercom_access.desc', serviceKey: 'intercom-access' },
+    { icon: <Network className="w-5 h-5" />, nameKey: 'services.networking', descKey: 'services.networking.desc', serviceKey: 'networking' },
+    { icon: <Volume2 className="w-5 h-5" />, nameKey: 'services.audio_systems', descKey: 'services.audio_systems.desc', serviceKey: 'audio-systems' },
+    { icon: <Cpu className="w-5 h-5" />, nameKey: 'services.smart_home', descKey: 'services.smart_home.desc', serviceKey: 'smart-home' },
     // Bloc "Maison & Travaux" déplacé en dernier (de plombier à kablan/contractor)
     { icon: <Wrench className="w-5 h-5" />, nameKey: 'services.plumbing', descKey: 'services.plumbing.desc', serviceKey: 'plumbing' },
     { icon: <Zap className="w-5 h-5" />, nameKey: 'services.electrician', descKey: 'services.electrician.desc', serviceKey: 'electrician' },

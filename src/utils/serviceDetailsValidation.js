@@ -1,3 +1,5 @@
+import { SECURITY_SERVICES, isSecurityService } from '../data/securityServices';
+
 // Champs obligatoires des détails de service, communs aux deux points d'entrée
 // d'inscription à un service : le AuthModal (première inscription, page d'accueil)
 // et le modal "Ajouter un service" du dashboard (prestataire déjà inscrit).
@@ -285,6 +287,16 @@ export const getServiceDetailsErrors = (serviceType, serviceDetails, t) => {
       break;
 
     default:
+      if (isSecurityService(serviceType)) {
+        if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) errors.availability_hours = t('validation.availabilityHoursRequired');
+        if (!serviceDetails.work_types || serviceDetails.work_types.length === 0) errors.work_types = t('validation.workTypesRequired');
+        // Chaque type de travaux coché doit être précisé (champ de détail conditionnel)
+        SECURITY_SERVICES[serviceType].workTypes.forEach(workType => {
+          if (serviceDetails.work_types?.includes(workType.value) && (!serviceDetails[workType.field] || serviceDetails[workType.field].length === 0)) {
+            errors[workType.field] = t('validation.selectAtLeastOne');
+          }
+        });
+      }
       break;
   }
 

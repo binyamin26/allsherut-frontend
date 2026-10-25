@@ -2,6 +2,8 @@
 // Source de vérité : Les fichiers ServiceDetailsForm (XXXForm.jsx)
 // ✅ VERSION MODIFIÉE - Labels remplacés par clés de traduction
 
+import { SECURITY_SERVICES, SECURITY_AVAILABILITY_OPTIONS } from '../../data/securityServices';
+
 const serviceFieldsConfig = {
   babysitting: {
     fields: [
@@ -1696,5 +1698,40 @@ const serviceFieldsConfig = {
     ]
   }
 };
+
+// Catégorie Sécurité : champs générés depuis data/securityServices.js.
+// Les champs de détail ne s'affichent (dashboard) que si leur type de travaux est coché (`visibleWhen`).
+Object.entries(SECURITY_SERVICES).forEach(([serviceKey, service]) => {
+  serviceFieldsConfig[serviceKey] = {
+    fields: [
+      { name: 'experience', label: 'serviceForm.common.experience', type: 'number' },
+      {
+        name: 'availability_hours',
+        label: 'serviceForm.common.availabilityHours',
+        type: 'checkbox',
+        options: SECURITY_AVAILABILITY_OPTIONS.map(o => o.value)
+      },
+      {
+        name: 'work_types',
+        label: 'serviceForm.common.workTypes',
+        type: 'checkbox',
+        options: service.workTypes.map(wt => ({ value: wt.value, labelKey: wt.labelKey }))
+      },
+      ...service.workTypes.map(wt => ({
+        name: wt.field,
+        label: wt.labelKey,
+        type: 'checkbox',
+        visibleWhen: { field: 'work_types', value: wt.value },
+        options: wt.details.map(d => ({ value: d.value, labelKey: d.labelKey }))
+      })),
+      {
+        name: 'languages',
+        label: 'serviceFields.eldercare.languages',
+        type: 'checkbox',
+        options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
+      }
+    ]
+  };
+});
 
 export default serviceFieldsConfig;

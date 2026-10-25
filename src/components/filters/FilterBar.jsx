@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import LocationSelector from '../LocationSelector';
 import CustomDropdown from '../common/CustomDropdown';
+import { SECURITY_SERVICES, SECURITY_SERVICE_KEYS, SECURITY_AVAILABILITY_OPTIONS } from '../../data/securityServices';
 import { useAuth } from '../../context/AuthContext';
 import { useLanguage } from '../../context/LanguageContext';
 import {
@@ -588,6 +589,7 @@ const ServicePanel = ({ serviceType, filters, onChange }) => {
     mechanic: MechanicFilters,
     metalwork: MetalworkFilters,
     driver: DriverFilters,
+    ...SECURITY_FILTER_COMPONENTS,
   };
 
   const Component = SERVICE_FILTER_COMPONENTS[serviceType];
@@ -960,6 +962,57 @@ const DoulaFilters = ({ filters, handleCheckboxChange }) => {
     </div>
   );
 };
+
+// SÉCURITÉ / RÉSEAUX / MAISON INTELLIGENTE (6 services, config dans data/securityServices.js)
+// Entonnoir : types de travaux, puis détails uniquement pour les types cochés.
+const SecurityFilters = ({ serviceType, filters, handleFilterChange, handleCheckboxChange }) => {
+  const { t } = useLanguage();
+  const service = SECURITY_SERVICES[serviceType];
+  const selectedWorkTypes = filters.work_types || [];
+
+  const onWorkTypeChange = (key, value, checked) => {
+    handleCheckboxChange(key, value, checked);
+    if (!checked) {
+      const workType = service.workTypes.find(wt => wt.value === value);
+      if (workType) handleFilterChange(workType.field, []);
+    }
+  };
+
+  return (
+    <div className="service-panel">
+      <CheckboxSection
+        title={t('serviceForm.common.availabilityHours')}
+        options={SECURITY_AVAILABILITY_OPTIONS.map(o => ({ value: o.value, label: t(o.key) }))}
+        filterKey="availability_hours"
+        filters={filters}
+        onCheckboxChange={handleCheckboxChange}
+      />
+      <CheckboxSection
+        title={t('serviceForm.common.workTypes')}
+        options={service.workTypes.map(wt => ({ value: wt.value, label: t(wt.labelKey) }))}
+        filterKey="work_types"
+        filters={filters}
+        onCheckboxChange={onWorkTypeChange}
+      />
+      {service.workTypes
+        .filter(wt => selectedWorkTypes.includes(wt.value))
+        .map(wt => (
+          <CheckboxSection
+            key={wt.field}
+            title={t(wt.labelKey)}
+            options={wt.details.map(d => ({ value: d.value, label: t(d.labelKey) }))}
+            filterKey={wt.field}
+            filters={filters}
+            onCheckboxChange={handleCheckboxChange}
+          />
+        ))}
+    </div>
+  );
+};
+
+const SECURITY_FILTER_COMPONENTS = Object.fromEntries(
+  SECURITY_SERVICE_KEYS.map(key => [key, (props) => <SecurityFilters serviceType={key} {...props} />])
+);
 
 // TUTORING - avec chargement dynamique des sous-catégories
 const TutoringFilters = ({ filters, handleFilterChange, handleCheckboxChange }) => {

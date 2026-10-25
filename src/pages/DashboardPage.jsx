@@ -68,7 +68,8 @@ const ALL_SERVICE_KEYS = [
   'aluminum','metalwork','glass_works','gas_technician','waterproofing','carpentry','handyman','mechanic','contractor',
   'moving','gardening','pest_control','cleaning','laundry','property_management',
   'home_organization','event_decoration','event_entertainment','event_equipment_rental','event_food_stands','dj','private_chef','catering','pastry',
-  'photographer','tutoring','sports_activities','babysitting','petcare','eldercare','driver','doula'
+  'photographer','tutoring','sports_activities','babysitting','petcare','eldercare','driver','doula',
+  'security_cameras','security_alarms','intercom_access','networking','audio_systems','smart_home'
 ];
 
 // Définition des icônes de services
@@ -1517,7 +1518,14 @@ const getServiceName = (serviceType) => {
       photographer: 'services.photographer',
       event_decoration: 'services.event_decoration',
       pest_control: 'services.pest_control',
-      driver: 'services.driver'
+      driver: 'services.driver',
+      doula: 'services.doula',
+      security_cameras: 'services.security_cameras',
+      security_alarms: 'services.security_alarms',
+      intercom_access: 'services.intercom_access',
+      networking: 'services.networking',
+      audio_systems: 'services.audio_systems',
+      smart_home: 'services.smart_home'
     };
     return t(serviceKeys[serviceType], serviceType);
   };

@@ -194,7 +194,13 @@ const SERVICE_CARD_DEFS = [
   { key: 'eldercare', icon: '👵', gradient: 'eldercare-gradient' },
   { key: 'mechanic', gradient: 'mechanic-gradient' },
   { key: 'driver', gradient: 'driver-gradient' },
-  { key: 'doula', icon: '🤰', gradient: 'eldercare-gradient' }
+  { key: 'doula', icon: '🤰', gradient: 'eldercare-gradient' },
+  { key: 'security_cameras', icon: '📹', gradient: 'locksmith-gradient' },
+  { key: 'security_alarms', icon: '🚨', gradient: 'locksmith-gradient' },
+  { key: 'intercom_access', icon: '🔔', gradient: 'locksmith-gradient' },
+  { key: 'networking', icon: '🌐', gradient: 'locksmith-gradient' },
+  { key: 'audio_systems', icon: '🔊', gradient: 'locksmith-gradient' },
+  { key: 'smart_home', icon: '🏠', gradient: 'locksmith-gradient' }
 ];
 
 // Réutilise les mêmes images que la page d'accueil / catégories (SERVICES_META)

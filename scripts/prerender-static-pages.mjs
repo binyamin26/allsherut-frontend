@@ -196,7 +196,7 @@ function renderServiceBody(serviceId, lang, t) {
       <div class="container">
         <div class="service-title-section">
           <div class="service-hero-icon">
-            <img src="${escapeAttr(meta.heroImage)}" alt="${escapeAttr(meta.heroAlt)}" />
+            ${meta.heroImage ? `<img src="${escapeAttr(meta.heroImage)}" alt="${escapeAttr(meta.heroAlt)}" />` : ''}
           </div>
           <h1 class="service-title">${escapeHtml(pageTitle)}</h1>
         </div>

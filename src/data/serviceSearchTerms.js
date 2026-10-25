@@ -41,5 +41,11 @@ export const SERVICE_SEARCH_TERMS = {
   petcare: ['שירותים לבעלי חיים', 'Pet Services', 'Services pour animaux', 'Услуги для животных'],
   eldercare: ['עזרה לקשישים', 'Elder Care', 'Aide aux seniors', 'Уход за пожилыми'],
   mechanic: ['מכונאי רכב ביתי', 'Mobile Car Mechanic', 'Garagiste à Domicile', 'Автомеханик на дому'],
-  driver: ['הסעות', 'Transportation', 'Transport', 'Перевозки']
+  driver: ['הסעות', 'Transportation', 'Transport', 'Перевозки'],
+  security_cameras: ["מצלמות אבטחה", "Security Cameras", "Caméras de surveillance", "Камеры видеонаблюдения"],
+  security_alarms: ["מערכות אזעקה", "Security Alarms", "Alarmes de sécurité", "Охранная сигнализация"],
+  intercom_access: ["אינטרקום ובקרת כניסה", "Intercoms & Access Control", "Interphones et contrôle d'accès", "Домофоны и контроль доступа"],
+  networking: ["רשתות תקשורת וכבילה", "Networking & Cabling", "Réseaux et câblage", "Сети и кабельные системы"],
+  audio_systems: ["מערכות שמע וסאונד", "Audio & Sound Systems", "Sonorisation et systèmes audio", "Аудио и звуковые системы"],
+  smart_home: ["בית חכם ואוטומציה", "Smart Home & Automation", "Domotique et maison intelligente", "Умный дом и автоматизация"]
 };

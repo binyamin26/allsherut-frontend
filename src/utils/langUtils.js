@@ -41,6 +41,12 @@ export const SERVICE_SLUGS = {
   metalwork:              { he: 'metalwork',            en: 'metalwork',            fr: 'ferronnerie',              ru: 'metalloraboty' },
   driver:                 { he: 'driver',               en: 'transportation',       fr: 'transport',                ru: 'perevozki' },
   doula:                  { he: 'doula',                en: 'doula',                fr: 'doula',                    ru: 'doula' },
+  'security-cameras':     { he: 'security-cameras',     en: 'security-cameras',     fr: 'cameras-surveillance',     ru: 'kamery-videonablyudeniya' },
+  'security-alarms':      { he: 'security-alarms',      en: 'security-alarms',      fr: 'alarmes-securite',         ru: 'okhrannaya-signalizatsiya' },
+  'intercom-access':      { he: 'intercom-access',      en: 'intercom-access',      fr: 'interphones-controle-acces', ru: 'domofony-kontrol-dostupa' },
+  networking:             { he: 'networking',           en: 'networking',           fr: 'reseaux-cablage',          ru: 'seti-i-kabeli' },
+  'audio-systems':        { he: 'audio-systems',        en: 'audio-systems',        fr: 'sonorisation-audio',       ru: 'audiosistemy' },
+  'smart-home':           { he: 'smart-home',           en: 'smart-home',           fr: 'domotique',                ru: 'umnyy-dom' },
 };
 
 // Normalize a raw API service_type (snake_case, e.g. "event_decoration") into the
