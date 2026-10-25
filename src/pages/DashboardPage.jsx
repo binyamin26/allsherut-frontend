@@ -121,7 +121,7 @@ const serviceImages = {
   mechanic: '/images/logo garagiste.jpg',
   metalwork: '/images/logo fer.jpg',
   driver: '/images/logo driver.jpg',
-  doula: '/images/logo doula.jpg'
+  doula: '/images/doula.jpeg'
 };
 
 const ServiceIconDisplay = ({ svcType }) => {

@@ -191,5 +191,5 @@ export const SERVICES_META = {
   petcare:            { image: '/images/chien.jpg',           href: '/services/petcare',            nameKey: 'services.petcare' },
   eldercare:          { image: '/images/eldercare.jpg',       href: '/services/eldercare',          nameKey: 'services.eldercare' },
   driver:             { image: '/images/driver.jpg',          href: '/services/driver',             nameKey: 'services.driver' },
-  doula:              { image: '/images/doula.jpg',           href: '/services/doula',              nameKey: 'services.doula' },
+  doula:              { image: '/images/doula.jpeg',           href: '/services/doula',              nameKey: 'services.doula' },
 };

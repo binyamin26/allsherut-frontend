@@ -182,7 +182,8 @@ const ProviderDetailPage = () => {
     photographer: '/images/logo photographe.jpg',
     mechanic: '/images/logo garagiste.jpg',
     metalwork: '/images/logo fer.jpg',
-    driver: '/images/logo driver.jpg'
+    driver: '/images/logo driver.jpg',
+    doula: '/images/doula.jpeg'
   };
   return icons[serviceType] || '/images/logo-default.png';
 };
