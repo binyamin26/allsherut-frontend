@@ -1,5 +1,6 @@
 import { useEffect, useState, Suspense } from 'react';
 import lazyWithRetry from './utils/lazyWithRetry';
+import { RouteErrorBoundary } from './components/common/ErrorBoundary';
 import { BrowserRouter as Router, Routes, Route, useParams } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { AuthProvider, useAuth } from './context/AuthContext';
@@ -279,6 +280,7 @@ function App() {
             <Header />
             
             <main className="main-content">
+              <RouteErrorBoundary>
               <Suspense fallback={<RouteLoadingFallback />}>
               <Routes>
                 {/* Page d'accueil */}
@@ -343,6 +345,7 @@ function App() {
                 <Route path="*" element={<NotFoundPage />} />
               </Routes>
               </Suspense>
+              </RouteErrorBoundary>
             </main>
             
             <Footer />

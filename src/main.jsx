@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 import { i18nInitPromise } from './i18n'
+import ErrorBoundary from './components/common/ErrorBoundary'
 
 // Nettoyage des anciens Service Workers
 if ('serviceWorker' in navigator) {
@@ -16,10 +17,13 @@ if ('serviceWorker' in navigator) {
 // ~100ms on first visit (JSON fetch), instant after (browser cache).
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
-i18nInitPromise.then(() => {
+// Si le chargement des traductions échoue, on affiche quand même le site plutôt qu'une page blanche.
+i18nInitPromise.catch(() => {}).then(() => {
   root.render(
     <React.StrictMode>
-      <App />
+      <ErrorBoundary>
+        <App />
+      </ErrorBoundary>
     </React.StrictMode>,
   )
 })
