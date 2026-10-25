@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { useLocation } from 'react-router-dom';
+import { reportClientError } from '../../utils/reportClientError';
 
 // Filet de sécurité : si un composant plante pendant le rendu, React démonte TOUTE l'arborescence
 // et le visiteur voit une page blanche. Cette frontière affiche à la place un message clair
@@ -41,6 +42,7 @@ class ErrorBoundary extends Component {
   componentDidCatch(error, info) {
     // eslint-disable-next-line no-console
     console.error('[ErrorBoundary]', error, info?.componentStack);
+    reportClientError(error, info?.componentStack);
   }
 
   render() {
