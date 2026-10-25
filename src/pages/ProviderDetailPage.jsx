@@ -183,7 +183,7 @@ const ProviderDetailPage = () => {
     mechanic: '/images/logo garagiste.jpg',
     metalwork: '/images/logo fer.jpg',
     driver: '/images/logo driver.jpg',
-    doula: '/images/doula.jpeg'
+    doula: '/images/WhatsApp Image 2026-10-25 at 16.49.48.jpeg'
   };
   return icons[serviceType] || '/images/logo-default.png';
 };
