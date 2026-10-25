@@ -1,4 +1,5 @@
-import { useEffect, useState, Suspense, lazy } from 'react';
+import { useEffect, useState, Suspense } from 'react';
+import lazyWithRetry from './utils/lazyWithRetry';
 import { BrowserRouter as Router, Routes, Route, useParams } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { AuthProvider, useAuth } from './context/AuthContext';
@@ -22,66 +23,66 @@ import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 // Pages chargées à la demande (code-splitting par route)
-const RecruitmentServicePage = lazy(() => import('./pages/recruitment/RecruitmentServicePage'));
-const RecruitmentListingDetailPage = lazy(() => import('./pages/recruitment/RecruitmentListingDetailPage'));
-const ForgotPasswordPage = lazy(() => import('./pages/ForgotPasswordPage'));
-const DashboardPage = lazy(() => import('./pages/DashboardPage'));
-const CategoryPage = lazy(() => import('./pages/CategoryPage'));
-const ContactPage = lazy(() => import('./pages/ContactPage'));
-const ResetPasswordPage = lazy(() => import('./pages/ResetPasswordPage'));
-const AdminVerifyProviderPage = lazy(() => import('./pages/AdminVerifyProviderPage'));
+const RecruitmentServicePage = lazyWithRetry(() => import('./pages/recruitment/RecruitmentServicePage'));
+const RecruitmentListingDetailPage = lazyWithRetry(() => import('./pages/recruitment/RecruitmentListingDetailPage'));
+const ForgotPasswordPage = lazyWithRetry(() => import('./pages/ForgotPasswordPage'));
+const DashboardPage = lazyWithRetry(() => import('./pages/DashboardPage'));
+const CategoryPage = lazyWithRetry(() => import('./pages/CategoryPage'));
+const ContactPage = lazyWithRetry(() => import('./pages/ContactPage'));
+const ResetPasswordPage = lazyWithRetry(() => import('./pages/ResetPasswordPage'));
+const AdminVerifyProviderPage = lazyWithRetry(() => import('./pages/AdminVerifyProviderPage'));
 // PAIEMENT DÉSACTIVÉ - RÉACTIVER QUAND SITE PAYANT
 // import BillingPage from './pages/BillingPage';
-const HowItWorksPage = lazy(() => import('./pages/HowItWorksPage'));
+const HowItWorksPage = lazyWithRetry(() => import('./pages/HowItWorksPage'));
 // import PricingPage from './pages/PricingPage';
-const TermsOfService = lazy(() => import('./pages/TermsOfService'));
-const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
+const TermsOfService = lazyWithRetry(() => import('./pages/TermsOfService'));
+const PrivacyPolicy = lazyWithRetry(() => import('./pages/PrivacyPolicy'));
 
 // Pages de services
-const BabysittingPage = lazy(() => import("./pages/services/BabysittingPage"));
-const CleaningPage = lazy(() => import("./pages/services/CleaningPage"));
-const GardeningPage = lazy(() => import("./pages/services/GardeningPage"));
-const PetcarePage = lazy(() => import("./pages/services/PetcarePage"));
-const TutoringPage = lazy(() => import("./pages/services/TutoringPage"));
-const SportsActivitiesPage = lazy(() => import("./pages/services/SportsActivitiesPage"));
-const EldercarePage = lazy(() => import("./pages/services/EldercarePage"));
-const LaundryPage = lazy(() => import("./pages/services/LaundryPage"));
-const PropertyManagementPage = lazy(() => import("./pages/services/PropertyManagementPage"));
-const ElectricianPage = lazy(() => import('./pages/services/ElectricianPage'));
-const PlumbingPage = lazy(() => import('./pages/services/PlumbingPage'));
-const AirConditioningPage = lazy(() => import('./pages/services/AirConditioningPage'));
-const GasTechnicianPage = lazy(() => import('./pages/services/GasTechnicianPage'));
-const DrywallPage = lazy(() => import('./pages/services/DrywallPage'));
-const CarpentryPage = lazy(() => import('./pages/services/CarpentryPage'));
-const HomeOrganizationPage = lazy(() => import('./pages/services/HomeOrganizationPage'));
-const EventEntertainmentPage = lazy(() => import('./pages/services/EventEntertainmentPage'));
-const EventEquipmentRentalPage = lazy(() => import('./pages/services/EventEquipmentRentalPage'));
-const EventFoodStandsPage = lazy(() => import('./pages/services/EventFoodStandsPage'));
-const DJPage = lazy(() => import('./pages/services/DJPage'));
-const PrivateChefPage = lazy(() => import('./pages/services/PrivateChefPage'));
-const CateringPage = lazy(() => import('./pages/services/CateringPage'));
-const PastryPage = lazy(() => import('./pages/services/PastryPage'));
-const PaintingPage = lazy(() => import('./pages/services/PaintingPage'));
-const WaterproofingPage = lazy(() => import('./pages/services/WaterproofingPage'));
-const ContractorPage = lazy(() => import('./pages/services/ContractorPage'));
-const AluminumPage = lazy(() => import('./pages/services/AluminumPage'));
-const GlassWorksPage = lazy(() => import('./pages/services/GlassWorksPage'));
-const LocksmithPage = lazy(() => import('./pages/services/LocksmithPage'));
-const MovingPage = lazy(() => import('./pages/services/MovingPage'));
-const PhotographerPage = lazy(() => import('./pages/services/PhotographerPage'));
-const EventDecorationPage = lazy(() => import('./pages/services/EventDecorationPage'));
-const PestControlPage = lazy(() => import('./pages/services/PestControlPage'));
-const HandymanPage = lazy(() => import('./pages/services/HandymanPage'));
-const MechanicPage = lazy(() => import('./pages/services/MechanicPage'));
-const MetalworkPage = lazy(() => import('./pages/services/MetalworkPage'));
-const DriverPage = lazy(() => import('./pages/services/DriverPage'));
-const DoulaPage = lazy(() => import('./pages/services/DoulaPage'));
+const BabysittingPage = lazyWithRetry(() => import("./pages/services/BabysittingPage"));
+const CleaningPage = lazyWithRetry(() => import("./pages/services/CleaningPage"));
+const GardeningPage = lazyWithRetry(() => import("./pages/services/GardeningPage"));
+const PetcarePage = lazyWithRetry(() => import("./pages/services/PetcarePage"));
+const TutoringPage = lazyWithRetry(() => import("./pages/services/TutoringPage"));
+const SportsActivitiesPage = lazyWithRetry(() => import("./pages/services/SportsActivitiesPage"));
+const EldercarePage = lazyWithRetry(() => import("./pages/services/EldercarePage"));
+const LaundryPage = lazyWithRetry(() => import("./pages/services/LaundryPage"));
+const PropertyManagementPage = lazyWithRetry(() => import("./pages/services/PropertyManagementPage"));
+const ElectricianPage = lazyWithRetry(() => import('./pages/services/ElectricianPage'));
+const PlumbingPage = lazyWithRetry(() => import('./pages/services/PlumbingPage'));
+const AirConditioningPage = lazyWithRetry(() => import('./pages/services/AirConditioningPage'));
+const GasTechnicianPage = lazyWithRetry(() => import('./pages/services/GasTechnicianPage'));
+const DrywallPage = lazyWithRetry(() => import('./pages/services/DrywallPage'));
+const CarpentryPage = lazyWithRetry(() => import('./pages/services/CarpentryPage'));
+const HomeOrganizationPage = lazyWithRetry(() => import('./pages/services/HomeOrganizationPage'));
+const EventEntertainmentPage = lazyWithRetry(() => import('./pages/services/EventEntertainmentPage'));
+const EventEquipmentRentalPage = lazyWithRetry(() => import('./pages/services/EventEquipmentRentalPage'));
+const EventFoodStandsPage = lazyWithRetry(() => import('./pages/services/EventFoodStandsPage'));
+const DJPage = lazyWithRetry(() => import('./pages/services/DJPage'));
+const PrivateChefPage = lazyWithRetry(() => import('./pages/services/PrivateChefPage'));
+const CateringPage = lazyWithRetry(() => import('./pages/services/CateringPage'));
+const PastryPage = lazyWithRetry(() => import('./pages/services/PastryPage'));
+const PaintingPage = lazyWithRetry(() => import('./pages/services/PaintingPage'));
+const WaterproofingPage = lazyWithRetry(() => import('./pages/services/WaterproofingPage'));
+const ContractorPage = lazyWithRetry(() => import('./pages/services/ContractorPage'));
+const AluminumPage = lazyWithRetry(() => import('./pages/services/AluminumPage'));
+const GlassWorksPage = lazyWithRetry(() => import('./pages/services/GlassWorksPage'));
+const LocksmithPage = lazyWithRetry(() => import('./pages/services/LocksmithPage'));
+const MovingPage = lazyWithRetry(() => import('./pages/services/MovingPage'));
+const PhotographerPage = lazyWithRetry(() => import('./pages/services/PhotographerPage'));
+const EventDecorationPage = lazyWithRetry(() => import('./pages/services/EventDecorationPage'));
+const PestControlPage = lazyWithRetry(() => import('./pages/services/PestControlPage'));
+const HandymanPage = lazyWithRetry(() => import('./pages/services/HandymanPage'));
+const MechanicPage = lazyWithRetry(() => import('./pages/services/MechanicPage'));
+const MetalworkPage = lazyWithRetry(() => import('./pages/services/MetalworkPage'));
+const DriverPage = lazyWithRetry(() => import('./pages/services/DriverPage'));
+const DoulaPage = lazyWithRetry(() => import('./pages/services/DoulaPage'));
 
 // Page de détails provider
-const ProviderDetailPage = lazy(() => import('./pages/ProviderDetailPage'));
+const ProviderDetailPage = lazyWithRetry(() => import('./pages/ProviderDetailPage'));
 
 // Page de demande d'avis (lien public indépendant de la visibilité du profil)
-const ReviewRequestPage = lazy(() => import('./pages/ReviewRequestPage'));
+const ReviewRequestPage = lazyWithRetry(() => import('./pages/ReviewRequestPage'));
 
 // Fallback affiché pendant le chargement d'une page en lazy-loading
 const RouteLoadingFallback = () => (
