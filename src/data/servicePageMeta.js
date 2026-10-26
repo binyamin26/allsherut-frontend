@@ -100,7 +100,7 @@ export const SERVICE_PAGE_META = {
   networking: {
     title: 'מתקיני רשתות תקשורת וכבילה',
     description: 'מצאו מתקין רשתות תקשורת וכבילה בישראל - נקודות רשת, ציוד Wi-Fi, רשתות למשרד ולבית ותיקון תקלות.',
-    heroImage: '',
+    heroImage: '/images/Gemini_Generated_Image_uexbs0uexbs0uexb (1).jpg',
     heroAlt: 'רשתות תקשורת וכבילה',
   },
   audio_systems: {
