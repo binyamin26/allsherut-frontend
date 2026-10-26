@@ -212,7 +212,7 @@ export const SERVICES_META = {
   // Catégorie Sécurité : pas d'image dédiée pour l'instant → emoji (SECURITY_SERVICES[key].icon)
   security_cameras:   { image: '/images/Sécurité connectée pour maison moderne.jpg', href: '/services/security-cameras', nameKey: 'services.security_cameras' },
   security_alarms:    { image: '/images/Maison connectée, sécurité intelligente.jpg', href: '/services/security-alarms', nameKey: 'services.security_alarms' },
-  intercom_access:    { icon: '🔔', href: '/services/intercom-access',  nameKey: 'services.intercom_access' },
+  intercom_access:    { image: '/images/Gemini_Generated_Image_roj2chroj2chroj2 (1).jpg', href: '/services/intercom-access', nameKey: 'services.intercom_access' },
   networking:         { image: '/images/Atelier réseau moderne et organisé.jpg', href: '/services/networking', nameKey: 'services.networking' },
   audio_systems:      { icon: '🔊', href: '/services/audio-systems',    nameKey: 'services.audio_systems' },
   smart_home:         { icon: '🏠', href: '/services/smart-home',       nameKey: 'services.smart_home' },
