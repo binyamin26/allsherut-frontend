@@ -82,7 +82,7 @@ export const SERVICE_PAGE_META = {
   security_cameras: {
     title: 'מתקיני מצלמות אבטחה',
     description: 'מצאו מתקין מצלמות אבטחה בישראל - התקנה לבית ולעסק, מערכות IP ותיקון ותחזוקה.',
-    heroImage: '',
+    heroImage: '/images/Gemini_Generated_Image_aecn7caecn7caecn (1).jpg',
     heroAlt: 'מצלמות אבטחה',
   },
   security_alarms: {
