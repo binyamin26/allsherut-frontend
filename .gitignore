@@ -162,3 +162,6 @@ jspm_packages
 /screenshot_*.png
 backend/rapport_raw.txt
 
+
+# Claude Code local settings
+.claude/settings.local.json
