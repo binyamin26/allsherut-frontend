@@ -3,9 +3,13 @@
 // tout est dans un try/catch et l'échec est silencieux.
 const API_BASE = import.meta.env.VITE_API_URL || '/api';
 const SENT_KEY = 'reported-errors';
+// Robots (Googlebot, etc.) : un échec de rendu côté robot n'est pas vu par un visiteur, pas d'alerte.
+const BOT_UA = /bot|crawler|spider|crawling|lighthouse|headless/i;
 
 export const reportClientError = (error, componentStack) => {
   try {
+    if (BOT_UA.test(navigator.userAgent || '')) return;
+
     const message = String(error?.message || error || 'Unknown error').slice(0, 500);
 
     // Un même visiteur ne signale pas la même erreur en boucle

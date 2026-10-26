@@ -29,7 +29,7 @@
       "destination": "https://homesherut-backend.fly.dev/sitemap-providers.xml"
     },
     {
-      "source": "/(.*)",
+      "source": "/((?!assets/).*)",
       "destination": "/index.html"
     }
   ]
