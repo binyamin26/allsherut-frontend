@@ -126,7 +126,8 @@ const serviceImages = {
   smart_home: '/images/Gemini_Generated_Image_fd1bjpfd1bjpfd1b (1).jpg',
   security_cameras: '/images/Gemini_Generated_Image_aecn7caecn7caecn (1).jpg',
   security_alarms: '/images/Gemini_Generated_Image_2mk58u2mk58u2mk5 (1).jpg',
-  intercom_access: '/images/Gemini_Generated_Image_s1atfas1atfas1at (1).jpg'
+  intercom_access: '/images/Gemini_Generated_Image_s1atfas1atfas1at (1).jpg',
+  audio_systems: '/images/Gemini_Generated_Image_wyik01wyik01wyik (1).jpg'
 };
 
 const ServiceIconDisplay = ({ svcType }) => {

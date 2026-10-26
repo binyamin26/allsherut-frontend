@@ -106,7 +106,7 @@ export const SERVICE_PAGE_META = {
   audio_systems: {
     title: 'מתקיני מערכות שמע וסאונד',
     description: 'מצאו מתקין מערכות שמע וסאונד בישראל - שמע לבית ולעסק, מערכות מרובות אזורים ותיקון.',
-    heroImage: '',
+    heroImage: '/images/Gemini_Generated_Image_wyik01wyik01wyik (1).jpg',
     heroAlt: 'מערכות שמע וסאונד',
   },
   smart_home: {
