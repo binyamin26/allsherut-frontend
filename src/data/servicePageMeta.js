@@ -94,7 +94,7 @@ export const SERVICE_PAGE_META = {
   intercom_access: {
     title: 'מתקיני אינטרקום ובקרת כניסה',
     description: 'מצאו מתקין אינטרקום ובקרת כניסה בישראל - אינטרקום וידאו, קודנים, כרטיסים ומנעולים חשמליים.',
-    heroImage: '',
+    heroImage: '/images/Gemini_Generated_Image_s1atfas1atfas1at (1).jpg',
     heroAlt: 'אינטרקום ובקרת כניסה',
   },
   networking: {
