@@ -112,7 +112,7 @@ export const SERVICE_PAGE_META = {
   smart_home: {
     title: 'מתקיני בית חכם ואוטומציה',
     description: 'מצאו מתקין בית חכם ואוטומציה בישראל - בית חכם קווי ואלחוטי, תאורה חכמה ושילוב מערכות.',
-    heroImage: '',
+    heroImage: '/images/Gemini_Generated_Image_fd1bjpfd1bjpfd1b (1).jpg',
     heroAlt: 'בית חכם ואוטומציה',
   },
   electrician: {

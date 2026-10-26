@@ -184,7 +184,8 @@ const ProviderDetailPage = () => {
     mechanic: '/images/logo garagiste.jpg',
     metalwork: '/images/logo fer.jpg',
     driver: '/images/logo driver.jpg',
-    doula: '/images/WhatsApp Image 2026-10-25 at 16.49.48.jpeg'
+    doula: '/images/WhatsApp Image 2026-10-25 at 16.49.48.jpeg',
+    smart_home: '/images/Gemini_Generated_Image_fd1bjpfd1bjpfd1b (1).jpg'
   };
   return icons[serviceType] || '/images/logo-default.png';
 };
