@@ -211,7 +211,7 @@ export const SERVICES_META = {
   driver:             { image: '/images/driver.jpg',          href: '/services/driver',             nameKey: 'services.driver' },
   // Catégorie Sécurité : pas d'image dédiée pour l'instant → emoji (SECURITY_SERVICES[key].icon)
   security_cameras:   { icon: '📹', href: '/services/security-cameras', nameKey: 'services.security_cameras' },
-  security_alarms:    { icon: '🚨', href: '/services/security-alarms',  nameKey: 'services.security_alarms' },
+  security_alarms:    { image: '/images/Maison connectée, sécurité intelligente.jpg', href: '/services/security-alarms', nameKey: 'services.security_alarms' },
   intercom_access:    { icon: '🔔', href: '/services/intercom-access',  nameKey: 'services.intercom_access' },
   networking:         { image: '/images/Atelier réseau moderne et organisé.jpg', href: '/services/networking', nameKey: 'services.networking' },
   audio_systems:      { icon: '🔊', href: '/services/audio-systems',    nameKey: 'services.audio_systems' },
