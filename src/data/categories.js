@@ -214,7 +214,7 @@ export const SERVICES_META = {
   security_alarms:    { image: '/images/Maison connectée, sécurité intelligente.jpg', href: '/services/security-alarms', nameKey: 'services.security_alarms' },
   intercom_access:    { image: '/images/Gemini_Generated_Image_roj2chroj2chroj2 (1).jpg', href: '/services/intercom-access', nameKey: 'services.intercom_access' },
   networking:         { image: '/images/Atelier réseau moderne et organisé.jpg', href: '/services/networking', nameKey: 'services.networking' },
-  audio_systems:      { icon: '🔊', href: '/services/audio-systems',    nameKey: 'services.audio_systems' },
+  audio_systems:      { image: '/images/Gemini_Generated_Image_iou4wwiou4wwiou4 (1).jpg', href: '/services/audio-systems', nameKey: 'services.audio_systems' },
   smart_home:         { icon: '🏠', href: '/services/smart-home',       nameKey: 'services.smart_home' },
   doula:              { image: '/images/doula.jpeg',           href: '/services/doula',              nameKey: 'services.doula' },
 };
