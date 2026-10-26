@@ -146,8 +146,7 @@ export const CATEGORY_DEFINITIONS = [
       en: 'Home security and technology in Israel: security cameras, alarms, intercoms, networking, audio systems and smart home.',
       ru: 'Безопасность и технологии для дома в Израиле: камеры видеонаблюдения, сигнализация, домофоны, сети, аудиосистемы и умный дом.',
     },
-    // TODO: image provisoire (serrurier) — à remplacer par une image dédiée à la catégorie
-    image: '/images/serrure.png',
+    image: '/images/Maison connectée et sécurisée.png',
     gradient: 'from-slate-600 to-blue-700',
     serviceIds: ['security_cameras', 'security_alarms', 'intercom_access', 'networking', 'audio_systems', 'smart_home'],
   },
