@@ -88,7 +88,7 @@ export const SERVICE_PAGE_META = {
   security_alarms: {
     title: 'מתקיני מערכות אזעקה',
     description: 'מצאו מתקין מערכות אזעקה בישראל - אזעקות לבית ולעסק, גלאים, שליטה מרחוק ותיקון.',
-    heroImage: '',
+    heroImage: '/images/Gemini_Generated_Image_2mk58u2mk58u2mk5 (1).jpg',
     heroAlt: 'מערכות אזעקה',
   },
   intercom_access: {
