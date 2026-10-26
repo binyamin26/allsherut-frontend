@@ -56,6 +56,10 @@ export default function SEO({ title, description, canonicalPath, image, noindex 
   let canonical;
   if (serviceKey) {
     canonical = `${BASE_URL}${buildServicePath(serviceKey, currentLanguage)}`;
+  } else if (sameUrlForAllLangs) {
+    // One URL for every language (e.g. /provider/:id): canonical must match the hreflang set,
+    // otherwise a non-Hebrew render points at /fr/... while hreflang says /...
+    canonical = sameUrl;
   } else if (currentLanguage !== 'he' && canonicalPath) {
     canonical = `${BASE_URL}/${currentLanguage}${canonicalPath}`;
   } else {
