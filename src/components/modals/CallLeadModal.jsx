@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { X, Phone } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
@@ -10,6 +10,22 @@ const CallLeadModal = ({ isOpen, onClose, providerId, providerPhone, providerWha
   const [clientPhone, setClientPhone] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const [viewport, setViewport] = useState(null);
+
+  // Mobile keyboard: size the overlay to the visible viewport so the modal isn't pushed off-screen
+  useEffect(() => {
+    if (!isOpen || !window.visualViewport) return undefined;
+    const vv = window.visualViewport;
+    const update = () => setViewport({ top: vv.offsetTop, height: vv.height });
+    update();
+    vv.addEventListener('resize', update);
+    vv.addEventListener('scroll', update);
+    return () => {
+      vv.removeEventListener('resize', update);
+      vv.removeEventListener('scroll', update);
+    };
+  }, [isOpen]);
 
   const reset = () => {
     setClientPhone('');
@@ -49,8 +65,16 @@ const CallLeadModal = ({ isOpen, onClose, providerId, providerPhone, providerWha
   if (!isOpen) return null;
 
   const modal = (
-    <div className="modal-overlay" dir={isRTL ? 'rtl' : 'ltr'}>
-      <div className="modal-container review-modal" onClick={e => e.stopPropagation()}>
+    <div
+      className="modal-overlay"
+      dir={isRTL ? 'rtl' : 'ltr'}
+      style={viewport ? { top: viewport.top, bottom: 'auto', height: viewport.height, alignItems: 'center', padding: 12 } : undefined}
+    >
+      <div
+        className="modal-container review-modal"
+        onClick={e => e.stopPropagation()}
+        style={{ maxHeight: '100%', borderRadius: 'var(--radius-2xl)', overflowY: 'auto' }}
+      >
 
         <div className="modal-header">
           <h2 className="modal-title" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
