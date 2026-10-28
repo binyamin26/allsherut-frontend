@@ -74,7 +74,7 @@ export const CATEGORY_DEFINITIONS = [
       en: 'Medical and care services at home in Israel.',
       ru: 'Медицинские услуги и уход на дому в Израиле.',
     },
-    image: '/images/catégorie médecine et soins.jpg',
+    image: '/images/nature-morte-medicale.jpg',
     gradient: 'from-teal-500 to-cyan-600',
     serviceIds: ['doula'],
   },
