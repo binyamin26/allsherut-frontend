@@ -511,6 +511,7 @@
   .review-modal {
     max-width: none;
     max-height: 95vh;
+    max-height: 95dvh;
     margin: 0;
     border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
     display: flex;
