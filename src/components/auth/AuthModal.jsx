@@ -15,6 +15,10 @@ import { SERVICE_SEARCH_TERMS } from '../../data/serviceSearchTerms';
 import { getServiceDetailsErrors } from '../../utils/serviceDetailsValidation';
 
 // Fonction de scroll automatique vers le premier champ en erreur
+// Description de soi demandée à l'inscription (même plafond que le dashboard : 300)
+const SELF_DESCRIPTION_MIN = 30;
+const SELF_DESCRIPTION_MAX = 300;
+
 const scrollToFirstError = (errors, currentStep = 1) => {
   const errorFields = Object.keys(errors);
   if (errorFields.length === 0) return;
@@ -44,6 +48,12 @@ const scrollToFirstError = (errors, currentStep = 1) => {
         break;
       case 'workingAreas':
         targetElement = document.querySelector('.city-selector select');
+        break;
+      case 'profileImage':
+        targetElement = document.querySelector('.image-upload-container');
+        break;
+      case 'serviceDetails.description':
+        targetElement = document.querySelector('textarea[name="selfDescription"]');
         break;
       default:
         if (firstErrorField.startsWith('serviceDetails.')) {
@@ -658,10 +668,20 @@ console.log('🔍 serviceDetails object:', serviceDetails);
       return Object.keys(newErrors).length === 0;
     }
 
+    // Photo de profil obligatoire (nécessaire pour que le profil soit vérifié)
+    if (!formData.profileImage) {
+      newErrors.profileImage = t('auth.validation.profileImageRequired');
+    }
+
     const serviceDetailsErrors = getServiceDetailsErrors(formData.serviceType, serviceDetails, t);
     Object.entries(serviceDetailsErrors).forEach(([field, message]) => {
       newErrors[`serviceDetails.${field}`] = message;
     });
+
+    // Description de soi : min/max de caractères
+    if ((serviceDetails.description || '').trim().length < SELF_DESCRIPTION_MIN) {
+      newErrors['serviceDetails.description'] = t('auth.validation.selfDescriptionMin', { min: SELF_DESCRIPTION_MIN });
+    }
 
 // Juste avant setErrors(newErrors);
 console.log('📋 VRAIES ERREURS newErrors:', JSON.stringify(newErrors));
@@ -1786,7 +1806,7 @@ const renderWorkingAreasSection = () => {
 </div>
 
 <div className="input-group">
-<label className="auth-form-label">{t('auth.profileImage')}</label>
+<label className="auth-form-label required">{t('auth.profileImage')}</label>
   <div className="image-upload-container">
     <input
       type="file"
@@ -1814,6 +1834,7 @@ const renderWorkingAreasSection = () => {
     </label>
   </div>
   {imageError && <span className="error-text">{imageError}</span>}
+  {!imageError && errors.profileImage && <span className="error-text">{errors.profileImage}</span>}
 </div>
 
              {formData.seekingType !== 'recruitment' && (
@@ -1824,6 +1845,28 @@ const renderWorkingAreasSection = () => {
                  handleServiceDetailsChange={handleServiceDetailsChange}
                  handleExclusiveCheckbox={handleExclusiveCheckbox}
                />
+             )}
+
+             {formData.seekingType !== 'recruitment' && (
+               <div className="input-group">
+                 <label className="auth-form-label required">{t('auth.selfDescription')}</label>
+                 <textarea
+                   name="selfDescription"
+                   className="form-input"
+                   rows={4}
+                   maxLength={SELF_DESCRIPTION_MAX}
+                   value={formData.serviceDetails.description || ''}
+                   onChange={(e) => handleServiceDetailsChange('description', e.target.value.slice(0, SELF_DESCRIPTION_MAX))}
+                   placeholder={t('auth.selfDescriptionPlaceholder', { min: SELF_DESCRIPTION_MIN })}
+                   style={{ resize: 'vertical', minHeight: '100px', width: '100%' }}
+                 />
+                 <small style={{ display: 'block', textAlign: 'start', color: '#6b7280', marginTop: '4px' }}>
+                   {(formData.serviceDetails.description || '').length}/{SELF_DESCRIPTION_MAX}
+                 </small>
+                 {errors['serviceDetails.description'] && (
+                   <span className="error-text">{errors['serviceDetails.description']}</span>
+                 )}
+               </div>
              )}
 
               {(error || submitError) && (
