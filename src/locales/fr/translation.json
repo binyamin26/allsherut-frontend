@@ -1579,7 +1579,7 @@
   "auth.phone": "Téléphone",
   "auth.confirmPassword": "Confirmer le mot de passe",
   "auth.confirmPasswordPlaceholder": "Confirmer le mot de passe",
-  "auth.profileImage": "Photo de profil (optionnel)",
+  "auth.profileImage": "Photo de profil",
   "auth.clickToUpload": "Cliquez pour télécharger",
   "auth.selfDescription": "Présentation personnelle",
   "auth.selfDescriptionPlaceholder": "Parlez de vous, de votre expérience et du service que vous proposez (au moins {min} caractères)...",

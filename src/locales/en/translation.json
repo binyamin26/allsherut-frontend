@@ -1585,7 +1585,7 @@
   "auth.phone": "Phone",
   "auth.confirmPassword": "Confirm password",
   "auth.confirmPasswordPlaceholder": "Confirm password",
-  "auth.profileImage": "Profile image (optional)",
+  "auth.profileImage": "Profile photo",
   "auth.clickToUpload": "Click to upload image",
   "auth.selfDescription": "About you",
   "auth.selfDescriptionPlaceholder": "Tell us about yourself, your experience and the service you offer (at least {min} characters)...",

@@ -1542,7 +1542,7 @@
   "auth.phone": "טלפון",
   "auth.confirmPassword": "אישור סיסמה",
   "auth.confirmPasswordPlaceholder": "אישור סיסמה",
-  "auth.profileImage": "תמונת פרופיל (אופציונלי)",
+  "auth.profileImage": "תמונת פרופיל",
   "auth.clickToUpload": "לחץ להעלאת תמונה",
   "auth.selfDescription": "תיאור אישי",
   "auth.selfDescriptionPlaceholder": "ספר/י על עצמך, על הניסיון שלך ועל השירות שאתה מציע (לפחות {min} תווים)...",

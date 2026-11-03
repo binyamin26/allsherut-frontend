@@ -1562,7 +1562,7 @@
   "auth.phone": "Телефон",
   "auth.confirmPassword": "Подтвердите пароль",
   "auth.confirmPasswordPlaceholder": "Подтвердите пароль",
-  "auth.profileImage": "Фото профиля (необязательно)",
+  "auth.profileImage": "Фото профиля",
   "auth.clickToUpload": "Нажмите для загрузки",
   "auth.selfDescription": "О себе",
   "auth.selfDescriptionPlaceholder": "Расскажите о себе, своём опыте и предлагаемых услугах (не менее {min} символов)...",
