@@ -18,6 +18,10 @@ import { getServiceDetailsErrors } from '../../utils/serviceDetailsValidation';
 // Description de soi demandée à l'inscription (même plafond que le dashboard : 300)
 const SELF_DESCRIPTION_MIN = 30;
 const SELF_DESCRIPTION_MAX = 300;
+// Galerie photos à l'inscription : même règle que le calcul "profil 100%" (backend/utils/profileCompleteness.js)
+const GALLERY_OPTIONAL_SERVICES = ['babysitting', 'property_management', 'doula', 'tutoring'];
+const GALLERY_MIN = 1;
+const GALLERY_MAX = 10;
 
 const scrollToFirstError = (errors, currentStep = 1) => {
   const errorFields = Object.keys(errors);
@@ -51,6 +55,9 @@ const scrollToFirstError = (errors, currentStep = 1) => {
         break;
       case 'profileImage':
         targetElement = document.querySelector('.image-upload-container');
+        break;
+      case 'galleryImages':
+        targetElement = document.querySelector('.gallery-upload-container');
         break;
       case 'serviceDetails.description':
         targetElement = document.querySelector('textarea[name="selfDescription"]');
@@ -96,6 +103,7 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
     seekingType: 'clients',
     profileImage: null,
     profileImagePreview: null,
+    galleryImages: [],
     workingAreas: [],
     serviceDetails: {},
     recruitmentDetails: {},
@@ -109,6 +117,7 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const [submitError, setSubmitError] = useState('');
+  const [galleryError, setGalleryError] = useState('');
   const [fieldValidation, setFieldValidation] = useState({
     email: { status: 'idle', message: '' },
     phone: { status: 'idle', message: '' },
@@ -262,6 +271,7 @@ const groupedServices = CATEGORY_DEFINITIONS
         seekingType: 'clients',
         profileImage: null,
         profileImagePreview: null,
+        galleryImages: [],
         workingAreas: [],
         serviceDetails: {},
         recruitmentDetails: {},
@@ -673,6 +683,11 @@ console.log('🔍 serviceDetails object:', serviceDetails);
       newErrors.profileImage = t('auth.validation.profileImageRequired');
     }
 
+    // Galerie photos obligatoire (sauf services où elle est optionnelle)
+    if (!GALLERY_OPTIONAL_SERVICES.includes(formData.serviceType) && (formData.galleryImages || []).length < GALLERY_MIN) {
+      newErrors.galleryImages = t('auth.validation.galleryRequired', { min: GALLERY_MIN });
+    }
+
     const serviceDetailsErrors = getServiceDetailsErrors(formData.serviceType, serviceDetails, t);
     Object.entries(serviceDetailsErrors).forEach(([field, message]) => {
       newErrors[`serviceDetails.${field}`] = message;
@@ -866,6 +881,48 @@ setErrors(newErrors);
     }
   };
 
+  const handleGalleryUpload = async (e) => {
+    const files = Array.from(e.target.files || []);
+    e.target.value = '';
+    if (!files.length) return;
+
+    const allowedFormats = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+    const MAX_SIZE = 5 * 1024 * 1024;
+    const room = GALLERY_MAX - (formData.galleryImages || []).length;
+    if (room <= 0) {
+      setGalleryError(t('auth.validation.galleryMax', { max: GALLERY_MAX }));
+      return;
+    }
+
+    setGalleryError('');
+    const added = [];
+    for (const file of files.slice(0, room)) {
+      if (!allowedFormats.includes(file.type)) { setGalleryError(t('auth.validation.imageFormatError')); continue; }
+      if (file.size > MAX_SIZE) { setGalleryError(t('auth.validation.imageSizeError')); continue; }
+      try {
+        const compressed = await imageCompression(file, { maxSizeMB: 1, maxWidthOrHeight: 1920, useWebWorker: true, fileType: file.type });
+        added.push({ file: compressed, preview: URL.createObjectURL(compressed) });
+      } catch (err) {
+        console.error('Erreur compression galerie:', err);
+        setGalleryError(t('auth.validation.imageCompressionError'));
+      }
+    }
+    if (files.length > room) setGalleryError(t('auth.validation.galleryMax', { max: GALLERY_MAX }));
+    if (added.length) {
+      setFormData(prev => ({ ...prev, galleryImages: [...(prev.galleryImages || []), ...added] }));
+      setErrors(prev => ({ ...prev, galleryImages: '' }));
+    }
+  };
+
+  const handleGalleryRemove = (index) => {
+    setFormData(prev => {
+      const list = [...(prev.galleryImages || [])];
+      const [removed] = list.splice(index, 1);
+      if (removed && removed.preview) URL.revokeObjectURL(removed.preview);
+      return { ...prev, galleryImages: list };
+    });
+  };
+
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -1047,12 +1104,12 @@ if (!isValid) {
  // qui bloquent parfois les requêtes multipart vers fly.dev — voir la photo de
  // profil qui empêchait l'inscription de driver). Retourne null si ça échoue,
  // auquel cas on retombe sur l'ancien upload via notre backend.
- const uploadImageDirectToCloudinary = async (file) => {
+ const uploadImageDirectToCloudinary = async (file, folderKey = 'profile') => {
    try {
      const sigResponse = await fetch(`${API_BASE}/upload/cloudinary-signature`, {
        method: 'POST',
        headers: { 'Content-Type': 'application/json' },
-       body: JSON.stringify({ folder: 'profile' })
+       body: JSON.stringify({ folder: folderKey })
      });
      const sigData = await sigResponse.json();
      if (!sigData.success) return null;
@@ -1109,6 +1166,21 @@ if (!isValid) {
         } else {
           registrationFormData.append('profileImage', formData.profileImage);
         }
+      }
+
+      // Galerie : upload direct navigateur → Cloudinary (même principe que la photo de profil)
+      if ((formData.galleryImages || []).length > 0 && formData.seekingType !== 'recruitment') {
+        const urls = [];
+        for (const item of formData.galleryImages) {
+          const url = await uploadImageDirectToCloudinary(item.file, 'gallery');
+          if (!url) {
+            setSubmitError(t('auth.validation.galleryUploadFailed'));
+            setIsSubmitting(false);
+            return;
+          }
+          urls.push(url);
+        }
+        registrationFormData.append('galleryImageUrls', JSON.stringify(urls));
       }
 
       if (formData.serviceDetails && Object.keys(formData.serviceDetails).length > 0) {
@@ -1870,6 +1942,50 @@ const renderWorkingAreasSection = () => {
                  {errors['serviceDetails.description'] && (
                    <span className="error-text">{errors['serviceDetails.description']}</span>
                  )}
+               </div>
+             )}
+
+             {formData.seekingType !== 'recruitment' && (
+               <div className="input-group">
+                 <label className={'auth-form-label' + (GALLERY_OPTIONAL_SERVICES.includes(formData.serviceType) ? '' : ' required')}>
+                   {t('auth.gallery.title')}
+                 </label>
+                 <div className="gallery-upload-container">
+                   <input
+                     type="file"
+                     id="galleryUpload"
+                     multiple
+                     accept="image/jpeg,image/jpg,image/png,image/webp"
+                     onChange={handleGalleryUpload}
+                     style={{ display: 'none' }}
+                   />
+                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(90px, 1fr))', gap: '10px' }}>
+                     {(formData.galleryImages || []).map((item, index) => (
+                       <div key={item.preview} style={{ position: 'relative', aspectRatio: '1 / 1', borderRadius: '10px', overflow: 'hidden', border: '1px solid #e5e7eb' }}>
+                         <img src={item.preview} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                         <button
+                           type="button"
+                           onClick={() => handleGalleryRemove(index)}
+                           aria-label={t('auth.gallery.remove')}
+                           style={{ position: 'absolute', top: 4, insetInlineEnd: 4, width: 24, height: 24, borderRadius: '50%', border: 'none', background: 'rgba(0,0,0,0.65)', color: '#fff', cursor: 'pointer', lineHeight: '24px', padding: 0 }}
+                         >×</button>
+                       </div>
+                     ))}
+                     {(formData.galleryImages || []).length < GALLERY_MAX && (
+                       <label htmlFor="galleryUpload" style={{ aspectRatio: '1 / 1', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 4, border: '2px dashed #9ca3af', borderRadius: '10px', cursor: 'pointer', color: '#4b5563' }}>
+                         <Upload size={22} />
+                         <span className="text-gallery-add" style={{ fontSize: '12px', textAlign: 'center' }}>{t('auth.gallery.add')}</span>
+                       </label>
+                     )}
+                   </div>
+                 </div>
+                 <small style={{ display: 'block', textAlign: 'start', color: '#6b7280', marginTop: '6px' }}>
+                   {GALLERY_OPTIONAL_SERVICES.includes(formData.serviceType)
+                     ? t('auth.gallery.hintOptional', { max: GALLERY_MAX })
+                     : t('auth.gallery.hint', { min: GALLERY_MIN, max: GALLERY_MAX })}
+                 </small>
+                 {galleryError && <span className="error-text">{galleryError}</span>}
+                 {!galleryError && errors.galleryImages && <span className="error-text">{errors.galleryImages}</span>}
                </div>
              )}
 
