@@ -898,7 +898,7 @@ const response = await changePassword(
     }
 
     setEditFormData(prev => {
-      const currentArray = prev.serviceDetails[field] || [];
+      const currentArray = toArray(prev.serviceDetails?.[field]);
       let newArray;
 
       if (checked) {
@@ -1338,9 +1338,11 @@ const handleAddServiceFieldChange = (field, value) => {
   setAddServiceDetails(prev => ({ ...prev, [field]: value }));
 };
 
+const toArray = (v) => (Array.isArray(v) ? v : (typeof v === 'string' && v.trim() ? v.split(',').map(x => x.trim()).filter(Boolean) : []));
+
 const handleAddServiceArrayChange = (field, value, checked) => {
   setAddServiceDetails(prev => {
-    const current = prev[field] || [];
+    const current = toArray(prev[field]);
     if (checked) {
       return { ...prev, [field]: current.includes(value) ? current : [...current, value] };
     } else {
@@ -1351,7 +1353,7 @@ const handleAddServiceArrayChange = (field, value, checked) => {
 
 const handleAddServiceExclusiveCheckbox = (field, value, allValue, allOptions) => {
   setAddServiceDetails(prev => {
-    const current = prev[field] || [];
+    const current = toArray(prev[field]);
     if (value === allValue) {
       return { ...prev, [field]: current.includes(allValue) ? [] : [allValue] };
     }
