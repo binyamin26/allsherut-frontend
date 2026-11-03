@@ -67,16 +67,8 @@ if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
     return true;
   };
 
-  const ADMIN_BYPASS_EMAIL = 'binou.ben26@gmail.com';
-
   const handleSendVerification = async () => {
     if (!validateEmailStep()) return;
-
-    // Compte admin : publication directe sans code de vérification par email
-    if (formData.email.trim().toLowerCase() === ADMIN_BYPASS_EMAIL) {
-      setStep('review-form');
-      return;
-    }
 
     setLoading(true);
     setError('');
@@ -460,7 +452,7 @@ placeholder={t('review.form.reviewPlaceholder')}
                 <div className="step-navigation">
                 <button
   className="btn-back-green"
-  onClick={() => setStep(formData.email.trim().toLowerCase() === ADMIN_BYPASS_EMAIL ? 'email-verification' : 'verification-code')}
+  onClick={() => setStep('verification-code')}
   disabled={loading}
 >
   {t('common.back')}
