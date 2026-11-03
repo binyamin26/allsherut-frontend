@@ -204,7 +204,7 @@ export const SERVICES_META = {
   pastry:             { image: '/images/p et f.jpg',          href: '/services/pastry',              nameKey: 'services.pastry' },
   photographer:       { image: '/images/photographe1.jpg',    href: '/services/photographer',       nameKey: 'services.photographer' },
   tutoring:           { image: '/images/tutoring.png',        href: '/services/tutoring',           nameKey: 'services.tutoring' },
-  sports_activities:  { image: '/images/sport.jpg',           href: '/services/sports-activities',  nameKey: 'services.sports_activities' },
+  sports_activities:  { image: '/images/Loisirs sportifs et musicaux en studio.jpg',         href: '/services/sports-activities',  nameKey: 'services.sports_activities' },
   babysitting:        { image: '/images/babysite.jpg',        href: '/services/babysitting',        nameKey: 'services.babysitting' },
   petcare:            { image: '/images/chien.jpg',           href: '/services/petcare',            nameKey: 'services.petcare' },
   eldercare:          { image: '/images/eldercare.jpg',       href: '/services/eldercare',          nameKey: 'services.eldercare' },
