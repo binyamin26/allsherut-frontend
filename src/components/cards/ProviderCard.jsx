@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { Phone, Eye, MapPin } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import CallLeadModal from '../modals/CallLeadModal';
+import { SPORTS_SUBCATEGORIES } from '../../data/subcategoriesData';
+
+const MAX_ACTIVITIES_ON_CARD = 3;
 
 const AVATAR_GRADIENTS = [
   'linear-gradient(145deg, #2563EB 0%, #1E3A8A 100%)',
@@ -29,7 +32,7 @@ const getInitial = (name) => {
 
 const ProviderCard = ({ provider, onOpenReviewModal }) => {
   const navigate = useNavigate();
-  const { t, isRTL } = useLanguage();
+  const { t, isRTL, currentLanguage } = useLanguage();
   const [callModal, setCallModal] = useState({ open: false, action: 'call' });
 
   const handleViewProfile = () => {
@@ -91,6 +94,22 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
     return neighborhood;
   };
 
+  // Sports & activités uniquement : disciplines proposées (football, boxe...) affichées sur la carte
+  const getSportsActivities = () => {
+    if ((provider.serviceType || provider.service_type) !== 'sports_activities') return [];
+    const subjects = provider.service_details?.subjects;
+    if (!Array.isArray(subjects)) return [];
+    const clean = (s) => (s || '').replace(/‏/g, '').trim();
+    const seen = new Set();
+    return subjects
+      .map(subj => {
+        const sub = SPORTS_SUBCATEGORIES.find(x => clean(x.name_he) === clean(subj));
+        return clean(sub ? (sub[`name_${currentLanguage}`] || sub.name_he) : subj);
+      })
+      .filter(name => name && !seen.has(name) && seen.add(name));
+  };
+  const sportsActivities = getSportsActivities();
+
  return (
   <div className="provider-card enhanced-card" dir={isRTL ? 'rtl' : 'ltr'}>
     <div className="card-vertical-body">
@@ -117,6 +136,12 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
 
       <div className="card-vertical-info">
         <h3 className="provider-name">{provider.name || provider.full_name}</h3>
+        {sportsActivities.length > 0 && (
+          <div className="text-card-activities" title={sportsActivities.join(', ')}>
+            {sportsActivities.slice(0, MAX_ACTIVITIES_ON_CARD).join(' · ')}
+            {sportsActivities.length > MAX_ACTIVITIES_ON_CARD && ` +${sportsActivities.length - MAX_ACTIVITIES_ON_CARD}`}
+          </div>
+        )}
         <div className="rating-stars">
           {reviewsCount > 0 && formattedRating ? (
             <>
