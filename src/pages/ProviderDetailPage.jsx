@@ -1379,8 +1379,17 @@ const handleContact = () => {
                     </div>
                   );
                 }).filter(Boolean);
-                // Les disciplines hors liste officielle (anciennes saisies libres, parfois corrompues)
-                // ne sont plus affichées sous « אחר ».
+                // Disciplines hors liste officielle : affichées quand même (sous le libellé « sport »,
+                // pas sous « autre ») pour que tout ce que le prestataire a saisi soit visible.
+                const others = details.subjects.filter(s => !categorized.has(s));
+                if (others.length) {
+                  elements.push(
+                    <div key="other" className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                      <IconLabel icon={Trophy}>{t('serviceForm.sports_activities.subjectsLabel')}:</IconLabel>
+                      <span>{others.map((s, i) => <span key={i}>{cleanName(s)}{i < others.length - 1 ? ', ' : ''}</span>)}</span>
+                    </div>
+                  );
+                }
                 return <>{elements}</>;
               }
               return (
