@@ -1410,6 +1410,67 @@ const handleContact = () => {
           </div>
         )}
 
+        {/* ELDERCARE - Special conditions (le formulaire d'inscription enregistre specialConditions avec des clés anglaises) */}
+        {provider.serviceType === 'eldercare' && Array.isArray(details.specialConditions) && details.specialConditions.length > 0 && (
+          <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+            <IconLabel icon={ClipboardList}>{t('provider.details.specificConditions')}:</IconLabel>
+            <span>{details.specialConditions.map(c => t(`serviceForm.eldercare.conditions.${c}`, { defaultValue: c })).join(', ')}</span>
+          </div>
+        )}
+
+        {/* DJ - Danse séparée */}
+        {provider.serviceType === 'dj' && details.separated_dancing === true && (
+          <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+            <IconLabel icon={Users}>{t('serviceFields.dj.separated_dancing')}:</IconLabel>
+            <span>{t('common.yes')}</span>
+          </div>
+        )}
+
+        {/* GARDENING - Spécialisations */}
+        {provider.serviceType === 'gardening' && Array.isArray(details.specializations) && details.specializations.length > 0 && (
+          <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+            <IconLabel icon={Sparkles}>{t('serviceForm.gardening.specializations')}:</IconLabel>
+            <span>{translateAndJoin(details.specializations, 'gardeningSpecializations', t)}</span>
+          </div>
+        )}
+
+        {/* TUTORING - Tranches d'âge */}
+        {provider.serviceType === 'tutoring' && Array.isArray(details.ageGroups) && details.ageGroups.length > 0 && (
+          <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+            <IconLabel icon={Users}>{t('filters.sports_activities.ageGroups')}:</IconLabel>
+            <span>{translateAndJoin(details.ageGroups, 'tutoringAgeGroups', t)}</span>
+          </div>
+        )}
+
+        {/* HANDYMAN - Types de travaux et sous-choix */}
+        {provider.serviceType === 'handyman' && (() => {
+          const groups = [
+            { work: 'תיקונים כלליים', title: 'serviceForm.handyman.generalRepairs', field: 'general_repairs_types', items: { 'תיקונים קטנים בבית': 'serviceForm.handyman.smallRepairs', 'תחזוקה שוטפת': 'serviceForm.handyman.regularMaintenance' } },
+            { work: 'התקנות והרכבות', title: 'serviceForm.handyman.installations', field: 'installations_types', items: { 'התקנת טלוויזיה': 'serviceForm.handyman.tvInstall', 'התקנת מדפים': 'serviceForm.handyman.shelvesInstall', 'התקנת וילונות': 'serviceForm.handyman.curtainsInstall', 'הרכבת רהיטים': 'serviceForm.handyman.furnitureAssembly' } },
+            { work: 'דלתות ורהיטים', title: 'serviceForm.handyman.doorsAndFurniture', field: 'doors_furniture_types', items: { 'תיקון דלתות': 'serviceForm.handyman.doorRepair', 'תיקון רהיטים': 'serviceForm.handyman.furnitureRepair' } },
+            { work: 'עבודות קלות בבית', title: 'serviceForm.handyman.lightWork', field: 'light_work_types', items: { 'החלפת מנורות': 'serviceForm.handyman.lampReplacement', 'תיקונים קלים': 'serviceForm.handyman.lightRepairs' } },
+            { work: 'תליות וסידור', title: 'serviceForm.handyman.hangingAndOrganizing', field: 'hanging_types', items: { 'תליית תמונות': 'serviceForm.handyman.pictureHanging', 'תליית אביזרים': 'serviceForm.handyman.accessoryHanging' } },
+          ];
+          const works = Array.isArray(details.work_types) ? details.work_types : [];
+          return groups.filter(g => works.includes(g.work)).map(g => {
+            const subs = Array.isArray(details[g.field]) ? details[g.field] : [];
+            return (
+              <div key={g.field} className="detail-item" style={{ gridColumn: '1 / -1' }}>
+                <IconLabel icon={Wrench}>{t(g.title)}{subs.length > 0 ? ':' : ''}</IconLabel>
+                {subs.length > 0 && <span>{subs.map(s => (g.items[s] ? t(g.items[s]) : s)).join(', ')}</span>}
+              </div>
+            );
+          });
+        })()}
+
+        {/* Horaires de disponibilité pour les catégories qui n'ont pas leur propre bloc */}
+        {!['tutoring', 'sports_activities', 'babysitting', 'petcare', 'eldercare', 'event_entertainment', 'event_equipment_rental', 'event_food_stands', 'dj', 'locksmith', 'metalwork'].includes(provider.serviceType) && !isSecurityService(provider.serviceType) && Array.isArray(details.availability_hours) && details.availability_hours.length > 0 && (
+          <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+            <IconLabel icon={Clock}>{t('provider.details.availableHours')}:</IconLabel>
+            <span>{translateAndJoin(details.availability_hours, 'hours', t)}</span>
+          </div>
+        )}
+
         {/* ELDERCARE - Care types */}
         {provider.serviceType === 'eldercare' && details.careTypes && details.careTypes.length > 0 && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>

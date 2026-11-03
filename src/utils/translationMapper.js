@@ -250,6 +250,12 @@ const translationMappings = {
     'אילני אגרונום': 'filters.gardening.agronomist',
     'גוזם מומחה': 'filters.gardening.expertPruner',
   },
+  tutoringAgeGroups: {
+    'ילדים': 'filters.sports_activities.children',
+    'נוער': 'filters.sports_activities.youth',
+    'מבוגרים': 'filters.sports_activities.adults',
+    'כל הגילאים': 'filters.sports_activities.allAges',
+  },
   gardeningAdditional: {
     'פינוי פסולת גינה': 'filters.gardening.wasteRemoval',
     'ייעוץ עיצוב נוף': 'filters.gardening.landscapeConsulting',
