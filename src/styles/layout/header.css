@@ -1100,3 +1100,21 @@ body {
     display: none !important;
   }
 }
+
+/* Logo AS de l'en-tête : sans rond, lettres agrandies.
+   Le JPG a beaucoup de blanc autour des lettres : on zoome au centre (scale) ; multiply rend le blanc
+   transparent sur le fond de l'en-tête. Limité à .logo-icon-bare (menu mobile et pied de page inchangés). */
+.logo-icon.logo-icon-bare {
+  width: 64px;
+  height: 64px;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: hidden;
+}
+
+.logo-icon.logo-icon-bare img {
+  border-radius: 0;
+  transform: scale(1.75);
+  mix-blend-mode: multiply;
+}

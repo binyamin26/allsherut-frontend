@@ -139,7 +139,7 @@ const Header = () => {
         <div className="container">
           {/* Logo */}
           <Link to="/" className="logo" onClick={() => setIsMenuOpen(false)}>
-          <div className="logo-icon">
+          <div className="logo-icon logo-icon-bare">
   <img 
     src="/images/logo-homesherut2.jpg"   
     alt="AllSherut" 
