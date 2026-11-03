@@ -1111,8 +1111,6 @@ body {
   border-radius: 0;
   box-shadow: none;
   overflow: hidden;
-  /* un peu d'espace entre les lettres AS et le texte "AllSherut" */
-  margin-inline-end: 14px;
 }
 
 /* pas d'agrandissement au survol de la souris */
