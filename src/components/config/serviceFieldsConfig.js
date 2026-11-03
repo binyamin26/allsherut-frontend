@@ -3,6 +3,7 @@
 // ✅ VERSION MODIFIÉE - Labels remplacés par clés de traduction
 
 import { SECURITY_SERVICES, SECURITY_AVAILABILITY_OPTIONS } from '../../data/securityServices';
+import { ART_THERAPY_GROUPS, ART_THERAPY_HOURS } from '../../data/artTherapy';
 
 const serviceFieldsConfig = {
   babysitting: {
@@ -347,6 +348,16 @@ const serviceFieldsConfig = {
         type: 'checkbox',
         options: ['עברית', 'אנגלית', 'צרפתית', 'ספרדית', 'רוסית']
       }
+    ]
+  },
+
+  art_therapy: {
+    fields: [
+      ...ART_THERAPY_GROUPS.map(g => ({ name: g.field, label: g.titleKey, type: 'checkbox', options: g.options.map(o => o.value) })),
+      { name: 'qualifications', label: 'serviceForm.art_therapy.qualificationsTitle', type: 'text' },
+      { name: 'experience', label: 'serviceForm.common.experience', type: 'number' },
+      { name: 'availability_hours', label: 'serviceForm.common.availabilityHours', type: 'checkbox', options: ART_THERAPY_HOURS.map(o => o.value) },
+      { name: 'languages', label: 'serviceFields.eldercare.languages', type: 'checkbox', options: ['עברית', 'אנגלית', 'צרפתית', 'רוסית'] }
     ]
   },
 

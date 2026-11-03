@@ -78,6 +78,12 @@ export const SERVICE_PAGE_META = {
     heroImage: '/images/WhatsApp Image 2026-10-25 at 16.49.48.jpeg',
     heroAlt: 'דולה',
   },
+  art_therapy: {
+    title: 'מטפלים באמנות',
+    description: 'מצאו מטפל באמנות בישראל - ציור, פיסול ויצירה, טיפול פרטני, קבוצתי או אונליין.',
+    heroImage: '/images/nature-morte-medicale.jpg',
+    heroAlt: 'טיפול באמנות',
+  },
   // Catégorie Sécurité : pas encore d'image de héros (heroImage vide → emoji côté page)
   security_cameras: {
     title: 'מתקיני מצלמות אבטחה',

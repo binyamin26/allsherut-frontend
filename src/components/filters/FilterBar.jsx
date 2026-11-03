@@ -11,6 +11,7 @@ import {
 import LocationSelector from '../LocationSelector';
 import CustomDropdown from '../common/CustomDropdown';
 import { SECURITY_SERVICES, SECURITY_SERVICE_KEYS, SECURITY_AVAILABILITY_OPTIONS } from '../../data/securityServices';
+import { ART_THERAPY_GROUPS, ART_THERAPY_HOURS } from '../../data/artTherapy';
 import { useAuth } from '../../context/AuthContext';
 import { useLanguage } from '../../context/LanguageContext';
 import {
@@ -559,6 +560,7 @@ const ServicePanel = ({ serviceType, filters, onChange }) => {
     sports_activities: SportsActivitiesFilters,
     eldercare: EldercareFilters,
     doula: DoulaFilters,
+    art_therapy: ArtTherapyFilters,
     laundry: LaundryFilters,
     electrician: ElectricianFilters,
     plumbing: PlumbingFilters,
@@ -956,6 +958,33 @@ const DoulaFilters = ({ filters, handleCheckboxChange }) => {
         title={t(config.sectionTitles.workTypes)}
         options={config.workTypes.map(o => ({ value: o.value, label: t(o.key) }))}
         filterKey="work_types"
+        filters={filters}
+        onCheckboxChange={handleCheckboxChange}
+      />
+    </div>
+  );
+};
+
+// ART-THÉRAPIE (config dans data/artTherapy.js)
+const ArtTherapyFilters = ({ filters, handleCheckboxChange }) => {
+  const { t } = useLanguage();
+
+  return (
+    <div className="service-panel">
+      {ART_THERAPY_GROUPS.map(group => (
+        <CheckboxSection
+          key={group.field}
+          title={t(group.titleKey)}
+          options={group.options.map(o => ({ value: o.value, label: t(o.key) }))}
+          filterKey={group.field}
+          filters={filters}
+          onCheckboxChange={handleCheckboxChange}
+        />
+      ))}
+      <CheckboxSection
+        title={t('serviceForm.common.availabilityHours')}
+        options={ART_THERAPY_HOURS.map(o => ({ value: o.value, label: t(o.key) }))}
+        filterKey="availability_hours"
         filters={filters}
         onCheckboxChange={handleCheckboxChange}
       />

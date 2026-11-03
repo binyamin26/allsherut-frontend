@@ -68,7 +68,7 @@ const ALL_SERVICE_KEYS = [
   'aluminum','metalwork','glass_works','gas_technician','waterproofing','carpentry','handyman','mechanic','contractor',
   'moving','gardening','pest_control','cleaning','laundry','property_management',
   'home_organization','event_decoration','event_entertainment','event_equipment_rental','event_food_stands','dj','private_chef','catering','pastry',
-  'photographer','tutoring','sports_activities','babysitting','petcare','eldercare','driver','doula',
+  'photographer','tutoring','sports_activities','babysitting','petcare','eldercare','driver','doula','art_therapy',
   'security_cameras','security_alarms','intercom_access','networking','audio_systems','smart_home'
 ];
 
@@ -123,6 +123,7 @@ const serviceImages = {
   metalwork: '/images/logo fer.jpg',
   driver: '/images/logo driver.jpg',
   doula: '/images/WhatsApp Image 2026-10-25 at 16.49.48.jpeg',
+  art_therapy: '/images/nature-morte-medicale.jpg',
   smart_home: '/images/Gemini_Generated_Image_fd1bjpfd1bjpfd1b (1).jpg',
   security_cameras: '/images/Gemini_Generated_Image_aecn7caecn7caecn (1).jpg',
   security_alarms: '/images/Gemini_Generated_Image_2mk58u2mk58u2mk5 (1).jpg',
@@ -1528,6 +1529,7 @@ const getServiceName = (serviceType) => {
       pest_control: 'services.pest_control',
       driver: 'services.driver',
       doula: 'services.doula',
+      art_therapy: 'services.art_therapy',
       security_cameras: 'services.security_cameras',
       security_alarms: 'services.security_alarms',
       intercom_access: 'services.intercom_access',

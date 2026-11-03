@@ -39,6 +39,7 @@ const SERVICE_URLS = {
   mechanic: '/services/mechanic',
   driver: '/services/driver',
   doula: '/services/doula',
+  art_therapy: '/services/art-therapy',
   security_cameras: '/services/security-cameras',
   security_alarms: '/services/security-alarms',
   intercom_access: '/services/intercom-access',

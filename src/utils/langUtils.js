@@ -41,6 +41,7 @@ export const SERVICE_SLUGS = {
   metalwork:              { he: 'metalwork',            en: 'metalwork',            fr: 'ferronnerie',              ru: 'metalloraboty' },
   driver:                 { he: 'driver',               en: 'transportation',       fr: 'transport',                ru: 'perevozki' },
   doula:                  { he: 'doula',                en: 'doula',                fr: 'doula',                    ru: 'doula' },
+  'art-therapy':          { he: 'art-therapy',          en: 'art-therapy',          fr: 'art-therapie',             ru: 'art-terapiya' },
   'security-cameras':     { he: 'security-cameras',     en: 'security-cameras',     fr: 'cameras-surveillance',     ru: 'kamery-videonablyudeniya' },
   'security-alarms':      { he: 'security-alarms',      en: 'security-alarms',      fr: 'alarmes-securite',         ru: 'okhrannaya-signalizatsiya' },
   'intercom-access':      { he: 'intercom-access',      en: 'intercom-access',      fr: 'interphones-controle-acces', ru: 'domofony-kontrol-dostupa' },

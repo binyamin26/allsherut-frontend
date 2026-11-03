@@ -1,7 +1,17 @@
 // Mapping des valeurs hébreues (stockées en BDD) vers les clés de traduction
 // SYNCHRONISÉ AVEC filterConfig.js
 
+import { ART_THERAPY_GROUPS } from '../data/artTherapy';
+
+const artMap = (field) => Object.fromEntries(ART_THERAPY_GROUPS.find(g => g.field === field).options.map(o => [o.value, o.key]));
+
 const translationMappings = {
+  artTherapyTechniques: artMap('technique_types'),
+  artTherapyAudience: artMap('audience_types'),
+  artTherapyGoals: artMap('goal_types'),
+  artTherapySessions: artMap('session_types'),
+  artTherapyLocations: artMap('location_types'),
+
   // ═══════════════════════════════════════════════════════════════
   // JOURS (common.days)
   // ═══════════════════════════════════════════════════════════════

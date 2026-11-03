@@ -722,6 +722,13 @@ const searchableServices = [
   { label: 'ליווי לאחר לידה', labelEn: 'Postpartum Support', labelFr: 'Accompagnement post-partum', labelRu: 'Послеродовая поддержка', href: '/services/doula', type: 'specialty' },
   { label: 'תמיכה בהנקה', labelEn: 'Breastfeeding Support', labelFr: "Soutien à l'allaitement", labelRu: 'Поддержка при грудном вскармливании', href: '/services/doula', type: 'specialty' },
 
+  // ART-THÉRAPIE
+  { label: 'טיפול באמנות', labelEn: 'Art Therapy', labelFr: 'Art-thérapie', labelRu: 'Арт-терапия', href: '/services/art-therapy', type: 'service' },
+  { label: 'ציור וצביעה', labelEn: 'Drawing and painting', labelFr: 'Dessin et peinture', labelRu: 'Рисование и живопись', href: '/services/art-therapy', type: 'specialty' },
+  { label: 'פיסול ויצירה בחומר', labelEn: 'Sculpture and modelling', labelFr: 'Sculpture et modelage', labelRu: 'Лепка и работа с материалом', href: '/services/art-therapy', type: 'specialty' },
+  { label: 'טיפול פרטני', labelEn: 'Individual sessions', labelFr: 'Séances individuelles', labelRu: 'Индивидуальные занятия', href: '/services/art-therapy', type: 'specialty' },
+  { label: 'טיפול קבוצתי', labelEn: 'Group sessions', labelFr: 'Séances en groupe', labelRu: 'Групповые занятия', href: '/services/art-therapy', type: 'specialty' },
+
 
   // SÉCURITÉ / RÉSEAUX / MAISON INTELLIGENTE (service + types de travaux + détails du filtre)
   { label: "מצלמות אבטחה", labelEn: "Security Cameras", labelFr: "Caméras de surveillance", labelRu: "Камеры видеонаблюдения", href: '/services/security-cameras', type: 'service' },

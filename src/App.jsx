@@ -78,6 +78,7 @@ const MechanicPage = lazyWithRetry(() => import('./pages/services/MechanicPage')
 const MetalworkPage = lazyWithRetry(() => import('./pages/services/MetalworkPage'));
 const DriverPage = lazyWithRetry(() => import('./pages/services/DriverPage'));
 const DoulaPage = lazyWithRetry(() => import('./pages/services/DoulaPage'));
+const ArtTherapyPage = lazyWithRetry(() => import('./pages/services/ArtTherapyPage'));
 const SecurityCamerasPage = lazyWithRetry(() => import('./pages/services/SecurityCamerasPage'));
 const SecurityAlarmsPage = lazyWithRetry(() => import('./pages/services/SecurityAlarmsPage'));
 const IntercomAccessPage = lazyWithRetry(() => import('./pages/services/IntercomAccessPage'));
@@ -138,6 +139,7 @@ const SERVICE_PAGE_MAP = {
   metalwork:             MetalworkPage,
   driver:                DriverPage,
   doula:                 DoulaPage,
+  'art-therapy':         ArtTherapyPage,
   'security-cameras':    SecurityCamerasPage,
   'security-alarms':     SecurityAlarmsPage,
   'intercom-access':     IntercomAccessPage,

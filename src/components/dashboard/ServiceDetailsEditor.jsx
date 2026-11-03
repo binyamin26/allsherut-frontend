@@ -95,6 +95,13 @@ const fieldToCategoryMapping = {
   deck_types: 'carpentryDecks',
   fence_types: 'carpentryFences',
   
+  // ART-THÉRAPIE
+  technique_types: 'artTherapyTechniques',
+  audience_types: 'artTherapyAudience',
+  goal_types: 'artTherapyGoals',
+  session_types: 'artTherapySessions',
+  location_types: 'artTherapyLocations',
+
   // HOME ORGANIZATION
   org_work_types: 'homeOrgWorkTypes',
   general_organization_types: 'homeOrgGeneral',

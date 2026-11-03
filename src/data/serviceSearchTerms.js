@@ -42,6 +42,7 @@ export const SERVICE_SEARCH_TERMS = {
   eldercare: ['עזרה לקשישים', 'Elder Care', 'Aide aux seniors', 'Уход за пожилыми'],
   mechanic: ['מכונאי רכב ביתי', 'Mobile Car Mechanic', 'Garagiste à Domicile', 'Автомеханик на дому'],
   driver: ['הסעות', 'Transportation', 'Transport', 'Перевозки'],
+  art_therapy: ['טיפול באמנות', 'Art Therapy', 'Art-thérapie', 'Арт-терапия'],
   security_cameras: ["מצלמות אבטחה", "Security Cameras", "Caméras de surveillance", "Камеры видеонаблюдения"],
   security_alarms: ["מערכות אזעקה", "Security Alarms", "Alarmes de sécurité", "Охранная сигнализация"],
   intercom_access: ["אינטרקום ובקרת כניסה", "Intercoms & Access Control", "Interphones et contrôle d'accès", "Домофоны и контроль доступа"],

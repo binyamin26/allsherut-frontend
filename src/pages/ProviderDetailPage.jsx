@@ -14,6 +14,7 @@ import { SECURITY_SERVICES, isSecurityService } from '../data/securityServices';
 import { buildServicePath, serviceTypeToKey } from '../utils/langUtils';
 import { TUTORING_SUBCATEGORIES } from '../data/subcategoriesData';
 import { normalizeSportsSubjects } from '../utils/sportsSubjects';
+import { ART_THERAPY_GROUPS } from '../data/artTherapy';
 import {
   MapPin, Clock, Phone, Mail, Award,
   Calendar, MessageCircle, ThumbsUp, User, Shield,
@@ -186,6 +187,7 @@ const ProviderDetailPage = () => {
     metalwork: '/images/logo fer.jpg',
     driver: '/images/logo driver.jpg',
     doula: '/images/WhatsApp Image 2026-10-25 at 16.49.48.jpeg',
+    art_therapy: '/images/nature-morte-medicale.jpg',
     smart_home: '/images/Gemini_Generated_Image_fd1bjpfd1bjpfd1b (1).jpg',
     security_cameras: '/images/Gemini_Generated_Image_aecn7caecn7caecn (1).jpg',
     security_alarms: '/images/Gemini_Generated_Image_2mk58u2mk58u2mk5 (1).jpg',
@@ -1420,6 +1422,24 @@ const handleContact = () => {
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
             <IconLabel icon={ClipboardList}>{t('provider.details.specificConditions')}:</IconLabel>
             <span>{details.specialConditions.map(c => t(`serviceForm.eldercare.conditions.${c}`, { defaultValue: c })).join(', ')}</span>
+          </div>
+        )}
+
+        {/* ART-THÉRAPIE - champs spécifiques (voir data/artTherapy.js) */}
+        {provider.serviceType === 'art_therapy' && ART_THERAPY_GROUPS.map(group => {
+          const values = details[group.field];
+          if (!Array.isArray(values) || values.length === 0) return null;
+          return (
+            <div key={group.field} className="detail-item" style={{ gridColumn: '1 / -1' }}>
+              <IconLabel icon={Sparkles}>{t(group.titleKey)}:</IconLabel>
+              <span>{values.map(v => { const o = group.options.find(opt => opt.value === v); return o ? t(o.key) : v; }).join(', ')}</span>
+            </div>
+          );
+        })}
+        {provider.serviceType === 'art_therapy' && details.qualifications && (
+          <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+            <IconLabel icon={Award}>{t('serviceForm.art_therapy.qualificationsTitle')}:</IconLabel>
+            <span>{details.qualifications}</span>
           </div>
         )}
 
