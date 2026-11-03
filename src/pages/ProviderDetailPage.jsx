@@ -1379,15 +1379,8 @@ const handleContact = () => {
                     </div>
                   );
                 }).filter(Boolean);
-                const others = details.subjects.filter(s => !categorized.has(s));
-                if (others.length) {
-                  elements.push(
-                    <div key="other" className="detail-item" style={{ gridColumn: '1 / -1' }}>
-                      <IconLabel icon={BookOpen}>{t('filters.tutoring.other')}:</IconLabel>
-                      <span>{others.map((s, i) => <span key={i}>{cleanName(s)}{i < others.length - 1 ? ', ' : ''}</span>)}</span>
-                    </div>
-                  );
-                }
+                // Les disciplines hors liste officielle (anciennes saisies libres, parfois corrompues)
+                // ne sont plus affichées sous « אחר ».
                 return <>{elements}</>;
               }
               return (
