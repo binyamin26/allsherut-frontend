@@ -2018,7 +2018,7 @@ const handleContact = () => {
                         padding: '0.2rem 0.5rem',
                         borderRadius: '6px',
                         whiteSpace: 'nowrap',
-                      }}>{/₪|ש["״]?ח|שקל/.test(item.price || '')
+                      }}>{/₪|ש["״]?ח|שקל/.test(item.price || '') || !/\d/.test(item.price || '')
                         ? item.price
                         : <span dir="ltr">{`₪${item.price}`}</span>}</span>
                     </div>
