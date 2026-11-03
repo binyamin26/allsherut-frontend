@@ -1861,7 +1861,11 @@ const renderWorkingAreasSection = () => {
                    style={{ resize: 'vertical', minHeight: '100px', width: '100%' }}
                  />
                  <small style={{ display: 'block', textAlign: 'start', color: '#6b7280', marginTop: '4px' }}>
-                   {(formData.serviceDetails.description || '').length}/{SELF_DESCRIPTION_MAX}
+                   {t('auth.selfDescriptionCounter', {
+                     current: (formData.serviceDetails.description || '').trim().length,
+                     max: SELF_DESCRIPTION_MAX,
+                     min: SELF_DESCRIPTION_MIN
+                   })}
                  </small>
                  {errors['serviceDetails.description'] && (
                    <span className="error-text">{errors['serviceDetails.description']}</span>
