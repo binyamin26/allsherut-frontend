@@ -13,6 +13,7 @@ import { translateValue, translateAndJoin, translateArrayFromMultipleCategories 
 import { SECURITY_SERVICES, isSecurityService } from '../data/securityServices';
 import { buildServicePath, serviceTypeToKey } from '../utils/langUtils';
 import { TUTORING_SUBCATEGORIES } from '../data/subcategoriesData';
+import { normalizeSportsSubjects } from '../utils/sportsSubjects';
 import {
   MapPin, Clock, Phone, Mail, Award,
   Calendar, MessageCircle, ThumbsUp, User, Shield,
@@ -399,7 +400,11 @@ const handleContact = () => {
  const renderServiceDetails = () => {
   if (!provider || !provider.serviceDetails) return null;
 
-  const details = provider.serviceDetails;
+  const rawDetails = provider.serviceDetails;
+  // Sports : remet à l'endroit les mots hébreux enregistrés à l'envers et retire les noms de langues mêlés aux disciplines
+  const details = provider.serviceType === 'sports_activities' && Array.isArray(rawDetails.subjects)
+    ? { ...rawDetails, subjects: normalizeSportsSubjects(rawDetails.subjects, rawDetails.languages).map(x => x.he) }
+    : rawDetails;
 
   return (
     <div className="service-details-section">

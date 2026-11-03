@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Phone, Eye, MapPin } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import CallLeadModal from '../modals/CallLeadModal';
-import { SPORTS_SUBCATEGORIES } from '../../data/subcategoriesData';
+import { normalizeSportsSubjects, localizedSportName } from '../../utils/sportsSubjects';
 
 const MAX_ACTIVITIES_ON_CARD = 3;
 
@@ -97,16 +97,9 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
   // Sports & activités uniquement : disciplines proposées (football, boxe...) affichées sur la carte
   const getSportsActivities = () => {
     if ((provider.serviceType || provider.service_type) !== 'sports_activities') return [];
-    const subjects = provider.service_details?.subjects;
-    if (!Array.isArray(subjects)) return [];
-    const clean = (s) => (s || '').replace(/‏/g, '').trim();
-    const seen = new Set();
-    return subjects
-      .map(subj => {
-        const sub = SPORTS_SUBCATEGORIES.find(x => clean(x.name_he) === clean(subj));
-        return clean(sub ? (sub[`name_${currentLanguage}`] || sub.name_he) : subj);
-      })
-      .filter(name => name && !seen.has(name) && seen.add(name));
+    const details = provider.service_details;
+    return normalizeSportsSubjects(details?.subjects, details?.languages)
+      .map(item => localizedSportName(item, currentLanguage));
   };
   const sportsActivities = getSportsActivities();
 
