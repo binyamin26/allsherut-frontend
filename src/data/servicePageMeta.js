@@ -81,7 +81,7 @@ export const SERVICE_PAGE_META = {
   art_therapy: {
     title: 'מטפלים באמנות',
     description: 'מצאו מטפל באמנות בישראל - ציור, פיסול ויצירה, טיפול פרטני, קבוצתי או אונליין.',
-    heroImage: '/images/art-therapy.jpg',
+    heroImage: '/images/art-therapy-logo.jpg',
     heroAlt: 'טיפול באמנות',
   },
   // Catégorie Sécurité : pas encore d'image de héros (heroImage vide → emoji côté page)
