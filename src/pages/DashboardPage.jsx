@@ -1591,6 +1591,12 @@ const profileCompletionStatus = (() => {
             </div>
             
             <div className="quick-actions">
+              {userData?.role === 'admin' && (
+                <Link to="/admin/stats" className="btn btn-primary">
+                  <BarChart3 size={18} />
+                  Stats
+                </Link>
+              )}
               {userData?.role !== 'provider' && (
                 <>
               <Link to="/search" className="btn btn-secondary">
