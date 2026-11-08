@@ -323,7 +323,7 @@ const AdminStatsPage = () => {
                 <Delta cur={periodLeads} prev={data.previous.leads} days={days} />
               </Kpi>
               <Kpi label="Clients uniques" value={nf(data.uniqueClients)}>
-                <span className="text-ui-small">numéros de téléphone distincts</span>
+                <span className="text-ui-small">téléphones distincts</span>
               </Kpi>
               <Kpi label="Nouveaux prestataires" value={nf(newProv)}>
                 <Delta cur={newProv} prev={data.previous.providers} days={days} />
