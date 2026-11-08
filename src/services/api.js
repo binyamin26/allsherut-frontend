@@ -10,12 +10,26 @@ class ApiService {
     return localStorage.getItem('homesherut_token');
   }
 
-  buildURL(endpoint) {
+  // Sur les domaines de production, on passe par le même domaine (rewrite Vercel /api -> fly.dev).
+  // Les filtres réseau (NetFree, Etrog/Netspark) bloquent souvent fly.dev mais laissent passer allsherut.com.
+  // Les envois de fichiers (FormData) et le dev local gardent l'appel direct vers fly.dev.
+  isSameOriginProxy() {
+    try {
+      return ['allsherut.com', 'www.allsherut.com', 'homesherut-frontend.vercel.app'].includes(window.location.hostname);
+    } catch {
+      return false;
+    }
+  }
+
+  buildURL(endpoint, { direct = false } = {}) {
+    if (!direct && this.isSameOriginProxy()) {
+      return this.basePath + endpoint;
+    }
     return this.protocol + this.domain + this.basePath + endpoint;
   }
 
   async request(endpoint, options = {}) {
-    const fullURL = this.buildURL(endpoint);
+    const fullURL = this.buildURL(endpoint, { direct: options.body instanceof FormData });
 
     const token = this.getAuthToken();
     const headers = {
