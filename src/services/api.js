@@ -226,6 +226,10 @@ class ApiService {
     return this.request(`/contact-clicks/my-clicks?period=${period}&page=${page}`);
   }
 
+  async getAdminStats(days = 30) {
+    return this.request(`/admin-stats?days=${days}`);
+  }
+
   async testConnection() {
     return this.request('/health');
   }

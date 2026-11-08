@@ -32,6 +32,7 @@ const CategoryPage = lazyWithRetry(() => import('./pages/CategoryPage'));
 const ContactPage = lazyWithRetry(() => import('./pages/ContactPage'));
 const ResetPasswordPage = lazyWithRetry(() => import('./pages/ResetPasswordPage'));
 const AdminVerifyProviderPage = lazyWithRetry(() => import('./pages/AdminVerifyProviderPage'));
+const AdminStatsPage = lazyWithRetry(() => import('./pages/AdminStatsPage'));
 // PAIEMENT DÉSACTIVÉ - RÉACTIVER QUAND SITE PAYANT
 // import BillingPage from './pages/BillingPage';
 const HowItWorksPage = lazyWithRetry(() => import('./pages/HowItWorksPage'));
@@ -323,6 +324,7 @@ function App() {
                 <Route path="/forgot-password" element={<ForgotPasswordPage />} />
                 <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
                 <Route path="/admin/verify-provider/:token" element={<AdminVerifyProviderPage />} />
+                <Route path="/admin/stats" element={<AdminStatsPage />} />
              
               
                 {/* Page de détails provider */}
