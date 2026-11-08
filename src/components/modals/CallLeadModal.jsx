@@ -46,6 +46,14 @@ const CallLeadModal = ({ isOpen, onClose, providerId, providerPhone, providerWha
     }
 
     setLoading(true);
+    try {
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', action === 'whatsapp' ? 'click_whatsapp' : 'click_call', {
+          service_name: serviceName || '',
+          lead_source: source,
+        });
+      }
+    } catch { /* GA bloqué (adblock/filtre) : sans importance */ }
     if (providerId) {
       apiService.logContactClick(providerId, action, source, phone).catch(() => {});
     }
