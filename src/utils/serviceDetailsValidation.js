@@ -293,6 +293,13 @@ export const getServiceDetailsErrors = (serviceType, serviceDetails, t) => {
       if (!(serviceDetails.qualifications || '').trim()) errors.qualifications = t('validation.qualificationsRequired');
       break;
 
+    case 'kinesiology':
+      ['kine_technique_types', 'audience_types', 'session_types', 'location_types'].forEach(field => {
+        if (!serviceDetails[field] || serviceDetails[field].length === 0) errors[field] = t('validation.selectAtLeastOne');
+      });
+      if (!(serviceDetails.qualifications || '').trim()) errors.qualifications = t('validation.qualificationsRequired');
+      break;
+
     default:
       if (isSecurityService(serviceType)) {
         if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) errors.availability_hours = t('validation.availabilityHoursRequired');

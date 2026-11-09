@@ -76,7 +76,7 @@ export const CATEGORY_DEFINITIONS = [
     },
     image: '/images/nature-morte-medicale.jpg',
     gradient: 'from-teal-500 to-cyan-600',
-    serviceIds: ['doula', 'art_therapy'],
+    serviceIds: ['doula', 'art_therapy', 'kinesiology'],
   },
   {
     id: 'evenements-creation',
@@ -218,4 +218,6 @@ export const SERVICES_META = {
   smart_home:         { image: '/images/Gemini_Generated_Image_44cdrh44cdrh44cd (1).jpg', href: '/services/smart-home', nameKey: 'services.smart_home' },
   doula:              { image: '/images/doula.jpeg',           href: '/services/doula',              nameKey: 'services.doula' },
   art_therapy:        { image: '/images/art-therapy-logo.jpg', icon: '🎨', href: '/services/art-therapy', nameKey: 'services.art_therapy' },
+  // Pas d'image dédiée pour l'instant → emoji (fallback image ? <img> : icon)
+  kinesiology:        { icon: '🧠', href: '/services/kinesiology', nameKey: 'services.kinesiology' },
 };

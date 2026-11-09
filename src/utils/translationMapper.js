@@ -2,10 +2,15 @@
 // SYNCHRONISÉ AVEC filterConfig.js
 
 import { ART_THERAPY_GROUPS } from '../data/artTherapy';
+import { KINESIOLOGY_GROUPS } from '../data/kinesiology';
 
 const artMap = (field) => Object.fromEntries(ART_THERAPY_GROUPS.find(g => g.field === field).options.map(o => [o.value, o.key]));
 
+const kineMap = (field) => Object.fromEntries(KINESIOLOGY_GROUPS.find(g => g.field === field).options.map(o => [o.value, o.key]));
+
 const translationMappings = {
+  kinesiologyTechniques: kineMap('kine_technique_types'),
+  kinesiologyGoals: kineMap('kine_goal_types'),
   artTherapyTechniques: artMap('technique_types'),
   artTherapyAudience: artMap('audience_types'),
   artTherapyGoals: artMap('goal_types'),

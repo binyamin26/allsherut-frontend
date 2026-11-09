@@ -102,6 +102,10 @@ const fieldToCategoryMapping = {
   session_types: 'artTherapySessions',
   location_types: 'artTherapyLocations',
 
+  // KINÉSIOLOGIE (public / séances / lieu réutilisent les champs de l'art-thérapie)
+  kine_technique_types: 'kinesiologyTechniques',
+  kine_goal_types: 'kinesiologyGoals',
+
   // HOME ORGANIZATION
   org_work_types: 'homeOrgWorkTypes',
   general_organization_types: 'homeOrgGeneral',

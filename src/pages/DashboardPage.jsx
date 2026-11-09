@@ -68,7 +68,7 @@ const ALL_SERVICE_KEYS = [
   'aluminum','metalwork','glass_works','gas_technician','waterproofing','carpentry','handyman','mechanic','contractor',
   'moving','gardening','pest_control','cleaning','laundry','property_management',
   'home_organization','event_decoration','event_entertainment','event_equipment_rental','event_food_stands','dj','private_chef','catering','pastry',
-  'photographer','tutoring','sports_activities','babysitting','petcare','eldercare','driver','doula','art_therapy',
+  'photographer','tutoring','sports_activities','babysitting','petcare','eldercare','driver','doula','art_therapy','kinesiology',
   'security_cameras','security_alarms','intercom_access','networking','audio_systems','smart_home'
 ];
 
@@ -1530,6 +1530,7 @@ const getServiceName = (serviceType) => {
       driver: 'services.driver',
       doula: 'services.doula',
       art_therapy: 'services.art_therapy',
+      kinesiology: 'services.kinesiology',
       security_cameras: 'services.security_cameras',
       security_alarms: 'services.security_alarms',
       intercom_access: 'services.intercom_access',

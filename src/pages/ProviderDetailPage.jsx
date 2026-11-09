@@ -15,6 +15,7 @@ import { buildServicePath, serviceTypeToKey } from '../utils/langUtils';
 import { TUTORING_SUBCATEGORIES } from '../data/subcategoriesData';
 import { normalizeSportsSubjects } from '../utils/sportsSubjects';
 import { ART_THERAPY_GROUPS } from '../data/artTherapy';
+import { KINESIOLOGY_GROUPS } from '../data/kinesiology';
 import {
   MapPin, Clock, Phone, Mail, Award,
   Calendar, MessageCircle, ThumbsUp, User, Shield,
@@ -1439,6 +1440,24 @@ const handleContact = () => {
         {provider.serviceType === 'art_therapy' && details.qualifications && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
             <IconLabel icon={Award}>{t('serviceForm.art_therapy.qualificationsTitle')}:</IconLabel>
+            <span>{details.qualifications}</span>
+          </div>
+        )}
+
+        {/* KINÉSIOLOGIE - champs spécifiques (voir data/kinesiology.js) */}
+        {provider.serviceType === 'kinesiology' && KINESIOLOGY_GROUPS.map(group => {
+          const values = details[group.field];
+          if (!Array.isArray(values) || values.length === 0) return null;
+          return (
+            <div key={group.field} className="detail-item" style={{ gridColumn: '1 / -1' }}>
+              <IconLabel icon={Sparkles}>{t(group.titleKey)}:</IconLabel>
+              <span>{values.map(v => { const o = group.options.find(opt => opt.value === v); return o ? t(o.key) : v; }).join(', ')}</span>
+            </div>
+          );
+        })}
+        {provider.serviceType === 'kinesiology' && details.qualifications && (
+          <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+            <IconLabel icon={Award}>{t('serviceForm.kinesiology.qualificationsTitle')}:</IconLabel>
             <span>{details.qualifications}</span>
           </div>
         )}

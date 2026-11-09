@@ -84,6 +84,13 @@ export const SERVICE_PAGE_META = {
     heroImage: '/images/art-therapy-logo.jpg',
     heroAlt: 'טיפול באמנות',
   },
+  // Pas encore d'image de héros (heroImage vide → emoji côté page)
+  kinesiology: {
+    title: 'קינזיולוגים',
+    description: 'מצאו קינזיולוג בישראל - קינזיולוגיה יישומית ורגשית, טיפול פרטני, קבוצתי או אונליין.',
+    heroImage: '',
+    heroAlt: 'קינזיולוגיה',
+  },
   // Catégorie Sécurité : pas encore d'image de héros (heroImage vide → emoji côté page)
   security_cameras: {
     title: 'מתקיני מצלמות אבטחה',

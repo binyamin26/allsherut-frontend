@@ -40,6 +40,7 @@ const SERVICE_URLS = {
   driver: '/services/driver',
   doula: '/services/doula',
   art_therapy: '/services/art-therapy',
+  kinesiology: '/services/kinesiology',
   security_cameras: '/services/security-cameras',
   security_alarms: '/services/security-alarms',
   intercom_access: '/services/intercom-access',
