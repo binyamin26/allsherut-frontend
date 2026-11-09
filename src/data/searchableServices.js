@@ -729,6 +729,18 @@ const searchableServices = [
   { label: 'טיפול פרטני', labelEn: 'Individual sessions', labelFr: 'Séances individuelles', labelRu: 'Индивидуальные занятия', href: '/services/art-therapy', type: 'specialty' },
   { label: 'טיפול קבוצתי', labelEn: 'Group sessions', labelFr: 'Séances en groupe', labelRu: 'Групповые занятия', href: '/services/art-therapy', type: 'specialty' },
 
+  // KINÉSIOLOGIE
+  { label: 'קינזיולוגיה', labelEn: 'Kinesiology', labelFr: 'Kinésiologie', labelRu: 'Кинезиология', href: '/services/kinesiology', type: 'service' },
+  { label: 'קינזיולוג', labelEn: 'Kinesiologist', labelFr: 'Kinésiologue', labelRu: 'Кинезиолог', href: '/services/kinesiology', type: 'service' },
+  { label: 'קינזיולוגיה יישומית (בדיקת שרירים)', labelEn: 'Applied kinesiology (muscle testing)', labelFr: 'Kinésiologie appliquée (test musculaire)', labelRu: 'Прикладная кинезиология (мышечное тестирование)', href: '/services/kinesiology', type: 'specialty' },
+  { label: 'קינזיולוגיה רגשית', labelEn: 'Emotional kinesiology', labelFr: 'Kinésiologie émotionnelle', labelRu: 'Эмоциональная кинезиология', href: '/services/kinesiology', type: 'specialty' },
+  { label: 'Touch for Health', labelEn: 'Touch for Health', labelFr: 'Touch for Health', labelRu: 'Touch for Health', href: '/services/kinesiology', type: 'specialty' },
+  { label: 'Brain Gym / Edu-K (למידה ותיאום)', labelEn: 'Brain Gym / Edu-K (learning and coordination)', labelFr: 'Brain Gym / Edu-K (apprentissage et coordination)', labelRu: 'Brain Gym / Edu-K (обучение и координация)', href: '/services/kinesiology', type: 'specialty' },
+  { label: 'קינזיולוגיה מתמחה', labelEn: 'Specialized kinesiology', labelFr: 'Kinésiologie spécialisée', labelRu: 'Специализированная кинезиология', href: '/services/kinesiology', type: 'specialty' },
+  { label: 'טכניקות משולבות', labelEn: 'Combined techniques', labelFr: 'Techniques combinées', labelRu: 'Комбинированные техники', href: '/services/kinesiology', type: 'specialty' },
+  { label: 'התמודדות עם לחץ וחרדה', labelEn: 'Stress and anxiety management', labelFr: 'Gestion du stress et de l\'anxiété', labelRu: 'Работа со стрессом и тревогой', href: '/services/kinesiology', type: 'specialty' },
+  { label: 'שינה והתאוששות', labelEn: 'Sleep and recovery', labelFr: 'Sommeil et récupération', labelRu: 'Сон и восстановление', href: '/services/kinesiology', type: 'specialty' },
+
 
   // SÉCURITÉ / RÉSEAUX / MAISON INTELLIGENTE (service + types de travaux + détails du filtre)
   { label: "מצלמות אבטחה", labelEn: "Security Cameras", labelFr: "Caméras de surveillance", labelRu: "Камеры видеонаблюдения", href: '/services/security-cameras', type: 'service' },
