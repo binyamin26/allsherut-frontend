@@ -19,7 +19,7 @@ import { getServiceDetailsErrors } from '../../utils/serviceDetailsValidation';
 const SELF_DESCRIPTION_MIN = 30;
 const SELF_DESCRIPTION_MAX = 300;
 // Galerie photos à l'inscription : même règle que le calcul "profil 100%" (backend/utils/profileCompleteness.js)
-const GALLERY_OPTIONAL_SERVICES = ['babysitting', 'property_management', 'doula', 'tutoring', 'art_therapy'];
+const GALLERY_OPTIONAL_SERVICES = ['babysitting', 'property_management', 'doula', 'tutoring', 'art_therapy', 'eldercare'];
 const GALLERY_MIN = 1;
 const GALLERY_MAX = 10;
 
