@@ -10,7 +10,7 @@ import ServiceDetailsForm from '../services/ServiceDetailsForm';
 import RecruitmentForm from '../recruitment/RecruitmentForm';
 import { useLanguage } from '../../context/LanguageContext';
 import CustomDropdown from '../common/CustomDropdown';
-import { SERVICES_META, CATEGORY_DEFINITIONS } from '../../data/categories';
+import { SERVICES_META, CATEGORY_DEFINITIONS, RECRUITMENT_EXCLUDED_SERVICE_IDS } from '../../data/categories';
 import { SERVICE_SEARCH_TERMS } from '../../data/serviceSearchTerms';
 import { getServiceDetailsErrors } from '../../utils/serviceDetailsValidation';
 
@@ -250,7 +250,8 @@ const groupedServices = CATEGORY_DEFINITIONS
     id: category.id,
     title: category.names[language] || category.names.he,
     items: services.filter(service =>
-      category.serviceIds.includes(service.key) && matchesSearch(service.key)
+      category.serviceIds.includes(service.key) && matchesSearch(service.key) &&
+      !(formData.seekingType === 'recruitment' && RECRUITMENT_EXCLUDED_SERVICE_IDS.includes(service.key))
     )
   }))
   .filter(category => category.items.length > 0);

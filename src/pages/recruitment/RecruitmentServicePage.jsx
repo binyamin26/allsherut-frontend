@@ -7,7 +7,7 @@ import LocationSelector from '../../components/LocationSelector';
 import Reveal from '../../components/common/Reveal';
 import SEO from '../../components/common/SEO';
 import NotFoundPage from '../NotFoundPage';
-import { HIDDEN_SERVICE_IDS } from '../../data/categories';
+import { HIDDEN_SERVICE_IDS, RECRUITMENT_EXCLUDED_SERVICE_IDS } from '../../data/categories';
 
 const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
@@ -74,7 +74,7 @@ const RecruitmentServicePage = () => {
   const { service: rawService } = useParams();
   const service = rawService?.replace(/-/g, '_');
   // Service rattaché à une catégorie masquée → 404 (masqué jusqu'à nouvel ordre).
-  const isHiddenService = !!service && HIDDEN_SERVICE_IDS.includes(service);
+  const isHiddenService = !!service && (HIDDEN_SERVICE_IDS.includes(service) || RECRUITMENT_EXCLUDED_SERVICE_IDS.includes(service));
   const { t, isRTL } = useLanguage();
 
   const [listings, setListings]   = useState([]);
@@ -94,7 +94,7 @@ const RecruitmentServicePage = () => {
   const [langFilter,    setLangFilter]    = useState('');
   const [expFilter,     setExpFilter]     = useState('');
 
-  useEffect(() => { if (service && !HIDDEN_SERVICE_IDS.includes(service)) loadListings(); }, [service]);
+  useEffect(() => { if (service && !HIDDEN_SERVICE_IDS.includes(service) && !RECRUITMENT_EXCLUDED_SERVICE_IDS.includes(service)) loadListings(); }, [service]);
 
   const loadListings = async () => {
     setLoading(true); setError(null);

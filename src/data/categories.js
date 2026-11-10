@@ -167,6 +167,13 @@ export const HIDDEN_SERVICE_IDS = CATEGORY_DEFINITIONS
   .filter(cat => cat.hidden)
   .flatMap(cat => cat.serviceIds);
 
+// Services pour lesquels le RECRUTEMENT (offres d'emploi) n'a pas de sens: professions libérales ou prestations
+// ponctuelles. Ne retire PAS le service lui-même (les prestataires restent visibles); seul le recrutement est masqué.
+export const RECRUITMENT_EXCLUDED_SERVICE_IDS = [
+  'doula', 'kinesiology', 'art_therapy', 'dj', 'event_entertainment',
+  'event_equipment_rental', 'event_food_stands', 'home_organization', 'babysitting',
+];
+
 // Catégories visibles uniquement (à utiliser pour tout affichage public).
 export const VISIBLE_CATEGORY_DEFINITIONS = CATEGORY_DEFINITIONS.filter(cat => !cat.hidden);
 

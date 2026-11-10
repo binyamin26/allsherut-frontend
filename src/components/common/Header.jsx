@@ -6,7 +6,7 @@ import AuthModal from '../auth/AuthModal'
 import ServiceSearchBar from './ServiceSearchBar'
 import { useLanguage } from '../../context/LanguageContext'
 import { SUPPORTED_LANGS, getLangFromPath, buildServicePath, buildPath, getServiceKeyFromSlug } from '../../utils/langUtils'
-import { HIDDEN_SERVICE_IDS } from '../../data/categories'
+import { HIDDEN_SERVICE_IDS, RECRUITMENT_EXCLUDED_SERVICE_IDS } from '../../data/categories'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -114,6 +114,7 @@ const Header = () => {
     { icon: <Cog className="w-5 h-5" />, nameKey: 'services.handyman', descKey: 'services.handyman.desc', serviceKey: 'handyman' },
     { icon: <HardHat className="w-5 h-5" />, nameKey: 'services.contractor', descKey: 'services.contractor.desc', serviceKey: 'contractor' }
   ].filter(s => !HIDDEN_SERVICE_IDS.includes(s.serviceKey.replace(/-/g, '_')))
+  const recruitmentServices = services.filter(s => !RECRUITMENT_EXCLUDED_SERVICE_IDS.includes(s.serviceKey.replace(/-/g, '_')))
 
   const handleLogout = async () => {
     await logout()
@@ -236,7 +237,7 @@ const Header = () => {
       </svg>
     </div>
     <div className="services-dropdown-menu">
-      {services.map((service, index) => {
+      {recruitmentServices.map((service, index) => {
         const recruitHref = buildPath(`/recruitment/${service.serviceKey}`, currentLanguage);
         return (
           <Link
@@ -426,7 +427,7 @@ const Header = () => {
 
               {showMobileRecruitment && (
                 <div className="mobile-drawer-services-grid">
-                  {services.map((service, index) => {
+                  {recruitmentServices.map((service, index) => {
                     const recruitHref = buildPath(`/recruitment/${service.serviceKey}`, currentLanguage);
                     return (
                       <Link
