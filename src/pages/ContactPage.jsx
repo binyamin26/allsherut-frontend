@@ -11,6 +11,7 @@ import {
   Mail
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import SEO from '../components/common/SEO';
 import CustomDropdown from '../components/common/CustomDropdown';
 
 const ContactPage = () => {
@@ -141,6 +142,7 @@ const ContactPage = () => {
 
   return (
     <div className="min-h-screen bg-neutral-50 pt-20 pb-16">
+      <SEO title={`${t('contact.hero.title')} ${t('contact.hero.titleAccent')}`} description={t('contact.hero.description')} canonicalPath="/contact" sameUrlForAllLangs />
       <div className="container">
 
 {/* Hero Section */}

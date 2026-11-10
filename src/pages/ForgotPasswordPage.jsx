@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Mail, ArrowRight, CheckCircle, AlertCircle, Loader, Home } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import SEO from '../components/common/SEO';
 
 
 const API_BASE = import.meta.env.VITE_API_URL;
@@ -138,6 +139,7 @@ const ForgotPasswordPage = () => {
   // Form state
   return (
     <div className="forgot-password-page">
+      <SEO title="AllSherut" canonicalPath="/forgot-password" noindex sameUrlForAllLangs />
       <div className="container">
         <div className="forgot-card">
           {/* Header */}

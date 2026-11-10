@@ -1,10 +1,12 @@
 import React from 'react';
 import { Shield, Lock, Database, Eye, Mail, Globe, UserCheck, Clock, AlertCircle } from 'lucide-react';
 import '../styles/pages/privacy-policy.css';
+import SEO from '../components/common/SEO';
 
 const PrivacyPolicy = () => {
   return (
     <div className="privacy-page" dir="rtl">
+      <SEO title="מדיניות פרטיות" description="מדיניות הפרטיות של AllSherut: איך אנחנו אוספים, משתמשים ושומרים מידע אישי." canonicalPath="/privacy" sameUrlForAllLangs />
       
       <main className="privacy-content">
         <div className="container">

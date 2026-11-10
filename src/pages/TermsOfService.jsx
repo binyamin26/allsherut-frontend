@@ -1,10 +1,12 @@
 import React from 'react';
 import { FileText, Shield, Users, CreditCard, AlertCircle,AlertTriangle, Scale } from 'lucide-react';
 import '../styles/pages/terms-of-service.css';
+import SEO from '../components/common/SEO';
 
 const TermsOfService = () => {
   return (
     <div className="terms-page" dir="rtl">
+      <SEO title="תנאי שימוש" description="תנאי השימוש של פלטפורמת AllSherut ללקוחות ולנותני שירות." canonicalPath="/terms" sameUrlForAllLangs />
       
       <main className="terms-content">
         <div className="container">

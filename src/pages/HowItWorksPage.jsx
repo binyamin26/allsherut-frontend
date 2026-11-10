@@ -17,6 +17,7 @@ import {
 import AuthModal from '../components/auth/AuthModal';
 import { useLanguage } from '../context/LanguageContext';
 import Reveal from '../components/common/Reveal';
+import SEO from '../components/common/SEO';
 
 const HowItWorksPage = () => {
   const [showAuthModal, setShowAuthModal] = useState(false);
@@ -24,6 +25,7 @@ const HowItWorksPage = () => {
 
   return (
     <div className="how-it-works-page" dir={language === 'he' ? 'rtl' : 'ltr'}>
+      <SEO title={t('howItWorks.title')} description={t('howItWorks.subtitle')} canonicalPath="/how-it-works" sameUrlForAllLangs />
       <div className="container">
         
         {/* Hero Section */}
