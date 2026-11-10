@@ -1509,7 +1509,7 @@ const handleContact = () => {
         })()}
 
         {/* Horaires de disponibilité pour les catégories qui n'ont pas leur propre bloc */}
-        {!['tutoring', 'sports_activities', 'babysitting', 'petcare', 'eldercare', 'event_entertainment', 'event_equipment_rental', 'event_food_stands', 'dj', 'locksmith', 'metalwork'].includes(provider.serviceType) && !isSecurityService(provider.serviceType) && Array.isArray(details.availability_hours) && details.availability_hours.length > 0 && (
+        {!['tutoring', 'sports_activities', 'babysitting', 'petcare', 'eldercare', 'event_entertainment', 'event_equipment_rental', 'event_food_stands', 'dj', 'locksmith', 'metalwork', 'driver'].includes(provider.serviceType) && !isSecurityService(provider.serviceType) && Array.isArray(details.availability_hours) && details.availability_hours.length > 0 && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
             <IconLabel icon={Clock}>{t('provider.details.availableHours')}:</IconLabel>
             <span>{translateAndJoin(details.availability_hours, 'hours', t)}</span>
