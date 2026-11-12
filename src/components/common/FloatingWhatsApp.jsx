@@ -1,8 +1,14 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 
 const WA_NUMBER = '972586613260';
 
 export default function FloatingWhatsApp() {
+  const { pathname } = useLocation();
+
+  // Masqué sur les profils prestataires : les clients le confondaient avec le numéro du prestataire
+  if (pathname.startsWith('/provider/')) return null;
+
   return (
     <a
       href={`https://wa.me/${WA_NUMBER}`}
