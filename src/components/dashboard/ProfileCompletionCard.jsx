@@ -8,7 +8,7 @@ import { useLanguage } from '../../context/LanguageContext';
 // GALLERY_OPTIONAL_SERVICES dans backend/utils/profileCompleteness.js).
 export const GALLERY_OPTIONAL_SERVICES = ['babysitting', 'property_management', 'doula', 'tutoring', 'art_therapy', 'eldercare', 'kinesiology'];
 
-const ProfileCompletionCard = ({ completed, reviewsCount, galleryLabel, experienceLabel, galleryRequired = true }) => {
+const ProfileCompletionCard = ({ completed, reviewsCount, galleryLabel, experienceLabel, galleryRequired = true, pricingRequired = false }) => {
   const { t } = useLanguage();
 
   const CRITERIA = [
@@ -16,7 +16,8 @@ const ProfileCompletionCard = ({ completed, reviewsCount, galleryLabel, experien
     ...(galleryRequired ? [{ key: 'gallery', label: galleryLabel || t('dashboard.profileCompletion.itemGallery') }] : []),
     { key: 'experience', label: experienceLabel || t('dashboard.profileCompletion.itemExperience') },
     { key: 'description', label: t('dashboard.profileCompletion.itemDescription') },
-    { key: 'languages', label: t('dashboard.profileCompletion.itemLanguages') }
+    { key: 'languages', label: t('dashboard.profileCompletion.itemLanguages') },
+    ...(pricingRequired ? [{ key: 'pricing', label: t('dashboard.profileCompletion.itemPricing') }] : [])
   ];
 
   const doneCount = CRITERIA.filter(c => completed[c.key]).length;

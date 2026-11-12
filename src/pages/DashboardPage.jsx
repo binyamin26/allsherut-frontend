@@ -53,6 +53,7 @@ import DeleteAccountModal from '../components/modals/DeleteAccountModal';
 // import CancelSubscriptionModal from '../components/modals/CancelSubscriptionModal';
 import ServiceDetailsEditor from '../components/dashboard/ServiceDetailsEditor';
 import ProfileCompletionCard, { GALLERY_OPTIONAL_SERVICES } from '../components/dashboard/ProfileCompletionCard';
+import { isPricingRequired } from '../utils/pricingRequirement';
 import ShareReviewLinkCard from '../components/dashboard/ShareReviewLinkCard';
 import serviceFieldsConfig from '../components/config/serviceFieldsConfig';
 import ServiceDetailsForm from '../components/services/ServiceDetailsForm';
@@ -144,7 +145,7 @@ const ServiceIconDisplay = ({ svcType }) => {
 };
 
 const DashboardPage = () => {
-const {user, isAuthenticated, isSubscriptionExpired, getMyReviews, apiCall, updateProfile, uploadProfileImage, deleteProfileImage, switchService, deleteService, changePassword, uploadGalleryImage, deleteGalleryImage} = useAuth();
+const {user, isAuthenticated, isSubscriptionExpired, getMyReviews, apiCall, updateProfile, uploadProfileImage, deleteProfileImage, switchService, deleteService, changePassword, uploadGalleryImage, deleteGalleryImage, refreshUser} = useAuth();
   const { t } = useLanguage();
   const navigate = useNavigate();
   
@@ -225,6 +226,8 @@ const userData = useMemo(() => {
   // Tarifs
   const [pricingItems, setPricingItems] = useState([]);
   const [pricingLoading, setPricingLoading] = useState(false);
+  const [pricingLoaded, setPricingLoaded] = useState(false);
+  const [pricingPopupDismissed, setPricingPopupDismissed] = useState(false);
   const [pricingSaving, setPricingSaving] = useState(false);
   const [pricingMsg, setPricingMsg] = useState({ type: '', text: '' });
   const [pricingErrors, setPricingErrors] = useState({});
@@ -470,6 +473,7 @@ const loadMyReviews = async () => {
   const loadMyPricing = async () => {
     if (user?.role !== 'provider') return;
     setPricingLoading(true);
+    setPricingLoaded(false);
     try {
       const token = localStorage.getItem('homesherut_token');
       const activeProviderId = userData?.providerProfile?.id;
@@ -480,6 +484,7 @@ const loadMyReviews = async () => {
       const data = await res.json();
       if (data.success) {
         setPricingItems(data.data.map(item => ({ ...item, _key: item.id })));
+        setPricingLoaded(true);
       }
     } catch (err) {
       console.error('loadMyPricing error:', err);
@@ -647,6 +652,10 @@ const loadMyReviews = async () => {
         setPricingItems(data.data.map(item => ({ ...item, _key: item.id })));
         setPricingMsg({ type: 'success', text: t('pricing.saveSuccess') });
         setTimeout(() => setPricingMsg({ type: '', text: '' }), 3500);
+        // Les tarifs sont un critère du profil : la fiche a pu passer en "verified"
+        if (data.verificationStatus === 'verified' && userData?.providerProfile?.verification_status === 'pending') {
+          refreshUser?.();
+        }
       } else {
         setPricingMsg({ type: 'error', text: data.message || t('pricing.saveError') });
       }
@@ -763,7 +772,7 @@ const loadMyReviews = async () => {
     if (activeTab === 'recruitment' && user?.role === 'provider') {
       loadMyListings();
     }
-    if (activeTab === 'pricing' && user?.role === 'provider') {
+    if ((activeTab === 'pricing' || activeTab === 'overview') && user?.role === 'provider') {
       loadMyPricing();
     }
     if (activeTab === 'contacts' && user?.role === 'provider') {
@@ -1571,9 +1580,18 @@ const profileCompletionStatus = (() => {
     gallery: galleryImages.length > 0,
     experience: Number(sd.experience_years) > 0,
     description: !!(sd.description || '').trim(),
-    languages: Array.isArray(sd.languages) && sd.languages.length > 0
+    languages: Array.isArray(sd.languages) && sd.languages.length > 0,
+    pricing: pricingItems.some(item => !item.is_title)
   };
 })();
+const pricingRequired = isPricingRequired(activeServiceType);
+const othersComplete = ['photo', 'gallery', 'experience', 'description', 'languages']
+  .filter(k => k !== 'gallery' || !GALLERY_OPTIONAL_SERVICES.includes(activeServiceType))
+  .every(k => profileCompletionStatus[k]);
+const showPricingPopup = userData?.role === 'provider'
+  && userData?.providerProfile?.verification_status === 'pending'
+  && pricingRequired && pricingLoaded && !profileCompletionStatus.pricing
+  && othersComplete && !pricingPopupDismissed;
 
   return (
     <div className="dashboard-page">
@@ -1820,6 +1838,36 @@ const profileCompletionStatus = (() => {
                 </div>
               )}
 
+              {showPricingPopup && (
+                <div
+                  role="dialog"
+                  aria-modal="true"
+                  style={{ position: 'fixed', inset: 0, background: 'rgba(15,23,42,0.55)', zIndex: 10000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}
+                >
+                  <div style={{ background: '#fff', borderRadius: '16px', padding: '1.75rem', maxWidth: '440px', width: '100%', textAlign: 'center', boxShadow: '0 20px 50px rgba(0,0,0,0.25)' }}>
+                    <div style={{ fontSize: '2.2rem', marginBottom: '0.5rem' }}>⏳</div>
+                    <h3 style={{ margin: '0 0 0.75rem', fontSize: '1.2rem', color: '#0f172a' }}>{t('dashboard.pricingPopup.title')}</h3>
+                    <p style={{ margin: '0 0 1.25rem', color: '#475569', lineHeight: 1.6 }}>{t('dashboard.pricingPopup.message')}</p>
+                    <div style={{ display: 'flex', gap: '0.6rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                      <button
+                        type="button"
+                        onClick={() => { setPricingPopupDismissed(true); setActiveTab('pricing'); }}
+                        style={{ background: '#2563eb', color: '#fff', border: 'none', borderRadius: '10px', padding: '0.7rem 1.2rem', fontWeight: 600, cursor: 'pointer' }}
+                      >
+                        {t('dashboard.pricingPopup.cta')}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setPricingPopupDismissed(true)}
+                        style={{ background: '#f1f5f9', color: '#334155', border: 'none', borderRadius: '10px', padding: '0.7rem 1.2rem', fontWeight: 600, cursor: 'pointer' }}
+                      >
+                        {t('dashboard.pricingPopup.later')}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+
               {userData?.role === 'provider' && userData?.providerProfile?.verification_status === 'rejected' && (
                 <div className="rejected-approval-banner">
                   <span>{t('dashboard.rejectedApproval')}</span>
@@ -1833,6 +1881,7 @@ const profileCompletionStatus = (() => {
                   galleryLabel={t('dashboard.gallery.title')}
                   experienceLabel={profileCompletionExperienceLabel}
                   galleryRequired={!GALLERY_OPTIONAL_SERVICES.includes(activeService || userData?.serviceType)}
+                  pricingRequired={pricingRequired}
                 />
               )}
 
