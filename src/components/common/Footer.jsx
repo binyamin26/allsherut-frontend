@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useLanguage } from '../../context/LanguageContext'
-import { Mail, ChevronDown } from 'lucide-react'
+import { Mail, ChevronDown, Facebook, Instagram } from 'lucide-react'
 import { buildServicePath, serviceTypeToKey } from '../../utils/langUtils'
 import { VISIBLE_CATEGORY_DEFINITIONS, SERVICES_META } from '../../data/categories'
 
@@ -60,6 +60,29 @@ const Footer = () => {
               <Mail size={16} />
               <span>allsherutcontact@gmail.com</span>
             </a>
+
+            <div className="footer-social">
+              <a
+                href="https://www.facebook.com/profile.php?id=61592983777669"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer-social-link"
+                aria-label="Facebook"
+                title="Facebook"
+              >
+                <Facebook size={18} />
+              </a>
+              <a
+                href="https://www.instagram.com/allsherut/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer-social-link"
+                aria-label="Instagram"
+                title="Instagram"
+              >
+                <Instagram size={18} />
+              </a>
+            </div>
 
             <div className="footer-language-flags">
               {languages.map((lang) => (
