@@ -78,7 +78,7 @@
   "services.eldercare": "Elder Care",
   "services.eldercare.desc": "Professional and loving medical and personal care",
   "services.doula": "Doula",
-  "services.doula.desc": "Professional support for pregnancy and childbirth",
+  "services.doula.menuDesc": "Support for pregnancy and childbirth",
   "services.laundry": "Laundry & Ironing",
   "services.laundry.desc": "Professional laundry and ironing services",
   "services.property_management": "Property Management",

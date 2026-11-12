@@ -83,7 +83,7 @@
   "services.eldercare": "Уход за пожилыми",
   "services.eldercare.desc": "Профессиональный и заботливый медицинский и личный уход",
   "services.doula": "Доула",
-  "services.doula.desc": "Профессиональная поддержка при беременности и родах",
+  "services.doula.menuDesc": "Сопровождение при беременности и родах",
   "services.laundry": "Стирка и глажка",
   "services.laundry.desc": "Профессиональные услуги стирки и глажки",
   "services.property_management": "Управление недвижимостью",

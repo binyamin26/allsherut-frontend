@@ -89,7 +89,7 @@ const Header = () => {
     { icon: <UserCheck className="w-5 h-5" />, nameKey: 'services.eldercare', descKey: 'services.eldercare.desc', serviceKey: 'eldercare' },
     { icon: <Car className="w-5 h-5" />, nameKey: 'services.mechanic', descKey: 'services.mechanic.desc', serviceKey: 'mechanic' },
     { icon: <Navigation className="w-5 h-5" />, nameKey: 'services.driver', descKey: 'services.driver.desc', serviceKey: 'driver' },
-    { icon: <HeartPulse className="w-5 h-5" />, nameKey: 'services.doula', descKey: 'services.doula.desc', serviceKey: 'doula' },
+    { icon: <HeartPulse className="w-5 h-5" />, nameKey: 'services.doula', descKey: 'services.doula.menuDesc', serviceKey: 'doula' },
     { icon: <Palette className="w-5 h-5" />, nameKey: 'services.art_therapy', descKey: 'services.art_therapy.desc', serviceKey: 'art-therapy' },
     { icon: <Brain className="w-5 h-5" />, nameKey: 'services.kinesiology', descKey: 'services.kinesiology.desc', serviceKey: 'kinesiology' },
     { icon: <Video className="w-5 h-5" />, nameKey: 'services.security_cameras', descKey: 'services.security_cameras.desc', serviceKey: 'security-cameras' },

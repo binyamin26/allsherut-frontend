@@ -78,7 +78,7 @@
   "services.eldercare": "עזרה לקשישים",
   "services.eldercare.desc": "טיפול רפואי ואישי מקצועי ואוהב",
   "services.doula": "דולה",
-  "services.doula.desc": "ליווי מקצועי להריון וללידה",
+  "services.doula.menuDesc": "ליווי להריון וללידה",
   "services.laundry": "כביסה וגיהוץ",
   "services.laundry.desc": "שירותי כביסה וגיהוץ מקצועיים לבית נקי ומסודר",
   "services.property_management": "ניהול דירות",

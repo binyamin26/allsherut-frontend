@@ -83,7 +83,7 @@
   "services.eldercare": "Aide aux seniors",
   "services.eldercare.desc": "Soins médicaux et personnels professionnels et bienveillants",
   "services.doula": "Doula",
-  "services.doula.desc": "Accompagnement professionnel pour la grossesse et l'accouchement",
+  "services.doula.menuDesc": "Accompagnement pour la grossesse et l'accouchement",
   "services.laundry": "Blanchisserie",
   "services.laundry.desc": "Services professionnels de blanchisserie et repassage",
   "services.property_management": "Gestion immobilière",
