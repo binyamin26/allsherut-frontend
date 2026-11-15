@@ -44,7 +44,6 @@ import {
    ChevronRight,
    DollarSign,
   Calculator,
-  Heading,
   Undo2,
   CheckCircle2,
 } from 'lucide-react';
@@ -3199,7 +3198,7 @@ const showPricingPopup = userData?.role === 'provider'
                     <React.Fragment key={item._key}>
                     {renderPricingInsert(idx)}
                     {item.is_title ? (
-                    <div className="pricing-title-row" data-pricing-key={item._key} style={{
+                    <div className={`pricing-title-row${item._isNew ? ' pricing-title-row-new' : ''}`} data-pricing-key={item._key} style={{
                       margin: idx === 0 ? '1.5rem 1.25rem 1.5rem' : '3rem 1.25rem 1.75rem',
                     }}>
                       <div className="pricing-title-row-content">
@@ -3335,7 +3334,7 @@ const showPricingPopup = userData?.role === 'provider'
                       </div>
                       <div className="pricing-add-col">
                         <button type="button" className="pricing-add-btn pricing-add-section" onClick={handleAddPricingTitle}>
-                          <Heading size={16} /> {t('pricing.addSection')}
+                          {t('pricing.addSection')}
                         </button>
                         <span className="pricing-add-hint">{t('pricing.sectionHint')}</span>
                       </div>

@@ -3754,9 +3754,32 @@ select.inline-edit {
 }
 
 /* Léger fond bleuté pendant l'édition d'une ligne nouvellement ajoutée */
+/* Ligne ajoutée : bien visible (fond bleu, bordure, halo qui pulse) pour montrer où taper */
+@keyframes pricingNewPulse {
+  0% { box-shadow: 0 0 0 0 rgba(47, 128, 237, 0.55); }
+  100% { box-shadow: 0 0 0 14px rgba(47, 128, 237, 0); }
+}
+
 .pricing-row-new {
   background: #EFF6FF !important;
-  transition: background-color 0.4s ease;
+  border: 2px solid #2F80ED !important;
+  border-radius: 12px !important;
+  animation: pricingRowIn 0.25s ease-out, pricingNewPulse 1.4s ease-out 2;
+}
+
+.pricing-row-new input {
+  background: #fff !important;
+  border-color: #2F80ED !important;
+}
+
+.pricing-row-new input:focus {
+  box-shadow: 0 0 0 3px rgba(47, 128, 237, 0.3) !important;
+}
+
+.pricing-title-row-new .pricing-title-input {
+  background: #EFF6FF !important;
+  border-bottom-color: #2F80ED !important;
+  border-radius: 6px !important;
 }
 
 /* ─── Pricing — bouton supprimer : discret au repos, rouge au survol ──── */
