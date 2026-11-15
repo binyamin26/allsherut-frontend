@@ -81,15 +81,9 @@ const KinesiologyForm = ({ serviceDetails, errors, handleServiceDetailsChange })
             errors={errors}
           />
         </div>
-      </div>
-
-      <div className="form-section optional">
-        <h4>{t('serviceForm.common.optionalFields')}</h4>
-
-        {optional.map(renderGroup)}
 
         <div className="input-group">
-          <label className="auth-form-label">{t('serviceForm.common.availabilityHours')}</label>
+          <label className="auth-form-label required">{t('serviceForm.common.availabilityHours')}</label>
           <div className="checkbox-group" data-field="availability_hours">
             {KINESIOLOGY_HOURS.map(hour => (
               <label key={hour.value} className="checkbox-item">
@@ -102,7 +96,15 @@ const KinesiologyForm = ({ serviceDetails, errors, handleServiceDetailsChange })
               </label>
             ))}
           </div>
+          {errors['serviceDetails.availability_hours'] && <span className="error-text">{errors['serviceDetails.availability_hours']}</span>}
         </div>
+      </div>
+
+      <div className="form-section optional">
+        <h4>{t('serviceForm.common.optionalFields')}</h4>
+
+        {optional.map(renderGroup)}
+
       </div>
     </div>
   );

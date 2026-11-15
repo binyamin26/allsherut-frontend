@@ -287,6 +287,7 @@ export const getServiceDetailsErrors = (serviceType, serviceDetails, t) => {
       break;
 
     case 'art_therapy':
+      if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) errors.availability_hours = t('validation.availabilityHoursRequired');
       ['technique_types', 'audience_types', 'session_types', 'location_types'].forEach(field => {
         if (!serviceDetails[field] || serviceDetails[field].length === 0) errors[field] = t('validation.selectAtLeastOne');
       });
@@ -294,6 +295,7 @@ export const getServiceDetailsErrors = (serviceType, serviceDetails, t) => {
       break;
 
     case 'kinesiology':
+      if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) errors.availability_hours = t('validation.availabilityHoursRequired');
       ['kine_technique_types', 'audience_types', 'session_types', 'location_types'].forEach(field => {
         if (!serviceDetails[field] || serviceDetails[field].length === 0) errors[field] = t('validation.selectAtLeastOne');
       });
