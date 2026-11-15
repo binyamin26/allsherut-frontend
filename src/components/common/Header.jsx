@@ -140,6 +140,32 @@ const Header = () => {
   const recruitmentServices = services.filter(s => !RECRUITMENT_EXCLUDED_SERVICE_IDS.includes(s.serviceKey.replace(/-/g, '_')))
   const groupedRecruitment = groupServices(recruitmentServices)
 
+  const renderMobileGroups = (groups, getHref) => (
+    <div className="mobile-services-panel">
+      {groups.map(group => (
+        <section key={group.id} className="mobile-cat-section" style={{ '--cat-color': group.color }}>
+          <div className="mobile-cat-header">
+            <span className="text-mobile-cat-title">{group.name}</span>
+            <span className="text-mobile-cat-count">{group.items.length}</span>
+          </div>
+          <div className="mobile-drawer-services-grid">
+            {group.items.map(service => (
+              <Link
+                key={service.serviceKey}
+                to={getHref(service)}
+                className="mobile-drawer-service-item"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <div className="mobile-service-icon">{service.icon}</div>
+                <span className="text-mobile-service">{t(service.nameKey)}</span>
+              </Link>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  )
+
   const renderMegaMenu = (groups, getHref) => (
     <div className="services-mega-menu">
       <div className="services-mega-grid">
@@ -147,6 +173,7 @@ const Header = () => {
           <div key={group.id} className="mega-cat" style={{ '--cat-color': group.color }}>
             <div className="mega-cat-header">
               <span className="text-mega-cat-title">{group.name}</span>
+              <span className="text-mega-cat-count">{group.items.length}</span>
             </div>
             <ul className="mega-cat-list">
               {group.items.map(service => (
@@ -382,33 +409,7 @@ const Header = () => {
               </button>
 
               {showMobileServices && (
-                <div className="mobile-services-panel">
-                  {groupedServices.map(group => (
-                    <section
-                      key={group.id}
-                      className="mobile-cat-section"
-                      style={{ '--cat-color': group.color }}
-                    >
-                      <div className="mobile-cat-header">
-                        <span className="text-mobile-cat-title">{group.name}</span>
-                        <span className="text-mobile-cat-count">{group.items.length}</span>
-                      </div>
-                      <div className="mobile-drawer-services-grid">
-                        {group.items.map(service => (
-                          <Link
-                            key={service.serviceKey}
-                            to={buildServicePath(service.serviceKey, currentLanguage)}
-                            className="mobile-drawer-service-item"
-                            onClick={() => setIsMenuOpen(false)}
-                          >
-                            <div className="mobile-service-icon">{service.icon}</div>
-                            <span className="text-mobile-service">{t(service.nameKey)}</span>
-                          </Link>
-                        ))}
-                      </div>
-                    </section>
-                  ))}
-                </div>
+                renderMobileGroups(groupedServices, (svc) => buildServicePath(svc.serviceKey, currentLanguage))
               )}
             </div>
 
@@ -426,22 +427,7 @@ const Header = () => {
               </button>
 
               {showMobileRecruitment && (
-                <div className="mobile-drawer-services-grid">
-                  {recruitmentServices.map((service, index) => {
-                    const recruitHref = buildPath(`/recruitment/${service.serviceKey}`, currentLanguage);
-                    return (
-                      <Link
-                        key={index}
-                        to={recruitHref}
-                        className="mobile-drawer-service-item"
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        <div className="mobile-service-icon">{service.icon}</div>
-                        <span className="text-mobile-service">{t(service.nameKey)}</span>
-                      </Link>
-                    );
-                  })}
-                </div>
+                renderMobileGroups(groupedRecruitment, (svc) => buildPath(`/recruitment/${svc.serviceKey}`, currentLanguage))
               )}
             </div>
 

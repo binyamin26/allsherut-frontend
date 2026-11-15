@@ -264,6 +264,10 @@ nav {
 }
 
 .mega-cat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
   padding-bottom: 8px;
   margin-bottom: 8px;
   border-bottom: 2px solid color-mix(in srgb, var(--cat-color) 25%, transparent);
@@ -274,6 +278,17 @@ nav {
   font-size: 15px;
   font-weight: 700;
   color: var(--cat-color);
+}
+
+.text-mega-cat-count {
+  font-size: 12px;
+  font-weight: 700;
+  min-width: 24px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  text-align: center;
+  color: var(--cat-color);
+  background: color-mix(in srgb, var(--cat-color) 12%, white);
 }
 
 .mega-cat-list {
