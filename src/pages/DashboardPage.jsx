@@ -252,6 +252,7 @@ const userData = useMemo(() => {
   const pricingDirtyRef = useRef(false);
   const pricingUndoTimer = useRef(null);
   const pricingSavedTimer = useRef(null);
+  const leavingRef = useRef(false); // true quand on quitte volontairement via le bouton Retour
 
   // Modifications non enregistrées ? (uniquement sur l'onglet tarifs, une fois les données chargées)
   const pricingDirty = activeTab === 'pricing' && pricingLoaded && !pricingLoading
@@ -265,6 +266,28 @@ const userData = useMemo(() => {
     const onBeforeUnload = (e) => { e.preventDefault(); e.returnValue = ''; };
     window.addEventListener('beforeunload', onBeforeUnload);
     return () => window.removeEventListener('beforeunload', onBeforeUnload);
+  }, [pricingDirty]);
+
+  // Bouton Retour du navigateur : une entrée d'historique "sentinelle" absorbe le retour,
+  // on la remet aussitôt (on reste sur la page) puis on demande confirmation.
+  useEffect(() => {
+    if (!pricingDirty) return undefined;
+    window.history.pushState({ pricingGuard: true }, '', window.location.href);
+    const onPopState = () => {
+      window.history.pushState({ pricingGuard: true }, '', window.location.href);
+      setLeavePrompt({
+        action: () => {
+          leavingRef.current = true;
+          window.history.go(-2); // sentinelle + page tarifs
+        },
+      });
+    };
+    window.addEventListener('popstate', onPopState);
+    return () => {
+      window.removeEventListener('popstate', onPopState);
+      // Plus de modifications en cours : retirer la sentinelle pour ne pas ajouter un "Retour" inutile
+      if (!leavingRef.current && window.history.state?.pricingGuard) window.history.back();
+    };
   }, [pricingDirty]);
 
   // Clic sur un lien interne (menu, logo...) avec des modifications en cours : demander confirmation
