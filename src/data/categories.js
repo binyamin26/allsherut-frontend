@@ -150,6 +150,24 @@ export const CATEGORY_DEFINITIONS = [
     gradient: 'from-slate-600 to-blue-700',
     serviceIds: ['security_cameras', 'security_alarms', 'intercom_access', 'networking', 'audio_systems', 'smart_home'],
   },
+  {
+    id: 'droit-finance',
+    names: {
+      fr: 'Droit & Finance',
+      he: 'משפט וכספים',
+      en: 'Legal & Finance',
+      ru: 'Право и финансы',
+    },
+    descriptions: {
+      fr: 'Experts-comptables et conseillers en Israël : comptabilité, déclarations fiscales, paie et accompagnement des entreprises.',
+      he: 'רואי חשבון ויועצים בישראל: הנהלת חשבונות, דוחות מס, שכר וליווי עסקים.',
+      en: 'Accountants and advisers in Israel: bookkeeping, tax returns, payroll and business support.',
+      ru: 'Бухгалтеры и консультанты в Израиле: бухгалтерия, налоговые декларации, зарплата и сопровождение бизнеса.',
+    },
+    image: '/images/Espace de travail rénovation moderne.png',
+    gradient: 'from-indigo-600 to-blue-800',
+    serviceIds: ['accountant'],
+  },
 ];
 
 // Find the parent category definition for a given service id (e.g. 'electrician')
@@ -226,4 +244,5 @@ export const SERVICES_META = {
   doula:              { image: '/images/doula.jpeg',           href: '/services/doula',              nameKey: 'services.doula' },
   art_therapy:        { image: '/images/art-therapy-logo.jpg', icon: '🎨', href: '/services/art-therapy', nameKey: 'services.art_therapy' },
   kinesiology:        { image: '/images/kinesiology.jpg', icon: '🧠', href: '/services/kinesiology', nameKey: 'services.kinesiology' },
+  accountant:         { icon: '🧾', href: '/services/accountant', nameKey: 'services.accountant' },
 };

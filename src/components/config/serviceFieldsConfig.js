@@ -5,6 +5,7 @@
 import { SECURITY_SERVICES, SECURITY_AVAILABILITY_OPTIONS } from '../../data/securityServices';
 import { ART_THERAPY_GROUPS, ART_THERAPY_HOURS } from '../../data/artTherapy';
 import { KINESIOLOGY_GROUPS, KINESIOLOGY_HOURS } from '../../data/kinesiology';
+import { ACCOUNTANT_GROUPS, ACCOUNTANT_HOURS } from '../../data/accountant';
 
 const serviceFieldsConfig = {
   babysitting: {
@@ -358,6 +359,16 @@ const serviceFieldsConfig = {
       { name: 'qualifications', label: 'serviceForm.art_therapy.qualificationsTitle', type: 'text' },
       { name: 'experience', label: 'serviceForm.common.experience', type: 'number' },
       { name: 'availability_hours', label: 'serviceForm.common.availabilityHours', type: 'checkbox', options: ART_THERAPY_HOURS.map(o => o.value) },
+      { name: 'languages', label: 'serviceFields.eldercare.languages', type: 'checkbox', options: ['עברית', 'אנגלית', 'צרפתית', 'רוסית'] }
+    ]
+  },
+
+  accountant: {
+    fields: [
+      ...ACCOUNTANT_GROUPS.map(g => ({ name: g.field, label: g.titleKey, type: 'checkbox', options: g.options.map(o => o.value) })),
+      { name: 'qualifications', label: 'serviceForm.accountant.qualificationsTitle', type: 'text' },
+      { name: 'experience', label: 'serviceForm.common.experience', type: 'number' },
+      { name: 'availability_hours', label: 'serviceForm.common.availabilityHours', type: 'checkbox', options: ACCOUNTANT_HOURS.map(o => o.value) },
       { name: 'languages', label: 'serviceFields.eldercare.languages', type: 'checkbox', options: ['עברית', 'אנגלית', 'צרפתית', 'רוסית'] }
     ]
   },

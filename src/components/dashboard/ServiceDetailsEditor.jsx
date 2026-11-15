@@ -103,6 +103,10 @@ const fieldToCategoryMapping = {
   location_types: 'artTherapyLocations',
 
   // KINÉSIOLOGIE (public / séances / lieu réutilisent les champs de l'art-thérapie)
+  accountant_service_types: 'accountantServices',
+  accountant_client_types: 'accountantClients',
+  accountant_specialty_types: 'accountantSpecialties',
+  accountant_meeting_types: 'accountantMeetings',
   kine_technique_types: 'kinesiologyTechniques',
   kine_goal_types: 'kinesiologyGoals',
 

@@ -41,6 +41,7 @@ const SERVICE_URLS = {
   doula: '/services/doula',
   art_therapy: '/services/art-therapy',
   kinesiology: '/services/kinesiology',
+  accountant: '/services/accountant',
   security_cameras: '/services/security-cameras',
   security_alarms: '/services/security-alarms',
   intercom_access: '/services/intercom-access',

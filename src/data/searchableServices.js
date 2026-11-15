@@ -730,6 +730,13 @@ const searchableServices = [
   { label: 'טיפול קבוצתי', labelEn: 'Group sessions', labelFr: 'Séances en groupe', labelRu: 'Групповые занятия', href: '/services/art-therapy', type: 'specialty' },
 
   // KINÉSIOLOGIE
+  { label: "רואה חשבון", labelEn: "Accountant", labelFr: "Expert-comptable", labelRu: "Бухгалтер", href: '/services/accountant', type: 'service' },
+  { label: "הנהלת חשבונות", labelEn: "Bookkeeping", labelFr: "Comptabilité", labelRu: "Бухгалтерия", href: '/services/accountant', type: 'specialty' },
+  { label: "דוחות מס הכנסה", labelEn: "Income tax returns", labelFr: "Déclarations d'impôt sur le revenu", labelRu: "Декларации по подоходному налогу", href: '/services/accountant', type: 'specialty' },
+  { label: "דיווחי מע\"מ", labelEn: "VAT reporting", labelFr: "Déclarations de TVA", labelRu: "Отчётность по НДС", href: '/services/accountant', type: 'specialty' },
+  { label: "הנהלת שכר", labelEn: "Payroll", labelFr: "Gestion de la paie", labelRu: "Расчёт заработной платы", href: '/services/accountant', type: 'specialty' },
+  { label: "החזרי מס", labelEn: "Tax refunds", labelFr: "Remboursements d'impôt", labelRu: "Возврат налогов", href: '/services/accountant', type: 'specialty' },
+  { label: "ייעוץ ותכנון מס", labelEn: "Tax advice and planning", labelFr: "Conseil et optimisation fiscale", labelRu: "Налоговое консультирование и планирование", href: '/services/accountant', type: 'specialty' },
   { label: 'קינזיולוגיה', labelEn: 'Kinesiology', labelFr: 'Kinésiologie', labelRu: 'Кинезиология', href: '/services/kinesiology', type: 'service' },
   { label: 'קינזיולוג', labelEn: 'Kinesiologist', labelFr: 'Kinésiologue', labelRu: 'Кинезиолог', href: '/services/kinesiology', type: 'service' },
   { label: 'קינזיולוגיה יישומית (בדיקת שרירים)', labelEn: 'Applied kinesiology (muscle testing)', labelFr: 'Kinésiologie appliquée (test musculaire)', labelRu: 'Прикладная кинезиология (мышечное тестирование)', href: '/services/kinesiology', type: 'specialty' },

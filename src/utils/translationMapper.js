@@ -3,12 +3,18 @@
 
 import { ART_THERAPY_GROUPS } from '../data/artTherapy';
 import { KINESIOLOGY_GROUPS } from '../data/kinesiology';
+import { ACCOUNTANT_GROUPS } from '../data/accountant';
 
 const artMap = (field) => Object.fromEntries(ART_THERAPY_GROUPS.find(g => g.field === field).options.map(o => [o.value, o.key]));
 
+const accMap = (field) => Object.fromEntries(ACCOUNTANT_GROUPS.find(g => g.field === field).options.map(o => [o.value, o.key]));
 const kineMap = (field) => Object.fromEntries(KINESIOLOGY_GROUPS.find(g => g.field === field).options.map(o => [o.value, o.key]));
 
 const translationMappings = {
+  accountantServices: accMap('accountant_service_types'),
+  accountantClients: accMap('accountant_client_types'),
+  accountantSpecialties: accMap('accountant_specialty_types'),
+  accountantMeetings: accMap('accountant_meeting_types'),
   kinesiologyTechniques: kineMap('kine_technique_types'),
   kinesiologyGoals: kineMap('kine_goal_types'),
   artTherapyTechniques: artMap('technique_types'),

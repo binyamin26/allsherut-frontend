@@ -41,6 +41,7 @@ import DriverForm from './driver/DriverForm';
 import DoulaForm from './doula/DoulaForm';
 import ArtTherapyForm from './art_therapy/ArtTherapyForm';
 import KinesiologyForm from './kinesiology/KinesiologyForm';
+import AccountantForm from './accountant/AccountantForm';
 import SecurityServiceForm from './security/SecurityServiceForm';
 import { SECURITY_SERVICE_KEYS } from '../../data/securityServices';
 
@@ -93,6 +94,7 @@ const ServiceDetailsForm = ({
     doula: DoulaForm,
     art_therapy: ArtTherapyForm,
     kinesiology: KinesiologyForm,
+    accountant: AccountantForm,
     // Catégorie Sécurité : un seul formulaire générique piloté par data/securityServices.js
     ...Object.fromEntries(SECURITY_SERVICE_KEYS.map(key => [key, SecurityServiceForm]))
   };
