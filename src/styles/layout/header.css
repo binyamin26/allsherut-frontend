@@ -911,6 +911,70 @@ body {
   transform: rotate(180deg);
 }
 
+/* ——— Services groupés par catégorie ——— */
+.mobile-services-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 6px 0 12px;
+}
+
+.mobile-cat-section {
+  background: #fff;
+  border: 1px solid #eef2f7;
+  border-radius: 16px;
+  padding: 10px 8px 8px;
+  box-shadow: 0 2px 10px rgba(15, 42, 68, 0.05);
+}
+
+.mobile-cat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 2px 6px 8px;
+  margin-bottom: 4px;
+  border-bottom: 2px solid color-mix(in srgb, var(--cat-color) 22%, transparent);
+}
+
+/* Classes "text-" pour échapper à l'override AccessibilityWidget */
+.text-mobile-cat-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--cat-color);
+  line-height: 1.25;
+}
+
+.text-mobile-cat-count {
+  font-size: 11px;
+  font-weight: 700;
+  min-width: 22px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  text-align: center;
+  color: var(--cat-color);
+  background: color-mix(in srgb, var(--cat-color) 12%, white);
+}
+
+.mobile-cat-section .mobile-service-icon {
+  color: var(--cat-color);
+  background: color-mix(in srgb, var(--cat-color) 10%, white);
+  box-shadow: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+}
+
+.mobile-cat-section .mobile-drawer-service-item {
+  background: transparent;
+}
+
+.mobile-cat-section .mobile-drawer-service-item:hover {
+  background: color-mix(in srgb, var(--cat-color) 8%, white);
+  border-color: color-mix(in srgb, var(--cat-color) 25%, transparent);
+  color: var(--cat-color);
+}
+
 /* ——— Grille de services ——— */
 .mobile-drawer-services-grid {
   display: grid;

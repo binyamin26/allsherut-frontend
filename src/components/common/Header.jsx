@@ -6,7 +6,7 @@ import AuthModal from '../auth/AuthModal'
 import ServiceSearchBar from './ServiceSearchBar'
 import { useLanguage } from '../../context/LanguageContext'
 import { SUPPORTED_LANGS, getLangFromPath, buildServicePath, buildPath, getServiceKeyFromSlug } from '../../utils/langUtils'
-import { HIDDEN_SERVICE_IDS, RECRUITMENT_EXCLUDED_SERVICE_IDS } from '../../data/categories'
+import { HIDDEN_SERVICE_IDS, RECRUITMENT_EXCLUDED_SERVICE_IDS, VISIBLE_CATEGORY_DEFINITIONS } from '../../data/categories'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -114,6 +114,28 @@ const Header = () => {
     { icon: <Cog className="w-5 h-5" />, nameKey: 'services.handyman', descKey: 'services.handyman.desc', serviceKey: 'handyman' },
     { icon: <HardHat className="w-5 h-5" />, nameKey: 'services.contractor', descKey: 'services.contractor.desc', serviceKey: 'contractor' }
   ].filter(s => !HIDDEN_SERVICE_IDS.includes(s.serviceKey.replace(/-/g, '_')))
+  // Services regroupés par catégorie (menu mobile)
+  const CATEGORY_COLORS = {
+    'maison-travaux': '#ea580c',
+    'nettoyage-entretien': '#0891b2',
+    'famille-assistance': '#e11d48',
+    'medecine-soins': '#0d9488',
+    'evenements-creation': '#7c3aed',
+    'apprentissage-sport': '#059669',
+    'transport-services-mobiles': '#2563eb',
+    'securite-reseaux-maison-intelligente': '#475569'
+  }
+  const groupedServices = VISIBLE_CATEGORY_DEFINITIONS
+    .map(cat => ({
+      id: cat.id,
+      name: cat.names[currentLanguage] || cat.names.fr,
+      color: CATEGORY_COLORS[cat.id] || '#1A5490',
+      items: cat.serviceIds
+        .map(id => services.find(s => s.serviceKey.replace(/-/g, '_') === id))
+        .filter(Boolean)
+    }))
+    .filter(g => g.items.length > 0)
+
   const recruitmentServices = services.filter(s => !RECRUITMENT_EXCLUDED_SERVICE_IDS.includes(s.serviceKey.replace(/-/g, '_')))
 
   const handleLogout = async () => {
@@ -396,17 +418,31 @@ const Header = () => {
               </button>
 
               {showMobileServices && (
-                <div className="mobile-drawer-services-grid">
-                  {services.map((service, index) => (
-                    <Link
-                      key={index}
-                      to={buildServicePath(service.serviceKey, currentLanguage)}
-                      className="mobile-drawer-service-item"
-                      onClick={() => setIsMenuOpen(false)}
+                <div className="mobile-services-panel">
+                  {groupedServices.map(group => (
+                    <section
+                      key={group.id}
+                      className="mobile-cat-section"
+                      style={{ '--cat-color': group.color }}
                     >
-                      <div className="mobile-service-icon">{service.icon}</div>
-                      <span className="text-mobile-service">{t(service.nameKey)}</span>
-                    </Link>
+                      <div className="mobile-cat-header">
+                        <span className="text-mobile-cat-title">{group.name}</span>
+                        <span className="text-mobile-cat-count">{group.items.length}</span>
+                      </div>
+                      <div className="mobile-drawer-services-grid">
+                        {group.items.map(service => (
+                          <Link
+                            key={service.serviceKey}
+                            to={buildServicePath(service.serviceKey, currentLanguage)}
+                            className="mobile-drawer-service-item"
+                            onClick={() => setIsMenuOpen(false)}
+                          >
+                            <div className="mobile-service-icon">{service.icon}</div>
+                            <span className="text-mobile-service">{t(service.nameKey)}</span>
+                          </Link>
+                        ))}
+                      </div>
+                    </section>
                   ))}
                 </div>
               )}
