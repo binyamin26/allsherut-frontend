@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { 
   User, 
@@ -44,6 +44,9 @@ import {
    ChevronRight,
    DollarSign,
   Calculator,
+  Heading,
+  Undo2,
+  CheckCircle2,
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import LoadingSpinner from '../components/common/LoadingSpinner';
@@ -147,6 +150,11 @@ const ServiceIconDisplay = ({ svcType }) => {
   return <FallbackIcon size={60} color="#9ca3af" />;
 };
 
+// Empreinte d'une liste de tarifs (ordre, type, nom, prix) pour détecter les modifications non enregistrées
+const serializePricing = (items) => JSON.stringify(
+  items.map(i => [i.is_title ? 1 : 0, (i.service_name || '').trim(), i.is_title ? '' : (i.price || '').trim()])
+);
+
 const DashboardPage = () => {
 const {user, isAuthenticated, isSubscriptionExpired, getMyReviews, apiCall, updateProfile, uploadProfileImage, deleteProfileImage, switchService, deleteService, changePassword, uploadGalleryImage, deleteGalleryImage, refreshUser} = useAuth();
   const { t } = useLanguage();
@@ -235,6 +243,67 @@ const userData = useMemo(() => {
   const [pricingMsg, setPricingMsg] = useState({ type: '', text: '' });
   const [pricingErrors, setPricingErrors] = useState({});
   const [pricingInsertAt, setPricingInsertAt] = useState(null); // index du "+" ouvert entre deux lignes
+  const [pricingBaseline, setPricingBaseline] = useState('[]'); // snapshot sérialisé de la dernière version enregistrée
+  const [pricingSaved, setPricingSaved] = useState(false); // "Enregistré" affiché brièvement
+  const [pricingSaveError, setPricingSaveError] = useState('');
+  const [pricingUndo, setPricingUndo] = useState([]); // pile de suppressions annulables [{ item, index }]
+  const [pricingFocusKey, setPricingFocusKey] = useState(null); // ligne à focus/scroller après ajout
+  const [leavePrompt, setLeavePrompt] = useState(null); // { action } : confirmation avant de quitter avec des modifs non enregistrées
+  const pricingBaselineItemsRef = useRef([]);
+  const pricingDirtyRef = useRef(false);
+  const pricingUndoTimer = useRef(null);
+  const pricingSavedTimer = useRef(null);
+
+  // Modifications non enregistrées ? (uniquement sur l'onglet tarifs, une fois les données chargées)
+  const pricingDirty = activeTab === 'pricing' && pricingLoaded && !pricingLoading
+    && serializePricing(pricingItems) !== pricingBaseline;
+  pricingDirtyRef.current = pricingDirty;
+  const pricingBarVisible = pricingDirty || pricingSaving || pricingSaved || !!pricingSaveError || pricingUndo.length > 0;
+
+  // Fermeture / rechargement de la page avec des modifications en cours
+  useEffect(() => {
+    if (!pricingDirty) return undefined;
+    const onBeforeUnload = (e) => { e.preventDefault(); e.returnValue = ''; };
+    window.addEventListener('beforeunload', onBeforeUnload);
+    return () => window.removeEventListener('beforeunload', onBeforeUnload);
+  }, [pricingDirty]);
+
+  // Clic sur un lien interne (menu, logo...) avec des modifications en cours : demander confirmation
+  useEffect(() => {
+    if (!pricingDirty) return undefined;
+    const onClickCapture = (e) => {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const a = e.target?.closest?.('a[href]');
+      if (!a || (a.target && a.target !== '_self')) return;
+      const href = a.getAttribute('href');
+      if (!href || !href.startsWith('/') || href.startsWith('//')) return;
+      e.preventDefault();
+      e.stopPropagation();
+      setLeavePrompt({ action: () => navigate(href) });
+    };
+    document.addEventListener('click', onClickCapture, true);
+    return () => document.removeEventListener('click', onClickCapture, true);
+  }, [pricingDirty, navigate]);
+
+  // Après l'ajout d'une ligne : scroller jusqu'à elle et placer le curseur dans son champ
+  useEffect(() => {
+    if (pricingFocusKey === null) return undefined;
+    const raf = requestAnimationFrame(() => {
+      const row = document.querySelector(`[data-pricing-key="${pricingFocusKey}"]`);
+      if (row) {
+        row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        const input = row.querySelector('input');
+        if (input) input.focus({ preventScroll: true });
+      }
+      setPricingFocusKey(null);
+    });
+    return () => cancelAnimationFrame(raf);
+  }, [pricingFocusKey]);
+
+  useEffect(() => () => {
+    clearTimeout(pricingUndoTimer.current);
+    clearTimeout(pricingSavedTimer.current);
+  }, []);
 
   const [passwordData, setPasswordData] = useState({
     currentPassword: '',
@@ -475,6 +544,8 @@ const loadMyReviews = async () => {
 
   const loadMyPricing = async () => {
     if (user?.role !== 'provider') return;
+    // Ne jamais écraser des modifications non enregistrées par un rechargement en arrière-plan
+    if (pricingDirtyRef.current) return;
     setPricingLoading(true);
     setPricingLoaded(false);
     try {
@@ -486,7 +557,7 @@ const loadMyReviews = async () => {
       });
       const data = await res.json();
       if (data.success) {
-        setPricingItems(data.data.map(item => ({ ...item, _key: item.id })));
+        applyServerPricing(data.data);
         setPricingLoaded(true);
       }
     } catch (err) {
@@ -497,6 +568,20 @@ const loadMyReviews = async () => {
     }
   };
 
+  // Applique la liste renvoyée par le serveur : c'est aussi la nouvelle référence "enregistré"
+  const applyServerPricing = (rows) => {
+    const mapped = rows.map(item => ({ ...item, _key: item.id }));
+    pricingBaselineItemsRef.current = mapped;
+    setPricingBaseline(serializePricing(mapped));
+    setPricingItems(mapped);
+    setPricingUndo([]);
+  };
+
+  const clearPricingUndo = () => {
+    clearTimeout(pricingUndoTimer.current);
+    setPricingUndo([]);
+  };
+
   // index === null -> ajoute à la fin
   const handleInsertPricingItem = (index, isTitle) => {
     const newItem = { _key: Date.now(), service_name: '', price: '', is_title: isTitle, _isNew: true };
@@ -505,12 +590,17 @@ const loadMyReviews = async () => {
       return [...prev.slice(0, at), newItem, ...prev.slice(at)];
     });
     setPricingInsertAt(null);
+    setPricingFocusKey(newItem._key);
+    setPricingSaveError('');
+    clearPricingUndo(); // les positions mémorisées ne seraient plus exactes
   };
 
   const handleAddPricingRow = () => handleInsertPricingItem(null, false);
   const handleAddPricingTitle = () => handleInsertPricingItem(null, true);
 
   const handleMovePricingRow = (key, direction) => {
+    clearPricingUndo(); // les positions mémorisées ne seraient plus exactes
+    setPricingSaveError('');
     setPricingItems(prev => {
       const i = prev.findIndex(item => item._key === key);
       const j = i + direction;
@@ -532,7 +622,7 @@ const loadMyReviews = async () => {
               <Plus size={13} /> {t('pricing.serviceNameLabel')}
             </button>
             <button type="button" onClick={() => handleInsertPricingItem(index, true)}>
-              <Plus size={13} /> {t('pricing.titlePlaceholder')}
+              <Plus size={13} /> {t('pricing.sectionLabel')}
             </button>
             <button
               type="button"
@@ -584,8 +674,10 @@ const loadMyReviews = async () => {
         </button>
       </div>
       <button
+        type="button"
         onClick={() => handleDeletePricingRow(item._key)}
-        title="Supprimer"
+        title={t('pricing.delete')}
+        aria-label={t('pricing.delete')}
         className="pricing-delete-btn"
       >
         <XCircle size={15} />
@@ -600,28 +692,55 @@ const loadMyReviews = async () => {
     }
   };
 
-  const handleDeletePricingRow = async (key) => {
-    const remaining = pricingItems.filter(item => item._key !== key);
-    setPricingItems(remaining);
-    try {
-      const token = localStorage.getItem('homesherut_token');
-      const res = await fetch('/api/pricing/my', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-        body: JSON.stringify({
-          providerId: userData?.providerProfile?.id,
-          items: remaining
-            .filter(i => i.service_name?.trim() && (i.is_title || i.price?.trim()))
-            .map(({ service_name, price, is_title }) => ({ service_name, price, is_title: !!is_title })),
-        }),
-      });
-      const data = await res.json();
-      if (data.success) {
-        setPricingItems(data.data.map(item => ({ ...item, _key: item.id })));
-      }
-    } catch {
-      // silent — UI already reflects the deletion
+  // Suppression locale uniquement (rien n'est enregistré avant "Enregistrer") + annulation possible
+  const handleDeletePricingRow = (key) => {
+    const index = pricingItems.findIndex(item => item._key === key);
+    if (index === -1) return;
+    const item = pricingItems[index];
+    setPricingItems(prev => prev.filter(i => i._key !== key));
+    setPricingUndo(prev => [...prev, { item, index }]);
+    setPricingSaveError('');
+    clearTimeout(pricingUndoTimer.current);
+    pricingUndoTimer.current = setTimeout(() => setPricingUndo([]), 7000);
+  };
+
+  // Restaure la dernière ligne supprimée exactement à son ancienne position
+  const handleUndoPricingDelete = () => {
+    const last = pricingUndo[pricingUndo.length - 1];
+    if (!last) return;
+    setPricingItems(prev => {
+      const at = Math.min(last.index, prev.length);
+      return [...prev.slice(0, at), last.item, ...prev.slice(at)];
+    });
+    const rest = pricingUndo.slice(0, -1);
+    setPricingUndo(rest);
+    clearTimeout(pricingUndoTimer.current);
+    if (rest.length) pricingUndoTimer.current = setTimeout(() => setPricingUndo([]), 7000);
+  };
+
+  // Abandonne les modifications : retour à la dernière version enregistrée
+  const discardPricingChanges = () => {
+    setPricingItems(pricingBaselineItemsRef.current.map(i => ({ ...i })));
+    setPricingErrors({});
+    setPricingSaveError('');
+    clearPricingUndo();
+  };
+
+  // Exécute action tout de suite, ou après confirmation s'il reste des tarifs non enregistrés
+  const requestLeavePricing = (action) => {
+    if (pricingDirtyRef.current) {
+      setLeavePrompt({ action });
+      return;
     }
+    action();
+  };
+  const requestTab = (tab) => requestLeavePricing(() => setActiveTab(tab));
+
+  const confirmLeavePricing = () => {
+    const action = leavePrompt?.action;
+    setLeavePrompt(null);
+    discardPricingChanges();
+    if (action) action();
   };
 
   const handleSavePricing = async () => {
@@ -636,9 +755,17 @@ const loadMyReviews = async () => {
     });
     if (Object.keys(errs).length > 0) {
       setPricingErrors(errs);
+      // Amène la première ligne en erreur à l'écran
+      const firstBad = pricingItems.find(item => errs[`${item._key}_service_name`] || errs[`${item._key}_price`]);
+      if (firstBad) {
+        setTimeout(() => {
+          document.querySelector(`[data-pricing-key="${firstBad._key}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 50);
+      }
       return;
     }
     setPricingErrors({});
+    setPricingSaveError('');
     setPricingSaving(true);
     try {
       const token = localStorage.getItem('homesherut_token');
@@ -652,18 +779,19 @@ const loadMyReviews = async () => {
       });
       const data = await res.json();
       if (data.success) {
-        setPricingItems(data.data.map(item => ({ ...item, _key: item.id })));
-        setPricingMsg({ type: 'success', text: t('pricing.saveSuccess') });
-        setTimeout(() => setPricingMsg({ type: '', text: '' }), 3500);
+        applyServerPricing(data.data);
+        setPricingSaved(true);
+        clearTimeout(pricingSavedTimer.current);
+        pricingSavedTimer.current = setTimeout(() => setPricingSaved(false), 3000);
         // Les tarifs sont un critère du profil : la fiche a pu passer en "verified"
         if (data.verificationStatus === 'verified' && userData?.providerProfile?.verification_status === 'pending') {
           refreshUser?.();
         }
       } else {
-        setPricingMsg({ type: 'error', text: data.message || t('pricing.saveError') });
+        setPricingSaveError(data.message || t('pricing.saveError'));
       }
     } catch (err) {
-      setPricingMsg({ type: 'error', text: t('pricing.saveError') });
+      setPricingSaveError(t('pricing.saveError'));
     } finally {
       setPricingSaving(false);
     }
@@ -1701,7 +1829,7 @@ const showPricingPopup = userData?.role === 'provider'
               <button
                 key={service}
                 className={`ssc-option ${isActive ? 'active' : ''}`}
-                onClick={() => {
+                onClick={() => requestLeavePricing(() => {
                   localStorage.setItem('activeService', service);
                   setActiveService(service);
                   setShowServiceDropdown(false);
@@ -1709,7 +1837,7 @@ const showPricingPopup = userData?.role === 'provider'
                     setHasSeenServiceTabs(true);
                     localStorage.setItem('seenServiceTabs', 'true');
                   }
-                }}
+                })}
               >
                 <div className="ssc-option-icon">
                   <ServiceIconDisplay svcType={service} />
@@ -1735,14 +1863,14 @@ const showPricingPopup = userData?.role === 'provider'
                   <button
                     key={service}
                     className={`tab-btn service-tab-btn ${activeService === service ? 'active' : ''} ${!hasSeenServiceTabs && activeService !== service ? 'pulse-hint' : ''}`}
-                    onClick={() => {
+                    onClick={() => requestLeavePricing(() => {
                       localStorage.setItem('activeService', service);
                       setActiveService(service);
                       if (!hasSeenServiceTabs) {
                         setHasSeenServiceTabs(true);
                         localStorage.setItem('seenServiceTabs', 'true');
                       }
-                    }}
+                    })}
                   >
                     {getServiceName(service)}
                   </button>
@@ -1752,7 +1880,7 @@ const showPricingPopup = userData?.role === 'provider'
             )}
             <button
               className={`tab-btn ${activeTab === 'overview' ? 'active' : ''}`}
-              onClick={() => setActiveTab('overview')}
+              onClick={() => requestTab('overview')}
             >
               <BarChart3 size={18} />
               {t('dashboard.tabs.profile')}
@@ -1761,7 +1889,7 @@ const showPricingPopup = userData?.role === 'provider'
             {userData?.role === 'provider' && (
               <button
                 className={`tab-btn ${activeTab === 'my-reviews' ? 'active' : ''}`}
-                onClick={() => setActiveTab('my-reviews')}
+                onClick={() => requestTab('my-reviews')}
               >
                 <Star size={18} />
                 {t('dashboard.tabs.reviews')}
@@ -1771,7 +1899,7 @@ const showPricingPopup = userData?.role === 'provider'
             {userData?.role === 'provider' && (
               <button
                 className={`tab-btn ${activeTab === 'contacts' ? 'active' : ''}`}
-                onClick={() => setActiveTab('contacts')}
+                onClick={() => requestTab('contacts')}
               >
                 <Phone size={18} />
                 {t('dashboard.tabs.contacts')}
@@ -1781,7 +1909,7 @@ const showPricingPopup = userData?.role === 'provider'
             {userData?.role === 'provider' && (
               <button
                 className={`tab-btn ${activeTab === 'recruitment' ? 'active' : ''}`}
-                onClick={() => setActiveTab('recruitment')}
+                onClick={() => requestTab('recruitment')}
               >
                 <Briefcase size={18} />
                 {t('dashboard.tabs.recruitment')}
@@ -1791,7 +1919,7 @@ const showPricingPopup = userData?.role === 'provider'
             {userData?.role === 'provider' && (
               <button
                 className={`tab-btn ${activeTab === 'pricing' ? 'active' : ''}`}
-                onClick={() => setActiveTab('pricing')}
+                onClick={() => requestTab('pricing')}
               >
                 <DollarSign size={18} />
                 {t('dashboard.tabs.pricing')}
@@ -1800,7 +1928,7 @@ const showPricingPopup = userData?.role === 'provider'
 
             <button
               className={`tab-btn ${activeTab === 'settings' ? 'active' : ''}`}
-              onClick={() => setActiveTab('settings')}
+              onClick={() => requestTab('settings')}
             >
               <Settings size={18} />
               {t('dashboard.tabs.security')}
@@ -1808,7 +1936,7 @@ const showPricingPopup = userData?.role === 'provider'
 
             <button
               className={`tab-btn ${activeTab === 'account-management' ? 'active' : ''}`}
-              onClick={() => setActiveTab('account-management')}
+              onClick={() => requestTab('account-management')}
             >
               <XCircle size={18} />
               {t('dashboard.tabs.accountManagement')}
@@ -3044,6 +3172,7 @@ const showPricingPopup = userData?.role === 'provider'
               ) : (
                 <div className="pricing-table-container" style={{ background: '#fff', borderRadius: '16px', border: '1px solid #EEF2F6', boxShadow: '0 1px 2px rgba(15, 42, 68, 0.03)', overflow: 'hidden' }}>
                   {/* En-tête du tableau */}
+                  {pricingItems.length > 0 && (
                   <div className="pricing-table-header" style={{
                     display: 'grid', gridTemplateColumns: '1fr 180px 80px',
                     color: '#0F2A44', padding: '0.85rem 1.25rem', fontWeight: 600, fontSize: '0.8rem',
@@ -3053,18 +3182,24 @@ const showPricingPopup = userData?.role === 'provider'
                     <span>{t('pricing.priceLabel')}</span>
                     <span style={{ textAlign: 'center' }}>{t('pricing.actionsLabel')}</span>
                   </div>
+                  )}
 
                   {/* Lignes de tarif */}
                   {pricingItems.length === 0 && (
-                    <div style={{ padding: '2.5rem 1.5rem', textAlign: 'center', color: '#9ca3af', fontSize: '0.9rem' }}>
-                      {t('pricing.empty')}
+                    <div className="pricing-empty">
+                      <div className="pricing-empty-icon"><DollarSign size={26} /></div>
+                      <h4 className="pricing-empty-title">{t('pricing.emptyTitle')}</h4>
+                      <p className="pricing-empty-hint">{t('pricing.emptyHint')}</p>
+                      <button type="button" className="pricing-add-btn pricing-add-service pricing-empty-cta" onClick={handleAddPricingRow}>
+                        <Plus size={18} /> {t('pricing.addFirst')}
+                      </button>
                     </div>
                   )}
                   {pricingItems.map((item, idx) => (
                     <React.Fragment key={item._key}>
                     {renderPricingInsert(idx)}
                     {item.is_title ? (
-                    <div className="pricing-title-row" style={{
+                    <div className="pricing-title-row" data-pricing-key={item._key} style={{
                       margin: idx === 0 ? '1.5rem 1.25rem 1.5rem' : '3rem 1.25rem 1.75rem',
                     }}>
                       <div className="pricing-title-row-content">
@@ -3075,7 +3210,7 @@ const showPricingPopup = userData?.role === 'provider'
                             className="pricing-title-input"
                             value={item.service_name}
                             onChange={e => handlePricingRowChange(item._key, 'service_name', e.target.value)}
-                            placeholder={t('pricing.titlePlaceholder')}
+                            placeholder={t('pricing.sectionPlaceholder')}
                             style={{
                               padding: '0.2rem 0.1rem', textAlign: 'center',
                               border: 'none',
@@ -3095,7 +3230,7 @@ const showPricingPopup = userData?.role === 'provider'
                       {renderPricingRowControls(item, idx)}
                     </div>
                   ) : (
-                    <div className={`pricing-row${item._isNew ? ' pricing-row-new' : ''}`} style={{
+                    <div className={`pricing-row${item._isNew ? ' pricing-row-new' : ''}`} data-pricing-key={item._key} style={{
                       display: 'grid', gridTemplateColumns: '1fr 180px 80px',
                       padding: '1rem 1.1rem', gap: '0.5rem', alignItems: 'center',
                       borderBottom: (idx < pricingItems.length - 1 && !pricingItems[idx + 1]?.is_title) ? '1px solid #F1F5F9' : 'none',
@@ -3128,8 +3263,10 @@ const showPricingPopup = userData?.role === 'provider'
                             </button>
                           </div>
                           <button
+                            type="button"
                             onClick={() => handleDeletePricingRow(item._key)}
                             className="pricing-delete-mobile"
+                            aria-label={t('pricing.delete')}
                           >
                             <XCircle size={16} />
                           </button>
@@ -3187,62 +3324,91 @@ const showPricingPopup = userData?.role === 'provider'
                   ))}
                   {pricingItems.length > 0 && renderPricingInsert(pricingItems.length)}
 
-                  {/* Pied du tableau — boutons Ajouter */}
-                  <div className="pricing-add-wrapper" style={{ padding: '0.75rem 1rem', borderTop: '1px solid #f3f4f6', display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
-                    <button
-                      className="pricing-add-btn"
-                      onClick={handleAddPricingTitle}
-                      style={{
-                        display: 'flex', alignItems: 'center', gap: '6px',
-                        padding: '0.5rem 1rem', borderRadius: '8px',
-                        background: '#eef4fb', color: '#0F2A44',
-                        border: '1px dashed #93b7e0', cursor: 'pointer',
-                        fontWeight: 700, fontSize: '0.88rem',
-                      }}
-                    >
-                      <Plus size={15} />
-                      {t('pricing.addTitle')}
-                    </button>
-                    <button
-                      className="pricing-add-btn"
-                      onClick={handleAddPricingRow}
-                      style={{
-                        display: 'flex', alignItems: 'center', gap: '6px',
-                        padding: '0.5rem 1rem', borderRadius: '8px',
-                        background: '#f0f9ff', color: '#0369a1',
-                        border: '1px dashed #7dd3fc', cursor: 'pointer',
-                        fontWeight: 600, fontSize: '0.88rem',
-                      }}
-                    >
-                      <Plus size={15} />
-                      {t('pricing.addService')}
-                    </button>
-                  </div>
+                  {/* Pied du tableau — Ajouter un service / une section */}
+                  {pricingItems.length > 0 && (
+                    <div className="pricing-add-wrapper pricing-add-grid">
+                      <div className="pricing-add-col">
+                        <button type="button" className="pricing-add-btn pricing-add-service" onClick={handleAddPricingRow}>
+                          <Plus size={16} /> {t('pricing.addService')}
+                        </button>
+                        <span className="pricing-add-hint">{t('pricing.addServiceHint')}</span>
+                      </div>
+                      <div className="pricing-add-col">
+                        <button type="button" className="pricing-add-btn pricing-add-section" onClick={handleAddPricingTitle}>
+                          <Heading size={16} /> {t('pricing.addSection')}
+                        </button>
+                        <span className="pricing-add-hint">{t('pricing.sectionHint')}</span>
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
 
-              {/* Bouton Sauvegarder */}
-              <div className="pricing-save-wrapper" style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '1.25rem' }}>
-                <button
-                  onClick={handleSavePricing}
-                  disabled={pricingSaving}
-                  className="pricing-save-btn"
-                  style={{
-                    display: 'flex', alignItems: 'center', gap: '8px',
-                    padding: '0.75rem 2.25rem', borderRadius: '10px',
-                    background: 'linear-gradient(135deg, #0F2A44, #2F80ED)',
-                    color: '#fff', border: 'none', cursor: pricingSaving ? 'not-allowed' : 'pointer',
-                    fontWeight: 700, fontSize: '0.97rem',
-                    opacity: pricingSaving ? 0.7 : 1,
-                    boxShadow: '0 2px 10px rgba(47, 128, 237, 0.25)',
-                  }}
-                >
-                  {pricingSaving
-                    ? <><Loader size={16} className="animate-spin" />{t('pricing.saving')}</>
-                    : <><Save size={16} />{t('pricing.save')}</>
-                  }
-                </button>
-              </div>
+              {/* Espace réservé : la barre fixe ne masque jamais le bas de la liste */}
+              {pricingBarVisible && <div className="pricing-bar-spacer" aria-hidden="true" />}
+
+              {/* Barre fixe : annulation de suppression + état d'enregistrement */}
+              {pricingBarVisible && (
+                <div className="pricing-floating">
+                  {pricingUndo.length > 0 && (
+                    <div className="pricing-toast" role="status">
+                      <span>{t('pricing.deleted')}{pricingUndo.length > 1 ? ` (${pricingUndo.length})` : ''}</span>
+                      <button type="button" className="pricing-toast-undo" onClick={handleUndoPricingDelete}>
+                        <Undo2 size={15} /> {t('pricing.undo')}
+                      </button>
+                    </div>
+                  )}
+                  {(pricingDirty || pricingSaving || pricingSaved || pricingSaveError) && (
+                    <div
+                      className={`pricing-savebar${pricingSaveError ? ' is-error' : pricingSaving ? ' is-saving' : pricingDirty ? ' is-dirty' : ' is-saved'}`}
+                      role="status"
+                      aria-live="polite"
+                    >
+                      <span className="pricing-savebar-msg">
+                        {pricingSaving ? (
+                          <><Loader size={16} className="animate-spin" /> {t('pricing.saving')}</>
+                        ) : pricingSaveError ? (
+                          <><AlertCircle size={16} /> {pricingSaveError}</>
+                        ) : pricingDirty ? (
+                          <><span className="pricing-savebar-dot" /> {t('pricing.unsaved')}</>
+                        ) : (
+                          <><CheckCircle2 size={16} /> {t('pricing.savedOk')}</>
+                        )}
+                      </span>
+                      {(pricingDirty || pricingSaving) && (
+                        <button type="button" className="pricing-savebar-btn" onClick={handleSavePricing} disabled={pricingSaving}>
+                          <Save size={15} /> {t('pricing.saveShort')}
+                        </button>
+                      )}
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Confirmation avant de quitter avec des modifications non enregistrées */}
+              {leavePrompt && (
+                <div className="pricing-leave-backdrop" onClick={() => setLeavePrompt(null)}>
+                  <div
+                    className="pricing-leave-modal"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-labelledby="pricing-leave-title"
+                    onClick={e => e.stopPropagation()}
+                    onKeyDown={e => { if (e.key === 'Escape') setLeavePrompt(null); }}
+                  >
+                    <h4 id="pricing-leave-title">{t('pricing.leaveTitle')}</h4>
+                    <p>{t('pricing.leaveText')}</p>
+                    <div className="pricing-leave-actions">
+                      <button type="button" className="pricing-leave-stay" autoFocus onClick={() => setLeavePrompt(null)}>
+                        {t('pricing.leaveStay')}
+                      </button>
+                      <button type="button" className="pricing-leave-discard" onClick={confirmLeavePricing}>
+                        {t('pricing.leaveDiscard')}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           )}
 
