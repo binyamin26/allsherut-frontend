@@ -164,7 +164,7 @@ export const CATEGORY_DEFINITIONS = [
       en: 'Accountants and advisers in Israel: bookkeeping, tax returns, payroll and business support.',
       ru: 'Бухгалтеры и консультанты в Израиле: бухгалтерия, налоговые декларации, зарплата и сопровождение бизнеса.',
     },
-    image: '/images/Espace de travail rénovation moderne.png',
+    image: '/images/accountant.jpg',
     gradient: 'from-indigo-600 to-blue-800',
     serviceIds: ['accountant'],
   },
@@ -244,5 +244,5 @@ export const SERVICES_META = {
   doula:              { image: '/images/doula.jpeg',           href: '/services/doula',              nameKey: 'services.doula' },
   art_therapy:        { image: '/images/art-therapy-logo.jpg', icon: '🎨', href: '/services/art-therapy', nameKey: 'services.art_therapy' },
   kinesiology:        { image: '/images/kinesiology.jpg', icon: '🧠', href: '/services/kinesiology', nameKey: 'services.kinesiology' },
-  accountant:         { icon: '🧾', href: '/services/accountant', nameKey: 'services.accountant' },
+  accountant:         { image: '/images/accountant.jpg', icon: '🧾', href: '/services/accountant', nameKey: 'services.accountant' },
 };
