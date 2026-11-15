@@ -4003,7 +4003,7 @@ select.inline-edit {
 
   /* Barre fixe : le bas de page laisse la place (pastille d'accessibilité à gauche) */
   .pricing-floating {
-    padding: 0 10px calc(10px + env(safe-area-inset-bottom)) 64px !important;
+    padding: 0 76px calc(10px + env(safe-area-inset-bottom)) 64px !important;
   }
 
   .pricing-bar-spacer { height: 150px !important; }
