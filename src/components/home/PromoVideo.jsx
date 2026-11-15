@@ -4,10 +4,10 @@ const promoTranslations = {
   fr: [
     { main: "Vous proposez des services et cherchez à développer votre clientèle ?", bgImage: "/artisan.jpg", time: 4 },
     { main: "AllSherut vous aide à développer votre activité.", bgImage: "/aide.jpg", time: 4 },
-    { main: "Inscription simple et rapide en ligne.", bgVideo: "/arshama.mp4", bgFallback: "/images/electrician.jpg", time: 5 },
+    { main: "Inscription simple et rapide en ligne.", bgVideo: "https://res.cloudinary.com/ddzskq7hd/video/upload/v1794773884/homesherut-site/arshama.mp4", bgFallback: "/images/electrician.jpg", time: 5 },
     { main: "Plus de 20 catégories de services réunies sur une seule plateforme.", isMarquee: true, time: 7 },
-    { main: "Accédez facilement à votre espace personnel.", bgVideo: "/dashboard.mp4", bgFallback: "/images/nikayon.jpg", time: 5 },
-    { main: "Mettez à jour vos informations à tout moment.", bgVideo: "/idkounpratim.mp4", bgFallback: "/images/jardinage.jpg", time: 6 },
+    { main: "Accédez facilement à votre espace personnel.", bgVideo: "https://res.cloudinary.com/ddzskq7hd/video/upload/v1794773888/homesherut-site/dashboard.mp4", bgFallback: "/images/nikayon.jpg", time: 5 },
+    { main: "Mettez à jour vos informations à tout moment.", bgVideo: "https://res.cloudinary.com/ddzskq7hd/video/upload/v1794773885/homesherut-site/idkounpratim.mp4", bgFallback: "/images/jardinage.jpg", time: 6 },
     { main: "Les clients évaluent votre travail. Les avis renforcent votre crédibilité.", bgImage: "/avis.jpg", time: 5 },
     { main: "Offre de lancement\u00a0: inscription gratuite.", bgImage: "/gratos.jpg", time: 4 },
     { main: "Rejoignez AllSherut dès aujourd'hui et augmentez votre visibilité.", bgImage: "/itstarfou.jpg", time: 5 },
@@ -15,10 +15,10 @@ const promoTranslations = {
   en: [
     { main: "Do you offer services and want to grow your client base?", bgImage: "/artisan.jpg", time: 4 },
     { main: "AllSherut helps you grow your business.", bgImage: "/aide.jpg", time: 4 },
-    { main: "Simple and fast online registration.", bgVideo: "/arshama.mp4", bgFallback: "/images/electrician.jpg", time: 5 },
+    { main: "Simple and fast online registration.", bgVideo: "https://res.cloudinary.com/ddzskq7hd/video/upload/v1794773884/homesherut-site/arshama.mp4", bgFallback: "/images/electrician.jpg", time: 5 },
     { main: "Over 20 service categories on a single platform.", isMarquee: true, time: 7 },
-    { main: "Easily access your personal dashboard.", bgVideo: "/dashboard.mp4", bgFallback: "/images/nikayon.jpg", time: 5 },
-    { main: "Update your information at any time.", bgVideo: "/idkounpratim.mp4", bgFallback: "/images/jardinage.jpg", time: 6 },
+    { main: "Easily access your personal dashboard.", bgVideo: "https://res.cloudinary.com/ddzskq7hd/video/upload/v1794773888/homesherut-site/dashboard.mp4", bgFallback: "/images/nikayon.jpg", time: 5 },
+    { main: "Update your information at any time.", bgVideo: "https://res.cloudinary.com/ddzskq7hd/video/upload/v1794773885/homesherut-site/idkounpratim.mp4", bgFallback: "/images/jardinage.jpg", time: 6 },
     { main: "Clients rate your work. Reviews build your credibility.", bgImage: "/avis.jpg", time: 5 },
     { main: "Launch offer: free registration.", bgImage: "/gratos.jpg", time: 4 },
     { main: "Join AllSherut today and boost your visibility.", bgImage: "/itstarfou.jpg", time: 5 },
@@ -26,10 +26,10 @@ const promoTranslations = {
   ru: [
     { main: "Предлагаете услуги и хотите расширить клиентскую базу?", bgImage: "/artisan.jpg", time: 4 },
     { main: "AllSherut поможет развить ваш бизнес.", bgImage: "/aide.jpg", time: 4 },
-    { main: "Простая и быстрая онлайн-регистрация.", bgVideo: "/arshama.mp4", bgFallback: "/images/electrician.jpg", time: 5 },
+    { main: "Простая и быстрая онлайн-регистрация.", bgVideo: "https://res.cloudinary.com/ddzskq7hd/video/upload/v1794773884/homesherut-site/arshama.mp4", bgFallback: "/images/electrician.jpg", time: 5 },
     { main: "Более 20 категорий услуг на одной платформе.", isMarquee: true, time: 7 },
-    { main: "Лёгкий доступ к личному кабинету.", bgVideo: "/dashboard.mp4", bgFallback: "/images/nikayon.jpg", time: 5 },
-    { main: "Обновляйте информацию в любое время.", bgVideo: "/idkounpratim.mp4", bgFallback: "/images/jardinage.jpg", time: 6 },
+    { main: "Лёгкий доступ к личному кабинету.", bgVideo: "https://res.cloudinary.com/ddzskq7hd/video/upload/v1794773888/homesherut-site/dashboard.mp4", bgFallback: "/images/nikayon.jpg", time: 5 },
+    { main: "Обновляйте информацию в любое время.", bgVideo: "https://res.cloudinary.com/ddzskq7hd/video/upload/v1794773885/homesherut-site/idkounpratim.mp4", bgFallback: "/images/jardinage.jpg", time: 6 },
     { main: "Клиенты оценивают вашу работу. Отзывы укрепляют доверие.", bgImage: "/avis.jpg", time: 5 },
     { main: "Стартовое предложение: бесплатная регистрация.", bgImage: "/gratos.jpg", time: 4 },
     { main: "Присоединяйтесь к AllSherut и увеличьте видимость.", bgImage: "/itstarfou.jpg", time: 5 },
@@ -37,10 +37,10 @@ const promoTranslations = {
   he: [
     { main: "אתה מציע שירותים ורוצה להגדיל את בסיס הלקוחות שלך?", bgImage: "/artisan.jpg", time: 4 },
     { main: "AllSherut עוזר לך לפתח את העסק שלך.", bgImage: "/aide.jpg", time: 4 },
-    { main: "הרשמה פשוטה ומהירה באינטרנט.", bgVideo: "/arshama.mp4", bgFallback: "/images/electrician.jpg", time: 5 },
+    { main: "הרשמה פשוטה ומהירה באינטרנט.", bgVideo: "https://res.cloudinary.com/ddzskq7hd/video/upload/v1794773884/homesherut-site/arshama.mp4", bgFallback: "/images/electrician.jpg", time: 5 },
     { main: "מעל 20 קטגוריות שירות בפלטפורמה אחת.", isMarquee: true, time: 7 },
-    { main: "גש בקלות לאזור האישי שלך.", bgVideo: "/dashboard.mp4", bgFallback: "/images/nikayon.jpg", time: 5 },
-    { main: "עדכן את המידע שלך בכל עת.", bgVideo: "/idkounpratim.mp4", bgFallback: "/images/jardinage.jpg", time: 6 },
+    { main: "גש בקלות לאזור האישי שלך.", bgVideo: "https://res.cloudinary.com/ddzskq7hd/video/upload/v1794773888/homesherut-site/dashboard.mp4", bgFallback: "/images/nikayon.jpg", time: 5 },
+    { main: "עדכן את המידע שלך בכל עת.", bgVideo: "https://res.cloudinary.com/ddzskq7hd/video/upload/v1794773885/homesherut-site/idkounpratim.mp4", bgFallback: "/images/jardinage.jpg", time: 6 },
     { main: "לקוחות מעריכים את עבודתך. ביקורות מחזקות את האמינות שלך.", bgImage: "/avis.jpg", time: 5 },
     { main: "מבצע השקה: הרשמה חינם.", bgImage: "/gratos.jpg", time: 4 },
     { main: "הצטרף ל-AllSherut היום והגדל את הנראות שלך.", bgImage: "/itstarfou.jpg", time: 5 },
@@ -607,7 +607,7 @@ const particles = [
 const LANG_LABELS = { fr: 'FR', en: 'EN', ru: 'RU', he: 'HE' };
 const LANG_ORDER  = ['fr', 'en', 'ru', 'he'];
 
-const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "/musique.mp3", services = [] }) => {
+const PromoVideoVertical = ({ videoSrc = "/background.mp4", audioSrc = "https://res.cloudinary.com/ddzskq7hd/video/upload/v1794773883/homesherut-site/musique.mp3", services = [] }) => {
   const [currentTime, setCurrentTime] = useState(0);
   const [started, setStarted]         = useState(false);
   const [isPlaying, setIsPlaying]     = useState(true);
