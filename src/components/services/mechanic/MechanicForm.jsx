@@ -15,6 +15,13 @@ const WORK_TYPES = [
   { value: 'לקיחת רכב לטסט', key: 'serviceForm.mechanic.vehicleInspection' },
 ];
 
+const HOURS = [
+  { value: 'בוקר', key: 'hours.morning' },
+  { value: 'אחר הצהריים', key: 'hours.afternoon' },
+  { value: 'ערב', key: 'hours.evening' },
+  { value: 'הכל', key: 'hours.all' },
+];
+
 const MechanicForm = ({ serviceDetails, errors, handleServiceDetailsChange }) => {
   const { t } = useLanguage();
 
@@ -24,6 +31,14 @@ const MechanicForm = ({ serviceDetails, errors, handleServiceDetailsChange }) =>
       ? current.filter(v => v !== value)
       : [...current, value];
     handleServiceDetailsChange('work_types', updated);
+  };
+
+  const toggleHour = (value) => {
+    const current = serviceDetails.availability_hours || [];
+    const updated = current.includes(value)
+      ? current.filter(h => h !== value)
+      : [...current, value];
+    handleServiceDetailsChange('availability_hours', updated);
   };
 
   return (
@@ -49,6 +64,24 @@ const MechanicForm = ({ serviceDetails, errors, handleServiceDetailsChange }) =>
           </div>
           {errors['serviceDetails.work_types'] && (
             <span className="error-text">{errors['serviceDetails.work_types']}</span>
+          )}
+        </div>
+        <div className="input-group">
+          <label className="auth-form-label required">{t('serviceForm.common.availabilityHours')}</label>
+          <div className="checkbox-group" data-field="availability_hours">
+            {HOURS.map(hour => (
+              <label key={hour.value} className="checkbox-item">
+                <input
+                  type="checkbox"
+                  checked={serviceDetails.availability_hours?.includes(hour.value) || false}
+                  onChange={() => toggleHour(hour.value)}
+                />
+                {t(hour.key)}
+              </label>
+            ))}
+          </div>
+          {errors['serviceDetails.availability_hours'] && (
+            <span className="error-text">{errors['serviceDetails.availability_hours']}</span>
           )}
         </div>
         <div className="input-group">

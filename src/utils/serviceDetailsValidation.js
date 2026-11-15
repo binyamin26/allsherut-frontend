@@ -273,6 +273,7 @@ export const getServiceDetailsErrors = (serviceType, serviceDetails, t) => {
       break;
 
     case 'mechanic':
+      if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) errors.availability_hours = t('validation.availabilityHoursRequired');
       if (!serviceDetails.work_types || serviceDetails.work_types.length === 0) errors.work_types = t('validation.workTypesRequired');
       break;
 

@@ -1650,6 +1650,17 @@ const serviceFieldsConfig = {
     fields: [
       { name: 'experience', label: 'serviceFields.mechanic.experience', type: 'number' },
       {
+        name: 'availability_hours',
+        label: 'serviceForm.common.availabilityHours',
+        type: 'checkbox',
+        options: [
+          { value: 'בוקר',        labelKey: 'hours.morning' },
+          { value: 'אחר הצהריים', labelKey: 'hours.afternoon' },
+          { value: 'ערב',         labelKey: 'hours.evening' },
+          { value: 'הכל',         labelKey: 'hours.all' }
+        ]
+      },
+      {
         name: 'work_types',
         label: 'serviceFields.mechanic.work_types',
         type: 'checkbox',
