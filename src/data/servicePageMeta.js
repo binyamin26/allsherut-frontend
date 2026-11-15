@@ -90,11 +90,10 @@ export const SERVICE_PAGE_META = {
     heroImage: '/images/kinesiology-logo.jpg',
     heroAlt: 'קינזיולוגיה',
   },
-  // Pas d'image de héros pour l'instant (heroImage vide → emoji côté page)
   accountant: {
     title: 'רואי חשבון',
     description: 'מצאו רואה חשבון בישראל - הנהלת חשבונות, דוחות מס, שכר וייעוץ לעצמאים, חברות ועמותות, במשרד, אצל הלקוח או אונליין.',
-    heroImage: '',
+    heroImage: '/images/accountant-logo.jpg',
     heroAlt: 'רואה חשבון',
   },
   // Catégorie Sécurité : pas encore d'image de héros (heroImage vide → emoji côté page)
