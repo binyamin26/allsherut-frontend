@@ -115,21 +115,13 @@ const Header = () => {
     { icon: <HardHat className="w-5 h-5" />, nameKey: 'services.contractor', descKey: 'services.contractor.desc', serviceKey: 'contractor' }
   ].filter(s => !HIDDEN_SERVICE_IDS.includes(s.serviceKey.replace(/-/g, '_')))
   // Services regroupés par catégorie (menu mobile)
-  const CATEGORY_COLORS = {
-    'maison-travaux': '#ea580c',
-    'nettoyage-entretien': '#0891b2',
-    'famille-assistance': '#e11d48',
-    'medecine-soins': '#0d9488',
-    'evenements-creation': '#7c3aed',
-    'apprentissage-sport': '#059669',
-    'transport-services-mobiles': '#2563eb',
-    'securite-reseaux-maison-intelligente': '#475569'
-  }
+  // Palette sobre: une seule teinte de marque pour toutes les catégories
+  const CATEGORY_COLOR = '#1A5490'
   const groupServices = (list) => VISIBLE_CATEGORY_DEFINITIONS
     .map(cat => ({
       id: cat.id,
       name: cat.names[currentLanguage] || cat.names.fr,
-      color: CATEGORY_COLORS[cat.id] || '#1A5490',
+      color: CATEGORY_COLOR,
       items: cat.serviceIds
         .map(id => list.find(s => s.serviceKey.replace(/-/g, '_') === id))
         .filter(Boolean)
