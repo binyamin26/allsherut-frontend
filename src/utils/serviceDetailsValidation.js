@@ -301,6 +301,7 @@ export const getServiceDetailsErrors = (serviceType, serviceDetails, t) => {
       break;
 
     case 'accountant':
+      if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) errors.availability_hours = t('validation.availabilityHoursRequired');
       ['accountant_service_types', 'accountant_client_types', 'accountant_meeting_types'].forEach(field => {
         if (!serviceDetails[field] || serviceDetails[field].length === 0) errors[field] = t('validation.selectAtLeastOne');
       });
