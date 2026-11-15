@@ -164,7 +164,7 @@ export const CATEGORY_DEFINITIONS = [
       en: 'Accountants and advisers in Israel: bookkeeping, tax returns, payroll and business support.',
       ru: 'Бухгалтеры и консультанты в Израиле: бухгалтерия, налоговые декларации, зарплата и сопровождение бизнеса.',
     },
-    image: '/images/accountant.jpg',
+    image: '/images/droit-finance.jpg',
     gradient: 'from-indigo-600 to-blue-800',
     serviceIds: ['accountant'],
   },
