@@ -125,18 +125,44 @@ const Header = () => {
     'transport-services-mobiles': '#2563eb',
     'securite-reseaux-maison-intelligente': '#475569'
   }
-  const groupedServices = VISIBLE_CATEGORY_DEFINITIONS
+  const groupServices = (list) => VISIBLE_CATEGORY_DEFINITIONS
     .map(cat => ({
       id: cat.id,
       name: cat.names[currentLanguage] || cat.names.fr,
       color: CATEGORY_COLORS[cat.id] || '#1A5490',
       items: cat.serviceIds
-        .map(id => services.find(s => s.serviceKey.replace(/-/g, '_') === id))
+        .map(id => list.find(s => s.serviceKey.replace(/-/g, '_') === id))
         .filter(Boolean)
     }))
     .filter(g => g.items.length > 0)
+  const groupedServices = groupServices(services)
 
   const recruitmentServices = services.filter(s => !RECRUITMENT_EXCLUDED_SERVICE_IDS.includes(s.serviceKey.replace(/-/g, '_')))
+  const groupedRecruitment = groupServices(recruitmentServices)
+
+  const renderMegaMenu = (groups, getHref) => (
+    <div className="services-mega-menu">
+      <div className="services-mega-grid">
+        {groups.map(group => (
+          <div key={group.id} className="mega-cat" style={{ '--cat-color': group.color }}>
+            <div className="mega-cat-header">
+              <span className="text-mega-cat-title">{group.name}</span>
+            </div>
+            <ul className="mega-cat-list">
+              {group.items.map(service => (
+                <li key={service.serviceKey}>
+                  <Link to={getHref(service)} className="mega-item" onClick={() => setIsMenuOpen(false)}>
+                    <span className="mega-item-icon">{service.icon}</span>
+                    <span className="text-mega-item">{t(service.nameKey)}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
 
   const handleLogout = async () => {
     await logout()
@@ -208,86 +234,24 @@ const Header = () => {
 
   <Link to="/" className="nav-link">{t('nav.home')}</Link>
   
-  <div className="services-dropdown">
+  <div className="services-dropdown is-mega">
     <div className="services-dropdown-trigger nav-link">
       {t('nav.services')}
       <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
         <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
       </svg>
     </div>
-    <div className="services-dropdown-menu">
-   {services.map((service, index) => (
-  <Link
-    key={index}
-    to={buildServicePath(service.serviceKey, currentLanguage)}
-    className="services-dropdown-item"
-    style={{
-      display: 'flex',
-      flexDirection: 'row',
-      alignItems: 'center',
-      gap: '12px'
-    }}
-    onClick={() => setIsMenuOpen(false)}
-  >
-    {currentLanguage === 'he' ? (
-      <>
-        <div style={{ flexShrink: 0 }}>{service.icon}</div>
-        <div style={{ flexGrow: 1, textAlign: 'right' }}>
-          <h4>{t(service.nameKey)}</h4>
-          <p>{t(service.descKey)}</p>
-        </div>
-      </>
-    ) : (
-      <>
-        <div style={{ flexGrow: 1, textAlign: 'left' }}>
-          <h4>{t(service.nameKey)}</h4>
-          <p>{t(service.descKey)}</p>
-        </div>
-        <div style={{ flexShrink: 0 }}>{service.icon}</div>
-      </>
-    )}
-  </Link>
-))}
-    </div>
+    {renderMegaMenu(groupedServices, (svc) => buildServicePath(svc.serviceKey, currentLanguage))}
   </div>
   
-  <div className="services-dropdown">
+  <div className="services-dropdown is-mega">
     <div className="services-dropdown-trigger nav-link">
       {t('nav.recruitment')}
       <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
         <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
       </svg>
     </div>
-    <div className="services-dropdown-menu">
-      {recruitmentServices.map((service, index) => {
-        const recruitHref = buildPath(`/recruitment/${service.serviceKey}`, currentLanguage);
-        return (
-          <Link
-            key={index}
-            to={recruitHref}
-            className="services-dropdown-item"
-            style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '12px' }}
-            onClick={() => setIsMenuOpen(false)}
-          >
-            {currentLanguage === 'he' ? (
-              <>
-                <div style={{ flexShrink: 0 }}>{service.icon}</div>
-                <div style={{ flexGrow: 1, textAlign: 'right' }}>
-                  <h4>{t(service.nameKey)}</h4>
-                </div>
-              </>
-            ) : (
-              <>
-                <div style={{ flexGrow: 1, textAlign: 'left' }}>
-                  <h4>{t(service.nameKey)}</h4>
-                </div>
-                <div style={{ flexShrink: 0 }}>{service.icon}</div>
-              </>
-            )}
-          </Link>
-        );
-      })}
-    </div>
+    {renderMegaMenu(groupedRecruitment, (svc) => buildPath(`/recruitment/${svc.serviceKey}`, currentLanguage))}
   </div>
 
   <Link to="/contact" className="nav-link">{t('nav.contact')}</Link>

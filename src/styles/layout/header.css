@@ -220,6 +220,112 @@ nav {
   border-bottom: none;
 }
 
+/* ——— Méga-menu desktop (services / recrutement) ——— */
+.services-dropdown.is-mega {
+  position: static; /* le menu se positionne par rapport au header fixe */
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.services-mega-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: min(1120px, calc(100vw - 32px));
+  max-height: calc(100vh - 110px);
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid var(--neutral-100);
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 24px 48px rgba(15, 42, 68, 0.18);
+  padding: 22px 24px 26px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, -8px);
+  transition: all var(--transition-medium);
+  z-index: 1001;
+}
+
+.services-dropdown.is-mega:hover .services-mega-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+.services-mega-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px 26px;
+}
+
+@media (max-width: 1200px) {
+  .services-mega-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+.mega-cat-header {
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 2px solid color-mix(in srgb, var(--cat-color) 25%, transparent);
+}
+
+/* Classes "text-" pour échapper à l'override AccessibilityWidget */
+.text-mega-cat-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--cat-color);
+}
+
+.mega-cat-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.mega-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 8px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--neutral-700);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.mega-item::after { display: none !important; }
+
+.mega-item-icon {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  color: var(--cat-color);
+  background: color-mix(in srgb, var(--cat-color) 10%, white);
+}
+
+.mega-item-icon svg {
+  width: 17px !important;
+  height: 17px !important;
+}
+
+.text-mega-item {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.mega-item:hover {
+  background: color-mix(in srgb, var(--cat-color) 9%, white);
+  color: var(--cat-color);
+}
+
 /* Search moderne */
 .search-container {
   position: relative;
