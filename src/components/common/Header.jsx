@@ -129,7 +129,13 @@ const Header = () => {
         .filter(Boolean)
     }))
     .filter(g => g.items.length > 0)
-  const groupedServices = groupServices(services)
+  // Menu Prestataires : ces catégories s'affichent en premier (dans cet ordre), les autres suivent dans leur ordre habituel
+  const PROVIDER_MENU_PRIORITY = ['evenements-creation', 'apprentissage-sport', 'transport-services-mobiles']
+  const prioritizeCategories = (groups) => [
+    ...PROVIDER_MENU_PRIORITY.map(id => groups.find(g => g.id === id)).filter(Boolean),
+    ...groups.filter(g => !PROVIDER_MENU_PRIORITY.includes(g.id))
+  ]
+  const groupedServices = prioritizeCategories(groupServices(services))
 
   const recruitmentServices = services.filter(s => !RECRUITMENT_EXCLUDED_SERVICE_IDS.includes(s.serviceKey.replace(/-/g, '_')))
   const groupedRecruitment = groupServices(recruitmentServices)
