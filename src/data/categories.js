@@ -243,7 +243,7 @@ export const SERVICES_META = {
   smart_home:         { image: '/images/Gemini_Generated_Image_44cdrh44cdrh44cd (1).jpg', href: '/services/smart-home', nameKey: 'services.smart_home' },
   doula:              { image: '/images/doula.jpeg',           href: '/services/doula',              nameKey: 'services.doula' },
   art_therapy:        { image: '/images/art-therapy.jpg', icon: '🎨', href: '/services/art-therapy', nameKey: 'services.art_therapy' },
-  kinesiology:        { image: '/images/kinesiology.jpg', icon: '🧠', href: '/services/kinesiology', nameKey: 'services.kinesiology' },
+  kinesiology:        { image: '/images/kinesiology-photo.jpg', icon: '🧠', href: '/services/kinesiology', nameKey: 'services.kinesiology' },
   accountant:         { image: '/images/accountant.jpg', icon: '🧾', href: '/services/accountant', nameKey: 'services.accountant' },
   osteopath:          { image: '/images/osteopath.jpg', icon: '🦴', href: '/services/osteopath', nameKey: 'services.osteopath' },
 };
