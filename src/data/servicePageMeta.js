@@ -90,11 +90,10 @@ export const SERVICE_PAGE_META = {
     heroImage: '/images/kinesiology-logo.jpg',
     heroAlt: 'קינזיולוגיה',
   },
-  // Pas d'image de héros pour l'instant (heroImage vide → emoji côté page)
   osteopath: {
     title: 'אוסטאופתים',
     description: 'מצאו אוסטאופת בישראל - טיפול בכאבי גב וצוואר, כאבי ראש, פציעות ספורט, הריון ותינוקות, בקליניקה או בבית הלקוח.',
-    heroImage: '',
+    heroImage: '/images/osteopath-logo.jpg',
     heroAlt: 'אוסטאופת',
   },
   accountant: {

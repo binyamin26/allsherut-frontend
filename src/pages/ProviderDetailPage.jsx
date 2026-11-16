@@ -193,6 +193,7 @@ const ProviderDetailPage = () => {
     art_therapy: '/images/art-therapy-logo.jpg',
     kinesiology: '/images/kinesiology-logo.jpg',
     accountant: '/images/accountant-logo.jpg',
+    osteopath: '/images/osteopath-logo.jpg',
     smart_home: '/images/Gemini_Generated_Image_fd1bjpfd1bjpfd1b (1).jpg',
     security_cameras: '/images/Gemini_Generated_Image_aecn7caecn7caecn (1).jpg',
     security_alarms: '/images/Gemini_Generated_Image_2mk58u2mk58u2mk5 (1).jpg',
