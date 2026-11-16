@@ -129,11 +129,14 @@ const Header = () => {
         .filter(Boolean)
     }))
     .filter(g => g.items.length > 0)
-  // Menu Prestataires : ces catégories s'affichent en premier (dans cet ordre), les autres suivent dans leur ordre habituel
-  const PROVIDER_MENU_PRIORITY = ['evenements-creation', 'apprentissage-sport', 'transport-services-mobiles']
+  // Menu Prestataires : ces catégories s'affichent en premier (dans cet ordre), puis les autres dans leur ordre habituel,
+  // et la catégorie Maison & Travaux tout à la fin
+  const PROVIDER_MENU_FIRST = ['evenements-creation', 'apprentissage-sport', 'transport-services-mobiles', 'nettoyage-entretien']
+  const PROVIDER_MENU_LAST = ['maison-travaux']
   const prioritizeCategories = (groups) => [
-    ...PROVIDER_MENU_PRIORITY.map(id => groups.find(g => g.id === id)).filter(Boolean),
-    ...groups.filter(g => !PROVIDER_MENU_PRIORITY.includes(g.id))
+    ...PROVIDER_MENU_FIRST.map(id => groups.find(g => g.id === id)).filter(Boolean),
+    ...groups.filter(g => !PROVIDER_MENU_FIRST.includes(g.id) && !PROVIDER_MENU_LAST.includes(g.id)),
+    ...PROVIDER_MENU_LAST.map(id => groups.find(g => g.id === id)).filter(Boolean)
   ]
   const groupedServices = prioritizeCategories(groupServices(services))
 
