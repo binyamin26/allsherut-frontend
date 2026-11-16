@@ -107,6 +107,10 @@ const fieldToCategoryMapping = {
   accountant_client_types: 'accountantClients',
   accountant_specialty_types: 'accountantSpecialties',
   accountant_meeting_types: 'accountantMeetings',
+  osteo_condition_types: 'osteopathConditions',
+  osteo_technique_types: 'osteopathTechniques',
+  osteo_audience_types: 'osteopathAudience',
+  osteo_location_types: 'osteopathLocations',
   kine_technique_types: 'kinesiologyTechniques',
   kine_goal_types: 'kinesiologyGoals',
 

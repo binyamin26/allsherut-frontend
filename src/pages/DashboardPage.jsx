@@ -44,6 +44,7 @@ import {
    ChevronRight,
    DollarSign,
   Calculator,
+  Bone,
   Undo2,
   CheckCircle2,
 } from 'lucide-react';
@@ -72,13 +73,14 @@ const ALL_SERVICE_KEYS = [
   'aluminum','metalwork','glass_works','gas_technician','waterproofing','carpentry','handyman','mechanic','contractor',
   'moving','gardening','pest_control','cleaning','laundry','property_management',
   'home_organization','event_decoration','event_entertainment','event_equipment_rental','event_food_stands','dj','private_chef','catering','pastry',
-  'photographer','tutoring','sports_activities','babysitting','petcare','eldercare','driver','doula','art_therapy','kinesiology','accountant',
+  'photographer','tutoring','sports_activities','babysitting','petcare','eldercare','driver','doula','art_therapy','kinesiology','accountant','osteopath',
   'security_cameras','security_alarms','intercom_access','networking','audio_systems','smart_home'
 ];
 
 // Définition des icônes de services
 const serviceIcons = {
   accountant: Calculator,
+  osteopath: Bone,
   babysitting: Baby,
   cleaning: Home,
   gardening: Scissors,
@@ -1695,6 +1697,7 @@ const getServiceName = (serviceType) => {
       art_therapy: 'services.art_therapy',
       kinesiology: 'services.kinesiology',
       accountant: 'services.accountant',
+      osteopath: 'services.osteopath',
       security_cameras: 'services.security_cameras',
       security_alarms: 'services.security_alarms',
       intercom_access: 'services.intercom_access',

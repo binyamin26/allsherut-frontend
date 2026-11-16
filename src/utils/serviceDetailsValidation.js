@@ -303,6 +303,14 @@ export const getServiceDetailsErrors = (serviceType, serviceDetails, t) => {
       if (!(serviceDetails.qualifications || '').trim()) errors.qualifications = t('validation.qualificationsRequired');
       break;
 
+    case 'osteopath':
+      if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) errors.availability_hours = t('validation.availabilityHoursRequired');
+      ['osteo_condition_types', 'osteo_technique_types', 'osteo_audience_types', 'osteo_location_types'].forEach(field => {
+        if (!serviceDetails[field] || serviceDetails[field].length === 0) errors[field] = t('validation.selectAtLeastOne');
+      });
+      if (!(serviceDetails.qualifications || '').trim()) errors.qualifications = t('validation.qualificationsRequired');
+      break;
+
     case 'accountant':
       if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) errors.availability_hours = t('validation.availabilityHoursRequired');
       ['accountant_service_types', 'accountant_client_types', 'accountant_meeting_types'].forEach(field => {

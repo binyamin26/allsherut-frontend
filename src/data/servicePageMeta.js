@@ -90,6 +90,13 @@ export const SERVICE_PAGE_META = {
     heroImage: '/images/kinesiology-logo.jpg',
     heroAlt: 'קינזיולוגיה',
   },
+  // Pas d'image de héros pour l'instant (heroImage vide → emoji côté page)
+  osteopath: {
+    title: 'אוסטאופתים',
+    description: 'מצאו אוסטאופת בישראל - טיפול בכאבי גב וצוואר, כאבי ראש, פציעות ספורט, הריון ותינוקות, בקליניקה או בבית הלקוח.',
+    heroImage: '',
+    heroAlt: 'אוסטאופת',
+  },
   accountant: {
     title: 'רואי חשבון',
     description: 'מצאו רואה חשבון בישראל - הנהלת חשבונות, דוחות מס, שכר וייעוץ לעצמאים, חברות ועמותות, במשרד, אצל הלקוח או אונליין.',

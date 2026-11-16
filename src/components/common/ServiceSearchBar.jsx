@@ -42,6 +42,7 @@ const SERVICE_URLS = {
   art_therapy: '/services/art-therapy',
   kinesiology: '/services/kinesiology',
   accountant: '/services/accountant',
+  osteopath: '/services/osteopath',
   security_cameras: '/services/security-cameras',
   security_alarms: '/services/security-alarms',
   intercom_access: '/services/intercom-access',
