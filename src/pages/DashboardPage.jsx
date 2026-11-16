@@ -2206,7 +2206,7 @@ const showPricingPopup = userData?.role === 'provider'
           ) : (
             !isSubscriptionExpired && (
               <>
-                <button onClick={handleEditToggle} className="btn btn-secondary">
+                <button onClick={handleEditToggle} className="btn btn-primary">
                   <Edit size={18} />{t('dashboard.editProfile')}
                 </button>
                 <button
