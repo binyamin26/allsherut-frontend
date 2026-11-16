@@ -245,6 +245,5 @@ export const SERVICES_META = {
   art_therapy:        { image: '/images/art-therapy-logo.jpg', icon: '🎨', href: '/services/art-therapy', nameKey: 'services.art_therapy' },
   kinesiology:        { image: '/images/kinesiology.jpg', icon: '🧠', href: '/services/kinesiology', nameKey: 'services.kinesiology' },
   accountant:         { image: '/images/accountant.jpg', icon: '🧾', href: '/services/accountant', nameKey: 'services.accountant' },
-  // Pas d'image dédiée pour l'instant → emoji (fallback image ? <img> : icon)
-  osteopath:          { icon: '🦴', href: '/services/osteopath', nameKey: 'services.osteopath' },
+  osteopath:          { image: '/images/osteopath.jpg', icon: '🦴', href: '/services/osteopath', nameKey: 'services.osteopath' },
 };
