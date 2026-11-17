@@ -45,6 +45,7 @@ export const SERVICE_SLUGS = {
   kinesiology:            { he: 'kinesiology',          en: 'kinesiology',          fr: 'kinesiologie',             ru: 'kinesiologiya' },
   accountant:             { he: 'accountant',           en: 'accountant',           fr: 'expert-comptable',         ru: 'buhgalter' },
   osteopath:              { he: 'osteopath',            en: 'osteopath',            fr: 'osteopathe',               ru: 'osteopat' },
+  massage:                { he: 'massage',              en: 'massage',              fr: 'massage',                  ru: 'massazh' },
   acupuncture:            { he: 'acupuncture',          en: 'acupuncture',          fr: 'acupuncteur',              ru: 'akupunktura' },
   'security-cameras':     { he: 'security-cameras',     en: 'security-cameras',     fr: 'cameras-surveillance',     ru: 'kamery-videonablyudeniya' },
   'security-alarms':      { he: 'security-alarms',      en: 'security-alarms',      fr: 'alarmes-securite',         ru: 'okhrannaya-signalizatsiya' },

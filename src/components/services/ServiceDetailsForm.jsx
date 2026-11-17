@@ -44,6 +44,7 @@ import KinesiologyForm from './kinesiology/KinesiologyForm';
 import AccountantForm from './accountant/AccountantForm';
 import OsteopathForm from './osteopath/OsteopathForm';
 import AcupunctureForm from './acupuncture/AcupunctureForm';
+import MassageForm from './massage/MassageForm';
 import SecurityServiceForm from './security/SecurityServiceForm';
 import { SECURITY_SERVICE_KEYS } from '../../data/securityServices';
 
@@ -99,6 +100,7 @@ const ServiceDetailsForm = ({
     accountant: AccountantForm,
     osteopath: OsteopathForm,
     acupuncture: AcupunctureForm,
+    massage: MassageForm,
     // Catégorie Sécurité : un seul formulaire générique piloté par data/securityServices.js
     ...Object.fromEntries(SECURITY_SERVICE_KEYS.map(key => [key, SecurityServiceForm]))
   };

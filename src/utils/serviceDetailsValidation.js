@@ -303,6 +303,14 @@ export const getServiceDetailsErrors = (serviceType, serviceDetails, t) => {
       if (!(serviceDetails.qualifications || '').trim()) errors.qualifications = t('validation.qualificationsRequired');
       break;
 
+    case 'massage':
+      if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) errors.availability_hours = t('validation.availabilityHoursRequired');
+      ['mas_massage_types', 'mas_condition_types', 'mas_audience_types', 'mas_location_types'].forEach(field => {
+        if (!serviceDetails[field] || serviceDetails[field].length === 0) errors[field] = t('validation.selectAtLeastOne');
+      });
+      if (!(serviceDetails.qualifications || '').trim()) errors.qualifications = t('validation.qualificationsRequired');
+      break;
+
     case 'acupuncture':
       if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) errors.availability_hours = t('validation.availabilityHoursRequired');
       ['acu_condition_types', 'acu_technique_types', 'acu_audience_types', 'acu_location_types'].forEach(field => {

@@ -90,6 +90,11 @@ export const SERVICE_PAGE_META = {
     heroImage: '/images/kinesiology-logo.jpg',
     heroAlt: 'קינזיולוגיה',
   },
+  massage: {
+    title: 'עיסוי',
+    description: 'מצאו מעסים בישראל - עיסוי שוודי, רקמות עמוק, ספורטיבי, טווינא, שיאצו ועוד, בקליניקה, בבית הלקוח או במקום העבודה.',
+    heroAlt: 'עיסוי',
+  },
   acupuncture: {
     title: 'דיקור סיני',
     description: 'מצאו מטפלי דיקור סיני בישראל - כאבי גב וצוואר, מיגרנות, לחץ ושינה, פוריות ועוד, בקליניקה או בבית הלקוח.',

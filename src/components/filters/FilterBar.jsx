@@ -16,6 +16,7 @@ import { KINESIOLOGY_GROUPS, KINESIOLOGY_HOURS } from '../../data/kinesiology';
 import { ACCOUNTANT_GROUPS, ACCOUNTANT_HOURS } from '../../data/accountant';
 import { OSTEOPATH_GROUPS, OSTEOPATH_HOURS } from '../../data/osteopath';
 import { ACUPUNCTURE_GROUPS, ACUPUNCTURE_HOURS } from '../../data/acupuncture';
+import { MASSAGE_GROUPS, MASSAGE_HOURS } from '../../data/massage';
 import { useAuth } from '../../context/AuthContext';
 import { useLanguage } from '../../context/LanguageContext';
 import {
@@ -569,6 +570,7 @@ const ServicePanel = ({ serviceType, filters, onChange }) => {
     accountant: AccountantFilters,
     osteopath: OsteopathFilters,
     acupuncture: AcupunctureFilters,
+    massage: MassageFilters,
     laundry: LaundryFilters,
     electrician: ElectricianFilters,
     plumbing: PlumbingFilters,
@@ -992,6 +994,33 @@ const ArtTherapyFilters = ({ filters, handleCheckboxChange }) => {
       <CheckboxSection
         title={t('serviceForm.common.availabilityHours')}
         options={ART_THERAPY_HOURS.map(o => ({ value: o.value, label: t(o.key) }))}
+        filterKey="availability_hours"
+        filters={filters}
+        onCheckboxChange={handleCheckboxChange}
+      />
+    </div>
+  );
+};
+
+// MASSAGE (config dans data/massage.js)
+const MassageFilters = ({ filters, handleCheckboxChange }) => {
+  const { t } = useLanguage();
+
+  return (
+    <div className="service-panel">
+      {MASSAGE_GROUPS.map(group => (
+        <CheckboxSection
+          key={group.field}
+          title={t(group.titleKey)}
+          options={group.options.map(o => ({ value: o.value, label: t(o.key) }))}
+          filterKey={group.field}
+          filters={filters}
+          onCheckboxChange={handleCheckboxChange}
+        />
+      ))}
+      <CheckboxSection
+        title={t('serviceForm.common.availabilityHours')}
+        options={MASSAGE_HOURS.map(o => ({ value: o.value, label: t(o.key) }))}
         filterKey="availability_hours"
         filters={filters}
         onCheckboxChange={handleCheckboxChange}

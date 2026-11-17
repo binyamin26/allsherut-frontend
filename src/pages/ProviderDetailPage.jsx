@@ -19,6 +19,7 @@ import { KINESIOLOGY_GROUPS } from '../data/kinesiology';
 import { ACCOUNTANT_GROUPS } from '../data/accountant';
 import { OSTEOPATH_GROUPS } from '../data/osteopath';
 import { ACUPUNCTURE_GROUPS } from '../data/acupuncture';
+import { MASSAGE_GROUPS } from '../data/massage';
 import {
   MapPin, Clock, Phone, Mail, Award,
   Calendar, MessageCircle, ThumbsUp, User, Shield,
@@ -1464,6 +1465,24 @@ const handleContact = () => {
         {provider.serviceType === 'kinesiology' && details.qualifications && (
           <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
             <IconLabel icon={Award}>{t('serviceForm.kinesiology.qualificationsTitle')}:</IconLabel>
+            <span>{details.qualifications}</span>
+          </div>
+        )}
+
+        {/* MASSAGE - champs spécifiques (voir data/massage.js) */}
+        {provider.serviceType === 'massage' && MASSAGE_GROUPS.map(group => {
+          const values = details[group.field];
+          if (!Array.isArray(values) || values.length === 0) return null;
+          return (
+            <div key={group.field} className="detail-item" style={{ gridColumn: '1 / -1' }}>
+              <IconLabel icon={Sparkles}>{t(group.titleKey)}:</IconLabel>
+              <span>{values.map(v => { const o = group.options.find(opt => opt.value === v); return o ? t(o.key) : v; }).join(', ')}</span>
+            </div>
+          );
+        })}
+        {provider.serviceType === 'massage' && details.qualifications && (
+          <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+            <IconLabel icon={Award}>{t('serviceForm.massage.qualificationsTitle')}:</IconLabel>
             <span>{details.qualifications}</span>
           </div>
         )}

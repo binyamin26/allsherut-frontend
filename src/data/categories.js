@@ -76,7 +76,7 @@ export const CATEGORY_DEFINITIONS = [
     },
     image: '/images/nature-morte-medicale.jpg',
     gradient: 'from-teal-500 to-cyan-600',
-    serviceIds: ['doula', 'art_therapy', 'kinesiology', 'osteopath', 'acupuncture'],
+    serviceIds: ['doula', 'art_therapy', 'kinesiology', 'osteopath', 'acupuncture', 'massage'],
   },
   {
     id: 'evenements-creation',
@@ -188,7 +188,7 @@ export const HIDDEN_SERVICE_IDS = CATEGORY_DEFINITIONS
 // Services pour lesquels le RECRUTEMENT (offres d'emploi) n'a pas de sens: professions libérales ou prestations
 // ponctuelles. Ne retire PAS le service lui-même (les prestataires restent visibles); seul le recrutement est masqué.
 export const RECRUITMENT_EXCLUDED_SERVICE_IDS = [
-  'doula', 'kinesiology', 'osteopath', 'acupuncture', 'art_therapy', 'dj', 'event_entertainment',
+  'doula', 'kinesiology', 'osteopath', 'acupuncture', 'massage', 'art_therapy', 'dj', 'event_entertainment',
   'event_equipment_rental', 'event_food_stands', 'home_organization', 'babysitting',
 ];
 
@@ -245,6 +245,7 @@ export const SERVICES_META = {
   art_therapy:        { image: '/images/art-therapy.jpg', icon: '🎨', href: '/services/art-therapy', nameKey: 'services.art_therapy' },
   kinesiology:        { image: '/images/kinesiology-photo.jpg', icon: '🧠', href: '/services/kinesiology', nameKey: 'services.kinesiology' },
   accountant:         { image: '/images/accountant.jpg', icon: '🧾', href: '/services/accountant', nameKey: 'services.accountant' },
+  massage:            { icon: '💆', href: '/services/massage', nameKey: 'services.massage' },
   acupuncture:        { icon: '🪡', href: '/services/acupuncture', nameKey: 'services.acupuncture' },
   osteopath:          { image: '/images/osteopath.jpg', icon: '🦴', href: '/services/osteopath', nameKey: 'services.osteopath' },
 };

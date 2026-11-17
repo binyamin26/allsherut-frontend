@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
-import { Menu, X, Home, Users, BookOpen, UserCheck, Sparkles, Baby, LogOut, Shirt, Zap, Wrench, Wind, Flame, Package, Layers, Hammer, PartyPopper, ChefHat, Paintbrush, Droplets, HardHat, Frame, Square, Key, Leaf, PawPrint, ChevronDown, Phone, Truck, Camera, Wand2, Bug, Cog, Dumbbell, Music2, Car, Shield, Navigation, Soup, Croissant, Castle, Popcorn, HeartPulse, Palette, Brain, Video, Siren, BellRing, Network, Volume2, Cpu, Calculator, Bone, Pin } from 'lucide-react'
+import { Menu, X, Home, Users, BookOpen, UserCheck, Sparkles, Baby, LogOut, Shirt, Zap, Wrench, Wind, Flame, Package, Layers, Hammer, PartyPopper, ChefHat, Paintbrush, Droplets, HardHat, Frame, Square, Key, Leaf, PawPrint, ChevronDown, Phone, Truck, Camera, Wand2, Bug, Cog, Dumbbell, Music2, Car, Shield, Navigation, Soup, Croissant, Castle, Popcorn, HeartPulse, Palette, Brain, Video, Siren, BellRing, Network, Volume2, Cpu, Calculator, Bone, Pin, Hand } from 'lucide-react'
 import { useAuth } from '../../context/AuthContext'
 import AuthModal from '../auth/AuthModal'
 import ServiceSearchBar from './ServiceSearchBar'
@@ -94,6 +94,7 @@ const Header = () => {
     { icon: <Brain className="w-5 h-5" />, nameKey: 'services.kinesiology', descKey: 'services.kinesiology.desc', serviceKey: 'kinesiology' },
     { icon: <Bone className="w-5 h-5" />, nameKey: 'services.osteopath', descKey: 'services.osteopath.desc', serviceKey: 'osteopath' },
     { icon: <Pin className="w-5 h-5" />, nameKey: 'services.acupuncture', descKey: 'services.acupuncture.desc', serviceKey: 'acupuncture' },
+    { icon: <Hand className="w-5 h-5" />, nameKey: 'services.massage', descKey: 'services.massage.desc', serviceKey: 'massage' },
     { icon: <Calculator className="w-5 h-5" />, nameKey: 'services.accountant', descKey: 'services.accountant.desc', serviceKey: 'accountant' },
     { icon: <Video className="w-5 h-5" />, nameKey: 'services.security_cameras', descKey: 'services.security_cameras.desc', serviceKey: 'security-cameras' },
     { icon: <Siren className="w-5 h-5" />, nameKey: 'services.security_alarms', descKey: 'services.security_alarms.desc', serviceKey: 'security-alarms' },

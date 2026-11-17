@@ -44,6 +44,7 @@ const SERVICE_URLS = {
   accountant: '/services/accountant',
   osteopath: '/services/osteopath',
   acupuncture: '/services/acupuncture',
+  massage: '/services/massage',
   security_cameras: '/services/security-cameras',
   security_alarms: '/services/security-alarms',
   intercom_access: '/services/intercom-access',
