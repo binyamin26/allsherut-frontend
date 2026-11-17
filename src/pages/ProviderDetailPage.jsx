@@ -196,7 +196,7 @@ const ProviderDetailPage = () => {
     kinesiology: '/images/kinesiology-logo.jpg',
     accountant: '/images/accountant-logo.jpg',
     osteopath: '/images/osteopath-logo.jpg',
-    acupuncture: '/images/acupuncture-logo.jpg',
+    acupuncture: '/images/acupuncture-logo-gold.jpg',
     massage: '/images/massage-logo.jpg',
     smart_home: '/images/Gemini_Generated_Image_fd1bjpfd1bjpfd1b (1).jpg',
     security_cameras: '/images/Gemini_Generated_Image_aecn7caecn7caecn (1).jpg',

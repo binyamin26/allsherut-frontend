@@ -99,7 +99,7 @@ export const SERVICE_PAGE_META = {
   acupuncture: {
     title: 'דיקור סיני',
     description: 'מצאו מטפלי דיקור סיני בישראל - כאבי גב וצוואר, מיגרנות, לחץ ושינה, פוריות ועוד, בקליניקה או בבית הלקוח.',
-    heroImage: '/images/acupuncture-logo.jpg',
+    heroImage: '/images/acupuncture-logo-gold.jpg',
     heroAlt: 'דיקור סיני',
   },
   osteopath: {
