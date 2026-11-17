@@ -93,7 +93,7 @@ export const SERVICE_PAGE_META = {
   massage: {
     title: 'עיסוי',
     description: 'מצאו מעסים בישראל - עיסוי שוודי, רקמות עמוק, ספורטיבי, טווינא, שיאצו ועוד, בקליניקה, בבית הלקוח או במקום העבודה.',
-    heroImage: '/images/massage.jpg',
+    heroImage: '/images/massage-logo.jpg',
     heroAlt: 'עיסוי',
   },
   acupuncture: {
