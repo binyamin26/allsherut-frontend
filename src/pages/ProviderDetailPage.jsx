@@ -2119,12 +2119,12 @@ const handleContact = () => {
                       margin: idx === 0 ? '1.5rem 1.25rem 1.25rem' : '3rem 1.25rem 1.25rem',
                     }}>
                       <div style={{ flex: '0 1 32%', borderTop: '1px solid #BFDBFE' }} />
-                      <span style={{ fontSize: '1.125rem', color: '#0F2A44', fontWeight: 800, letterSpacing: '0.2px', whiteSpace: 'nowrap' }}>{item.service_name}</span>
+                      <span style={{ fontSize: '1.125rem', color: '#0F2A44', fontWeight: 800, letterSpacing: '0.2px', whiteSpace: (item.service_name || '').length > 22 ? 'normal' : 'nowrap', textAlign: 'center' }}>{item.service_name}</span>
                       <div style={{ flex: '0 1 32%', borderTop: '1px solid #BFDBFE' }} />
                     </div>
                   ) : (
                     <div key={item.id} style={{
-                      display: 'grid', gridTemplateColumns: '1fr auto',
+                      display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) auto',
                       padding: '1rem 1.25rem', gap: '1rem', alignItems: 'center',
                       borderBottom: (idx < pricing.length - 1 && !pricing[idx + 1]?.is_title) ? '1px solid #F1F5F9' : 'none',
                       background: '#fff',
@@ -2137,7 +2137,10 @@ const handleContact = () => {
                         background: '#F8FAFC',
                         padding: '0.2rem 0.5rem',
                         borderRadius: '6px',
-                        whiteSpace: 'nowrap',
+                        // Prix courts sur une ligne ; prix longs (ex. avec remarque entre parenthèses) à la ligne, sans être coupés
+                        whiteSpace: (item.price || '').length > 14 ? 'normal' : 'nowrap',
+                        maxWidth: 'min(52vw, 16rem)',
+                        overflowWrap: 'anywhere',
                       }}>{/₪|ש["״]?ח|שקל/.test(item.price || '') || !/\d/.test(item.price || '')
                         ? item.price
                         : <span dir="ltr">{`₪${item.price}`}</span>}</span>
