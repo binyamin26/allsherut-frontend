@@ -246,6 +246,6 @@ export const SERVICES_META = {
   kinesiology:        { image: '/images/kinesiology-photo.jpg', icon: '🧠', href: '/services/kinesiology', nameKey: 'services.kinesiology' },
   accountant:         { image: '/images/accountant.jpg', icon: '🧾', href: '/services/accountant', nameKey: 'services.accountant' },
   massage:            { icon: '💆', href: '/services/massage', nameKey: 'services.massage' },
-  acupuncture:        { icon: '🪡', href: '/services/acupuncture', nameKey: 'services.acupuncture' },
+  acupuncture:        { image: '/images/acupuncture.jpg', icon: '🪡', href: '/services/acupuncture', nameKey: 'services.acupuncture' },
   osteopath:          { image: '/images/osteopath.jpg', icon: '🦴', href: '/services/osteopath', nameKey: 'services.osteopath' },
 };
