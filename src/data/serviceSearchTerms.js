@@ -45,6 +45,7 @@ export const SERVICE_SEARCH_TERMS = {
   art_therapy: ['טיפול באמנות', 'Art Therapy', 'Art-thérapie', 'Арт-терапия'],
   accountant: ['רואה חשבון', 'רו"ח', 'הנהלת חשבונות', 'הנהלת חשבונות ומיסים', 'Accountant', 'Accounting', 'Expert-comptable', 'Comptable', 'Comptabilité', 'Бухгалтер', 'Бухгалтерия'],
   kinesiology: ['קינזיולוגיה', 'קינזיולוג', 'קינסיולוגיה', 'Kinesiology', 'Kinésiologie', 'Kinésiologue', 'Кинезиология', 'Кинезиолог'],
+  acupuncture: ['דיקור סיני', 'דיקור', 'אקופונקטורה', 'אקופרסורה', 'מוקסה', 'כוסות רוח', 'רפואה סינית', 'טווינא', 'Acupuncture', 'Acupuncturist', 'Chinese medicine', 'Tuina', 'Cupping', 'Moxibustion', 'Acupuncteur', 'Médecine chinoise', 'Ventouses', 'Акупунктура', 'Иглоукалывание', 'Китайская медицина'],
   osteopath: ['אוסטאופת', 'אוסטאופתיה', 'אוסטיאופת', 'אוסטיאופתיה', 'Osteopath', 'Osteopathy', 'Ostéopathe', 'Ostéopathie', 'Остеопат', 'Остеопатия'],
   security_cameras: ["מצלמות אבטחה", "Security Cameras", "Caméras de surveillance", "Камеры видеонаблюдения"],
   security_alarms: ["מערכות אזעקה", "Security Alarms", "Alarmes de sécurité", "Охранная сигнализация"],

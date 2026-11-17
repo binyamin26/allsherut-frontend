@@ -5,14 +5,20 @@ import { ART_THERAPY_GROUPS } from '../data/artTherapy';
 import { KINESIOLOGY_GROUPS } from '../data/kinesiology';
 import { ACCOUNTANT_GROUPS } from '../data/accountant';
 import { OSTEOPATH_GROUPS } from '../data/osteopath';
+import { ACUPUNCTURE_GROUPS } from '../data/acupuncture';
 
 const artMap = (field) => Object.fromEntries(ART_THERAPY_GROUPS.find(g => g.field === field).options.map(o => [o.value, o.key]));
 
 const accMap = (field) => Object.fromEntries(ACCOUNTANT_GROUPS.find(g => g.field === field).options.map(o => [o.value, o.key]));
+const acuMap = (field) => Object.fromEntries(ACUPUNCTURE_GROUPS.find(g => g.field === field).options.map(o => [o.value, o.key]));
 const osteoMap = (field) => Object.fromEntries(OSTEOPATH_GROUPS.find(g => g.field === field).options.map(o => [o.value, o.key]));
 const kineMap = (field) => Object.fromEntries(KINESIOLOGY_GROUPS.find(g => g.field === field).options.map(o => [o.value, o.key]));
 
 const translationMappings = {
+  acupunctureConditions: acuMap('acu_condition_types'),
+  acupunctureTechniques: acuMap('acu_technique_types'),
+  acupunctureAudience: acuMap('acu_audience_types'),
+  acupunctureLocations: acuMap('acu_location_types'),
   osteopathConditions: osteoMap('osteo_condition_types'),
   osteopathTechniques: osteoMap('osteo_technique_types'),
   osteopathAudience: osteoMap('osteo_audience_types'),

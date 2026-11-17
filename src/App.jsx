@@ -83,6 +83,7 @@ const ArtTherapyPage = lazyWithRetry(() => import('./pages/services/ArtTherapyPa
 const KinesiologyPage = lazyWithRetry(() => import('./pages/services/KinesiologyPage'));
 const AccountantPage = lazyWithRetry(() => import('./pages/services/AccountantPage'));
 const OsteopathPage = lazyWithRetry(() => import('./pages/services/OsteopathPage'));
+const AcupuncturePage = lazyWithRetry(() => import('./pages/services/AcupuncturePage'));
 const SecurityCamerasPage = lazyWithRetry(() => import('./pages/services/SecurityCamerasPage'));
 const SecurityAlarmsPage = lazyWithRetry(() => import('./pages/services/SecurityAlarmsPage'));
 const IntercomAccessPage = lazyWithRetry(() => import('./pages/services/IntercomAccessPage'));
@@ -147,6 +148,7 @@ const SERVICE_PAGE_MAP = {
   kinesiology:           KinesiologyPage,
   accountant:            AccountantPage,
   osteopath:             OsteopathPage,
+  acupuncture:           AcupuncturePage,
   'security-cameras':    SecurityCamerasPage,
   'security-alarms':     SecurityAlarmsPage,
   'intercom-access':     IntercomAccessPage,

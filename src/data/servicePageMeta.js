@@ -90,6 +90,11 @@ export const SERVICE_PAGE_META = {
     heroImage: '/images/kinesiology-logo.jpg',
     heroAlt: 'קינזיולוגיה',
   },
+  acupuncture: {
+    title: 'דיקור סיני',
+    description: 'מצאו מטפלי דיקור סיני בישראל - כאבי גב וצוואר, מיגרנות, לחץ ושינה, פוריות ועוד, בקליניקה או בבית הלקוח.',
+    heroAlt: 'דיקור סיני',
+  },
   osteopath: {
     title: 'אוסטאופתים',
     description: 'מצאו אוסטאופת בישראל - טיפול בכאבי גב וצוואר, כאבי ראש, פציעות ספורט, הריון ותינוקות, בקליניקה או בבית הלקוח.',

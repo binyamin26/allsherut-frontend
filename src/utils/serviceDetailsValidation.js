@@ -303,6 +303,14 @@ export const getServiceDetailsErrors = (serviceType, serviceDetails, t) => {
       if (!(serviceDetails.qualifications || '').trim()) errors.qualifications = t('validation.qualificationsRequired');
       break;
 
+    case 'acupuncture':
+      if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) errors.availability_hours = t('validation.availabilityHoursRequired');
+      ['acu_condition_types', 'acu_technique_types', 'acu_audience_types', 'acu_location_types'].forEach(field => {
+        if (!serviceDetails[field] || serviceDetails[field].length === 0) errors[field] = t('validation.selectAtLeastOne');
+      });
+      if (!(serviceDetails.qualifications || '').trim()) errors.qualifications = t('validation.qualificationsRequired');
+      break;
+
     case 'osteopath':
       if (!serviceDetails.availability_hours || serviceDetails.availability_hours.length === 0) errors.availability_hours = t('validation.availabilityHoursRequired');
       ['osteo_condition_types', 'osteo_technique_types', 'osteo_audience_types', 'osteo_location_types'].forEach(field => {
