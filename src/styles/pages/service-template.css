@@ -300,6 +300,10 @@
   isolation: isolate;
 }
 
+.provider-card.enhanced-card {
+  cursor: pointer;
+}
+
 .provider-card.enhanced-card::before {
   content: '';
   position: absolute;

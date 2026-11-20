@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Phone, Eye, MapPin } from 'lucide-react';
+import { Phone, MapPin } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import CallLeadModal from '../modals/CallLeadModal';
 import { normalizeSportsSubjects, localizedSportName } from '../../utils/sportsSubjects';
@@ -104,7 +104,15 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
   const sportsActivities = getSportsActivities();
 
  return (
-  <div className="provider-card enhanced-card" dir={isRTL ? 'rtl' : 'ltr'}>
+  <>
+  <div
+    className="provider-card enhanced-card"
+    dir={isRTL ? 'rtl' : 'ltr'}
+    role="link"
+    tabIndex={0}
+    onClick={handleViewProfile}
+    onKeyDown={(e) => { if (e.key === 'Enter') handleViewProfile(); }}
+  >
     <div className="card-vertical-body">
       <div className="card-avatar">
         {imageUrl ? (
@@ -160,11 +168,8 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
 
     <div className="card-footer">
       <div className="action-buttons" dir={isRTL ? 'rtl' : 'ltr'}>
-        <button className="contact-provider-btn" onClick={handleViewProfile}>
-          <Eye size={15} />
-          <span>{t('card.viewProfile')}</span>
-        </button>
-        <button className="call-provider-btn" onClick={() => {
+        <button className="call-provider-btn" onClick={(e) => {
+          e.stopPropagation();
           if (provider.phone) {
             setCallModal({ open: true, action: 'call' });
           }
@@ -174,6 +179,7 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
         </button>
       </div>
     </div>
+  </div>
 
     <CallLeadModal
       isOpen={callModal.open}
@@ -184,7 +190,7 @@ console.log("ID:", provider.id, "Image calculée:", imageUrl);
       serviceName={provider.serviceLabel || provider.service_name || provider.serviceName || provider.service_type || provider.serviceType || ''}
       action={callModal.action}
     />
-  </div>
+  </>
 );
 };
 
