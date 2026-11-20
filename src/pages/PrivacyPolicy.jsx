@@ -42,7 +42,7 @@ const PrivacyPolicy = () => {
                 <ul className="privacy-list">
                   <li><strong>פרטים אישיים בסיסיים:</strong> שם מלא, כתובת דוא&quot;ל</li>
                   <li><strong>היסטוריית חיפושים:</strong> שירותים שחיפשתם, מיקומים שאינטרסים אתכם</li>
-                  <li><strong>ביקורות שפרסמתם:</strong> תוכן הביקורות, דירוגים וזמן פרסום</li>
+                  <li><strong>חוות דעת שפרסמתם:</strong> תוכן חוות הדעת, דירוגים וזמן פרסום</li>
                   <li><strong>נתוני שימוש:</strong> כיצד אתם משתמשים באתר, דפים שבקרתם, זמני שימוש</li>
                 </ul>
               </div>
@@ -93,7 +93,7 @@ const PrivacyPolicy = () => {
                     <li>יצירה וניהול חשבונות משתמש</li>
                     <li>התאמה בין לקוחות לנותני שירות</li>
                     <li>הצגת פרופילים ומידע רלוונטי</li>
-                    <li>עיבוד ביקורות ודירוגים</li>
+                    <li>עיבוד חוות דעת ודירוגים</li>
                   </ul>
                 </div>
 
@@ -152,11 +152,11 @@ const PrivacyPolicy = () => {
             <div className="section-content">
               <h2 className="section-title">
                 <Mail size={24} />
-                אימות דוא&quot;ל לביקורות
+                אימות דוא&quot;ל לחוות דעת
               </h2>
 
               <p className="section-text">
-                במסגרת מערכת הביקורות שלנו, אנו דורשים אימות כתובת דוא&quot;ל לפני פרסום כל ביקורת. הנה כיצד זה עובד:
+                במסגרת מערכת חוות הדעת שלנו, אנו דורשים אימות כתובת דוא&quot;ל לפני פרסום כל ביקורת. הנה כיצד זה עובד:
               </p>
 
               <div className="process-timeline">
@@ -229,7 +229,7 @@ const PrivacyPolicy = () => {
                 <li>תמונת פרופיל</li>
                 <li>תיאור שירותים ומחירים</li>
                 <li>אזורי פעילות</li>
-                <li>ביקורות ודירוגים</li>
+                <li>חוות דעת ודירוגים</li>
                 <li>מספר טלפון (אופציונלי, לפי בחירת נותן השירות)</li>
               </ul>
 
@@ -465,7 +465,7 @@ const PrivacyPolicy = () => {
               <div className="info-box">
                 <AlertCircle size={20} />
                 <div>
-                  <strong>שימו לב:</strong> במקרים מסוימים, ייתכן שלא נוכל למחוק את המידע שלכם במלואו (למשל, אם אנו נדרשים לשמור אותו על פי חוק, או אם יש ביקורות ציבוריות שפרסמתם).
+                  <strong>שימו לב:</strong> במקרים מסוימים, ייתכן שלא נוכל למחוק את המידע שלכם במלואו (למשל, אם אנו נדרשים לשמור אותו על פי חוק, או אם יש חוות דעת ציבוריות שפרסמתם).
                 </div>
               </div>
             </div>
@@ -496,7 +496,7 @@ const PrivacyPolicy = () => {
                 </div>
 
                 <div className="retention-row">
-                  <div><strong>ביקורות שפורסמו</strong></div>
+                  <div><strong>חוות דעת שפורסמו</strong></div>
                   <div>ללא הגבלת זמן</div>
                   <div>שקיפות ציבורית</div>
                 </div>
@@ -529,7 +529,7 @@ const PrivacyPolicy = () => {
               <h3 className="subsection-title">מה קורה לאחר מחיקת חשבון:</h3>
               <ul className="privacy-list">
                 <li><strong>מידע אישי:</strong> נמחק ללא אפשרות שחזור (למעט דרישות חוק)</li>
-                <li><strong>ביקורות:</strong> נמחקות מהשרתים</li>
+                <li><strong>חוות דעת:</strong> נמחקות מהשרתים</li>
                 <li><strong>תמונות:</strong> נמחקות מהשרתים</li>
                 <li><strong>היסטוריית תשלומים:</strong> נשמרת למטרות חוקיות וחשבונאיות בלבד</li>
               </ul>

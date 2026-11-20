@@ -41,7 +41,7 @@ const promoTranslations = {
     { main: "מעל 20 קטגוריות שירות בפלטפורמה אחת.", isMarquee: true, time: 7 },
     { main: "גש בקלות לאזור האישי שלך.", bgVideo: "https://res.cloudinary.com/ddzskq7hd/video/upload/v1794773888/homesherut-site/dashboard.mp4", bgFallback: "/images/nikayon.jpg", time: 5 },
     { main: "עדכן את המידע שלך בכל עת.", bgVideo: "https://res.cloudinary.com/ddzskq7hd/video/upload/v1794773885/homesherut-site/idkounpratim.mp4", bgFallback: "/images/jardinage.jpg", time: 6 },
-    { main: "לקוחות מעריכים את עבודתך. ביקורות מחזקות את האמינות שלך.", bgImage: "/avis.jpg", time: 5 },
+    { main: "לקוחות מעריכים את עבודתך. חוות דעת מחזקות את האמינות שלך.", bgImage: "/avis.jpg", time: 5 },
     { main: "מבצע השקה: הרשמה חינם.", bgImage: "/gratos.jpg", time: 4 },
     { main: "הצטרף ל-AllSherut היום והגדל את הנראות שלך.", bgImage: "/itstarfou.jpg", time: 5 },
   ],

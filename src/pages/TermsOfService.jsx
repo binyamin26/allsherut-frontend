@@ -205,7 +205,7 @@ const TermsOfService = () => {
             <div className="section-content">
               <h2 className="section-title">
                 <FileText size={24} />
-                מערכת הביקורות והדירוגים
+                מערכת חוות הדעת והדירוגים
               </h2>
 
               <h3 className="subsection-title">תהליך פרסום ביקורת:</h3>
@@ -233,26 +233,26 @@ const TermsOfService = () => {
                 </div>
               </div>
 
-              <h3 className="subsection-title">כללי פרסום ביקורות:</h3>
+              <h3 className="subsection-title">כללי פרסום חוות דעת:</h3>
               <ul className="terms-list">
                 <li><strong>אימות חובה</strong> - כל ביקורת דורשת אימות דוא&quot;ל עם קוד בן 6 ספרות</li>
-                <li><strong>פרסום מיידי</strong> - ביקורות מתפרסמות באופן מיידי לאחר אימות</li>
+                <li><strong>פרסום מיידי</strong> - חוות דעת מתפרסמות באופן מיידי לאחר אימות</li>
                 <li><strong>ביקורת אחת לנותן שירות</strong> - כל כתובת מייל יכולה לפרסם ביקורת אחת בלבד לכל נותן שירות</li>
                 <li><strong>תוקף קוד אימות</strong> - 15 דקות בלבד</li>
               </ul>
 
-              <h3 className="subsection-title">איסורים במערכת הביקורות:</h3>
+              <h3 className="subsection-title">איסורים במערכת חוות הדעת:</h3>
               <ul className="terms-list">
-                <li>פרסום ביקורות כוזבות או מטעות</li>
-                <li>ביקורות שכתובות על ידי נותן השירות עצמו או מטעמו</li>
+                <li>פרסום חוות דעת כוזבות או מטעות</li>
+                <li>חוות דעת שכתובות על ידי נותן השירות עצמו או מטעמו</li>
                 <li>שימוש בשפה פוגענית, מאיימת או בוטה</li>
                 <li>פרסום מידע אישי של נותני שירות</li>
-                <li>ביקורות שאינן קשורות לשירות שניתן</li>
+                <li>חוות דעת שאינן קשורות לשירות שניתן</li>
               </ul>
 
               <h3 className="subsection-title">זכות תגובה לנותני שירות:</h3>
               <p className="section-text">
-                נותני שירות רשאים להגיב לביקורות שפורסמו עליהם:
+                נותני שירות רשאים להגיב לחוות דעת שפורסמו עליהם:
               </p>
               <ul className="terms-list">
                 <li>תגובה אחת לכל ביקורת</li>
@@ -593,7 +593,7 @@ const TermsOfService = () => {
               <h3 className="subsection-title">השלכות ביטול:</h3>
               <ul className="terms-list">
                 <li>אובדן גישה לכל השירותים והנתונים</li>
-                <li>מחיקת פרופיל, תכנים וכל הביקורות הקשורות אליו.</li>
+                <li>מחיקת פרופיל, תכנים וכל חוות הדעת הקשורות אליו.</li>
                 <li>אין אפשרות לשחזר נתונים לאחר מחיקה</li>
                 <li>אין החזר כספי עבור תקופות מנוי שלא נוצלו</li>
               </ul>

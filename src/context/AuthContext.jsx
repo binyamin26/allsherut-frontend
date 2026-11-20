@@ -799,12 +799,12 @@ if (data && (method === 'POST' || method === 'PUT' || method === 'PATCH' || meth
         const reviews = response.data?.reviews || response.reviews || [];
         return { success: true, data: { reviews } };
       } else {
-        const errorMessage = response.message || 'שגיאה בטעינת הביקורות';
+        const errorMessage = response.message || 'שגיאה בטעינת חוות הדעת';
         setError(errorMessage);
         return { success: false, message: errorMessage, data: { reviews: [] } };
       }
     } catch (error) {
-      console.error('שגיאה בטעינת ביקורות:', error);
+      console.error('שגיאה בטעינת חוות דעת:', error);
       const errorMessage = 'שגיאה בחיבור לשרת';
       setError(errorMessage);
       return { success: false, message: errorMessage, data: { reviews: [] } };
