@@ -444,14 +444,6 @@ const handleContact = () => {
           </div>
         )}
 
-        {/* Spécialisation = nom du service traduit */}
-        {provider.serviceType && (
-          <div className="detail-item">
-            <IconLabel icon={Sparkles}>{t('provider.details.specialization')}:</IconLabel>
-            <span>{t(`services.${provider.serviceType}`, provider.serviceType)}</span>
-          </div>
-        )}
-
         {/* Langues */}
         {(details.languages && details.languages.length > 0) && (
           <div className="detail-item">
