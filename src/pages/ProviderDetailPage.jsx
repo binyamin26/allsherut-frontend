@@ -125,7 +125,7 @@ const ProviderDetailPage = () => {
   const [sportsSubcats, setSportsSubcats] = useState([]);
   const [profileImageError, setProfileImageError] = useState(false);
   const [pricing, setPricing] = useState([]);
-  const [activeSection, setActiveSection] = useState('details');
+  const [activeSection, setActiveSection] = useState('reviews');
 
   // Scroll-spy refs
   const detailsRef = useRef(null);
@@ -2045,9 +2045,9 @@ const handleContact = () => {
         <div className="container">
           <nav className="section-nav-tabs" dir="rtl">
             <button
-              className={`section-nav-tab${activeSection === 'details' ? ' active' : ''}`}
-              onClick={() => scrollToSection(detailsRef)}
-            ><ClipboardList size={15} />{t('provider.navDetails')}</button>
+              className={`section-nav-tab${activeSection === 'reviews' ? ' active' : ''}`}
+              onClick={() => scrollToSection(reviewsRef)}
+            ><Star size={15} />{t('provider.navReviews')}</button>
             {provider.media?.gallery?.length > 0 && (
               <button
                 className={`section-nav-tab${activeSection === 'gallery' ? ' active' : ''}`}
@@ -2059,9 +2059,9 @@ const handleContact = () => {
               onClick={() => scrollToSection(pricingRef)}
             ><Wallet size={15} />{t('provider.navPricing')}</button>
             <button
-              className={`section-nav-tab${activeSection === 'reviews' ? ' active' : ''}`}
-              onClick={() => scrollToSection(reviewsRef)}
-            ><Star size={15} />{t('provider.navReviews')}</button>
+              className={`section-nav-tab${activeSection === 'details' ? ' active' : ''}`}
+              onClick={() => scrollToSection(detailsRef)}
+            ><ClipboardList size={15} />{t('provider.navDetails')}</button>
           </nav>
         </div>
       </div>
@@ -2070,89 +2070,6 @@ const handleContact = () => {
       <div className="provider-content">
         <div className="container">
           <div className="main-content">
-
-            {/* Section: פרטים */}
-            <div ref={detailsRef} data-section="details">
-              {renderServiceDetails()}
-              {provider.certifications && provider.certifications.length > 0 && provider.serviceType !== 'eldercare' && provider.serviceType !== 'laundry' && (
-                <div className="certifications-section" style={{ marginTop: 'var(--space-8)' }}>
-                  <h3 className="section-title">הכשרות ותעודות</h3>
-                  <div className="certifications-list">
-                    {provider.certifications.map((cert, index) => (
-                      <div key={index} className="certification-item">
-                        <Award size={16} />
-                        <span>{cert}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Section: תמונות (cachée si le prestataire n'a aucune photo) */}
-            {provider.media?.gallery?.length > 0 && (
-              <div ref={galleryRef} data-section="gallery" className="service-details-section">
-                <h3 className="details-title" style={{ textAlign: 'start' }}>{t('provider.navGallery')}</h3>
-                <ProviderGallery images={provider.media.gallery} />
-              </div>
-            )}
-
-            {/* Section: מחירים */}
-            <div ref={pricingRef} data-section="pricing" className="service-details-section">
-              <h3 className="details-title" style={{ textAlign: 'start' }}>{t('provider.navPricing')}</h3>
-              {pricing.length > 0 ? (
-                <div style={{ borderRadius: '16px', overflow: 'hidden', border: '1px solid #EEF2F6', boxShadow: '0 1px 2px rgba(15, 42, 68, 0.03)' }}>
-                  <div style={{
-                    display: 'grid', gridTemplateColumns: '1fr auto',
-                    background: '#F8FAFC',
-                    color: '#0F2A44', padding: '0.6rem 1.25rem', fontWeight: 600, fontSize: '0.8rem', gap: '1rem'
-                  }}>
-                    <span>{t('pricing.serviceNameLabel')}</span>
-                    <span>{t('pricing.priceLabel')}</span>
-                  </div>
-                  {pricing.map((item, idx) => item.is_title ? (
-                    <div key={item.id} style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: '1rem',
-                      margin: idx === 0 ? '1.5rem 1.25rem 1.25rem' : '3rem 1.25rem 1.25rem',
-                    }}>
-                      <div style={{ flex: '0 1 32%', borderTop: '1px solid #BFDBFE' }} />
-                      <span style={{ fontSize: '1.125rem', color: '#0F2A44', fontWeight: 800, letterSpacing: '0.2px', whiteSpace: (item.service_name || '').length > 22 ? 'normal' : 'nowrap', textAlign: 'center' }}>{item.service_name}</span>
-                      <div style={{ flex: '0 1 32%', borderTop: '1px solid #BFDBFE' }} />
-                    </div>
-                  ) : (
-                    <div key={item.id} style={{
-                      display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) auto',
-                      padding: '1rem 1.25rem', gap: '1rem', alignItems: 'center',
-                      borderBottom: (idx < pricing.length - 1 && !pricing[idx + 1]?.is_title) ? '1px solid #F1F5F9' : 'none',
-                      background: '#fff',
-                    }}>
-                      <span style={{ fontSize: '0.95rem', color: '#334155', fontWeight: 500 }}>{item.service_name}</span>
-                      <span style={{
-                        color: '#0F2A44',
-                        fontWeight: 700,
-                        fontSize: '0.95rem',
-                        background: '#F8FAFC',
-                        padding: '0.2rem 0.5rem',
-                        borderRadius: '6px',
-                        // Prix courts sur une ligne ; prix longs (ex. avec remarque entre parenthèses) à la ligne, sans être coupés
-                        whiteSpace: (item.price || '').length > 14 ? 'normal' : 'nowrap',
-                        maxWidth: 'min(52vw, 16rem)',
-                        overflowWrap: 'anywhere',
-                      }}>{/₪|ש["״]?ח|שקל/.test(item.price || '') || !/\d/.test(item.price || '')
-                        ? item.price
-                        : <span dir="ltr">{`₪${item.price}`}</span>}</span>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <div style={{ textAlign: 'center', padding: '3rem 1rem', color: '#9ca3af' }}>
-                  <p style={{ margin: 0 }}>{t('pricing.empty')}</p>
-                </div>
-              )}
-            </div>
 
             {/* Section: ביקורות */}
                   <div ref={reviewsRef} data-section="reviews" className="reviews-section-enhanced">
@@ -2328,6 +2245,89 @@ const handleContact = () => {
                       )}
                     </div>
                   </div>
+
+            {/* Section: תמונות (cachée si le prestataire n'a aucune photo) */}
+            {provider.media?.gallery?.length > 0 && (
+              <div ref={galleryRef} data-section="gallery" className="service-details-section">
+                <h3 className="details-title" style={{ textAlign: 'start' }}>{t('provider.navGallery')}</h3>
+                <ProviderGallery images={provider.media.gallery} />
+              </div>
+            )}
+
+            {/* Section: מחירים */}
+            <div ref={pricingRef} data-section="pricing" className="service-details-section">
+              <h3 className="details-title" style={{ textAlign: 'start' }}>{t('provider.navPricing')}</h3>
+              {pricing.length > 0 ? (
+                <div style={{ borderRadius: '16px', overflow: 'hidden', border: '1px solid #EEF2F6', boxShadow: '0 1px 2px rgba(15, 42, 68, 0.03)' }}>
+                  <div style={{
+                    display: 'grid', gridTemplateColumns: '1fr auto',
+                    background: '#F8FAFC',
+                    color: '#0F2A44', padding: '0.6rem 1.25rem', fontWeight: 600, fontSize: '0.8rem', gap: '1rem'
+                  }}>
+                    <span>{t('pricing.serviceNameLabel')}</span>
+                    <span>{t('pricing.priceLabel')}</span>
+                  </div>
+                  {pricing.map((item, idx) => item.is_title ? (
+                    <div key={item.id} style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '1rem',
+                      margin: idx === 0 ? '1.5rem 1.25rem 1.25rem' : '3rem 1.25rem 1.25rem',
+                    }}>
+                      <div style={{ flex: '0 1 32%', borderTop: '1px solid #BFDBFE' }} />
+                      <span style={{ fontSize: '1.125rem', color: '#0F2A44', fontWeight: 800, letterSpacing: '0.2px', whiteSpace: (item.service_name || '').length > 22 ? 'normal' : 'nowrap', textAlign: 'center' }}>{item.service_name}</span>
+                      <div style={{ flex: '0 1 32%', borderTop: '1px solid #BFDBFE' }} />
+                    </div>
+                  ) : (
+                    <div key={item.id} style={{
+                      display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) auto',
+                      padding: '1rem 1.25rem', gap: '1rem', alignItems: 'center',
+                      borderBottom: (idx < pricing.length - 1 && !pricing[idx + 1]?.is_title) ? '1px solid #F1F5F9' : 'none',
+                      background: '#fff',
+                    }}>
+                      <span style={{ fontSize: '0.95rem', color: '#334155', fontWeight: 500 }}>{item.service_name}</span>
+                      <span style={{
+                        color: '#0F2A44',
+                        fontWeight: 700,
+                        fontSize: '0.95rem',
+                        background: '#F8FAFC',
+                        padding: '0.2rem 0.5rem',
+                        borderRadius: '6px',
+                        // Prix courts sur une ligne ; prix longs (ex. avec remarque entre parenthèses) à la ligne, sans être coupés
+                        whiteSpace: (item.price || '').length > 14 ? 'normal' : 'nowrap',
+                        maxWidth: 'min(52vw, 16rem)',
+                        overflowWrap: 'anywhere',
+                      }}>{/₪|ש["״]?ח|שקל/.test(item.price || '') || !/\d/.test(item.price || '')
+                        ? item.price
+                        : <span dir="ltr">{`₪${item.price}`}</span>}</span>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div style={{ textAlign: 'center', padding: '3rem 1rem', color: '#9ca3af' }}>
+                  <p style={{ margin: 0 }}>{t('pricing.empty')}</p>
+                </div>
+              )}
+            </div>
+
+            {/* Section: פרטים */}
+            <div ref={detailsRef} data-section="details">
+              {renderServiceDetails()}
+              {provider.certifications && provider.certifications.length > 0 && provider.serviceType !== 'eldercare' && provider.serviceType !== 'laundry' && (
+                <div className="certifications-section" style={{ marginTop: 'var(--space-8)' }}>
+                  <h3 className="section-title">הכשרות ותעודות</h3>
+                  <div className="certifications-list">
+                    {provider.certifications.map((cert, index) => (
+                      <div key={index} className="certification-item">
+                        <Award size={16} />
+                        <span>{cert}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
 
           </div>
         </div>
