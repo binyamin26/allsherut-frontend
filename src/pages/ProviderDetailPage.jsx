@@ -5,6 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import AuthModal from '../components/auth/AuthModal';
 import ReviewModal from '../components/modals/ReviewModal';
+import RatingBreakdown from '../components/common/RatingBreakdown';
 import CallLeadModal from '../components/modals/CallLeadModal';
 import ProviderGallery from '../components/common/ProviderGallery';
 import apiService from '../services/api';
@@ -132,6 +133,7 @@ const ProviderDetailPage = () => {
   const galleryRef = useRef(null);
   const pricingRef = useRef(null);
   const reviewsRef = useRef(null);
+  const averageRef = useRef(null);
   const navRef = useRef(null);
 
   // État pour ReviewModal
@@ -269,6 +271,7 @@ const ProviderDetailPage = () => {
       { ref: galleryRef, id: 'gallery' },
       { ref: pricingRef, id: 'pricing' },
       { ref: reviewsRef, id: 'reviews' },
+      { ref: averageRef, id: 'average' },
     ];
     const observer = new IntersectionObserver(
       (entries) => {
@@ -2032,6 +2035,12 @@ const handleContact = () => {
       <div className="provider-section-nav" ref={navRef}>
         <div className="container">
           <nav className="section-nav-tabs" dir="rtl">
+            {reviews.length > 0 && (
+              <button
+                className={`section-nav-tab${activeSection === 'average' ? ' active' : ''}`}
+                onClick={() => scrollToSection(averageRef)}
+              ><Star size={15} />{t('provider.navAverage')}</button>
+            )}
             <button
               className={`section-nav-tab${activeSection === 'reviews' ? ' active' : ''}`}
               onClick={() => scrollToSection(reviewsRef)}
@@ -2058,6 +2067,14 @@ const handleContact = () => {
       <div className="provider-content">
         <div className="container">
           <div className="main-content">
+
+            {/* Section: ממוצע דירוגים */}
+            {reviews.length > 0 && (
+              <div ref={averageRef} data-section="average">
+                <h3 className="details-title" style={{ textAlign: 'center', margin: 0 }}>{t('provider.avg.title')}</h3>
+                <RatingBreakdown reviews={reviews} />
+              </div>
+            )}
 
             {/* Section: חוות דעת */}
                   <div ref={reviewsRef} data-section="reviews" className="reviews-section-enhanced">
