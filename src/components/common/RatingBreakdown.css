@@ -70,3 +70,14 @@
   .text-ravg-card { flex-direction: column; gap: 20px; padding: 18px; }
   .text-ravg-bars-col { width: 100%; }
 }
+
+.text-ravg-subtitle { font-size: 14px; font-weight: 700; color: #111827; }
+.text-ravg-subtitle-spaced { margin-top: 12px; }
+.text-ravg-crit-label { width: 130px; font-size: 13px; color: #374151; }
+.text-ravg-pct { width: 72px; display: inline-flex; align-items: center; gap: 3px; direction: ltr; }
+.text-ravg-satisfied { margin: 6px 0 0; }
+.text-ravg-tone-top { background: linear-gradient(90deg, #34d399, #10b981); }
+.text-ravg-tone-good { background: linear-gradient(90deg, #86efac, #4ade80); }
+.text-ravg-tone-mid { background: linear-gradient(90deg, #fcd34d, #f59e0b); }
+.text-ravg-tone-low { background: linear-gradient(90deg, #fca5a5, #ef4444); }
+@media (max-width: 600px) { .text-ravg-crit-label { width: 100px; } }
