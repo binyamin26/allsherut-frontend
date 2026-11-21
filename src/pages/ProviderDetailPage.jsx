@@ -2035,6 +2035,10 @@ const handleContact = () => {
       <div className="provider-section-nav" ref={navRef}>
         <div className="container">
           <nav className="section-nav-tabs" dir="rtl">
+            <button
+              className={`section-nav-tab${activeSection === 'reviews' ? ' active' : ''}`}
+              onClick={() => scrollToSection(reviewsRef)}
+            ><Star size={15} />{t('provider.navReviews')}</button>
             {reviews.length > 0 && (
               <button
                 className={`section-nav-tab${activeSection === 'average' ? ' active' : ''}`}
@@ -2042,19 +2046,15 @@ const handleContact = () => {
               ><Star size={15} />{t('provider.navAverage')}</button>
             )}
             <button
-              className={`section-nav-tab${activeSection === 'reviews' ? ' active' : ''}`}
-              onClick={() => scrollToSection(reviewsRef)}
-            ><Star size={15} />{t('provider.navReviews')}</button>
+              className={`section-nav-tab${activeSection === 'pricing' ? ' active' : ''}`}
+              onClick={() => scrollToSection(pricingRef)}
+            ><Wallet size={15} />{t('provider.navPricing')}</button>
             {provider.media?.gallery?.length > 0 && (
               <button
                 className={`section-nav-tab${activeSection === 'gallery' ? ' active' : ''}`}
                 onClick={() => scrollToSection(galleryRef)}
               ><ImageIcon size={15} />{t('provider.navGallery')}</button>
             )}
-            <button
-              className={`section-nav-tab${activeSection === 'pricing' ? ' active' : ''}`}
-              onClick={() => scrollToSection(pricingRef)}
-            ><Wallet size={15} />{t('provider.navPricing')}</button>
             <button
               className={`section-nav-tab${activeSection === 'details' ? ' active' : ''}`}
               onClick={() => scrollToSection(detailsRef)}
@@ -2067,14 +2067,6 @@ const handleContact = () => {
       <div className="provider-content">
         <div className="container">
           <div className="main-content">
-
-            {/* Section: ממוצע דירוגים */}
-            {reviews.length > 0 && (
-              <div ref={averageRef} data-section="average">
-                <h3 className="details-title" style={{ textAlign: 'center', margin: 0 }}>{t('provider.avg.title')}</h3>
-                <RatingBreakdown reviews={reviews} />
-              </div>
-            )}
 
             {/* Section: חוות דעת */}
                   <div ref={reviewsRef} data-section="reviews" className="reviews-section-enhanced">
@@ -2237,11 +2229,11 @@ const handleContact = () => {
                     </div>
                   </div>
 
-            {/* Section: תמונות (cachée si le prestataire n'a aucune photo) */}
-            {provider.media?.gallery?.length > 0 && (
-              <div ref={galleryRef} data-section="gallery" className="service-details-section">
-                <h3 className="details-title" style={{ textAlign: 'start' }}>{t('provider.navGallery')}</h3>
-                <ProviderGallery images={provider.media.gallery} />
+            {/* Section: ממוצע דירוגים */}
+            {reviews.length > 0 && (
+              <div ref={averageRef} data-section="average">
+                <h3 className="details-title" style={{ textAlign: 'center', margin: 0 }}>{t('provider.avg.title')}</h3>
+                <RatingBreakdown reviews={reviews} />
               </div>
             )}
 
@@ -2301,6 +2293,14 @@ const handleContact = () => {
                 </div>
               )}
             </div>
+
+            {/* Section: תמונות (cachée si le prestataire n'a aucune photo) */}
+            {provider.media?.gallery?.length > 0 && (
+              <div ref={galleryRef} data-section="gallery" className="service-details-section">
+                <h3 className="details-title" style={{ textAlign: 'start' }}>{t('provider.navGallery')}</h3>
+                <ProviderGallery images={provider.media.gallery} />
+              </div>
+            )}
 
             {/* Section: פרטים */}
             <div ref={detailsRef} data-section="details">
