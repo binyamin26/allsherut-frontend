@@ -31,7 +31,6 @@
   "provider.avg.good": "טוב",
   "provider.avg.average": "בינוני",
   "provider.avg.basedOn": "מבוסס על {count} חוות דעת",
-  "provider.avg.satisfied": "{pct}% מהלקוחות מרוצים",
   "provider.avg.byCriteria": "ממוצע לפי קריטריון",
   "provider.avg.distribution": "התפלגות",
   "provider.avg.bucketTop": "מרוצים מאוד (9-10)",
