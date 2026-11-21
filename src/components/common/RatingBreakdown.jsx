@@ -22,6 +22,7 @@ const toNum = (v) => {
   const n = parseFloat(v);
   return isNaN(n) || n <= 0 ? null : n;
 };
+const fmt = (n) => String(Math.round(n * 10) / 10);
 const toneOf = (v) => (v >= 9 ? 'top' : v >= 7 ? 'good' : v >= 5 ? 'mid' : 'low');
 
 const RatingBreakdown = ({ reviews }) => {
@@ -48,7 +49,7 @@ const RatingBreakdown = ({ reviews }) => {
   return (
     <div className="text-ravg-card" dir="rtl">
       <div className="text-ravg-hero">
-        <div className="text-ravg-badge">{avg.toFixed(1)}</div>
+        <div className="text-ravg-badge">{fmt(avg)}</div>
         <div className="text-ravg-hero-info">
           <div className="text-ravg-label">{t(`provider.avg.${labelKey}`)}</div>
           <div className="text-ravg-stars" aria-hidden="true">
@@ -79,7 +80,7 @@ const RatingBreakdown = ({ reviews }) => {
                     <Icon size={16} />
                     {t(`review.categories.${key}`)}
                   </span>
-                  <span className={`text-ravg-crit-score text-ravg-ink-${toneOf(value)}`}>{value.toFixed(1)}</span>
+                  <span className={`text-ravg-crit-score text-ravg-ink-${toneOf(value)}`}>{fmt(value)}</span>
                 </div>
                 <div className="text-ravg-track">
                   <div
