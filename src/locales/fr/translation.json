@@ -31,6 +31,7 @@
   "provider.navReviews": "Avis",
   "provider.navAverage": "Moyenne des notes",
   "provider.avg.title": "Moyenne des notes",
+  "provider.avg.insightTop": "{pct}% des clients ont donné 9/10 ou plus",
   "provider.avg.excellent": "Excellent",
   "provider.avg.veryGood": "Très bien",
   "provider.avg.good": "Bien",

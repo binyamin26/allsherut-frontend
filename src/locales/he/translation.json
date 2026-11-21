@@ -26,6 +26,7 @@
   "provider.navReviews": "חוות דעת",
   "provider.navAverage": "ממוצע דירוגים",
   "provider.avg.title": "ממוצע דירוגים",
+  "provider.avg.insightTop": "{pct}% מהלקוחות נתנו 9/10 ומעלה",
   "provider.avg.excellent": "מצוין",
   "provider.avg.veryGood": "טוב מאוד",
   "provider.avg.good": "טוב",

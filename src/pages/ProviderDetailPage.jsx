@@ -2232,7 +2232,6 @@ const handleContact = () => {
             {/* Section: ממוצע דירוגים */}
             {reviews.length > 0 && (
               <div ref={averageRef} data-section="average">
-                <h3 className="details-title" style={{ textAlign: 'center', margin: 0 }}>{t('provider.avg.title')}</h3>
                 <RatingBreakdown reviews={reviews} />
               </div>
             )}
