@@ -37,7 +37,7 @@
   "provider.avg.good": "Bien",
   "provider.avg.average": "Moyen",
   "provider.avg.basedOn": "Basé sur {count} avis",
-  "provider.avg.satisfied": "{pct}% des clients ont noté 8/10 ou plus",
+  "provider.avg.satisfied": "{pct}% des clients ont noté 9/10 ou plus",
   "provider.avg.fewReviews": "Peu d'avis pour l'instant, cette note peut évoluer",
   "provider.avg.byCriteria": "Moyenne par critère",
   "provider.avg.distribution": "Répartition des notes",

@@ -42,7 +42,7 @@ const RatingBreakdown = ({ reviews }) => {
   const avg = average(ratings);
   const labelKey = avg >= 9 ? 'excellent' : avg >= 8 ? 'veryGood' : avg >= 6.5 ? 'good' : 'average';
   const filledStars = avg / 2; // 10 → 5 étoiles
-  const satisfiedPct = Math.round((ratings.filter((n) => n >= 8).length / total) * 100);
+  const satisfiedPct = Math.round((ratings.filter((n) => n >= 9).length / total) * 100);
 
   const criteria = CRITERIA.map(({ key, field }) => ({
     key,
@@ -60,9 +60,11 @@ const RatingBreakdown = ({ reviews }) => {
 
       <div className="text-ravg-body">
         <div className="text-ravg-hero">
-          <div className="text-ravg-scoreline">
-            <span className="text-ravg-score">{fmt(avg)}</span>
-            <span className="text-ravg-outof">/10</span>
+          <div className="text-ravg-ring" style={{ '--ravg-pct': `${(avg / 10) * 100}%` }}>
+            <div className="text-ravg-ring-inner">
+              <span className="text-ravg-score">{fmt(avg)}</span>
+              <span className="text-ravg-outof">/10</span>
+            </div>
           </div>
           <div className="text-ravg-stars" aria-hidden="true">
             {[0, 1, 2, 3, 4].map((i) => {

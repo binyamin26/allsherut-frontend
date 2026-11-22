@@ -32,7 +32,7 @@
   "provider.avg.good": "טוב",
   "provider.avg.average": "בינוני",
   "provider.avg.basedOn": "מבוסס על {count} חוות דעת",
-  "provider.avg.satisfied": "{pct}% מהלקוחות דירגו 8/10 ומעלה",
+  "provider.avg.satisfied": "{pct}% מהלקוחות דירגו 9/10 ומעלה",
   "provider.avg.fewReviews": "מעט חוות דעת בינתיים, הציון עשוי להשתנות",
   "provider.avg.byCriteria": "ממוצע לפי קריטריון",
   "provider.avg.distribution": "התפלגות",

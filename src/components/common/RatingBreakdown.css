@@ -31,9 +31,31 @@
   padding-inline-end: 40px;
   border-inline-end: 1px solid var(--ravg-line);
 }
-.text-ravg-scoreline { display: flex; align-items: baseline; gap: 4px; direction: ltr; line-height: 1; }
-.text-ravg-score { font-size: 76px; font-weight: 800; color: var(--ravg-ink); letter-spacing: -3px; }
-.text-ravg-outof { font-size: 22px; font-weight: 600; color: #94a3b8; }
+.text-ravg-ring {
+  width: 156px;
+  height: 156px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: conic-gradient(var(--ravg-accent) var(--ravg-pct), #e8ecf4 0);
+  box-shadow: 0 8px 24px rgba(30, 58, 138, 0.14);
+}
+.text-ravg-ring-inner {
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  direction: ltr;
+  line-height: 1;
+}
+.text-ravg-score { font-size: 48px; font-weight: 800; color: var(--ravg-ink); letter-spacing: -1.5px; }
+.text-ravg-outof { font-size: 15px; font-weight: 600; color: #94a3b8; }
 .text-ravg-stars { display: flex; gap: 4px; direction: ltr; margin-top: 4px; }
 .text-ravg-star { position: relative; display: inline-flex; width: 22px; height: 22px; }
 .text-ravg-star > svg { position: absolute; inset: 0; }
@@ -95,7 +117,7 @@
   .text-ravg-title { font-size: 20px; margin-bottom: 18px; }
   .text-ravg-body { grid-template-columns: 1fr; gap: 24px; }
   .text-ravg-hero { padding-inline-end: 0; border-inline-end: 0; padding-bottom: 22px; border-bottom: 1px solid var(--ravg-line); }
-  .text-ravg-score { font-size: 64px; }
+  .text-ravg-score { font-size: 48px; }
 }
 @media (max-width: 420px) {
   .text-ravg-crit-grid { grid-template-columns: 1fr; }
