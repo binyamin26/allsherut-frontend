@@ -441,51 +441,33 @@
 .text-cat-badge {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  background: #fffbeb;
-  border: 1px solid #fde68a;
+  gap: 6px;
+  background: #f4f6fb;
+  border: 1px solid #e3e8f2;
   border-radius: 20px;
-  padding: 3px 9px;
+  padding: 3px 10px 3px 4px;
   white-space: nowrap;
 }
+[dir="rtl"] .text-cat-badge { padding: 3px 4px 3px 10px; }
 .text-cat-score {
   font-size: 12px !important;
   font-weight: 700;
-  color: #92400e;
+  color: #fff;
+  background: #1e3a8a;
+  border-radius: 999px;
+  min-width: 24px;
+  height: 20px;
+  padding: 0 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 .text-cat-label {
-  font-size: 11px !important;
-  color: #6b7280;
-  font-weight: 400;
+  font-size: 12px !important;
+  color: #475569;
+  font-weight: 500;
 }
-
-/* Variantes de couleur selon le score (échelle /10) — repère visuel rapide */
-.text-cat-badge.tone-good {
-  background: #ECFDF5;
-  border-color: #A7F3D0;
-}
-.text-cat-badge.tone-good .text-cat-score {
-  color: #047857;
-}
-
-.text-cat-badge.tone-mid {
-  background: #fffbeb;
-  border-color: #fde68a;
-}
-.text-cat-badge.tone-mid .text-cat-score {
-  color: #92400e;
-}
-
-.text-cat-badge.tone-bad {
-  background: #FEF2F2;
-  border-color: #FECACA;
-}
-.text-cat-badge.tone-bad .text-cat-score {
-  color: #B91C1C;
-}
-.text-cat-badge.tone-bad .text-cat-label {
-  color: #991B1B;
-}
+/* Ton unique (bleu nuit) : plus de vert/rouge selon le score */
 
 .location {
   display: flex;
