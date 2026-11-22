@@ -45,6 +45,8 @@ export const LanguageProvider = ({ children }) => {
 
   // React to language switches (fires after new language is loaded and active)
   useEffect(() => {
+    // Garde-fou : si i18next n'est pas initialisé, useTranslation() renvoie un objet sans .on
+    if (typeof i18nInstance?.on !== 'function') return undefined;
     const onLanguageChanged = (lang) => {
       setCurrentLanguage(lang);
       applyDirection(lang, getDirection(lang));

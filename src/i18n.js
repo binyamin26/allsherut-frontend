@@ -27,18 +27,29 @@ export const loadLanguage = async (lang) => {
 };
 
 // Build initial resources: Hebrew always bundled + saved language pre-loaded if non-Hebrew
+// Si le fichier de la langue sauvegardée ne se charge pas (réseau instable, Safari mobile...), on démarre
+// quand même i18next en hébreu : sans instance initialisée, useTranslation() renvoie un objet vide et
+// LanguageProvider plante (« t.on is not a function » -> page d'erreur de secours).
+// La langue sauvegardée reste dans localStorage : elle sera ré-essayée à la prochaine visite.
 const buildInitialResources = async () => {
   const resources = { he: { translation: he } };
+  let lng = savedLang;
   if (savedLang !== 'he' && languageLoaders[savedLang]) {
-    const mod = await languageLoaders[savedLang]();
-    resources[savedLang] = { translation: mod.default ?? mod };
+    try {
+      const mod = await languageLoaders[savedLang]();
+      resources[savedLang] = { translation: mod.default ?? mod };
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error('[i18n] chargement de la langue échoué, repli sur l\'hébreu :', err);
+      lng = 'he';
+    }
   }
-  return resources;
+  return { resources, lng };
 };
 
-export const i18nInitPromise = buildInitialResources().then((resources) =>
+export const i18nInitPromise = buildInitialResources().then(({ resources, lng }) =>
   i18n.use(initReactI18next).init({
-    lng: savedLang,
+    lng,
     fallbackLng: 'he',
     resources,
 
