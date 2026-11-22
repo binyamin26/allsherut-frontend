@@ -37,6 +37,8 @@
   "provider.avg.good": "Хорошо",
   "provider.avg.average": "Средне",
   "provider.avg.basedOn": "На основе отзывов: {count}",
+  "provider.avg.satisfied": "{pct}% клиентов поставили 8/10 и выше",
+  "provider.avg.fewReviews": "Пока мало отзывов, оценка может измениться",
   "provider.avg.byCriteria": "Среднее по критериям",
   "provider.avg.distribution": "Распределение оценок",
   "provider.avg.bucketTop": "Очень довольны (9-10)",

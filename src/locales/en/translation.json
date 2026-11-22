@@ -37,6 +37,8 @@
   "provider.avg.good": "Good",
   "provider.avg.average": "Average",
   "provider.avg.basedOn": "Based on {count} reviews",
+  "provider.avg.satisfied": "{pct}% of clients rated 8/10 or more",
+  "provider.avg.fewReviews": "Few reviews so far, this score may change",
   "provider.avg.byCriteria": "Average by criterion",
   "provider.avg.distribution": "Rating distribution",
   "provider.avg.bucketTop": "Very satisfied (9-10)",
