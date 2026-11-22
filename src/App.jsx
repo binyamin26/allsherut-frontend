@@ -215,10 +215,11 @@ const LangRecruitmentListingRoute = () => {
 
 // Composant de protection des routes
 const ProtectedRoute = ({ children }) => {
-  const { isAuthenticated, loading } = useAuth();
+  const { isAuthenticated, initialized } = useAuth();
 
-  // Attend la vérification du token : évite d'afficher la page de connexion à un utilisateur déjà connecté.
-  if (loading) return <LoadingSpinner text="" />;
+  // Attend UNIQUEMENT la vérification initiale du token (évite d'afficher la page de connexion à un utilisateur déjà connecté).
+  // Ne pas utiliser `loading` ici : il bascule à chaque action (avis, upload, profil...) et démonterait le tableau de bord en boucle.
+  if (!initialized) return <LoadingSpinner text="" />;
 
   // Pas connecté : page de connexion (la fenêtre de connexion s'ouvre directement)
   if (!isAuthenticated) return <AuthGate />;

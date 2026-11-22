@@ -14,6 +14,9 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  // true une fois la vérification initiale du token terminée (ne repasse JAMAIS à false : contrairement à `loading`,
+  // qui bascule à chaque action). Sert aux routes protégées pour ne pas se démonter pendant les chargements.
+  const [initialized, setInitialized] = useState(false);
   const [error, setError] = useState(null);
 
  const API_BASE = import.meta.env.VITE_API_URL || '/api';
@@ -74,6 +77,7 @@ setUser({
         }
       }
       setLoading(false);
+      setInitialized(true);
     };
 
     initAuth();
@@ -912,6 +916,7 @@ const switchService = async (serviceType) => {
     // État
     user,
     loading,
+    initialized,
     error,
     isAuthenticated: !!user,
     isSubscriptionExpired: checkSubscriptionExpired(user),
