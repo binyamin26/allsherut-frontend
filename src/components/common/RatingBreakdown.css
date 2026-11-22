@@ -125,3 +125,11 @@
 @media (prefers-reduced-motion: reduce) {
   .text-ravg-fill { animation: none; }
 }
+
+/* Couleur par palier de la répartition : 9-10 vert, 7-8 orange, en dessous rouge */
+.text-ravg-fill.text-ravg-tone-good,
+[dir="rtl"] .text-ravg-fill.text-ravg-tone-good { background: linear-gradient(90deg, #34d399, #059669); }
+.text-ravg-fill.text-ravg-tone-mid,
+[dir="rtl"] .text-ravg-fill.text-ravg-tone-mid { background: linear-gradient(90deg, #fbbf24, #d97706); }
+.text-ravg-fill.text-ravg-tone-bad,
+[dir="rtl"] .text-ravg-fill.text-ravg-tone-bad { background: linear-gradient(90deg, #f87171, #dc2626); }

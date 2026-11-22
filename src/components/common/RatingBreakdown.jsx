@@ -12,11 +12,11 @@ const CRITERIA = [
 
 // Répartition façon Amazon/Trustpilot : 5 paliers (2 points chacun), du meilleur au plus bas.
 const BANDS = [
-  { label: '9–10', min: 9, max: 10 },
-  { label: '7–8', min: 7, max: 8.99 },
-  { label: '5–6', min: 5, max: 6.99 },
-  { label: '3–4', min: 3, max: 4.99 },
-  { label: '1–2', min: 0, max: 2.99 },
+  { label: '9–10', min: 9, max: 10, tone: 'good' },
+  { label: '7–8', min: 7, max: 8.99, tone: 'mid' },
+  { label: '5–6', min: 5, max: 6.99, tone: 'bad' },
+  { label: '3–4', min: 3, max: 4.99, tone: 'bad' },
+  { label: '1–2', min: 0, max: 2.99, tone: 'bad' },
 ];
 
 const MIN_RELIABLE = 3; // en dessous, on signale que la note est provisoire
@@ -87,11 +87,11 @@ const RatingBreakdown = ({ reviews }) => {
         <div className="text-ravg-dist">
           <div className="text-ravg-subtitle">{t('provider.avg.distribution')}</div>
           <div className="text-ravg-rows">
-            {bands.map(({ label, pct, count }) => (
+            {bands.map(({ label, pct, count, tone }) => (
               <div className={`text-ravg-row${count === 0 ? ' text-ravg-row-empty' : ''}`} key={label}>
                 <span className="text-ravg-row-label">{label}</span>
                 <div className="text-ravg-track">
-                  <div className="text-ravg-fill" style={{ width: `${pct}%` }} />
+                  <div className={`text-ravg-fill text-ravg-tone-${tone}`} style={{ width: `${pct}%` }} />
                 </div>
                 <span className="text-ravg-row-val">{pct}%</span>
               </div>

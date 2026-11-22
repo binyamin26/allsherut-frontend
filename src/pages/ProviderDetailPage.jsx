@@ -108,8 +108,8 @@ const ProviderDetailPage = () => {
   const getScoreTone = (score) => {
     const num = parseFloat(score);
     if (isNaN(num)) return 'mid';
-    if (num >= 8) return 'good';
-    if (num >= 5) return 'mid';
+    if (num >= 9) return 'good';
+    if (num >= 7) return 'mid';
     return 'bad';
   };
 

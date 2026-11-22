@@ -467,7 +467,13 @@
   color: #475569;
   font-weight: 500;
 }
-/* Ton unique (bleu nuit) : plus de vert/rouge selon le score */
+/* Couleur de la note selon le score (/10) : 9-10 vert, 7-8.9 orange, <7 rouge */
+.text-cat-badge.tone-good .text-cat-score { background: #059669; }
+.text-cat-badge.tone-good { background: #ecfdf5; border-color: #a7f3d0; }
+.text-cat-badge.tone-mid .text-cat-score { background: #d97706; }
+.text-cat-badge.tone-mid { background: #fffbeb; border-color: #fde68a; }
+.text-cat-badge.tone-bad .text-cat-score { background: #dc2626; }
+.text-cat-badge.tone-bad { background: #fef2f2; border-color: #fecaca; }
 
 .location {
   display: flex;
