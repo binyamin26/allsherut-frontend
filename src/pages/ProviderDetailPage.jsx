@@ -2071,7 +2071,7 @@ const handleContact = () => {
             {/* Section: חוות דעת */}
                   <div ref={reviewsRef} data-section="reviews" className="reviews-section-enhanced">
                     <div className="reviews-header">
-                   <h3 id="provider-reviews-title" className="details-title" style={{ textAlign: 'center', margin: 0 }}>{t('provider.reviews.title')}</h3>
+                   <h3 id="provider-reviews-title" className="details-title" style={{ textAlign: 'start', margin: 0 }}>{t('provider.reviews.title')}</h3>
                       <div className="reviews-summary">
                         <div className="rating-overview">
                           {reviews.length > 0 ? (() => {
@@ -2079,9 +2079,11 @@ const handleContact = () => {
                             return (
                               <div className="text-overall-rating-block">
                                 <div className="text-overall-score-row">
-                                  <Star size={30} fill="#f59e0b" color="#f59e0b" strokeWidth={0} />
+                                  <span className="text-overall-star"><Star size={18} fill="#f5b301" color="#f5b301" strokeWidth={0} /></span>
                                   <span className="text-overall-score">{formatRating(avg)}</span>
+                                  <span className="text-overall-outof">/10</span>
                                 </div>
+                                <span className="text-overall-sep" aria-hidden="true" />
                                 <span className="text-overall-count">{reviews.length} {t('provider.reviews')}</span>
                               </div>
                             );
