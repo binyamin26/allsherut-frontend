@@ -4,6 +4,8 @@
   "nav.contact": "צור קשר",
   "auth.accessDenied": "גישה נדחתה",
   "auth.loginRequired": "עליך להתחבר כדי לגשת לעמוד זה",
+  "auth.gateTitle": "התחברו כדי להמשיך",
+  "auth.gateText": "התחברו עם כתובת המייל שבה נרשמתם כדי להיכנס לאזור האישי ולהשלים את הפרופיל.",
   "auth.login": "התחברות",
   "auth.register": "הרשמה",
   "auth.logout": "התנתק",

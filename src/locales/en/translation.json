@@ -9,6 +9,8 @@
   "nav.contact": "Contact",
   "auth.accessDenied": "Access Denied",
   "auth.loginRequired": "You must log in to access this page",
+  "auth.gateTitle": "Log in to continue",
+  "auth.gateText": "Sign in with the email address you registered with to access your dashboard and complete your profile.",
   "auth.login": "Login",
   "auth.register": "Register",
   "auth.logout": "Logout",

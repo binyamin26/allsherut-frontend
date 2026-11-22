@@ -9,6 +9,8 @@
   "nav.contact": "Contact",
   "auth.accessDenied": "Accès refusé",
   "auth.loginRequired": "Vous devez vous connecter pour accéder à cette page",
+  "auth.gateTitle": "Connectez-vous pour continuer",
+  "auth.gateText": "Connectez-vous avec l'adresse email de votre inscription pour accéder à votre espace et compléter votre fiche.",
   "auth.login": "Connexion",
   "auth.register": "Inscription",
   "auth.logout": "Déconnexion",

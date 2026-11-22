@@ -1,4 +1,4 @@
-import { useEffect, useState, Suspense } from 'react';
+import { useEffect, Suspense } from 'react';
 import lazyWithRetry from './utils/lazyWithRetry';
 import { RouteErrorBoundary } from './components/common/ErrorBoundary';
 import { BrowserRouter as Router, Routes, Route, useParams } from 'react-router-dom';
@@ -17,7 +17,8 @@ import ServiceTitleFitter from "./components/common/ServiceTitleFitter";
 // Import du Widget d'Accessibilité
 import AccessibilityWidget from "./components/common/AccessibilityWidget";
 import FloatingWhatsApp from "./components/common/FloatingWhatsApp";
-import AuthModal from "./components/auth/AuthModal";
+import AuthGate from "./components/auth/AuthGate";
+import LoadingSpinner from "./components/common/LoadingSpinner";
 
 // Pages principales (chargées immédiatement : page d'accueil + 404 utilisées de façon synchrone ailleurs)
 import HomePage from "./pages/HomePage";
@@ -214,82 +215,14 @@ const LangRecruitmentListingRoute = () => {
 
 // Composant de protection des routes
 const ProtectedRoute = ({ children }) => {
-  const { isAuthenticated } = useAuth();
-  const { t } = useLanguage();
-  const [showAuthModal, setShowAuthModal] = useState(false);
+  const { isAuthenticated, loading } = useAuth();
 
-  // Si pas connecté, affiche un message d'erreur
-  if (!isAuthenticated) {
-    return (
-      <div style={{
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexDirection: 'column',
-        gap: '20px',
-        textAlign: 'center',
-        padding: '20px'
-      }}>
-        <h2 style={{
-          fontSize: '2rem',
-          color: '#dc2626',
-          margin: 0
-        }}>
-          {t('auth.accessDenied')}
-        </h2>
-        <p style={{
-          fontSize: '1.2rem',
-          color: '#6b7280',
-          margin: 0
-        }}>
-          {t('auth.loginRequired')}
-        </p>
-        <div style={{
-          display: 'flex',
-          gap: '15px',
-          marginTop: '20px'
-        }}>
-          <button
-            onClick={() => setShowAuthModal(true)}
-            style={{
-              padding: '12px 24px',
-              background: 'linear-gradient(135deg, #3b82f6 0%, #10b981 100%)',
-              color: 'white',
-              border: 'none',
-              cursor: 'pointer',
-              borderRadius: '8px',
-              fontWeight: '600'
-            }}
-          >
-            {t('auth.login')}
-          </button>
-          <a
-            href="/"
-            style={{
-              padding: '12px 24px',
-              background: '#e5e7eb',
-              color: '#111827',
-              textDecoration: 'none',
-              borderRadius: '8px',
-              fontWeight: '600'
-            }}
-          >
-            {t('notFound.backHome')}
-          </a>
-        </div>
-        {showAuthModal && (
-          <AuthModal
-            isOpen={showAuthModal}
-            onClose={() => setShowAuthModal(false)}
-            initialMode="login"
-          />
-        )}
-      </div>
-    );
-  }
+  // Attend la vérification du token : évite d'afficher la page de connexion à un utilisateur déjà connecté.
+  if (loading) return <LoadingSpinner text="" />;
 
-  // Si connecté, affiche la page
+  // Pas connecté : page de connexion (la fenêtre de connexion s'ouvre directement)
+  if (!isAuthenticated) return <AuthGate />;
+
   return children;
 };
 
