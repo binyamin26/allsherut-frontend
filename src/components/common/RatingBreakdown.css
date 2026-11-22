@@ -38,8 +38,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: conic-gradient(var(--ravg-accent) var(--ravg-pct), #e8ecf4 0);
-  box-shadow: 0 8px 24px rgba(30, 58, 138, 0.14);
+  --ravg-ring: #059669;
+  background: conic-gradient(var(--ravg-ring) var(--ravg-pct), #e8ecf4 0);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
 }
 .text-ravg-ring-inner {
   width: 128px;
@@ -133,3 +134,7 @@
 [dir="rtl"] .text-ravg-fill.text-ravg-tone-mid { background: linear-gradient(90deg, #fbbf24, #d97706); }
 .text-ravg-fill.text-ravg-tone-bad,
 [dir="rtl"] .text-ravg-fill.text-ravg-tone-bad { background: linear-gradient(90deg, #f87171, #dc2626); }
+
+.text-ravg-ring-good { --ravg-ring: #059669; }
+.text-ravg-ring-mid { --ravg-ring: #d97706; }
+.text-ravg-ring-bad { --ravg-ring: #dc2626; }

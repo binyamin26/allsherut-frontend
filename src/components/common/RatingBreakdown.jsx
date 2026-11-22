@@ -19,6 +19,9 @@ const BANDS = [
   { label: '1–2', min: 0, max: 2.99, tone: 'bad' },
 ];
 
+// Même échelle partout : 9-10 vert, 7-8.99 orange, en dessous rouge
+const toneOf = (v) => (v >= 9 ? 'good' : v >= 7 ? 'mid' : 'bad');
+
 const MIN_RELIABLE = 3; // en dessous, on signale que la note est provisoire
 
 const average = (nums) => (nums.length ? nums.reduce((s, n) => s + n, 0) / nums.length : null);
@@ -60,7 +63,7 @@ const RatingBreakdown = ({ reviews }) => {
 
       <div className="text-ravg-body">
         <div className="text-ravg-hero">
-          <div className="text-ravg-ring" style={{ '--ravg-pct': `${(avg / 10) * 100}%` }}>
+          <div className={`text-ravg-ring text-ravg-ring-${toneOf(avg)}`} style={{ '--ravg-pct': `${(avg / 10) * 100}%` }}>
             <div className="text-ravg-ring-inner">
               <span className="text-ravg-score">{fmt(avg)}</span>
               <span className="text-ravg-outof">/10</span>
@@ -114,7 +117,7 @@ const RatingBreakdown = ({ reviews }) => {
                   <span className="text-ravg-crit-score">{fmt(value)}</span>
                 </div>
                 <div className="text-ravg-track text-ravg-track-thin">
-                  <div className="text-ravg-fill" style={{ width: `${value * 10}%` }} />
+                  <div className={`text-ravg-fill text-ravg-tone-${toneOf(value)}`} style={{ width: `${value * 10}%` }} />
                 </div>
               </div>
             ))}
