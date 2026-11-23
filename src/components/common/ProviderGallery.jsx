@@ -9,8 +9,6 @@ const ProviderGallery = ({ images }) => {
   const { t } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(null);
   const [touchStartX, setTouchStartX] = useState(null);
-  // Ratio réel (largeur/hauteur) de chaque photo, connu une fois chargée : sert à aligner les lignes
-  const [ratios, setRatios] = useState({});
 
   const isOpen = activeIndex !== null;
   const total = images.length;
@@ -52,30 +50,18 @@ const ProviderGallery = ({ images }) => {
 
   return (
     <>
-      {/* Lignes justifiées : chaque photo garde ses proportions, chaque ligne a la même hauteur, bords alignés */}
-      <div className="provider-gallery-rows">
-        {images.map((url, i) => {
-          const ratio = ratios[url] || 4 / 3;
-          return (
-            <button
-              key={url}
-              type="button"
-              className="provider-gallery-thumb"
-              style={{ flexGrow: ratio * 100, flexBasis: `calc(var(--gallery-row-height) * ${ratio})`, '--photo-ratio': ratio }}
-              onClick={() => setActiveIndex(i)}
-            >
-              <img
-                src={url}
-                alt={t('provider.gallery.imageAlt', { index: i + 1 })}
-                loading="lazy"
-                onLoad={(e) => {
-                  const { naturalWidth: w, naturalHeight: h } = e.currentTarget;
-                  if (w && h) setRatios((prev) => (prev[url] === w / h ? prev : { ...prev, [url]: w / h }));
-                }}
-              />
-            </button>
-          );
-        })}
+      {/* Grille de cadres carrés : chaque photo remplit son cadre (recadrage centré) ; la photo entière s'ouvre au clic */}
+      <div className="provider-gallery-grid">
+        {images.map((url, i) => (
+          <button
+            key={url}
+            type="button"
+            className="provider-gallery-thumb"
+            onClick={() => setActiveIndex(i)}
+          >
+            <img src={url} alt={t('provider.gallery.imageAlt', { index: i + 1 })} loading="lazy" />
+          </button>
+        ))}
       </div>
 
       {isOpen && createPortal(

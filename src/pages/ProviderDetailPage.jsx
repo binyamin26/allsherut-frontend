@@ -2305,14 +2305,7 @@ const handleContact = () => {
                   if (!hasTitles) return <ProviderGallery images={provider.media.gallery} />;
                   return sections.map((sec, i) => (
                     <div key={sec.title || `untitled-${i}`} style={{ marginTop: i === 0 ? 0 : '2.75rem' }}>
-                      {sec.title && (
-                        <h4 className="provider-gallery-section-title">
-                          {sec.title}
-                          <span className="provider-gallery-section-count">
-                            {sec.images.length === 1 ? t('provider.gallery.onePhoto') : t('provider.gallery.countPhotos', { count: sec.images.length })}
-                          </span>
-                        </h4>
-                      )}
+                      {sec.title && <h4 className="provider-gallery-section-title">{sec.title}</h4>}
                       <ProviderGallery images={sec.images} />
                     </div>
                   ));
