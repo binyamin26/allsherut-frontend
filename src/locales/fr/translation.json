@@ -1,3 +1,4 @@
+
 {
   "services.faqSectionTitle": "Questions fréquentes",
   "services.faqSectionSubtitle": "Les réponses aux questions que se posent le plus souvent nos clients avant de contacter un prestataire",
@@ -27,6 +28,8 @@
   "provider.gallery.next": "Photo suivante",
   "provider.gallery.counter": "{current} / {total}",
   "provider.gallery.imageAlt": "Photo {index}",
+  "provider.gallery.countPhotos": "{count} photos",
+  "provider.gallery.onePhoto": "1 photo",
   "provider.navDetails": "Détails",
   "provider.navGallery": "Photos",
   "provider.navPricing": "Tarifs",

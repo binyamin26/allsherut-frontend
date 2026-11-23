@@ -4,8 +4,8 @@ import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 
 const SWIPE_THRESHOLD = 50;
-// Au-delà de ce nombre de photos, la galerie devient un carrousel défilable (au doigt ou avec les flèches)
-const CAROUSEL_THRESHOLD = 6;
+// 3 photos visibles par ligne : au-delà de 3 photos, la galerie devient un carrousel défilable (au doigt ou avec les flèches)
+const CAROUSEL_THRESHOLD = 3;
 
 const ProviderGallery = ({ images }) => {
   const { t } = useLanguage();

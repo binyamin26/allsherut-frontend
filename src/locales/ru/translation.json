@@ -27,6 +27,8 @@
   "provider.gallery.next": "Следующее фото",
   "provider.gallery.counter": "{current} / {total}",
   "provider.gallery.imageAlt": "Фото {index}",
+  "provider.gallery.countPhotos": "{count} фото",
+  "provider.gallery.onePhoto": "1 фото",
   "provider.navDetails": "Детали",
   "provider.navGallery": "Фото",
   "provider.navPricing": "Цены",

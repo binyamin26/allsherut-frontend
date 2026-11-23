@@ -22,6 +22,8 @@
   "provider.gallery.next": "התמונה הבאה",
   "provider.gallery.counter": "{current} / {total}",
   "provider.gallery.imageAlt": "תמונה {index}",
+  "provider.gallery.countPhotos": "{count} תמונות",
+  "provider.gallery.onePhoto": "תמונה אחת",
   "provider.navDetails": "פרטים",
   "provider.navGallery": "תמונות",
   "provider.navPricing": "מחירים",
