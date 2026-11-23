@@ -64,7 +64,11 @@ const ProviderGallery = ({ images }) => {
               className="provider-gallery-thumb"
               onClick={() => setActiveIndex(i)}
             >
-              <img src={url} alt={t('provider.gallery.imageAlt', { index: i + 1 })} loading="lazy" />
+              {/* Photo entière (jamais recadrée) sur un fond flou fait de la même photo : cadre toujours plein, paysage ou portrait */}
+              <span className="provider-gallery-thumb-media">
+                <span className="provider-gallery-thumb-bg" style={{ backgroundImage: `url("${url}")` }} aria-hidden="true" />
+                <img src={url} alt={t('provider.gallery.imageAlt', { index: i + 1 })} loading="lazy" />
+              </span>
               {showOverlay && (
                 <span className="provider-gallery-text-overlay">
                   {t('provider.gallery.morePhotos', { count: hiddenCount })}
