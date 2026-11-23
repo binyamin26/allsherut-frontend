@@ -1664,3 +1664,47 @@ text-align: start;
     padding: var(--space-2) var(--space-4) !important;
   }
 }
+
+/* ====================================================================
+   TITRES DE SECTION DU PROFIL (Détails, Tarifs, Photos, Avis...)
+   Bleu de marque + barre verticale dégradée ; ligne qui s'estompe jusqu'au bord
+   (sauf Avis, dont l'en-tête contient déjà la note). Placé en fin de fichier pour
+   l'emporter sur les règles précédentes ; les ID/classes combinés battent aussi
+   la règle globale « body h3 » du widget d'accessibilité.
+   ==================================================================== */
+.provider-detail-page .service-details-section .details-title,
+.provider-detail-page #provider-reviews-title.details-title {
+  display: flex !important;
+  align-items: center;
+  gap: 12px;
+  color: #1A5490 !important;
+  font-size: 26px !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.01em;
+  line-height: 1.2 !important;
+}
+
+.provider-detail-page .service-details-section .details-title::before,
+.provider-detail-page #provider-reviews-title.details-title::before {
+  content: '';
+  flex: 0 0 auto;
+  width: 6px;
+  height: 1.15em;
+  border-radius: 6px;
+  background: linear-gradient(180deg, #2F80ED 0%, #0F2A44 100%);
+}
+
+.provider-detail-page .service-details-section .details-title::after {
+  content: '';
+  flex: 1 1 auto;
+  height: 2px;
+  min-width: 24px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #BBD3F5 0%, rgba(187, 211, 245, 0) 100%);
+}
+
+/* En RTL, le dégradé de la ligne doit s'estomper vers l'autre bord */
+[dir="rtl"] .provider-detail-page .service-details-section .details-title::after,
+.provider-detail-page[dir="rtl"] .service-details-section .details-title::after {
+  background: linear-gradient(270deg, #BBD3F5 0%, rgba(187, 211, 245, 0) 100%);
+}

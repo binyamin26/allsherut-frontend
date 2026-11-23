@@ -2304,7 +2304,7 @@ const handleContact = () => {
                   const hasTitles = Array.isArray(sections) && sections.some(sec => sec.title);
                   if (!hasTitles) return <ProviderGallery images={provider.media.gallery} />;
                   return sections.map((sec, i) => (
-                    <div key={sec.title || `untitled-${i}`} style={{ marginTop: i === 0 ? 0 : '1.5rem' }}>
+                    <div key={sec.title || `untitled-${i}`} style={{ marginTop: i === 0 ? 0 : '2.75rem' }}>
                       {sec.title && <h4 className="provider-gallery-section-title">{sec.title}</h4>}
                       <ProviderGallery images={sec.images} />
                     </div>
