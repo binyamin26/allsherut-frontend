@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 
 const SWIPE_THRESHOLD = 50;
+// Au-delà de ce nombre de photos, la galerie devient un carrousel défilable (au doigt ou avec les flèches)
+const CAROUSEL_THRESHOLD = 6;
 
 const ProviderGallery = ({ images }) => {
   const { t } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(null);
   const [touchStartX, setTouchStartX] = useState(null);
+  const trackRef = useRef(null);
 
   const isOpen = activeIndex !== null;
   const total = images.length;
@@ -16,6 +19,11 @@ const ProviderGallery = ({ images }) => {
   const showPrev = () => setActiveIndex((i) => (i - 1 + total) % total);
   const showNext = () => setActiveIndex((i) => (i + 1) % total);
   const close = () => setActiveIndex(null);
+  // Flèches physiques gauche/droite : identiques en RTL et en LTR
+  const scrollTrack = (dir) => {
+    const el = trackRef.current;
+    if (el) el.scrollBy({ left: dir * el.clientWidth * 0.8, behavior: 'smooth' });
+  };
 
   useEffect(() => {
     if (!isOpen) return;
@@ -48,21 +56,45 @@ const ProviderGallery = ({ images }) => {
 
   if (total === 0) return null;
 
+  // Chaque photo dans un cadre carré ; la photo entière s'ouvre au clic
+  const thumbs = images.map((url, i) => (
+    <button
+      key={url}
+      type="button"
+      className="provider-gallery-thumb"
+      onClick={() => setActiveIndex(i)}
+    >
+      <img src={url} alt={t('provider.gallery.imageAlt', { index: i + 1 })} loading="lazy" />
+    </button>
+  ));
+
   return (
     <>
-      {/* Grille de cadres carrés : chaque photo remplit son cadre (recadrage centré) ; la photo entière s'ouvre au clic */}
-      <div className="provider-gallery-grid">
-        {images.map((url, i) => (
+      {total > CAROUSEL_THRESHOLD ? (
+        <div className="provider-gallery-carousel">
           <button
-            key={url}
             type="button"
-            className="provider-gallery-thumb"
-            onClick={() => setActiveIndex(i)}
+            className="provider-gallery-arrow provider-gallery-arrow-left"
+            onClick={() => scrollTrack(-1)}
+            aria-label={t('provider.gallery.previous')}
           >
-            <img src={url} alt={t('provider.gallery.imageAlt', { index: i + 1 })} loading="lazy" />
+            <ChevronLeft size={22} />
           </button>
-        ))}
-      </div>
+          <div className="provider-gallery-track" ref={trackRef}>
+            {thumbs}
+          </div>
+          <button
+            type="button"
+            className="provider-gallery-arrow provider-gallery-arrow-right"
+            onClick={() => scrollTrack(1)}
+            aria-label={t('provider.gallery.next')}
+          >
+            <ChevronRight size={22} />
+          </button>
+        </div>
+      ) : (
+        <div className="provider-gallery-grid">{thumbs}</div>
+      )}
 
       {isOpen && createPortal(
         <div

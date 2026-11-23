@@ -8,32 +8,35 @@
   gap: var(--space-3);
 }
 
-/* Titre d'une section de galerie : « pastille » bleu clair arrondie */
+/* Titre d'une section de galerie (style B) : titre + nombre de photos + fine ligne */
 .provider-gallery-section-title {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   margin: 0 0 1rem;
-  padding: 0.45rem 1.1rem;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 700;
-  color: #1A5490;
-  letter-spacing: 0.1px;
+  color: #0F2A44;
   text-align: start;
-  background: linear-gradient(135deg, #EBF3FE 0%, #F7FAFF 100%);
-  border: 1px solid #BBD3F5;
-  border-radius: 999px;
-  box-shadow: 0 1px 3px rgba(47, 128, 237, 0.1);
 }
 
-.provider-gallery-section-title::before {
-  content: '';
+.provider-gallery-section-count {
   flex: 0 0 auto;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #2F80ED 0%, #0F2A44 100%);
-  box-shadow: 0 0 0 3px rgba(47, 128, 237, 0.18);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #1A5490;
+  background: #EBF3FE;
+  border: 1px solid #BBD3F5;
+  border-radius: 999px;
+  padding: 0.15rem 0.65rem;
+}
+
+.provider-gallery-section-title::after {
+  content: '';
+  flex: 1 1 auto;
+  min-width: 24px;
+  height: 1px;
+  background: #E2E8F0;
 }
 
 /* Chaque photo dans un cadre « passe-partout » carré : bord blanc, liseré bleu clair, ombre douce */
@@ -67,10 +70,72 @@
   background: #F1F5F9;
 }
 
+/* Carrousel (7 photos et plus) : défilement manuel au doigt (accroche sur chaque photo) + flèches */
+.provider-gallery-carousel {
+  position: relative;
+}
+
+.provider-gallery-track {
+  display: flex;
+  gap: var(--space-3);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  padding: 8px 2px 14px; /* marge haute : laisse la place à l'effet de survol */
+  scrollbar-width: thin;
+  scrollbar-color: #BBD3F5 transparent;
+}
+
+.provider-gallery-track .provider-gallery-thumb {
+  flex: 0 0 calc((100% - 2 * var(--space-3)) / 3);
+  width: auto;
+  scroll-snap-align: start;
+}
+
+.provider-gallery-arrow {
+  position: absolute;
+  top: calc(50% - 8px);
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid #CFE0F7;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #1A5490;
+  box-shadow: 0 4px 14px rgba(15, 42, 68, 0.18);
+  cursor: pointer;
+  transition: background var(--transition-medium), color var(--transition-medium), transform var(--transition-medium);
+}
+
+.provider-gallery-arrow:hover {
+  background: #1A5490;
+  color: #ffffff;
+}
+
+.provider-gallery-arrow-left { left: -10px; }
+.provider-gallery-arrow-right { right: -10px; }
+
+/* Sur écran tactile, on défile au doigt : pas de flèches */
+@media (hover: none) {
+  .provider-gallery-arrow { display: none; }
+}
+
 @media (max-width: 640px) {
   .provider-gallery-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-2);
+  }
+  .provider-gallery-track {
+    gap: var(--space-2);
+  }
+  .provider-gallery-track .provider-gallery-thumb {
+    flex-basis: 62%;
   }
 }
 
