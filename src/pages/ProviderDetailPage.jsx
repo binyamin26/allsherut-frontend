@@ -2305,7 +2305,7 @@ const handleContact = () => {
                   if (!hasTitles) return <ProviderGallery images={provider.media.gallery} />;
                   return sections.map((sec, i) => (
                     <div key={sec.title || `untitled-${i}`} style={{ marginTop: i === 0 ? 0 : '1.5rem' }}>
-                      {sec.title && <h4 style={{ margin: '0 0 0.75rem', fontSize: '1.05rem', fontWeight: 700, color: '#0F2A44', textAlign: 'start' }}>{sec.title}</h4>}
+                      {sec.title && <h4 className="provider-gallery-section-title">{sec.title}</h4>}
                       <ProviderGallery images={sec.images} />
                     </div>
                   ));

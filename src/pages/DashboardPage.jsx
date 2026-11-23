@@ -2661,7 +2661,7 @@ const showPricingPopup = userData?.role === 'provider'
             </>
           ) : (
             <>
-              <h4 style={{ margin: 0, fontSize: '1rem', color: '#0F2A44', fontWeight: 700 }}>{section.title || t('dashboard.gallery.untitled')}</h4>
+              <h4 style={{ margin: 0, fontSize: '1rem', color: '#1A5490', fontWeight: 800 }}>{section.title || t('dashboard.gallery.untitled')}</h4>
               {section.title && (
                 <button
                   type="button"

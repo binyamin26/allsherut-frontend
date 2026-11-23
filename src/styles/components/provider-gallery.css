@@ -8,22 +8,47 @@
   gap: var(--space-3);
 }
 
+/* Titre d'une section de galerie : bleu de marque + petit trait dégradé */
+.provider-gallery-section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 0.85rem;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #1A5490;
+  letter-spacing: 0.2px;
+  text-align: start;
+}
+
+.provider-gallery-section-title::before {
+  content: '';
+  flex: 0 0 auto;
+  width: 5px;
+  height: 1.3em;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #2F80ED 0%, #0F2A44 100%);
+}
+
+/* Chaque photo dans un cadre « passe-partout » : bord blanc, liseré bleu clair, ombre douce */
 .provider-gallery-thumb {
   position: relative;
   width: 100%;
   aspect-ratio: 1 / 1;
-  padding: 0;
-  border: none;
-  border-radius: var(--radius-md);
+  padding: 7px;
+  border: 1px solid #CFE0F7;
+  border-radius: 16px;
   overflow: hidden;
   cursor: pointer;
-  background: var(--neutral-100);
-  transition: transform var(--transition-medium), box-shadow var(--transition-medium);
+  background: #ffffff;
+  box-shadow: 0 2px 10px rgba(15, 42, 68, 0.08);
+  transition: transform var(--transition-medium), box-shadow var(--transition-medium), border-color var(--transition-medium);
 }
 
 .provider-gallery-thumb:hover {
-  transform: scale(1.03);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+  border-color: #2F80ED;
+  box-shadow: 0 12px 26px rgba(47, 128, 237, 0.2);
 }
 
 .provider-gallery-thumb img {
@@ -32,11 +57,14 @@
   object-fit: contain;
   object-position: center;
   display: block;
+  border-radius: 10px;
+  background: #F1F5F9;
 }
 
 .provider-gallery-text-overlay {
   position: absolute;
-  inset: 0;
+  inset: 7px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
