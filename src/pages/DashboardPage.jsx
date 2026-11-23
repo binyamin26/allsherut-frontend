@@ -417,6 +417,10 @@ const userData = useMemo(() => {
   const serviceCardRef = React.useRef(null);
   const [galleryUploading, setGalleryUploading] = useState(false);
 const [galleryError, setGalleryError] = useState('');
+// Sections de galerie : titres créés mais pas encore de photo (persistés au 1er upload), nouveau titre saisi, renommage en cours
+const [pendingSectionTitles, setPendingSectionTitles] = useState([]);
+const [newSectionTitle, setNewSectionTitle] = useState('');
+const [editingSection, setEditingSection] = useState(null);
 
   const avatarRef = React.useRef(null);
 
@@ -1391,7 +1395,7 @@ const handleDeleteImage = async () => {
   }
 };
 
-const handleGalleryImageUpload = async (e) => {
+const handleGalleryImageUpload = async (e, sectionTitle = '') => {
   const file = e.target.files[0];
   if (!file) return;
 
@@ -1406,9 +1410,10 @@ const handleGalleryImageUpload = async (e) => {
   try {
     const imageCompression = (await import('browser-image-compression')).default;
     const compressed = await imageCompression(file, { maxSizeMB: 1, maxWidthOrHeight: 1200, useWebWorker: true });
-    const result = await uploadGalleryImage(compressed, activeService || userData?.serviceType);
+    const result = await uploadGalleryImage(compressed, activeService || userData?.serviceType, sectionTitle);
     if (result.success) {
       setMessage({ type: 'success', text: 'התמונה הועלתה לגלריה' });
+      setPendingSectionTitles(prev => prev.filter(tt => tt !== sectionTitle));
       await switchService(activeService || userData?.serviceType);
     } else {
       setMessage({ type: 'error', text: result.message || 'שגיאה בהעלאת התמונה' });
@@ -1418,6 +1423,39 @@ const handleGalleryImageUpload = async (e) => {
   } finally {
     setGalleryUploading(false);
     e.target.value = '';
+  }
+};
+
+const handleAddGallerySection = () => {
+  const title = newSectionTitle.replace(/\s+/g, ' ').trim().slice(0, 60);
+  if (!title) return;
+  const exists = gallerySectionsView.some(sec => sec.title === title);
+  if (!exists) setPendingSectionTitles(prev => [...prev, title]);
+  setNewSectionTitle('');
+};
+
+const handleRenameGallerySection = async () => {
+  if (!editingSection) return;
+  const newTitle = editingSection.value.replace(/\s+/g, ' ').trim().slice(0, 60);
+  const oldTitle = editingSection.old;
+  setEditingSection(null);
+  if (!newTitle || newTitle === oldTitle) return;
+  // Titre pas encore enregistré (aucune photo) : simple renommage local
+  if (pendingSectionTitles.includes(oldTitle)) {
+    setPendingSectionTitles(prev => prev.map(tt => (tt === oldTitle ? newTitle : tt)));
+    return;
+  }
+  setGalleryUploading(true);
+  try {
+    const response = await apiCall('/upload/gallery-section', 'PUT', {
+      serviceType: activeService || userData?.serviceType, oldTitle, newTitle
+    });
+    if (response.success) await switchService(activeService || userData?.serviceType);
+    else setMessage({ type: 'error', text: response.message || 'שגיאה בעדכון הכותרת' });
+  } catch (err) {
+    setMessage({ type: 'error', text: 'שגיאה בעדכון הכותרת' });
+  } finally {
+    setGalleryUploading(false);
   }
 };
 
@@ -1731,6 +1769,32 @@ const galleryImages = (() => {
   if (!raw) return [];
   if (Array.isArray(raw)) return raw;
   try { return JSON.parse(raw); } catch { return []; }
+})();
+
+// Sections affichées : sections enregistrées (normalisées avec la liste plate) + titres en attente de 1ère photo
+const gallerySectionsView = (() => {
+  let raw = user?.providerProfile?.gallery_sections;
+  if (typeof raw === 'string') { try { raw = JSON.parse(raw); } catch { raw = []; } }
+  const inGallery = new Set(galleryImages);
+  const seen = new Set();
+  const out = [];
+  (Array.isArray(raw) ? raw : []).forEach(sec => {
+    if (!sec || !Array.isArray(sec.images)) return;
+    const images = sec.images.filter(u => inGallery.has(u) && !seen.has(u));
+    images.forEach(u => seen.add(u));
+    out.push({ title: String(sec.title || '').trim(), images });
+  });
+  const orphans = galleryImages.filter(u => !seen.has(u));
+  if (orphans.length) {
+    let untitled = out.find(sec => !sec.title);
+    if (!untitled) { untitled = { title: '', images: [] }; out.unshift(untitled); }
+    untitled.images.push(...orphans);
+  }
+  const result = out.filter(sec => sec.images.length > 0);
+  pendingSectionTitles.forEach(tt => { if (!result.some(sec => sec.title === tt)) result.push({ title: tt, images: [], pending: true }); });
+  // Galerie vide : une section sans titre pour garder le bouton d'ajout habituel
+  if (!result.length) result.push({ title: '', images: [] });
+  return result;
 })();
 
 // Réutilise le libellé exact du champ "expérience" du métier actif (il varie selon le
@@ -2577,56 +2641,105 @@ const showPricingPopup = userData?.role === 'provider'
    {t('dashboard.gallery.description')}
   </p>
 
-  <div className="dashboard-gallery-grid">
-    {/* Images existantes */}
-    {(galleryImages || []).map((url, index) => (
-      <div key={index} style={{ position: 'relative', aspectRatio: '1/1', borderRadius: '8px', overflow: 'hidden', background: 'var(--neutral-100)' }}>
-        <img
-          src={url}
-          alt={`גלריה ${index + 1}`}
-          style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center' }}
-        />
-        <button
-          onClick={() => handleGalleryImageDelete(url)}
-          disabled={galleryUploading}
-          style={{
-            position: 'absolute', top: '6px', left: '6px',
-            background: 'rgba(220,38,38,0.85)', border: 'none',
-            borderRadius: '50%', width: '28px', height: '28px',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            cursor: 'pointer', color: 'white'
-          }}
-        >
-          <X size={14} />
-        </button>
-      </div>
-    ))}
+  <p style={{ color: '#6b7280', fontSize: '0.85rem', marginBottom: '1rem' }}>{t('dashboard.gallery.sectionHint')}</p>
 
-    {/* Slot d'ajout */}
-    {(galleryImages || []).length < 15 && (
-      <label style={{
-        aspectRatio: '1/1', border: '2px dashed #d1d5db', borderRadius: '8px',
-        display: 'flex', flexDirection: 'column', alignItems: 'center',
-        justifyContent: 'center', cursor: galleryUploading ? 'not-allowed' : 'pointer',
-        background: '#f9fafb', gap: '6px', color: '#9ca3af'
-      }}>
-        <input
-          type="file"
-          accept="image/jpeg,image/jpg,image/png,image/webp"
-          onChange={handleGalleryImageUpload}
-          style={{ display: 'none' }}
-          disabled={galleryUploading}
-        />
-        {galleryUploading ? (
-          <LoadingSpinner size="small" />
-        ) : (
-          <>
-            <Camera size={24} />
-           <span style={{ fontSize: '0.75rem', textAlign: 'center' }}>{t('dashboard.gallery.addPhoto')}<br/>{t('dashboard.gallery.maxSize')}</span>
-          </>
+  {gallerySectionsView.map((section) => (
+    <div key={section.title || '__untitled'} style={{ marginBottom: '1.5rem' }}>
+      {(section.title || gallerySectionsView.length > 1) && (
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.5rem', flexWrap: 'wrap' }}>
+          {editingSection && editingSection.old === section.title ? (
+            <>
+              <input
+                type="text"
+                value={editingSection.value}
+                maxLength={60}
+                onChange={(e) => setEditingSection({ ...editingSection, value: e.target.value })}
+                style={{ padding: '4px 8px', border: '1px solid #d1d5db', borderRadius: '6px', fontSize: '0.95rem' }}
+              />
+              <button type="button" className="btn btn-primary" style={{ padding: '4px 12px' }} onClick={handleRenameGallerySection}>{t('dashboard.gallery.saveTitle')}</button>
+              <button type="button" className="btn btn-secondary" style={{ padding: '4px 12px' }} onClick={() => setEditingSection(null)}>{t('dashboard.gallery.cancelTitle')}</button>
+            </>
+          ) : (
+            <>
+              <h4 style={{ margin: 0, fontSize: '1rem', color: '#0F2A44', fontWeight: 700 }}>{section.title || t('dashboard.gallery.untitled')}</h4>
+              {section.title && (
+                <button
+                  type="button"
+                  disabled={galleryUploading}
+                  onClick={() => setEditingSection({ old: section.title, value: section.title })}
+                  style={{ background: 'none', border: 'none', color: '#2F80ED', cursor: 'pointer', fontSize: '0.8rem' }}
+                >{t('dashboard.gallery.renameTitle')}</button>
+              )}
+            </>
+          )}
+        </div>
+      )}
+
+      <div className="dashboard-gallery-grid">
+        {section.images.map((url, index) => (
+          <div key={url} style={{ position: 'relative', aspectRatio: '1/1', borderRadius: '8px', overflow: 'hidden', background: 'var(--neutral-100)' }}>
+            <img
+              src={url}
+              alt={`גלריה ${index + 1}`}
+              style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center' }}
+            />
+            <button
+              onClick={() => handleGalleryImageDelete(url)}
+              disabled={galleryUploading}
+              style={{
+                position: 'absolute', top: '6px', left: '6px',
+                background: 'rgba(220,38,38,0.85)', border: 'none',
+                borderRadius: '50%', width: '28px', height: '28px',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                cursor: 'pointer', color: 'white'
+              }}
+            >
+              <X size={14} />
+            </button>
+          </div>
+        ))}
+
+        {galleryImages.length < 15 && (
+          <label style={{
+            aspectRatio: '1/1', border: '2px dashed #d1d5db', borderRadius: '8px',
+            display: 'flex', flexDirection: 'column', alignItems: 'center',
+            justifyContent: 'center', cursor: galleryUploading ? 'not-allowed' : 'pointer',
+            background: '#f9fafb', gap: '6px', color: '#9ca3af'
+          }}>
+            <input
+              type="file"
+              accept="image/jpeg,image/jpg,image/png,image/webp"
+              onChange={(e) => handleGalleryImageUpload(e, section.title)}
+              style={{ display: 'none' }}
+              disabled={galleryUploading}
+            />
+            {galleryUploading ? (
+              <LoadingSpinner size="small" />
+            ) : (
+              <>
+                <Camera size={24} />
+                <span style={{ fontSize: '0.75rem', textAlign: 'center' }}>{t('dashboard.gallery.addPhoto')}<br/>{t('dashboard.gallery.maxSize')}</span>
+              </>
+            )}
+          </label>
         )}
-      </label>
-    )}
+      </div>
+    </div>
+  ))}
+
+  <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center', marginTop: '0.5rem' }}>
+    <input
+      type="text"
+      value={newSectionTitle}
+      maxLength={60}
+      placeholder={t('dashboard.gallery.sectionPlaceholder')}
+      onChange={(e) => setNewSectionTitle(e.target.value)}
+      onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); handleAddGallerySection(); } }}
+      style={{ flex: '1 1 220px', padding: '8px 10px', border: '1px solid #d1d5db', borderRadius: '8px', fontSize: '0.95rem' }}
+    />
+    <button type="button" className="btn btn-secondary" onClick={handleAddGallerySection} disabled={!newSectionTitle.trim()}>
+      {t('dashboard.gallery.addSection')}
+    </button>
   </div>
 </div>
 

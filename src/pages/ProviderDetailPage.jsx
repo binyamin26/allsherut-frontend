@@ -2271,7 +2271,7 @@ const handleContact = () => {
                       background: '#fff',
                     }}>
                       <span style={{ fontSize: '0.95rem', color: '#334155', fontWeight: 500 }}>{item.service_name}</span>
-                      <span style={{
+                      <span dir="auto" style={{
                         color: '#0F2A44',
                         fontWeight: 700,
                         fontSize: '0.95rem',
@@ -2299,7 +2299,17 @@ const handleContact = () => {
             {provider.media?.gallery?.length > 0 && (
               <div ref={galleryRef} data-section="gallery" className="service-details-section">
                 <h3 className="details-title" style={{ textAlign: 'start' }}>{t('provider.navGallery')}</h3>
-                <ProviderGallery images={provider.media.gallery} />
+                {(() => {
+                  const sections = provider.media.gallerySections;
+                  const hasTitles = Array.isArray(sections) && sections.some(sec => sec.title);
+                  if (!hasTitles) return <ProviderGallery images={provider.media.gallery} />;
+                  return sections.map((sec, i) => (
+                    <div key={sec.title || `untitled-${i}`} style={{ marginTop: i === 0 ? 0 : '1.5rem' }}>
+                      {sec.title && <h4 style={{ margin: '0 0 0.75rem', fontSize: '1.05rem', fontWeight: 700, color: '#0F2A44', textAlign: 'start' }}>{sec.title}</h4>}
+                      <ProviderGallery images={sec.images} />
+                    </div>
+                  ));
+                })()}
               </div>
             )}
 

@@ -422,7 +422,7 @@ const uploadGalleryDirectToCloudinary = async (file) => {
   }
 };
 
-const uploadGalleryImage = async (imageFile, serviceType = null) => {
+const uploadGalleryImage = async (imageFile, serviceType = null, sectionTitle = '') => {
   try {
     setLoading(true);
     const svcType = serviceType || user?.service_type;
@@ -433,6 +433,7 @@ const uploadGalleryImage = async (imageFile, serviceType = null) => {
         providerProfile: user.providerProfile ? {
           ...user.providerProfile,
           profile_images: data.data.gallery,
+          gallery_sections: data.data.gallerySections,
           ...(data.data.verificationStatus ? { verification_status: data.data.verificationStatus } : {})
         } : null
       };
@@ -448,7 +449,7 @@ const uploadGalleryImage = async (imageFile, serviceType = null) => {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${localStorage.getItem('homesherut_token')}`
         },
-        body: JSON.stringify({ imageUrl: directUrl, serviceType: svcType })
+        body: JSON.stringify({ imageUrl: directUrl, serviceType: svcType, sectionTitle })
       });
       const saveData = await saveResponse.json();
       if (saveData.success) {
@@ -462,6 +463,7 @@ const uploadGalleryImage = async (imageFile, serviceType = null) => {
     const formData = new FormData();
     formData.append('galleryImage', imageFile);
     formData.append('serviceType', svcType);
+    formData.append('sectionTitle', sectionTitle || '');
 
     const response = await fetch(`${API_BASE}/upload/gallery-image`, {
       method: 'POST',
@@ -498,7 +500,8 @@ const deleteGalleryImage = async (imageUrl, serviceType = null) => {
         ...user,
         providerProfile: user.providerProfile ? {
           ...user.providerProfile,
-          profile_images: response.data.gallery
+          profile_images: response.data.gallery,
+          gallery_sections: response.data.gallerySections
         } : null
       };
       setUser(updatedUser);
