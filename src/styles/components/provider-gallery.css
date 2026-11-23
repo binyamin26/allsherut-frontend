@@ -1,46 +1,58 @@
 /* ====================================
-   PROVIDER GALLERY — grid preview + lightbox
+   PROVIDER GALLERY — lignes justifiées + lightbox
    ==================================== */
 
-.provider-gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+/* Lignes justifiées : chaque photo garde ses proportions réelles (aucun recadrage), chaque ligne a la
+   même hauteur et des bords alignés. Largeur de chaque cadre = ratio de la photo (voir ProviderGallery.jsx). */
+.provider-gallery-rows {
+  --gallery-row-height: 200px;
+  display: flex;
+  flex-wrap: wrap;
   gap: var(--space-3);
 }
 
-/* Titre d'une section de galerie : « pastille » bleu clair arrondie, distincte des gros titres de la page */
-.provider-gallery-section-title {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  margin: 0 0 1rem;
-  padding: 0.45rem 1.1rem;
-  font-size: 1rem;
-  font-weight: 700;
-  color: #1A5490;
-  letter-spacing: 0.1px;
-  text-align: start;
-  background: linear-gradient(135deg, #EBF3FE 0%, #F7FAFF 100%);
-  border: 1px solid #BBD3F5;
-  border-radius: 999px;
-  box-shadow: 0 1px 3px rgba(47, 128, 237, 0.1);
+/* Évite d'étirer la dernière ligne quand elle contient peu de photos */
+.provider-gallery-rows::after {
+  content: '';
+  flex-grow: 1000000;
 }
 
-.provider-gallery-section-title::before {
-  content: '';
+/* Titre d'une section de galerie : titre + nombre de photos + fine ligne */
+.provider-gallery-section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 1rem;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #0F2A44;
+  text-align: start;
+}
+
+.provider-gallery-section-count {
   flex: 0 0 auto;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #2F80ED 0%, #0F2A44 100%);
-  box-shadow: 0 0 0 3px rgba(47, 128, 237, 0.18);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #1A5490;
+  background: #EBF3FE;
+  border: 1px solid #BBD3F5;
+  border-radius: 999px;
+  padding: 0.15rem 0.65rem;
+}
+
+.provider-gallery-section-title::after {
+  content: '';
+  flex: 1 1 auto;
+  min-width: 24px;
+  height: 1px;
+  background: #D6E4F7;
 }
 
 /* Chaque photo dans un cadre « passe-partout » : bord blanc, liseré bleu clair, ombre douce */
 .provider-gallery-thumb {
   position: relative;
-  width: 100%;
-  aspect-ratio: 1 / 1;
+  min-width: 0;
+  max-width: 100%;
   padding: 7px;
   border: 1px solid #CFE0F7;
   border-radius: 16px;
@@ -57,59 +69,20 @@
   box-shadow: 0 12px 26px rgba(47, 128, 237, 0.2);
 }
 
-/* Zone photo : la photo entière (contain) posée sur une version floue d'elle-même (cover).
-   Résultat : aucun recadrage, aucune bande vide, quel que soit le format (paysage, portrait, panoramique). */
-.provider-gallery-thumb-media {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  border-radius: 10px;
-  background: #DCE6F2;
-}
-
-.provider-gallery-thumb-bg {
-  position: absolute;
-  inset: -24px;
-  background-size: cover;
-  background-position: center;
-  filter: blur(18px) saturate(1.15);
-  transform: scale(1.1);
-}
-
 .provider-gallery-thumb img {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
   display: block;
-}
-
-.provider-gallery-text-overlay {
-  position: absolute;
-  z-index: 2;
-  inset: 7px;
+  width: 100%;
+  height: auto;
+  aspect-ratio: var(--photo-ratio, 1.333);
+  object-fit: cover; /* le ratio du cadre = celui de la photo : rien n'est coupé */
   border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(15, 23, 42, 0.6);
-  color: white;
-  font-weight: 700;
-  font-size: var(--text-xl);
-  font-family: var(--font-primary);
+  background: #F1F5F9;
 }
 
 @media (max-width: 640px) {
-  .provider-gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .provider-gallery-rows {
+    --gallery-row-height: 130px;
     gap: var(--space-2);
-  }
-  .provider-gallery-text-overlay {
-    font-size: var(--text-lg);
   }
 }
 

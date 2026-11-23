@@ -3,18 +3,17 @@ import { createPortal } from 'react-dom';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 
-const GRID_PREVIEW_COUNT = 3;
 const SWIPE_THRESHOLD = 50;
 
 const ProviderGallery = ({ images }) => {
   const { t } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(null);
   const [touchStartX, setTouchStartX] = useState(null);
+  // Ratio réel (largeur/hauteur) de chaque photo, connu une fois chargée : sert à aligner les lignes
+  const [ratios, setRatios] = useState({});
 
   const isOpen = activeIndex !== null;
   const total = images.length;
-  const hiddenCount = total - GRID_PREVIEW_COUNT;
-  const previewImages = images.slice(0, GRID_PREVIEW_COUNT);
 
   const showPrev = () => setActiveIndex((i) => (i - 1 + total) % total);
   const showNext = () => setActiveIndex((i) => (i + 1) % total);
@@ -53,27 +52,27 @@ const ProviderGallery = ({ images }) => {
 
   return (
     <>
-      <div className="provider-gallery-grid">
-        {previewImages.map((url, i) => {
-          const isLastVisible = i === GRID_PREVIEW_COUNT - 1;
-          const showOverlay = isLastVisible && hiddenCount > 0;
+      {/* Lignes justifiées : chaque photo garde ses proportions, chaque ligne a la même hauteur, bords alignés */}
+      <div className="provider-gallery-rows">
+        {images.map((url, i) => {
+          const ratio = ratios[url] || 4 / 3;
           return (
             <button
               key={url}
               type="button"
               className="provider-gallery-thumb"
+              style={{ flexGrow: ratio * 100, flexBasis: `calc(var(--gallery-row-height) * ${ratio})`, '--photo-ratio': ratio }}
               onClick={() => setActiveIndex(i)}
             >
-              {/* Photo entière (jamais recadrée) sur un fond flou fait de la même photo : cadre toujours plein, paysage ou portrait */}
-              <span className="provider-gallery-thumb-media">
-                <span className="provider-gallery-thumb-bg" style={{ backgroundImage: `url("${url}")` }} aria-hidden="true" />
-                <img src={url} alt={t('provider.gallery.imageAlt', { index: i + 1 })} loading="lazy" />
-              </span>
-              {showOverlay && (
-                <span className="provider-gallery-text-overlay">
-                  {t('provider.gallery.morePhotos', { count: hiddenCount })}
-                </span>
-              )}
+              <img
+                src={url}
+                alt={t('provider.gallery.imageAlt', { index: i + 1 })}
+                loading="lazy"
+                onLoad={(e) => {
+                  const { naturalWidth: w, naturalHeight: h } = e.currentTarget;
+                  if (w && h) setRatios((prev) => (prev[url] === w / h ? prev : { ...prev, [url]: w / h }));
+                }}
+              />
             </button>
           );
         })}
