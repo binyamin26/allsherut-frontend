@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import { reportClientError } from '../utils/reportClientError';
 
 const AuthContext = createContext();
 
@@ -19,7 +20,10 @@ export const AuthProvider = ({ children }) => {
   const [initialized, setInitialized] = useState(false);
   const [error, setError] = useState(null);
 
- const API_BASE = import.meta.env.VITE_API_URL || '/api';
+ // En production on passe toujours par le même domaine (rewrite Vercel /api -> fly.dev) :
+ // les filtres réseau (NetFree...) laissent passer allsherut.com mais bloquent souvent d'autres domaines.
+ const IS_PROD_HOST = ['allsherut.com', 'www.allsherut.com', 'homesherut-frontend.vercel.app'].includes(window.location.hostname);
+ const API_BASE = IS_PROD_HOST ? '/api' : (import.meta.env.VITE_API_URL || '/api');
 
   const checkSubscriptionExpired = (user) => {
   if (user?.role === 'provider' && user?.premium_until) {
@@ -95,7 +99,17 @@ setUser({
         body: JSON.stringify({ email, password })
       });
 
-      const data = await response.json();
+      const rawText = await response.text();
+      let data;
+      try {
+        data = JSON.parse(rawText);
+      } catch {
+        // Réponse non-JSON : page de blocage d'un filtre réseau (NetFree, Etrog...) ou erreur proxy
+        reportClientError(new Error(`Login: non-JSON response (HTTP ${response.status}): ${rawText.slice(0, 200)}`));
+        const blockedMsg = 'החיבור לשרת נחסם, ייתכן שהסינון ברשת שלך חוסם את האתר. נסו רשת אחרת או פנו אלינו.';
+        setError(blockedMsg);
+        return { success: false, message: blockedMsg };
+      }
 
       if (data.success) {
         const userData = { ...data.data.user, token: data.data.token };
@@ -108,6 +122,7 @@ setUser({
       }
     } catch (error) {
       console.error('שגיאה בהתחברות:', error);
+      reportClientError(new Error(`Login: fetch failed (${error?.message || error})`));
       const errorMessage = 'שגיאה בחיבור לשרת';
       setError(errorMessage);
       return { success: false, message: errorMessage };
