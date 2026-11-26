@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import SEO from '../components/common/SEO';
 import { useAuth } from '../context/AuthContext';
@@ -32,7 +33,7 @@ import {
   Settings, Flame, ClipboardList, Bug, BookOpen, Trophy, Sun,
   Wallet, Globe, Car, Baby, Users, Dog,
   Stethoscope, PawPrint, HeartHandshake, ListChecks, Truck, PackageOpen,
-  Image as ImageIcon, Tag, Warehouse
+  Image as ImageIcon, Tag, Warehouse, X
 } from 'lucide-react';
 
 const AVATAR_GRADIENTS = [
@@ -125,6 +126,7 @@ const ProviderDetailPage = () => {
   const [tutoringSubcats, setTutoringSubcats] = useState([]);
   const [sportsSubcats, setSportsSubcats] = useState([]);
   const [profileImageError, setProfileImageError] = useState(false);
+  const [profileZoomOpen, setProfileZoomOpen] = useState(false);
   const [pricing, setPricing] = useState([]);
   const [activeSection, setActiveSection] = useState('reviews');
 
@@ -230,6 +232,22 @@ const ProviderDetailPage = () => {
       loadProviderData();
     }
   }, [id]);
+
+  // Aperçu plein écran de la photo de profil : Échap pour fermer, pas de scroll derrière
+  useEffect(() => {
+    if (!profileZoomOpen) return undefined;
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const onKey = (e) => { if (e.key === 'Escape') setProfileZoomOpen(false); };
+    window.addEventListener('keydown', onKey);
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [profileZoomOpen]);
+
+  // Changer de fiche : l'aperçu se ferme
+  useEffect(() => { setProfileZoomOpen(false); }, [id]);
 
   // Charger les sous-catégories tutoring
   useEffect(() => {
@@ -2003,20 +2021,50 @@ const handleContact = () => {
   {/* Photo de profil - à gauche */}
   <div className="provider-image-section">
     <div className="image-wrapper">
-      {(provider.media?.profileImage || provider.profile_image) && !profileImageError ? (
-        <img
-          src={(() => {
-            const img = provider.media?.profileImage || provider.profile_image;
-            const src = img.startsWith('http') ? img : `${(import.meta.env.VITE_API_URL || 'https://homesherut-backend.fly.dev').replace('/api', '')}/${img.replace(/\\/g, '/').replace(/^\/+/, '')}`;
-            return src;
-          })()}
-          alt={provider.name}
-          className="provider-image"
-          onError={(e) => {
-            setProfileImageError(true);
-          }}
-        />
-      ) : (
+      {(provider.media?.profileImage || provider.profile_image) && !profileImageError ? (() => {
+        const img = provider.media?.profileImage || provider.profile_image;
+        const src = img.startsWith('http') ? img : `${(import.meta.env.VITE_API_URL || 'https://homesherut-backend.fly.dev').replace('/api', '')}/${img.replace(/\\/g, '/').replace(/^\/+/, '')}`;
+        return (
+          <>
+            <button
+              type="button"
+              className="provider-image-button"
+              onClick={() => setProfileZoomOpen(true)}
+              aria-label={provider.name}
+            >
+              <img
+                src={src}
+                alt={provider.name}
+                className="provider-image"
+                onError={() => {
+                  setProfileImageError(true);
+                }}
+              />
+            </button>
+            {profileZoomOpen && createPortal(
+              <div
+                className="provider-lightbox-overlay"
+                onClick={() => setProfileZoomOpen(false)}
+                role="dialog"
+                aria-modal="true"
+              >
+                <button
+                  type="button"
+                  className="provider-lightbox-close"
+                  onClick={() => setProfileZoomOpen(false)}
+                  aria-label={t('provider.gallery.close')}
+                >
+                  <X size={22} />
+                </button>
+                <div className="provider-lightbox-stage" onClick={(e) => e.stopPropagation()}>
+                  <img src={src} alt={provider.name} className="provider-lightbox-image" />
+                </div>
+              </div>,
+              document.body
+            )}
+          </>
+        );
+      })() : (
         <div
           className="text-detail-avatar"
           style={{ background: getAvatarGradient(provider.name) }}
