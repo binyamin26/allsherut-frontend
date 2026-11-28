@@ -51,6 +51,7 @@ import {
   CheckCircle2,
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { getGalleryLimit } from '../data/galleryLimits';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import ResponseModal from '../components/modals/ResponseModal';
 import { getAllCities, getNeighborhoodsByCity } from '../data/israelLocations.js';
@@ -194,6 +195,7 @@ const userData = useMemo(() => {
   const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState(() => searchParams.get('tab') || 'overview');
   const [activeService, setActiveService] = useState(null);
+  const galleryLimit = getGalleryLimit(activeService || userData?.serviceType);
   const [stats, setStats] = useState({});
   const [recentActivity, setRecentActivity] = useState([]);
 
@@ -1400,8 +1402,8 @@ const handleGalleryImageUpload = async (e, sectionTitle = '') => {
   if (!file) return;
 
   const gallery = galleryImages || [];
-  if (gallery.length >= 15) {
-    setMessage({ type: 'error', text: 'מקסימום 15 תמונות בגלריה' });
+  if (gallery.length >= galleryLimit) {
+    setMessage({ type: 'error', text: `מקסימום ${galleryLimit} תמונות בגלריה` });
     return;
   }
 
@@ -2634,7 +2636,7 @@ const showPricingPopup = userData?.role === 'provider'
   <LayoutGrid size={20} />
   {t('dashboard.gallery.title')}
   <span style={{ fontSize: '0.8rem', fontWeight: '400', color: '#6b7280' }}>
-    ({galleryImages.length}/15 {t('dashboard.gallery.count')})
+    ({galleryImages.length}/{galleryLimit} {t('dashboard.gallery.count')})
   </span>
 </h3>
   <p style={{ color: '#6b7280', fontSize: '0.9rem', marginBottom: '1rem' }}>
@@ -2699,7 +2701,7 @@ const showPricingPopup = userData?.role === 'provider'
           </div>
         ))}
 
-        {galleryImages.length < 15 && (
+        {galleryImages.length < galleryLimit && (
           <label style={{
             aspectRatio: '1/1', border: '2px dashed #d1d5db', borderRadius: '8px',
             display: 'flex', flexDirection: 'column', alignItems: 'center',
